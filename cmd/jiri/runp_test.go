@@ -17,7 +17,7 @@ import (
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/jiritest"
 	"fuchsia.googlesource.com/jiri/project"
-	"v.io/x/lib/gosh"
+	"fuchsia.googlesource.com/jiri/gosh"
 )
 
 var (

@@ -24,9 +24,9 @@ import (
 	"fuchsia.googlesource.com/jiri/profiles/profilesreader"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/tool"
-	"v.io/x/lib/cmdline"
-	"v.io/x/lib/envvar"
-	"v.io/x/lib/simplemr"
+	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/envvar"
+	"fuchsia.googlesource.com/jiri/simplemr"
 )
 
 var (

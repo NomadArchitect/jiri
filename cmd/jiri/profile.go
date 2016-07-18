@@ -7,7 +7,7 @@ package main
 import (
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/profiles/profilescmdline"
-	"v.io/x/lib/cmdline"
+	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 var cmdProfile = &cmdline.Command{

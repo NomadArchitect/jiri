@@ -22,7 +22,7 @@ import (
 	"fuchsia.googlesource.com/jiri/profiles/profilescmdline"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/runutil"
-	"v.io/x/lib/cmdline"
+	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 const (

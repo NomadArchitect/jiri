@@ -14,9 +14,9 @@ import (
 	"path/filepath"
 
 	"fuchsia.googlesource.com/jiri/tool"
-	"v.io/x/lib/cmdline"
-	"v.io/x/lib/envvar"
-	"v.io/x/lib/timing"
+	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/envvar"
+	"fuchsia.googlesource.com/jiri/timing"
 )
 
 const (

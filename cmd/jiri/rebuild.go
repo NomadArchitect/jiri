@@ -10,7 +10,7 @@ import (
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/collect"
 	"fuchsia.googlesource.com/jiri/project"
-	"v.io/x/lib/cmdline"
+	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 // cmdRebuild represents the "jiri rebuild" command.

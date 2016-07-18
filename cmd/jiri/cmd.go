@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // The following enables go generate to generate the doc.go file.
-//go:generate go run $JIRI_ROOT/release/go/src/v.io/x/lib/cmdline/testdata/gendoc.go -env="" .
+//go:generate go run $JIRI_ROOT/release/go/src/fuchsia.googlesource.com/jiri/cmdline/testdata/gendoc.go -env="" .
 
 package main
 
@@ -11,7 +11,7 @@ import (
 	"runtime"
 
 	"fuchsia.googlesource.com/jiri/tool"
-	"v.io/x/lib/cmdline"
+	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 func init() {
