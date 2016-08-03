@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94e3d6ef_84b80c2d",
+        "filename": ".godepcop",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "are we going to pull these deps into the jiri repo at some point?",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 31
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_c476949d",
+        "filename": "AUTHORS",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "add \"The Vanadium Authors\" to this list as well.  It doesn\u0027t technically matter since all contributions were done by people @ Google, but it matches what we\u0027ve done for \"The Chromium Authors\" in other places, and it\u0027ll be less confusing for people who see \"The Vanadium Authors\" in various copyright headers (or Fuchsia in the LICENSE file)",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 11
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_e462b0b1",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "a top-level src directory will be confusing.  we can either have a top-level go directory, or we can have project-specific directories (which is what we have now) and we\u0027ll have to set GOPATH to multiple directories.\n\nthe first option is difficult when you have repos that contain more than just go code, which is why i\u0027ve been doing the second option.  we can talk about this if you want",
+      "range": {
+        "startLine": 138,
+        "startChar": 10,
+        "endLine": 138,
+        "endChar": 14
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_a4d50840",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "how does this get populated?",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 47
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_4fa9bd7a",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "we should make sure to come back to this and remove this default",
+      "range": {
+        "startLine": 576,
+        "startChar": 0,
+        "endLine": 576,
+        "endChar": 63
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_8fde650b",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T18:38:27Z",
+      "side": 1,
+      "message": "this is the example workflow, so we should set this to \"manifest\" and probably change fuchsia.googlesource.com to example.com or something",
+      "range": {
+        "startLine": 31,
+        "startChar": 55,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
