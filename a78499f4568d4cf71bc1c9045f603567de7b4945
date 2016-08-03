@@ -122,6 +122,24 @@
       "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34894a78_b036d805",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-03T23:01:24Z",
+      "side": 1,
+      "message": "does it sort the imports?  in any case, if there are changes from go fmt, let\u0027s submit those as a second cl",
+      "parentUuid": "34894a78_709f10f7",
+      "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
