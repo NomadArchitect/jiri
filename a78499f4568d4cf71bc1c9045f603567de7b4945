@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "34894a78_904b94b7",
+        "filename": ".godepcop",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T22:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4f9bad7_0412f603",
+      "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4f9bad7_44f22ed3",
         "filename": "cmd/jiri/.godepcop",
         "patchSetId": 1
@@ -48,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "34894a78_50468cad",
+        "filename": "cmd/jiri/.godepcop",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T22:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4f9bad7_44f22ed3",
+      "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4f9bad7_64dc0a3b",
         "filename": "cmd/jiri/project.go",
         "patchSetId": 1
@@ -65,6 +101,24 @@
         "endLine": 18,
         "endChar": 40
       },
+      "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34894a78_709f10f7",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T22:59:06Z",
+      "side": 1,
+      "message": "go fmt?",
+      "parentUuid": "b4f9bad7_64dc0a3b",
       "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
