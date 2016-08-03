@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "94e3d6ef_8f266570",
+        "filename": ".godepcop",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "Yes, that\u0027s going to be a follow up change.",
+      "parentUuid": "94e3d6ef_84b80c2d",
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94e3d6ef_c476949d",
         "filename": "AUTHORS",
         "patchSetId": 2
@@ -42,6 +60,24 @@
         "endLine": 8,
         "endChar": 11
       },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_4f437dff",
+        "filename": "AUTHORS",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e3d6ef_c476949d",
       "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "94e3d6ef_4a70cb0c",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "I agree that this is what we should do in our project, but this is intended to be a generic example.",
+      "parentUuid": "94e3d6ef_e462b0b1",
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94e3d6ef_a4d50840",
         "filename": "README.md",
         "patchSetId": 2
@@ -88,6 +142,24 @@
         "endLine": 231,
         "endChar": 47
       },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_8aff3354",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "Yes, when you search for the project on godoc.org.",
+      "parentUuid": "94e3d6ef_a4d50840",
       "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -117,6 +189,24 @@
     },
     {
       "key": {
+        "uuid": "94e3d6ef_2fe1d103",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "Agreed, we\u0027ll probably redo the entire tool logic, including this bit.",
+      "parentUuid": "94e3d6ef_4fa9bd7a",
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94e3d6ef_8fde650b",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 2
@@ -134,6 +224,24 @@
         "endLine": 31,
         "endChar": 59
       },
+      "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d6ef_0ffc15a3",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T19:48:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e3d6ef_8fde650b",
       "revId": "b3dc0b93ad7af2a0f30e20977233a52f480a0315",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
