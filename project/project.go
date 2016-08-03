@@ -17,17 +17,17 @@ import (
 	"strings"
 	"time"
 
-	"v.io/jiri"
-	"v.io/jiri/collect"
-	"v.io/jiri/gitutil"
-	"v.io/jiri/googlesource"
-	"v.io/jiri/runutil"
+	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/collect"
+	"fuchsia.googlesource.com/jiri/gitutil"
+	"fuchsia.googlesource.com/jiri/googlesource"
+	"fuchsia.googlesource.com/jiri/runutil"
 	"v.io/x/lib/set"
 )
 
 var JiriProject = "release.go.jiri"
 var JiriName = "jiri"
-var JiriPackage = "v.io/jiri"
+var JiriPackage = "fuchsia.googlesource.com/jiri"
 
 // CL represents a changelist.
 type CL struct {
