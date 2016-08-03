@@ -140,6 +140,24 @@
       "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34894a78_9016344b",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-08-03T23:04:36Z",
+      "side": 1,
+      "message": "Yep, I already ran it on the project and it just sorted imports, there are no other changes.",
+      "parentUuid": "34894a78_b036d805",
+      "revId": "a78499f4568d4cf71bc1c9045f603567de7b4945",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
