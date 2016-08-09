@@ -22,6 +22,30 @@
       "revId": "d1100577252a67d33de7250330d638017aa6d229",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996a2f2c_868f2c20",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-09T17:27:38Z",
+      "side": 1,
+      "message": "run(sh, dir, foo) will prefix foo with dir for you.  The problem with the basename line below is that it attempts to use jiri inside the command, so no such prefixing happens",
+      "parentUuid": "996a2f2c_c3883620",
+      "range": {
+        "startLine": 121,
+        "startChar": 1,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "d1100577252a67d33de7250330d638017aa6d229",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
