@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "996a2f2c_c3883620",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5020
+      },
+      "writtenOn": "2016-08-09T17:26:03Z",
+      "side": 1,
+      "message": "Shouldn this happen above for the --show-name-prefix invocation of jiri runp as well?",
+      "range": {
+        "startLine": 121,
+        "startChar": 1,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "d1100577252a67d33de7250330d638017aa6d229",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
