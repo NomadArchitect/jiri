@@ -46,6 +46,24 @@
       "revId": "d1100577252a67d33de7250330d638017aa6d229",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "996a2f2c_e6962038",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 5020
+      },
+      "writtenOn": "2016-08-09T17:28:46Z",
+      "side": 1,
+      "message": "Oh, that\u0027s what runp is. Derp. lg2m",
+      "parentUuid": "996a2f2c_868f2c20",
+      "revId": "d1100577252a67d33de7250330d638017aa6d229",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
