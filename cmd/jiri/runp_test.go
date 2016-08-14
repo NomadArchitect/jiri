@@ -6,8 +6,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -15,7 +17,6 @@ import (
 	"testing"
 
 	"fuchsia.googlesource.com/jiri/gitutil"
-	"fuchsia.googlesource.com/jiri/gosh"
 	"fuchsia.googlesource.com/jiri/jiritest"
 	"fuchsia.googlesource.com/jiri/project"
 )
@@ -25,15 +26,85 @@ var (
 	buildJiriBinDir = ""
 )
 
+// runCmd handles the boilerplate associated with running an exec.Cmd object.
+// In particular, it handles wiring up the std{out,err} pipes, reading from them,
+// and checking errors.  runCmd doesn't return error because errors are reported
+// on the testing object.  runCmd returns the combined output of stdout and stderr.
+func runCmd(t *testing.T, cmd *exec.Cmd) string {
+	// Make sure go is in the path.
+	_, err := exec.LookPath(cmd.Path)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Wire up output pipes.
+	stderr, err := cmd.StderrPipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Using .Start() is required when fetching output from pipes.
+	if err = cmd.Start(); err != nil {
+		t.Fatal(err)
+	}
+
+	// Reading from pipes is required before calling .Wait().
+	outBytes, err := ioutil.ReadAll(stdout)
+	if err != nil {
+		t.Fatal(err)
+	}
+	errBytes, err := ioutil.ReadAll(stderr)
+	if err != nil {
+		t.Fatal(err)
+	}
+	combinedBytes := append(outBytes, errBytes...)
+	if len(combinedBytes) > 0 {
+		t.Logf("Command (%s) has output\nFull command: %v\n", cmd.Path, cmd.Args)
+	}
+	if len(outBytes) > 0 {
+		t.Logf("Stdout:\n%s\n", string(outBytes))
+	}
+	if len(errBytes) > 0 {
+		t.Logf("Stderr:\n%s\n", string(errBytes))
+	}
+
+	// Wait for it...
+	if err = cmd.Wait(); err != nil {
+		t.Fatal(err)
+	}
+
+	return string(combinedBytes)
+}
+
+// buildGoPkg runs `go build` with the given package, and puts the binary in the given buildDir.
+func buildGoPkg(t *testing.T, pkg string, buildDir string) {
+	// Sanity checking: let's make sure the given buildDir exists and is a directory.
+	finfo, err := os.Stat(buildDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if ! finfo.IsDir() {
+		t.Fatal(fmt.Errorf("buildDir (%s) is not a directory\n", buildDir))
+	}
+
+	// In case you're wondering why we don't have to set GOPATH here, it's because it uses
+	// the one from the environment in which we're running the overall `go test` command.
+	buildJiriCmd := exec.Command("go", "build", "-o", filepath.Base(pkg), pkg)
+	buildJiriCmd.Dir = buildDir
+	runCmd(t, buildJiriCmd)
+}
+
 func buildJiri(t *testing.T) string {
 	buildJiriOnce.Do(func() {
 		binDir, err := ioutil.TempDir("", "")
 		if err != nil {
 			t.Fatal(err)
 		}
-		sh := gosh.NewShell(t)
-		defer sh.Cleanup()
-		gosh.BuildGoPkg(sh, binDir, "fuchsia.googlesource.com/jiri/cmd/jiri", "-o", "jiri")
+		buildGoPkg(t, "fuchsia.googlesource.com/jiri/cmd/jiri", binDir)
 		buildJiriBinDir = binDir
 	})
 	return buildJiriBinDir
@@ -63,12 +134,9 @@ func addProjects(t *testing.T, fake *jiritest.FakeJiriRoot) []*project.Project {
 	return projects
 }
 
-func run(sh *gosh.Shell, dir, bin string, args ...string) string {
-	cmd := sh.Cmd(filepath.Join(dir, bin), args...)
-	if testing.Verbose() {
-		cmd.PropagateOutput = true
-	}
-	return strings.TrimSpace(cmd.CombinedOutput())
+func run(t *testing.T, dir, bin string, args ...string) string {
+	cmd := exec.Command(filepath.Join(dir, bin), args...)
+	return strings.TrimSpace(runCmd(t, cmd))
 }
 
 func TestMain(m *testing.M) {
@@ -84,7 +152,7 @@ func TestRunP(t *testing.T) {
 	fake, cleanup := jiritest.NewFakeJiriRoot(t)
 	defer cleanup()
 	projects := addProjects(t, fake)
-	dir, sh := buildJiri(t), gosh.NewShell(t)
+	dir := buildJiri(t)
 
 	if got, want := len(projects), 5; got != want {
 		t.Errorf("got %v, want %v", got, want)
@@ -110,7 +178,7 @@ func TestRunP(t *testing.T) {
 
 	chdir(projects[0].Path)
 
-	got := run(sh, dir, "jiri", "runp", "--show-name-prefix", "-v", "echo")
+	got := run(t, dir, "jiri", "runp", "--show-name-prefix", "-v", "echo")
 	hdr := "Project Names: manifest r.a r.b r.c r.t1 r.t2\n"
 	hdr += "Project Keys: " + strings.Join(keys, " ") + "\n"
 
@@ -118,27 +186,27 @@ func TestRunP(t *testing.T) {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "-v", "--interactive=false", "basename", "$(", filepath.Join(dir, "jiri"), "project", "info", "-f", "{{.Project.Path}}", ")")
+	got = run(t, dir, "jiri", "runp", "-v", "--interactive=false", "basename", "$(", filepath.Join(dir, "jiri"), "project", "info", "-f", "{{.Project.Path}}", ")")
 	if want := hdr + "manifest\nr.a\nr.b\nr.c\nr.t1\nr.t2"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--interactive=false", "git", "rev-parse", "--abbrev-ref", "HEAD")
+	got = run(t, dir, "jiri", "runp", "--interactive=false", "git", "rev-parse", "--abbrev-ref", "HEAD")
 	if want := "master\nmaster\nmaster\nmaster\nmaster\nmaster"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "-interactive=false", "--show-name-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
+	got = run(t, dir, "jiri", "runp", "-interactive=false", "--show-name-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
 	if want := "manifest: master\nr.a: master\nr.b: master\nr.c: master\nr.t1: master\nr.t2: master"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--interactive=false", "--show-key-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
+	got = run(t, dir, "jiri", "runp", "--interactive=false", "--show-key-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
 	if want := strings.Join(keys, ": master\n") + ": master"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	uncollated := run(sh, dir, "jiri", "runp", "--interactive=false", "--collate-stdout=false", "--show-name-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
+	uncollated := run(t, dir, "jiri", "runp", "--interactive=false", "--collate-stdout=false", "--show-name-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
 	split := strings.Split(uncollated, "\n")
 	sort.Strings(split)
 	got = strings.TrimSpace(strings.Join(split, "\n"))
@@ -146,7 +214,7 @@ func TestRunP(t *testing.T) {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--show-name-prefix", "--projects=r.t[12]", "echo")
+	got = run(t, dir, "jiri", "runp", "--show-name-prefix", "--projects=r.t[12]", "echo")
 	if want := "r.t1: \nr.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -170,12 +238,12 @@ func TestRunP(t *testing.T) {
 
 	newfile(rb, "untracked.go")
 
-	got = run(sh, dir, "jiri", "runp", "--has-untracked", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-untracked", "--show-name-prefix", "echo")
 	if want := "r.b:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--has-untracked=false", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-untracked=false", "--show-name-prefix", "echo")
 	if want := "manifest: \nr.a: \nr.c: \nr.t1: \nr.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -186,24 +254,24 @@ func TestRunP(t *testing.T) {
 		t.Error(err)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--has-uncommitted", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-uncommitted", "--show-name-prefix", "echo")
 	if want := "r.c:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--has-uncommitted=false", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-uncommitted=false", "--show-name-prefix", "echo")
 	if want := "manifest: \nr.a: \nr.b: \nr.t1: \nr.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	// test ordering of has-<x> flags
 	newfile(rc, "untracked.go")
-	got = run(sh, dir, "jiri", "runp", "--has-untracked", "--has-uncommitted", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-untracked", "--has-uncommitted", "--show-name-prefix", "echo")
 	if want := "r.c:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--has-uncommitted", "--has-untracked", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-uncommitted", "--has-untracked", "--show-name-prefix", "echo")
 	if want := "r.c:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -216,13 +284,13 @@ func TestRunP(t *testing.T) {
 	chdir(rc)
 
 	// Just the projects with branch b2.
-	got = run(sh, dir, "jiri", "runp", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--show-name-prefix", "echo")
 	if want := "r.b: \nr.c:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	// All projects since --projects takes precendence over branches.
-	got = run(sh, dir, "jiri", "runp", "--projects=.*", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--projects=.*", "--show-name-prefix", "echo")
 	if want := "manifest: \nr.a: \nr.b: \nr.c: \nr.t1: \nr.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -236,12 +304,12 @@ func TestRunP(t *testing.T) {
 	git(t1).CheckoutBranch("a1")
 	chdir(t1)
 
-	got = run(sh, dir, "jiri", "runp", "--has-gerrit-message", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-gerrit-message", "--show-name-prefix", "echo")
 	if want := "r.b:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
-	got = run(sh, dir, "jiri", "runp", "--has-gerrit-message=false", "--show-name-prefix", "echo")
+	got = run(t, dir, "jiri", "runp", "--has-gerrit-message=false", "--show-name-prefix", "echo")
 	if want := "r.t1:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}

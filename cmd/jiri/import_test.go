@@ -135,11 +135,20 @@ func TestImport(t *testing.T) {
 `,
 		},
 	}
-	sh := gosh.NewShell(t)
-	defer sh.Cleanup()
-	jiriTool := gosh.BuildGoPkg(sh, sh.MakeTempDir(), "fuchsia.googlesource.com/jiri/cmd/jiri")
+
+	// Temporary directory in which our jiri binary will live.
+	binDir, err := ioutil.TempDir("", "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.RemoveAll(binDir)
+
+	//sh := gosh.NewShell(t)
+	//defer sh.Cleanup()
+	//jiriTool := gosh.BuildGoPkg(sh, sh.MakeTempDir(), "fuchsia.googlesource.com/jiri/cmd/jiri")
+	buildGoPkg(t, "fuchsia.googlesource.com/jiri/cmd/jiri", binDir)
 	for _, test := range tests {
-		if err := testImport(t, jiriTool, test); err != nil {
+		if err := testImport(t, filepath.Join(binDir, "jiri"), test); err != nil {
 			t.Errorf("%v: %v", test.Args, err)
 		}
 	}
