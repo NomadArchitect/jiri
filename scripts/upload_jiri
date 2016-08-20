@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Copyright 2016 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+# This script uploads jiri binaries to Google storage.  They are stored there
+# in a convention which matches the expectations of bootstrap_jiri.
+
+# There's a fundamental disagreement between the way Fuchsia organizes its
+# repos and the way Go wants to organize code: Fuchsia has a /jiri repo that
+# contains all the code, Go wants the code to live in a directory structure
+# that reflects the import paths (i.e. fuchsia.googlesource.com/jiri/...).
+#
+# To deal with that, and to keep your environment tidy, this script creates a
+# temporary directory and checks out a fresh copy of jiri into that structure.
+# This has the notable side-effect of only being able to upload jiri binaries
+# from source that's actually checked in.
+
+# Because this script uploads to a Google Storage bucket, you must execute it
+# in an environment with the proper credentials to access that GS bucket.
+
+set -e
+set -x
+
+readonly PKG_PATH="fuchsia.googlesource.com/jiri"
+readonly GS_BUCKET="gs://fuchsia-build/jiri"
+
+# We're going to do our work and build in a temporary directory, then clean up.
+readonly TEMP_DIR="$(mktemp -d)"
+trap "rm -rf -- "${TEMP_DIR}"" EXIT
+
+# Check out the code into the kind of directory structure `go build` expects.
+readonly GIT_DIR="${TEMP_DIR}/src/${PKG_PATH}"
+git clone "https://${PKG_PATH}" "${GIT_DIR}"
+
+# Use the git SHA of the latest commit in the jiri repo as the version of the binaries.
+readonly VERSION="$(git --git-dir="${GIT_DIR}/.git" --work-tree="${GIT_DIR}" log -1 --format=%H)"
+
+# For each target we support, upload a jiri binary.
+for os in linux darwin freebsd; do
+	GOPATH="${TEMP_DIR}" GOOS="${os}" GOARCH="amd64" go build -a -o "${TEMP_DIR}/jiri" "${PKG_PATH}/cmd/jiri"
+	gsutil cp "${TEMP_DIR}/jiri" "${GS_BUCKET}/${os}-amd64/${VERSION}"
+done
