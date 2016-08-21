@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright 2015 The Vanadium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
@@ -16,6 +16,8 @@
 
 set -euf -o pipefail
 
+readonly JIRI_GH_CONTENT="https://raw.githubusercontent.com/fuchsia-mirror/jiri"
+
 # fatal prints an error message, followed by the usage string, and then exits.
 fatal() {
   usage='
@@ -25,7 +27,7 @@ Usage:
 
 A typical bootstrap workflow looks like this:
 
-$ curl -s https://raw.githubusercontent.com/fuchsia-mirror/jiri/master/scripts/bootstrap_jiri | bash -s myroot
+$ curl -s ${JIRI_GH_CONTENT}/master/scripts/bootstrap_jiri | bash -s myroot
 $ export PATH=myroot/.jiri_root/scripts:$PATH
 $ cd myroot
 $ jiri import manifest https://example.com/manifest
@@ -41,36 +43,49 @@ toabs() (
   echo ${PWD}/$(basename $1)
 )
 
-# Check the <root_dir> argument is supplied and doesn't already exist.
+# Check the <root_dir> argument is supplied.
 if [[ $# -ne 1 ]]; then
   fatal "need <root_dir> argument"
 fi
-mkdir -p $(dirname $1)
-root_dir=$(toabs $1)
-if [[ -e ${root_dir} ]]; then
-  fatal "${root_dir} already exists"
+
+# Ensure <root_dir> doesn't already exist: this is important since we trap this script and
+# rm -rf <root_dir> if anything fails.
+mkdir -p "$(dirname $1)"
+readonly ROOT_DIR="$(toabs $1)"
+if [[ -e "${ROOT_DIR}" ]]; then
+  fatal "${ROOT_DIR} already exists"
 fi
+
 # Check that go is on the PATH.
 if ! go version >& /dev/null ; then
   fatal 'ERROR: "go" tool not found, see https://golang.org/doc/install'
 fi
 
-trap "rm -rf ${root_dir}" INT TERM EXIT
+# Remove the root_dir if this script fails so as to not leave the environment in a strange half-state.
+trap "rm -rf ${ROOT_DIR}" INT TERM EXIT
 
 # Make the output directories.
-tmp_dir="${root_dir}/.jiri_root/tmp"
-bin_dir="${root_dir}/.jiri_root/bin"
-scripts_dir="${root_dir}/.jiri_root/scripts"
-mkdir -p "${tmp_dir}" "${bin_dir}" "${scripts_dir}"
+readonly BIN_DIR="${ROOT_DIR}/.jiri_root/bin"
+readonly SCRIPTS_DIR="${ROOT_DIR}/.jiri_root/scripts"
+mkdir -p "${BIN_DIR}" "${SCRIPTS_DIR}"
 
-# Go get the jiri source files, build the jiri binary, and copy the jiri shim
-# script from the sources.
-GOPATH="${tmp_dir}" go get -d fuchsia.googlesource.com/jiri/cmd/jiri
-GOPATH="${tmp_dir}" go build -o "${bin_dir}/jiri" fuchsia.googlesource.com/jiri/cmd/jiri
-cp "${tmp_dir}/src/fuchsia.googlesource.com/jiri/scripts/jiri" "${scripts_dir}/jiri"
+# Determine and validate the version of jiri.
+readonly TARGET="$(uname | tr '[:upper:]' '[:lower:]')-amd64"
+readonly VERSION="$(curl -s ${JIRI_GH_CONTENT}/master/prebuilt/versions/${TARGET}/version.sha | tr -d '[[:space:]]')"
+if [[ ! "${VERSION}" =~ "[0-9a-f]{40}" ]]; then
+	# This might happen if there's a server error, or maybe ${TARGET}/version.sha doesn't exist.
+	echo "Retrieved jiri version does not match expected pattern:" 1>&2
+	echo "${VERSION}" 1>&2
+	echo "" 1>&2
+	echo "Maybe ${TARGET} isn't supported?" 1>&2
+	exit 1
+fi
 
-# Clean up the tmp_dir.
-rm -rf "${tmp_dir}"
+# Download the jiri binary.
+curl -o "${BIN_DIR}/jiri" "https://fuchsia-build.storage.googleapis.com/jiri/${TARGET}/${VERSION}"
 
-echo "Please add ${scripts_dir} to your PATH."
+# Download the jiri wrapper script.
+curl -o "${SCRIPTS_DIR}/jiri" "${JIRI_GH_CONTENT}/${VERSION}/scripts/jiri"
+
+echo "Please add ${SCRIPTS_DIR} to your PATH"
 trap - EXIT
