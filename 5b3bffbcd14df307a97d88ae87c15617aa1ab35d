@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "48ac639b_bbeff317",
+        "filename": "prebuilt/versions/darwin-amd64/version.sha",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-22T22:14:41Z",
+      "side": 1,
+      "message": "After talking to phosek about this, I think what we want is:\n\n1. a \"bootstrap\" version of jiri that either never or seldom changes -- bootstrap_jiri will fetch that version\n2. upload_jiri will upload git-sha-based versions of jiri prebuilts for use in #3\n3. after bootstrap, jiri will manage itself via tools and that will involve downloading prebuilts instead of building from source. the version information should be in either \u0027manifest\u0027 or a separate repo -- \u0027packages\u0027 comes to mind.",
+      "parentUuid": "e86a77fa_5eda291d",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86a77fa_7b6577e9",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
