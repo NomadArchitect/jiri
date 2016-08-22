@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e86a77fa_5eda291d",
+        "filename": "prebuilt/versions/darwin-amd64/version.sha",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-22T21:05:26Z",
+      "side": 1,
+      "message": "Is this a commit ID in the jiri repo itself?  How do you plan to update this (since changing this generates a new commit, etc?)  Seems really annoying to require (at least) 2 commits per change to jiri we want to roll out.\n\nHow about segregating the version into its own repo that points to commits in jiri?",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86a77fa_7b6577e9",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
