@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "48ac639b_fe46b97c",
+        "filename": "prebuilt/versions/darwin-amd64/version.sha",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-22T22:37:28Z",
+      "side": 1,
+      "message": "Seems reasonable, although the need of a special bootstrap version is kind of icky.",
+      "parentUuid": "48ac639b_bbeff317",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86a77fa_7b6577e9",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
