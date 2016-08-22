@@ -51,6 +51,24 @@
       "revId": "e5909900e4f52f074dab691c0677bfe25df0d0b3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48ac639b_d8758d5d",
+        "filename": "scripts/upload_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-22T21:46:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e86a77fa_b84ef56f",
+      "revId": "e5909900e4f52f074dab691c0677bfe25df0d0b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
