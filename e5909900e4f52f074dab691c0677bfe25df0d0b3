@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "48ac639b_d8490d90",
+        "filename": "scripts/upload_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-22T21:38:01Z",
+      "side": 1,
+      "message": "the reason i added this is because cross compile for darwin failed on my workstation.  i was thus convinced that compiling for the host os is the most sane default choice.\n\nstill want me to change it?",
+      "parentUuid": "e86a77fa_98405944",
+      "revId": "e5909900e4f52f074dab691c0677bfe25df0d0b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86a77fa_b84ef56f",
         "filename": "scripts/upload_jiri",
         "patchSetId": 3
