@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e86a77fa_7b6577e9",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-22T20:48:08Z",
+      "side": 1,
+      "message": "why pull from github and not gerrit?",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
