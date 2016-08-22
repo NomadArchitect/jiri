@@ -51,6 +51,24 @@
       "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "48ac639b_5bc6d773",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-22T22:23:23Z",
+      "side": 1,
+      "message": "pulling from gerrit requires running the result through a base64 decoder.  the mac and linux implementations take different arguments (-D vs -d) and i wasn\u0027t sure what bsd does.  using gh seemed like the most portable solution.",
+      "parentUuid": "e86a77fa_7b6577e9",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
