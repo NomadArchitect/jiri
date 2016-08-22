@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e86a77fa_98405944",
+        "filename": "scripts/upload_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-22T20:15:05Z",
+      "side": 1,
+      "message": "shouldn\u0027t the default be \"darwin linux\" ? that\u0027s by far the most commonly desired, i would expect",
+      "revId": "e5909900e4f52f074dab691c0677bfe25df0d0b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e86a77fa_b84ef56f",
+        "filename": "scripts/upload_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-22T20:15:05Z",
+      "side": 1,
+      "message": "we should probably build for each target and make sure that works before we try to upload binaries. if one target fails, i\u0027d expect to want to fix and try again and not have some targets uploaded for the failing rev",
+      "revId": "e5909900e4f52f074dab691c0677bfe25df0d0b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
