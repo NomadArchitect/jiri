@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "48ac639b_61504c64",
+        "filename": "prebuilt/versions/darwin-amd64/version.sha",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-22T23:10:46Z",
+      "side": 1,
+      "message": "We need to use either a well-known version (e.g. \"bootstrap\") or fetch the version from a well-known location (e.g. jiri/prebuilt/versions or maybe packages/prebuilt/versions...)\n\nI suppose I don\u0027t care which, but in our chat, phosek disliked having a version to check in (see his comment elsewhere in this CL).\n\nIf you want a version in a well-known location, I can move this SHA to another repo to address your original point.  You and phosek want to fight it out? :)",
+      "parentUuid": "48ac639b_fe46b97c",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e86a77fa_7b6577e9",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
