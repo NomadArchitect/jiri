@@ -105,6 +105,24 @@
       "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e541c27a_60694cc4",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-25T21:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48ac639b_5bc6d773",
+      "revId": "5b3bffbcd14df307a97d88ae87c15617aa1ab35d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
