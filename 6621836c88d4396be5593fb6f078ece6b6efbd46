@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e541c27a_068d0032",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-25T22:15:46Z",
+      "side": 1,
+      "message": "pass \"-f\" to curl to make it generate non-zero exit codes on failures it can detect (like 404s, 500s, etc)",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e541c27a_11e1bcc2",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-25T22:15:46Z",
+      "side": 1,
+      "message": "i think this should print the URL it tried to download. that\u0027ll make debugging much easier",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e541c27a_71048072",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-25T22:15:46Z",
+      "side": 1,
+      "message": "hm, here you do use -f",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
