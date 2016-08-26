@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e541c27a_35ce5b2f",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-26T17:21:55Z",
+      "side": 1,
+      "message": "i can\u0027t rely on just adding -f here because the error output of curl is insufficient: \"curl: (22) The requested URL returned error: 404 Not Found\".  on top of that, even if i add -f, `set -x` won\u0027t stop the script because i\u0027m storing the result of the command so `set -x` is (correctly) ignored.\n\nideally, you would check $? after the assignment to ensure the command substitution succeeded:\nfoo\u003d$(false)\nif [[ $? ]]; then echo \"foo failed\"; fi\n\nhowever, readonly seems to muck that up:\nreadonly foo\u003d$(false)\necho $?  # always prints 0",
+      "parentUuid": "e541c27a_068d0032",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e541c27a_11e1bcc2",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "e541c27a_15cb5f1e",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-26T17:21:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e541c27a_11e1bcc2",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e541c27a_71048072",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2016-08-25T22:15:46Z",
       "side": 1,
       "message": "hm, here you do use -f",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e541c27a_55de87da",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-26T17:21:55Z",
+      "side": 1,
+      "message": "yeah, in this case i\u0027m not storing the output of curl, so checking the result directly works fine.",
+      "parentUuid": "e541c27a_71048072",
       "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
