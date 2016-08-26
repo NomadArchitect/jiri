@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c56d9e44_44644eef",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-26T17:29:10Z",
+      "side": 1,
+      "message": "after some more experimentation, i think -sSf might be the best option.\n\n-sf alone causes curl to fail but there\u0027s no server output.  so we can see the url but not the error\n\n-sSf output ends up looking like:\n\ncurl: (22) The requested URL returned error: 400 Bad Request\nEncoded jiri version does not look like base64\nURL: https://fuchsia.googlesource.com/jiri/version/+/master/bootstrap/linux-amd64?format\u003dDNE\n\nMaybe linux-amd64 isn\u0027t supported?",
+      "parentUuid": "e541c27a_35ce5b2f",
+      "revId": "6621836c88d4396be5593fb6f078ece6b6efbd46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e541c27a_11e1bcc2",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 5
