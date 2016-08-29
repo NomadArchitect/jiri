@@ -19,7 +19,6 @@ pkg project, func ParseNames(*jiri.X, []string, map[string]struct{}) (Projects, 
 pkg project, func PollProjects(*jiri.X, map[string]struct{}) (Update, error)
 pkg project, func ProjectAtPath(*jiri.X, string) (Project, error)
 pkg project, func ProjectFromFile(*jiri.X, string) (*Project, error)
-pkg project, func TransitionBinDir(*jiri.X) error
 pkg project, func UpdateUniverse(*jiri.X, bool) error
 pkg project, func WriteUpdateHistorySnapshot(*jiri.X, string) error
 pkg project, method (*Import) ProjectKey() ProjectKey
