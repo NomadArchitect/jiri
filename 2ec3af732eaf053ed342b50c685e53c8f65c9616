@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5967ec8_bf203305",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-08-29T23:09:18Z",
+      "side": 0,
+      "message": "does jiri fail in a friendly way (i.e. intelligible to humans) if the directory doesn\u0027t exist?",
+      "revId": "2ec3af732eaf053ed342b50c685e53c8f65c9616",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
