@@ -16,6 +16,24 @@
       "revId": "2ec3af732eaf053ed342b50c685e53c8f65c9616",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5967ec8_1fc4c70f",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-29T23:12:29Z",
+      "side": 0,
+      "message": "for anyone who\u0027s not using a scripts/jiri from .jiri_root directly, they will get this error message from their installed wrapper script:\n\n\"ERROR: could not find .jiri_root directory\"",
+      "parentUuid": "c5967ec8_bf203305",
+      "revId": "2ec3af732eaf053ed342b50c685e53c8f65c9616",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
