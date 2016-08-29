@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "051ed617_d96897c3",
+        "filename": "project/.api",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-08-29T20:23:32Z",
+      "side": 0,
+      "message": "were you able to successfully run go gen, or did you manually update this?  i ask because last i checked go gen was broken and i believe the bug is still open.",
+      "revId": "0dfd174d716da3884f6a26f8db0223cb35ea831f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
