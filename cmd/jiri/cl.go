@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
@@ -48,6 +49,7 @@ var (
 	verifyFlag            bool
 	currentProjectFlag    bool
 	cleanupMultiPartFlag  bool
+	deleteFlag            bool
 )
 
 // Special labels stored in the commit message.
@@ -91,6 +93,9 @@ func init() {
 	cmdCLMail.Flags.BoolVar(&verifyFlag, "verify", true, `Run pre-push git hooks.`)
 	cmdCLMail.Flags.BoolVar(&currentProjectFlag, "current-project-only", false, `Run mail in the current project only.`)
 	cmdCLMail.Flags.BoolVar(&cleanupMultiPartFlag, "clean-multipart-metadata", false, `Cleanup the metadata associated with multipart CLs pertaining the MultiPart: x/y message without mailing any CLs.`)
+	cmdCLPatch.Flags.BoolVar(&deleteFlag, "delete", false, "Delete the existing branch if already exists")
+	cmdCLPatch.Flags.BoolVar(&forceFlag, "force", false, "Use force when deleting the existing branch")
+	cmdCLPatch.Flags.StringVar(&hostFlag, "host", "", `Gerrit host to use.  Defaults to gerrit host specified in manifest.`)
 	cmdCLSync.Flags.StringVar(&remoteBranchFlag, "remote-branch", "master", `Name of the remote branch the CL pertains to, without the leading "origin/".`)
 }
 
@@ -140,7 +145,7 @@ func newCmdCL() *cmdline.Command {
 		Name:     "cl",
 		Short:    "Manage changelists for multiple projects",
 		Long:     "Manage changelists for multiple projects.",
-		Children: []*cmdline.Command{cmdCLCleanup, cmdCLMail, cmdCLNew, cmdCLSync},
+		Children: []*cmdline.Command{cmdCLCleanup, cmdCLMail, cmdCLNew, cmdCLPatch, cmdCLSync},
 	}
 }
 
@@ -1395,6 +1400,118 @@ func newCL(jirix *jiri.X, args []string) error {
 
 	cleanup = false
 	return nil
+}
+
+// cmdCLPatch represents the "jiri cl patch" command.
+var cmdCLPatch = &cmdline.Command{
+	Runner: jiri.RunnerFunc(runCLPatch),
+	Name:   "patch",
+	Short:  "Patch in the existing change",
+	Long: `
+Command "patch" applies the existing changelist to the current project. The
+change can be identified either as change ID, in which case the latest patchset
+will be used, or the the full reference.
+`,
+	ArgsName: "<ids or refs>",
+	ArgsLong: "<ids or refs> is a list of change IDs to apply.",
+}
+
+// patchProject changes directory into the project directory, checks out the given
+// change, then cds back to the original directory.
+func patchProject(jirix *jiri.X, project project.Project, ref string) error {
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	defer os.Chdir(cwd)
+
+	if err = os.Chdir(project.Path); err != nil {
+		return err
+	}
+
+	branch := strings.TrimPrefix(ref, "refs/")
+
+	git := gitutil.New(jirix.NewSeq())
+	if git.BranchExists(branch) {
+		if deleteFlag {
+			if err := git.CheckoutBranch("origin/master"); err != nil {
+				return err
+			}
+			if err := git.DeleteBranch(branch, gitutil.ForceOpt(forceFlag)); err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("branch %v already exists in project %q", branch, project.Name)
+		}
+	}
+	if err := git.CreateAndCheckoutBranch(branch); err != nil {
+		return err
+	}
+	if err := git.Pull(project.Remote, ref); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func patchCL(jirix *jiri.X, args []string) (e error) {
+	host := hostFlag
+	if host == "" {
+		p, err := currentProject(jirix)
+		if err != nil {
+			return err
+		}
+		if p.GerritHost == "" {
+			return fmt.Errorf("No Gerrit host found. Please use the '--host' flag, or add a 'gerrithost' attribute for project %q.", p.Name)
+		}
+		host = p.GerritHost
+	}
+	hostUrl, err := url.Parse(host)
+	if err != nil {
+		return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
+	}
+	g := jirix.Gerrit(hostUrl)
+
+	projects, _, err := project.LoadManifest(jirix)
+	if err != nil {
+		return err
+	}
+
+	for _, arg := range args {
+		cl, ps, err := gerrit.ParseRefString(arg)
+		if err != nil {
+			cl, err = strconv.Atoi(arg)
+			if err != nil {
+				return fmt.Errorf("invalid argument: %v", arg)
+			}
+		}
+		c, err := g.GetChange(cl)
+		if err != nil {
+			return err
+		}
+		var ref string
+		if ps != -1 {
+			ref = arg
+		} else {
+			ref = c.Reference()
+		}
+		for _, p := range projects {
+			if strings.HasSuffix(p.Remote, c.Project) {
+				if err := patchProject(jirix, p, ref); err != nil {
+					return err
+				}
+			}
+		}
+	}
+
+	return nil
+}
+
+func runCLPatch(jirix *jiri.X, args []string) error {
+	if len(args) == 0 {
+		return jirix.UsageErrorf("argmument missing")
+	}
+	return patchCL(jirix, args)
 }
 
 // cmdCLSync represents the "jiri cl sync" command.
