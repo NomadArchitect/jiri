@@ -16,6 +16,24 @@
       "revId": "fdb5c06143b33573b4e0576d63f1704d0e17d114",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3642374d_32292e90",
+        "filename": "cmd/jiri/cl.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-03T00:40:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3642374d_f21ba68a",
+      "revId": "fdb5c06143b33573b4e0576d63f1704d0e17d114",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
