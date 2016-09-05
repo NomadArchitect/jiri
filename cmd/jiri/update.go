@@ -5,6 +5,8 @@
 package main
 
 import (
+	"fmt"
+
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
@@ -41,6 +43,12 @@ Run "jiri help manifest" for details on manifests.
 }
 
 func runUpdate(jirix *jiri.X, _ []string) error {
+	// First try to update Jiri itself.
+	err := jiri.Update()
+	if err != nil {
+		fmt.Printf("warning: %v\n", err)
+	}
+
 	// Update all projects to their latest version.
 	// Attempt <attemptsFlag> times before failing.
 	updateFn := func() error { return project.UpdateUniverse(jirix, gcFlag) }
