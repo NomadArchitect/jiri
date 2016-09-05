@@ -44,24 +44,65 @@ func init() {
 }
 
 // cmdProject represents the "jiri project" command.
-var cmdProject = &cmdline.Command{
-	Name:     "project",
-	Short:    "Manage the jiri projects",
-	Long:     "Manage the jiri projects.",
-	Children: []*cmdline.Command{cmdProjectClean, cmdProjectInfo, cmdProjectList, cmdProjectShellPrompt},
+var cmdProject = &Command{
+	Runner:     runProject,
+	UsageLine:	"project",
+	Short:		"Manage the jiri projects",
+	Long:		"Manage the jiri projects.",
+	//Children: []*cmdline.Command{cmdProjectClean, cmdProjectInfo, cmdProjectList, cmdProjectShellPrompt},
+}
+
+func runProject(cmd *Command, args []string) error {
+	if len(args) < 1 {
+		//usage()
+	}
+
+	if args[0] == "help" {
+		//help(args[1:])
+		return nil
+	}
+
+	c := []*Command{
+		cmdProjectClean,
+	}
+
+	for _, cmd := range c {
+		if cmd.Name() == args[0] && cmd.Runnable() {
+			cmd.Flags.Usage = func() {
+				cmd.Usage()
+			}
+			if cmd.CustomFlags {
+				args = args[1:]
+			} else {
+				cmd.Flags.Parse(args[1:])
+				args = cmd.Flags.Args()
+			}
+			cmd.Runner(cmd, args)
+			return nil
+		}
+	}
+
+	return nil
 }
 
 // cmdProjectClean represents the "jiri project clean" command.
-var cmdProjectClean = &cmdline.Command{
-	Runner:   jiri.RunnerFunc(runProjectClean),
-	Name:     "clean",
-	Short:    "Restore jiri projects to their pristine state",
-	Long:     "Restore jiri projects back to their master branches and get rid of all the local branches and changes.",
-	ArgsName: "<project ...>",
-	ArgsLong: "<project ...> is a list of projects to clean up.",
+var cmdProjectClean = &Command{
+	Runner:		runProjectClean,
+	UsageLine:	"clean [projects]",
+	Short:		"Restore jiri projects to their pristine state",
+	Long: `
+Restore jiri projects back to their master branches and get rid of all the local branches and changes.
+
+<projects> is a list of projects to clean up.
+`,
 }
 
-func runProjectClean(jirix *jiri.X, args []string) (e error) {
+func runProjectClean(cmd *Command, args []string) (e error) {
+	jirix, err := jiri.NewX(cmdline.EnvFromOS())
+	if err != nil {
+		panic(err)
+	}
+
 	localProjects, err := project.LocalProjects(jirix, project.FullScan)
 	if err != nil {
 		return err

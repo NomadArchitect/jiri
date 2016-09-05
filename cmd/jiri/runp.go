@@ -6,7 +6,6 @@ package main
 
 import (
 	"bufio"
-	"flag"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -28,70 +27,52 @@ import (
 )
 
 var (
-	cmdRunP   *cmdline.Command
-	runpFlags runpFlagValues
+	flagProjectKeys      string
+	flagVerbose          bool
+	flagInteractive      bool
+	flagHasUncommitted   bool
+	flagHasNoUncommitted bool
+	flagHasUntracked     bool
+	flagHasNoUntracked   bool
+	flagHasGerritMessage bool
+	flagShowNamePrefix   bool
+	flagShowKeyPrefix    bool
+	flagExitOnError      bool
+	flagCollateOutput    bool
+	flagEditMessage      bool
+	flagHasBranch        string
 )
 
-func newRunP() *cmdline.Command {
-	return &cmdline.Command{
-		Runner: jiri.RunnerFunc(runRunp),
-		Name:   "runp",
-		Short:  "Run a command in parallel across jiri projects",
-		Long: `
+func init() {
+	cmdRunP.Flags.BoolVar(&flagVerbose, "v", false, "Print verbose logging information")
+	cmdRunP.Flags.StringVar(&flagProjectKeys, "projects", "", "A Regular expression specifying project keys to run commands in. By default, runp will use projects that have the same branch checked as the current project unless it is run from outside of a project in which case it will default to using all projects.")
+	cmdRunP.Flags.BoolVar(&flagHasUncommitted, "has-uncommitted", false, "If specified, match projects that have, or have no, uncommitted changes")
+	cmdRunP.Flags.BoolVar(&flagHasNoUncommitted, "no-uncommitted", false, "Match projects that have no uncommitted changes")
+	cmdRunP.Flags.BoolVar(&flagHasUntracked, "has-untracked", false, "If specified, match projects that have, or have no, untracked files")
+	cmdRunP.Flags.BoolVar(&flagHasNoUntracked, "no-untracked", false, "Match projects that have no untracked files")
+	cmdRunP.Flags.BoolVar(&flagHasGerritMessage, "has-gerrit-message", false, "If specified, match branches that have, or have no, gerrit message")
+	cmdRunP.Flags.BoolVar(&flagInteractive, "interactive", true, "If set, the command to be run is interactive and should not have its stdout/stderr manipulated. This flag cannot be used with -show-name-prefix, -show-key-prefix or -collate-stdout.")
+	cmdRunP.Flags.BoolVar(&flagShowNamePrefix, "show-name-prefix", false, "If set, each line of output from each project will begin with the name of the project followed by a colon. This is intended for use with long running commands where the output needs to be streamed. Stdout and stderr are spliced apart. This flag cannot be used with -interactive, -show-key-prefix or -collate-stdout.")
+	cmdRunP.Flags.BoolVar(&flagShowKeyPrefix, "show-key-prefix", false, "If set, each line of output from each project will begin with the key of the project followed by a colon. This is intended for use with long running commands where the output needs to be streamed. Stdout and stderr are spliced apart. This flag cannot be used with -interactive, -show-name-prefix or -collate-stdout")
+	cmdRunP.Flags.BoolVar(&flagCollateOutput, "collate-stdout", true, "Collate all stdout output from each parallel invocation and display it as if had been generated sequentially. This flag cannot be used with -show-name-prefix, -show-key-prefix or -interactive.")
+	cmdRunP.Flags.BoolVar(&flagExitOnError, "exit-on-error", false, "If set, all commands will killed as soon as one reports an error, otherwise, each will run to completion.")
+	cmdRunP.Flags.StringVar(&flagHasBranch, "has-branch", "", "A regular expression specifying branch names to use in matching projects. A project will match if the specified branch exists, even if it is not checked out.")
+}
+
+var cmdRunP = &Command{
+	Runner:		runRunp,
+	UsageLine:	"runp [command line]",
+	Short:		"Run a command in parallel across jiri projects",
+	Long: `
 Run a command in parallel across one or more jiri projects. Commands are run
 using the shell specified by the users $SHELL environment variable, or "sh"
 if that's not set. Thus commands are run as $SHELL -c "args..."
- `,
-		ArgsName: "<command line>",
-		ArgsLong: `
-	A command line to be run in each project specified by the supplied command
+
+<command line> A command line to be run in each project specified by the supplied command
 line flags. Any environment variables intended to be evaluated when the
 command line is run must be quoted to avoid expansion before being passed to
 runp by the shell.
 `,
-	}
-}
-
-type runpFlagValues struct {
-	projectKeys     string
-	verbose         bool
-	interactive     bool
-	uncommitted     bool
-	noUncommitted   bool
-	untracked       bool
-	noUntracked     bool
-	gerritMessage   bool
-	noGerritMessage bool
-	showNamePrefix  bool
-	showKeyPrefix   bool
-	exitOnError     bool
-	collateOutput   bool
-	branch          string
-}
-
-func registerCommonFlags(flags *flag.FlagSet, values *runpFlagValues) {
-	flags.BoolVar(&values.verbose, "v", false, "Print verbose logging information")
-	flags.StringVar(&values.projectKeys, "projects", "", "A Regular expression specifying project keys to run commands in. By default, runp will use projects that have the same branch checked as the current project unless it is run from outside of a project in which case it will default to using all projects.")
-	flags.BoolVar(&values.uncommitted, "uncommitted", false, "Match projects that have uncommitted changes")
-	flags.BoolVar(&values.noUncommitted, "no-uncommitted", false, "Match projects that have no uncommitted changes")
-	flags.BoolVar(&values.untracked, "untracked", false, "Match projects that have untracked files")
-	flags.BoolVar(&values.noUntracked, "no-untracked", false, "Match projects that have no untracked files")
-	flags.BoolVar(&values.gerritMessage, "gerrit-message", false, "Match branches that have gerrit message")
-	flags.BoolVar(&values.noGerritMessage, "no-gerrit-message", false, "Match branches that have no gerrit message")
-	flags.BoolVar(&values.interactive, "interactive", false, "If set, the command to be run is interactive and should not have its stdout/stderr manipulated. This flag cannot be used with -show-name-prefix, -show-key-prefix or -collate-stdout.")
-	flags.BoolVar(&values.showNamePrefix, "show-name-prefix", false, "If set, each line of output from each project will begin with the name of the project followed by a colon. This is intended for use with long running commands where the output needs to be streamed. Stdout and stderr are spliced apart. This flag cannot be used with -interactive, -show-key-prefix or -collate-stdout.")
-	flags.BoolVar(&values.showKeyPrefix, "show-key-prefix", false, "If set, each line of output from each project will begin with the key of the project followed by a colon. This is intended for use with long running commands where the output needs to be streamed. Stdout and stderr are spliced apart. This flag cannot be used with -interactive, -show-name-prefix or -collate-stdout")
-	flags.BoolVar(&values.collateOutput, "collate-stdout", true, "Collate all stdout output from each parallel invocation and display it as if had been generated sequentially. This flag cannot be used with -show-name-prefix, -show-key-prefix or -interactive.")
-	flags.BoolVar(&values.exitOnError, "exit-on-error", false, "If set, all commands will killed as soon as one reports an error, otherwise, each will run to completion.")
-	flags.StringVar(&values.branch, "branch", "", "A regular expression specifying branch names to use in matching projects. A project will match if the specified branch exists, even if it is not checked out.")
-}
-
-func init() {
-	// Avoid an intialization loop between cmdline.Command.Runner which
-	// refers to cmdRunP and runRunp referring back to cmdRunP.ParsedFlags.
-	cmdRunP = newRunP()
-	cmdRoot.Children = append(cmdRoot.Children, cmdRunP)
-	registerCommonFlags(&cmdRunP.Flags, &runpFlags)
 }
 
 type mapInput struct {
@@ -183,19 +164,20 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 		path = "sh"
 	}
 	var wg sync.WaitGroup
+	fmt.Printf("%v: %v\n", path, r.args)
 	cmd := exec.Command(path, "-c", strings.Join(r.args, " "))
 	cmd.Env = envvar.MapToSlice(jirix.Env())
 	cmd.Dir = mi.ProjectState.Project.Path
 	cmd.Stdin = mi.jirix.Stdin()
 	var stdoutCloser, stderrCloser io.Closer
-	if runpFlags.interactive {
-		cmd.Stdout = os.Stdout
-		cmd.Stderr = os.Stderr
+	if flagInteractive {
+		cmd.Stdout = jirix.Stdout()
+		cmd.Stderr = jirix.Stderr()
 	} else {
 		var stdout io.Writer
 		stderr := r.serializedWriter(jirix.Stderr())
 		var cleanup func()
-		if runpFlags.collateOutput {
+		if flagCollateOutput {
 			// Write standard output to a file, stderr
 			// is not collated.
 			f, err := ioutil.TempFile("", "jiri-runp-")
@@ -215,7 +197,7 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 			stdout = r.serializedWriter(os.Stdout)
 			cleanup = func() {}
 		}
-		if !runpFlags.showNamePrefix && !runpFlags.showKeyPrefix {
+		if !flagShowNamePrefix && !flagShowKeyPrefix {
 			// write directly to stdout, stderr if there's no prefix
 			cmd.Stdout = stdout
 			cmd.Stderr = stderr
@@ -240,7 +222,7 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 			stdoutCloser = stdoutWriter
 			stderrCloser = stderrWriter
 			prefix := key
-			if runpFlags.showNamePrefix {
+			if flagShowNamePrefix {
 				prefix = mi.ProjectState.Project.Name
 			}
 			wg.Add(2)
@@ -258,7 +240,7 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 	}()
 	select {
 	case output.err = <-done:
-		if output.err != nil && runpFlags.exitOnError {
+		if output.err != nil && flagExitOnError {
 			mr.Cancel()
 		}
 	case <-mr.CancelCh():
@@ -281,7 +263,7 @@ func (r *runner) Reduce(mr *simplemr.MR, key string, values []interface{}) error
 			fmt.Fprintf(os.Stdout, "FAILED: %v: %s %v\n", mo.key, strings.Join(r.args, " "), mo.err)
 			return mo.err
 		} else {
-			if runpFlags.collateOutput {
+			if flagCollateOutput {
 				r.collatedOutputLock.Lock()
 				defer r.collatedOutputLock.Unlock()
 				defer os.Remove(mo.outputFilename)
@@ -297,37 +279,42 @@ func (r *runner) Reduce(mr *simplemr.MR, key string, values []interface{}) error
 	return nil
 }
 
-func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
-	if runpFlags.interactive {
-		runpFlags.collateOutput = false
+func runp(jirix *jiri.X, cmd *Command, args []string) error {
+	if flagInteractive {
+		flagCollateOutput = false
 	}
 
 	var keysRE, branchRE *regexp.Regexp
 	var err error
 
-	if runpFlags.projectKeys != "" {
+	if isFlagSet(&cmd.Flags, "projects") {
 		re := ""
-		for _, pre := range strings.Split(runpFlags.projectKeys, ",") {
+		for _, pre := range strings.Split(flagProjectKeys, ",") {
 			re += pre + "|"
 		}
 		re = strings.TrimRight(re, "|")
 		keysRE, err = regexp.Compile(re)
 		if err != nil {
-			return fmt.Errorf("failed to compile projects regexp: %q: %v", runpFlags.projectKeys, err)
+			return fmt.Errorf("failed to compile projects regexp: %q: %v", flagProjectKeys, err)
 		}
 	}
 
-	if runpFlags.branch != "" {
-		branchRE, err = regexp.Compile(runpFlags.branch)
+	if isFlagSet(&cmd.Flags, "has-branch") {
+		branchRE, err = regexp.Compile(flagHasBranch)
 		if err != nil {
-			return fmt.Errorf("failed to compile has-branch regexp: %q: %v", runpFlags.branch, err)
+			return fmt.Errorf("failed to compile has-branch regexp: %q: %v", flagHasBranch, err)
 		}
 	}
 
-	if (runpFlags.showKeyPrefix || runpFlags.showNamePrefix) && runpFlags.interactive {
-		fmt.Fprintf(jirix.Stderr(), "WARNING: interactive mode being disabled because show-key-prefix or show-name-prefix was set\n")
-		runpFlags.interactive = false
-		runpFlags.collateOutput = true
+	for _, f := range []string{"show-key-prefix", "show-name-prefix"} {
+		if isFlagSet(&cmd.Flags, f) {
+			if flagInteractive && isFlagSet(&cmd.Flags, "interactive") {
+				fmt.Fprintf(jirix.Stderr(), "WARNING: interactive mode being disabled because %s was set\n", f)
+			}
+			flagInteractive = false
+			flagCollateOutput = true
+			break
+		}
 	}
 
 	dir, err := os.Getwd()
@@ -349,7 +336,7 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 		return err
 	}
 
-	states, err := project.GetProjectStates(jirix, projects, runpFlags.untracked || runpFlags.noUntracked || runpFlags.uncommitted || runpFlags.noUncommitted)
+	states, err := project.GetProjectStates(jirix, projects, flagHasUntracked || flagHasNoUntracked || flagHasUncommitted || flagHasNoUncommitted)
 	if err != nil {
 		return err
 	}
@@ -378,23 +365,11 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 				continue
 			}
 		}
-		if (runpFlags.untracked && !state.HasUntracked) || (runpFlags.noUntracked && state.HasUntracked) {
+		if (flagHasUntracked && !state.HasUntracked) || (flagHasNoUntracked && state.HasUntracked) {
 			continue
 		}
-		if (runpFlags.uncommitted && !state.HasUncommitted) || (runpFlags.noUncommitted && state.HasUncommitted) {
+		if (flagHasUncommitted && !state.HasUncommitted) || (flagHasNoUncommitted && state.HasUncommitted) {
 			continue
-		}
-		if runpFlags.gerritMessage || runpFlags.noGerritMessage {
-			hasMsg := false
-			for _, br := range state.Branches {
-				if (state.CurrentBranch == br.Name) && br.HasGerritMessage {
-					hasMsg = true
-					break
-				}
-			}
-			if (runpFlags.gerritMessage && !hasMsg) || (runpFlags.noGerritMessage && hasMsg) {
-				continue
-			}
 		}
 		mapInputs[key] = &mapInput{
 			ProjectState: state,
@@ -412,16 +387,16 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 		index++
 	}
 
-	if runpFlags.verbose {
-		fmt.Fprintf(os.Stdout, "Project Names: %s\n", strings.Join(stateNames(mapInputs), " "))
-		fmt.Fprintf(os.Stdout, "Project Keys: %s\n", strings.Join(stateKeys(mapInputs), " "))
+	if flagVerbose {
+		fmt.Fprintf(jirix.Stdout(), "Project Names: %s\n", strings.Join(stateNames(mapInputs), " "))
+		fmt.Fprintf(jirix.Stdout(), "Project Keys: %s\n", strings.Join(stateKeys(mapInputs), " "))
 	}
 
 	runner := &runner{
 		args: args,
 	}
 	mr := simplemr.MR{}
-	if runpFlags.interactive {
+	if flagInteractive {
 		// Run one mapper at a time.
 		mr.NumMappers = 1
 		sort.Sort(keys)
@@ -439,6 +414,10 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 	return mr.Error()
 }
 
-func runRunp(jirix *jiri.X, args []string) error {
-	return runp(jirix, cmdRunP, args)
+func runRunp(cmd *Command, args []string) error {
+	jirix, err := jiri.NewX(cmdline.EnvFromOS())
+	if err != nil {
+		panic(err)
+	}
+	return runp(jirix, cmd, args)
 }

@@ -37,22 +37,27 @@ func init() {
 }
 
 // cmdUpdate represents the "jiri update" command.
-var cmdUpdate = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runUpdate),
-	Name:   "update",
-	Short:  "Update all jiri projects",
+var cmdUpdate = &Command{
+	Runner:		runUpdate,
+	UsageLine:	"update [snapshot]",
+	Short:		"Update all jiri projects",
 	Long: `
 Updates all projects. The sequence in which the individual updates happen
 guarantees that we end up with a consistent workspace. The set of projects
 to update is described in the manifest.
 
 Run "jiri help manifest" for details on manifests.
+
+<snapshot> is the snapshot manifest file.
 `,
-	ArgsName: "<snapshot>",
-	ArgsLong: "<snapshot> is the snapshot manifest file.",
 }
 
-func runUpdate(jirix *jiri.X, args []string) error {
+func runUpdate(cmd *Command, args []string) error {
+	jirix, err := jiri.NewX(cmdline.EnvFromOS())
+	if err != nil {
+		panic(err)
+	}
+
 	if len(args) > 1 {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
