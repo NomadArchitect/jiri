@@ -10,19 +10,23 @@ import (
 	"fuchsia.googlesource.com/jiri/project"
 )
 
-var cmdSnapshot = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runSnapshot),
-	Name:   "snapshot",
-	Short:  "Create a new project snapshot",
+var cmdSnapshot = &Command{
+	Runner:		runSnapshot,
+	UsageLine:	"snapshot [snapshot]",
+	Short:		"Create a new project snapshot",
 	Long: `
 The "jiri snapshot <snapshot>" command captures the current project state
 in a manifest.
+
+<snapshot> is the snapshot manifest file.
 `,
-	ArgsName: "<snapshot>",
-	ArgsLong: "<snapshot> is the snapshot manifest file.",
 }
 
-func runSnapshot(jirix *jiri.X, args []string) error {
+func runSnapshot(cmd *Command, args []string) error {
+	jirix, err := jiri.NewX(cmdline.EnvFromOS())
+	if err != nil {
+		panic(err)
+	}
 	if len(args) != 1 {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
