@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "962843c7_e4d8b6e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-09-07T00:07:29Z",
+      "side": 1,
+      "message": "typo: reporting",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "962843c7_44e702a8",
+        "filename": "scripts/build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-09-07T00:07:29Z",
+      "side": 1,
+      "message": "is this intended to be part of the change?",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "962843c7_24ec8e88",
+        "filename": "version/version.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-09-07T00:07:29Z",
+      "side": 1,
+      "message": "copyright header?",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
