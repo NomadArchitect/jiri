@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "962843c7_31a4cfa9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-07T02:29:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962843c7_e4d8b6e6",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962843c7_44e702a8",
         "filename": "scripts/build.sh",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "962843c7_519fc354",
+        "filename": "scripts/build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-07T02:29:17Z",
+      "side": 1,
+      "message": "Possibly; this could be integrated into scripts/upload_jiri (alternatively upload_jiri could invoke this script), but I needed something simpler for testing the logic hence this script. Do you have any preference?",
+      "parentUuid": "962843c7_44e702a8",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "962843c7_24ec8e88",
         "filename": "version/version.go",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2016-09-07T00:07:29Z",
       "side": 1,
       "message": "copyright header?",
+      "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "962843c7_7185a707",
+        "filename": "version/version.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-07T02:29:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962843c7_24ec8e88",
       "revId": "da5145c3ca45a59c5accc31662ca8e5c95c783de",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
