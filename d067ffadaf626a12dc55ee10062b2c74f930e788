@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "567a4bf7_28a48ba9",
+        "filename": "infra/config/recipes.cfg",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7555
+      },
+      "writtenOn": "2016-09-07T08:17:23Z",
+      "side": 1,
+      "message": "Isn\u0027t this already used in some other place? Shouldn\u0027t this say \"jiri\"?",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "d067ffadaf626a12dc55ee10062b2c74f930e788",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
