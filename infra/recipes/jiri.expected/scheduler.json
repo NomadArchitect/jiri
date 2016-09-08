@@ -83,22 +83,6 @@
   },
   {
     "cmd": [
-      "[CACHE]/cipd/jiri",
-      "cl",
-      "patch",
-      "-host",
-      "https://https://fuchsia-review.googlesource.com",
-      "-delete=true",
-      "-force=true",
-      "refs/changes/11/338811/3"
-    ],
-    "env": {
-      "JIRI_ROOT": "[SLAVE_BUILD]"
-    },
-    "name": "patch"
-  },
-  {
-    "cmd": [
       "python",
       "-u",
       "RECIPE_MODULE[infra::go]/resources/bootstrap.py",
