@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "766bcf9b_333d481c",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-09-08T18:38:10Z",
+      "side": 1,
+      "message": "nit: just \"waterfall\"\n\nID is namespaced to the project already (\"jiri\" in this case).",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 12,
+        "endChar": 45
+      },
+      "revId": "cbd878c41fee67547bd1fd4ab1fba764bc525dc7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "766bcf9b_f342f090",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-09-08T18:38:10Z",
+      "side": 1,
+      "message": "maybe better to use \"with 10m interval\". That way there will be no overruns if job is running longer than 10min. See https://github.com/luci/luci-go/blob/master/cron/appengine/schedule/schedule.go#L87\n\n(It is also fine to use lower period, or even 0s period to run builds back-to-back continuously).",
+      "range": {
+        "startLine": 13,
+        "startChar": 13,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "cbd878c41fee67547bd1fd4ab1fba764bc525dc7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "766bcf9b_f3e0308f",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-09-08T18:38:10Z",
+      "side": 1,
+      "message": "I think this is not needed, kitchen adds it itself",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "cbd878c41fee67547bd1fd4ab1fba764bc525dc7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
