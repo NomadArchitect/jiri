@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f0ac2770_c5b0fae4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-19T22:40:05Z",
+      "side": 1,
+      "message": "shouldn\u0027t it stand for \"Jiri integrates repositories intelligently\" (that\u0027s what the README says)?",
+      "parentUuid": "cb1db24e_71e886a7",
+      "revId": "3fcf34f4f5038c093ab9d68b8b1e1635ad83b0a5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb1db24e_4e312bf8",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
