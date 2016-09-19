@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "cb1db24e_71e886a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-09-19T22:22:30Z",
+      "side": 1,
+      "message": "nit: \u0027jiri\u0027, not \u0027JiRi\u0027. it\u0027s not an acronym or portmanteau",
+      "revId": "3fcf34f4f5038c093ab9d68b8b1e1635ad83b0a5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb1db24e_4e312bf8",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 1
