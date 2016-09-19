@@ -75,6 +75,30 @@
       "revId": "3fcf34f4f5038c093ab9d68b8b1e1635ad83b0a5",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0ac2770_ebadc58b",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-19T23:57:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb1db24e_4e312bf8",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 63,
+        "endChar": 29
+      },
+      "revId": "3fcf34f4f5038c093ab9d68b8b1e1635ad83b0a5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
