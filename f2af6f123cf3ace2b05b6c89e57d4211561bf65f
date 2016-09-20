@@ -22,6 +22,30 @@
       "revId": "f2af6f123cf3ace2b05b6c89e57d4211561bf65f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0ac2770_6271ef06",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1678,
+      "author": {
+        "id": 5310
+      },
+      "writtenOn": "2016-09-20T20:55:59Z",
+      "side": 1,
+      "message": "`s.Env()` merges the variables into the existing ones: https://fuchsia.googlesource.com/jiri/+/master/runutil/sequence.go#164",
+      "parentUuid": "f0ac2770_9a381929",
+      "range": {
+        "startLine": 1678,
+        "startChar": 4,
+        "endLine": 1678,
+        "endChar": 13
+      },
+      "revId": "f2af6f123cf3ace2b05b6c89e57d4211561bf65f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
