@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "f0ac2770_b3009b0f",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-20T22:41:07Z",
+      "side": 1,
+      "message": "I understand where it comes from, but it\u0027s still hacky nevertheless :)",
+      "parentUuid": "f0ac2770_98d6dc15",
+      "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0ac2770_98a57c12",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I can remove it, is it just reporting that runhooks was executed on update/create/... operation",
       "parentUuid": "f0ac2770_98a57c12",
+      "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0ac2770_732d439f",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-20T22:41:07Z",
+      "side": 1,
+      "message": "Since the operation is no longer relevant as we run hooks on every update, I think we should remove this altogether (we\u0027ll want to decouple hooks from projects anyway, see TO-52 for more details).",
+      "parentUuid": "f0ac2770_b8b718f1",
       "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
