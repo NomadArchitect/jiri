@@ -638,6 +638,9 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
+	// TODO(lanechr): `snapshot checkout foo` should attempt to load .snapshot/foo
+	// since that's where `snapshot create foo` automatically saves the file.  It's
+	// a mismatch that create expects a label and checkout expects a file.
 	remoteProjects, remoteTools, err := LoadSnapshotFile(jirix, snapshot)
 	if err != nil {
 		return err
@@ -673,11 +676,11 @@ func CurrentProjectKey(jirix *jiri.X) (ProjectKey, error) {
 	return "", nil
 }
 
-// setProjectRevisions sets the current project revision from the master for
-// each project as found on the filesystem
+// setProjectRevisions sets the current project revision from HEAD ref for
+// each project as found on the filesystem.
 func setProjectRevisions(jirix *jiri.X, projects Projects) (_ Projects, e error) {
 	for name, project := range projects {
-		revision, err := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path)).CurrentRevisionOfBranch("master")
+		revision, err := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path)).CurrentRevision()
 		if err != nil {
 			return nil, err
 		}
