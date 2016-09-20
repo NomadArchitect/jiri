@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f0ac2770_98d6dc15",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-20T22:23:59Z",
+      "side": 1,
+      "message": "this is what is returned from this code if it is not move, create, update, delete",
+      "parentUuid": "f0ac2770_38aa48df",
+      "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0ac2770_98a57c12",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-20T22:13:58Z",
       "side": 1,
       "message": "What\u0027s the kind used for? Looking at the code, it doesn\u0027t seem to be needed for anything (except for error reporting).",
+      "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0ac2770_b8b718f1",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-20T22:23:59Z",
+      "side": 1,
+      "message": "I can remove it, is it just reporting that runhooks was executed on update/create/... operation",
+      "parentUuid": "f0ac2770_98a57c12",
       "revId": "106b11026ba4976010943b97fe9c41a37b22babc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
