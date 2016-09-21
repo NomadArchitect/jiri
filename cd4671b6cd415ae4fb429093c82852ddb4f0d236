@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b00e2f7b_03bcee6f",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T22:30:12Z",
+      "side": 1,
+      "message": "AFAIK this is going to produce a different output from when runp is run sequentially which is inconsistent. I\u0027m fine with prettifying the output, but we should do that in a separate change and do it consistently.",
+      "revId": "cd4671b6cd415ae4fb429093c82852ddb4f0d236",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
