@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0b2c310_82fc9e9e",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "after reading the errors that might come back from Update(), nowhere do you actually tell the user that it failed trying to update jiri",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 34
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0b2c310_c25f460f",
+        "filename": "osutil/exec_procfs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "damn semantic comments.  worst language decision ever",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 30
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0b2c310_c20ce64f",
+        "filename": "osutil/exec_procfs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "function doc required for public functions",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0b2c310_027f6e6f",
+        "filename": "osutil/exec_procfs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "is this even possible thanks to the +build directive?  if you want a default implementation, consider using !freebsd !darwin !windows",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0b2c310_a25afaed",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "nit: this is a repo, not a host",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0b2c310_6294f241",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T19:48:33Z",
+      "side": 1,
+      "message": "in the case of rename failing for some reason it seems like the new files are left around and will start piling up with every `jiri update`",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 49
+      },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
