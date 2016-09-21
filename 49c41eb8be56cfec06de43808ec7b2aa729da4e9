@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0b2c310_ab6415ea",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T21:53:12Z",
+      "side": 1,
+      "message": "Now that I\u0027m looking at the code, I don\u0027t think you need any of this tmpdir or tmpname shenanigans. The temporary file name is completely irrelevant here, it\u0027s only important for the reducer, so you should be able to just change the original call to ioutil.TempFile(\"\", \"jiri-runp-\").",
+      "revId": "49c41eb8be56cfec06de43808ec7b2aa729da4e9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
