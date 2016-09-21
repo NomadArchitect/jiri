@@ -193,7 +193,7 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 		if runpFlags.collateOutput {
 			// Write standard output to a file, stderr
 			// is not collated.
-			f, err := ioutil.TempFile("", mi.ProjectState.Project.Name+"-")
+			f, err := ioutil.TempFile("", "jiri-runp-")
 			if err != nil {
 				return err
 			}
@@ -283,6 +283,10 @@ func (r *runner) Reduce(mr *simplemr.MR, key string, values []interface{}) error
 				defer os.Remove(mo.outputFilename)
 				if fi, err := os.Open(mo.outputFilename); err == nil {
 					io.Copy(jirix.Stdout(), fi)
+
+					// Adding a new line after each project
+					// to make it readable
+					fmt.Fprintln(jirix.Stdout())
 					fi.Close()
 				} else {
 					return err

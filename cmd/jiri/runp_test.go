@@ -41,6 +41,12 @@ func addProjects(t *testing.T, fake *jiritest.FakeJiriRoot) []*project.Project {
 	projects := []*project.Project{}
 	for _, name := range []string{"a", "b", "c", "t1", "t2"} {
 		projectPath := "r." + name
+		if name == "t1" {
+			projectPath = "sub/" + projectPath
+		}
+		if name == "t2" {
+			projectPath = "sub/sub2/" + projectPath
+		}
 		if err := fake.CreateRemoteProject(projectPath); err != nil {
 			t.Fatalf("%v", err)
 		}
@@ -107,30 +113,30 @@ func TestRunP(t *testing.T) {
 	chdir(projects[0].Path)
 
 	got := run(t, dir, "jiri", "runp", "--show-name-prefix", "-v", "echo")
-	hdr := "Project Names: manifest r.a r.b r.c r.t1 r.t2\n"
+	hdr := "Project Names: manifest r.a r.b r.c sub/r.t1 sub/sub2/r.t2\n"
 	hdr += "Project Keys: " + strings.Join(keys, " ") + "\n"
 
-	if want := hdr + "manifest: \nr.a: \nr.b: \nr.c: \nr.t1: \nr.t2:"; got != want {
+	if want := hdr + "manifest: \n\nr.a: \n\nr.b: \n\nr.c: \n\nsub/r.t1: \n\nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	got = run(t, dir, "jiri", "runp", "-v", "--interactive=false", "basename", "$(", filepath.Join(dir, "jiri"), "project", "info", "-f", "{{.Project.Path}}", ")")
-	if want := hdr + "manifest\nr.a\nr.b\nr.c\nr.t1\nr.t2"; got != want {
+	if want := hdr + "manifest\n\nr.a\n\nr.b\n\nr.c\n\nr.t1\n\nr.t2"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	got = run(t, dir, "jiri", "runp", "--interactive=false", "git", "rev-parse", "--abbrev-ref", "HEAD")
-	if want := "master\nmaster\nmaster\nmaster\nmaster\nmaster"; got != want {
+	if want := "master\n\nmaster\n\nmaster\n\nmaster\n\nmaster\n\nmaster"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	got = run(t, dir, "jiri", "runp", "-interactive=false", "--show-name-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
-	if want := "manifest: master\nr.a: master\nr.b: master\nr.c: master\nr.t1: master\nr.t2: master"; got != want {
+	if want := "manifest: master\n\nr.a: master\n\nr.b: master\n\nr.c: master\n\nsub/r.t1: master\n\nsub/sub2/r.t2: master"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	got = run(t, dir, "jiri", "runp", "--interactive=false", "--show-key-prefix=true", "git", "rev-parse", "--abbrev-ref", "HEAD")
-	if want := strings.Join(keys, ": master\n") + ": master"; got != want {
+	if want := strings.Join(keys, ": master\n\n") + ": master"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -138,12 +144,12 @@ func TestRunP(t *testing.T) {
 	split := strings.Split(uncollated, "\n")
 	sort.Strings(split)
 	got = strings.TrimSpace(strings.Join(split, "\n"))
-	if want := "manifest: master\nr.a: master\nr.b: master\nr.c: master\nr.t1: master\nr.t2: master"; got != want {
+	if want := "manifest: master\nr.a: master\nr.b: master\nr.c: master\nsub/r.t1: master\nsub/sub2/r.t2: master"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	got = run(t, dir, "jiri", "runp", "--show-name-prefix", "--projects=r.t[12]", "echo")
-	if want := "r.t1: \nr.t2:"; got != want {
+	if want := "sub/r.t1: \n\nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -172,7 +178,7 @@ func TestRunP(t *testing.T) {
 	}
 
 	got = run(t, dir, "jiri", "runp", "--has-untracked=false", "--show-name-prefix", "echo")
-	if want := "manifest: \nr.a: \nr.c: \nr.t1: \nr.t2:"; got != want {
+	if want := "manifest: \n\nr.a: \n\nr.c: \n\nsub/r.t1: \n\nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -188,7 +194,7 @@ func TestRunP(t *testing.T) {
 	}
 
 	got = run(t, dir, "jiri", "runp", "--has-uncommitted=false", "--show-name-prefix", "echo")
-	if want := "manifest: \nr.a: \nr.b: \nr.t1: \nr.t2:"; got != want {
+	if want := "manifest: \n\nr.a: \n\nr.b: \n\nsub/r.t1: \n\nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -213,13 +219,13 @@ func TestRunP(t *testing.T) {
 
 	// Just the projects with branch b2.
 	got = run(t, dir, "jiri", "runp", "--show-name-prefix", "echo")
-	if want := "r.b: \nr.c:"; got != want {
+	if want := "r.b: \n\nr.c:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
 	// All projects since --projects takes precendence over branches.
 	got = run(t, dir, "jiri", "runp", "--projects=.*", "--show-name-prefix", "echo")
-	if want := "manifest: \nr.a: \nr.b: \nr.c: \nr.t1: \nr.t2:"; got != want {
+	if want := "manifest: \n\nr.a: \n\nr.b: \n\nr.c: \n\nsub/r.t1: \n\nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -238,7 +244,7 @@ func TestRunP(t *testing.T) {
 	}
 
 	got = run(t, dir, "jiri", "runp", "--has-gerrit-message=false", "--show-name-prefix", "echo")
-	if want := "r.t1:"; got != want {
+	if want := "sub/r.t1:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
