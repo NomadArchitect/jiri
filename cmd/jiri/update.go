@@ -45,6 +45,7 @@ func runUpdate(jirix *jiri.X, _ []string) error {
 	// Attempt <attemptsFlag> times before failing.
 	updateFn := func() error { return project.UpdateUniverse(jirix, gcFlag) }
 	if err := retry.Function(jirix.Context, updateFn, retry.AttemptsOpt(attemptsFlag)); err != nil {
+		project.WriteUpdateHistorySnapshot(jirix, "")
 		return err
 	}
 	return project.WriteUpdateHistorySnapshot(jirix, "")
