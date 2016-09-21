@@ -13,6 +13,7 @@ import (
 	"os"
 	"os/exec"
 	"os/signal"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -93,6 +94,7 @@ type mapInput struct {
 	*project.ProjectState
 	key          project.ProjectKey
 	jirix        *jiri.X
+	tmpDir       string
 	index, total int
 	result       error
 }
@@ -193,7 +195,8 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 		if runpFlags.collateOutput {
 			// Write standard output to a file, stderr
 			// is not collated.
-			f, err := ioutil.TempFile("", mi.ProjectState.Project.Name+"-")
+
+			f, err := ioutil.TempFile(mi.tmpDir, mi.ProjectState.Project.Name+"-")
 			if err != nil {
 				return err
 			}
@@ -283,6 +286,10 @@ func (r *runner) Reduce(mr *simplemr.MR, key string, values []interface{}) error
 				defer os.Remove(mo.outputFilename)
 				if fi, err := os.Open(mo.outputFilename); err == nil {
 					io.Copy(jirix.Stdout(), fi)
+
+					// Adding a new line after each project
+					// to make it readable
+					fmt.Fprintln(jirix.Stdout())
 					fi.Close()
 				} else {
 					return err
@@ -353,6 +360,23 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 	if err != nil {
 		return err
 	}
+
+	tmpDir := ""
+	if (runpFlags.collateOutput) {
+		dir, err := ioutil.TempDir("", "jiri-runp-")
+			if err != nil {
+				return err
+			}
+		tmpDir = dir
+		defer os.RemoveAll(dir);
+		for _, state := range states {
+			err := os.MkdirAll(dir + "/" + filepath.Dir(state.Project.Name), 0700)
+			if err != nil {
+				return err
+			}
+		}
+	}
+
 	mapInputs := map[project.ProjectKey]*mapInput{}
 	var keys project.ProjectKeys
 	for key, state := range states {
@@ -399,6 +423,7 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 			ProjectState: state,
 			jirix:        jirix,
 			key:          key,
+			tmpDir:	      tmpDir,
 		}
 		keys = append(keys, key)
 	}
