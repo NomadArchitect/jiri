@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0b2c310_5c0afd80",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-09-21T17:41:06Z",
+      "side": 1,
+      "message": "this can be removed.  we can expect the user to just run `jiri update` again if the hooks fail.  and we should expect the hooks to be written so that they don\u0027t leave the environment borked if they fail",
+      "range": {
+        "startLine": 1675,
+        "startChar": 0,
+        "endLine": 1676,
+        "endChar": 51
+      },
+      "revId": "366a2fe6a59729b95e60a30b4a95549b590276aa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
