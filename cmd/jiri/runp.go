@@ -251,6 +251,13 @@ func (r *runner) Map(mr *simplemr.MR, key string, val interface{}) error {
 	go func() {
 		done <- cmd.Wait()
 	}()
+
+	if !runpFlags.collateOutput {
+		// Adding a new line after each project output
+		// to make it readable
+		fmt.Fprintln(cmd.Stdout)
+	}
+
 	select {
 	case output.err = <-done:
 		if output.err != nil && runpFlags.exitOnError {
@@ -284,6 +291,10 @@ func (r *runner) Reduce(mr *simplemr.MR, key string, values []interface{}) error
 				if fi, err := os.Open(mo.outputFilename); err == nil {
 					io.Copy(jirix.Stdout(), fi)
 					fi.Close()
+
+					// Adding a new line after each project
+					// to make it readable
+					fmt.Fprintln(jirix.Stdout())
 				} else {
 					return err
 				}
