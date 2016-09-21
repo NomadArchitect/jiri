@@ -16,6 +16,24 @@
       "revId": "cd4671b6cd415ae4fb429093c82852ddb4f0d236",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90cdab7b_227f2e70",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-21T22:39:45Z",
+      "side": 1,
+      "message": "Pulled this change out, will submit a separate CL",
+      "parentUuid": "b00e2f7b_03bcee6f",
+      "revId": "cd4671b6cd415ae4fb429093c82852ddb4f0d236",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
