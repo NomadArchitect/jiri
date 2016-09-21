@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "503b335a_6012d211",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T23:58:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0b2c310_82fc9e9e",
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0b2c310_c25f460f",
         "filename": "osutil/exec_procfs.go",
         "patchSetId": 1
@@ -71,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "503b335a_c03f1ee2",
+        "filename": "osutil/exec_procfs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T23:58:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0b2c310_c20ce64f",
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0b2c310_027f6e6f",
         "filename": "osutil/exec_procfs.go",
         "patchSetId": 1
@@ -88,6 +124,24 @@
         "endLine": 33,
         "endChar": 9
       },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503b335a_204fea87",
+        "filename": "osutil/exec_procfs.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T23:58:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be so we can remove this.",
+      "parentUuid": "d0b2c310_027f6e6f",
       "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -117,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "503b335a_00a2e6a0",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T23:58:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0b2c310_a25afaed",
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0b2c310_6294f241",
         "filename": "update.go",
         "patchSetId": 1
@@ -134,6 +206,24 @@
         "endLine": 152,
         "endChar": 49
       },
+      "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "503b335a_40a8ee78",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-21T23:58:57Z",
+      "side": 1,
+      "message": "Nope, since the new file has already been renamed to the name of the executable, and now we\u0027ll try to replace it with the backed up version.",
+      "parentUuid": "d0b2c310_6294f241",
       "revId": "8ff78caf4072eb18e30312747302eb7bcfa6b654",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
