@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f000a787_88703705",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2016-09-22T18:05:11Z",
+      "side": 1,
+      "message": "fyi spelling the string literal this way:\n\n`-X \"fuchsia.googlesource...`\n\nwill let you skip the backslashes",
+      "revId": "2f234e9eaf34371379e54912589d66ba27b80ba5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
