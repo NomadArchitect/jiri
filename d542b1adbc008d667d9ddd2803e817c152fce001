@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b0938fd9_ceb9c6eb",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1720,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-23T19:39:05Z",
+      "side": 1,
+      "message": "okay, making the change",
+      "parentUuid": "b0938fd9_ae1f1a62",
+      "revId": "d542b1adbc008d667d9ddd2803e817c152fce001",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0938fd9_ee5a0221",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2016-09-23T19:26:07Z",
       "side": 1,
       "message": "Since you\u0027re already changing this logic maybe it\u0027d be also useful to also handle the case where the file already exists but doesn\u0027t contain exclusion for /.jiri/, i.e. if developers create their own, and instead of overwriting it, just append /.jiri/ to it.",
+      "revId": "d542b1adbc008d667d9ddd2803e817c152fce001",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0938fd9_aedc7a2f",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-23T19:39:05Z",
+      "side": 1,
+      "message": "but as we mostly do it on checkout when that file is blank, so do we really need to check it?\nPlease advise",
+      "parentUuid": "b0938fd9_ee5a0221",
       "revId": "d542b1adbc008d667d9ddd2803e817c152fce001",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
