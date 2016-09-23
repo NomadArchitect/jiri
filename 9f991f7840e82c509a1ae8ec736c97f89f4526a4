@@ -22,6 +22,24 @@
       "revId": "9f991f7840e82c509a1ae8ec736c97f89f4526a4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0938fd9_4a0a0b81",
+        "filename": "update.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-23T00:01:33Z",
+      "side": 1,
+      "message": "Shall I just return nil? If the prebuilt is not available this would return 404, but it\u0027s not really an application error.",
+      "parentUuid": "b0938fd9_01f70ebd",
+      "revId": "9f991f7840e82c509a1ae8ec736c97f89f4526a4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
