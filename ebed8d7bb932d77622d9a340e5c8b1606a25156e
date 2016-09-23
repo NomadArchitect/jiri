@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0938fd9_70aecca1",
+        "filename": "project/project_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-23T22:01:59Z",
+      "side": 1,
+      "message": "Remove this",
+      "revId": "ebed8d7bb932d77622d9a340e5c8b1606a25156e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0938fd9_d0b5e0e8",
+        "filename": "project/project_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-23T22:01:59Z",
+      "side": 1,
+      "message": "nit: \"doesn\u0027t\"",
+      "revId": "ebed8d7bb932d77622d9a340e5c8b1606a25156e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
