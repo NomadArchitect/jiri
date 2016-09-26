@@ -16,6 +16,24 @@
       "revId": "e2145c130e738a79b6401ac76d65a3f5e4cca184",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5bc2f98_aa834fb2",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-26T18:14:23Z",
+      "side": 1,
+      "message": "if I use ``, it prints \n[11:12:24.59] \u003e\u003e NOTE: project libc-tests has path /usr/local/google/home/anmittal/fuchsia/libc-tests \n[11:12:24.59] \u003e\u003e but was found in /usr/local/google/home/anmittal/fuchsia/libc-tests_back.\n[11:12:24.59] \u003e\u003e jiri will treat it as a stale project. To remove this warning\nplease delete this or move it out of your root folder\n\ninstead of \n[11:13:56.13] \u003e\u003e NOTE: project libc-tests has path /usr/local/google/home/anmittal/fuchsia/libc-tests \n[11:13:56.13] \u003e\u003e but was found in /usr/local/google/home/anmittal/fuchsia/libc-tests_back.\n[11:13:56.13] \u003e\u003e jiri will treat it as a stale project. To remove this warning\n[11:13:56.13] \u003e\u003e please delete this or move it out of your root folde",
+      "parentUuid": "a5bc2f98_aad26fef",
+      "revId": "e2145c130e738a79b6401ac76d65a3f5e4cca184",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
