@@ -43,6 +43,7 @@ type Manifest struct {
 	Imports      []Import      `xml:"imports>import"`
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
+	Hooks        []Hook        `xml:"hooks>hook"`
 	Tools        []Tool        `xml:"tools>tool"`
 	// SnapshotPath is the relative path to the snapshot file from JIRI_ROOT.
 	// It is only set when creating a snapshot.
@@ -88,6 +89,7 @@ var (
 	emptyImportsBytes  = []byte("\n  <imports></imports>\n")
 	emptyProjectsBytes = []byte("\n  <projects></projects>\n")
 	emptyToolsBytes    = []byte("\n  <tools></tools>\n")
+	emptyHooksBytes    = []byte("\n  <hooks></hooks>\n")
 
 	endElemBytes        = []byte("/>\n")
 	endImportBytes      = []byte("></import>\n")
@@ -108,6 +110,7 @@ func (m *Manifest) deepCopy() *Manifest {
 	x.LocalImports = append([]LocalImport(nil), m.LocalImports...)
 	x.Projects = append([]Project(nil), m.Projects...)
 	x.Tools = append([]Tool(nil), m.Tools...)
+	x.Hooks = append([]Hook(nil), m.Hooks...)
 	return x
 }
 
@@ -126,6 +129,7 @@ func (m *Manifest) ToBytes() ([]byte, error) {
 	data = bytes.Replace(data, emptyImportsBytes, newlineBytes, -1)
 	data = bytes.Replace(data, emptyProjectsBytes, newlineBytes, -1)
 	data = bytes.Replace(data, emptyToolsBytes, newlineBytes, -1)
+	data = bytes.Replace(data, emptyHooksBytes, newlineBytes, -1)
 	data = bytes.Replace(data, endImportBytes, endElemBytes, -1)
 	data = bytes.Replace(data, endLocalImportBytes, endElemBytes, -1)
 	data = bytes.Replace(data, endProjectBytes, endElemBytes, -1)
@@ -291,6 +295,40 @@ func (i *Import) cycleKey() string {
 	return i.Remote + " + " + i.Manifest
 }
 
+// Hook represents a hook to run
+type Hook struct {
+	Name        string   `xml:"name,attr"`
+	Action      string   `xml:"action,attr"`
+	ProjectName string   `xml:"project,attr"`
+	XMLName     struct{} `xml:"hook"`
+	ActionPath  string   `xml:"-"`
+}
+
+// HookKey is a unique string for a project.
+type HookKey string
+
+type Hooks map[HookKey]Hook
+
+// Key returns the unique HookKey for the hook.
+func (h Hook) Key() HookKey {
+	return MakeHookKey(h.Name, h.ProjectName)
+}
+
+// MakeHookKey returns the hook key, given the hook and project name.
+func MakeHookKey(name, projectName string) HookKey {
+	return HookKey(name + KeySeparator + projectName)
+}
+
+func (h *Hook) validate() error {
+	if strings.Contains(h.Name, KeySeparator) {
+		return fmt.Errorf("bad hook: name cannot contain %q: %+v", KeySeparator, *h)
+	}
+	if strings.Contains(h.ProjectName, KeySeparator) {
+		return fmt.Errorf("bad hook: project cannot contain %q: %+v", KeySeparator, *h)
+	}
+	return nil
+}
+
 // LocalImport represents a local manifest import.
 type LocalImport struct {
 	// Manifest file to import from.
@@ -310,12 +348,12 @@ type ProjectKey string
 
 // MakeProjectKey returns the project key, given the project name and remote.
 func MakeProjectKey(name, remote string) ProjectKey {
-	return ProjectKey(name + projectKeySeparator + remote)
+	return ProjectKey(name + KeySeparator + remote)
 }
 
-// projectKeySeparator is a reserved string used in ProjectKeys.  It cannot
-// occur in Project names.
-const projectKeySeparator = "="
+// KeySeparator is a reserved string used in ProjectKeys and HookKeys.
+// It cannot occur in Project or Hook names.
+const KeySeparator = "="
 
 // ProjectKeys is a slice of ProjectKeys implementing the Sort interface.
 type ProjectKeys []ProjectKey
@@ -463,8 +501,8 @@ func (p *Project) unfillDefaults() error {
 }
 
 func (p *Project) validate() error {
-	if strings.Contains(p.Name, projectKeySeparator) {
-		return fmt.Errorf("bad project: name cannot contain %q: %+v", projectKeySeparator, *p)
+	if strings.Contains(p.Name, KeySeparator) {
+		return fmt.Errorf("bad project: name cannot contain %q: %+v", KeySeparator, *p)
 	}
 	return nil
 }
@@ -616,13 +654,17 @@ func CreateSnapshot(jirix *jiri.X, file, snapshotPath string) error {
 	// local projects using FastScan, but if we're calling CreateSnapshot
 	// during "jiri update" and we added some new projects, they won't be
 	// found anymore.
-	_, tools, err := loadManifestFile(jirix, jirix.JiriManifestFile(), localProjects)
+	_, tools, hooks, err := loadManifestFile(jirix, jirix.JiriManifestFile(), localProjects)
 	if err != nil {
 		return err
 	}
 	for _, tool := range tools {
 		manifest.Tools = append(manifest.Tools, tool)
 	}
+	for _, hook := range hooks {
+		manifest.Hooks = append(manifest.Hooks, hook)
+	}
+
 	return manifest.ToFile(jirix, file)
 }
 
@@ -638,11 +680,11 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
-	remoteProjects, remoteTools, err := LoadSnapshotFile(jirix, snapshot)
+	remoteProjects, remoteTools, hooks, err := LoadSnapshotFile(jirix, snapshot)
 	if err != nil {
 		return err
 	}
-	if err := updateTo(jirix, localProjects, remoteProjects, remoteTools, gc); err != nil {
+	if err := updateTo(jirix, localProjects, remoteProjects, remoteTools, hooks, gc); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot)
@@ -650,7 +692,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 
 // LoadSnapshotFile loads the specified snapshot manifest.  If the snapshot
 // manifest contains a remote import, an error will be returned.
-func LoadSnapshotFile(jirix *jiri.X, file string) (Projects, Tools, error) {
+func LoadSnapshotFile(jirix *jiri.X, file string) (Projects, Tools, Hooks, error) {
 	return loadManifestFile(jirix, file, nil)
 }
 
@@ -709,7 +751,7 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 		// An error will be returned if the snapshot contains remote imports, since
 		// that would cause an infinite loop; we'd need local projects, in order to
 		// load the snapshot, in order to determine the local projects.
-		snapshotProjects, _, err := LoadSnapshotFile(jirix, latestSnapshot)
+		snapshotProjects, _, _, err := LoadSnapshotFile(jirix, latestSnapshot)
 		if err != nil {
 			return nil, err
 		}
@@ -773,7 +815,7 @@ func PollProjects(jirix *jiri.X, projectSet map[string]struct{}) (_ Update, e er
 	if err != nil {
 		return nil, err
 	}
-	remoteProjects, _, err := LoadManifest(jirix)
+	remoteProjects, _, _, err := LoadManifest(jirix)
 	if err != nil {
 		return nil, err
 	}
@@ -836,13 +878,13 @@ func PollProjects(jirix *jiri.X, projectSet map[string]struct{}) (_ Update, e er
 // git operations which require a lock on the filesystem.  If you see errors
 // about ".git/index.lock exists", you are likely calling LoadManifest in
 // parallel.
-func LoadManifest(jirix *jiri.X) (Projects, Tools, error) {
+func LoadManifest(jirix *jiri.X) (Projects, Tools, Hooks, error) {
 	jirix.TimerPush("load manifest")
 	defer jirix.TimerPop()
 	file := jirix.JiriManifestFile()
 	localProjects, err := LocalProjects(jirix, FastScan)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 	return loadManifestFile(jirix, file, localProjects)
 }
@@ -855,12 +897,12 @@ func LoadManifest(jirix *jiri.X) (Projects, Tools, error) {
 // invokes git operations which require a lock on the filesystem.  If you see
 // errors about ".git/index.lock exists", you are likely calling
 // loadManifestFile in parallel.
-func loadManifestFile(jirix *jiri.X, file string, localProjects Projects) (Projects, Tools, error) {
+func loadManifestFile(jirix *jiri.X, file string, localProjects Projects) (Projects, Tools, Hooks, error) {
 	ld := newManifestLoader(localProjects, false)
 	if err := ld.Load(jirix, "", file, ""); err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
-	return ld.Projects, ld.Tools, nil
+	return ld.Projects, ld.Tools, ld.Hooks, nil
 }
 
 // getManifestRemote returns the remote url of the origin from the manifest
@@ -877,14 +919,14 @@ func getManifestRemote(jirix *jiri.X, manifestPath string) (string, error) {
 		}, "get manifest origin").Done()
 }
 
-func loadUpdatedManifest(jirix *jiri.X, localProjects Projects) (Projects, Tools, string, error) {
+func loadUpdatedManifest(jirix *jiri.X, localProjects Projects) (Projects, Tools, Hooks, string, error) {
 	jirix.TimerPush("load updated manifest")
 	defer jirix.TimerPop()
 	ld := newManifestLoader(localProjects, true)
 	if err := ld.Load(jirix, "", jirix.JiriManifestFile(), ""); err != nil {
-		return nil, nil, ld.TmpDir, err
+		return nil, nil, nil, ld.TmpDir, err
 	}
-	return ld.Projects, ld.Tools, ld.TmpDir, nil
+	return ld.Projects, ld.Tools, ld.Hooks, ld.TmpDir, nil
 }
 
 // UpdateUniverse updates all local projects and tools to match the remote
@@ -908,22 +950,22 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	// Load the manifest, updating all manifest projects to match their remote
 	// counterparts.
 	s := jirix.NewSeq()
-	remoteProjects, remoteTools, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects)
+	remoteProjects, remoteTools, hooks, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects)
 	if tmpLoadDir != "" {
 		defer collect.Error(func() error { return s.RemoveAll(tmpLoadDir).Done() }, &e)
 	}
 	if err != nil {
 		return err
 	}
-	return updateTo(jirix, localProjects, remoteProjects, remoteTools, gc)
+	return updateTo(jirix, localProjects, remoteProjects, remoteTools, hooks, gc)
 }
 
 // updateTo updates the local projects and tools to the state specified in
 // remoteProjects and remoteTools.
-func updateTo(jirix *jiri.X, localProjects, remoteProjects Projects, remoteTools Tools, gc bool) (e error) {
+func updateTo(jirix *jiri.X, localProjects, remoteProjects Projects, remoteTools Tools, hooks Hooks, gc bool) (e error) {
 	s := jirix.NewSeq()
 	// 1. Update all local projects to match the specified projects argument.
-	if err := updateProjects(jirix, localProjects, remoteProjects, gc); err != nil {
+	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc); err != nil {
 		return err
 	}
 	// 2. Build all tools in a temporary directory.
@@ -1388,6 +1430,7 @@ func newManifestLoader(localProjects Projects, update bool) *loader {
 	return &loader{
 		Projects:      make(Projects),
 		Tools:         make(Tools),
+		Hooks:         make(Hooks),
 		localProjects: localProjects,
 		update:        update,
 	}
@@ -1396,6 +1439,7 @@ func newManifestLoader(localProjects Projects, update bool) *loader {
 type loader struct {
 	Projects      Projects
 	Tools         Tools
+	Hooks         Hooks
 	TmpDir        string
 	localProjects Projects
 	update        bool
@@ -1521,10 +1565,28 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			return err
 		}
 	}
+
+	hookMap := make(map[string][]*Hook)
+
+	for idx, _ := range m.Hooks {
+		hook := &m.Hooks[idx]
+		if err := hook.validate(); err != nil {
+			return err
+		}
+		hookMap[hook.ProjectName] = append(hookMap[hook.ProjectName], hook)
+	}
+
 	// Collect projects.
 	for _, project := range m.Projects {
 		// Make paths absolute by prepending JIRI_ROOT/<root>.
 		project.absolutizePaths(filepath.Join(jirix.Root, root))
+
+		if hooks, ok := hookMap[project.Name]; ok {
+			for _, hook := range hooks {
+				hook.ActionPath = project.Path
+			}
+		}
+
 		// Prepend the root to the project name.  This will be a noop if the import is not rooted.
 		project.Name = filepath.Join(root, project.Name)
 		key := project.Key()
@@ -1534,6 +1596,15 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 		}
 		ld.Projects[key] = project
 	}
+
+	for _, hook := range m.Hooks {
+		if hook.ActionPath == "" {
+			return fmt.Errorf("invalid hook \"%v\" for project \"%v\"", hook.Name, hook.ProjectName)
+		}
+		key := hook.Key()
+		ld.Hooks[key] = hook
+	}
+
 	// Collect tools.
 	for _, tool := range m.Tools {
 		name := tool.Name
@@ -1657,7 +1728,7 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 	}
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bool) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -1678,16 +1749,28 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bo
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
 	}
-	if err := runHooks(jirix, ops); err != nil {
+	if err := runHooks(jirix, ops, hooks); err != nil {
 		return err
 	}
 	return applyGitHooks(jirix, ops)
 }
 
 // runHooks runs all hooks for the given operations.
-func runHooks(jirix *jiri.X, ops []operation) error {
+func runHooks(jirix *jiri.X, ops []operation, hooks Hooks) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
+
+	for _, hook := range hooks {
+		s := jirix.NewSeq()
+		s.Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
+		if err := s.Dir(hook.ActionPath).Capture(os.Stdout, os.Stderr).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
+			return fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)
+		}
+
+	}
+
+	//TODO(anmittal): remove this ones above change is checked-in
+	// and fnl-hackers know about the change
 	for _, op := range ops {
 		if op.Project().RunHook == "" {
 			continue
