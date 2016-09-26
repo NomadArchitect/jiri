@@ -118,6 +118,19 @@ func (fake FakeJiriRoot) AddTool(tool project.Tool) error {
 	return nil
 }
 
+// AddHook adds the given hook to a remote manifest.
+func (fake FakeJiriRoot) AddHook(hook project.Hook) error {
+	manifest, err := fake.ReadRemoteManifest()
+	if err != nil {
+		return err
+	}
+	manifest.Hooks = append(manifest.Hooks, hook)
+	if err := fake.WriteRemoteManifest(manifest); err != nil {
+		return err
+	}
+	return nil
+}
+
 // DisableRemoteManifestPush disables pushes to the remote manifest
 // repository.
 func (fake FakeJiriRoot) DisableRemoteManifestPush() error {
