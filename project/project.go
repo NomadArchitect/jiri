@@ -630,11 +630,7 @@ func CreateSnapshot(jirix *jiri.X, file, snapshotPath string) error {
 // snapshot file.  Note that the snapshot file must not contain remote imports.
 func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	// Find all local projects.
-	scanMode := FastScan
-	if gc {
-		scanMode = FullScan
-	}
-	localProjects, err := LocalProjects(jirix, scanMode)
+	localProjects, err := LocalProjects(jirix, FullScan)
 	if err != nil {
 		return err
 	}
@@ -896,11 +892,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	defer jirix.TimerPop()
 
 	// Find all local projects.
-	scanMode := FastScan
-	if gc {
-		scanMode = FullScan
-	}
-	localProjects, err := LocalProjects(jirix, scanMode)
+	localProjects, err := LocalProjects(jirix, FullScan)
 	if err != nil {
 		return err
 	}
