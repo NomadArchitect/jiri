@@ -34,6 +34,24 @@
       "revId": "e2145c130e738a79b6401ac76d65a3f5e4cca184",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5bc2f98_0a0e1b4a",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-26T18:19:55Z",
+      "side": 1,
+      "message": "Let\u0027s keep the implementation as you have it then, we\u0027ll be getting rid of the current output implementation, so we can fix it then.",
+      "parentUuid": "a5bc2f98_aa834fb2",
+      "revId": "e2145c130e738a79b6401ac76d65a3f5e4cca184",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
