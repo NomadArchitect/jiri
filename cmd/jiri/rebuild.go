@@ -29,7 +29,7 @@ Run "jiri help manifest" for details on manifests.
 }
 
 func runRebuild(jirix *jiri.X, args []string) (e error) {
-	projects, tools, err := project.LoadManifest(jirix)
+	projects, tools, _, err := project.LoadManifest(jirix)
 	if err != nil {
 		return err
 	}
