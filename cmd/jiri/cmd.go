@@ -43,7 +43,6 @@ Command jiri is a multi-purpose tool for multi-repo development.
 			cmdCL,
 			cmdImport,
 			cmdProject,
-			cmdRebuild,
 			cmdSnapshot,
 			cmdUpdate,
 			cmdVersion,
