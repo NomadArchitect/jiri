@@ -514,6 +514,11 @@ func (ps Projects) FindUnique(keyOrName string) (Project, error) {
 	return p, nil
 }
 
+type ScanResult struct {
+	Projects Projects
+	ScanMode ScanMode
+}
+
 // Tools maps jiri tool names, to their detailed description.
 type Tools map[string]Tool
 
@@ -603,11 +608,11 @@ func CreateSnapshot(jirix *jiri.X, file, snapshotPath string) error {
 	}
 
 	// Add all local projects to manifest.
-	localProjects, err := LocalProjects(jirix, FullScan)
+	scanResult, err := LocalProjects(jirix, FullScan)
 	if err != nil {
 		return err
 	}
-	for _, project := range localProjects {
+	for _, project := range scanResult.Projects {
 		manifest.Projects = append(manifest.Projects, project)
 	}
 
@@ -616,7 +621,7 @@ func CreateSnapshot(jirix *jiri.X, file, snapshotPath string) error {
 	// local projects using FastScan, but if we're calling CreateSnapshot
 	// during "jiri update" and we added some new projects, they won't be
 	// found anymore.
-	_, tools, err := loadManifestFile(jirix, jirix.JiriManifestFile(), localProjects)
+	_, tools, err := loadManifestFile(jirix, jirix.JiriManifestFile(), scanResult.Projects)
 	if err != nil {
 		return err
 	}
@@ -634,7 +639,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if gc {
 		scanMode = FullScan
 	}
-	localProjects, err := LocalProjects(jirix, scanMode)
+	scanResult, err := LocalProjects(jirix, scanMode)
 	if err != nil {
 		return err
 	}
@@ -642,7 +647,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
-	if err := updateTo(jirix, localProjects, remoteProjects, remoteTools, gc); err != nil {
+	if err := updateTo(jirix, scanResult, remoteProjects, remoteTools, gc); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot)
@@ -692,14 +697,17 @@ func setProjectRevisions(jirix *jiri.X, projects Projects) (_ Projects, e error)
 // projects in the manifest that exist locally will be returned.  Otherwise, a
 // full scan of the filesystem will take place, and all found projects will be
 // returned.
-func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
+func LocalProjects(jirix *jiri.X, scanMode ScanMode) (ScanResult, error) {
 	jirix.TimerPush("local projects")
 	defer jirix.TimerPop()
+
+	scanResult := ScanResult{}
+	scanResult.ScanMode = scanMode
 
 	latestSnapshot := jirix.UpdateHistoryLatestLink()
 	latestSnapshotExists, err := jirix.NewSeq().IsFile(latestSnapshot)
 	if err != nil {
-		return nil, err
+		return scanResult, err
 	}
 	if scanMode == FastScan && latestSnapshotExists {
 		// Fast path: Full scan was not requested, and we have a snapshot containing
@@ -711,14 +719,18 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 		// load the snapshot, in order to determine the local projects.
 		snapshotProjects, _, err := LoadSnapshotFile(jirix, latestSnapshot)
 		if err != nil {
-			return nil, err
+			return scanResult, err
 		}
 		projectsExist, err := projectsExistLocally(jirix, snapshotProjects)
 		if err != nil {
-			return nil, err
+			return scanResult, err
 		}
 		if projectsExist {
-			return setProjectRevisions(jirix, snapshotProjects)
+			scanResult.Projects, err = setProjectRevisions(jirix, snapshotProjects)
+			if err != nil {
+				return scanResult, err
+			}
+			return scanResult, nil
 		}
 	}
 
@@ -730,9 +742,13 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 	err = findLocalProjects(jirix, jirix.Root, projects)
 	jirix.TimerPop()
 	if err != nil {
-		return nil, err
+		return scanResult, err
 	}
-	return setProjectRevisions(jirix, projects)
+	scanResult.Projects, err = setProjectRevisions(jirix, projects)
+	if err != nil {
+		return scanResult, err
+	}
+	return scanResult, nil
 }
 
 // projectsExistLocally returns true iff all the given projects exist on the
@@ -769,7 +785,7 @@ func PollProjects(jirix *jiri.X, projectSet map[string]struct{}) (_ Update, e er
 	defer collect.Error(func() error { return jirix.NewSeq().Chdir(cwd).Done() }, &e)
 
 	// Gather local & remote project data.
-	localProjects, err := LocalProjects(jirix, FastScan)
+	scanResult, err := LocalProjects(jirix, FastScan)
 	if err != nil {
 		return nil, err
 	}
@@ -780,7 +796,7 @@ func PollProjects(jirix *jiri.X, projectSet map[string]struct{}) (_ Update, e er
 
 	// Compute difference between local and remote.
 	update := Update{}
-	ops := computeOperations(localProjects, remoteProjects, false)
+	ops := computeOperations(scanResult.Projects, remoteProjects, false)
 	s := jirix.NewSeq()
 	for _, op := range ops {
 		name := op.Project().Name
@@ -840,11 +856,11 @@ func LoadManifest(jirix *jiri.X) (Projects, Tools, error) {
 	jirix.TimerPush("load manifest")
 	defer jirix.TimerPop()
 	file := jirix.JiriManifestFile()
-	localProjects, err := LocalProjects(jirix, FastScan)
+	scanResult, err := LocalProjects(jirix, FastScan)
 	if err != nil {
 		return nil, nil, err
 	}
-	return loadManifestFile(jirix, file, localProjects)
+	return loadManifestFile(jirix, file, scanResult.Projects)
 }
 
 // loadManifestFile loads the manifest starting with the given file, resolving
@@ -900,7 +916,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	if gc {
 		scanMode = FullScan
 	}
-	localProjects, err := LocalProjects(jirix, scanMode)
+	scanResult, err := LocalProjects(jirix, scanMode)
 	if err != nil {
 		return err
 	}
@@ -908,22 +924,34 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	// Load the manifest, updating all manifest projects to match their remote
 	// counterparts.
 	s := jirix.NewSeq()
-	remoteProjects, remoteTools, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects)
+	remoteProjects, remoteTools, tmpLoadDir, err := loadUpdatedManifest(jirix, scanResult.Projects)
 	if tmpLoadDir != "" {
 		defer collect.Error(func() error { return s.RemoveAll(tmpLoadDir).Done() }, &e)
 	}
 	if err != nil {
 		return err
 	}
-	return updateTo(jirix, localProjects, remoteProjects, remoteTools, gc)
+	return updateTo(jirix, scanResult, remoteProjects, remoteTools, gc)
 }
 
 // updateTo updates the local projects and tools to the state specified in
 // remoteProjects and remoteTools.
-func updateTo(jirix *jiri.X, localProjects, remoteProjects Projects, remoteTools Tools, gc bool) (e error) {
+func updateTo(jirix *jiri.X, scanResult ScanResult, remoteProjects Projects, remoteTools Tools, gc bool) (e error) {
 	s := jirix.NewSeq()
 	// 1. Update all local projects to match the specified projects argument.
-	if err := updateProjects(jirix, localProjects, remoteProjects, gc); err != nil {
+	if err := updateProjects(jirix, scanResult.Projects, remoteProjects, gc); err != nil {
+		// If updating projects fails, it might be because we tried to do a fast scan and
+		// the manifest is out of date with reality.  Before raising an error, try falling
+		// back to doing a full scan of the filesystem.
+		if scanResult.ScanMode == FastScan {
+			secondScanResult, innerErr := LocalProjects(jirix, FullScan)
+			if innerErr != nil {
+				return innerErr
+			}
+			if innerErr = updateProjects(jirix, secondScanResult.Projects, remoteProjects, gc); innerErr != nil {
+				return innerErr
+			}
+		}
 		return err
 	}
 	// 2. Build all tools in a temporary directory.

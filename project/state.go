@@ -67,13 +67,13 @@ func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch cha
 }
 
 func GetProjectStates(jirix *jiri.X, checkDirty bool) (map[ProjectKey]*ProjectState, error) {
-	projects, err := LocalProjects(jirix, FastScan)
+	scanResult, err := LocalProjects(jirix, FastScan)
 	if err != nil {
 		return nil, err
 	}
-	states := make(map[ProjectKey]*ProjectState, len(projects))
-	sem := make(chan error, len(projects))
-	for key, project := range projects {
+	states := make(map[ProjectKey]*ProjectState, len(scanResult.Projects))
+	sem := make(chan error, len(scanResult.Projects))
+	for key, project := range scanResult.Projects {
 		state := &ProjectState{
 			Project: project,
 		}
@@ -81,7 +81,7 @@ func GetProjectStates(jirix *jiri.X, checkDirty bool) (map[ProjectKey]*ProjectSt
 		// jirix is not threadsafe, so we make a clone for each goroutine.
 		go setProjectState(jirix.Clone(tool.ContextOpts{}), state, checkDirty, sem)
 	}
-	for _ = range projects {
+	for _ = range scanResult.Projects {
 		err := <-sem
 		if err != nil {
 			return nil, err
@@ -91,12 +91,12 @@ func GetProjectStates(jirix *jiri.X, checkDirty bool) (map[ProjectKey]*ProjectSt
 }
 
 func GetProjectState(jirix *jiri.X, key ProjectKey, checkDirty bool) (*ProjectState, error) {
-	projects, err := LocalProjects(jirix, FastScan)
+	scanResult, err := LocalProjects(jirix, FastScan)
 	if err != nil {
 		return nil, err
 	}
 	sem := make(chan error, 1)
-	for k, project := range projects {
+	for k, project := range scanResult.Projects {
 		if k == key {
 			state := &ProjectState{
 				Project: project,
