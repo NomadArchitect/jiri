@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05d89b6b_53e67c3a",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-27T00:38:28Z",
+      "side": 1,
+      "message": "nit: no empty line",
+      "revId": "6aa9ee004c70c41d9fd930f10a3e537b870f1bc1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05d89b6b_339c10be",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-27T00:38:28Z",
+      "side": 1,
+      "message": "nit: no empty line",
+      "revId": "6aa9ee004c70c41d9fd930f10a3e537b870f1bc1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
