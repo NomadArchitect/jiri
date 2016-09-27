@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05d89b6b_41634239",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-09-27T03:05:04Z",
+      "side": 1,
+      "message": "optional nit: if suffix builder names with x86-64, it will be cleaner to move this dimension definition to builder stanzas too",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "10463d85e3f2283e08f8b13669a09910b6e37a74",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05d89b6b_610f5e93",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-09-27T03:05:04Z",
+      "side": 1,
+      "message": "I assume you\u0027ll provide the bots? If so, I wonder how they will authenticate to Swarming.",
+      "range": {
+        "startLine": 64,
+        "startChar": 22,
+        "endLine": 64,
+        "endChar": 31
+      },
+      "revId": "10463d85e3f2283e08f8b13669a09910b6e37a74",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
