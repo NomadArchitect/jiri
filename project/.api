@@ -11,7 +11,7 @@ pkg project, func GetProjectStates(*jiri.X, bool) (map[ProjectKey]*ProjectState,
 pkg project, func InstallTools(*jiri.X, string) error
 pkg project, func LoadManifest(*jiri.X) (Projects, Tools, error)
 pkg project, func LoadSnapshotFile(*jiri.X, string) (Projects, Tools, error)
-pkg project, func LocalProjects(*jiri.X, ScanMode) (Projects, error)
+pkg project, func LocalProjects(*jiri.X, ScanMode) (ScanResult, error)
 pkg project, func MakeProjectKey(string, string) ProjectKey
 pkg project, func ManifestFromBytes([]byte) (*Manifest, error)
 pkg project, func ManifestFromFile(*jiri.X, string) (*Manifest, error)
@@ -74,6 +74,9 @@ pkg project, type ProjectState struct, HasUntracked bool
 pkg project, type ProjectState struct, Project Project
 pkg project, type Projects map[ProjectKey]Project
 pkg project, type ScanMode bool
+pkg project, type ScanResult struct
+pkg project, type ScanResult struct, Projects Projects
+pkg project, type ScanResult struct, ScanMode ScanMode
 pkg project, type Tool struct
 pkg project, type Tool struct, Data string
 pkg project, type Tool struct, Name string
