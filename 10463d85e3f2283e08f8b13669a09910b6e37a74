@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "05d89b6b_59357644",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-27T18:41:44Z",
+      "side": 1,
+      "message": "Good point, especially since are planning to deploy arm64 builders in the future as well.",
+      "parentUuid": "05d89b6b_41634239",
+      "revId": "10463d85e3f2283e08f8b13669a09910b6e37a74",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05d89b6b_610f5e93",
         "filename": "cr-buildbucket.cfg",
         "patchSetId": 1
@@ -42,6 +60,24 @@
         "endLine": 64,
         "endChar": 31
       },
+      "revId": "10463d85e3f2283e08f8b13669a09910b6e37a74",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05d89b6b_b9c9fa21",
+        "filename": "cr-buildbucket.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-27T18:41:44Z",
+      "side": 1,
+      "message": "We already discussed this over the email a while ago. The easiest solution for now is to use IP whitelist. Alternative would to deploy root-readable service account JSON private key on each bot and use it to generate OAuth access token that Swarming could use.",
+      "parentUuid": "05d89b6b_610f5e93",
       "revId": "10463d85e3f2283e08f8b13669a09910b6e37a74",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
