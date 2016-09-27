@@ -55,14 +55,14 @@ var cmdProjectClean = &cmdline.Command{
 }
 
 func runProjectClean(jirix *jiri.X, args []string) (e error) {
-	localProjects, err := project.LocalProjects(jirix, project.FullScan)
+	scanResult, err := project.LocalProjects(jirix, project.FullScan)
 	if err != nil {
 		return err
 	}
 	var projects project.Projects
 	if len(args) > 0 {
 		for _, arg := range args {
-			p, err := localProjects.FindUnique(arg)
+			p, err := scanResult.Projects.FindUnique(arg)
 			if err != nil {
 				fmt.Fprintf(jirix.Stderr(), "Error finding local project %q: %v.\n", p.Name, err)
 			} else {
@@ -70,7 +70,7 @@ func runProjectClean(jirix *jiri.X, args []string) (e error) {
 			}
 		}
 	} else {
-		projects = localProjects
+		projects = scanResult.Projects
 	}
 	if err := project.CleanupProjects(jirix, projects, cleanupBranchesFlag); err != nil {
 		return err

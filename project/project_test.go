@@ -144,29 +144,29 @@ func TestLocalProjects(t *testing.T) {
 
 	// LocalProjects with scanMode = FastScan should only find the first
 	// project.
-	foundProjects, err := project.LocalProjects(jirix, project.FastScan)
+	scanResult, err := project.LocalProjects(jirix, project.FastScan)
 	if err != nil {
 		t.Fatalf("LocalProjects(%v) failed: %v", project.FastScan, err)
 	}
-	checkProjectsMatchPaths(t, foundProjects, projectPaths[:1])
+	checkProjectsMatchPaths(t, scanResult.Projects, projectPaths[:1])
 
 	// LocalProjects with scanMode = FullScan should find all projects.
-	foundProjects, err = project.LocalProjects(jirix, project.FullScan)
+	scanResult, err = project.LocalProjects(jirix, project.FullScan)
 	if err != nil {
 		t.Fatalf("LocalProjects(%v) failed: %v", project.FastScan, err)
 	}
-	checkProjectsMatchPaths(t, foundProjects, projectPaths[:])
+	checkProjectsMatchPaths(t, scanResult.Projects, projectPaths[:])
 
 	// Check that deleting a project forces LocalProjects to run a full scan,
 	// even if FastScan is specified.
 	if err := jirix.NewSeq().RemoveAll(projectPaths[0]).Done(); err != nil {
 		t.Fatalf("RemoveAll(%v) failed: %v", projectPaths[0])
 	}
-	foundProjects, err = project.LocalProjects(jirix, project.FastScan)
+	scanResult, err = project.LocalProjects(jirix, project.FastScan)
 	if err != nil {
 		t.Fatalf("LocalProjects(%v) failed: %v", project.FastScan, err)
 	}
-	checkProjectsMatchPaths(t, foundProjects, projectPaths[1:])
+	checkProjectsMatchPaths(t, scanResult.Projects, projectPaths[1:])
 }
 
 // setupUniverse creates a fake jiri root with 3 remote projects.  Each project
