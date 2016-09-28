@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5c1c7c3_b3a68214",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-09-28T00:46:01Z",
+      "side": 1,
+      "message": "The convention in Jiri codebase is to use Flag suffix for flag variables (see all the other ones).",
+      "revId": "2d472a97a5865c50286444edd6a98e30a21ea71f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
