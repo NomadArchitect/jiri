@@ -160,7 +160,7 @@ func (fake FakeJiriRoot) UpdateUniverse(gc bool) error {
 		return fmt.Errorf("Setenv() failed: %v", err)
 	}
 	defer os.Setenv(jiri.RootEnv, oldRoot)
-	if err := project.UpdateUniverse(fake.X, gc); err != nil {
+	if err := project.UpdateUniverse(fake.X, gc, false); err != nil {
 		return err
 	}
 	return nil
