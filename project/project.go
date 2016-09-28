@@ -642,7 +642,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
-	if err := updateTo(jirix, localProjects, remoteProjects, remoteTools, gc); err != nil {
+	if err := updateTo(jirix, localProjects, remoteProjects, remoteTools, gc, true); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot)
@@ -891,7 +891,7 @@ func loadUpdatedManifest(jirix *jiri.X, localProjects Projects) (Projects, Tools
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
+func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
 	jirix.TimerPush("update universe")
 	defer jirix.TimerPop()
 
@@ -915,15 +915,15 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	if err != nil {
 		return err
 	}
-	return updateTo(jirix, localProjects, remoteProjects, remoteTools, gc)
+	return updateTo(jirix, localProjects, remoteProjects, remoteTools, gc, showUpdateLogs)
 }
 
 // updateTo updates the local projects and tools to the state specified in
 // remoteProjects and remoteTools.
-func updateTo(jirix *jiri.X, localProjects, remoteProjects Projects, remoteTools Tools, gc bool) (e error) {
+func updateTo(jirix *jiri.X, localProjects, remoteProjects Projects, remoteTools Tools, gc bool, showUpdateLogs bool) (e error) {
 	s := jirix.NewSeq()
 	// 1. Update all local projects to match the specified projects argument.
-	if err := updateProjects(jirix, localProjects, remoteProjects, gc); err != nil {
+	if err := updateProjects(jirix, localProjects, remoteProjects, gc, showUpdateLogs); err != nil {
 		return err
 	}
 	// 2. Build all tools in a temporary directory.
@@ -1657,7 +1657,7 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 	}
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bool) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bool, showUpdateLogs bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -1672,9 +1672,10 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bo
 	s := jirix.NewSeq()
 	for _, op := range ops {
 		updateFn := func() error { return op.Run(jirix) }
-		// Always log the output of updateFn, irrespective of
-		// the value of the verbose flag.
-		if err := s.Verbose(true).Call(updateFn, "%v", op).Done(); err != nil {
+		if showUpdateLogs {
+			s = s.Verbose(true)
+		}
+		if err := s.Call(updateFn, "%v", op).Done(); err != nil {
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
 	}
