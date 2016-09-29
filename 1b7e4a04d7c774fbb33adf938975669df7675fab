@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a28505ca_f62948f2",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1647,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-09-29T21:52:22Z",
+      "side": 1,
+      "message": "should we give a warning here?",
+      "revId": "1b7e4a04d7c774fbb33adf938975669df7675fab",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
