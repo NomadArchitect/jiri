@@ -265,7 +265,7 @@ func (i *Import) toProject(path string) (Project, error) {
 
 // ProjectKey returns the unique ProjectKey for the imported project.
 func (i *Import) ProjectKey() ProjectKey {
-	return MakeProjectKey(i.Name, i.Remote)
+	return MakeProjectKey(i.Remote)
 }
 
 // projectKeyFileName returns a file name based on the ProjectKey.
@@ -309,8 +309,8 @@ func (i *LocalImport) validate() error {
 type ProjectKey string
 
 // MakeProjectKey returns the project key, given the project name and remote.
-func MakeProjectKey(name, remote string) ProjectKey {
-	return ProjectKey(name + projectKeySeparator + remote)
+func MakeProjectKey(remote string) ProjectKey {
+	return ProjectKey(remote)
 }
 
 // projectKeySeparator is a reserved string used in ProjectKeys.  It cannot
@@ -439,7 +439,7 @@ func (p *Project) relativizePaths(basepath string) error {
 
 // Key returns the unique ProjectKey for the project.
 func (p Project) Key() ProjectKey {
-	return MakeProjectKey(p.Name, p.Remote)
+	return MakeProjectKey(p.Remote)
 }
 
 func (p *Project) fillDefaults() error {
