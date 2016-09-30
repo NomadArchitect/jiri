@@ -1258,6 +1258,7 @@ func newManifestLoader(localProjects Projects, update bool) *loader {
 		Hooks:         make(Hooks),
 		localProjects: localProjects,
 		update:        update,
+		loadedManifestFiles: make(map[string]bool),
 	}
 }
 
@@ -1268,6 +1269,7 @@ type loader struct {
 	localProjects Projects
 	update        bool
 	cycleStack    []cycleInfo
+	loadedManifestFiles map[string]bool
 }
 
 type cycleInfo struct {
@@ -1337,6 +1339,10 @@ func (ld *loader) Load(jirix *jiri.X, root, file, cycleKey string) error {
 }
 
 func (ld *loader) load(jirix *jiri.X, root, file string) error {
+	if ld.loadedManifestFiles[file] {
+		return nil
+	}
+	ld.loadedManifestFiles[file] = true
 	m, err := ManifestFromFile(jirix, file)
 	if err != nil {
 		return err
