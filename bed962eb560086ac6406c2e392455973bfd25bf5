@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a28505ca_bc4aa824",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-03T19:25:15Z",
+      "side": 1,
+      "message": "if this requires a project name, and there\u0027s a 1:1 mapping of hook:project, i don\u0027t see the point of moving this out to its own tag\n\nthe real benefit of decoupling runhooks and projects is executing the runhooks every time, regardless of the project being updated.  doesn\u0027t require a format change of the manifest though.",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 42
+      },
+      "revId": "bed962eb560086ac6406c2e392455973bfd25bf5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
