@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22603588_a99679f8",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-04T19:00:33Z",
+      "side": 1,
+      "message": "This name is misleading, you\u0027re not doing fuzzy matching, you\u0027re matching projects deterministically based on remote and path. Something like `matchLocalWithRemote` is probably more appropriate.",
+      "revId": "ae6bd0d7a9a06f972cc22311309153f92bf94517",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22603588_69416135",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-04T19:00:33Z",
+      "side": 1,
+      "message": "Maybe add an extra boolean variable to track if there is any unmatched project and return immediately after this loop if there is none before entering the other loop?\n\nThis is really just an optimization, but since the cases where keys don\u0027t match should be very (very) rare, we should probably optimize for that case.",
+      "revId": "ae6bd0d7a9a06f972cc22311309153f92bf94517",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22603588_09c46da3",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-04T19:00:33Z",
+      "side": 1,
+      "message": "Nit: name these remoteKey and remoteProject...",
+      "revId": "ae6bd0d7a9a06f972cc22311309153f92bf94517",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22603588_49a345fc",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-04T19:00:33Z",
+      "side": 1,
+      "message": "Nit: ...and this one localKey...",
+      "revId": "ae6bd0d7a9a06f972cc22311309153f92bf94517",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22603588_69a081ee",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-04T19:00:33Z",
+      "side": 1,
+      "message": "Nit: ...and this one localProject.",
+      "revId": "ae6bd0d7a9a06f972cc22311309153f92bf94517",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
