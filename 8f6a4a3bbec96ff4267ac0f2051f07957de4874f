@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02a09108_dc6cf9fc",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-04T23:51:17Z",
+      "side": 1,
+      "message": "how do we force it to update to latest once we are done with our local testing?",
+      "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
