@@ -354,6 +354,10 @@ type Project struct {
 	// "move" depending on the type of operation being performed.
 	RunHook string   `xml:"runhook,attr,omitempty"`
 	XMLName struct{} `xml:"project"`
+
+	// This is used to store computed key. This is useful when remote and
+	// local projects are same but have different name or remote
+	ComputedKey ProjectKey `xml:"-"`
 }
 
 // ProjectFromFile returns a project parsed from the contents of filename,
@@ -439,7 +443,10 @@ func (p *Project) relativizePaths(basepath string) error {
 
 // Key returns the unique ProjectKey for the project.
 func (p Project) Key() ProjectKey {
-	return MakeProjectKey(p.Name, p.Remote)
+	if p.ComputedKey == "" {
+		p.ComputedKey = MakeProjectKey(p.Name, p.Remote)
+	}
+	return p.ComputedKey
 }
 
 func (p *Project) fillDefaults() error {
@@ -780,6 +787,7 @@ func PollProjects(jirix *jiri.X, projectSet map[string]struct{}) (_ Update, e er
 
 	// Compute difference between local and remote.
 	update := Update{}
+	fuzzyMatchLocalAndRemote(localProjects, remoteProjects)
 	ops := computeOperations(localProjects, remoteProjects, false)
 	s := jirix.NewSeq()
 	for _, op := range ops {
@@ -887,6 +895,32 @@ func loadUpdatedManifest(jirix *jiri.X, localProjects Projects) (Projects, Tools
 	return ld.Projects, ld.Tools, ld.TmpDir, nil
 }
 
+func fuzzyMatchLocalAndRemote(localProjects, remoteProjects Projects) {
+	localKeysNotInRemote := make(map[ProjectKey]bool)
+	for key, _ := range localProjects {
+		if _, ok := remoteProjects[key]; !ok {
+			localKeysNotInRemote[key] = true
+		}
+	}
+
+	for key, remoteP := range remoteProjects {
+		if _, ok := localProjects[key]; !ok {
+			for k, _ := range localKeysNotInRemote {
+				localP := localProjects[k]
+				// Also do matching for name when we support remote rename
+				if localP.Remote == remoteP.Remote && localP.Path == remoteP.Path {
+					delete(localProjects, k)
+					delete(localKeysNotInRemote, k)
+					// Change local project key
+					localP.ComputedKey = key
+					localProjects[key] = localP
+					break
+				}
+			}
+		}
+	}
+}
+
 // UpdateUniverse updates all local projects and tools to match the remote
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
@@ -909,6 +943,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool) (e error) {
 	// counterparts.
 	s := jirix.NewSeq()
 	remoteProjects, remoteTools, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects)
+	fuzzyMatchLocalAndRemote(localProjects, remoteProjects)
 	if tmpLoadDir != "" {
 		defer collect.Error(func() error { return s.RemoveAll(tmpLoadDir).Done() }, &e)
 	}
