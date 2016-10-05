@@ -16,6 +16,24 @@
       "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02a09108_7c686584",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-05T00:28:35Z",
+      "side": 1,
+      "message": "One way is to build jiri using something akin to:\n\ngo build -ldflags \"-X \\\"fuchsia.googlesource.com/jiri/version.GitCommit\u003dtest\\\"\" fuchsia.googlesource.com/jiri/cmd/jiri\n\nSince \"test\" is always going to be different from the current revision, it\u0027ll force jiri to always update itself.",
+      "parentUuid": "02a09108_dc6cf9fc",
+      "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
