@@ -52,6 +52,24 @@
       "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f3ac856_3b6877ae",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-07T23:57:02Z",
+      "side": 1,
+      "message": "Done, shall we call it -force-update or -force-autoupdate?",
+      "parentUuid": "7fec880a_2b301552",
+      "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
