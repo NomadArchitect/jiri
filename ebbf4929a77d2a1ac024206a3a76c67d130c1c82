@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f3ac856_5b2a1b98",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-07T23:43:38Z",
+      "side": 1,
+      "message": "Do we really want to be using project\u0027s name rather than say the remote? This is fine within a single project, but what if you want to share cache between different projects (with different manifests)? Shall we support that scenario?",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
