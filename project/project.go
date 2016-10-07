@@ -13,6 +13,7 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -484,6 +485,29 @@ func (p *Project) validate() error {
 		return fmt.Errorf("bad project: name cannot contain %q: %+v", KeySeparator, *p)
 	}
 	return nil
+}
+
+// cacheDir returns a path to a directory that can be used as a reference repo
+// for the given project.  It expects to find a directory that matches
+// CACHE_DIR/remote_url with "/" replaced with "_".
+func (p *Project) cacheDir(jirix *jiri.X) (string, error) {
+	if len(jirix.Cache) > 0 {
+		url, err := url.Parse(p.Remote)
+		if err != nil {
+			return "", err
+		}
+		re, err := regexp.Compile("//*")
+		if err != nil {
+			return "", err
+		}
+		dirname := url.Host + "_" + re.ReplaceAllLiteralString(strings.Trim(url.Path, "/"), "_")
+		referenceDir := filepath.Join(jirix.Cache, dirname)
+		fi, err := os.Stat(referenceDir)
+		if err == nil && fi.IsDir() {
+			return referenceDir, nil
+		}
+	}
+	return "", nil
 }
 
 // Projects maps ProjectKeys to Projects.
@@ -1303,7 +1327,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
 				return err
 			}
 			ld.localProjects[key] = p
@@ -1682,7 +1706,11 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 		return err
 	}
 	defer collect.Error(func() error { return jirix.NewSeq().RemoveAll(tmpDir).Done() }, &e)
-	if err := gitutil.New(jirix.NewSeq()).Clone(op.project.Remote, tmpDir); err != nil {
+	cache, err := op.project.cacheDir(jirix)
+	if err != nil {
+		return err
+	}
+	if err := gitutil.New(jirix.NewSeq()).Clone(op.project.Remote, tmpDir, cache); err != nil {
 		return err
 	}
 	cwd, err := os.Getwd()
