@@ -21,8 +21,10 @@ import (
 )
 
 const (
+	CacheEnv         = "JIRI_CACHE_DIR"
 	RootMetaDir      = ".jiri_root"
 	ProjectMetaDir   = ".jiri"
+	CacheSubdir      = "cache"
 	ProjectMetaFile  = "metadata.v2"
 	JiriManifestFile = ".jiri_manifest"
 
@@ -39,8 +41,9 @@ const (
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root  string
-	Usage func(format string, args ...interface{}) error
+	Root     string
+	Usage    func(format string, args ...interface{}) error
+	cacheDir string
 }
 
 // NewX returns a new execution environment, given a cmdline env.
@@ -51,10 +54,17 @@ func NewX(env *cmdline.Env) (*X, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	cacheDir, err := findCacheDir(root)
+	if err != nil {
+		return nil, err
+	}
+
 	x := &X{
-		Context: ctx,
-		Root:    root,
-		Usage:   env.UsageErrorf,
+		Context:  ctx,
+		Root:     root,
+		Usage:    env.UsageErrorf,
+		cacheDir: cacheDir,
 	}
 	if ctx.Env()[PreservePathEnv] == "" {
 		// Prepend .jiri_root/bin to the PATH, so execing a binary will
@@ -82,6 +92,43 @@ func init() {
 	flag.StringVar(&rootFlag, "root", "", "Jiri root directory")
 }
 
+func cleanPath(path string) (string, error) {
+	result, err := filepath.EvalSymlinks(path)
+	if err != nil {
+		return "", fmt.Errorf("EvalSymlinks(%v) failed: %v", path, err)
+	}
+	if !filepath.IsAbs(result) {
+		return "", fmt.Errorf("%v isn't an absolute path", result)
+	}
+	return filepath.Clean(result), nil
+}
+
+func findCacheDir(root string) (string, error) {
+	// Use environment variable if set.
+	if dir := os.Getenv(CacheEnv); dir != "" {
+		return cleanPath(dir)
+	}
+
+	// Check default location under .jiri_root.
+	defaultCacheDir := filepath.Join(root, CacheSubdir)
+	fi, err := os.Stat(defaultCacheDir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return "", nil
+		}
+		return "", err
+	}
+
+	// .jiri_root/cache exists and is a directory (success).
+	if fi.IsDir() {
+		return defaultCacheDir, nil
+	}
+
+	// defaultCacheDir exists but is not a directory.  Assume the user is
+	// up to something and there's no real cache directory.
+	return "", nil
+}
+
 func findJiriRoot(timer *timing.Timer) (string, error) {
 	if timer != nil {
 		timer.Push("find .jiri_root")
@@ -89,14 +136,7 @@ func findJiriRoot(timer *timing.Timer) (string, error) {
 	}
 
 	if rootFlag != "" {
-		result, err := filepath.EvalSymlinks(rootFlag)
-		if err != nil {
-			return "", fmt.Errorf("%s is an invalid symlink: %v", rootFlag, err)
-		}
-		if !filepath.IsAbs(result) {
-			return "", fmt.Errorf("%s isn't an absolute path: %s", rootFlag, result)
-		}
-		return filepath.Clean(result), nil
+		return cleanPath(rootFlag)
 	}
 
 	wd, err := os.Getwd()
