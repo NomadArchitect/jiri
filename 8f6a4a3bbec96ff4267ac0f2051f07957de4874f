@@ -34,6 +34,24 @@
       "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fec880a_2b301552",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-07T17:59:29Z",
+      "side": 1,
+      "message": "we could add a -force-update-jiri option to force jiri to fetch a new version",
+      "parentUuid": "02a09108_7c686584",
+      "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
