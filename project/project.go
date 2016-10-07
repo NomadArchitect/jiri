@@ -1278,7 +1278,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
 				return err
 			}
 			ld.localProjects[key] = p
@@ -1638,7 +1638,7 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 		return err
 	}
 	defer collect.Error(func() error { return jirix.NewSeq().RemoveAll(tmpDir).Done() }, &e)
-	if err := gitutil.New(jirix.NewSeq()).Clone(op.project.Remote, tmpDir); err != nil {
+	if err := gitutil.New(jirix.NewSeq()).Clone(op.project.Remote, tmpDir, jirix.CacheDir()); err != nil {
 		return err
 	}
 	cwd, err := os.Getwd()
