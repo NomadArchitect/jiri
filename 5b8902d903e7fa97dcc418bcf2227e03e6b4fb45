@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f3ac856_4a67a2b6",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-10-08T18:40:00Z",
+      "side": 1,
+      "message": "you\u0027ll need to make a separate \u0027job\u0027 entry for this, with different name",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "5b8902d903e7fa97dcc418bcf2227e03e6b4fb45",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
