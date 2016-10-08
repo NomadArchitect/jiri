@@ -321,24 +321,47 @@ func (g *Git) DirExistsOnBranch(dir, branch string) bool {
 
 // Fetch fetches refs and tags from the given remote.
 func (g *Git) Fetch(remote string, opts ...FetchOpt) error {
-	return g.FetchRefspec(remote, "", opts...)
+	return g.FetchRefspec(remote, "", "", opts...)
+}
+
+// Fetch fetches refs and tags from the given remote.
+func (g *Git) FetchForPath(remote, path string, opts ...FetchOpt) error {
+	return g.FetchRefspec(remote, "", path, opts...)
 }
 
 // FetchRefspec fetches refs and tags from the given remote for a particular refspec.
-func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
-	args := []string{"fetch"}
+func (g *Git) FetchRefspec(remote, refspec, path string, opts ...FetchOpt) error {
 	tags := false
+	all := false
+	prune := false
 	for _, opt := range opts {
 		switch typedOpt := opt.(type) {
 		case TagsOpt:
 			tags = bool(typedOpt)
+		case AllOpt:
+			all = bool(typedOpt)
+		case PruneOpt:
+			prune = bool(typedOpt)
 		}
+	}
+	args := []string{}
+	if path != "" {
+		args = append(args, "-C")
+		args = append(args, path)
+	}
+	args = append(args, "fetch")
+	if prune {
+		args = append(args, "-p")
 	}
 	if tags {
 		args = append(args, "--tags")
 	}
-
-	args = append(args, remote)
+	if all {
+		args = append(args, "--all")
+	}
+	if remote != "" {
+		args = append(args, remote)
+	}
 	if refspec != "" {
 		args = append(args, refspec)
 	}
@@ -621,8 +644,8 @@ func (g *Git) Reset(target string, opts ...ResetOpt) error {
 }
 
 // SetRemoteUrl sets the url of the remote with given name to the given url.
-func (g *Git) SetRemoteUrl(name, url string) error {
-	return g.run("remote", "set-url", name, url)
+func (g *Git) SetRemoteUrl(name, url, path string) error {
+	return g.run("-C", path, "remote", "set-url", name, url)
 }
 
 // Stash attempts to stash any unsaved changes. It returns true if
