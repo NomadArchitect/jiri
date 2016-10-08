@@ -22,6 +22,24 @@
       "revId": "5b8902d903e7fa97dcc418bcf2227e03e6b4fb45",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f3ac856_cdc2ecfe",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-08T20:57:13Z",
+      "side": 1,
+      "message": "Done, do you have any preferences/recommendation for job names?",
+      "parentUuid": "7f3ac856_4a67a2b6",
+      "revId": "5b8902d903e7fa97dcc418bcf2227e03e6b4fb45",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
