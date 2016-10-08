@@ -15,6 +15,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 	"time"
 
 	"fuchsia.googlesource.com/jiri"
@@ -1111,15 +1112,17 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) error {
 	return nil
 }
 
-// fetchProject fetches from the project remote.
-func fetchProject(jirix *jiri.X, project Project) error {
+func fetchAll(jirix *jiri.X, project Project) (error) {
+	s := jirix.NewSeq()
 	if project.Remote == "" {
 		return fmt.Errorf("project %q does not have a remote", project.Name)
 	}
-	if err := gitutil.New(jirix.NewSeq()).SetRemoteUrl("origin", project.Remote); err != nil {
+	git := gitutil.New(s, gitutil.RootDirOpt(project.Path))
+	if err := git.SetRemoteUrl("origin", project.Remote); err != nil {
 		return err
 	}
-	return gitutil.New(jirix.NewSeq()).Fetch("origin")
+	err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true))
+	return err
 }
 
 // resetProjectCurrentBranch resets the current branch to the revision and
@@ -1140,9 +1143,6 @@ func resetProjectCurrentBranch(jirix *jiri.X, project Project) error {
 // branch to the revision and branch specified on the project.
 func syncProjectMaster(jirix *jiri.X, project Project) error {
 	return ApplyToLocalMaster(jirix, Projects{project.Key(): project}, func() error {
-		if err := fetchProject(jirix, project); err != nil {
-			return err
-		}
 		return resetProjectCurrentBranch(jirix, project)
 	})
 }
@@ -1317,7 +1317,7 @@ func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, proje
 	// for the given projects, rather than ApplyToLocalMaster(fetch+reset+load).
 	return ApplyToLocalMaster(jirix, Projects{project.Key(): project}, func() error {
 		if ld.update {
-			if err := fetchProject(jirix, project); err != nil {
+			if err := fetchAll(jirix, project); err != nil {
 				return err
 			}
 		}
@@ -1424,10 +1424,34 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bo
 	getRemoteHeadRevisions(jirix, remoteProjects)
 	ops := computeOperations(localProjects, remoteProjects, gc)
 	updates := newFsUpdates()
+	var routineError error
+	var wg sync.WaitGroup
 	for _, op := range ops {
 		if err := op.Test(jirix, updates); err != nil {
 			return err
 		}
+		if op.Kind() != "delete" && op.Kind() != "create" {
+			wg.Add(1)
+			go func(op operation) {
+				defer wg.Done()
+				project := op.Project()
+				if moveOp, ok := op.(moveOperation); ok {
+					project.Path = moveOp.source
+				}
+				err := fetchAll(jirix, project)
+				if err != nil {
+					routineError = fmt.Errorf("fetch failed for %v: %v", project.Name, err)
+				}
+			}(op)
+			// Try to return on 1st error
+			if routineError != nil {
+				break
+			}
+		}
+	}
+	wg.Wait()
+	if routineError != nil {
+		return routineError
 	}
 	s := jirix.NewSeq()
 	for _, op := range ops {
