@@ -176,7 +176,7 @@ func cleanupCL(jirix *jiri.X, branches []string) (e error) {
 		}
 		return nil
 	}, &e)
-	if err := git.FetchRefspec("origin", remoteBranchFlag); err != nil {
+	if err := git.FetchRefspec("origin", remoteBranchFlag, ""); err != nil {
 		return err
 	}
 	s := jirix.NewSeq()
@@ -920,7 +920,7 @@ func (review *review) cleanup(stashed bool) error {
 func (review *review) createReviewBranch(message string) (e error) {
 	git := gitutil.New(review.jirix.NewSeq())
 	// Create the review branch.
-	if err := git.FetchRefspec("origin", review.CLOpts.RemoteBranch); err != nil {
+	if err := git.FetchRefspec("origin", review.CLOpts.RemoteBranch, ""); err != nil {
 		return err
 	}
 	if git.BranchExists(review.reviewBranch) {
