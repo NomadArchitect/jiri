@@ -28,6 +28,9 @@ const (
 // Update checks whether a new version of Jiri is available and if so,
 // it will download it and replace the current version with the new one.
 func Update() error {
+	if version.GitCommit == "" {
+		return nil
+	}
 	commit, err := getCurrentCommit(JiriRepository)
 	if err != nil {
 		return nil
