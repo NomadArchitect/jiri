@@ -361,7 +361,8 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 				continue
 			}
 		} else {
-			if state.CurrentBranch != homeBranch {
+			// Run on all projects if current project has detached head
+			if !git.IsDetachedHead() && state.CurrentBranch != homeBranch {
 				continue
 			}
 		}
@@ -417,7 +418,7 @@ func runp(jirix *jiri.X, cmd *cmdline.Command, args []string) error {
 	}
 
 	runner := &runner{
-		args:   args,
+		args: args,
 	}
 	mr := simplemr.MR{}
 	if runpFlags.interactive {
