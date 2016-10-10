@@ -16,6 +16,23 @@
       "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff9f98ca_ada57db5",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-10T14:57:00Z",
+      "side": 1,
+      "message": "Let\u0027s use a flag for this (see https://fuchsia-review.googlesource.com/c/11923/).",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
