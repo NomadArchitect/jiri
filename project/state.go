@@ -21,7 +21,6 @@ type BranchState struct {
 
 type ProjectState struct {
 	Branches       []BranchState
-	CurrentBranch  string
 	HasUncommitted bool
 	HasUntracked   bool
 	Project        Project
@@ -31,7 +30,7 @@ func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch cha
 	var err error
 	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(state.Project.Path))
 	var branches []string
-	branches, state.CurrentBranch, err = scm.GetBranches()
+	branches, _, err = scm.GetBranches()
 	if err != nil {
 		ch <- err
 		return
