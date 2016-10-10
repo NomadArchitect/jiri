@@ -70,6 +70,24 @@
       "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff9f98ca_d0422265",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-10T16:26:23Z",
+      "side": 1,
+      "message": "interesting question.  initially, the idea of forcing an autoupdate seems like an oxymoron.  however, the prefix \"auto\" doesn\u0027t have to mean \"automatic\" -- it can also mean \"self\".  \"autoupdating\" simply means \"updates itself\" and you can force it.  so i think force-autoupdate makes sense. :)\n\nit also matches the other autoupdate flag we have, so yea.",
+      "parentUuid": "7f3ac856_3b6877ae",
+      "revId": "8f6a4a3bbec96ff4267ac0f2051f07957de4874f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
