@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ff9f98ca_b08af6cf",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-10T16:20:36Z",
+      "side": 1,
+      "message": "we might as well support that scenario - it\u0027s an easy enough change.  i\u0027ll key it off the remote",
+      "parentUuid": "7f3ac856_5b2a1b98",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff9f98ca_ada57db5",
         "filename": "x.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ff9f98ca_307f26b1",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-10T16:20:36Z",
+      "side": 1,
+      "message": "using a flag was pretty ugly given the way the jiri context is created and passed to the runners.  i\u0027ll take a look at c/11923, but i\u0027m guessing it\u0027ll be a lot nicer after that cl",
+      "parentUuid": "ff9f98ca_ada57db5",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff9f98ca_d07fc2fe",
         "filename": "x.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2016-10-10T15:10:40Z",
       "side": 1,
       "message": "I don\u0027t think we need an accessor for this (especially since everything in X is already public), let\u0027s make cacheDir public.",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff9f98ca_7089aed6",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-10T16:20:36Z",
+      "side": 1,
+      "message": "sg, will do",
+      "parentUuid": "ff9f98ca_d07fc2fe",
       "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
