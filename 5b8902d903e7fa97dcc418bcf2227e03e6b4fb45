@@ -40,6 +40,24 @@
       "revId": "5b8902d903e7fa97dcc418bcf2227e03e6b4fb45",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff9f98ca_e775deef",
+        "filename": "luci-cron.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2016-10-10T20:55:04Z",
+      "side": 1,
+      "message": "No... We had no precedents.",
+      "parentUuid": "7f3ac856_cdc2ecfe",
+      "revId": "5b8902d903e7fa97dcc418bcf2227e03e6b4fb45",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
