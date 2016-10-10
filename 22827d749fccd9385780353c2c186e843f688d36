@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff9f98ca_d6797588",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-10T22:36:47Z",
+      "side": 1,
+      "message": "You don\u0027t seem to be using the return variable name, so just remove it.",
+      "revId": "22827d749fccd9385780353c2c186e843f688d36",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
