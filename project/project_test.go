@@ -466,7 +466,7 @@ func TestUpdateUniverseDeletedProject(t *testing.T) {
 		t.Fatal(err)
 	}
 	if err := s.AssertDirExists(localProjects[1].Path).Done(); err == nil {
-		t.Fatalf("expected project %q at path %q not to exist but it did", localProjects[1].Name, localProjects[3].Path)
+		t.Fatalf("expected project %q at path %q not to exist but it did", localProjects[1].Name, localProjects[1].Path)
 	}
 }
 
