@@ -33,6 +33,23 @@
       "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff9f98ca_d07fc2fe",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-10T15:10:40Z",
+      "side": 1,
+      "message": "I don\u0027t think we need an accessor for this (especially since everything in X is already public), let\u0027s make cacheDir public.",
+      "revId": "ebbf4929a77d2a1ac024206a3a76c67d130c1c82",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
