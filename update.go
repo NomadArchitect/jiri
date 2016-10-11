@@ -156,6 +156,13 @@ func updateExecutable(path string, b []byte) error {
 
 	// Write the new version to a file.
 	newfile, err := ioutil.TempFile(dir, "jiri")
+	if err != nil && os.IsPermission(err) {
+		// Fallback to using os.TempDir if we can't write to the place where
+		// jiri is installed.  This can happen if the user has installed jiri
+		// in a root-owned directory.
+		dir = ""
+		newfile, err = ioutil.TempFile(dir, "jiri")
+	}
 	if err != nil {
 		return err
 	}
@@ -185,7 +192,7 @@ func updateExecutable(path string, b []byte) error {
 
 	err = os.Rename(path, oldfile.Name())
 	if err != nil {
-		return err
+		return fmt.Errorf("during backup: %s", err)
 	}
 
 	// Replace the existing version.
@@ -194,9 +201,9 @@ func updateExecutable(path string, b []byte) error {
 		// Try to rollback the change in case of error.
 		rerr := os.Rename(oldfile.Name(), path)
 		if rerr != nil {
-			return rerr
+			return fmt.Errorf("during rollback: %s", rerr)
 		}
-		return err
+		return fmt.Errorf("during install: %s", err)
 	}
 
 	return nil
