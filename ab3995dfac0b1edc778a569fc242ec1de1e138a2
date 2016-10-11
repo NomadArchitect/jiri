@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1f7aac68_ec5764fb",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-11T22:15:01Z",
+      "side": 1,
+      "message": "there\u0027s already a verbose flag which is basically useless (try -v sometime)",
+      "parentUuid": "1f7aac68_ac4f2c89",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f7aac68_cc43886b",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-11T22:05:36Z",
       "side": 1,
       "message": "No need to add more messages.",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_4c47784c",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-11T22:15:01Z",
+      "side": 1,
+      "message": "I tried it without this and jiri just sits there doing nothing for a while and it feels really odd.  especially since people are used to seeing a bunch of logspam - i think this is necessary in the short term to let folks know jiri is actually doing something",
+      "parentUuid": "1f7aac68_cc43886b",
       "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1f7aac68_6c443447",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-11T22:15:01Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "1f7aac68_ccb1c897",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1f7aac68_0c3e60e5",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-11T22:05:36Z",
       "side": 1,
       "message": "Couldn\u0027t you just call s.Verbose(showUpdateLogs).Call(...)...?",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_8c519006",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-11T22:15:01Z",
+      "side": 1,
+      "message": "probably. will do that",
+      "parentUuid": "1f7aac68_0c3e60e5",
       "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
