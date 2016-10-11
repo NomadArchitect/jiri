@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f7aac68_ac4f2c89",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T22:05:36Z",
+      "side": 1,
+      "message": "Couldn\u0027t we just call the flag \"verbose\"?",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_cc43886b",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T22:05:36Z",
+      "side": 1,
+      "message": "No need to add more messages.",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_ccb1c897",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T22:05:36Z",
+      "side": 1,
+      "message": "How about: `NOTE: \"jiri update\" only updates the \"master\" branch and the current branch of project %s is %q`",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_0c3e60e5",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T22:05:36Z",
+      "side": 1,
+      "message": "Couldn\u0027t you just call s.Verbose(showUpdateLogs).Call(...)...?",
+      "revId": "ab3995dfac0b1edc778a569fc242ec1de1e138a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
