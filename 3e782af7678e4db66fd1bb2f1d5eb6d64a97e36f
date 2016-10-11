@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f7aac68_cb74555f",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T17:57:24Z",
+      "side": 1,
+      "message": "By the way, do you prefer `root` or `root-dir` as the name of the flag?",
+      "revId": "3e782af7678e4db66fd1bb2f1d5eb6d64a97e36f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
