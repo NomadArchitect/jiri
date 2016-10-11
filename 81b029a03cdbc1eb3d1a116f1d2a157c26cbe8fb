@@ -25,6 +25,24 @@
     },
     {
       "key": {
+        "uuid": "1f7aac68_5933c760",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T00:25:39Z",
+      "side": 1,
+      "message": "Agreed, I have a work-in-progress change that replaces cmdline with a simpler version and it can also generate docs, so we can switch to that one then.",
+      "parentUuid": "ff9f98ca_56de2500",
+      "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff9f98ca_96d88d12",
         "filename": "cmd/jiri/cmd.go",
         "patchSetId": 1
@@ -42,6 +60,24 @@
         "endLine": 88,
         "endChar": 77
       },
+      "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_f923b313",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9f98ca_96d88d12",
       "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "1f7aac68_f9fad357",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9f98ca_b61949ec",
+      "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff9f98ca_562905f4",
         "filename": "cmd/jiri/import_test.go",
         "patchSetId": 1
@@ -94,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "1f7aac68_7907a379",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9f98ca_562905f4",
+      "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff9f98ca_99eefe79",
         "filename": "update.go",
         "patchSetId": 1
@@ -111,6 +183,24 @@
         "endLine": 33,
         "endChar": 2
       },
+      "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f7aac68_99663f4f",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-11T00:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff9f98ca_99eefe79",
       "revId": "81b029a03cdbc1eb3d1a116f1d2a157c26cbe8fb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
