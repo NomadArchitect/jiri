@@ -52,12 +52,13 @@ git clone "https://${PKG_PATH}" "${GIT_DIR}"
 readonly VERSION="$(git --git-dir="${GIT_DIR}/.git" --work-tree="${GIT_DIR}" log -1 --format=%H)"
 
 # These are embedded directly into jiri itself and are available through `jiri version`.
-readonly GIT_COMMIT=$(git rev-parse HEAD)
+readonly GIT_COMMIT=$(git --git-dir="${GIT_DIR}/.git" --work-tree="${GIT_DIR}" rev-parse HEAD)
 readonly BUILD_TIME="$(date --rfc-3339=seconds)"
 
 # For each target we support, build a jiri binary.
 for os in ${TARGETS}; do
-  if ! GOPATH="${TEMP_DIR}" GOOS="${os}" GOARCH="amd64" go build -ldflags "-X \"fuchsia.googlesource.com/jiri/version.GitCommit=${GIT_COMMIT}\" -X \"fuchsia.googlesource.com/jiri/version.BuildTime=${BUILD_TIME}\"" -a -o "${TEMP_DIR}/jiri-${os}" "${PKG_PATH}/cmd/jiri"; then
+	mkdir -p "${TEMP_DIR}/jiri-${os}"
+  if ! GOPATH="${TEMP_DIR}" GOOS="${os}" GOARCH="amd64" go build -ldflags "-X \"fuchsia.googlesource.com/jiri/version.GitCommit=${GIT_COMMIT}\" -X \"fuchsia.googlesource.com/jiri/version.BuildTime=${BUILD_TIME}\"" -a -o "${TEMP_DIR}/jiri-${os}/jiri" "${PKG_PATH}/cmd/jiri"; then
     set +x
     echo ""
     echo "'go build' failed.  Ensure you have a standard, working Go toolchain"
@@ -70,5 +71,11 @@ done
 
 # Upload all the binaries.
 for os in ${TARGETS}; do
-  gsutil cp "${TEMP_DIR}/jiri-${os}" "${GS_BUCKET}/${os}-amd64/${VERSION}"
+  gsutil cp "${TEMP_DIR}/jiri-${os}/jiri" "${GS_BUCKET}/${os}-amd64/${VERSION}"
 done
+
+if [[ -x "${CIPD_CLIENT}" ]]; then
+  for os in ${TARGETS}; do
+    ${CIPD_CLIENT} create -name "fuchsia/tools/jiri/${os}-amd64" -in "${TEMP_DIR}/jiri-${os}" -ref latest -tag "git_repository:https://fuchsia.googlesource.com/jiri" -tag "git_revision:${VERSION}"
+  done
+fi
