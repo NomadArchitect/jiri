@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1cdb9a69_719bb277",
+        "filename": "gitutil/git.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-13T20:15:33Z",
+      "side": 1,
+      "message": "I don\u0027t think we should remove it as that will make code un-intuitive as the new code will not say that we are checking for detached head",
+      "parentUuid": "bcbc4ecf_4da9bde5",
+      "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcbc4ecf_4d929daf",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-13T18:55:38Z",
       "side": 1,
       "message": "AFAIK errors are not atomic in Go, so you either have to use an RWMutex around routineError or just remove it completely, since it\u0027s just a minor optimization (which is unlikely to work).",
+      "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cdb9a69_343d1814",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-13T20:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcbc4ecf_4d929daf",
       "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1cdb9a69_5440a48b",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-13T20:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcbc4ecf_ada091f1",
+      "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcbc4ecf_cd9dcdba",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-13T18:55:38Z",
       "side": 1,
       "message": "isDeatachedHead isn\u0027t used anywhere else, why not just `if git.IsDetachedHead() { ... }`?",
+      "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cdb9a69_f4b790a1",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-13T20:15:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcbc4ecf_cd9dcdba",
       "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
