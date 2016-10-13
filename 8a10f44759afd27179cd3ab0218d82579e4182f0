@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "fc73265a_13501400",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-13T23:07:02Z",
+      "side": 1,
+      "message": "removed go routine as this did not give any significant improvement",
+      "parentUuid": "1cdb9a69_343d1814",
+      "revId": "8a10f44759afd27179cd3ab0218d82579e4182f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcbc4ecf_ada091f1",
         "filename": "project/project.go",
         "patchSetId": 7
