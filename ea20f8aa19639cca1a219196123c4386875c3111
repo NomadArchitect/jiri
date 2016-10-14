@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc6c4eb9_33346891",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 5041
+      },
+      "writtenOn": "2016-10-14T17:18:02Z",
+      "side": 1,
+      "message": "The standard of Go -- and the behavior of \"CurrentRevision\" -- is to return either valid return values and a nil error, or to return nil return values, but a non-nil error.\n\nThis conditional expects that that behavior will be broken -- it expects that \"CurrentRevision\" will return an error, but ALSO a valid revision. Looking at the source code there... \n\nhttps://fuchsia.googlesource.com/jiri/+/master/gitutil/git.go#274\n\n... that\u0027s impossible. This conditional will never happen. Since that\u0027s the only actionable code within the larger conditional, I hate to inform you, but this entire patch is basically a no-op.",
+      "range": {
+        "startLine": 1127,
+        "startChar": 5,
+        "endLine": 1127,
+        "endChar": 15
+      },
+      "revId": "ea20f8aa19639cca1a219196123c4386875c3111",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
