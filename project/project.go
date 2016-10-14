@@ -1116,6 +1116,19 @@ func fetchProject(jirix *jiri.X, project Project) error {
 	if project.Remote == "" {
 		return fmt.Errorf("project %q does not have a remote", project.Name)
 	}
+
+	// If the project is pinned to a particular ref and we already have that
+	// ref, don't sync the repo.  This optimization exists because pinning
+	// refs is most common when pulling in third party repos from remotes we
+	// don't control.  Those remotes may be unavailable or rate limiting, so
+	// avoid unnecessary requests.
+	if project.Revision != "" {
+		rev, err := gitutil.New(jirix.NewSeq()).CurrentRevision()
+		if err != nil && rev == project.Revision {
+			return nil
+		}
+	}
+
 	if err := gitutil.New(jirix.NewSeq()).SetRemoteUrl("origin", project.Remote); err != nil {
 		return err
 	}
