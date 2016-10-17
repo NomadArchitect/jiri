@@ -826,8 +826,9 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 		if _, ok := localProjects[remoteKey]; !ok {
 			for localKey, _ := range localKeysNotInRemote {
 				localProject := localProjects[localKey]
-				// Also do matching for name when we support remote rename
-				if localProject.Remote == remoteProject.Remote && localProject.Path == remoteProject.Path {
+				// Currently only supporting "/" trimming from remote url. This change will allow us to fix manifest file
+				if (localProject.Remote == remoteProject.Remote && localProject.Path == remoteProject.Path) ||
+					(localProject.Name == remoteProject.Name && strings.Trim(localProject.Remote, "/") == remoteProject.Remote) {
 					delete(localProjects, localKey)
 					delete(localKeysNotInRemote, localKey)
 					// Change local project key
