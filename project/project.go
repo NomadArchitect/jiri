@@ -1386,8 +1386,6 @@ func groupByGoogleSourceHosts(ps Projects) map[string]Projects {
 // projects at HEAD so we can detect when a local project is already
 // up-to-date.
 func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
-	jirix.TimerPush("get remote revision")
-	defer jirix.TimerPop()
 	projectsAtHead := Projects{}
 	for _, rp := range remoteProjects {
 		if rp.Revision == "HEAD" {
@@ -1431,29 +1429,43 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 func getTrackingBranchInfo(jirix *jiri.X, localProjects Projects) error {
 	jirix.TimerPush("Get Tracking branch info")
 	defer jirix.TimerPop()
+	errs := make(chan error)
+	tempMap := make(map[ProjectKey]*Project)
+	var wg sync.WaitGroup
 	for key, project := range localProjects {
 		if project.IsOnBranch {
-			var err error
-			git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
-			if project.LocalTrackingBranch, err = git.TrackingBranchName(); err != nil {
-				return err
-			}
-			if project.LocalTrackingBranch != "" {
-				if project.LocalTrackingBranchRev, err = git.CurrentRevisionOfBranch(project.LocalTrackingBranch); err != nil {
-					return err
+			projectCopy := project
+			tempMap[key] = &projectCopy
+			wg.Add(1)
+			go func(project *Project) {
+				defer wg.Done()
+				var err error
+				git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+				if project.LocalTrackingBranch, err = git.TrackingBranchName(); err != nil {
+					errs <- err
 				}
-			}
-			localProjects[key] = project
-		}
+				if project.LocalTrackingBranch != "" {
+					if project.LocalTrackingBranchRev, err = git.CurrentRevisionOfBranch(project.LocalTrackingBranch); err != nil {
+						errs <- err
+					}
+				}
+			}(&projectCopy)
 
+		}
+	}
+	wg.Wait()
+	close(errs)
+	for err := range errs {
+		// Return first err
+		return err
+	}
+	for key, project := range tempMap {
+		localProjects[key] = *project
 	}
 	return nil
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bool, showUpdateLogs bool) error {
-	jirix.TimerPush("update projects")
-	defer jirix.TimerPop()
-
+func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
 	errs := make(chan error)
 	var wg sync.WaitGroup
 	for key, project := range localProjects {
@@ -1474,11 +1486,33 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bo
 		// Return first error
 		return err
 	}
+	return nil
+}
+
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, gc bool, showUpdateLogs bool) error {
+	jirix.TimerPush("update projects")
+	defer jirix.TimerPop()
+
+	var wg sync.WaitGroup
+	jirix.TimerPush("Fetch and remote revisions")
+	wg.Add(2)
+	var fetchErr error
+	go func() {
+		defer wg.Done()
+		fetchErr = fetchLocalProjects(jirix, localProjects, remoteProjects)
+	}()
+	go func() {
+		defer wg.Done()
+		getRemoteHeadRevisions(jirix, remoteProjects)
+	}()
+	wg.Wait()
+	jirix.TimerPop()
+	if fetchErr != nil {
+		return fetchErr
+	}
 	if err := getTrackingBranchInfo(jirix, localProjects); err != nil {
 		return err
 	}
-
-	getRemoteHeadRevisions(jirix, remoteProjects)
 	ops := computeOperations(localProjects, remoteProjects, gc)
 	updates := newFsUpdates()
 	for _, op := range ops {
