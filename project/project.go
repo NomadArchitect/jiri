@@ -238,6 +238,40 @@ func (m *Manifest) unfillDefaults() error {
 	return nil
 }
 
+type MultiError []error
+
+func (m MultiError) Error() string {
+	s, n := "", 0
+	for _, e := range m {
+		if e != nil {
+			if n == 0 {
+				s = e.Error()
+			}
+			n++
+		}
+	}
+	switch n {
+	case 0:
+		return "(0 errors)"
+	case 1:
+		return s
+	case 2:
+		return s + " (and 1 other error)"
+	}
+	return fmt.Sprintf("%s (and %d other errors)", s, n-1)
+}
+
+func parseChanErrors(errs chan error) MultiError {
+	multiErr := make(MultiError, 0)
+	for err := range errs {
+		multiErr = append(multiErr, err)
+	}
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+	return nil
+}
+
 // Import represents a remote manifest import.
 type Import struct {
 	// Manifest file to use from the remote manifest project.
@@ -1488,8 +1522,6 @@ func groupByGoogleSourceHosts(ps Projects) map[string]Projects {
 // projects at HEAD so we can detect when a local project is already
 // up-to-date.
 func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
-	jirix.TimerPush("get remote revision")
-	defer jirix.TimerPop()
 	projectsAtHead := Projects{}
 	for _, rp := range remoteProjects {
 		if rp.Revision == "HEAD" {
@@ -1533,21 +1565,62 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 func getTrackingBranchInfo(jirix *jiri.X, localProjects Projects) error {
 	jirix.TimerPush("Get Tracking branch info")
 	defer jirix.TimerPop()
+	errs := make(chan error, len(localProjects))
+	tempMap := make(map[ProjectKey]*Project)
+	var wg sync.WaitGroup
 	for key, project := range localProjects {
 		if project.IsOnBranch {
-			var err error
-			git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
-			if project.LocalTrackingBranch, err = git.TrackingBranchName(); err != nil {
-				return err
-			}
-			if project.LocalTrackingBranch != "" {
-				if project.LocalTrackingBranchRev, err = git.CurrentRevisionOfBranch(project.LocalTrackingBranch); err != nil {
-					return err
+			projectCopy := project
+			tempMap[key] = &projectCopy
+			wg.Add(1)
+			go func(project *Project) {
+				defer wg.Done()
+				var err error
+				git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+				if project.LocalTrackingBranch, err = git.TrackingBranchName(); err != nil {
+					errs <- err
+					return
 				}
-			}
-			localProjects[key] = project
-		}
+				if project.LocalTrackingBranch != "" {
+					if project.LocalTrackingBranchRev, err = git.CurrentRevisionOfBranch(project.LocalTrackingBranch); err != nil {
+						errs <- err
+						return
+					}
+				}
+			}(&projectCopy)
 
+		}
+	}
+	wg.Wait()
+	close(errs)
+	if multiErr := parseChanErrors(errs); multiErr != nil {
+		return multiErr
+	}
+	for key, project := range tempMap {
+		localProjects[key] = *project
+	}
+	return nil
+}
+
+func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
+	errs := make(chan error, len(localProjects))
+	var wg sync.WaitGroup
+	for key, project := range localProjects {
+		if _, ok := remoteProjects[key]; ok {
+			wg.Add(1)
+			go func(project Project) {
+				defer wg.Done()
+				if err := fetchAll(jirix, project); err != nil {
+					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
+					return
+				}
+			}(project)
+		}
+	}
+	wg.Wait()
+	close(errs)
+	if multiErr := parseChanErrors(errs); multiErr != nil {
+		return multiErr
 	}
 	return nil
 }
@@ -1556,31 +1629,26 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
-	errs := make(chan error, len(localProjects))
 	var wg sync.WaitGroup
-	for key, project := range localProjects {
-		if _, ok := remoteProjects[key]; ok {
-			wg.Add(1)
-			go func(project Project) {
-				defer wg.Done()
-				err := fetchAll(jirix, project)
-				if err != nil {
-					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
-				}
-			}(project)
-		}
-	}
+	jirix.TimerPush("Fetch and remote revisions")
+	wg.Add(2)
+	var fetchErr error
+	go func() {
+		defer wg.Done()
+		fetchErr = fetchLocalProjects(jirix, localProjects, remoteProjects)
+	}()
+	go func() {
+		defer wg.Done()
+		getRemoteHeadRevisions(jirix, remoteProjects)
+	}()
 	wg.Wait()
-	close(errs)
-	for err := range errs {
-		// Return first error
-		return err
+	jirix.TimerPop()
+	if fetchErr != nil {
+		return fetchErr
 	}
 	if err := getTrackingBranchInfo(jirix, localProjects); err != nil {
 		return err
 	}
-
-	getRemoteHeadRevisions(jirix, remoteProjects)
 	ops := computeOperations(localProjects, remoteProjects, gc)
 	updates := newFsUpdates()
 	for _, op := range ops {
