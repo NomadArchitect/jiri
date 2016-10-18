@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcf58392_4361bc1a",
+        "filename": "infra/config/recipes.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 8441
+      },
+      "writtenOn": "2016-10-18T23:19:33Z",
+      "side": 0,
+      "message": "You may have to bump this to whatever https://fuchsia-review.googlesource.com/#/c/12744/ ends up being, so that the build revisions match",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 53
+      },
+      "revId": "3efe6abb3b314089af9a8511ac8db175ca0fe9ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
