@@ -14,11 +14,20 @@ import (
 	"fuchsia.googlesource.com/jiri/tool"
 )
 
-func init() {
+func Init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	cmdRoot = newCmdRoot()
 	tool.InitializeRunFlags(&cmdRoot.Flags)
+}
+
+func init() {
+	Init()
+}
+
+func GetRootForTest() *cmdline.Command {
+	Init()
+	return cmdRoot
 }
 
 func main() {
