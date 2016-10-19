@@ -21,7 +21,7 @@ var (
 	flagImportOut       string
 )
 
-func init() {
+func ImportInit() {
 	cmdImport.Flags.StringVar(&flagImportName, "name", "manifest", `The name of the remote manifest project.`)
 	cmdImport.Flags.StringVar(&flagImportRemoteBranch, "remote-branch", "master", `The branch of the remote manifest project to track, without the leading "origin/".`)
 	cmdImport.Flags.StringVar(&flagImportRoot, "root", "", `Root to store the manifest project locally.`)
@@ -30,11 +30,22 @@ func init() {
 	cmdImport.Flags.StringVar(&flagImportOut, "out", "", `The output file.  Uses <root>/.jiri_manifest if unspecified.  Uses stdout if set to "-".`)
 }
 
-var cmdImport = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runImport),
-	Name:   "import",
-	Short:  "Adds imports to .jiri_manifest file",
-	Long: `
+func ResetImportForTest() {
+	cmdImport = newCmdImport()
+}
+
+func init() {
+	ImportInit()
+}
+
+var cmdImport = newCmdImport()
+
+func newCmdImport() *cmdline.Command {
+	return &cmdline.Command{
+		Runner: jiri.RunnerFunc(runImport),
+		Name:   "import",
+		Short:  "Adds imports to .jiri_manifest file",
+		Long: `
 Command "import" adds imports to the [root]/.jiri_manifest file, which specifies
 manifest information for the jiri tool.  The file is created if it doesn't
 already exist, otherwise additional imports are added to the existing file.
@@ -48,12 +59,13 @@ Example:
 
 Run "jiri help manifest" for details on manifests.
 `,
-	ArgsName: "<manifest> <remote>",
-	ArgsLong: `
+		ArgsName: "<manifest> <remote>",
+		ArgsLong: `
 <manifest> specifies the manifest file to use.
 
 <remote> specifies the remote manifest repository.
 `,
+	}
 }
 
 func runImport(jirix *jiri.X, args []string) error {

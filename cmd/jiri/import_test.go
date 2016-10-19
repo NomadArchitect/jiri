@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 type importTestCase struct {
@@ -200,8 +200,14 @@ func testImport(t *testing.T, jiriTool string, test importTestCase) error {
 	}
 
 	// Run import and check the results.
-	importCmd := exec.Command(jiriTool, append([]string{"import"}, test.Args...)...)
-	stdout, stderr := runCmd(t, importCmd, test.Stderr != "")
+	ResetImportForTest()
+	ImportInit()
+	cmdRoot := GetRootForTest()
+	//flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ContinueOnError)
+	importCmd := func() {
+		cmdline.ParseAndRun(cmdRoot, cmdline.EnvFromOS(), append([]string{"import"}, test.Args...))
+	}
+	stdout, stderr := runfunc(importCmd)
 	if got, want := stdout, test.Stdout; !strings.Contains(got, want) || (got != "" && want == "") {
 		return fmt.Errorf("stdout got %q, want substr %q", got, want)
 	}
