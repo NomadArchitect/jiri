@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dcf58392_5a6b52cd",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "Just delete this.",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_9a949a91",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "Nit: this should probably be SetFlags to be consistent with the rest.",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_3ad64652",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "Global variables in Go are initialized so this is not needed (see https://tour.golang.org/basics/12).",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_9aa2dae4",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "Ditto",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_7aa72ef6",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "Ditto, the same below.",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_552965fb",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-19T19:28:56Z",
+      "side": 1,
+      "message": "I\u0027d inline this function here for simplicity. If it turns out that it\u0027ll be needed from elsewhere in the future, we can generalize it.",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
