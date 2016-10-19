@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dcf58392_0bb5fed3",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-19T20:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcf58392_5a6b52cd",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcf58392_9a949a91",
         "filename": "cmd/jiri/import_test.go",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "dcf58392_ebb192e7",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-19T20:55:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcf58392_9a949a91",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcf58392_3ad64652",
         "filename": "cmd/jiri/import_test.go",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2016-10-19T19:28:56Z",
       "side": 1,
       "message": "Global variables in Go are initialized so this is not needed (see https://tour.golang.org/basics/12).",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_4b23866c",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-19T20:55:38Z",
+      "side": 1,
+      "message": "but if somebody adds extra test case on top of this then we should overwrite the variables to reset them",
+      "parentUuid": "dcf58392_3ad64652",
       "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -98,6 +152,24 @@
       "writtenOn": "2016-10-19T19:28:56Z",
       "side": 1,
       "message": "I\u0027d inline this function here for simplicity. If it turns out that it\u0027ll be needed from elsewhere in the future, we can generalize it.",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcf58392_ab34aaa9",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-19T20:55:38Z",
+      "side": 1,
+      "message": "I was using this for runp_test",
+      "parentUuid": "dcf58392_552965fb",
       "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
