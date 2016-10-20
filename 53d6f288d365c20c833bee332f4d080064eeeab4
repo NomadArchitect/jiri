@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "dcf58392_2f3d6584",
+        "filename": "cmd/jiri/import_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-20T18:24:40Z",
+      "side": 1,
+      "message": "Got it, missed that part.",
+      "parentUuid": "dcf58392_4b23866c",
+      "revId": "53d6f288d365c20c833bee332f4d080064eeeab4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcf58392_9aa2dae4",
         "filename": "cmd/jiri/import_test.go",
         "patchSetId": 5
