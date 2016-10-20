@@ -271,7 +271,7 @@ func testImport(t *testing.T, test importTestCase) error {
 		}
 		err = runImport(jirix, test.Args)
 	}
-	stdout, _, runErr := runfunc(importCmd)
+	stdout, _, runErr := runfunc(importCmd, nil)
 	if runErr != nil {
 		return err
 	}

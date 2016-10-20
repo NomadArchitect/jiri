@@ -66,7 +66,6 @@ type runpFlagValues struct {
 	showKeyPrefix   bool
 	exitOnError     bool
 	collateOutput   bool
-	editMessage     bool
 	branch          string
 }
 
