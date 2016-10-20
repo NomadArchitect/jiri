@@ -9,11 +9,11 @@ import (
 	"net/url"
 	"os"
 
+	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/jenkins"
 	"fuchsia.googlesource.com/jiri/runutil"
-	"fuchsia.googlesource.com/jiri/cmdline"
-	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/timing"
 )
 
