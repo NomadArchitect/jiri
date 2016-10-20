@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c777f48_18d34ac1",
+        "filename": "cmd/jiri/test_runcmd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-20T18:24:40Z",
+      "side": 1,
+      "message": "Do not ignore the errors.",
+      "revId": "41a175c10804d0931e11579d0496c93208eac24e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c777f48_98df3ac0",
+        "filename": "cmd/jiri/test_runcmd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-20T18:24:40Z",
+      "side": 1,
+      "message": "Ditto",
+      "revId": "41a175c10804d0931e11579d0496c93208eac24e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
