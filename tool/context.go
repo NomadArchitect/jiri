@@ -9,11 +9,11 @@ import (
 	"net/url"
 	"os"
 
+	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/jenkins"
 	"fuchsia.googlesource.com/jiri/runutil"
-	"fuchsia.googlesource.com/jiri/cmdline"
-	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/timing"
 )
 
@@ -149,6 +149,11 @@ func (ctx Context) Stdin() io.Reader {
 // Stdout returns the standard output of the context.
 func (ctx Context) Stdout() io.Writer {
 	return ctx.opts.Stdout
+}
+
+// Sets Stdout, used in tests
+func (ctx *Context) SetStdout(writer io.Writer) {
+	ctx.opts.Stdout = writer
 }
 
 // Stderr returns the standard error output of the context.
