@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c777f48_7f05902c",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-20T22:01:44Z",
+      "side": 1,
+      "message": "Rather than returning just the first one, I think we should return all the errors. We probably need something like the following:\n\ntype MultiError []error\n\nfunc (m MultiError) Error() string {\n\ts, n :\u003d \"\", 0\n\tfor _, e :\u003d range m {\n\t\tif e !\u003d nil {\n\t\t\tif n \u003d\u003d 0 {\n\t\t\t\ts \u003d e.Error()\n\t\t\t}\n\t\t\tn++\n\t\t}\n\t}\n\tswitch n {\n\tcase 0:\n\t\treturn \"(0 errors)\"\n\tcase 1:\n\t\treturn s\n\tcase 2:\n\t\treturn s + \" (and 1 other error)\"\n\t}\n\treturn fmt.Sprintf(\"%s (and %d other errors)\", s, n-1)\n}",
+      "revId": "a91d0496f54a29f852f5d63bac1506f306710fd6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
