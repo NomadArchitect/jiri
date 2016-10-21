@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1cf2bb18_976b7ccd",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-21T23:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_cc7457f6",
+      "revId": "a24d860a69e79bf6a8fbf7dcdbb66a6f63a96b3f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cf2bb18_8ce6cf6a",
         "filename": "x.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-21T22:04:33Z",
       "side": 1,
       "message": "Just name this just `Cache` for consistency.",
+      "revId": "a24d860a69e79bf6a8fbf7dcdbb66a6f63a96b3f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_776870d0",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-21T23:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_8ce6cf6a",
       "revId": "a24d860a69e79bf6a8fbf7dcdbb66a6f63a96b3f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
