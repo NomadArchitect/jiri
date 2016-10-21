@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cf2bb18_cc7457f6",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-21T22:04:33Z",
+      "side": 1,
+      "message": "We\u0027ve decided to use flag for this (-cache) rather than environment variable same as for the root directory.",
+      "revId": "a24d860a69e79bf6a8fbf7dcdbb66a6f63a96b3f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_8ce6cf6a",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-21T22:04:33Z",
+      "side": 1,
+      "message": "Just name this just `Cache` for consistency.",
+      "revId": "a24d860a69e79bf6a8fbf7dcdbb66a6f63a96b3f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
