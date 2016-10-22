@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1cf2bb18_f27c8e63",
+        "filename": "gitutil/git.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_f2f64e20",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cf2bb18_d2451263",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-22T00:14:41Z",
       "side": 1,
       "message": "nit: [cache]/remote",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_928c2a52",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_d2451263",
       "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1cf2bb18_72899e3f",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_72351e08",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cf2bb18_525aa242",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-22T00:14:41Z",
       "side": 1,
       "message": "I checked Chromium and they use the following encoding (this is in Python):\n\nnorm_url.replace(\u0027-\u0027, \u0027--\u0027).replace(\u0027/\u0027, \u0027-\u0027).lower()\n\nTo decode, they use the following:\n\nre.sub(r\u0027\\b-\\b\u0027, \u0027/\u0027, os.path.basename(path)).replace(\u0027--\u0027, \u0027-\u0027)\n\nI\u0027d use the same pattern.",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_3216f60b",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "changed it to almost match their pattern, but we don\u0027t need https and double/trailing/leading slashes in our cache, so modified it",
+      "parentUuid": "1cf2bb18_525aa242",
       "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "1cf2bb18_b25046d4",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "changed it to return err if not a dir, so can\u0027t do it in one line",
+      "parentUuid": "1cf2bb18_720cfe57",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cf2bb18_12249ade",
         "filename": "x.go",
         "patchSetId": 5
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "1cf2bb18_5292a271",
+        "filename": "x.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_12249ade",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1cf2bb18_f2280eb6",
         "filename": "x.go",
         "patchSetId": 5
@@ -115,6 +223,24 @@
       "writtenOn": "2016-10-22T00:14:41Z",
       "side": 1,
       "message": "nit: indentation",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_328f1648",
+        "filename": "x.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-22T00:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf2bb18_f2280eb6",
       "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
