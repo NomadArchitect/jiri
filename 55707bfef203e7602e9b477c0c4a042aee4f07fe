@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cf2bb18_f2f64e20",
+        "filename": "gitutil/git.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: use `reference !\u003d \"\"`",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_d2451263",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: [cache]/remote",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_72351e08",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: use `jirix.Cache !\u003d \"\"`",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_525aa242",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "I checked Chromium and they use the following encoding (this is in Python):\n\nnorm_url.replace(\u0027-\u0027, \u0027--\u0027).replace(\u0027/\u0027, \u0027-\u0027).lower()\n\nTo decode, they use the following:\n\nre.sub(r\u0027\\b-\\b\u0027, \u0027/\u0027, os.path.basename(path)).replace(\u0027--\u0027, \u0027-\u0027)\n\nI\u0027d use the same pattern.",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_720cfe57",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: this can be combined with the previous line",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_12249ade",
+        "filename": "x.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: indentation",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1cf2bb18_f2280eb6",
+        "filename": "x.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-22T00:14:41Z",
+      "side": 1,
+      "message": "nit: indentation",
+      "revId": "55707bfef203e7602e9b477c0c4a042aee4f07fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
