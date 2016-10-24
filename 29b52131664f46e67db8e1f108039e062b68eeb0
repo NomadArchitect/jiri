@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1d3dce9_013ef47f",
+        "filename": "tool/context.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T22:58:10Z",
+      "side": 1,
+      "message": "nit: This is because of go fmt? I\u0027d do it in a separate patch.",
+      "revId": "29b52131664f46e67db8e1f108039e062b68eeb0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
