@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c1d3dce9_b20c20e8",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-24T19:39:15Z",
+      "side": 1,
+      "message": "But why do we need to decode, also sane urls would be with a single \"/\", so this will make sure that if anyone puts multiple slahes in url(and if there are multiple projects with same repo) we only create and use one cache.\n\nAs for matching project if given a cache we can simply encode remote url and match with cache\u0027s folder name.",
+      "parentUuid": "c1d3dce9_f285c856",
+      "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1d3dce9_32c910b3",
         "filename": "x.go",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-24T19:17:21Z",
       "side": 1,
       "message": "nit: This comment is no longer correct, it should be \"Use the flag value if set.\"",
+      "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_d2ee84d6",
+        "filename": "x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-24T19:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1d3dce9_32c910b3",
       "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
