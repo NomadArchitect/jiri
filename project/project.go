@@ -523,9 +523,9 @@ func (p *Project) validate() error {
 	return nil
 }
 
-// cacheDirPath returns a generated path to a directory that can be used as a reference repo
+// CacheDirPath returns a generated path to a directory that can be used as a reference repo
 // for the given project.
-func (p *Project) cacheDirPath(jirix *jiri.X) (string, error) {
+func (p *Project) CacheDirPath(jirix *jiri.X) (string, error) {
 	if jirix.Cache != "" {
 		url, err := url.Parse(p.Remote)
 		if err != nil {
@@ -551,7 +551,7 @@ func isPathDir(dir string) bool {
 // for the given project.  It expects to find a directory that matches
 // [cache]/remote with "/" replaced with "-".
 func (p *Project) cacheDir(jirix *jiri.X) (string, error) {
-	if referenceDir, err := p.cacheDirPath(jirix); err == nil {
+	if referenceDir, err := p.CacheDirPath(jirix); err == nil {
 		if isPathDir(referenceDir) {
 			return referenceDir, nil
 		} else {
@@ -1385,7 +1385,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, "", false); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -1600,9 +1600,41 @@ func getTrackingBranchInfo(jirix *jiri.X, localProjects Projects) error {
 	return nil
 }
 
-func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
+func fetchProjectsAndCreateCache(jirix *jiri.X, localProjects, remoteProjects Projects) error {
 	errs := make(chan error)
 	var wg sync.WaitGroup
+	if jirix.Cache != "" {
+		processingPath := make(map[string]bool)
+		for _, project := range remoteProjects {
+			if cacheDirPath, err := project.CacheDirPath(jirix); err == nil {
+				if _, ok := processingPath[cacheDirPath]; ok {
+					continue
+				}
+				processingPath[cacheDirPath] = true
+				wg.Add(1)
+				go func(dir, remote string) {
+					defer wg.Done()
+					// Cache already present, update it
+					if isPathDir(dir) {
+						s := jirix.NewSeq()
+						git := gitutil.New(s, gitutil.RootDirOpt(dir))
+						if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+							errs <- err
+						}
+					} else { // Create cache
+						s := jirix.NewSeq()
+						if err := gitutil.New(s).Clone(remote, dir, "", true); err != nil {
+							errs <- err
+						}
+
+					}
+				}(cacheDirPath, project.Remote)
+			} else {
+				return err
+			}
+		}
+		wg.Wait()
+	}
 	for key, project := range localProjects {
 		if _, ok := remoteProjects[key]; ok {
 			wg.Add(1)
@@ -1633,7 +1665,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	var fetchErr error
 	go func() {
 		defer wg.Done()
-		fetchErr = fetchLocalProjects(jirix, localProjects, remoteProjects)
+		fetchErr = fetchProjectsAndCreateCache(jirix, localProjects, remoteProjects)
 	}()
 	go func() {
 		defer wg.Done()
@@ -1848,7 +1880,7 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 	if err != nil {
 		return err
 	}
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
+	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache, false); err != nil {
 		return err
 	}
 	cwd, err := os.Getwd()
