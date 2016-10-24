@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1d3dce9_f285c856",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T19:17:21Z",
+      "side": 1,
+      "message": "This is supposed to match sequence of one or more /? The problem with that is that doesn\u0027t allow you to decode back the encoded path (as in //// as well as / will be replaced with -). Why not just use a simple string replace?",
+      "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_32c910b3",
+        "filename": "x.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T19:17:21Z",
+      "side": 1,
+      "message": "nit: This comment is no longer correct, it should be \"Use the flag value if set.\"",
+      "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
