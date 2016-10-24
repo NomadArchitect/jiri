@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c1d3dce9_8673da5b",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T21:18:24Z",
+      "side": 1,
+      "message": "The problem is that you\u0027re conflating two separate things: path canonicalization and path encoding. I\u0027m fine doing both of these, but they should be done separately (path canonicalization should probably happen at a different stage; while loading the manifest). \n\nThis reduces the element of surprise, doing something akin to:\n\nstrings.Replace(strings.Replace(canonicalizePath(url.Path), \"-\", \"--\"), \"/\", \"-\")\n\nis much easier to understand. That doesn\u0027t mean you should be doing canonicalization now though, it should be done in a separate change.",
+      "parentUuid": "c1d3dce9_b20c20e8",
+      "revId": "5ce0e5cb676cc6f2ce24bd4757d8f88e3332bd42",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1d3dce9_32c910b3",
         "filename": "x.go",
         "patchSetId": 10
