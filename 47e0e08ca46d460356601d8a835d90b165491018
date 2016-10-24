@@ -69,6 +69,24 @@
       "revId": "47e0e08ca46d460356601d8a835d90b165491018",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_06eccadb",
+        "filename": "tool/context.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T22:10:26Z",
+      "side": 1,
+      "message": "Hmm, we could modify runp to use os.Stdout/os.Stderr instead of jirix.Stdout/jirix.Stderr?",
+      "parentUuid": "c1d3dce9_8623dac1",
+      "revId": "47e0e08ca46d460356601d8a835d90b165491018",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
