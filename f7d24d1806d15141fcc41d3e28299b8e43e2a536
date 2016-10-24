@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1d3dce9_157636bc",
+        "filename": "project/project.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-24T20:19:25Z",
+      "side": 1,
+      "message": "this may be too strict.  consider the case when the url parse fails.  should jiri continue without cache, or refuse to continue?  i lean toward having jiri continue without using a cache, perhaps with a warning that remote FOO could not be cached because error BAR.",
+      "range": {
+        "startLine": 1729,
+        "startChar": 0,
+        "endLine": 1731,
+        "endChar": 2
+      },
+      "revId": "f7d24d1806d15141fcc41d3e28299b8e43e2a536",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
