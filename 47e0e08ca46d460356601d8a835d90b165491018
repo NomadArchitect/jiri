@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c1d3dce9_e65ae63f",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-24T21:53:30Z",
+      "side": 1,
+      "message": "okay, created a issue for this\nhttps://fuchsia.atlassian.net/browse/TO-68",
+      "parentUuid": "c1d3dce9_8630ba20",
+      "revId": "47e0e08ca46d460356601d8a835d90b165491018",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1d3dce9_66427685",
         "filename": "tool/context.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-24T21:49:04Z",
       "side": 1,
       "message": "Can we avoid this? We\u0027re been already talking about completely removing these variables and I\u0027d like to avoid adding more complexity here which would make removing it later even more complicated.",
+      "revId": "47e0e08ca46d460356601d8a835d90b165491018",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_8623dac1",
+        "filename": "tool/context.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-24T21:53:30Z",
+      "side": 1,
+      "message": "Not able to avoid it right now as jirix.Stdout is set to os.Stdout using value copy, so even if I redirect os.Stdout, jirix.Stdout doesn\u0027t redirect",
+      "parentUuid": "c1d3dce9_66427685",
       "revId": "47e0e08ca46d460356601d8a835d90b165491018",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
