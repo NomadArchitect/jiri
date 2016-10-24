@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1d3dce9_8630ba20",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T21:49:04Z",
+      "side": 1,
+      "message": "Just as a note, this test is too long and too complicated. We should probably break this into multiple tests (as in one TestXxx function per test case \u003d\u003d each test case should start by setting up the environment which includes the flags, which could be probably factored out into a common setup method). That should be done in a separate change though.",
+      "revId": "47e0e08ca46d460356601d8a835d90b165491018",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_66427685",
+        "filename": "tool/context.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-24T21:49:04Z",
+      "side": 1,
+      "message": "Can we avoid this? We\u0027re been already talking about completely removing these variables and I\u0027d like to avoid adding more complexity here which would make removing it later even more complicated.",
+      "revId": "47e0e08ca46d460356601d8a835d90b165491018",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
