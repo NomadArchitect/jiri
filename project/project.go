@@ -512,9 +512,9 @@ func (p *Project) validate() error {
 	return nil
 }
 
-// cacheDirPath returns a generated path to a directory that can be used as a reference repo
+// CacheDirPath returns a generated path to a directory that can be used as a reference repo
 // for the given project.
-func (p *Project) cacheDirPath(jirix *jiri.X) (string, error) {
+func (p *Project) CacheDirPath(jirix *jiri.X) (string, error) {
 	if jirix.Cache != "" {
 		url, err := url.Parse(p.Remote)
 		if err != nil {
@@ -540,7 +540,7 @@ func isPathDir(dir string) bool {
 // for the given project.  It expects to find a directory that matches
 // [cache]/remote with "/" replaced with "-".
 func (p *Project) cacheDir(jirix *jiri.X) (string, error) {
-	if referenceDir, err := p.cacheDirPath(jirix); err == nil {
+	if referenceDir, err := p.CacheDirPath(jirix); err == nil {
 		if isPathDir(referenceDir) {
 			return referenceDir, nil
 		} else {
@@ -1612,6 +1612,55 @@ func getTrackingBranchInfo(jirix *jiri.X, localProjects Projects) error {
 
 	return nil
 }
+func createAndManageCache(jirix *jiri.X, remoteProjects Projects) error {
+	errs := make(chan error, len(remoteProjects))
+	var wg sync.WaitGroup
+	if jirix.Cache == "" {
+		return nil
+	}
+
+	processingPath := make(map[string]bool)
+	for _, project := range remoteProjects {
+		if cacheDirPath, err := project.CacheDirPath(jirix); err == nil {
+			if _, ok := processingPath[cacheDirPath]; ok {
+				continue
+			}
+			processingPath[cacheDirPath] = true
+			wg.Add(1)
+			go func(dir, remote string) {
+				defer wg.Done()
+				// Cache already present, update it
+				if isPathDir(dir) {
+					s := jirix.NewSeq()
+					git := gitutil.New(s, gitutil.RootDirOpt(dir))
+					if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+						errs <- err
+					}
+				} else { // Create cache
+					s := jirix.NewSeq()
+					if err := gitutil.New(s).CloneMirror(remote, dir); err != nil {
+						errs <- err
+					}
+
+				}
+			}(cacheDirPath, project.Remote)
+		} else {
+			errs <- err
+		}
+	}
+	wg.Wait()
+	close(errs)
+
+	multiErr := make(MultiError, 0)
+	for err := range errs {
+		multiErr = append(multiErr, err)
+	}
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+
+	return nil
+}
 
 func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
 	errs := make(chan error, len(localProjects))
@@ -1649,11 +1698,15 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	var wg sync.WaitGroup
 	jirix.TimerPush("Fetch and remote revisions")
 	wg.Add(2)
-	fetchErr := make(chan error, 1)
+	errs := make(chan error, 2)
 	go func() {
 		defer wg.Done()
+		if err := createAndManageCache(jirix, remoteProjects); err != nil {
+			errs <- err
+			return
+		}
 		if err := fetchLocalProjects(jirix, localProjects, remoteProjects); err != nil {
-			fetchErr <- err
+			errs <- err
 			return
 		}
 	}()
@@ -1663,10 +1716,15 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	}()
 	wg.Wait()
 	jirix.TimerPop()
-	close(fetchErr)
-	if err := <-fetchErr; err != nil {
-		return err
+	close(errs)
+	multiErr := make(MultiError, 0)
+	for err := range errs {
+		multiErr = append(multiErr, err)
 	}
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+
 	if err := getTrackingBranchInfo(jirix, localProjects); err != nil {
 		return err
 	}
