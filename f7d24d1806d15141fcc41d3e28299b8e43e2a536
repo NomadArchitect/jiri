@@ -22,6 +22,30 @@
       "revId": "f7d24d1806d15141fcc41d3e28299b8e43e2a536",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_75bf8208",
+        "filename": "project/project.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-24T20:20:44Z",
+      "side": 1,
+      "message": "but then it is bound to fail later as URL is incorrect so we can fetch or clone",
+      "parentUuid": "c1d3dce9_157636bc",
+      "range": {
+        "startLine": 1729,
+        "startChar": 0,
+        "endLine": 1731,
+        "endChar": 2
+      },
+      "revId": "f7d24d1806d15141fcc41d3e28299b8e43e2a536",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
