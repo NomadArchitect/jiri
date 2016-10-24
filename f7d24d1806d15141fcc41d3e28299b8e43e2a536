@@ -46,6 +46,30 @@
       "revId": "f7d24d1806d15141fcc41d3e28299b8e43e2a536",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1d3dce9_d5fbcece",
+        "filename": "project/project.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2016-10-24T20:26:40Z",
+      "side": 1,
+      "message": "arguably, that\u0027s a better place to fail because it\u0027s more clear to the user.  but the effect is more or less the same, so i\u0027m fine with this then.",
+      "parentUuid": "c1d3dce9_75bf8208",
+      "range": {
+        "startLine": 1729,
+        "startChar": 0,
+        "endLine": 1731,
+        "endChar": 2
+      },
+      "revId": "f7d24d1806d15141fcc41d3e28299b8e43e2a536",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
