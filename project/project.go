@@ -46,7 +46,7 @@ type Manifest struct {
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
 	Hooks        []Hook        `xml:"hooks>hook"`
-	XMLName      struct{} `xml:"manifest"`
+	XMLName      struct{}      `xml:"manifest"`
 }
 
 // ManifestFromBytes returns a manifest parsed from data, with defaults filled
@@ -1354,7 +1354,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, "", ""); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -1907,7 +1907,7 @@ func (op createOperation) Run(jirix *jiri.X, showUpdateLogs bool) (e error) {
 		cache = ""
 	}
 
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
+	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache, string(jirix.CloneType)); err != nil {
 		return err
 	}
 	cwd, err := os.Getwd()
