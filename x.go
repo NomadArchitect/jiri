@@ -41,6 +41,7 @@ const (
 // Config represents jiri global config
 type Config struct {
 	CachePath string   `xml:"cache>path,omitempty"`
+	Shared    bool     `xml:"cache>shared,omitempty"`
 	XMLName   struct{} `xml:"config"`
 }
 
@@ -78,13 +79,14 @@ func ConfigFromFile(filename string) (*Config, error) {
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root   string
-	Usage  func(format string, args ...interface{}) error
-	config *Config
-	Cache  string
-	Jobs   uint
-	Color  color.Color
-	Logger *log.Logger
+	Root        string
+	Usage       func(format string, args ...interface{}) error
+	config      *Config
+	Cache       string
+	CacheShared bool
+	Jobs        uint
+	Color       color.Color
+	Logger      *log.Logger
 }
 
 var (
@@ -153,6 +155,8 @@ func NewX(env *cmdline.Env) (*X, error) {
 		return nil, err
 	}
 	x.Cache, err = findCache(root, x.config)
+	x.CacheShared = x.config.Shared
+
 	if err != nil {
 		return nil, err
 	}
