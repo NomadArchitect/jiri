@@ -1439,7 +1439,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -2214,7 +2214,17 @@ func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 		cache = ""
 	}
 
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
+	repo := op.project.Remote
+	sharedOpt := gitutil.SharedOpt(jirix.Shared)
+	referenceOpt := gitutil.ReferenceOpt(cache)
+	if jirix.Shared && cache != "" {
+		repo = cache
+		referenceOpt = gitutil.ReferenceOpt("")
+	} else {
+		sharedOpt = gitutil.SharedOpt(false)
+	}
+	if err := gitutil.New(s).Clone(repo, tmpDir,
+		referenceOpt, sharedOpt); err != nil {
 		return err
 	}
 	if err := writeMetadata(jirix, op.project, tmpDir); err != nil {
