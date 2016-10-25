@@ -40,9 +40,10 @@ const (
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root  string
-	Usage func(format string, args ...interface{}) error
-	Cache string
+	Root          string
+	Usage         func(format string, args ...interface{}) error
+	Cache         string
+	IsCacheShared bool
 }
 
 // NewX returns a new execution environment, given a cmdline env.
@@ -60,10 +61,11 @@ func NewX(env *cmdline.Env) (*X, error) {
 	}
 
 	x := &X{
-		Context: ctx,
-		Root:    root,
-		Usage:   env.UsageErrorf,
-		Cache:   cache,
+		Context:       ctx,
+		Root:          root,
+		Usage:         env.UsageErrorf,
+		Cache:         cache,
+		IsCacheShared: cacheTypeSharedFlag,
 	}
 	if ctx.Env()[PreservePathEnv] == "" {
 		// Prepend .jiri_root/bin to the PATH, so execing a binary will
@@ -84,13 +86,15 @@ func NewX(env *cmdline.Env) (*X, error) {
 }
 
 var (
-	rootFlag  string
-	cacheFlag string
+	rootFlag            string
+	cacheFlag           string
+	cacheTypeSharedFlag bool
 )
 
 func init() {
 	flag.StringVar(&rootFlag, "root", "", "Jiri root directory")
 	flag.StringVar(&cacheFlag, "cache", "", "Jiri cache directory")
+	flag.BoolVar(&cacheTypeSharedFlag, "cache-type-shared", false, "Specifies if cache type is shared or reference. If true cache is set to shared")
 }
 
 func cleanPath(path string) (string, error) {
