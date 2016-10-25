@@ -1385,7 +1385,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, "", false); err != nil {
+			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, "", false, false); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -1623,7 +1623,7 @@ func fetchProjectsAndCreateCache(jirix *jiri.X, localProjects, remoteProjects Pr
 						}
 					} else { // Create cache
 						s := jirix.NewSeq()
-						if err := gitutil.New(s).Clone(remote, dir, "", true); err != nil {
+						if err := gitutil.New(s).Clone(remote, dir, "", false, true); err != nil {
 							errs <- err
 						}
 
@@ -1880,7 +1880,7 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 	if err != nil {
 		return err
 	}
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache, false); err != nil {
+	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache, jirix.IsCacheShared, false); err != nil {
 		return err
 	}
 	cwd, err := os.Getwd()
