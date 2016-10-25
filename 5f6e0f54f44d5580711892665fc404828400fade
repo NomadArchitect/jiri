@@ -16,6 +16,24 @@
       "revId": "5f6e0f54f44d5580711892665fc404828400fade",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1c8e09a_2d670102",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-25T23:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1c8e09a_5cec31dc",
+      "revId": "5f6e0f54f44d5580711892665fc404828400fade",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
