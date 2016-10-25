@@ -40,8 +40,9 @@ const (
 
 // Config represents jiri global config
 type Config struct {
-	CachePath string   `xml:"cache>path,omitempty"`
-	XMLName   struct{} `xml:"config"`
+	CachePath       string   `xml:"cache>path,omitempty"`
+	Shared bool     `xml:"cache>shared,omitempty"`
+	XMLName         struct{} `xml:"config"`
 }
 
 func (c *Config) Write(filename string) error {
@@ -82,6 +83,7 @@ type X struct {
 	Usage  func(format string, args ...interface{}) error
 	config *Config
 	Cache  string
+	CacheShared bool
 	Jobs   uint
 	Color  color.Color
 	Logger *log.Logger
@@ -153,6 +155,8 @@ func NewX(env *cmdline.Env) (*X, error) {
 		return nil, err
 	}
 	x.Cache, err = findCache(root, x.config)
+		x.CacheShared= x.config.Shared
+
 	if err != nil {
 		return nil, err
 	}
