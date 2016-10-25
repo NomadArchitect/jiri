@@ -36,10 +36,18 @@ const (
 	PreservePathEnv = "JIRI_PRESERVE_PATH"
 )
 
+type CloneType string
+
+const (
+	CloneTypeReference = "reference"
+	CloneTypeShared    = "shared"
+)
+
 // Config represents jiri global config
 type Config struct {
-	CachePath string   `xml:"cache>path,omitempty"`
-	XMLName   struct{} `xml:"config"`
+	CachePath       string   `xml:"cache>path,omitempty"`
+	LinkOnlyToCache bool     `xml:"cache>linkOnlyToCache,omitempty"`
+	XMLName         struct{} `xml:"config"`
 }
 
 func (c *Config) Write(filename string) error {
@@ -76,10 +84,11 @@ func ConfigFromFile(filename string) (*Config, error) {
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root   string
-	Usage  func(format string, args ...interface{}) error
-	config *Config
-	Cache  string
+	Root      string
+	Usage     func(format string, args ...interface{}) error
+	config    *Config
+	Cache     string
+	CloneType CloneType
 }
 
 // NewX returns a new execution environment, given a cmdline env.
@@ -106,6 +115,12 @@ func NewX(env *cmdline.Env) (*X, error) {
 		return nil, err
 	}
 	x.Cache, err = findCache(root, x.config)
+	if x.config.LinkOnlyToCache {
+		x.CloneType = CloneTypeShared
+	} else {
+		x.CloneType = CloneTypeReference
+	}
+
 	if err != nil {
 		return nil, err
 	}

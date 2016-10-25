@@ -5,7 +5,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -32,11 +31,14 @@ does not exists, it will be created.
 }
 
 var (
-	cacheFlag string
+	cacheFlag           string
+	linkOnlyToCacheFlag bool
 )
 
 func init() {
-	flag.StringVar(&cacheFlag, "cache", "", "Jiri cache directory")
+	cmdInit.Flags.StringVar(&cacheFlag, "cache", "", "Jiri cache directory")
+	cmdInit.Flags.BoolVar(&linkOnlyToCacheFlag, "link-only-to-cache", false, `If true, it will link your local checkout only to the cache.
+It would be way faster than default option, but you can't commit and push to remote`)
 }
 
 func runInit(env *cmdline.Env, args []string) error {
@@ -90,6 +92,9 @@ func runInit(env *cmdline.Env, args []string) error {
 
 	config := jiri.Config{
 		CachePath: cacheFlag,
+	}
+	if cacheFlag != "" {
+		config.LinkOnlyToCache = linkOnlyToCacheFlag
 	}
 	configPath := filepath.Join(d, jiri.ConfigFile)
 	if err := config.Write(configPath); err != nil {
