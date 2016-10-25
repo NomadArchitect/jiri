@@ -236,7 +236,7 @@ func TestUpdateUniverseSimple(t *testing.T) {
 
 // TestUpdateUniverseWithCache checks that UpdateUniverse can clone and pull
 // from a cache.
-func TestUpdateUniverseWithCache(t *testing.T) {
+func testWithCache(t *testing.T, isCacheShared bool) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
 	s := fake.X.NewSeq()
@@ -255,6 +255,7 @@ func TestUpdateUniverseWithCache(t *testing.T) {
 		}
 	}()
 	fake.X.Cache = cacheDir
+	fake.X.IsCacheShared = isCacheShared
 
 	if err := fake.UpdateUniverse(false); err != nil {
 		t.Fatal(err)
@@ -292,6 +293,19 @@ func TestUpdateUniverseWithCache(t *testing.T) {
 	if cacheRev != localRev {
 		t.Fatalf("Cache revision(%v) not equal to local revision(%v)", cacheRev, localRev)
 	}
+
+}
+
+// TestUpdateUniverseWithCache checks that UpdateUniverse can clone and pull
+// from a cache.
+func TestUpdateUniverseWithCache(t *testing.T) {
+	testWithCache(t, false)
+}
+
+// TestUpdateUniverseWithiSharedCache checks that UpdateUniverse can clone and pull
+// from a cache when it is of type "shared"
+func TestUpdateUniverseWithSharedCache(t *testing.T) {
+	testWithCache(t, true)
 }
 
 // TestHookLoadSimple tests that manifest is loaded correctly
