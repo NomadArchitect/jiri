@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_761096ff",
+        "filename": "gitutil/git.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 8036
+      },
+      "writtenOn": "2016-10-26T22:28:11Z",
+      "side": 1,
+      "message": "nit: personally I would create a new CloneMirror instead of overloading this particular call. Other option would be to combine Clone and CloneRecursive by passing options.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 79
+      },
+      "revId": "1cf6c254255725390e76b9eca3ada6797afe90e7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_76bed6b7",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1619,
+      "author": {
+        "id": 8036
+      },
+      "writtenOn": "2016-10-26T22:28:11Z",
+      "side": 1,
+      "message": "for my own understanding, is \"\" correct here?",
+      "revId": "1cf6c254255725390e76b9eca3ada6797afe90e7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
