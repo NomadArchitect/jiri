@@ -9,6 +9,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"hash/fnv"
+	"io"
 	"io/ioutil"
 	"net/url"
 	"os"
@@ -1694,14 +1695,65 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 func runHooks(jirix *jiri.X, ops []operation, hooks Hooks) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
-
+	routineOutputs := make(chan struct {
+		outReader *os.File
+		errReader *os.File
+		err       error
+	}, len(hooks))
+	var wg sync.WaitGroup
 	for _, hook := range hooks {
-		s := jirix.NewSeq()
-		s.Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
-		if err := s.Dir(hook.ActionPath).Capture(os.Stdout, os.Stderr).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
-			return fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)
+		outReader, outWriter, err := os.Pipe()
+		if err != nil {
+			return err
 		}
+		errReader, errWriter, err := os.Pipe()
+		if err != nil {
+			outWriter.Close()
+			return err
+		}
+		wg.Add(1)
+		go func(hook Hook, outWriter, errWriter, outReader, errReader *os.File) {
+			defer func() {
+				wg.Done()
+				outWriter.Close()
+				errWriter.Close()
+			}()
+			s := jirix.NewSeq()
+			s.PersistentCapture(outWriter, errWriter)
+			s.Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
+			if err := s.Dir(hook.ActionPath).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
+				routineOutputs <- struct {
+					outReader *os.File
+					errReader *os.File
+					err       error
+				}{outReader, errReader, fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)}
+				return
+			}
+			routineOutputs <- struct {
+				outReader *os.File
+				errReader *os.File
+				err       error
+			}{outReader, errReader, nil}
+		}(hook, outWriter, errWriter, outReader, errReader)
 
+	}
+	wg.Wait()
+	close(routineOutputs)
+	multiErr := make(MultiError, 0)
+	for out := range routineOutputs {
+		var outbuf, errbuf bytes.Buffer
+		io.Copy(&outbuf, out.outReader)
+		io.Copy(&errbuf, out.errReader)
+		os.Stdout.WriteString(outbuf.String())
+		os.Stderr.WriteString(errbuf.String())
+		os.Stdout.WriteString("\n")
+		if out.err != nil {
+			multiErr = append(multiErr, out.err)
+		}
+	}
+
+	if len(multiErr) != 0 {
+		return multiErr
 	}
 	return nil
 }
