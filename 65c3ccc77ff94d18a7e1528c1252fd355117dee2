@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_db28ab4f",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T21:46:23Z",
+      "side": 1,
+      "message": "return here?",
+      "revId": "65c3ccc77ff94d18a7e1528c1252fd355117dee2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_9b94632b",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T21:46:23Z",
+      "side": 1,
+      "message": "This should probably use the MultiError, but since you\u0027re adding that in a later commit, you can probably leave this for now.",
+      "revId": "65c3ccc77ff94d18a7e1528c1252fd355117dee2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
