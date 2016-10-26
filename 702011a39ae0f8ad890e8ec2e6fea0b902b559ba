@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_70725e05",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T20:09:27Z",
+      "side": 1,
+      "message": "If it was some complicated logic then I\u0027d say yes, but this is just error checking/handling so I\u0027d just inline that, it feels more Go-ish.",
+      "parentUuid": "a1826880_951fd41c",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_152d84aa",
         "filename": "project/project.go",
         "patchSetId": 10
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I need pointer because if I access it using tempMap[key], it copies the value and gives to me and then any change i make to project in go routine is lost, I can use channel if that is prefereable",
       "parentUuid": "a1826880_152d84aa",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_b02a26ad",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T20:09:27Z",
+      "side": 1,
+      "message": "You could use a channel with anonymous struct, so something like:\n\nc :\u003d make(chan struct { Project; error })\n\nand then to send back the result:\n\nc \u003c- struct { Project; error }{ project, nil }\n\nor:\n\nc \u003c- struct { Project; error }{ nil, err }",
+      "parentUuid": "a1826880_d5515cd9",
       "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
