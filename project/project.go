@@ -483,6 +483,16 @@ func (p *Project) validate() error {
 	if strings.Contains(p.Name, KeySeparator) {
 		return fmt.Errorf("bad project: name cannot contain %q: %+v", KeySeparator, *p)
 	}
+	url, err := url.Parse(p.Remote)
+	if err != nil {
+		return fmt.Errorf("Invalid remote url %v, Error: %v", p.Remote, err)
+	}
+	if strings.Contains(url.Path, "//") {
+		return fmt.Errorf("bad remote url(%v): %v should not contain double slashes", p.Name, p.Remote)
+	}
+	if strings.HasSuffix(url.Path, "/") {
+		return fmt.Errorf("bad remote url(%v): %v should not end with a slash", p.Name, p.Remote)
+	}
 	return nil
 }
 
