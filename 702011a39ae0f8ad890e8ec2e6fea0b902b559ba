@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_951fd41c",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T19:19:41Z",
+      "side": 1,
+      "message": "This is used at two different places and at one more place in next CL, isn\u0027t it better to not duplicate the code",
+      "parentUuid": "a1826880_75e7b069",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_152d84aa",
         "filename": "project/project.go",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-26T18:48:56Z",
       "side": 1,
       "message": "Couldn\u0027t you just define the map as map[ProjectKey]Project...\n\n(also you don\u0027t need make to allocate a map here)",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_d5515cd9",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T19:19:41Z",
+      "side": 1,
+      "message": "I need pointer because if I access it using tempMap[key], it copies the value and gives to me and then any change i make to project in go routine is lost, I can use channel if that is prefereable",
+      "parentUuid": "a1826880_152d84aa",
       "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_f546601c",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T19:19:41Z",
+      "side": 1,
+      "message": "okay",
+      "parentUuid": "a1826880_b546986d",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_d54b1c74",
         "filename": "project/project.go",
         "patchSetId": 10
@@ -81,6 +135,24 @@
       "writtenOn": "2016-10-26T18:48:56Z",
       "side": 1,
       "message": "ditto",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_154ca439",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1613,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T19:19:41Z",
+      "side": 1,
+      "message": "okay",
+      "parentUuid": "a1826880_d54b1c74",
       "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
