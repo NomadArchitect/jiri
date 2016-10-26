@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_ea14b669",
+        "filename": "project/project.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T22:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_5632b255",
+      "revId": "ac2258e13ba1a326658e2bcf9969a8ec34be86c6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_36ab6e60",
         "filename": "project/project.go",
         "patchSetId": 13
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-26T22:30:32Z",
       "side": 1,
       "message": "This should also use the channel for returning the error.",
+      "revId": "ac2258e13ba1a326658e2bcf9969a8ec34be86c6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_8a2faae7",
+        "filename": "project/project.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T22:46:59Z",
+      "side": 1,
+      "message": "This is not in a loop, why do we need channel for this?",
+      "parentUuid": "a1826880_36ab6e60",
       "revId": "ac2258e13ba1a326658e2bcf9969a8ec34be86c6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
