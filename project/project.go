@@ -9,6 +9,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"hash/fnv"
+	"io"
 	"io/ioutil"
 	"net/url"
 	"os"
@@ -1671,14 +1672,50 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 func runHooks(jirix *jiri.X, ops []operation, hooks Hooks) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
-
+	outReaders, errReaders := []*os.File{}, []*os.File{}
+	errs := make(chan error, len(hooks))
+	var wg sync.WaitGroup
 	for _, hook := range hooks {
-		s := jirix.NewSeq()
-		s.Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
-		if err := s.Dir(hook.ActionPath).Capture(os.Stdout, os.Stderr).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
-			return fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)
+		outReader, outWriter, err := os.Pipe()
+		if err != nil {
+			return err
 		}
+		errReader, errWriter, err := os.Pipe()
+		if err != nil {
+			outWriter.Close()
+			return err
+		}
+		outReaders = append(outReaders, outReader)
+		errReaders = append(errReaders, errReader)
+		wg.Add(1)
+		go func(hook Hook, outWriter, errWriter *os.File) {
+			defer func() {
+				wg.Done()
+				outWriter.Close()
+				errWriter.Close()
+			}()
+			s := jirix.NewSeq()
+			s.PersistentCapture(outWriter, errWriter)
+			s.Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
+			if err := s.Dir(hook.ActionPath).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
+				errs <- fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)
+			}
+		}(hook, outWriter, errWriter)
 
+	}
+	wg.Wait()
+	close(errs)
+	for idx, outReader := range outReaders {
+		errReader := errReaders[idx]
+		var outbuf, errbuf bytes.Buffer
+		io.Copy(&outbuf, outReader)
+		io.Copy(&errbuf, errReader)
+		os.Stdout.WriteString(outbuf.String())
+		os.Stderr.WriteString(errbuf.String())
+		os.Stdout.WriteString("\n")
+	}
+	if multiErr := parseChanErrors(errs); multiErr != nil {
+		return multiErr
 	}
 	return nil
 }
