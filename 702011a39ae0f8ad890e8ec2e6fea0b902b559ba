@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_d0beca0a",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T20:26:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_70725e05",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_152d84aa",
         "filename": "project/project.go",
         "patchSetId": 10
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "You could use a channel with anonymous struct, so something like:\n\nc :\u003d make(chan struct { Project; error })\n\nand then to send back the result:\n\nc \u003c- struct { Project; error }{ project, nil }\n\nor:\n\nc \u003c- struct { Project; error }{ nil, err }",
       "parentUuid": "a1826880_d5515cd9",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_90e44265",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-26T20:26:27Z",
+      "side": 1,
+      "message": "I just made a channel for project as right now we don\u0027t need to associate error with project, as if there is a error we just return it",
+      "parentUuid": "a1826880_b02a26ad",
       "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
