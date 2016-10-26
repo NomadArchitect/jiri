@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_505d5a2d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T20:24:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we should be throwing an error for these (and the one below). These are perfectly valid URLs. What I had in mind is to instead normalize these (e.g. replace // with /, remove trailing /).",
+      "revId": "7388af7037d5332c4aefd02367fa5af013a8ddac",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
