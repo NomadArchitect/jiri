@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_5632b255",
+        "filename": "project/project.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:30:32Z",
+      "side": 1,
+      "message": "IMHO it\u0027d be cleaner to combine those two channels into one...",
+      "revId": "ac2258e13ba1a326658e2bcf9969a8ec34be86c6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_36ab6e60",
+        "filename": "project/project.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:30:32Z",
+      "side": 1,
+      "message": "This should also use the channel for returning the error.",
+      "revId": "ac2258e13ba1a326658e2bcf9969a8ec34be86c6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
