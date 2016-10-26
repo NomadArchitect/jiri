@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_75e7b069",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T18:48:56Z",
+      "side": 1,
+      "message": "I\u0027d just inline this.",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_152d84aa",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T18:48:56Z",
+      "side": 1,
+      "message": "Couldn\u0027t you just define the map as map[ProjectKey]Project...\n\n(also you don\u0027t need make to allocate a map here)",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_552f0ca1",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1574,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T18:48:56Z",
+      "side": 1,
+      "message": "...and avoid dealing with pointers here?",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_b546986d",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T18:48:56Z",
+      "side": 1,
+      "message": "Put a return here, just for clarity.",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_d54b1c74",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1613,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T18:48:56Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "702011a39ae0f8ad890e8ec2e6fea0b902b559ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
