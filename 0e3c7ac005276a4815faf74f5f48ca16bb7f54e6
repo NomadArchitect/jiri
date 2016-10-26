@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_aaae2ec9",
+        "filename": "gitutil/git.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "I\u0027d still prefer to inline this (because I want to know what\u0027s going when looking over project.go).",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_0a763abb",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "This unnecessarily complicates information. Why not just have one attribute \"LocalBranch\" which is string; if the value is !\u003d \"\" it means we\u0027re on a branch with that name.\n\nRelated to this, ProjectState already has CurrentBranch attribute, once you add \"LocalBranch\" here we remove CurrentBranch from ProjectState to avoid duplication.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_4a4cc2e1",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "nit: This should be called getHeadRevision, HEAD implies latest and checking out HEAD implies detached.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_2a405e9f",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "nit: similarly this should probably be called just checkoutHeadRevision.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_8ac40afa",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "nit: tryRebase (rebase is always onto HEAD), the argument should be probably called just branch (for consistency with Git).",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_4ace82bb",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 2084,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-26T22:59:17Z",
+      "side": 1,
+      "message": "This is only needed in certain cases, so instead of keeping that state in Project (which introduces possibility of that state going out of sync with underlying storage and causing problems). You can just call git.CurrentRevisionOfBranch(project.LocalBranch) here.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
