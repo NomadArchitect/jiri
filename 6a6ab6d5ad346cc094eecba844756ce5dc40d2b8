@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4654620e_a9e7f969",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:21:13Z",
+      "side": 1,
+      "message": "Why do we even have this? Why not use CacheDirPath everywhere? This is super confusing.",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_a9837951",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:21:13Z",
+      "side": 1,
+      "message": "nit: updateCache maybe?",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_092ccdb0",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:21:13Z",
+      "side": 1,
+      "message": "This check should happen first, before you start allocating resources.",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_09c84db0",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:21:13Z",
+      "side": 1,
+      "message": "nit: This should be probably on the next line to be consistent with else branch.",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
