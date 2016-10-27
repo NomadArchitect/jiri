@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4654620e_acbca79d",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:36:16Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we should be panicking if we fail to change the limit (rather than just printing a warning). We should probably restrict this to Darwin. We might also need to check the current limit first. How about something like:\n\nif runtime.GOOS \u003d\u003d \"darwin\" {\n  var rLimit syscall.Rlimit\n  err :\u003d syscall.Getrlimit(syscall.RLIMIT_NOFILE, \u0026rLimit)\n  if err !\u003d nil {\n    fmt.Println(\"Unable to obtain rlimit\", err)\n  }\n  if rLimit.Cur \u003c rLimit.Max {\n    rLimit.Max \u003d 999999\n    rLimit.Cur \u003d 999999\n    err \u003d syscall.Setrlimit(syscall.RLIMIT_NOFILE, \u0026rLimit)\n    if err !\u003d nil {\n      fmt.Println(\"Unable to increase number of open files limit\", err)\n    }\n  }\n}",
+      "revId": "c06fd2b418fbf472aea5bed60a162cc66663f869",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
