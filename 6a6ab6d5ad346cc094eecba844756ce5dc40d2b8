@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_0c43bb5e",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4654620e_acfdc74a",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_a9837951",
         "filename": "project/project.go",
         "patchSetId": 8
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "`jiri update` also creates projects :)",
       "parentUuid": "4654620e_89943d28",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_ec573f15",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4654620e_8cd0cbdb",
       "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
