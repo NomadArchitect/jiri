@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_acfdc74a",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:40:00Z",
+      "side": 1,
+      "message": "I\u0027d prefer that (i.e. replacing this with two calls).",
+      "parentUuid": "4654620e_e99df14f",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_a9837951",
         "filename": "project/project.go",
         "patchSetId": 8
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "but we are also creating it, should it be just manageCache?",
       "parentUuid": "4654620e_a9837951",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_8cd0cbdb",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T21:40:00Z",
+      "side": 1,
+      "message": "`jiri update` also creates projects :)",
+      "parentUuid": "4654620e_89943d28",
       "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
