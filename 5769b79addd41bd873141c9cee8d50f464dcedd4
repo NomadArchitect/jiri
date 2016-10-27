@@ -317,6 +317,24 @@
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_c903552a",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T21:07:31Z",
+      "side": 1,
+      "message": "So in that case (very simple function) would it be equivalent to adding Done at the end of the function body? Or are there some error cases where be need Done to be called without the function completing (a la finally in other languages).",
+      "parentUuid": "4654620e_099dedef",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
