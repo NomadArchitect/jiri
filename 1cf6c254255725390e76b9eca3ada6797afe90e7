@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a63c3ec1_d1678442",
+        "filename": "gitutil/git.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T18:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_761096ff",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 79
+      },
+      "revId": "1cf6c254255725390e76b9eca3ada6797afe90e7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_76bed6b7",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2016-10-26T22:28:11Z",
       "side": 1,
       "message": "for my own understanding, is \"\" correct here?",
+      "revId": "1cf6c254255725390e76b9eca3ada6797afe90e7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_4aabe25e",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1619,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T18:08:23Z",
+      "side": 1,
+      "message": "Yeah it just means, fetch all the remotes",
+      "parentUuid": "a1826880_76bed6b7",
       "revId": "1cf6c254255725390e76b9eca3ada6797afe90e7",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
