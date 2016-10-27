@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_e61cfedc",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T20:39:45Z",
+      "side": 1,
+      "message": "need to use it in test",
+      "parentUuid": "a63c3ec1_d4ead233",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a63c3ec1_94e44a66",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-27T19:35:25Z",
       "side": 1,
       "message": "blank line between the two methods?\n\nadd some documentation too",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_c97d9523",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1616,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T20:39:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a63c3ec1_94e44a66",
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_a98a59fd",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T20:39:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4654620e_c67d8223",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_06939a34",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-27T19:35:25Z",
       "side": 1,
       "message": "I might be missing some context: what exactly is being cached here?",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_460e32aa",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1642,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T20:39:45Z",
+      "side": 1,
+      "message": "we are creating the cache in cacheDir by mirroring the remote repo",
+      "parentUuid": "4654620e_06939a34",
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -98,6 +170,24 @@
       "writtenOn": "2016-10-27T19:38:28Z",
       "side": 1,
       "message": "It\u0027s a goroutine (note the go keyword in front), so this will be run asynchronously.",
+      "parentUuid": "4654620e_06cefa4e",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_06183ae6",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1703,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T20:39:45Z",
+      "side": 1,
+      "message": "this is go routine, which is scheduled on threads so that they can run in parallel",
       "parentUuid": "4654620e_06cefa4e",
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
