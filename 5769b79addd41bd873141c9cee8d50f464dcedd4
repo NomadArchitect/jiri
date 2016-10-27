@@ -84,6 +84,24 @@
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_a6d3a6e7",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1703,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T19:38:28Z",
+      "side": 1,
+      "message": "It\u0027s a goroutine (note the go keyword in front), so this will be run asynchronously.",
+      "parentUuid": "4654620e_06cefa4e",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
