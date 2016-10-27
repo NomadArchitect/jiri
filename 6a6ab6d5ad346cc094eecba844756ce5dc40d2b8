@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_e99df14f",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:34:04Z",
+      "side": 1,
+      "message": "this also checks if it exists, this is only used at one place, I can replace this with two calls, please advise",
+      "parentUuid": "4654620e_a9e7f969",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_a9837951",
         "filename": "project/project.go",
         "patchSetId": 8
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-27T21:21:13Z",
       "side": 1,
       "message": "nit: updateCache maybe?",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_89943d28",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:34:04Z",
+      "side": 1,
+      "message": "but we are also creating it, should it be just manageCache?",
+      "parentUuid": "4654620e_a9837951",
       "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_c99a3556",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:34:04Z",
+      "side": 1,
+      "message": "yes correct",
+      "parentUuid": "4654620e_092ccdb0",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_09c84db0",
         "filename": "project/project.go",
         "patchSetId": 8
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-27T21:21:13Z",
       "side": 1,
       "message": "nit: This should be probably on the next line to be consistent with else branch.",
+      "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_6c6d8f78",
+        "filename": "project/project.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:34:04Z",
+      "side": 1,
+      "message": "okay",
+      "parentUuid": "4654620e_09c84db0",
       "revId": "6a6ab6d5ad346cc094eecba844756ce5dc40d2b8",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
