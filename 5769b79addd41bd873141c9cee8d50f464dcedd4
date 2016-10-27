@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_a95ed957",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:04:05Z",
+      "side": 1,
+      "message": "yep!",
+      "parentUuid": "4654620e_a9c259ec",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a63c3ec1_94e44a66",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -178,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "4654620e_e954d13b",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1642,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:04:05Z",
+      "side": 1,
+      "message": "Cache would be mainly used in bots where it deletes the workspace and checks-out every project again. Cache will help mitigate the clone time by atleaset 95%\n\nIt can also be used by users who have multiple checkouts so that their updation can be faster.\n\nAlso if normal user wants to use it for initial checkout, it can greatly help reducing the check out time as cache is created in parallel, as opposed to actual project checkout",
+      "parentUuid": "4654620e_694221ae",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4654620e_06cefa4e",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -260,6 +296,24 @@
       "writtenOn": "2016-10-27T20:58:26Z",
       "side": 1,
       "message": "Another noob question: is the call to Done being deferred because getRemoteHeadRevisions might spawn goroutines of its own?",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_099dedef",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:04:05Z",
+      "side": 1,
+      "message": "defer calls means that they will run at the end of function no matter where we return from, we need it as we wait on wg",
+      "parentUuid": "4654620e_a97499ec",
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
