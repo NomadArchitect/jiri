@@ -335,6 +335,24 @@
       "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_e9305103",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T21:10:09Z",
+      "side": 1,
+      "message": "yeah, if there a panic, defer would still be executed\nmore on it\nhttps://blog.golang.org/defer-panic-and-recover",
+      "parentUuid": "4654620e_c903552a",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
