@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_80ba2ba1",
+        "filename": "gitutil/git.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_aaae2ec9",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_0a763abb",
         "filename": "project/project.go",
         "patchSetId": 23
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-26T22:59:17Z",
       "side": 1,
       "message": "This unnecessarily complicates information. Why not just have one attribute \"LocalBranch\" which is string; if the value is !\u003d \"\" it means we\u0027re on a branch with that name.\n\nRelated to this, ProjectState already has CurrentBranch attribute, once you add \"LocalBranch\" here we remove CurrentBranch from ProjectState to avoid duplication.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_60ad2768",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_0a763abb",
       "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_e0c0571c",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_4a4cc2e1",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_2a405e9f",
         "filename": "project/project.go",
         "patchSetId": 23
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-26T22:59:17Z",
       "side": 1,
       "message": "nit: similarly this should probably be called just checkoutHeadRevision.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_c0bb53ab",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_2a405e9f",
       "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "a1826880_00c61b35",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 1163,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1826880_8ac40afa",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1826880_4ace82bb",
         "filename": "project/project.go",
         "patchSetId": 23
@@ -98,6 +188,24 @@
       "writtenOn": "2016-10-26T22:59:17Z",
       "side": 1,
       "message": "This is only needed in certain cases, so instead of keeping that state in Project (which introduces possibility of that state going out of sync with underlying storage and causing problems). You can just call git.CurrentRevisionOfBranch(project.LocalBranch) here.",
+      "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_20b5df85",
+        "filename": "project/project.go",
+        "patchSetId": 23
+      },
+      "lineNbr": 2084,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-27T00:34:25Z",
+      "side": 1,
+      "message": "This is the revision of remote branch, isn\u0027t this same case as that of local.revision? Also for adding this code here means adding error handling to this function and all the functions in the tress",
+      "parentUuid": "a1826880_4ace82bb",
       "revId": "0e3c7ac005276a4815faf74f5f48ca16bb7f54e6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
