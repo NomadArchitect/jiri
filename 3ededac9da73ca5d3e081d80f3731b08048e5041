@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1826880_6390d168",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T06:07:30Z",
+      "side": 1,
+      "message": "This should be done in cmd/jiri/cmd.go (same as setting GOMAXPROCS).",
+      "revId": "3ededac9da73ca5d3e081d80f3731b08048e5041",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1826880_838dd54d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2082,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-27T06:07:30Z",
+      "side": 1,
+      "message": "nit: capitalization is strange, this should probably be \"Error setting rlimit: %v\" (you\u0027re also missing the formatting specifier).",
+      "revId": "3ededac9da73ca5d3e081d80f3731b08048e5041",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
