@@ -8,15 +8,31 @@
 package main
 
 import (
+	"fmt"
 	"runtime"
+	"syscall"
 
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/tool"
 )
 
+func changeRlimit(limit uint64) error {
+	var rLimit syscall.Rlimit
+	rLimit.Max = limit
+	rLimit.Cur = limit
+
+	err := syscall.Setrlimit(syscall.RLIMIT_NOFILE, &rLimit)
+	if err != nil {
+		return fmt.Errorf("Error setting rlimit: %v", err)
+	}
+	return nil
+}
+
 func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
-
+	if err := changeRlimit(4096); err != nil {
+		panic(err)
+	}
 	cmdRoot = newCmdRoot()
 	tool.InitializeRunFlags(&cmdRoot.Flags)
 }
