@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a63c3ec1_d4ead233",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T19:35:25Z",
+      "side": 1,
+      "message": "Why capitalize this one if the other methods start with a lowercase character?",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a63c3ec1_94e44a66",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1616,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T19:35:25Z",
+      "side": 1,
+      "message": "blank line between the two methods?\n\nadd some documentation too",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_c67d8223",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T19:35:25Z",
+      "side": 1,
+      "message": "Could this simply be |if processingPath[cacheDirPath]|? Based on line 1629 it seems the values in the map should be enough to determine whether a path was already processed.",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_06939a34",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1642,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T19:35:25Z",
+      "side": 1,
+      "message": "I might be missing some context: what exactly is being cached here?",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4654620e_06cefa4e",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1703,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-27T19:35:25Z",
+      "side": 1,
+      "message": "Go newbie question: what\u0027s the intent for creating a \"local\" function and calling it immediately? Scoping?",
+      "revId": "5769b79addd41bd873141c9cee8d50f464dcedd4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
