@@ -297,6 +297,39 @@ func (g *Git) GetSymbolicRef() (string, error) {
 	return out[0], nil
 }
 
+// RemoteBranchName returns the name of the tracking branch stripping remote name from it.
+// It will search recursively if current branch tracks a local branch.
+func (g *Git) RemoteBranchName() (string, error) {
+	branch, err := g.CurrentBranchName()
+	if err != nil || branch == "" {
+		return "", err
+	}
+	for {
+		out, err := g.runOutput("config", "branch."+branch+".merge")
+		if err != nil || len(out) == 0 {
+			return "", nil
+		}
+		if got, want := len(out), 1; got != want {
+			return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+		}
+		remoteName := strings.Replace(out[0], "refs/heads/", "", 1)
+
+		out, err = g.runOutput("config", "branch."+branch+".remote")
+		if err != nil || len(out) == 0 {
+			return "", err
+		}
+		if got, want := len(out), 1; got != want {
+			return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+		}
+		// check if current branch tracks local branch
+		if out[0] == "." {
+			branch = remoteName
+		} else {
+			return remoteName, nil
+		}
+	}
+}
+
 // TrackingBranchName returns the name of the tracking branch.
 func (g *Git) TrackingBranchName() (string, error) {
 	currentRef, err := g.GetSymbolicRef()
