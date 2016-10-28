@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "86501a4a_67431c5e",
+        "filename": "gitutil/git.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:49:26Z",
+      "side": 1,
+      "message": "That was just a(nother) noob question from me :)",
+      "parentUuid": "86501a4a_479ed8f0",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86501a4a_7e13a9cc",
         "filename": "gitutil/git.go",
         "patchSetId": 25
