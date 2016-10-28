@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_e7fa8c4f",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1607,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:08:23Z",
+      "side": 1,
+      "message": "nit: newline before this line",
+      "revId": "936793b7c60d84c881545cd878bda78cab146b22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_873c702a",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:08:23Z",
+      "side": 1,
+      "message": "why not just create this before the if/else block?",
+      "revId": "936793b7c60d84c881545cd878bda78cab146b22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_a74b74cb",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:08:23Z",
+      "side": 1,
+      "message": "return here",
+      "revId": "936793b7c60d84c881545cd878bda78cab146b22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_e7556c64",
+        "filename": "project/project.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:08:23Z",
+      "side": 1,
+      "message": "return here",
+      "revId": "936793b7c60d84c881545cd878bda78cab146b22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
