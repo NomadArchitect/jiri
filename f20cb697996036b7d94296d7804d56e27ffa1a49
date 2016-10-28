@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_3e413180",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T19:29:54Z",
+      "side": 1,
+      "message": "nit: either inline this or make it a const",
+      "revId": "f20cb697996036b7d94296d7804d56e27ffa1a49",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
