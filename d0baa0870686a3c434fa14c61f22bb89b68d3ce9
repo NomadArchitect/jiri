@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_12bd3c99",
+        "filename": "x.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:03:15Z",
+      "side": 1,
+      "message": "Calling this a shared cache is misleading, because the cache is shared as well. Also the code for handling this is quite awkward, let me think of a better way to handle this.",
+      "revId": "d0baa0870686a3c434fa14c61f22bb89b68d3ce9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
