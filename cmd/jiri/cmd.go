@@ -24,14 +24,13 @@ func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	if runtime.GOOS == "darwin" {
 		var rLimit syscall.Rlimit
-		var limit = 999999
 		err := syscall.Getrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 		if err != nil {
 			fmt.Println("Unable to obtain rlimit:", err)
 		}
 		if rLimit.Cur < rLimit.Max && limit <= rLimit.Max {
-			rLimit.Max = limit
-			rLimit.Cur = limit
+			rLimit.Max = 999999
+			rLimit.Cur = 999999
 			err = syscall.Setrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 			if err != nil {
 				fmt.Println("Unable to increase number of open files limit:", err)
