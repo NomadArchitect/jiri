@@ -24,7 +24,7 @@ func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	if runtime.GOOS == "darwin" {
 		var rLimit syscall.Rlimit
-		var limit = 999999
+		const limit uint64 = 999999
 		err := syscall.Getrlimit(syscall.RLIMIT_NOFILE, &rLimit)
 		if err != nil {
 			fmt.Println("Unable to obtain rlimit:", err)
