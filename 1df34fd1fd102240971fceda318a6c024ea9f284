@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_6c8663af",
+        "filename": "gitutil/git.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:10:16Z",
+      "side": 1,
+      "message": "Is the bool(...) conversion needed because \"detach\" is inferred as a bool on line 127? If so, it would not be needed if \"detach\" was declared as \"var detach DetachOpt \u003d false\", correct?",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_7e13a9cc",
+        "filename": "gitutil/git.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:10:16Z",
+      "side": 1,
+      "message": "space after //",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_cc916fdb",
+        "filename": "project/project.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:10:16Z",
+      "side": 1,
+      "message": "store",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_2cff4bf8",
+        "filename": "project/project.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 1158,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:10:16Z",
+      "side": 1,
+      "message": "looks like a spurious blank line here",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_ac387b02",
+        "filename": "project/project.go",
+        "patchSetId": 25
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2016-10-28T22:10:16Z",
+      "side": 1,
+      "message": "detached",
+      "revId": "1df34fd1fd102240971fceda318a6c024ea9f284",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
