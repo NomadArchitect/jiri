@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_72d2b810",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1563,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:45:37Z",
+      "side": 1,
+      "message": "This is Go, not Java so the variable should probably called just \u0027c\u0027.",
+      "revId": "f68f5be60dc45d3cf1a80ad5389ef000d2114501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_7200f8b0",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1579,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:45:37Z",
+      "side": 1,
+      "message": "You haven\u0027t updated the project so it should be nil.",
+      "revId": "f68f5be60dc45d3cf1a80ad5389ef000d2114501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_d20464c6",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:45:37Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "f68f5be60dc45d3cf1a80ad5389ef000d2114501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_f20b68d0",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:45:37Z",
+      "side": 1,
+      "message": "You should check this before updating the project...",
+      "revId": "f68f5be60dc45d3cf1a80ad5389ef000d2114501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_92d2ec16",
+        "filename": "project/project.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-28T23:45:37Z",
+      "side": 1,
+      "message": "...and continue here to avoid updating project if there was an error.",
+      "revId": "f68f5be60dc45d3cf1a80ad5389ef000d2114501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
