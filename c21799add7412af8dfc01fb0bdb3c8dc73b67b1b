@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_622827b9",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T05:09:26Z",
+      "side": 1,
+      "message": "This is still in the wrong order, you check if there is an error, if so append it and continue with another element. Then you also don\u0027t need these two checks.",
+      "revId": "c21799add7412af8dfc01fb0bdb3c8dc73b67b1b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
