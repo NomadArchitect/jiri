@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86501a4a_cd06893c",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1700,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "nit: Why not just stdout?",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_ad03552a",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1701,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "nit: stderr?",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_6d277de6",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1706,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "These should only be created inside the goroutine.",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_ad2d15ae",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "nit: these probably just be called re, we (similarly ro, wo for the other ones).",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_6d43fd5d",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1718,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "This should happen as a last thing.",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_8df49119",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1751,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "This should happen first before doing any writing.",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_adea3532",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T00:12:20Z",
+      "side": 1,
+      "message": "continue here.",
+      "revId": "03ec20e4aa00b6a9b8fd9c213cce64329e719764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
