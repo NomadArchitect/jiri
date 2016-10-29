@@ -69,6 +69,24 @@
       "revId": "b9b0a003851236b4eefca51dde33351907dde3f9",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86501a4a_7ff1e0e5",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1761,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-29T01:31:30Z",
+      "side": 1,
+      "message": "I\u0027d avoid adding extra output like in this case (if we\u0027re going to declutter Jiri\u0027s output, we should do it consistently and separately from this change).",
+      "parentUuid": "86501a4a_ff805046",
+      "revId": "b9b0a003851236b4eefca51dde33351907dde3f9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
