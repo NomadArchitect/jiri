@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "26d84e6c_30a2c683",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_8d4f21aa",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26d84e6c_ed27c5e6",
         "filename": "/COMMIT_MSG",
         "patchSetId": 28
@@ -30,6 +48,24 @@
       "writtenOn": "2016-10-31T22:01:59Z",
       "side": 1,
       "message": "nit: Use full sentences.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_109fca35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_ed27c5e6",
       "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "26d84e6c_f0be7e9a",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_8d85e1a2",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26d84e6c_4d681914",
         "filename": "project/project.go",
         "patchSetId": 28
@@ -64,6 +118,24 @@
       "writtenOn": "2016-10-31T22:01:59Z",
       "side": 1,
       "message": "nit: Similarly `state` here.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_d0c38226",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_4d681914",
       "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "26d84e6c_b0c8f643",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2034,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_cda2c937",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26d84e6c_8dc721a1",
         "filename": "project/state.go",
         "patchSetId": 28
@@ -98,6 +188,24 @@
       "writtenOn": "2016-10-31T22:01:59Z",
       "side": 1,
       "message": "Having two functions with the same name with different visibility which differ in their arguments is bit of a bad practice. Since GetProjectStates is only used from handful of places, I think it\u0027d be fine to modify all the call sites to explicitly pass in the list of projects (i.e. make this the default public version and get rid of the other one).",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_30bd2699",
+        "filename": "project/state.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-10-31T22:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_8dc721a1",
       "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
