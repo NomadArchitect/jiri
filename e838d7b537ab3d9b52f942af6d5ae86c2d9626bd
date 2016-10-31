@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_8d4f21aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "nit: Capitalize the subject.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_ed27c5e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 28
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "nit: Use full sentences.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_8d85e1a2",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "nit: We don\u0027t have any remote project states so there is no need to prefix this with local*, this can probably just called `states`.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_4d681914",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "nit: Similarly `state` here.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_cda2c937",
+        "filename": "project/project.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 2034,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "nit: The same here.",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_8dc721a1",
+        "filename": "project/state.go",
+        "patchSetId": 28
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T22:01:59Z",
+      "side": 1,
+      "message": "Having two functions with the same name with different visibility which differ in their arguments is bit of a bad practice. Since GetProjectStates is only used from handful of places, I think it\u0027d be fine to modify all the call sites to explicitly pass in the list of projects (i.e. make this the default public version and get rid of the other one).",
+      "revId": "e838d7b537ab3d9b52f942af6d5ae86c2d9626bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
