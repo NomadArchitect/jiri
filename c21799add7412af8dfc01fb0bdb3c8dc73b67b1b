@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "861e5aa4_11c42e2e",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 1699,
+      "author": {
+        "id": 5165
+      },
+      "writtenOn": "2016-10-31T19:00:17Z",
+      "side": 1,
+      "message": "You can name a type inside a function, which keeps the scope restricted without having to write it out five times.\n\ntype result struct {\n        outReader *os.File\n        errReader *os.File\n        err       error\n}\nch :\u003d make(chan result)\n\nNote the rename c to ch, a common name for one local channel. Also drop the buffering, there\u0027s no semantic/performance need for it and reasoning about unbuffered channels is easier.",
+      "revId": "c21799add7412af8dfc01fb0bdb3c8dc73b67b1b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "861e5aa4_511866e7",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 1751,
+      "author": {
+        "id": 5165
+      },
+      "writtenOn": "2016-10-31T19:00:17Z",
+      "side": 1,
+      "message": "In the case of starting n goroutines and waiting for exactly n results, you can use some slightly simpler logic.\n\nRemove the wait group, and remove the close(ch). Below, instead of ranging over ch, range over the original hooks, which is exactly how many elements you\u0027ll receive:\n\nfor range hooks {\n    out :\u003d \u003c-ch\n    ...\n}",
+      "revId": "c21799add7412af8dfc01fb0bdb3c8dc73b67b1b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86501a4a_622827b9",
         "filename": "project/project.go",
         "patchSetId": 9
@@ -13,6 +47,23 @@
       "writtenOn": "2016-10-29T05:09:26Z",
       "side": 1,
       "message": "This is still in the wrong order, you check if there is an error, if so append it and continue with another element. Then you also don\u0027t need these two checks.",
+      "revId": "c21799add7412af8dfc01fb0bdb3c8dc73b67b1b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "861e5aa4_2e7c7362",
+        "filename": "runutil/sequence.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 5165
+      },
+      "writtenOn": "2016-10-31T19:00:17Z",
+      "side": 1,
+      "message": "CapturAll typo",
       "revId": "c21799add7412af8dfc01fb0bdb3c8dc73b67b1b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
