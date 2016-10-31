@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_7363b8f9",
+        "filename": "project/state.go",
+        "patchSetId": 29
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-10-31T23:55:41Z",
+      "side": 1,
+      "message": "One possible improvement is that we could expand BranchState struct to also include Revision and then use it for both CurrentBranch and TrackingBranch, so this will look something like:\n\ntype BranchState struct {\n  Name string\n  Revision string\n  ...\n}\n\ntype ProjectState struct {\n  Branches []BranchState\n  CurrentBranch BranchState\n  TrackingBranch BranchState\n  ...\n}\n\nHowever, this might require additional changes/cleanup around the codebase so feel free to do that in a separate change.",
+      "revId": "5ec40f55671ab150604a5065ab9cdea1ee381d61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
