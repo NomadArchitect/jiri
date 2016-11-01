@@ -22,6 +22,24 @@
       "revId": "cd8f715a58beefffaca291b39172da8729094917",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_16c33d4a",
+        "filename": "cmd/jiri/grep.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5345
+      },
+      "writtenOn": "2016-11-01T19:58:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d84e6c_362d19f2",
+      "revId": "cd8f715a58beefffaca291b39172da8729094917",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
