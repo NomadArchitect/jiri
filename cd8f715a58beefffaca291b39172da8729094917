@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_362d19f2",
+        "filename": "cmd/jiri/grep.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-01T19:02:15Z",
+      "side": 1,
+      "message": "nit: allProjects or simply projects",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "cd8f715a58beefffaca291b39172da8729094917",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
