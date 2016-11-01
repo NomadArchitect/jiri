@@ -16,6 +16,24 @@
       "revId": "5ec40f55671ab150604a5065ab9cdea1ee381d61",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26d84e6c_36bd1e99",
+        "filename": "project/state.go",
+        "patchSetId": 29
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-01T00:23:45Z",
+      "side": 1,
+      "message": "Actually now that I\u0027m thinking about this, maybe even better/more precise for tracking branch to be a part of BranchState, so this might need more bikeshedding.",
+      "parentUuid": "26d84e6c_7363b8f9",
+      "revId": "5ec40f55671ab150604a5065ab9cdea1ee381d61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
