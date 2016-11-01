@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_76684114",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-01T19:11:05Z",
+      "side": 1,
+      "message": "\"fix it\" sounds weird here, there is nothing broken with that repository. How about something like: \"Commit or discard the changes and try again.\"",
+      "revId": "2cb7af4728b929e89f62dbaaa45c932dde9da1bb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
