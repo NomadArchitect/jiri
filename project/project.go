@@ -46,7 +46,7 @@ type Manifest struct {
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
 	Hooks        []Hook        `xml:"hooks>hook"`
-	XMLName      struct{} `xml:"manifest"`
+	XMLName      struct{}      `xml:"manifest"`
 }
 
 // ManifestFromBytes returns a manifest parsed from data, with defaults filled
@@ -1203,7 +1203,9 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 				return err
 			}
 			if rebaseSuccess {
-				s.Verbose(showUpdateLogs).Output([]string{fmt.Sprintf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch)})
+				s.Verbose(showUpdateLogs).Output([]string{
+					fmt.Sprintf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch),
+				})
 			} else {
 				s.Verbose(true).Output([]string{
 					fmt.Sprintf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch),
@@ -2210,13 +2212,13 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool) operation {
 				project:     *remote,
 				source:      local.Path,
 			}}
-		case state.CurrentBranch == "" && local.Revision == remote.Revision:
+		case state.CurrentBranch.Name == "" && local.Revision == remote.Revision:
 			return nullOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
 			}}
-		case local.Revision == state.CurrentTrackingBranchRev:
+		case state.CurrentBranch.Tracking != nil && local.Revision == state.CurrentBranch.Tracking.Revision:
 			return nullOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
