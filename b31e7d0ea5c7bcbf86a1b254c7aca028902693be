@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_6fdd00c5",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-01T22:14:39Z",
+      "side": 1,
+      "message": "You can inline both strings:\n\ns.Verbose(true).Output([]string{\n  fmt.Sprintf(\"NOTE: For project (%v), not able to rebase your local branch onto %v.\", project.Name, trackingBranch),\n  \"Please do it manually.\",\n})",
+      "revId": "b31e7d0ea5c7bcbf86a1b254c7aca028902693be",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
