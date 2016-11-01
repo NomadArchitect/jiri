@@ -9,8 +9,10 @@ package jiri
 // fuchsia.googlesource.com/jiri/cmd/jiri
 
 import (
+	"encoding/xml"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -23,6 +25,7 @@ import (
 const (
 	RootMetaDir        = ".jiri_root"
 	ProjectMetaDir     = ".jiri"
+	ConfigFile         = "config"
 	DefaultCacheSubdir = "cache"
 	ProjectMetaFile    = "metadata.v2"
 	JiriManifestFile   = ".jiri_manifest"
@@ -33,6 +36,12 @@ const (
 	PreservePathEnv = "JIRI_PRESERVE_PATH"
 )
 
+// Config represents jiri global config
+type Config struct {
+	CachePath string   `xml:"cache>path"`
+	xmlname   struct{} `xml:"config"`
+}
+
 // X holds the execution environment for the jiri tool and related tools.  This
 // includes the jiri filesystem root directory.
 //
@@ -40,9 +49,10 @@ const (
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root  string
-	Usage func(format string, args ...interface{}) error
-	Cache string
+	Root   string
+	Usage  func(format string, args ...interface{}) error
+	config *Config
+	Cache  string
 }
 
 // NewX returns a new execution environment, given a cmdline env.
@@ -54,17 +64,20 @@ func NewX(env *cmdline.Env) (*X, error) {
 		return nil, err
 	}
 
-	cache, err := findCache(root)
-	if err != nil {
-		return nil, err
-	}
-
 	x := &X{
 		Context: ctx,
 		Root:    root,
 		Usage:   env.UsageErrorf,
-		Cache:   cache,
 	}
+	config, err := x.ReadConfig(true)
+	if err != nil {
+		return nil, err
+	}
+	cache, err := findCache(root, config)
+	if err != nil {
+		return nil, err
+	}
+	x.Cache = cache
 	if ctx.Env()[PreservePathEnv] == "" {
 		// Prepend .jiri_root/bin to the PATH, so execing a binary will
 		// invoke the one in that directory, if it exists.  This is crucial for jiri
@@ -84,13 +97,11 @@ func NewX(env *cmdline.Env) (*X, error) {
 }
 
 var (
-	rootFlag  string
-	cacheFlag string
+	rootFlag string
 )
 
 func init() {
 	flag.StringVar(&rootFlag, "root", "", "Jiri root directory")
-	flag.StringVar(&cacheFlag, "cache", "", "Jiri cache directory")
 }
 
 func cleanPath(path string) (string, error) {
@@ -104,10 +115,50 @@ func cleanPath(path string) (string, error) {
 	return filepath.Clean(result), nil
 }
 
-func findCache(root string) (string, error) {
+func WriteConfig(config Config) error {
+	root, err := findJiriRoot(nil)
+	if err != nil {
+		return err
+	}
+	config.CachePath, err = cleanPath(config.CachePath)
+	if err != nil {
+		return err
+	}
+	configPath := filepath.Join(filepath.Join(root, RootMetaDir), ConfigFile)
+	data, err := xml.MarshalIndent(config, "", "  ")
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(configPath, data, 0644)
+}
+
+func (x *X) ReadConfig(forceRead bool) (*Config, error) {
+	if !forceRead && x.config != nil {
+		return x.config, nil
+	}
+	configPath := filepath.Join(x.RootMetaDir(), ConfigFile)
+	if _, err := os.Stat(configPath); err != nil {
+		if os.IsNotExist(err) {
+			return nil, nil
+		}
+		return nil, err
+	}
+	bytes, err := ioutil.ReadFile(configPath)
+	if err != nil {
+		return nil, err
+	}
+	c := new(Config)
+	if err := xml.Unmarshal(bytes, c); err != nil {
+		return nil, err
+	}
+	x.config = c
+	return c, nil
+}
+
+func findCache(root string, config *Config) (string, error) {
 	// Use flag variable if set.
-	if cacheFlag != "" {
-		return cleanPath(cacheFlag)
+	if config != nil && config.CachePath != "" {
+		return cleanPath(config.CachePath)
 	}
 
 	// Check default location under .jiri_root.
