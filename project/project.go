@@ -2213,13 +2213,13 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool) operation {
 				project:     *remote,
 				source:      local.Path,
 			}}
-		case state.CurrentBranch == "" && local.Revision == remote.Revision:
+		case state.CurrentBranch.Name == "" && local.Revision == remote.Revision:
 			return nullOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
 			}}
-		case local.Revision == state.CurrentTrackingBranchRev:
+		case local.Revision == state.CurrentBranch.TrackingBranchRev:
 			return nullOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
