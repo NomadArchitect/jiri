@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d84e6c_b6dfcef0",
+        "filename": "project/project.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 1597,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-01T00:24:31Z",
+      "side": 1,
+      "message": "nit: This seems unnecessary",
+      "revId": "942951f65dad09cb9a05c4f965d80832f1c173d6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
