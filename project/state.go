@@ -15,41 +15,35 @@ import (
 )
 
 type BranchState struct {
-	HasGerritMessage bool
-	Name             string
+	HasGerritMessage  bool
+	Name              string
+	Revision          string
+	TrackingBranch    string
+	TrackingBranchRev string
 }
 
 type ProjectState struct {
-	Branches                 []BranchState
-	CurrentBranch            string
-	CurrentTrackingBranch    string
-	CurrentTrackingBranchRev string
-	HasUncommitted           bool
-	HasUntracked             bool
-	Project                  Project
+	Branches       []BranchState
+	CurrentBranch  BranchState
+	HasUncommitted bool
+	HasUntracked   bool
+	Project        Project
 }
 
 func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch chan<- error) {
 	var err error
 	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(state.Project.Path))
-	var branches []string
-	branches, state.CurrentBranch, err = scm.GetBranches()
+	branches, currentBranch, err := scm.GetBranches()
 	if err != nil {
 		ch <- err
 		return
 	}
-	if state.CurrentBranch != "" {
-		if state.CurrentTrackingBranch, err = scm.TrackingBranchName(); err != nil {
-			ch <- err
-			return
-		}
-		if state.CurrentTrackingBranch != "" {
-			if state.CurrentTrackingBranchRev, err = scm.CurrentRevisionOfBranch(state.CurrentTrackingBranch); err != nil {
-				ch <- err
-				return
-			}
-		}
+	m, err := scm.GetAllBranchesInfo()
+	if err != nil {
+		ch <- err
+		return
 	}
+	state.CurrentBranch = BranchState{Name: ""}
 	for _, branch := range branches {
 		file := filepath.Join(state.Project.Path, jiri.ProjectMetaDir, branch, ".gerrit_commit_message")
 		hasFile := true
@@ -60,10 +54,23 @@ func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch cha
 			}
 			hasFile = false
 		}
-		state.Branches = append(state.Branches, BranchState{
+		b := BranchState{
 			Name:             branch,
 			HasGerritMessage: hasFile,
-		})
+		}
+		if v, ok := m[gitutil.LocalType+"/"+branch]; ok {
+			b.Revision = string(v.Revision)
+			b.TrackingBranch = string(v.TrackingBranch)
+			if b.TrackingBranch != "" {
+				if v, ok := m[gitutil.RemoteType+"/"+b.TrackingBranch]; ok {
+					b.TrackingBranchRev = string(v.Revision)
+				}
+			}
+		}
+		state.Branches = append(state.Branches, b)
+		if currentBranch == branch {
+			state.CurrentBranch = b
+		}
 	}
 	if checkDirty {
 		state.HasUncommitted, err = scm.HasUncommittedChanges()
