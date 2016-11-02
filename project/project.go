@@ -1551,44 +1551,86 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 	}
 }
 
-// updateCache creates the cache or updates it if already present.
-func updateCache(jirix *jiri.X, remoteProjects Projects) error {
-	// TODO(anmittal): Also update cache if any project was cloned using it
-	if jirix.Cache == "" {
-		return nil
+func getProjectCachePaths(jirix *jiri.X, localProjects, remoteProjects Projects) ([]string, error) {
+	paths := []string{}
+	for key, project := range localProjects {
+		if _, ok := remoteProjects[key]; !ok {
+			// Don't want to update cache if project is deleted
+			continue
+		}
+		git := gitutil.New(jirix.NewSeq())
+		if path, err := git.GetReferencePath(project.Path); err != nil {
+			return nil, err
+		} else if isPathDir(path) {
+			// Cache directory present
+			paths = append(paths, path)
+		}
+	}
+	return paths, nil
+}
+
+func updateCache(jirix *jiri.X, localProjects, remoteProjects Projects) error {
+	paths, err := getProjectCachePaths(jirix, localProjects, remoteProjects)
+	if err != nil {
+		return err
 	}
 
 	errs := make(chan error, len(remoteProjects))
 	var wg sync.WaitGroup
 	processingPath := make(map[string]bool)
-
-	for _, project := range remoteProjects {
-		if cacheDirPath, err := project.CacheDirPath(jirix); err == nil {
-			if processingPath[cacheDirPath] {
+	for _, path := range paths {
+		if processingPath[path] {
+			continue
+		}
+		processingPath[path] = true
+		wg.Add(1)
+		go func(dir string) {
+			defer wg.Done()
+			s := jirix.NewSeq() // This should be created inside loop, as when we set git directory,
+			// It changes the dir of previous git in the loop
+			git := gitutil.New(s, gitutil.RootDirOpt(dir))
+			if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+				errs <- err
+				return
+			}
+		}(path)
+	}
+	if jirix.Cache != "" {
+		for key, project := range remoteProjects {
+			if _, ok := localProjects[key]; ok {
+				// Cache already updated above
 				continue
 			}
-			processingPath[cacheDirPath] = true
-			wg.Add(1)
-			go func(dir, remote string) {
-				defer wg.Done()
-				s := jirix.NewSeq() // This should be crated inside loop, as when we set git directory,
-				// It changes the dir of previous git in the loop
-				if isPathDir(dir) { // Cache already present, update it
-					git := gitutil.New(s, gitutil.RootDirOpt(dir))
-					if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
-						errs <- err
-						return
-					}
-				} else { // Create cache
-					if err := gitutil.New(s).CloneMirror(remote, dir); err != nil {
-						errs <- err
-						return
-					}
-
+			if cacheDirPath, err := project.CacheDirPath(jirix); err == nil {
+				if processingPath[cacheDirPath] {
+					continue
 				}
-			}(cacheDirPath, project.Remote)
-		} else {
-			errs <- err
+				processingPath[cacheDirPath] = true
+				wg.Add(1)
+				go func(dir, remote string) {
+					defer wg.Done()
+					// This should be created inside loop, as when we set git directory,
+					// It changes the dir of previous git in the loop
+					s := jirix.NewSeq()
+					if isPathDir(dir) {
+						// Cache already present, update it
+						git := gitutil.New(s, gitutil.RootDirOpt(dir))
+						if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+							errs <- err
+							return
+						}
+					} else {
+						// Create cache
+						if err := gitutil.New(s).CloneMirror(remote, dir); err != nil {
+							errs <- err
+							return
+						}
+
+					}
+				}(cacheDirPath, project.Remote)
+			} else {
+				errs <- err
+			}
 		}
 	}
 	wg.Wait()
@@ -1642,7 +1684,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	errs := make(chan error)
 	states := make(map[ProjectKey]*ProjectState, len(localProjects))
 	go func() {
-		if err := updateCache(jirix, remoteProjects); err != nil {
+		if err := updateCache(jirix, localProjects, remoteProjects); err != nil {
 			errs <- err
 			return
 		}
