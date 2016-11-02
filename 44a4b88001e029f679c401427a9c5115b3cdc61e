@@ -16,6 +16,24 @@
       "revId": "44a4b88001e029f679c401427a9c5115b3cdc61e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6dd1ea2_f2f8f90d",
+        "filename": "x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-02T20:13:21Z",
+      "side": 0,
+      "message": "As discussed, removing it",
+      "parentUuid": "a6dd1ea2_124b0da1",
+      "revId": "44a4b88001e029f679c401427a9c5115b3cdc61e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
