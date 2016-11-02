@@ -7,6 +7,7 @@ package gitutil
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -867,5 +868,18 @@ func (g *Git) NewCommitter(edit bool) *Committer {
 			commit:            g.Commit,
 			commitWithMessage: g.CommitWithMessage,
 		}
+	}
+}
+
+func (g *Git) GetReferencePath(path string) (string, error) {
+	var objectPath = filepath.Join(path, ".git/objects/info/alternates")
+	if _, err := os.Stat(objectPath); os.IsNotExist(err) {
+		return "", nil
+	}
+	if data, err := ioutil.ReadFile(objectPath); err != nil {
+		return "", err
+	} else {
+		s := string(data[:])
+		return strings.TrimSuffix(s, "/objects\n"), nil
 	}
 }
