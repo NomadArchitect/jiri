@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a6dd1ea2_fcd1e80b",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-03T17:41:05Z",
+      "side": 1,
+      "message": "yes, if it is reference or shared type",
+      "parentUuid": "a6dd1ea2_bc2c90cc",
+      "revId": "9579ce596307864775ff381db584ecd3d5ee009a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6dd1ea2_dc9d04f4",
         "filename": "x.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a6dd1ea2_7d42110a",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-03T17:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6dd1ea2_dc9d04f4",
+      "revId": "9579ce596307864775ff381db584ecd3d5ee009a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6dd1ea2_dc08649f",
         "filename": "x.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2016-11-03T00:06:53Z",
       "side": 1,
       "message": "I\u0027d inline this into NewX, there is no reason for this to be a function/method as nobody is ever supposed to call from the outside.",
+      "revId": "9579ce596307864775ff381db584ecd3d5ee009a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6dd1ea2_5d3f4d7a",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-03T17:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6dd1ea2_dc08649f",
       "revId": "9579ce596307864775ff381db584ecd3d5ee009a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
