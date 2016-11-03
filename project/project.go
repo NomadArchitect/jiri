@@ -680,7 +680,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool, runHookTimeout ui
 	if err != nil {
 		return err
 	}
-	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, runHookTimeout, false /*rebaseUntracked*/, true /*snapshot*/); err != nil {
+	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, runHookTimeout, false /*rebaseUntracked*/, false /*rebaseAll*/, true /*snapshot*/); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot, false)
@@ -903,7 +903,7 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseUntracked bool, runHookTimeout uint) (e error) {
+func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseUntracked bool, rebaseAll bool, runHookTimeout uint) (e error) {
 	jirix.Logger.Infof("Updating all projects")
 
 	updateFn := func(scanMode ScanMode) error {
@@ -931,7 +931,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseUntracked 
 		}
 
 		// Actually update the projects.
-		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, runHookTimeout, rebaseUntracked, false /*snapshot*/)
+		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, runHookTimeout, rebaseUntracked, rebaseAll, false /*snapshot*/)
 	}
 
 	// Specifying gc should always force a full filesystem scan.
@@ -1212,18 +1212,8 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 }
 
 func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
-
 	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
-	g := git.NewGit(project.Path)
-	changes, err := g.HasUncommittedChanges()
-	if err != nil {
-		return false, fmt.Errorf("Cannot get uncommited changes for project %q", project.Name, err)
-	}
-	if changes {
-		return false, nil
-	}
-	err = scm.Rebase(branch)
-	if err != nil {
+	if err := scm.Rebase(branch); err != nil {
 		err := scm.RebaseAbort()
 		return false, err
 	}
@@ -1232,18 +1222,19 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 
 // syncProjectMaster checks out latest detached head if project is on one
 // else it rebases current branch onto its tracking branch
-func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, snapshot bool) error {
+func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebaseUntracked bool, rebaseAll bool, snapshot bool) error {
 	s := jirix.NewSeq()
 	scm := gitutil.New(s, gitutil.RootDirOpt(project.Path))
 	g := git.NewGit(project.Path)
-	if !scm.IsOnBranch() || snapshot {
-		if changes, err := g.HasUncommittedChanges(); err != nil {
-			return fmt.Errorf("Cannot get uncommited changes for project %q", project.Name, err)
-		} else if changes {
-			jirix.Logger.Errorf("NOTE: %v(%v) contains uncommited changes.", project.Name, project.Path)
-			jirix.Logger.Errorf("Commit or discard the changes and try again.")
-			return nil
-		}
+	if uncommitted, err := g.HasUncommittedChanges(); err != nil {
+		return fmt.Errorf("Cannot get uncommited changes for project %q", project.Name, err)
+	} else if uncommitted {
+		jirix.Logger.Errorf("NOTE: %v(%v) contains uncommited changes.", project.Name, project.Path)
+		jirix.Logger.Errorf("Commit or discard the changes and try again.")
+		return nil
+	}
+
+	if state.CurrentBranch.Name == "" || snapshot { // detached head
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
 			revision, err2 := GetHeadRevision(jirix, project)
 			if err2 != nil {
@@ -1252,28 +1243,50 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			jirix.Logger.Errorf("NOTE: For project (%v), not able to cheackout latest, error: %v", project.Name, err)
 			jirix.Logger.Errorf("Please checkout manually to: %v, use 'git checkout --detach %v'", err, revision, revision)
 		}
-		return nil
-	} else {
-		branch, err := scm.CurrentBranchName()
-		if err != nil {
-			return err
+		if snapshot || !rebaseAll {
+			return nil
 		}
-		trackingBranch, err := scm.TrackingBranchName()
-		if err != nil {
-			return err
-		}
-		if trackingBranch != "" {
-			rebaseSuccess, err := tryRebase(jirix, project, trackingBranch)
+		// This should run after program exit so that detached head can be restored
+		defer func() {
+			if err := checkoutHeadRevision(jirix, project, false); err != nil {
+				// This should not happen, panic
+				panic(fmt.Sprintf("for project %q, not able to checkout head revision: ", project.Name, err))
+			}
+		}()
+	} else if rebaseAll {
+		// This should run after program exit so that original branch can be restored
+		defer func() {
+			if err := scm.CheckoutBranch(state.CurrentBranch.Name); err != nil {
+				// This should not happen, panic
+				panic(fmt.Sprintf("for project %q, not able to checkout branch %q: ", project.Name, state.CurrentBranch.Name, err))
+			}
+		}()
+	}
+	branches := state.Branches
+	if !rebaseAll {
+		branches = []BranchState{state.CurrentBranch}
+	}
+	for _, branch := range branches {
+		if branch.Tracking != nil { // tracked branch
+			if branch.Revision == branch.Tracking.Revision {
+				continue
+			}
+
+			if err := scm.CheckoutBranch(branch.Name); err != nil {
+				jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your local branch %q onto %q.", project.Name, branch.Name, branch.Tracking.Name)
+				jirix.Logger.Errorf("Please do it manually.")
+				continue
+			}
+			rebaseSuccess, err := tryRebase(jirix, project, branch.Tracking.Name)
 			if err != nil {
 				return err
 			}
 			if rebaseSuccess {
-				jirix.Logger.Debugf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch)
+				jirix.Logger.Debugf("NOTE: For project (%v), rebased your local branch %q on %q", project.Name, branch.Name, branch.Tracking.Name)
 			} else {
-				jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch)
+				jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your local branch %q onto %q.", project.Name, branch.Name, branch.Tracking.Name)
 				jirix.Logger.Errorf("Please do it manually.")
 			}
-			return nil
 		} else {
 			revision, err2 := GetHeadRevision(jirix, project)
 			if err2 != nil {
@@ -1289,24 +1302,29 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 				relativePath = project.Path
 			}
 			if rebaseUntracked {
+				if err := scm.CheckoutBranch(branch.Name); err != nil {
+					jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your untracked branch %q.", project.Name, branch.Name)
+					jirix.Logger.Errorf("To rebase it manually run 'git -C %s checkout %v; git -C %s rebase %v'", relativePath, branch.Name, relativePath, revision)
+					continue
+				}
 				rebaseSuccess, err := tryRebase(jirix, project, revision)
 				if err != nil {
 					return err
 				}
 				if rebaseSuccess {
-					jirix.Logger.Debugf("NOTE: For project (%v), rebased your untracked branch %v on %v", project.Name, branch, revision)
+					jirix.Logger.Debugf("NOTE: For project (%v), rebased your untracked branch %q on %q", project.Name, branch.Name, revision)
 				} else {
-					jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your untracked branch onto %v.", project.Name, revision)
-					jirix.Logger.Errorf("To rebase it manually run 'git -C %s rebase %v'", relativePath, revision)
+					jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your untracked branch %q.", project.Name, branch.Name)
+					jirix.Logger.Errorf("To rebase it manually run 'git -C %s checkout %v; git -C %s rebase %v'", relativePath, branch.Name, relativePath, revision)
 				}
 			} else {
-				jirix.Logger.Errorf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
+				jirix.Logger.Errorf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch.Name)
 				jirix.Logger.Errorf("To rebase it update with -rebase-untracked flag, or to rebase it manually run")
-				jirix.Logger.Errorf("'git -C %s rebase %v'", relativePath, revision)
+				jirix.Logger.Errorf("'git -C %s checkout %v; git -C %s rebase %v'", relativePath, branch.Name, relativePath, revision)
 			}
 		}
-		return nil
 	}
+	return nil
 }
 
 // newManifestLoader returns a new manifest loader.  The localProjects are used
@@ -1769,7 +1787,7 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 		defer wg.Done()
 		for _, op := range tree.ops {
 			jirix.Logger.Debugf("%v", op)
-			if err := op.Run(jirix, false, false); err != nil {
+			if err := op.Run(jirix); err != nil {
 				errs <- fmt.Errorf("error creating project %q: %v", op.Project().Name, err)
 				return
 			}
@@ -1799,7 +1817,7 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	return multiErr
 }
 
-func runMoveOperations(jirix *jiri.X, ops []moveOperation, rebaseUntracked, snapshot bool) error {
+func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
 	parentSrcPath := ""
 	parentDestPath := ""
 	for _, op := range ops {
@@ -1809,23 +1827,23 @@ func runMoveOperations(jirix *jiri.X, ops []moveOperation, rebaseUntracked, snap
 			parentSrcPath = op.source
 			parentDestPath = op.destination
 		}
-		if err := op.Run(jirix, rebaseUntracked, snapshot); err != nil {
+		if err := op.Run(jirix); err != nil {
 			return fmt.Errorf("error moving and updating project %q: %v", op.Project().Name, err)
 		}
 	}
 	return nil
 }
 
-func runCommonOperations(jirix *jiri.X, ops operations, rebaseUntracked, snapshot bool) error {
+func runCommonOperations(jirix *jiri.X, ops operations) error {
 	for _, op := range ops {
-		if err := op.Run(jirix, rebaseUntracked, snapshot); err != nil {
+		if err := op.Run(jirix); err != nil {
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
 	}
 	return nil
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, runHookTimeout uint, rebaseUntracked, snapshot bool) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, runHookTimeout uint, rebaseUntracked bool, rebaseAll bool, snapshot bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -1872,7 +1890,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	if len(multiErr) != 0 {
 		return multiErr
 	}
-	ops := computeOperations(localProjects, ps, states, gc, snapshot)
+	ops := computeOperations(localProjects, ps, states, gc, rebaseUntracked, rebaseAll, snapshot)
 	moveOperations := []moveOperation{}
 	deleteOperations := operations{}
 	updateOperations := operations{}
@@ -1896,19 +1914,19 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			nullOperations = append(nullOperations, o)
 		}
 	}
-	if err := runCommonOperations(jirix, deleteOperations, rebaseUntracked, snapshot); err != nil {
+	if err := runCommonOperations(jirix, deleteOperations); err != nil {
 		return err
 	}
-	if err := runMoveOperations(jirix, moveOperations, rebaseUntracked, snapshot); err != nil {
+	if err := runMoveOperations(jirix, moveOperations); err != nil {
 		return err
 	}
-	if err := runCommonOperations(jirix, updateOperations, rebaseUntracked, snapshot); err != nil {
+	if err := runCommonOperations(jirix, updateOperations); err != nil {
 		return err
 	}
 	if err := runCreateOperations(jirix, createOperations); err != nil {
 		return err
 	}
-	if err := runCommonOperations(jirix, nullOperations, rebaseUntracked, snapshot); err != nil {
+	if err := runCommonOperations(jirix, nullOperations); err != nil {
 		return err
 	}
 	for _, project := range ps {
@@ -2143,7 +2161,7 @@ type operation interface {
 	// Kind returns the kind of operation.
 	Kind() string
 	// Run executes the operation.
-	Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error
+	Run(jirix *jiri.X) error
 	// String returns a string representation of the operation.
 	String() string
 	// Test checks whether the operation would fail.
@@ -2160,6 +2178,8 @@ type commonOperation struct {
 	destination string
 	// source is the current project path.
 	source string
+	// state is the state of the local project
+	state ProjectState
 }
 
 func (op commonOperation) Project() Project {
@@ -2175,7 +2195,7 @@ func (op createOperation) Kind() string {
 	return "create"
 }
 
-func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) (e error) {
+func (op createOperation) Run(jirix *jiri.X) (e error) {
 	s := jirix.NewSeq()
 
 	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
@@ -2260,7 +2280,8 @@ type deleteOperation struct {
 func (op deleteOperation) Kind() string {
 	return "delete"
 }
-func (op deleteOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
+
+func (op deleteOperation) Run(jirix *jiri.X) error {
 	s := jirix.NewSeq()
 	if op.gc {
 		// Never delete projects with non-master branches, uncommitted
@@ -2318,12 +2339,16 @@ func (op deleteOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
 // moveOperation represents the relocation of a project.
 type moveOperation struct {
 	commonOperation
+	rebaseUntracked bool
+	rebaseAll       bool
+	snapshot        bool
 }
 
 func (op moveOperation) Kind() string {
 	return "move"
 }
-func (op moveOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
+
+func (op moveOperation) Run(jirix *jiri.X) error {
 	// If it was nested project it might have been moved with its parent project
 	if op.source != op.destination {
 		s := jirix.NewSeq()
@@ -2332,7 +2357,7 @@ func (op moveOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) 
 			return err
 		}
 	}
-	if err := syncProjectMaster(jirix, op.project, rebaseUntracked, snapshot); err != nil {
+	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2364,13 +2389,17 @@ func (op moveOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
 // updateOperation represents the update of a project.
 type updateOperation struct {
 	commonOperation
+	rebaseUntracked bool
+	rebaseAll       bool
+	snapshot        bool
 }
 
 func (op updateOperation) Kind() string {
 	return "update"
 }
-func (op updateOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
-	if err := syncProjectMaster(jirix, op.project, rebaseUntracked, snapshot); err != nil {
+
+func (op updateOperation) Run(jirix *jiri.X) error {
+	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2394,7 +2423,7 @@ func (op nullOperation) Kind() string {
 	return "null"
 }
 
-func (op nullOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
+func (op nullOperation) Run(jirix *jiri.X) error {
 	return writeMetadata(jirix, op.project, op.project.Path)
 }
 
@@ -2455,7 +2484,7 @@ func (ops operations) Swap(i, j int) {
 // system and manifest file respectively) and outputs a collection of
 // operations that describe the actions needed to update the target
 // projects.
-func computeOperations(localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, gc bool, snapshot bool) operations {
+func computeOperations(localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, gc, rebaseUntracked, rebaseAll, snapshot bool) operations {
 	result := operations{}
 	allProjects := map[ProjectKey]bool{}
 	for _, p := range localProjects {
@@ -2476,13 +2505,13 @@ func computeOperations(localProjects, remoteProjects Projects, states map[Projec
 		if s, ok := states[key]; ok {
 			state = s
 		}
-		result = append(result, computeOp(local, remote, state, gc, snapshot))
+		result = append(result, computeOp(local, remote, state, gc, rebaseUntracked, rebaseAll, snapshot))
 	}
 	sort.Sort(result)
 	return result
 }
 
-func computeOp(local, remote *Project, state *ProjectState, gc bool, snapshot bool) operation {
+func computeOp(local, remote *Project, state *ProjectState, gc, rebaseUntracked, rebaseAll, snapshot bool) operation {
 	switch {
 	case local == nil && remote != nil:
 		return createOperation{commonOperation{
@@ -2497,6 +2526,17 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool, snapshot bo
 			source:      local.Path,
 		}, gc}
 	case local != nil && remote != nil:
+		localBranchesNeedUpdating := false
+		if !snapshot {
+			for _, branch := range state.Branches {
+				if branch.Tracking != nil {
+					if branch.Revision != branch.Tracking.Revision {
+						localBranchesNeedUpdating = true
+						break
+					}
+				}
+			}
+		}
 		switch {
 		case local.Path != remote.Path:
 			// moveOperation also does an update, so we don't need to check the
@@ -2505,30 +2545,35 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool, snapshot bo
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
-			}}
+				state:       *state,
+			}, rebaseUntracked, rebaseAll, snapshot}
 		case snapshot && local.Revision != remote.Revision:
 			return updateOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
-			}}
-		case state.CurrentBranch.Name == "" && local.Revision == remote.Revision:
-			return nullOperation{commonOperation{
-				destination: remote.Path,
-				project:     *remote,
-				source:      local.Path,
-			}}
-		case state.CurrentBranch.Tracking != nil && local.Revision == state.CurrentBranch.Tracking.Revision:
-			return nullOperation{commonOperation{
-				destination: remote.Path,
-				project:     *remote,
-				source:      local.Path,
-			}}
-		default:
+				state:       *state,
+			}, rebaseUntracked, rebaseAll, snapshot}
+		case localBranchesNeedUpdating || (state.CurrentBranch.Name == "" && local.Revision != remote.Revision):
 			return updateOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
+				state:       *state,
+			}, rebaseUntracked, rebaseAll, snapshot}
+		case state.CurrentBranch.Tracking == nil && local.Revision != remote.Revision:
+			return updateOperation{commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      local.Path,
+				state:       *state,
+			}, rebaseUntracked, rebaseAll, snapshot}
+		default:
+			return nullOperation{commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      local.Path,
+				state:       *state,
 			}}
 		}
 	default:
