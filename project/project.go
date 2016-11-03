@@ -1147,17 +1147,8 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 }
 
 func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
-
 	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
-	changes, err := git.HasUncommittedChanges()
-	if err != nil {
-		return false, err
-	}
-	if changes {
-		return false, nil
-	}
-	err = git.Rebase(branch)
-	if err != nil {
+	if err := git.Rebase(branch); err != nil {
 		err := git.RebaseAbort()
 		return false, err
 	}
@@ -1166,54 +1157,74 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 
 // syncProjectMaster checks out latest detached head if project is on one
 // else it rebases current branch onto its tracking branch
-func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) error {
+func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, showUpdateLogs bool) error {
 	s := jirix.NewSeq()
-	git := gitutil.New(s, gitutil.RootDirOpt(project.Path))
-	if !git.IsOnBranch() {
-		if changes, err := git.HasUncommittedChanges(); err != nil {
-			return err
-		} else if changes {
-			line1 := fmt.Sprintf("Note: %q(%v) contains uncommited changes.", project.Name, project.Path)
-			line2 := fmt.Sprintf("Commit or discard the changes and try again.")
-			s.Verbose(true).Output([]string{line1, line2})
-			return nil
-		}
+	// Verbose(true) is making verbose=true permanent, need new sequence for git
+	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+
+	if uncommitted, err := git.HasUncommittedChanges(); err != nil {
+		return err
+	} else if uncommitted {
+		line1 := fmt.Sprintf("Note: Project %q(%v) contains uncommited changes.", project.Name, project.Path)
+		line2 := fmt.Sprintf("Commit or discard the changes and try again.")
+		s.Verbose(true).Output([]string{line1, line2})
+		return nil
+	}
+
+	if state.CurrentBranch.Name == "" { // detached head
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
 			revision, err2 := getHeadRevision(jirix, project)
 			if err2 != nil {
 				return err2
 			}
-			line1 := fmt.Sprintf("Note: For project (%v), not able to cheackout latest, error: %v", project.Name, err)
+			line1 := fmt.Sprintf("Note: For project (%v), not able to checkout latest, error: %v", project.Name, err)
 			line2 := fmt.Sprintf("Please checkout manually to: %v, use 'git checkout --detach %v'", err, revision, revision)
 			s.Verbose(true).Output([]string{line1, line2})
 		}
-		return nil
+		// This should run after program exit so that detached head can be restored
+		defer func() {
+			if err := checkoutHeadRevision(jirix, project, false); err != nil {
+				// This should not happen, panic
+				panic(fmt.Sprintf("for project %q, something went very wrong", project.Name, err))
+			}
+		}()
 	} else {
-		branch, err := git.CurrentBranchName()
-		if err != nil {
-			return err
-		}
-		trackingBranch, err := git.TrackingBranchName()
-		if err != nil {
-			return err
-		}
-		if trackingBranch != "" {
-			rebaseSuccess, err := tryRebase(jirix, project, trackingBranch)
+		// This should run after program exit so that original branch can be restored
+		defer func() {
+			if err := git.CheckoutBranch(state.CurrentBranch.Name); err != nil {
+				// This should not happen, panic
+				panic(fmt.Sprintf("for project %q, something went very wrong", project.Name, err))
+			}
+		}()
+	}
+	for _, branch := range state.Branches {
+		if branch.Tracking != nil { // tracked branch
+			if branch.Revision == branch.Tracking.Revision {
+				continue
+			}
+
+			if err := git.CheckoutBranch(branch.Name); err != nil {
+				s.Verbose(true).Output([]string{
+					fmt.Sprintf("NOTE: For project (%v), not able to rebase your local branch %q onto %q.", project.Name, branch.Name, branch.Tracking.Name),
+					"Please do it manually.",
+				})
+				continue
+			}
+			rebaseSuccess, err := tryRebase(jirix, project, branch.Tracking.Name)
 			if err != nil {
 				return err
 			}
 			if rebaseSuccess {
 				s.Verbose(showUpdateLogs).Output([]string{
-					fmt.Sprintf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch),
+					fmt.Sprintf("NOTE: For project (%v), rebased your local branch %q on %q", project.Name, branch.Name, branch.Tracking.Name),
 				})
 			} else {
 				s.Verbose(true).Output([]string{
-					fmt.Sprintf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch),
+					fmt.Sprintf("NOTE: For project (%v), not able to rebase your local branch %q onto %q.", project.Name, branch.Name, branch.Tracking.Name),
 					"Please do it manually.",
 				})
 			}
-			return nil
-		} else {
+		} else if state.CurrentBranch.Name == branch.Name || showUpdateLogs { // untracked branch, and only provide message for current branch if -verbose not passed
 			revision, err2 := getHeadRevision(jirix, project)
 			if err2 != nil {
 				return err2
@@ -1227,12 +1238,12 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 				// Just use the full path if an error occurred.
 				relativePath = project.Path
 			}
-			line1 := fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
+			line1 := fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch.Name)
 			line2 := fmt.Sprintf("Not rebasing it. To rebase it run 'git -C %s rebase %v'", relativePath, revision)
 			s.Verbose(true).Output([]string{line1, line2})
 		}
-		return nil
 	}
+	return nil
 }
 
 // newManifestLoader returns a new manifest loader.  The localProjects are used
@@ -1877,6 +1888,8 @@ type commonOperation struct {
 	destination string
 	// source is the current project path.
 	source string
+	// state is the state of the local project
+	state ProjectState
 }
 
 func (op commonOperation) Project() Project {
@@ -2038,7 +2051,7 @@ func (op moveOperation) Run(jirix *jiri.X, showUpdateLogs bool) error {
 	if err := s.MkdirAll(path, perm).Rename(op.source, op.destination).Done(); err != nil {
 		return err
 	}
-	if err := syncProjectMaster(jirix, op.project, showUpdateLogs); err != nil {
+	if err := syncProjectMaster(jirix, op.project, op.state, showUpdateLogs); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2076,7 +2089,7 @@ func (op updateOperation) Kind() string {
 	return "update"
 }
 func (op updateOperation) Run(jirix *jiri.X, showUpdateLogs bool) error {
-	if err := syncProjectMaster(jirix, op.project, showUpdateLogs); err != nil {
+	if err := syncProjectMaster(jirix, op.project, op.state, showUpdateLogs); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2203,6 +2216,15 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool) operation {
 			source:      local.Path,
 		}, gc}
 	case local != nil && remote != nil:
+		localBranchesNeedUpdating := false
+		for _, branch := range state.Branches {
+			if branch.Tracking != nil {
+				if branch.Revision != branch.Tracking.Revision {
+					localBranchesNeedUpdating = true
+					break
+				}
+			}
+		}
 		switch {
 		case local.Path != remote.Path:
 			// moveOperation also does an update, so we don't need to check the
@@ -2211,21 +2233,24 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool) operation {
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
+				state:       *state,
 			}}
-		case state.CurrentBranch.Name == "" && local.Revision == remote.Revision:
-			return nullOperation{commonOperation{
+		case localBranchesNeedUpdating || (state.CurrentBranch.Name == "" && local.Revision != remote.Revision):
+			return updateOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
+				state:       *state,
 			}}
-		case state.CurrentBranch.Tracking != nil && local.Revision == state.CurrentBranch.Tracking.Revision:
-			return nullOperation{commonOperation{
+		case state.CurrentBranch.Tracking == nil && local.Revision != remote.Revision:
+			return updateOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
+				state:       *state,
 			}}
 		default:
-			return updateOperation{commonOperation{
+			return nullOperation{commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
