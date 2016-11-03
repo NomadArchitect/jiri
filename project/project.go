@@ -1236,9 +1236,11 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 			if err2 != nil {
 				return err2
 			}
-			line1 := fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
-			line2 := fmt.Sprintf("Not rebasing it. To rebase it run 'git rebase %v'", revision)
-			s.Verbose(true).Output([]string{line1, line2})
+			s.Verbose(true).Output([]string{
+				fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch),
+				"Not rebasing it. To rebase it manually run:",
+				fmt.Sprintf("(cd %v; git rebase %v)", project.Path, revision),
+			})
 		}
 		return nil
 	}
