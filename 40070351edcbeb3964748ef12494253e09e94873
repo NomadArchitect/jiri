@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be1cbe3_215488de",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1736,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-07T19:44:11Z",
+      "side": 1,
+      "message": "Timeout is technically an error so it should be handled as an error case.",
+      "revId": "40070351edcbeb3964748ef12494253e09e94873",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
