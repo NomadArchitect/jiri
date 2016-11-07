@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be1cbe3_3240587c",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1737,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-07T23:02:42Z",
+      "side": 1,
+      "message": "Why do you need this check here? Wouldn\u0027t the output now get duplicated since you\u0027re dumping the output in the error case as well?",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4be1cbe3_924f6ca9",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-07T23:02:42Z",
+      "side": 1,
+      "message": "Do not shout at the user, use something more akin to: \"Timeout while executing hook\" (it\u0027d be great if we could also print which hook timedouted, but that can be done in the future).",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4be1cbe3_522ec4c4",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1746,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-07T23:02:42Z",
+      "side": 1,
+      "message": "Why are you using the extra buffers? Why not simply do io.Copy(os.Stdout, out.outReader)?",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
