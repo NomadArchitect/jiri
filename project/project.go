@@ -1198,6 +1198,14 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, showU
 			}
 		}()
 	}
+	headRevision, err := getHeadRevision(jirix, project)
+	if err != nil {
+		return err
+	}
+	branchesContainingHead, err := git.GetBranchesContaining(headRevision)
+	if err != nil {
+		return err
+	}
 	for _, branch := range state.Branches {
 		if branch.TrackingBranch != "" { // tracked branch
 			if branch.Revision == branch.TrackingBranchRev {
@@ -1226,9 +1234,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, showU
 				})
 			}
 		} else if state.CurrentBranch.Name == branch.Name || showUpdateLogs { // untracked branch, and only provide message for current branch if -verbose not passed
-			revision, err2 := getHeadRevision(jirix, project)
-			if err2 != nil {
-				return err2
+			if branchesContainingHead[branch.Name] {
+				continue
 			}
 			cwd, err := os.Getwd()
 			if err != nil {
@@ -1239,9 +1246,10 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, showU
 				// Just use the full path if an error occurred.
 				relativePath = project.Path
 			}
-			line1 := fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
-			line2 := fmt.Sprintf("Not rebasing it. To rebase it run 'git -C %s rebase %v'", relativePath, revision)
-			s.Verbose(true).Output([]string{line1, line2})
+			s.Verbose(true).Output([]string{
+				fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch.Name),
+				fmt.Sprintf("Not rebasing it. To rebase it run 'git -C %s rebase %v'", relativePath, headRevision),
+			})
 		}
 	}
 	return nil
