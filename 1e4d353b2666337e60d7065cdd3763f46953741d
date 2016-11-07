@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4be1cbe3_32a138e5",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1737,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-07T23:22:33Z",
+      "side": 1,
+      "message": "if i don\u0027t use this then output would be duplicated if user used -verbose",
+      "parentUuid": "4be1cbe3_3240587c",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4be1cbe3_924f6ca9",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4be1cbe3_52596413",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-07T23:22:33Z",
+      "side": 1,
+      "message": "Done. Will do second part in future",
+      "parentUuid": "4be1cbe3_924f6ca9",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4be1cbe3_522ec4c4",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2016-11-07T23:02:42Z",
       "side": 1,
       "message": "Why are you using the extra buffers? Why not simply do io.Copy(os.Stdout, out.outReader)?",
+      "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4be1cbe3_725e60fe",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1746,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-07T23:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4be1cbe3_522ec4c4",
       "revId": "1e4d353b2666337e60d7065cdd3763f46953741d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
