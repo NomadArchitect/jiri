@@ -493,6 +493,20 @@ func (g *Git) GetBranches(args ...string) ([]string, string, error) {
 	return branches, current, nil
 }
 
+// GetBranchesContaining returns a slice of the local branches
+// which contain the commit passed to the function
+func (g *Git) GetBranchesContaining(commit string) (map[string]bool, error) {
+	branches, _, err := g.GetBranches("--contains", commit)
+	if err != nil {
+		return nil, err
+	}
+	m := make(map[string]bool)
+	for _, branch := range branches {
+		m[branch] = true
+	}
+	return m, nil
+}
+
 // HasUncommittedChanges checks whether the current branch contains
 // any uncommitted changes.
 func (g *Git) HasUncommittedChanges() (bool, error) {
