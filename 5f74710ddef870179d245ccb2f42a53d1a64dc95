@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0be7d3fb_17b5fc81",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1555,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-08T22:36:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4be1cbe3_4f453264",
+      "revId": "5f74710ddef870179d245ccb2f42a53d1a64dc95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4be1cbe3_ef2c3eb1",
         "filename": "project/project.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-08T20:50:11Z",
       "side": 1,
       "message": "Would this ever happen? If the repository uses cache, it should have the reference path set in which case it\u0027s going to be updated in the loop above.",
+      "revId": "5f74710ddef870179d245ccb2f42a53d1a64dc95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8bd3c31c_b1a0dfde",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-08T22:36:22Z",
+      "side": 1,
+      "message": "This can happen when we have a new project pointing to old cache which was not referenced by any of the local projects. For eg there are multiple manifest, one is experimental and one is funchsia. Now in experimental user creates a project and uses cache to sync, at later stage decided to move that project to fuchsia, then this case will happen.",
+      "parentUuid": "4be1cbe3_ef2c3eb1",
       "revId": "5f74710ddef870179d245ccb2f42a53d1a64dc95",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
