@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be1cbe3_872bac98",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-08T01:11:49Z",
+      "side": 1,
+      "message": "nit: \"contains the given commit\"?",
+      "revId": "36e4ffa21801c1a61b9beda04cc21907d5a61d5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4be1cbe3_7849e12c",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-08T01:11:49Z",
+      "side": 1,
+      "message": "This fetch could be done before you enter the for loop and you can avoid the extra check afterwards.",
+      "revId": "36e4ffa21801c1a61b9beda04cc21907d5a61d5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
