@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be1cbe3_4f453264",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1555,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-08T20:50:11Z",
+      "side": 1,
+      "message": "Nit: You should be more consistent with the comments placement, sometimes you put them onto same line, sometimes on the new line, sometimes both. AFAIK, it\u0027s a lot more common in Go to put comments onto new lines.",
+      "revId": "5f74710ddef870179d245ccb2f42a53d1a64dc95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4be1cbe3_ef2c3eb1",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-08T20:50:11Z",
+      "side": 1,
+      "message": "Would this ever happen? If the repository uses cache, it should have the reference path set in which case it\u0027s going to be updated in the loop above.",
+      "revId": "5f74710ddef870179d245ccb2f42a53d1a64dc95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
