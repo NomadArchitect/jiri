@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb83fb53_06a68afc",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "nit: 2016, Fuchsia Authors",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_46b9f2a9",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "Go style uses camelCase/PascalCase, not underscores, also these variables are private in this package, so there\u0027s no need to prefix them.",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_86a6fa96",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "This doesn\u0027t really need a comment.",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_e6e6e6d4",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "nit: \"separated\"",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_46d33261",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "This could be just \"branch\".",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_66dbd603",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "nit: \"separated\"",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_e6a026e3",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "I\u0027d keep just the \"topic\" flag, either you set it or there won\u0027t be any topic (at least for now).",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_a6c1be90",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T22:52:17Z",
+      "side": 1,
+      "message": "nit: no empty newlines",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
