@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "abc7a780_f959d7a6",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T01:26:30Z",
+      "side": 1,
+      "message": "update this?",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 56
+      },
+      "revId": "85077e36bd62f32f11a5363ad6c48c9d07bab7db",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bad4bb0_de9ba5bc",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T01:26:30Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 418,
+        "endChar": 70
+      },
+      "revId": "85077e36bd62f32f11a5363ad6c48c9d07bab7db",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}

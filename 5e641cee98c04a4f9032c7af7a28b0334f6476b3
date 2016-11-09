@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8bb823f7_d8a84d31",
+        "filename": "cmd/jiri/snapshot.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T01:26:30Z",
+      "side": 0,
+      "message": "remove if not using?",
+      "range": {
+        "startLine": 27,
+        "startChar": 1,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "5e641cee98c04a4f9032c7af7a28b0334f6476b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
