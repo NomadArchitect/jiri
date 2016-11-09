@@ -22,6 +22,24 @@
       "revId": "5e641cee98c04a4f9032c7af7a28b0334f6476b3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bad4bb0_fea0a1e2",
+        "filename": "cmd/jiri/snapshot.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-09T01:32:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "8bb823f7_d8a84d31",
+      "revId": "5e641cee98c04a4f9032c7af7a28b0334f6476b3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
