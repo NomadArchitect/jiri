@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cb83fb53_c67ba266",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_06a68afc",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb83fb53_46b9f2a9",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-09T22:52:17Z",
       "side": 1,
       "message": "Go style uses camelCase/PascalCase, not underscores, also these variables are private in this package, so there\u0027s no need to prefix them.",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_66fe76c0",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "they are in main, same as jiri cl, so had to prefix them, plan to remove them once we delete jiri cl.",
+      "parentUuid": "cb83fb53_46b9f2a9",
       "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "cb83fb53_86e4ba28",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_86a6fa96",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb83fb53_e6e6e6d4",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2016-11-09T22:52:17Z",
       "side": 1,
       "message": "nit: \"separated\"",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_26e14e17",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_e6e6e6d4",
       "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "cb83fb53_c6f162e9",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "I plan to add flag branch for multipart upload when user runs it from root",
+      "parentUuid": "cb83fb53_46d33261",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb83fb53_66dbd603",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2016-11-09T22:52:17Z",
       "side": 1,
       "message": "nit: \"separated\"",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_46ded250",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_66dbd603",
       "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "cb83fb53_466fb2a9",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_e6a026e3",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb83fb53_a6c1be90",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2016-11-09T22:52:17Z",
       "side": 1,
       "message": "nit: no empty newlines",
+      "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb83fb53_06820a25",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-09T23:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb83fb53_a6c1be90",
       "revId": "5d3dfb7cf35cc589c90b766da78fc77e43d796f1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
