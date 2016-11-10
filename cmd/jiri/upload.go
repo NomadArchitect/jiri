@@ -24,6 +24,7 @@ var (
 	uploadReviewersFlag    string
 	uploadTopicFlag        string
 	uploadVerifyFlag       bool
+	uploadRebase           bool
 )
 
 var cmdUpload = &cmdline.Command{
@@ -41,11 +42,16 @@ func init() {
 	cmdUpload.Flags.StringVar(&uploadReviewersFlag, "r", "", `Comma-separated list of emails or LDAPs to request review.`)
 	cmdUpload.Flags.StringVar(&uploadTopicFlag, "topic", "", `CL topic.`)
 	cmdUpload.Flags.BoolVar(&uploadVerifyFlag, "verify", true, `Run pre-push git hooks.`)
+	cmdUpload.Flags.BoolVar(&uploadRebase, "rebase", false, `Run rebase before pushing.`)
 }
 
 // runUpload is a wrapper that pushes the changes to gerrit for review.
 func runUpload(jirix *jiri.X, _ []string) error {
-	git := gitutil.New(jirix.NewSeq())
+	p, err := currentProject(jirix)
+	if err != nil {
+		return err
+	}
+	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(p.Path))
 	if !git.IsOnBranch() {
 		return fmt.Errorf("The project is not on any branch.")
 	}
@@ -56,9 +62,12 @@ func runUpload(jirix *jiri.X, _ []string) error {
 	if remoteBranch == "" {
 		return fmt.Errorf("Current branch is un-tracked or tracks a local un-tracked branch.")
 	}
-	p, err := currentProject(jirix)
-	if err != nil {
-		return err
+	if uploadRebase {
+		if changes, err := git.HasUncommittedChanges(); err != nil {
+			return err
+		} else if changes {
+			return fmt.Errorf("project has uncommited changes, please commit them or stash them. Cannot rebase before pushing.")
+		}
 	}
 
 	host := uploadHostFlag
@@ -98,6 +107,23 @@ func runUpload(jirix *jiri.X, _ []string) error {
 	if opts.Presubmit == gerrit.PresubmitTestType("") {
 		opts.Presubmit = gerrit.PresubmitTestTypeAll
 	}
+
+	if uploadRebase {
+		if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+			return err
+		}
+		trackingBranch, err := git.TrackingBranchName()
+		if err != nil {
+			return err
+		}
+		if err = git.Rebase(trackingBranch); err != nil {
+			if err := git.RebaseAbort(); err != nil {
+				return err
+			}
+			return fmt.Errorf("Not able to rebase the branch to %v, please rebase manually", trackingBranch)
+		}
+	}
+
 	if err := gerrit.Push(jirix.NewSeq(), opts); err != nil {
 		return gerritError(err.Error())
 	}
