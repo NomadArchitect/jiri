@@ -24,6 +24,7 @@ var (
 	uploadReviewersFlag    string
 	uploadTopicFlag        string
 	uploadVerifyFlag       bool
+	uploadRebase           bool
 )
 
 var cmdUpload = &cmdline.Command{
@@ -42,12 +43,20 @@ func init() {
 	cmdUpload.Flags.StringVar(&uploadReviewersFlag, "r", "", `Comma-separated list of emails or LDAPs to request review.`)
 	cmdUpload.Flags.StringVar(&uploadTopicFlag, "topic", "", `CL topic.`)
 	cmdUpload.Flags.BoolVar(&uploadVerifyFlag, "verify", true, `Run pre-push git hooks.`)
+	cmdUpload.Flags.BoolVar(&uploadRebase, "rebase", false, `Run rebase before pushing.`)
 }
 
 // runUpload is a wrapper that sets up and runs a review instance across
 // multiple projects.
 func runUpload(jirix *jiri.X, _ []string) error {
 	git := gitutil.New(jirix.NewSeq())
+	if uploadRebase {
+		if changes, err := git.HasUncommittedChanges(); err != nil {
+			return err
+		} else if changes {
+			return fmt.Errorf("project has uncommited changes, please commit them or stash them. Cannot rebase before pushing.")
+		}
+	}
 	remoteBranch := "master"
 	if uploadRemoteBranchFlag != "" {
 		remoteBranch = uploadRemoteBranchFlag
@@ -109,6 +118,16 @@ func runUpload(jirix *jiri.X, _ []string) error {
 	if opts.Presubmit == gerrit.PresubmitTestType("") {
 		opts.Presubmit = gerrit.PresubmitTestTypeAll // use gerrit.PresubmitTestTypeAll as the default
 	}
+
+	if uploadRebase {
+		if err = git.Rebase("origin/" + remoteBranch); err != nil {
+			if err := git.RebaseAbort(); err != nil {
+				return err
+			}
+			return fmt.Errorf("Not able to rebase the branch to origin/%v, please rebase manually", remoteBranch)
+		}
+	}
+
 	if err := gerrit.Push(jirix.NewSeq(), opts); err != nil {
 		return gerritError(err.Error())
 	}
