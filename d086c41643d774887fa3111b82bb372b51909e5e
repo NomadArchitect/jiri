@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91cbcd_24fed6be",
+        "filename": "cmd/jiri/cl.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-10T20:55:50Z",
+      "side": 1,
+      "message": "delete this?",
+      "range": {
+        "startLine": 1433,
+        "startChar": 0,
+        "endLine": 1513,
+        "endChar": 1
+      },
+      "revId": "d086c41643d774887fa3111b82bb372b51909e5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
