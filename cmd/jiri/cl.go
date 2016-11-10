@@ -1430,53 +1430,6 @@ deleting the branch even if it contains unmerged changes).
 	ArgsLong: "<change> is a change ID or a full reference.",
 }
 
-// patchProject changes directory into the project directory, checks out the given
-// change, then cds back to the original directory.
-func patchProject(jirix *jiri.X, project project.Project, ref string) error {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	if err = os.Chdir(project.Path); err != nil {
-		return err
-	}
-
-	var branch string
-	if branchFlag != "" {
-		branch = branchFlag
-	} else {
-		cl, ps, err := gerrit.ParseRefString(ref)
-		if err != nil {
-			return err
-		}
-		branch = fmt.Sprintf("change/%v/%v", cl, ps)
-	}
-
-	git := gitutil.New(jirix.NewSeq())
-	if git.BranchExists(branch) {
-		if deleteFlag {
-			if err := git.CheckoutBranch("origin/master"); err != nil {
-				return err
-			}
-			if err := git.DeleteBranch(branch, gitutil.ForceOpt(forceFlag)); err != nil {
-				return err
-			}
-		} else {
-			return fmt.Errorf("branch %v already exists in project %q", branch, project.Name)
-		}
-	}
-	if err := git.CreateAndCheckoutBranch(branch); err != nil {
-		return err
-	}
-	if err := git.Pull(project.Remote, ref); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func patchCL(jirix *jiri.X, arg string) (e error) {
 	cl, ps, err := gerrit.ParseRefString(arg)
 	if err != nil {
