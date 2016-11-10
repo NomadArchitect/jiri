@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91cbcd_c116046e",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T20:14:09Z",
+      "side": 1,
+      "message": "nit: This is not true, yet (this doesn\u0027t yet support multiple projects).",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_a111f878",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T20:14:09Z",
+      "side": 1,
+      "message": "nit: Make this a properly capitalized sentence.",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_e148602c",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T20:14:09Z",
+      "side": 1,
+      "message": "This assumes that the remote is named \"origin\", but that doesn\u0027t necessarily have to be true.",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_0121ccc9",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T20:14:09Z",
+      "side": 1,
+      "message": "nit: This comment is not really needed (it just describes what the code does).",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
