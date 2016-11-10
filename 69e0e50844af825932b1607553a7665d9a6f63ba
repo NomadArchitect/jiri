@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4b91cbcd_24b6d6df",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-10T21:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b91cbcd_c116046e",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b91cbcd_a111f878",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-10T20:14:09Z",
       "side": 1,
       "message": "nit: Make this a properly capitalized sentence.",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_44b3e2ee",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-10T21:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b91cbcd_a111f878",
       "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "4b91cbcd_64c0de37",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-10T21:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b91cbcd_e148602c",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b91cbcd_0121ccc9",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2016-11-10T20:14:09Z",
       "side": 1,
       "message": "nit: This comment is not really needed (it just describes what the code does).",
+      "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_c4aff27d",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-10T21:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b91cbcd_0121ccc9",
       "revId": "69e0e50844af825932b1607553a7665d9a6f63ba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
