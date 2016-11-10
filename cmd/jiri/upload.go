@@ -25,6 +25,7 @@ var (
 	uploadTopicFlag        string
 	uploadVerifyFlag       bool
 	uploadRemoteNameFlag   string
+	uploadRebase           bool
 )
 
 var cmdUpload = &cmdline.Command{
@@ -44,14 +45,24 @@ func init() {
 	cmdUpload.Flags.StringVar(&uploadTopicFlag, "topic", "", `CL topic.`)
 	cmdUpload.Flags.BoolVar(&uploadVerifyFlag, "verify", true, `Run pre-push git hooks.`)
 	cmdUpload.Flags.StringVar(&uploadRemoteNameFlag, "remote-name", "origin", `remote name for your git repo`)
+	cmdUpload.Flags.BoolVar(&uploadRebase, "rebase", false, `Run rebase before pushing.`)
 }
 
 // runUpload is a wrapper that pushes the changes to gerrit for review.
 func runUpload(jirix *jiri.X, _ []string) error {
 	git := gitutil.New(jirix.NewSeq())
+	if uploadRebase {
+		if changes, err := git.HasUncommittedChanges(); err != nil {
+			return err
+		} else if changes {
+			return fmt.Errorf("project has uncommited changes, please commit them or stash them. Cannot rebase before pushing.")
+		}
+	}
 	remoteBranch := "master"
+	remoteBranchFullName := uploadRemoteBranchFlag + "/master"
 	if uploadRemoteBranchFlag != "" {
 		remoteBranch = uploadRemoteBranchFlag
+		remoteBranchFullName = uploadRemoteBranchFlag + "/" + remoteBranch
 	} else {
 		if git.IsOnBranch() {
 			trackingBranch, err := git.TrackingBranchName()
@@ -59,6 +70,7 @@ func runUpload(jirix *jiri.X, _ []string) error {
 				return err
 			}
 			if trackingBranch != "" {
+				remoteBranchFullName = trackingBranch
 				// Sometimes if user creates a local branch origin/branch
 				// then remote branch is represented as remotes/origin/branch.
 				remoteNameIndex := strings.Index(trackingBranch, uploadRemoteNameFlag+"/")
@@ -110,6 +122,16 @@ func runUpload(jirix *jiri.X, _ []string) error {
 	if opts.Presubmit == gerrit.PresubmitTestType("") {
 		opts.Presubmit = gerrit.PresubmitTestTypeAll
 	}
+
+	if uploadRebase {
+		if err = git.Rebase(remoteBranchFullName); err != nil {
+			if err := git.RebaseAbort(); err != nil {
+				return err
+			}
+			return fmt.Errorf("Not able to rebase the branch to %v, please rebase manually", remoteBranchFullName)
+		}
+	}
+
 	if err := gerrit.Push(jirix.NewSeq(), opts); err != nil {
 		return gerritError(err.Error())
 	}
