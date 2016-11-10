@@ -22,6 +22,24 @@
       "revId": "d086c41643d774887fa3111b82bb372b51909e5e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_640e1ee4",
+        "filename": "cmd/jiri/cl.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T21:02:20Z",
+      "side": 1,
+      "message": "Done; I was originally thinking about keeping this until we get rid of the entire CL command, but nobody is probably using this anyway.",
+      "parentUuid": "4b91cbcd_24fed6be",
+      "revId": "d086c41643d774887fa3111b82bb372b51909e5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
