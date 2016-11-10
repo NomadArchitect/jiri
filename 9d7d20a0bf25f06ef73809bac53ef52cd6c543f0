@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91cbcd_ed2211d7",
+        "filename": "project/state.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-10T23:22:18Z",
+      "side": 1,
+      "message": "We should probably split this into multiple structs:\n\ntype ReferenceState struct {\n  Name string\n  Revision string\n}\n\ntype BranchState struct {\n  *ReferenceState\n  Tracking *Branch\n}\n\nTracking would be nil if there is no tracking branch. We\u0027ll should remove HasGerritMessage since it\u0027s only being used by the old cl command implementation.",
+      "revId": "9d7d20a0bf25f06ef73809bac53ef52cd6c543f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
