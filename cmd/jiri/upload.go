@@ -7,12 +7,14 @@ package main
 import (
 	"fmt"
 	"net/url"
+	"os"
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/gitutil"
+	"fuchsia.googlesource.com/jiri/project"
 )
 
 var (
@@ -24,6 +26,7 @@ var (
 	uploadReviewersFlag    string
 	uploadTopicFlag        string
 	uploadVerifyFlag       bool
+	uploadMultipartFlag    bool
 )
 
 var cmdUpload = &cmdline.Command{
@@ -39,67 +42,117 @@ func init() {
 	cmdUpload.Flags.StringVar(&uploadPresubmitFlag, "presubmit", string(gerrit.PresubmitTestTypeAll),
 		fmt.Sprintf("The type of presubmit tests to run. Valid values: %s.", strings.Join(gerrit.PresubmitTestTypes(), ",")))
 	cmdUpload.Flags.StringVar(&uploadReviewersFlag, "r", "", `Comma-separated list of emails or LDAPs to request review.`)
-	cmdUpload.Flags.StringVar(&uploadTopicFlag, "topic", "", `CL topic.`)
+	cmdUpload.Flags.StringVar(&uploadTopicFlag, "topic", "", `CL topic. Default for multipart CL would be <username>-<branchname>`)
 	cmdUpload.Flags.BoolVar(&uploadVerifyFlag, "verify", true, `Run pre-push git hooks.`)
+	cmdUpload.Flags.BoolVar(&uploadMultipartFlag, "multipart", false, `Send multipart CL.`)
 }
 
 // runUpload is a wrapper that pushes the changes to gerrit for review.
 func runUpload(jirix *jiri.X, _ []string) error {
 	git := gitutil.New(jirix.NewSeq())
 	if !git.IsOnBranch() {
-		return fmt.Errorf("The project is not on any branch.")
+		return fmt.Errorf("Current project is not on any branch.")
 	}
-	remoteBranch, err := git.RemoteBranchName()
-	if err != nil {
-		return err
-	}
-	if remoteBranch == "" {
-		return fmt.Errorf("Current branch is un-tracked or tracks a local un-tracked branch.")
-	}
-	p, err := currentProject(jirix)
+	currentBranch, err := git.CurrentBranchName()
 	if err != nil {
 		return err
 	}
 
-	host := uploadHostFlag
-	if host == "" {
-		if p.GerritHost == "" {
-			return fmt.Errorf("No gerrit host found.  Please use the '--host' flag, or add a 'gerrithost' attribute for project %q.", p.Name)
+	var projectsToProcess []project.Project
+	topic := uploadTopicFlag
+	if uploadMultipartFlag {
+		projects, err := project.LocalProjects(jirix, project.FastScan)
+		if err != nil {
+			return err
 		}
-		host = p.GerritHost
-	}
-	hostUrl, err := url.Parse(host)
-	if err != nil {
-		return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
-	}
-	projectRemoteUrl, err := url.Parse(p.Remote)
-	if err != nil {
-		return fmt.Errorf("invalid project remote: %v", p.Remote, err)
-	}
-	gerritRemote := *hostUrl
-	gerritRemote.Path = projectRemoteUrl.Path
-	opts := gerrit.CLOpts{
-		Ccs:          parseEmails(uploadCcsFlag),
-		Edit:         uploadEditFlag,
-		Host:         hostUrl,
-		Presubmit:    gerrit.PresubmitTestType(uploadPresubmitFlag),
-		RemoteBranch: remoteBranch,
-		Remote:       gerritRemote.String(),
-		Reviewers:    parseEmails(uploadReviewersFlag),
-		Verify:       uploadVerifyFlag,
-		Topic:        uploadTopicFlag,
-	}
-	branch, err := gitutil.New(jirix.NewSeq()).CurrentBranchName()
-	if err != nil {
-		return err
-	}
-	opts.Branch = branch
+		for _, project := range projects {
+			git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+			if git.IsOnBranch() {
+				branch, err := git.CurrentBranchName()
+				if err != nil {
+					return err
+				}
+				if currentBranch == branch {
+					projectsToProcess = append(projectsToProcess, project)
+				}
+			}
+		}
+		if topic == "" {
+			topic = fmt.Sprintf("%s-%s", os.Getenv("USER"), currentBranch) // use <username>-<branchname> as the default
+		}
 
-	if opts.Presubmit == gerrit.PresubmitTestType("") {
-		opts.Presubmit = gerrit.PresubmitTestTypeAll
+	} else {
+		if project, err := currentProject(jirix); err != nil {
+			return err
+		} else {
+			projectsToProcess = append(projectsToProcess, project)
+		}
 	}
-	if err := gerrit.Push(jirix.NewSeq(), opts); err != nil {
-		return gerritError(err.Error())
+	type GerritPushOption struct {
+		project.Project
+		gerrit.CLOpts
+	}
+	var gerritPushOptions []GerritPushOption
+	for _, project := range projectsToProcess {
+		git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+		remoteBranch, err := git.RemoteBranchName()
+		if err != nil {
+			return err
+		}
+		if remoteBranch == "" {
+			return fmt.Errorf("For project %q, current branch is un-tracked or tracks a local un-tracked branch.", project.Name)
+		}
+
+		host := uploadHostFlag
+		if host == "" {
+			if project.GerritHost == "" {
+				return fmt.Errorf("No gerrit host found.  Please use the '--host' flag, or add a 'gerrithost' attribute for project %q.", project.Name)
+			}
+			host = project.GerritHost
+		}
+		hostUrl, err := url.Parse(host)
+		if err != nil {
+			return fmt.Errorf("invalid Gerrit host for project(%v) %q: %v", project.Name, host, err)
+		}
+		projectRemoteUrl, err := url.Parse(project.Remote)
+		if err != nil {
+			return fmt.Errorf("invalid project remote for project(%v): %v", project.Name, project.Remote, err)
+		}
+		gerritRemote := *hostUrl
+		gerritRemote.Path = projectRemoteUrl.Path
+		opts := gerrit.CLOpts{
+			Ccs:          parseEmails(uploadCcsFlag),
+			Edit:         uploadEditFlag,
+			Host:         hostUrl,
+			Presubmit:    gerrit.PresubmitTestType(uploadPresubmitFlag),
+			RemoteBranch: remoteBranch,
+			Remote:       gerritRemote.String(),
+			Reviewers:    parseEmails(uploadReviewersFlag),
+			Verify:       uploadVerifyFlag,
+			Topic:        topic,
+			Branch:       currentBranch,
+		}
+
+		if opts.Presubmit == gerrit.PresubmitTestType("") {
+			opts.Presubmit = gerrit.PresubmitTestTypeAll
+		}
+		gerritPushOptions = append(gerritPushOptions, GerritPushOption{project, opts})
+	}
+	for _, gerritPushOption := range gerritPushOptions {
+		fmt.Printf("Pushing project(%v)\n", gerritPushOption.Project.Name)
+		if err := gerrit.Push(jirix.NewSeq().Dir(gerritPushOption.Project.Path), gerritPushOption.CLOpts); err != nil {
+			if strings.Contains(err.Error(), "(no new changes)") {
+				if gitErr, ok := err.(gitutil.GitError); ok {
+					fmt.Printf("%v", gitErr.Output)
+					fmt.Printf("%v", gitErr.ErrorOutput)
+				} else {
+					return gerritError(err.Error())
+				}
+			} else {
+				return gerritError(err.Error())
+			}
+		}
+		fmt.Println()
 	}
 	return nil
 }
