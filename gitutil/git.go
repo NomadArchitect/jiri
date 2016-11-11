@@ -17,24 +17,24 @@ import (
 )
 
 type GitError struct {
-	args        []string
-	output      string
-	errorOutput string
+	Args        []string
+	Output      string
+	ErrorOutput string
 }
 
 func Error(output, errorOutput string, args ...string) GitError {
 	return GitError{
-		args:        args,
-		output:      output,
-		errorOutput: errorOutput,
+		Args:        args,
+		Output:      output,
+		ErrorOutput: errorOutput,
 	}
 }
 
 func (ge GitError) Error() string {
 	result := "'git "
-	result += strings.Join(ge.args, " ")
+	result += strings.Join(ge.Args, " ")
 	result += "' failed:\n"
-	result += ge.errorOutput
+	result += ge.ErrorOutput
 	return result
 }
 
@@ -748,6 +748,17 @@ func (g *Git) Rebase(upstream string) error {
 
 // RebaseAbort aborts an in-progress rebase operation.
 func (g *Git) RebaseAbort() error {
+	// First check if rebase is in progress
+	path := ".git/rebase-apply"
+	if g.rootDir != "" {
+		path = filepath.Join(g.rootDir, path)
+	}
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
+			return nil // Not in progress return
+		}
+		return err
+	}
 	return g.run("rebase", "--abort")
 }
 
