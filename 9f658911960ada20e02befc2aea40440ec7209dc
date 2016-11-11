@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bc9f7ea_c8626fc6",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-11T01:27:27Z",
+      "side": 1,
+      "message": "Drop the \"Aborting upload\" path, the fact that the command already exits with error is sufficient indication.",
+      "revId": "9f658911960ada20e02befc2aea40440ec7209dc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bc9f7ea_286863a3",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-11T01:27:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "9f658911960ada20e02befc2aea40440ec7209dc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2bc9f7ea_a853b3f6",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-11T01:27:27Z",
+      "side": 1,
+      "message": "I\u0027d just use the tracking branch here directly.",
+      "revId": "9f658911960ada20e02befc2aea40440ec7209dc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
