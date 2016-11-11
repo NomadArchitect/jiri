@@ -16,6 +16,24 @@
       "revId": "5d40f6a80d5e322f2aa1a6b4602ba168e80f99f2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b91cbcd_389fd947",
+        "filename": "gitutil/git.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-11T03:14:25Z",
+      "side": 1,
+      "message": "we get err when branch in untracked",
+      "parentUuid": "4b91cbcd_3891996b",
+      "revId": "5d40f6a80d5e322f2aa1a6b4602ba168e80f99f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
