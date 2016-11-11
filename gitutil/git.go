@@ -17,24 +17,24 @@ import (
 )
 
 type GitError struct {
-	args        []string
-	output      string
-	errorOutput string
+	Args        []string
+	Output      string
+	ErrorOutput string
 }
 
 func Error(output, errorOutput string, args ...string) GitError {
 	return GitError{
-		args:        args,
-		output:      output,
-		errorOutput: errorOutput,
+		Args:        args,
+		Output:      output,
+		ErrorOutput: errorOutput,
 	}
 }
 
 func (ge GitError) Error() string {
 	result := "'git "
-	result += strings.Join(ge.args, " ")
+	result += strings.Join(ge.Args, " ")
 	result += "' failed:\n"
-	result += ge.errorOutput
+	result += ge.ErrorOutput
 	return result
 }
 
