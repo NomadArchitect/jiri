@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91cbcd_3891996b",
+        "filename": "gitutil/git.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-11T02:44:03Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you return an err if it\u0027s not nil?",
+      "revId": "5d40f6a80d5e322f2aa1a6b4602ba168e80f99f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
