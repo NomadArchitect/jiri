@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b91cbcd_33db7a04",
+        "filename": "project/state.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-12T06:06:21Z",
+      "side": 1,
+      "message": "nit: I\u0027d probably use just Tracking because otherwise you get train invocations like foo.CurrentBranch.TrackingBranch which looks weird.",
+      "revId": "3240bf3c5898cd99680a804383983fa0d0128182",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
