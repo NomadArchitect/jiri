@@ -10,6 +10,7 @@ import (
 	"os"
 
 	"fuchsia.googlesource.com/jiri/gerrit"
+	"fuchsia.googlesource.com/jiri/jirilog"
 	"fuchsia.googlesource.com/jiri/jenkins"
 	"fuchsia.googlesource.com/jiri/runutil"
 	"fuchsia.googlesource.com/jiri/cmdline"
@@ -38,6 +39,7 @@ type ContextOpts struct {
 
 // newContextOpts is the ContextOpts factory.
 func newContextOpts() *ContextOpts {
+	verbose := jirilog.AllVerboseFlag || jirilog.TraceVerboseFlag || jirilog.DebugVerboseFlag
 	return &ContextOpts{
 		Color:    &ColorFlag,
 		Env:      map[string]string{},
@@ -45,7 +47,7 @@ func newContextOpts() *ContextOpts {
 		Stdin:    os.Stdin,
 		Stdout:   os.Stdout,
 		Stderr:   os.Stderr,
-		Verbose:  &VerboseFlag,
+		Verbose:  &verbose,
 		Timer:    nil,
 	}
 }
