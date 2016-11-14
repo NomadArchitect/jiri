@@ -17,7 +17,6 @@ var Name string = ""
 var (
 	// Flags for running commands.
 	ColorFlag   bool
-	VerboseFlag bool
 
 	// Flags for working with projects.
 	ManifestFlag string
@@ -26,7 +25,6 @@ var (
 // InitializeRunFlags initializes flags for running commands.
 func InitializeRunFlags(flags *flag.FlagSet) {
 	flags.BoolVar(&ColorFlag, "color", true, "Use color to format output.")
-	flags.BoolVar(&VerboseFlag, "v", false, "Print verbose output.")
 }
 
 // InitializeRunFlags initializes flags for working with projects.
