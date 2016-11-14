@@ -9,11 +9,12 @@ import (
 	"net/url"
 	"os"
 
-	"fuchsia.googlesource.com/jiri/gerrit"
-	"fuchsia.googlesource.com/jiri/jenkins"
-	"fuchsia.googlesource.com/jiri/runutil"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/envvar"
+	"fuchsia.googlesource.com/jiri/gerrit"
+	"fuchsia.googlesource.com/jiri/jenkins"
+	"fuchsia.googlesource.com/jiri/log"
+	"fuchsia.googlesource.com/jiri/runutil"
 	"fuchsia.googlesource.com/jiri/timing"
 )
 
@@ -38,6 +39,7 @@ type ContextOpts struct {
 
 // newContextOpts is the ContextOpts factory.
 func newContextOpts() *ContextOpts {
+	verbose := log.AllVerboseFlag || log.TraceVerboseFlag
 	return &ContextOpts{
 		Color:    &ColorFlag,
 		Env:      map[string]string{},
@@ -45,7 +47,7 @@ func newContextOpts() *ContextOpts {
 		Stdin:    os.Stdin,
 		Stdout:   os.Stdout,
 		Stderr:   os.Stderr,
-		Verbose:  &VerboseFlag,
+		Verbose:  &verbose,
 		Timer:    nil,
 	}
 }

@@ -11,12 +11,14 @@ import (
 	"testing"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/tool"
 )
 
 // NewX is similar to jiri.NewX, but is meant for usage in a testing environment.
 func NewX(t *testing.T) (*jiri.X, func()) {
 	ctx := tool.NewDefaultContext()
+	log.InitializeGlobalLogger()
 	root, err := ctx.NewSeq().TempDir("", "")
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
