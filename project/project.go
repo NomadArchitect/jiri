@@ -23,6 +23,7 @@ import (
 	"fuchsia.googlesource.com/jiri/collect"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/googlesource"
+	"fuchsia.googlesource.com/jiri/jirilog"
 	"fuchsia.googlesource.com/jiri/runutil"
 )
 
@@ -46,7 +47,7 @@ type Manifest struct {
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
 	Hooks        []Hook        `xml:"hooks>hook"`
-	XMLName      struct{} `xml:"manifest"`
+	XMLName      struct{}      `xml:"manifest"`
 }
 
 // ManifestFromBytes returns a manifest parsed from data, with defaults filled
@@ -917,8 +918,7 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
 func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
-	s := jirix.NewSeq()
-	s.Verbose(true).Output([]string{"Updating all projects"})
+	jirilog.GetLogger().Info.Println("Updating all projects")
 
 	updateFn := func(scanMode ScanMode) error {
 		jirix.TimerPush(fmt.Sprintf("update universe: %s", scanMode))
@@ -1082,14 +1082,11 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) error {
 			return err
 		}
 		if path != project.Path {
-			s := jirix.NewSeq()
-			lines := []string{
-				fmt.Sprintf("NOTE: project %v has path %v ", project.Name, project.Path),
-				fmt.Sprintf("but was found in %v.", path),
-				"jiri will treat it as a stale project. To remove this warning",
-				"please delete this or move it out of your root folder",
-			}
-			s.Verbose(true).Output(lines)
+			l := jirilog.GetLogger()
+			l.Info.Printf("NOTE: project %v has path %v\n", project.Name, project.Path)
+			l.Info.Printf("but was found in %v.\n", path)
+			l.Info.Println("jiri will treat it as a stale project. To remove this warning")
+			l.Info.Println("please delete this or move it out of your root folder")
 			return nil
 		}
 		if p, ok := projects[project.Key()]; ok {
@@ -1169,13 +1166,13 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) error {
 	s := jirix.NewSeq()
 	git := gitutil.New(s, gitutil.RootDirOpt(project.Path))
+	l := jirilog.GetLogger()
 	if !git.IsOnBranch() {
 		if changes, err := git.HasUncommittedChanges(); err != nil {
 			return err
 		} else if changes {
-			line1 := fmt.Sprintf("Note: %q contains uncommited changes.", project.Name)
-			line2 := fmt.Sprintf("Commit or discard the changes and try again.")
-			s.Verbose(true).Output([]string{line1, line2})
+			l.Info.Printf("Note: %q contains uncommited changes.\n", project.Name)
+			l.Info.Printf("Commit or discard the changes and try again.\n")
 			return nil
 		}
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
@@ -1183,9 +1180,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 			if err2 != nil {
 				return err2
 			}
-			line1 := fmt.Sprintf("Note: For project (%v), not able to cheackout latest, error: %v", project.Name, err)
-			line2 := fmt.Sprintf("Please checkout manually to: %v, use 'git checkout --detach %v'", err, revision, revision)
-			s.Verbose(true).Output([]string{line1, line2})
+			l.Info.Printf("Note: For project (%v), not able to cheackout latest, error: %v\n", project.Name, err)
+			l.Info.Printf("Please checkout manually to: %v, use 'git checkout --detach %v'\n", err, revision, revision)
 		}
 		return nil
 	} else {
@@ -1203,12 +1199,10 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 				return err
 			}
 			if rebaseSuccess {
-				s.Verbose(showUpdateLogs).Output([]string{fmt.Sprintf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch)})
+				l.Debug.Printf("NOTE: For project (%v), rebased your local branch %v on %v\n", project.Name, branch, trackingBranch)
 			} else {
-				s.Verbose(true).Output([]string{
-					fmt.Sprintf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch),
-					"Please do it manually.",
-				})
+				l.Info.Printf("NOTE: For project (%v), not able to rebase your local branch onto %v.\n", project.Name, trackingBranch)
+				l.Info.Println("Please do it manually.")
 			}
 			return nil
 		} else {
@@ -1225,9 +1219,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool) erro
 				// Just use the full path if an error occurred.
 				relativePath = project.Path
 			}
-			line1 := fmt.Sprintf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
-			line2 := fmt.Sprintf("Not rebasing it. To rebase it run 'git -C %s rebase %v'", relativePath, revision)
-			s.Verbose(true).Output([]string{line1, line2})
+			l.Info.Printf("NOTE: For Project (%v), branch %v does not track any remote branch.\n", project.Name, branch)
+			l.Info.Printf("Not rebasing it. To rebase it run 'git -C %s rebase %v'\n", relativePath, revision)
 		}
 		return nil
 	}
@@ -1692,7 +1685,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOuput bool) e
 	}
 	ch := make(chan result)
 	for _, hook := range hooks {
-		jirix.NewSeq().Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
+		jirilog.GetLogger().Info.Printf("running hook(%v) for project %q", hook.Name, hook.ProjectName)
 		go func(hook Hook) {
 			outReader, outWriter, err := os.Pipe()
 			if err != nil {
@@ -1709,9 +1702,9 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOuput bool) e
 			}
 			defer errWriter.Close()
 
-			s := jirix.NewSeq().CaptureAll(outWriter, errWriter).Verbose(true).Output([]string{fmt.Sprintf("output for hook(%v) for project %q", hook.Name, hook.ProjectName)})
+			jirilog.GetLogger().Capture(outWriter, errWriter).Info.Printf("output for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
 			errWriter.WriteString(fmt.Sprintf("Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName))
-			if err := s.Dir(hook.ActionPath).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
+			if err := jirix.NewSeq().Capture(outWriter, errWriter).Dir(hook.ActionPath).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
 				ch <- result{outReader, errReader, fmt.Errorf("error running hook for project %q: %v", hook.ProjectName, err)}
 				return
 			}
@@ -1963,6 +1956,7 @@ func (op deleteOperation) Kind() string {
 }
 func (op deleteOperation) Run(jirix *jiri.X, showUpdateLogs bool) error {
 	s := jirix.NewSeq()
+	l := jirilog.GetLogger()
 	if op.gc {
 		// Never delete projects with non-master branches, uncommitted
 		// work, or untracked content.
@@ -1987,23 +1981,17 @@ func (op deleteOperation) Run(jirix *jiri.X, showUpdateLogs bool) error {
 			}
 		}
 		if extraBranches || uncommitted || untracked {
-			lines := []string{
-				fmt.Sprintf("NOTE: project %v was not found in the project manifest", op.project.Name),
-				"however this project either contains non-master branches, uncommitted",
-				"work, or untracked files and will thus not be deleted",
-			}
-			s.Verbose(true).Output(lines)
+			l.Info.Printf("NOTE: project %v was not found in the project manifest\n", op.project.Name)
+			l.Info.Println("however this project either contains non-master branches, uncommitted")
+			l.Info.Println("work, or untracked files and will thus not be deleted")
 			return nil
 		}
 		return s.RemoveAll(op.source).Done()
 	}
-	lines := []string{
-		fmt.Sprintf("NOTE: project %v was not found in the project manifest", op.project.Name),
-		"it was not automatically removed to avoid deleting uncommitted work",
-		fmt.Sprintf(`if you no longer need it, invoke "rm -rf %v"`, op.source),
-		`or invoke "jiri update -gc" to remove all such local projects`,
-	}
-	s.Verbose(true).Output(lines)
+	l.Info.Printf("NOTE: project %v was not found in the project manifest\n", op.project.Name)
+	l.Info.Println("it was not automatically removed to avoid deleting uncommitted work")
+	l.Info.Printf(`if you no longer need it, invoke "rm -rf %v"`, op.source)
+	l.Info.Println(`or invoke "jiri update -gc" to remove all such local projects`)
 	return nil
 }
 
