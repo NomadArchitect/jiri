@@ -23,6 +23,7 @@ import (
 	"fuchsia.googlesource.com/jiri/collect"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/googlesource"
+	"fuchsia.googlesource.com/jiri/jirilog"
 	"fuchsia.googlesource.com/jiri/runutil"
 )
 
@@ -1692,7 +1693,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOuput bool) e
 	}
 	ch := make(chan result)
 	for _, hook := range hooks {
-		jirix.NewSeq().Verbose(true).Output([]string{fmt.Sprintf("running hook(%v) for project %q", hook.Name, hook.ProjectName)})
+		jirilog.GetLogger().Info.Printf("running hook(%v) for project %q", hook.Name, hook.ProjectName)
 		go func(hook Hook) {
 			outReader, outWriter, err := os.Pipe()
 			if err != nil {
