@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d0a2cc7b_3d6c7f43",
+        "filename": "gitutil/git.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-15T00:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0a2cc7b_f2e4d622",
+      "revId": "92273d519f026ae2aa9fc5915bb4a8e50f4a5aaa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0a2cc7b_321cae51",
         "filename": "gitutil/git.go",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-15T00:26:06Z",
       "side": 1,
       "message": "Use SplitN with n\u003d3 since you make that assumption in the code below.",
+      "revId": "92273d519f026ae2aa9fc5915bb4a8e50f4a5aaa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0a2cc7b_dd50cb7d",
+        "filename": "gitutil/git.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-15T00:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0a2cc7b_321cae51",
       "revId": "92273d519f026ae2aa9fc5915bb4a8e50f4a5aaa",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
