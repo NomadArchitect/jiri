@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0a2cc7b_f2e4d622",
+        "filename": "gitutil/git.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-15T00:26:06Z",
+      "side": 1,
+      "message": "I\u0027d consider using \":\" as a separator rather than \"~\" since ~ has a special meaning in shell etc. \":\" is not allowed in the branch name in Git so it should never occur in the output anyway.",
+      "revId": "92273d519f026ae2aa9fc5915bb4a8e50f4a5aaa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0a2cc7b_321cae51",
+        "filename": "gitutil/git.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-15T00:26:06Z",
+      "side": 1,
+      "message": "Use SplitN with n\u003d3 since you make that assumption in the code below.",
+      "revId": "92273d519f026ae2aa9fc5915bb4a8e50f4a5aaa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
