@@ -134,6 +134,12 @@ func (m *Manifest) ToBytes() ([]byte, error) {
 	return data, nil
 }
 
+type UpdateFlags struct {
+	Gc               bool
+	ShowUpdateLogs   bool
+	UseLocalManifest bool
+}
+
 func safeWriteFile(jirix *jiri.X, filename string, data []byte) error {
 	tmp := filename + ".tmp"
 	return jirix.NewSeq().
@@ -597,7 +603,7 @@ type Update map[string][]CL
 
 // CreateSnapshot creates a manifest that encodes the current state of
 // HEAD of all projects and writes this snapshot out to the given file.
-func CreateSnapshot(jirix *jiri.X, file string) error {
+func CreateSnapshot(jirix *jiri.X, file string, useLocalManifest bool) error {
 	jirix.TimerPush("create snapshot")
 	defer jirix.TimerPop()
 
@@ -612,7 +618,7 @@ func CreateSnapshot(jirix *jiri.X, file string) error {
 		manifest.Projects = append(manifest.Projects, project)
 	}
 
-	_, hooks, err := loadManifestFile(jirix, jirix.JiriManifestFile(), localProjects)
+	_, hooks, err := loadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, useLocalManifest)
 	if err != nil {
 		return err
 	}
@@ -642,13 +648,13 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, true); err != nil {
 		return err
 	}
-	return WriteUpdateHistorySnapshot(jirix, snapshot)
+	return WriteUpdateHistorySnapshot(jirix, snapshot, false)
 }
 
 // LoadSnapshotFile loads the specified snapshot manifest.  If the snapshot
 // manifest contains a remote import, an error will be returned.
 func LoadSnapshotFile(jirix *jiri.X, file string) (Projects, Hooks, error) {
-	return loadManifestFile(jirix, file, nil)
+	return loadManifestFile(jirix, file, nil, false)
 }
 
 // CurrentProjectKey gets the key of the current project from the current
@@ -849,7 +855,7 @@ func LoadManifest(jirix *jiri.X) (Projects, Hooks, error) {
 	if err != nil {
 		return nil, nil, err
 	}
-	return loadManifestFile(jirix, file, localProjects)
+	return loadManifestFile(jirix, file, localProjects, false)
 }
 
 // loadManifestFile loads the manifest starting with the given file, resolving
@@ -860,19 +866,19 @@ func LoadManifest(jirix *jiri.X) (Projects, Hooks, error) {
 // invokes git operations which require a lock on the filesystem.  If you see
 // errors about ".git/index.lock exists", you are likely calling
 // loadManifestFile in parallel.
-func loadManifestFile(jirix *jiri.X, file string, localProjects Projects) (Projects, Hooks, error) {
+func loadManifestFile(jirix *jiri.X, file string, localProjects Projects, useLocal bool) (Projects, Hooks, error) {
 	ld := newManifestLoader(localProjects, false)
-	if err := ld.Load(jirix, "", file, ""); err != nil {
+	if err := ld.Load(jirix, "", file, "", useLocal); err != nil {
 		return nil, nil, err
 	}
 	return ld.Projects, ld.Hooks, nil
 }
 
-func loadUpdatedManifest(jirix *jiri.X, localProjects Projects) (Projects, Hooks, string, error) {
+func loadUpdatedManifest(jirix *jiri.X, localProjects Projects, useLocal bool) (Projects, Hooks, string, error) {
 	jirix.TimerPush("load updated manifest")
 	defer jirix.TimerPop()
 	ld := newManifestLoader(localProjects, true)
-	if err := ld.Load(jirix, "", jirix.JiriManifestFile(), ""); err != nil {
+	if err := ld.Load(jirix, "", jirix.JiriManifestFile(), "", useLocal); err != nil {
 		return nil, nil, ld.TmpDir, err
 	}
 	return ld.Projects, ld.Hooks, ld.TmpDir, nil
@@ -916,7 +922,7 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
+func UpdateUniverse(jirix *jiri.X, updateFlags UpdateFlags) (e error) {
 	s := jirix.NewSeq()
 	s.Verbose(true).Output([]string{"Updating all projects"})
 
@@ -931,7 +937,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
 		}
 
 		// Determine the set of remote projects and match them up with the locals.
-		remoteProjects, hooks, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects)
+		remoteProjects, hooks, tmpLoadDir, err := loadUpdatedManifest(jirix, localProjects, updateFlags.UseLocalManifest)
 		matchLocalWithRemote(localProjects, remoteProjects)
 
 		// Make sure we clean up the tmp dir used to load remote manifest projects.
@@ -945,11 +951,11 @@ func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
 		}
 
 		// Actually update the projects.
-		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs)
+		return updateProjects(jirix, localProjects, remoteProjects, hooks, updateFlags.Gc, updateFlags.ShowUpdateLogs)
 	}
 
 	// Specifying gc should always force a full filesystem scan.
-	if gc {
+	if updateFlags.Gc {
 		return updateFn(FullScan)
 	}
 
@@ -966,10 +972,10 @@ func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool) (e error) {
 
 // WriteUpdateHistorySnapshot creates a snapshot of the current state of all
 // projects and writes it to the update history directory.
-func WriteUpdateHistorySnapshot(jirix *jiri.X, snapshotPath string) error {
+func WriteUpdateHistorySnapshot(jirix *jiri.X, snapshotPath string, useLocalManifest bool) error {
 	seq := jirix.NewSeq()
 	snapshotFile := filepath.Join(jirix.UpdateHistoryDir(), time.Now().Format(time.RFC3339))
-	if err := CreateSnapshot(jirix, snapshotFile); err != nil {
+	if err := CreateSnapshot(jirix, snapshotFile, useLocalManifest); err != nil {
 		return err
 	}
 
@@ -1294,7 +1300,7 @@ type cycleInfo struct {
 // A more complex case would involve a combination of local and remote imports,
 // using the "root" attribute to change paths on the local filesystem.  In this
 // case the key will eventually expose the cycle.
-func (ld *loader) loadNoCycles(jirix *jiri.X, root, file, cycleKey string) error {
+func (ld *loader) loadNoCycles(jirix *jiri.X, root, file, cycleKey string, useLocal bool) error {
 	info := cycleInfo{file, cycleKey}
 	for _, c := range ld.cycleStack {
 		switch {
@@ -1305,7 +1311,7 @@ func (ld *loader) loadNoCycles(jirix *jiri.X, root, file, cycleKey string) error
 		}
 	}
 	ld.cycleStack = append(ld.cycleStack, info)
-	if err := ld.load(jirix, root, file); err != nil {
+	if err := ld.load(jirix, root, file, useLocal); err != nil {
 		return err
 	}
 	ld.cycleStack = ld.cycleStack[:len(ld.cycleStack)-1]
@@ -1321,13 +1327,13 @@ func shortFileName(root, file string) string {
 	return file
 }
 
-func (ld *loader) Load(jirix *jiri.X, root, file, cycleKey string) error {
+func (ld *loader) Load(jirix *jiri.X, root, file, cycleKey string, useLocal bool) error {
 	jirix.TimerPush("load " + shortFileName(jirix.Root, file))
 	defer jirix.TimerPop()
-	return ld.loadNoCycles(jirix, root, file, cycleKey)
+	return ld.loadNoCycles(jirix, root, file, cycleKey, useLocal)
 }
 
-func (ld *loader) load(jirix *jiri.X, root, file string) error {
+func (ld *loader) load(jirix *jiri.X, root, file string, useLocal bool) error {
 	if ld.manifests[file] {
 		return nil
 	}
@@ -1345,6 +1351,9 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 		if !ok {
 			if !ld.update {
 				return fmt.Errorf("can't resolve remote import: project %q not found locally", key)
+			}
+			if useLocal {
+				jirix.NewSeq().Verbose(true).Output([]string{fmt.Sprintf("Note: import %q not found locally, getting from server.", remote.Name)})
 			}
 			// The remote manifest project doesn't exist locally.  Clone it into a
 			// temp directory, and add it to ld.localProjects.
@@ -1376,7 +1385,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 		p.Revision = "HEAD"
 		p.RemoteBranch = remote.RemoteBranch
 		nextFile := filepath.Join(p.Path, remote.Manifest)
-		if err := ld.resetAndLoad(jirix, nextRoot, nextFile, remote.cycleKey(), p); err != nil {
+		if err := ld.resetAndLoad(jirix, nextRoot, nextFile, remote.cycleKey(), p, useLocal); err != nil {
 			return err
 		}
 	}
@@ -1385,7 +1394,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 		// TODO(toddw): Add our invariant check that the file is in the same
 		// repository as the current remote import repository.
 		nextFile := filepath.Join(filepath.Dir(file), local.File)
-		if err := ld.Load(jirix, root, nextFile, ""); err != nil {
+		if err := ld.Load(jirix, root, nextFile, "", useLocal); err != nil {
 			return err
 		}
 	}
@@ -1431,7 +1440,11 @@ func (ld *loader) load(jirix *jiri.X, root, file string) error {
 	return nil
 }
 
-func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, project Project) (e error) {
+func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, project Project, useLocal bool) (e error) {
+	if useLocal {
+		return ld.Load(jirix, root, file, cycleKey, useLocal)
+	}
+
 	// Reset the local branch to what's specified on the project.  We only
 	// fetch on updates; non-updates just perform the reset.
 	if ld.update {
@@ -1469,7 +1482,7 @@ func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, proje
 	if err := checkoutHeadRevision(jirix, project, false); err != nil {
 		return err
 	}
-	return ld.Load(jirix, root, file, cycleKey)
+	return ld.Load(jirix, root, file, cycleKey, useLocal)
 }
 
 // groupByGoogleSourceHosts returns a map of googlesource host to a Projects
