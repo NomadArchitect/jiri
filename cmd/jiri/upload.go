@@ -16,14 +16,13 @@ import (
 )
 
 var (
-	uploadCcsFlag          string
-	uploadEditFlag         bool
-	uploadHostFlag         string
-	uploadPresubmitFlag    string
-	uploadRemoteBranchFlag string
-	uploadReviewersFlag    string
-	uploadTopicFlag        string
-	uploadVerifyFlag       bool
+	uploadCcsFlag       string
+	uploadEditFlag      bool
+	uploadHostFlag      string
+	uploadPresubmitFlag string
+	uploadReviewersFlag string
+	uploadTopicFlag     string
+	uploadVerifyFlag    bool
 )
 
 var cmdUpload = &cmdline.Command{
