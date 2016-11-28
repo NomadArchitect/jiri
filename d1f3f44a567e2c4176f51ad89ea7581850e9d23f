@@ -16,6 +16,24 @@
       "revId": "d1f3f44a567e2c4176f51ad89ea7581850e9d23f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d266fad_bee16bb8",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-28T23:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d266fad_537a5062",
+      "revId": "d1f3f44a567e2c4176f51ad89ea7581850e9d23f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
