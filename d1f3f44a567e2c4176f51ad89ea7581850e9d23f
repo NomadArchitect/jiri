@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d266fad_537a5062",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-28T23:41:39Z",
+      "side": 1,
+      "message": "I\u0027d slightly prefer \"local-manifest\" just because it\u0027s shorter.",
+      "revId": "d1f3f44a567e2c4176f51ad89ea7581850e9d23f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
