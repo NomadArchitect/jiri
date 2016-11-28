@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d266fad_937588ee",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-28T23:19:26Z",
+      "side": 1,
+      "message": "Why do you need an extra struct? Why not just add another argument?",
+      "revId": "0e4a5a5f5b59d6aa577bae3c685af1be5bc14092",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
