@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d266fad_2a0759cc",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-11-28T23:00:09Z",
+      "side": 1,
+      "message": "nit: onto",
+      "revId": "f63f97cfd75e72a6c7d8067c626de2d74be9210a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
