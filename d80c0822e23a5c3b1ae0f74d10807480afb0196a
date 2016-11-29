@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "502fbc70_5b1583f0",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-29T00:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502fbc70_1b678bcf",
+      "revId": "d80c0822e23a5c3b1ae0f74d10807480afb0196a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "502fbc70_9b79bb73",
         "filename": "project/project.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-11-29T00:09:13Z",
       "side": 1,
       "message": "This should probably be localManifest for consistency, the same below.",
+      "revId": "d80c0822e23a5c3b1ae0f74d10807480afb0196a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "502fbc70_7b12470b",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-11-29T00:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502fbc70_9b79bb73",
       "revId": "d80c0822e23a5c3b1ae0f74d10807480afb0196a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
