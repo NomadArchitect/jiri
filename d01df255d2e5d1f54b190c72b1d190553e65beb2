@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d159bc1_9a7bcb2b",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-05T20:33:40Z",
+      "side": 1,
+      "message": "IMO I\u0027d keep the logic as it was before, treating timeout as any other error (it\u0027s an error after all and the outcome of update after the timeout is likely going to be inconsistent). It also makes the logic below more difficult to understand. However, I can be convinced if you feel strongly about doing a custom thing.",
+      "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
