@@ -16,6 +16,24 @@
       "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d159bc1_7ab6d7bc",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-05T20:37:23Z",
+      "side": 1,
+      "message": "hey \n1. Need to show timed-out message so that user knows why it failed\n2. Need to show stdout so that user can know where the script was stuck, and it is easier for people behind the script to fix it.",
+      "parentUuid": "8d159bc1_9a7bcb2b",
+      "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
