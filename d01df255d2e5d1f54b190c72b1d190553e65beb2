@@ -52,6 +52,24 @@
       "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d159bc1_7aeb7731",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-05T20:57:24Z",
+      "side": 1,
+      "message": "hey for 1. yeah agree\n2. but user normally run jiri update without verbose flag, and this timeout can be intermittent, so if we don\u0027t print stdout, user might not run in it before several tries(like in case of two scripts depending on each other), I think it is responsibility of the code to give max info to user so that issue can be debugged, also if we print stdout then timeout message(handled by the code) gets buried as that goes into stderr, thats why 1...",
+      "parentUuid": "8d159bc1_fac407fa",
+      "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
