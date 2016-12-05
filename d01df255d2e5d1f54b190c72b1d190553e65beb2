@@ -34,6 +34,24 @@
       "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d159bc1_fac407fa",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-05T20:47:35Z",
+      "side": 1,
+      "message": "I agree on 1, but that\u0027s already handled by the code that prints out the error to stderr (because timeout is error like any other error).\n\nI disagree with 2 though, we already require running Jiri with -show-hook-output to see the hook output (e.g. when debugging hook scripts), I don\u0027t see why this case should be any different. In this case I err on the side of consistency.",
+      "parentUuid": "8d159bc1_7ab6d7bc",
+      "revId": "d01df255d2e5d1f54b190c72b1d190553e65beb2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
