@@ -15,13 +15,14 @@ import (
 )
 
 var (
-	gcFlag              bool
-	localManifestFlag   bool
-	attemptsFlag        int
-	autoupdateFlag      bool
-	forceAutoupdateFlag bool
-	verboseUpdateFlag   bool
-	rebaseUntrackedFlag bool
+	gcFlag                   bool
+	localManifestFlag        bool
+	attemptsFlag             int
+	autoupdateFlag           bool
+	forceAutoupdateFlag      bool
+	verboseUpdateFlag        bool
+	rebaseUntrackedFlag      bool
+	maxConcurrentFetchesFlag int
 )
 
 func init() {
@@ -34,6 +35,7 @@ func init() {
 	cmdUpdate.Flags.BoolVar(&autoupdateFlag, "autoupdate", true, "Automatically update to the new version.")
 	cmdUpdate.Flags.BoolVar(&forceAutoupdateFlag, "force-autoupdate", false, "Always update to the current version.")
 	cmdUpdate.Flags.BoolVar(&rebaseUntrackedFlag, "rebase-untracked", false, "Rebase untracked branches onto HEAD.")
+	cmdUpdate.Flags.IntVar(&maxConcurrentFetchesFlag, "j", project.DefaultConcurrentFetches, "Maximum concurrent git fetches")
 }
 
 // cmdUpdate represents the "jiri update" command.
@@ -57,6 +59,10 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
 
+	if maxConcurrentFetchesFlag <= 0 {
+		return jirix.UsageErrorf("'-j' flag should be more than 0")
+	}
+
 	if autoupdateFlag {
 		// Try to update Jiri itself.
 		err := jiri.Update(forceAutoupdateFlag)
@@ -71,7 +77,7 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		if len(args) > 0 {
 			return project.CheckoutSnapshot(jirix, args[0], gcFlag)
 		} else {
-			return project.UpdateUniverse(jirix, gcFlag, verboseUpdateFlag, localManifestFlag, rebaseUntrackedFlag)
+			return project.UpdateUniverse(jirix, gcFlag, verboseUpdateFlag, localManifestFlag, rebaseUntrackedFlag, maxConcurrentFetchesFlag)
 		}
 	}, retry.AttemptsOpt(attemptsFlag)); err != nil {
 		return err
