@@ -76,10 +76,11 @@ func ConfigFromFile(filename string) (*Config, error) {
 // including the manifest and related operations.
 type X struct {
 	*tool.Context
-	Root   string
-	Usage  func(format string, args ...interface{}) error
-	config *Config
-	Cache  string
+	Root        string
+	Usage       func(format string, args ...interface{}) error
+	config      *Config
+	Cache       string
+	MaxNoOfJobs uint
 }
 
 // NewX returns a new execution environment, given a cmdline env.
@@ -91,10 +92,15 @@ func NewX(env *cmdline.Env) (*X, error) {
 		return nil, err
 	}
 
+	if maxNoOfJobsFlag == 0 {
+		return nil, fmt.Errorf("No of concurrent jobs should be more than zero")
+	}
+
 	x := &X{
-		Context: ctx,
-		Root:    root,
-		Usage:   env.UsageErrorf,
+		Context:     ctx,
+		Root:        root,
+		Usage:       env.UsageErrorf,
+		MaxNoOfJobs: maxNoOfJobsFlag,
 	}
 	configPath := filepath.Join(x.RootMetaDir(), ConfigFile)
 	if _, err := os.Stat(configPath); err == nil {
@@ -127,12 +133,16 @@ func NewX(env *cmdline.Env) (*X, error) {
 	return x, nil
 }
 
+const DefaultNoOfJobs = 25
+
 var (
-	rootFlag string
+	rootFlag        string
+	maxNoOfJobsFlag uint
 )
 
 func init() {
 	flag.StringVar(&rootFlag, "root", "", "Jiri root directory")
+	flag.UintVar(&maxNoOfJobsFlag, "j", DefaultNoOfJobs, "Number of jobs (commands) to run simultaneously")
 }
 
 func cleanPath(path string) (string, error) {
@@ -233,9 +243,11 @@ func FindRoot() string {
 // Clone returns a clone of the environment.
 func (x *X) Clone(opts tool.ContextOpts) *X {
 	return &X{
-		Context: x.Context.Clone(opts),
-		Root:    x.Root,
-		Usage:   x.Usage,
+		Context:     x.Context.Clone(opts),
+		Root:        x.Root,
+		Usage:       x.Usage,
+		MaxNoOfJobs: x.MaxNoOfJobs,
+		Cache:       x.Cache,
 	}
 }
 
