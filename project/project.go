@@ -30,6 +30,10 @@ var JiriProject = "release.go.jiri"
 var JiriName = "jiri"
 var JiriPackage = "fuchsia.googlesource.com/jiri"
 
+const DefaultConcurrentFetches = 25
+
+var maxConcurrentFetches = DefaultConcurrentFetches
+
 // CL represents a changelist.
 type CL struct {
 	// Author identifies the author of the changelist.
@@ -916,7 +920,8 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest bool, rebaseUntracked bool) (e error) {
+func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest bool, rebaseUntracked bool, concurrentFetches int) (e error) {
+	maxConcurrentFetches = concurrentFetches
 	s := jirix.NewSeq()
 	s.Verbose(true).Output([]string{"Updating all projects"})
 
@@ -1570,7 +1575,7 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 	errs := make(chan error, len(remoteProjects))
 	var wg sync.WaitGroup
 	processingPath := make(map[string]bool)
-
+	fetchLimit := make(chan struct{}, maxConcurrentFetches)
 	for _, project := range remoteProjects {
 		if cacheDirPath, err := project.CacheDirPath(jirix); err == nil {
 			if processingPath[cacheDirPath] {
@@ -1578,7 +1583,9 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 			}
 			processingPath[cacheDirPath] = true
 			wg.Add(1)
+			fetchLimit <- struct{}{}
 			go func(dir, remote string) {
+				defer func() { <-fetchLimit }()
 				defer wg.Done()
 				// This should be crated inside loop, as when we set git directory,
 				// It changes the dir of previous git in the loop
@@ -1617,12 +1624,15 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 }
 
 func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
+	fetchLimit := make(chan struct{}, maxConcurrentFetches)
 	errs := make(chan error, len(localProjects))
 	var wg sync.WaitGroup
 	for key, project := range localProjects {
 		if _, ok := remoteProjects[key]; ok {
 			wg.Add(1)
+			fetchLimit <- struct{}{}
 			go func(project Project) {
+				defer func() { <-fetchLimit }()
 				defer wg.Done()
 				if err := fetchAll(jirix, project); err != nil {
 					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
@@ -1641,7 +1651,6 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 	if len(multiErr) != 0 {
 		return multiErr
 	}
-
 	return nil
 }
 
