@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3a2b0780_94368c0e",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:58:32Z",
+      "side": 1,
+      "message": "No, but it doesn\u0027t mean it\u0027s not going to be used for other goroutines. It\u0027s the same as -v or -cache flag. Not every command needs them, but these are global settings that are not specific to individual commands.",
+      "parentUuid": "3a2b0780_1445fcb4",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a2b0780_5464a45e",
         "filename": "cmd/jiri/update.go",
         "patchSetId": 3
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I didn\u0027t want it to be zero",
       "parentUuid": "3a2b0780_5464a45e",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_142bbcaf",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:58:32Z",
+      "side": 1,
+      "message": "Why not accept just positive integers and check for 0?",
+      "parentUuid": "3a2b0780_f4395033",
       "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -118,6 +154,24 @@
       "side": 1,
       "message": "but isn\u0027t this a global setting for project.go?",
       "parentUuid": "3a2b0780_74e200be",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_f4583074",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:58:32Z",
+      "side": 1,
+      "message": "Yes, but making this a global variable that\u0027s only modified by some functions means that anyone who ever calls any function that uses this variable (directly or indirectly) has to ensure that this variable is set first. That\u0027s why the use of global variables is generally discouraged, because it\u0027s a maintenance nightmare (especially in a case like this).",
+      "parentUuid": "3a2b0780_b433c84f",
       "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
