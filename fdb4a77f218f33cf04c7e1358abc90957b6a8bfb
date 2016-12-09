@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a2b0780_a30f08e2",
+        "filename": "x.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T19:18:02Z",
+      "side": 1,
+      "message": "Is this just a random number or did you actually tried whether this optimal setting?",
+      "revId": "fdb4a77f218f33cf04c7e1358abc90957b6a8bfb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
