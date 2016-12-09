@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a2b0780_1445fcb4",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-09T01:41:00Z",
+      "side": 1,
+      "message": "but we don\u0027t use it everywhere where we use go routine",
+      "parentUuid": "3a2b0780_3417d8be",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a2b0780_5464a45e",
         "filename": "cmd/jiri/update.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2016-12-09T01:36:48Z",
       "side": 1,
       "message": "Just use UintVar and you don\u0027t have to do this.",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_f4395033",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-09T01:41:00Z",
+      "side": 1,
+      "message": "I didn\u0027t want it to be zero",
+      "parentUuid": "3a2b0780_5464a45e",
       "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -64,6 +100,24 @@
       "writtenOn": "2016-12-09T01:36:48Z",
       "side": 1,
       "message": "Using a global variable to pass a value between functions? That\u0027s super ugly.",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_b433c84f",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-09T01:41:00Z",
+      "side": 1,
+      "message": "but isn\u0027t this a global setting for project.go?",
+      "parentUuid": "3a2b0780_74e200be",
       "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
