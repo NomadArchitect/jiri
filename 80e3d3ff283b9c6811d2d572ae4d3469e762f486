@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a2b0780_77ae8283",
+        "filename": "x.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T05:09:01Z",
+      "side": 1,
+      "message": "Drop the \"MaxNoOf\". Just \"Jobs\". It\u0027s cleaner. (Shame I cannot post the obligatory meme here)",
+      "revId": "80e3d3ff283b9c6811d2d572ae4d3469e762f486",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
