@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a2b0780_3417d8be",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:36:48Z",
+      "side": 1,
+      "message": "Why not just define this as a global flag and use it as such (just describe it \"Number of jobs (commands) to run simultaneously\")?",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_5464a45e",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:36:48Z",
+      "side": 1,
+      "message": "Just use UintVar and you don\u0027t have to do this.",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_d4abf452",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:36:48Z",
+      "side": 1,
+      "message": "?",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a2b0780_74e200be",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-09T01:36:48Z",
+      "side": 1,
+      "message": "Using a global variable to pass a value between functions? That\u0027s super ugly.",
+      "revId": "8ce5ae57c3c2be506de40a9b24fcaa9f366dc969",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
