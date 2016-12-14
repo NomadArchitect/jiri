@@ -16,6 +16,24 @@
       "revId": "5f5e0ecf2f62242ef917b52503c3401a55f4d59a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6aeb2c_56b315e5",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2016-12-14T21:07:13Z",
+      "side": 1,
+      "message": "As we set origin remote in above line, so there would always be a origin, it is just that user\u0027s renamed remote would not be updated. So it boils down to what user expects\n1. User expects jiri to update all the remotes in his/her local repo. This is what was happening, but it was failing as one of the local remote was offline, so to migitate it we can instead NOT fail and show warning to user that his repo might be out of date after the update\n2. User expects jiri to only update remote jiri created, but then user should not be expecting jiri to update the remote if he/she renamed it as jiri created \"origin\" and that is what it will update",
+      "parentUuid": "da6aeb2c_9b04d6ca",
+      "revId": "5f5e0ecf2f62242ef917b52503c3401a55f4d59a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
