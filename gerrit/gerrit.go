@@ -329,7 +329,12 @@ func (g *Gerrit) Query(query string) (_ CLList, e error) {
 	if err != nil {
 		return nil, err
 	}
-	u.Path = "/a/changes/"
+	cred, _ := hostCredentials(g.s, g.host)
+	if cred != nil {
+		u.Path = "/a/changes/"
+	} else {
+		u.Path = "/changes/"
+	}
 	v := url.Values{}
 	v.Set("q", query)
 	for _, o := range queryParameters {
@@ -346,7 +351,7 @@ func (g *Gerrit) Query(query string) (_ CLList, e error) {
 	}
 	req.Header.Add("Accept", "application/json")
 	// We ignore all errors when obtaining credentials since not every host requires them.
-	if cred, _ := hostCredentials(g.s, g.host); cred != nil {
+	if cred != nil {
 		req.SetBasicAuth(cred.username, cred.password)
 	}
 
