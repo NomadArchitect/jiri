@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6aeb2c_d8c49950",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 5395
+      },
+      "writtenOn": "2016-12-14T05:46:54Z",
+      "side": 1,
+      "message": "I\u0027d add a comment somewhere clarifying that \"/a/\" is a special Gerrit thing for authentication.",
+      "range": {
+        "startLine": 334,
+        "startChar": 12,
+        "endLine": 334,
+        "endChar": 15
+      },
+      "revId": "61f6075211e1158dcce29b6cfe029d4858dbacf5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
