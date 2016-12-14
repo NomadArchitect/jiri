@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6aeb2c_9b04d6ca",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2016-12-14T20:25:39Z",
+      "side": 1,
+      "message": "What if there is no \"origin\" remote (e.g. because user renamed it to something else)?",
+      "revId": "5f5e0ecf2f62242ef917b52503c3401a55f4d59a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
