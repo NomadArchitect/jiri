@@ -16,6 +16,24 @@
       "revId": "12f8fcc25c2d4742c8b8532eeaf61e3449a4707d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7b632e5_2f61c8bb",
+        "filename": "HACKING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-01-05T19:59:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7b632e5_6fe2e017",
+      "revId": "12f8fcc25c2d4742c8b8532eeaf61e3449a4707d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
