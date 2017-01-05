@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7b632e5_6fe2e017",
+        "filename": "HACKING.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-01-05T19:58:34Z",
+      "side": 1,
+      "message": "Nit: I\u0027d drop \u0027now\u0027; that fact that this worked different in the past isn\u0027t important here.",
+      "revId": "12f8fcc25c2d4742c8b8532eeaf61e3449a4707d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
