@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3d9950f_2a719349",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1796,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-01-11T18:36:47Z",
+      "side": 1,
+      "message": "Nit: I\u0027d format the error message as `Error while downloading \"%v\": %v`",
+      "revId": "ed94502328c4229e9152e230fb40957b57a68965",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3d9950f_4a765743",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-01-11T18:36:47Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "ed94502328c4229e9152e230fb40957b57a68965",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
