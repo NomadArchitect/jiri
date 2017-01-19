@@ -6,6 +6,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
@@ -67,14 +68,18 @@ func runUpdate(jirix *jiri.X, args []string) error {
 
 	// Update all projects to their latest version.
 	// Attempt <attemptsFlag> times before failing.
-	if err := retry.Function(jirix.Context, func() error {
+	err := retry.Function(jirix.Context, func() error {
 		if len(args) > 0 {
 			return project.CheckoutSnapshot(jirix, args[0], gcFlag)
 		} else {
 			return project.UpdateUniverse(jirix, gcFlag, verboseUpdateFlag, localManifestFlag, rebaseUntrackedFlag)
 		}
-	}, retry.AttemptsOpt(attemptsFlag)); err != nil {
+	}, retry.AttemptsOpt(attemptsFlag))
+	if err != nil && !strings.Contains(err.Error(), project.NonFatalProjectUpdateError.Error()) {
 		return err
 	}
-	return project.WriteUpdateHistorySnapshot(jirix, "", localManifestFlag)
+	if historyError := project.WriteUpdateHistorySnapshot(jirix, "", localManifestFlag); historyError != nil {
+		return historyError
+	}
+	return err
 }
