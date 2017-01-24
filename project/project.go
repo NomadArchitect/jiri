@@ -626,7 +626,7 @@ func CreateSnapshot(jirix *jiri.X, file string, localManifest bool) error {
 
 // CheckoutSnapshot updates project state to the state specified in the given
 // snapshot file.  Note that the snapshot file must not contain remote imports.
-func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
+func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool, showUpdateLogs bool) error {
 	// Find all local projects.
 	scanMode := FastScan
 	if gc {
@@ -640,7 +640,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
-	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, true, false); err != nil {
+	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs, false, true); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot, false)
@@ -946,7 +946,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest b
 		}
 
 		// Actually update the projects.
-		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs, rebaseUntracked)
+		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs, rebaseUntracked, false)
 	}
 
 	// Specifying gc should always force a full filesystem scan.
@@ -1167,10 +1167,10 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 
 // syncProjectMaster checks out latest detached head if project is on one
 // else it rebases current branch onto its tracking branch
-func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool, rebaseUntracked bool) error {
+func syncProjectMaster(jirix *jiri.X, project Project, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
 	s := jirix.NewSeq()
 	git := gitutil.New(s, gitutil.RootDirOpt(project.Path))
-	if !git.IsOnBranch() {
+	if !git.IsOnBranch() || forceUpdate {
 		if changes, err := git.HasUncommittedChanges(); err != nil {
 			return err
 		} else if changes {
@@ -1650,7 +1650,7 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 	return nil
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, showUpdateLogs bool, rebaseUntracked bool) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -1699,7 +1699,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	}
 	s := jirix.NewSeq()
 	for _, op := range ops {
-		updateFn := func() error { return op.Run(jirix, showUpdateLogs, rebaseUntracked) }
+		updateFn := func() error { return op.Run(jirix, showUpdateLogs, rebaseUntracked, forceUpdate) }
 		if err := s.Verbose(showUpdateLogs).Call(updateFn, "%v", op).Done(); err != nil {
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
@@ -1937,7 +1937,7 @@ type operation interface {
 	// Kind returns the kind of operation.
 	Kind() string
 	// Run executes the operation.
-	Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) error
+	Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error
 	// String returns a string representation of the operation.
 	String() string
 	// Test checks whether the operation would fail.
@@ -1969,7 +1969,7 @@ func (op createOperation) Kind() string {
 	return "create"
 }
 
-func (op createOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) (e error) {
+func (op createOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) (e error) {
 	s := jirix.NewSeq()
 
 	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
@@ -2040,7 +2040,7 @@ type deleteOperation struct {
 func (op deleteOperation) Kind() string {
 	return "delete"
 }
-func (op deleteOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) error {
+func (op deleteOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
 	s := jirix.NewSeq()
 	if op.gc {
 		// Never delete projects with non-master branches, uncommitted
@@ -2109,13 +2109,13 @@ type moveOperation struct {
 func (op moveOperation) Kind() string {
 	return "move"
 }
-func (op moveOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) error {
+func (op moveOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
 	s := jirix.NewSeq()
 	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
 	if err := s.MkdirAll(path, perm).Rename(op.source, op.destination).Done(); err != nil {
 		return err
 	}
-	if err := syncProjectMaster(jirix, op.project, showUpdateLogs, rebaseUntracked); err != nil {
+	if err := syncProjectMaster(jirix, op.project, showUpdateLogs, rebaseUntracked, forceUpdate); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2152,8 +2152,8 @@ type updateOperation struct {
 func (op updateOperation) Kind() string {
 	return "update"
 }
-func (op updateOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) error {
-	if err := syncProjectMaster(jirix, op.project, showUpdateLogs, rebaseUntracked); err != nil {
+func (op updateOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
+	if err := syncProjectMaster(jirix, op.project, showUpdateLogs, rebaseUntracked, forceUpdate); err != nil {
 		return err
 	}
 	return writeMetadata(jirix, op.project, op.project.Path)
@@ -2177,7 +2177,7 @@ func (op nullOperation) Kind() string {
 	return "null"
 }
 
-func (op nullOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool) error {
+func (op nullOperation) Run(jirix *jiri.X, showUpdateLogs bool, rebaseUntracked bool, forceUpdate bool) error {
 	return writeMetadata(jirix, op.project, op.project.Path)
 }
 
