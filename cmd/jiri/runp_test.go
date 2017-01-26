@@ -227,8 +227,17 @@ func TestRunP(t *testing.T) {
 	// Just the projects with branch b2.
 	setDefaultRunpFlags()
 	runpFlags.showNamePrefix = true
+	runpFlags.branch = "b2"
 	got = executeRunp(t, fake, "echo")
 	if want := "r.b: \nr.c:"; got != want {
+		t.Errorf("got %v, want %v", got, want)
+	}
+
+	// Show all prjects even though current project is on b2
+	setDefaultRunpFlags()
+	runpFlags.showNamePrefix = true
+	got = executeRunp(t, fake, "echo")
+	if want := "manifest: \nr.a: \nr.b: \nr.c: \nsub/r.t1: \nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
@@ -262,7 +271,7 @@ func TestRunP(t *testing.T) {
 	runpFlags.noGerritMessage = true
 	runpFlags.showNamePrefix = true
 	got = executeRunp(t, fake, "echo")
-	if want := "sub/r.t1:"; got != want {
+	if want := "manifest: \nr.a: \nr.c: \nsub/r.t1: \nsub/sub2/r.t2:"; got != want {
 		t.Errorf("got %v, want %v", got, want)
 	}
 
