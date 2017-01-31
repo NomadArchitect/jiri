@@ -45,6 +45,29 @@
       "revId": "c6f8dd507c992c45bbf4893a9d84b1d266d5f849",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46713939_134167b0",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5015
+      },
+      "writtenOn": "2017-01-31T19:07:56Z",
+      "side": 1,
+      "message": "i think that might be a little unexpected, but if we\u0027re doing it elsewhere then it\u0027s not a question that needs to be answered here.  +2 on this cl",
+      "range": {
+        "startLine": 109,
+        "startChar": 56,
+        "endLine": 109,
+        "endChar": 64
+      },
+      "revId": "c6f8dd507c992c45bbf4893a9d84b1d266d5f849",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
