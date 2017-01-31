@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "828aa6a3_9ac7245c",
+        "filename": "project/project.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-01-31T18:51:07Z",
+      "side": 1,
+      "message": "Done",
+      "range": {
+        "startLine": 1189,
+        "startChar": 0,
+        "endLine": 1189,
+        "endChar": 86
+      },
+      "revId": "557d3b5789316e8c8f166d693bb051dab82550bf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34bad26d_2704fed8",
         "filename": "project/project.go",
         "patchSetId": 14
@@ -36,6 +59,29 @@
       "writtenOn": "2017-01-31T18:19:13Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 1197,
+        "startChar": 0,
+        "endLine": 1197,
+        "endChar": 86
+      },
+      "revId": "557d3b5789316e8c8f166d693bb051dab82550bf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d9e29f5_9d22366d",
+        "filename": "project/project.go",
+        "patchSetId": 14
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-01-31T18:51:07Z",
+      "side": 1,
+      "message": "Done",
       "range": {
         "startLine": 1197,
         "startChar": 0,
