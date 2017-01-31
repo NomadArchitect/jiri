@@ -739,6 +739,17 @@ func (g *Git) Rebase(upstream string) error {
 
 // RebaseAbort aborts an in-progress rebase operation.
 func (g *Git) RebaseAbort() error {
+	// First check if rebase is in progress
+	path := ".git/rebase-apply"
+	if g.rootDir != "" {
+		path = filepath.Join(g.rootDir, path)
+	}
+	if _, err := os.Stat(path); err != nil {
+		if os.IsNotExist(err) {
+			return nil // Not in progress return
+		}
+		return err
+	}
 	return g.run("rebase", "--abort")
 }
 
@@ -746,6 +757,12 @@ func (g *Git) RebaseAbort() error {
 func (g *Git) Remove(fileNames ...string) error {
 	args := []string{"rm"}
 	args = append(args, fileNames...)
+	return g.run(args...)
+}
+
+func (g *Git) Config(configArgs ...string) error {
+	args := []string{"config"}
+	args = append(args, configArgs...)
 	return g.run(args...)
 }
 
