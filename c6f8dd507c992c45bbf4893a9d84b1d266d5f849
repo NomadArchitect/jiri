@@ -22,6 +22,29 @@
       "revId": "c6f8dd507c992c45bbf4893a9d84b1d266d5f849",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94645b3e_b3753f38",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-01-31T18:58:04Z",
+      "side": 1,
+      "message": "we always use prune during jiri update, so as we are updating the repo, we should be pruning it",
+      "range": {
+        "startLine": 109,
+        "startChar": 56,
+        "endLine": 109,
+        "endChar": 64
+      },
+      "revId": "c6f8dd507c992c45bbf4893a9d84b1d266d5f849",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
