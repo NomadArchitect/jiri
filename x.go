@@ -90,6 +90,7 @@ type X struct {
 func NewX(env *cmdline.Env) (*X, error) {
 	color.InitializeGlobalColors()
 	log.InitializeGlobalLogger()
+	color.InitializeGlobalColors()
 	ctx := tool.NewContextFromEnv(env)
 	root, err := findJiriRoot(ctx.Timer())
 	if err != nil {
