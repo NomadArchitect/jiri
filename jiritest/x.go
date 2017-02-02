@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/color"
 	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/tool"
 )
@@ -19,6 +20,7 @@ import (
 func NewX(t *testing.T) (*jiri.X, func()) {
 	ctx := tool.NewDefaultContext()
 	log.InitializeGlobalLogger()
+	color.InitializeGlobalColors()
 	root, err := ctx.NewSeq().TempDir("", "")
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)

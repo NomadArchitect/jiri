@@ -10,6 +10,8 @@ import (
 	glog "log"
 	"os"
 	"sync"
+
+	"fuchsia.googlesource.com/jiri/color"
 )
 
 // Logger provides for convenient logging in jiri. It supports logger
@@ -99,10 +101,10 @@ func (l Logger) Capture(stdout, stderr io.Writer) Logger {
 	return l
 }
 
-func (l Logger) log(format string, a ...interface{}) {
+func (l Logger) log(colorfn color.Colorfn, format string, a ...interface{}) {
 	l.lock.Lock()
 	defer l.lock.Unlock()
-	l.goLogger.Printf(format, a...)
+	l.goLogger.Printf(colorfn(format, a...))
 }
 
 func Infof(format string, a ...interface{}) {
@@ -111,7 +113,7 @@ func Infof(format string, a ...interface{}) {
 
 func (l Logger) Infof(format string, a ...interface{}) {
 	if l.loggerLevel >= InfoLevel {
-		l.log(format, a...)
+		l.log(color.DefaultColor, format, a...)
 	}
 }
 
@@ -121,7 +123,7 @@ func Debugf(format string, a ...interface{}) {
 
 func (l Logger) Debugf(format string, a ...interface{}) {
 	if l.loggerLevel >= DebugLevel {
-		l.log(format, a...)
+		l.log(color.Yellow, format, a...)
 	}
 }
 
@@ -131,7 +133,7 @@ func Tracef(format string, a ...interface{}) {
 
 func (l Logger) Tracef(format string, a ...interface{}) {
 	if l.loggerLevel >= TraceLevel {
-		l.log(format, a...)
+		l.log(color.Blue, format, a...)
 	}
 }
 
@@ -141,7 +143,7 @@ func Logf(format string, a ...interface{}) {
 
 func (l Logger) Logf(format string, a ...interface{}) {
 	if l.loggerLevel >= AllLevel {
-		l.log(format, a...)
+		l.log(color.DefaultColor, format, a...)
 	}
 }
 
@@ -153,6 +155,6 @@ func (l Logger) Errorf(format string, a ...interface{}) {
 	if l.loggerLevel >= ErrorLevel {
 		l.lock.Lock()
 		defer l.lock.Unlock()
-		l.goErrorLogger.Printf(format, a...)
+		l.goErrorLogger.Printf(color.Red(format, a...))
 	}
 }
