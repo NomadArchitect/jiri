@@ -17,6 +17,7 @@ import (
 	"path/filepath"
 
 	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/color"
 	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/timing"
@@ -88,6 +89,7 @@ type X struct {
 // It also prepends .jiri_root/bin to the PATH.
 func NewX(env *cmdline.Env) (*X, error) {
 	log.InitializeGlobalLogger()
+	color.InitializeGlobalColors()
 	ctx := tool.NewContextFromEnv(env)
 	root, err := findJiriRoot(ctx.Timer())
 	if err != nil {
