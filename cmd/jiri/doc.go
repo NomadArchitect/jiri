@@ -26,8 +26,8 @@ The jiri additional help topics are:
    manifest    Description of manifest files
 
 The jiri flags are:
- -color=true
-   Use color to format output.
+ --no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -51,8 +51,8 @@ The jiri cl commands are:
    sync        Bring a changelist up to date
 
 The jiri cl flags are:
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -74,8 +74,8 @@ The jiri cl cleanup flags are:
  -remote-branch=master
    Name of the remote branch the CL pertains to, without the leading "origin/".
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -127,8 +127,8 @@ The jiri cl upload flags are:
  -verify=true
    Run pre-push git hooks.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -147,8 +147,8 @@ Usage:
 <name> is the changelist name.
 
 The jiri cl new flags are:
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -174,8 +174,8 @@ The jiri cl sync flags are:
  -remote-branch=master
    Name of the remote branch the CL pertains to, without the leading "origin/".
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -219,8 +219,8 @@ The jiri import flags are:
  -root=
    Root to store the manifest project locally.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -251,8 +251,8 @@ The jiri project info flags are:
  -host=
    Gerrit host to use.  Defaults to gerrit host specified in manifest.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -271,8 +271,8 @@ The jiri project commands are:
    shell-prompt Print a succinct status of projects suitable for shell prompts
 
 The jiri project flags are:
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -290,8 +290,8 @@ The jiri project clean flags are:
  -branches=false
    Delete all non-master branches.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -318,8 +318,8 @@ The jiri project info flags are:
  -template=
    The template for the fields to display.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -337,8 +337,8 @@ The jiri project list flags are:
    If true, omit pristine projects, i.e. projects with a clean master branch and
    no other branches.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -360,8 +360,8 @@ The jiri project shell-prompt flags are:
  -show-name=false
    Show the name of the current repo.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -379,8 +379,8 @@ The jiri snapshot create flags are:
  -time-format=2006-01-02T15:04:05Z07:00
    Time format for snapshot file name.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -405,8 +405,8 @@ The jiri update flags are:
  -manifest=
    Name of the project manifest.
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
  -v=false
    Print verbose output.
 
@@ -470,8 +470,8 @@ The jiri runp flags are:
  -v=false
    Print verbose logging information
 
- -color=true
-   Use color to format output.
+--no-color=false
+   Don't use color to format output.
 
 Jiri help - Display help for commands or topics
 
