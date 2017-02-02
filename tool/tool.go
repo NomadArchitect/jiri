@@ -15,17 +15,9 @@ var Version string = "manual-build"
 var Name string = ""
 
 var (
-	// Flags for running commands.
-	ColorFlag   bool
-
 	// Flags for working with projects.
 	ManifestFlag string
 )
-
-// InitializeRunFlags initializes flags for running commands.
-func InitializeRunFlags(flags *flag.FlagSet) {
-	flags.BoolVar(&ColorFlag, "color", true, "Use color to format output.")
-}
 
 // InitializeRunFlags initializes flags for working with projects.
 func InitializeProjectFlags(flags *flag.FlagSet) {
