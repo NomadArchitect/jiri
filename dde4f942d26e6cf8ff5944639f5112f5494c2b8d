@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb56d3fe_e3cd5c4c",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-02T06:00:23Z",
+      "side": 1,
+      "message": "Go flags use a single dash.",
+      "revId": "dde4f942d26e6cf8ff5944639f5112f5494c2b8d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57225e05_047a5ce5",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-02T06:00:23Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "dde4f942d26e6cf8ff5944639f5112f5494c2b8d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c054ca47_82709ba4",
+        "filename": "color/color.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-02T06:00:23Z",
+      "side": 1,
+      "message": "I\u0027d make this ColorFlag/\"color\" and set the default to true.",
+      "revId": "dde4f942d26e6cf8ff5944639f5112f5494c2b8d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8933566f_0c9fd9f4",
+        "filename": "color/color.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-02T06:00:23Z",
+      "side": 1,
+      "message": "Why not do this inside init()?",
+      "revId": "dde4f942d26e6cf8ff5944639f5112f5494c2b8d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d56d20ba_99e525c2",
+        "filename": "color/color.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-02T06:00:23Z",
+      "side": 1,
+      "message": "If you don\u0027t plan to use background color (which I don\u0027t think is needed), you can probably drop the \"fg\" suffix since it\u0027s not really necessary.",
+      "revId": "dde4f942d26e6cf8ff5944639f5112f5494c2b8d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
