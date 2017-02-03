@@ -11,14 +11,18 @@ import (
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
-	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
-	"fuchsia.googlesource.com/jiri/tool"
 )
 
-func init() {
-	tool.InitializeProjectFlags(&cmdStatus.Flags)
+var (
+	statusFlags statusFlagValues
+)
+
+type statusFlagValues struct {
+	changes bool
+	notHead bool
+	branch  string
 }
 
 var cmdStatus = &cmdline.Command{
@@ -30,6 +34,13 @@ Prints status for the the projects. It runs git status -s across all the project
 and prints it if there are some changes. It also shows status if the project is on
 a rev other then the one according to manifest(Named as JIRI_HEAD in git)
 `,
+}
+
+func init() {
+	flags := &cmdStatus.Flags
+	flags.BoolVar(&statusFlags.changes, "changes", true, "Display projects with tracked or un-tracked changes.")
+	flags.BoolVar(&statusFlags.notHead, "not-head", true, "Display projects that are not on HEAD/pinned revisions.")
+	flags.StringVar(&statusFlags.branch, "branch", "", "Display all projects only on this branch along with thier status.")
 }
 
 func runStatus(jirix *jiri.X, args []string) error {
@@ -45,18 +56,41 @@ func runStatus(jirix *jiri.X, args []string) error {
 	if err != nil {
 		return err
 	}
-	for _, localProject := range localProjects {
-		remoteProject, _ := remoteProjects[localProject.Key()]
-		if changes, revisionMessage, err := getStatus(jirix, localProject, remoteProject); err != nil {
+	states, err := project.GetProjectStates(jirix, localProjects, false)
+	if err != nil {
+		return err
+	}
+	for key, localProject := range localProjects {
+		remoteProject, _ := remoteProjects[key]
+		state, ok := states[key]
+		if !ok {
+			// this should not happen
+			panic(fmt.Sprintf("State not found for project %q", localProject.Name))
+		}
+		if changes, headRev, err := getStatus(jirix, localProject, remoteProject); err != nil {
 			return err
 		} else {
-			if changes != "" || revisionMessage != "" {
+			revisionMessage := ""
+			if statusFlags.notHead {
+				if headRev == "" {
+					revisionMessage = "Can't find project in manifest, can't get revision status"
+				} else if headRev != state.CurrentBranch.Revision {
+					revisionMessage = fmt.Sprintf("Should be on revision %q, but is on revision %q", headRev, state.CurrentBranch.Revision)
+				}
+			}
+			if (statusFlags.branch != "" && statusFlags.branch == state.CurrentBranch.Name) ||
+				(statusFlags.branch == "" && (changes != "" || revisionMessage != "")) {
 				relativePath, err := filepath.Rel(cDir, localProject.Path)
 				if err != nil {
 					return err
 				}
 				fmt.Printf("%v(%v): %v", localProject.Name, relativePath, revisionMessage)
 				fmt.Println()
+				branch := state.CurrentBranch.Name
+				if branch == "" {
+					branch = fmt.Sprintf("DETACHED-HEAD(%v)", state.CurrentBranch.Revision)
+				}
+				fmt.Printf("Branch: %v\n", branch)
 				if changes != "" {
 					fmt.Println(changes)
 				}
@@ -68,28 +102,25 @@ func runStatus(jirix *jiri.X, args []string) error {
 }
 
 func getStatus(jirix *jiri.X, local project.Project, remote project.Project) (string, string, error) {
-	revisionMessage := ""
-	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
-	g := git.NewGit(local.Path)
-	changes, err := scm.ShortStatus()
-	if err != nil {
-		return "", "", err
+	revision := ""
+	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
+	changes := ""
+	if statusFlags.changes {
+		var err error
+		changes, err = git.ShortStatus()
+		if err != nil {
+			return "", "", err
+		}
 	}
-	if remote.Name != "" {
-		if expectedRev, err := project.GetHeadRevision(jirix, remote); err != nil {
+	if statusFlags.notHead && remote.Name != "" {
+		if headRev, err := project.GetHeadRevision(jirix, remote); err != nil {
 			return "", "", err
 		} else {
-			if expectedRev, err = scm.CurrentRevisionOfBranch(expectedRev); err != nil {
+			if headRev, err = git.CurrentRevisionOfBranch(headRev); err != nil {
 				return "", "", err
 			}
-			if currentRev, err := g.CurrentRevision(); err != nil {
-				return "", "", err
-			} else if expectedRev != currentRev {
-				revisionMessage = fmt.Sprintf("Should be on revision %q, but is on revision %q", expectedRev, currentRev)
-			}
+			revision = headRev
 		}
-	} else {
-		revisionMessage = "Can't find project in manifest, can't get revision status"
 	}
-	return changes, revisionMessage, nil
+	return changes, revision, nil
 }
