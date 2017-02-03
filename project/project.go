@@ -27,9 +27,15 @@ import (
 	"fuchsia.googlesource.com/jiri/runutil"
 )
 
-var JiriProject = "release.go.jiri"
-var JiriName = "jiri"
-var JiriPackage = "fuchsia.googlesource.com/jiri"
+var (
+	JiriProject = "release.go.jiri"
+	JiriName    = "jiri"
+	JiriPackage = "fuchsia.googlesource.com/jiri"
+)
+
+var (
+	DefaultHookTimeout = uint(5)
+)
 
 // CL represents a changelist.
 type CL struct {
@@ -626,7 +632,7 @@ func CreateSnapshot(jirix *jiri.X, file string, localManifest bool) error {
 
 // CheckoutSnapshot updates project state to the state specified in the given
 // snapshot file.  Note that the snapshot file must not contain remote imports.
-func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
+func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool, runHookTimeout uint) error {
 	// Find all local projects.
 	scanMode := FastScan
 	if gc {
@@ -640,7 +646,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool) error {
 	if err != nil {
 		return err
 	}
-	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, true, false); err != nil {
+	if err := updateProjects(jirix, localProjects, remoteProjects, hooks, gc, true, false, runHookTimeout); err != nil {
 		return err
 	}
 	return WriteUpdateHistorySnapshot(jirix, snapshot, false)
@@ -917,7 +923,7 @@ func matchLocalWithRemote(localProjects, remoteProjects Projects) {
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest bool, rebaseUntracked bool) (e error) {
+func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest bool, rebaseUntracked bool, runHookTimeout uint) (e error) {
 	s := jirix.NewSeq()
 	s.Verbose(true).Output([]string{"Updating all projects"})
 
@@ -946,7 +952,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool, showUpdateLogs bool, localManifest b
 		}
 
 		// Actually update the projects.
-		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs, rebaseUntracked)
+		return updateProjects(jirix, localProjects, remoteProjects, hooks, gc, showUpdateLogs, rebaseUntracked, runHookTimeout)
 	}
 
 	// Specifying gc should always force a full filesystem scan.
@@ -1652,7 +1658,7 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 	return nil
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, showUpdateLogs bool, rebaseUntracked bool) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, showUpdateLogs bool, rebaseUntracked bool, runHookTimeout uint) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -1706,14 +1712,14 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
 	}
-	if err := runHooks(jirix, ops, hooks, showUpdateLogs); err != nil {
+	if err := runHooks(jirix, ops, hooks, showUpdateLogs, runHookTimeout); err != nil {
 		return err
 	}
 	return applyGitHooks(jirix, ops)
 }
 
 // runHooks runs all hooks for the given operations.
-func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOutput bool) error {
+func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOutput bool, runHookTimeout uint) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
 	type result struct {
@@ -1743,7 +1749,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, showHookOutput bool) 
 
 			s := jirix.NewSeq().CaptureAll(outFile, errFile).Verbose(true).Output([]string{fmt.Sprintf("output for hook(%v) for project %q", hook.Name, hook.ProjectName)})
 			errFile.WriteString(fmt.Sprintf("Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName))
-			if err := s.Dir(hook.ActionPath).Timeout(5 * time.Minute).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
+			if err := s.Dir(hook.ActionPath).Timeout(time.Duration(runHookTimeout) * time.Minute).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
 				ch <- result{outFile, errFile, err}
 				return
 			}
