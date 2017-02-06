@@ -72,6 +72,13 @@ func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch cha
 			state.CurrentBranch = b
 		}
 	}
+
+	if state.CurrentBranch.Revision == "" {
+		if state.CurrentBranch.Revision, err = scm.CurrentRevision(); err != nil {
+			ch <- err
+			return
+		}
+	}
 	if checkDirty {
 		state.HasUncommitted, err = scm.HasUncommittedChanges()
 		if err != nil {
