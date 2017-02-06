@@ -16,6 +16,24 @@
       "revId": "e7494708481e21d474313952d5fdcd5087de56a1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a862699_7588db77",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-02-06T20:54:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a817e847_1439dc1e",
+      "revId": "e7494708481e21d474313952d5fdcd5087de56a1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
