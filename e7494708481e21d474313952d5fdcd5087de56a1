@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a817e847_1439dc1e",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-02-06T19:52:53Z",
+      "side": 1,
+      "message": "Display projects that are not...",
+      "revId": "e7494708481e21d474313952d5fdcd5087de56a1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
