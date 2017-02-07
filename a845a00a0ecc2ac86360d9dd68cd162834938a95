@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2be05205_53ef2fd0",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-07T02:21:48Z",
+      "side": 1,
+      "message": "Why not just call it \"branch\", since it doesn\u0027t really delete anything by default? Similarly to git\u0027s \"branch\" where you need to pass \"-d|-D\" to actually delete stuff.",
+      "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
