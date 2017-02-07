@@ -16,6 +16,24 @@
       "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfd97403_d58832ca",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-02-07T19:23:38Z",
+      "side": 1,
+      "message": "because we output what is going to be deleted when delete flag is not used so that user can know what to expect, so this not analogous to git branch",
+      "parentUuid": "2be05205_53ef2fd0",
+      "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
