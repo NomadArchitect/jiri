@@ -34,6 +34,24 @@
       "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "513c5d6b_a5265fca",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-07T19:29:01Z",
+      "side": 1,
+      "message": "IMO I\u0027d expect there to be a -dry-run option that prints out what\u0027ll be deleted without actually doing anything, so the current default behavior would be equivalent to calling `jiri branch -delete -dry-run` while calling `jiri branch -delete` would actually delete stuff. It\u0027s how most tools work, so if you\u0027re doing something else, you\u0027re violating POLA (https://en.wikipedia.org/wiki/Principle_of_least_astonishment) which is not necessarily wrong, but you should have a really good reason for doing so.",
+      "parentUuid": "bfd97403_d58832ca",
+      "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
