@@ -52,6 +52,24 @@
       "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e732e44a_ed51bb9d",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-02-07T19:33:38Z",
+      "side": 1,
+      "message": "the reason was that this is a destructive operation, across hundreds of repos which cannot be reverted easily. \n\nAlso what would jiri return if jiri branch is used without -D and -dry-run? \n\nThis command was only suppose to delete branches and not do anything else hence the name. If i rename it to jiri branch then user will expect other things from it as well which I think would again violate POLA",
+      "parentUuid": "513c5d6b_a5265fca",
+      "revId": "a845a00a0ecc2ac86360d9dd68cd162834938a95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
