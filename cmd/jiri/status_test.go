@@ -25,6 +25,7 @@ func setDefaultStatusFlags() {
 	statusFlags.changes = true
 	statusFlags.checkHead = true
 	statusFlags.branch = ""
+	statusFlags.commits = true
 }
 
 func createCommits(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []project.Project) ([]string, []string, []string, []string) {
@@ -82,12 +83,13 @@ func createProjects(t *testing.T, fake *jiritest.FakeJiriRoot, numProjects int) 
 }
 
 func expectedOutput(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []project.Project,
-	latestCommitRevs, currentCommits, changes, currentBranch, relativePaths []string) string {
+	latestCommitRevs, currentCommits, changes, currentBranch, relativePaths []string, extraCommitLogs [][]string) string {
 	want := ""
 	for i, localProject := range localProjects {
 		includeForNotHead := statusFlags.checkHead && currentCommits[i] != latestCommitRevs[i]
 		includeForChanges := statusFlags.changes && changes[i] != ""
-		includeProject := (statusFlags.branch == "" && (includeForNotHead || includeForChanges)) ||
+		includeForCommits := statusFlags.commits && extraCommitLogs != nil && len(extraCommitLogs[i]) != 0
+		includeProject := (statusFlags.branch == "" && (includeForNotHead || includeForChanges || includeForCommits)) ||
 			(statusFlags.branch != "" && statusFlags.branch == currentBranch[i])
 		if includeProject {
 			want = fmt.Sprintf("%v%v(%v): ", want, localProject.Name, relativePaths[i])
@@ -100,6 +102,13 @@ func expectedOutput(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []p
 				branchmsg = fmt.Sprintf("DETACHED-HEAD(%v)", currentCommits[i])
 			}
 			want = fmt.Sprintf("%v%v", want, branchmsg)
+			if extraCommitLogs != nil && statusFlags.commits && len(extraCommitLogs[i]) != 0 {
+				want = fmt.Sprintf("%v\nCommits: %v commit(s) not merged to remote", want, len(extraCommitLogs[i]))
+				for _, commitLog := range extraCommitLogs[i] {
+					want = fmt.Sprintf("%v\n%v", want, commitLog)
+				}
+
+			}
 			if statusFlags.changes && changes[i] != "" {
 				want = fmt.Sprintf("%v\n%v", want, changes[i])
 			}
@@ -143,7 +152,7 @@ func TestStatus(t *testing.T) {
 	currentCommits := []string{latestCommitRevs[0], file2CommitRevs[1], file1CommitRevs[2]}
 	currentBranch := []string{"", "", "file-2"}
 	changes := []string{"", "", ""}
-	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths)
+	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, nil)
 	if !equal(got, want) {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -166,7 +175,7 @@ func TestStatus(t *testing.T) {
 	currentCommits = []string{latestCommitRevs[0], file2CommitRevs[1], file1CommitRevs[2]}
 	currentBranch = []string{"", "", "file-2"}
 	changes = []string{"?? untracked1\n?? untracked2", "", "A  uncommitted.go"}
-	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths)
+	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, nil)
 	if !equal(got, want) {
 		t.Errorf("got %v, want %v", got, want)
 	}
@@ -178,7 +187,7 @@ func statusFlagsTest(t *testing.T) {
 	s := fake.X.NewSeq()
 
 	// Add projects
-	numProjects := 5
+	numProjects := 6
 	localProjects := createProjects(t, fake, numProjects)
 	file1CommitRevs, file2CommitRevs, latestCommitRevs, relativePaths := createCommits(t, fake, localProjects)
 	if err := fake.UpdateUniverse(false); err != nil {
@@ -202,6 +211,7 @@ func statusFlagsTest(t *testing.T) {
 	gitLocals[1].CheckoutBranch("file-2")
 	gitLocals[3].CheckoutBranch("HEAD~2")
 	gitLocals[4].CheckoutBranch("master")
+	gitLocals[5].CheckoutBranch("master")
 
 	newfile(localProjects[0].Path, "untracked1")
 	newfile(localProjects[0].Path, "untracked2")
@@ -217,11 +227,27 @@ func statusFlagsTest(t *testing.T) {
 		t.Error(err)
 	}
 
+	extraCommits5 := []string{}
+	for i := 0; i < 2; i++ {
+		file := fmt.Sprintf("extrafile%v", i)
+		writeFile(t, fake.X, localProjects[5].Path, file, file+"log")
+		log, err := gitLocals[5].OneLineLog("HEAD")
+		if err != nil {
+			t.Error(err)
+		}
+		extraCommits5 = append([]string{log}, extraCommits5...)
+	}
+	gl5 := git.NewGit(localProjects[5].Path)
+	currentCommit5, err := gl5.CurrentRevision()
+	if err != nil {
+		t.Error(err)
+	}
 	got := executeStatus(t, fake, "")
-	currentCommits := []string{file2CommitRevs[0], file1CommitRevs[1], latestCommitRevs[2], file1CommitRevs[3], latestCommitRevs[4]}
-	currentBranch := []string{"", "file-2", "", "", "master"}
-	changes := []string{"?? untracked1\n?? untracked2", "A  uncommitted.go", "A  uncommitted.go\n?? untracked1", "", ""}
-	want := expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths)
+	currentCommits := []string{file2CommitRevs[0], file1CommitRevs[1], latestCommitRevs[2], file1CommitRevs[3], latestCommitRevs[4], currentCommit5}
+	extraCommitLogs := [][]string{nil, nil, nil, nil, nil, extraCommits5}
+	currentBranch := []string{"", "file-2", "", "", "master", "master"}
+	changes := []string{"?? untracked1\n?? untracked2", "A  uncommitted.go", "A  uncommitted.go\n?? untracked1", "", "", ""}
+	want := expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, extraCommitLogs)
 	if !equal(got, want) {
 		printStatusFlags()
 		t.Errorf("got %v, want %v", got, want)
@@ -229,7 +255,7 @@ func statusFlagsTest(t *testing.T) {
 }
 
 func printStatusFlags() {
-	fmt.Printf("changes=%v, not-head=%v\n", statusFlags.changes, statusFlags.checkHead)
+	fmt.Printf("changes=%v, check-head=%v, commits=%v\n", statusFlags.changes, statusFlags.checkHead, statusFlags.commits)
 }
 
 func TestStatusFlags(t *testing.T) {
@@ -258,6 +284,7 @@ func TestStatusFlags(t *testing.T) {
 	setDefaultStatusFlags()
 	statusFlags.checkHead = false
 	statusFlags.branch = "master"
+	statusFlags.commits = false
 	statusFlagsTest(t)
 
 	setDefaultStatusFlags()

@@ -24,6 +24,7 @@ type statusFlagValues struct {
 	changes   bool
 	checkHead bool
 	branch    string
+	commits   bool
 }
 
 var cmdStatus = &cmdline.Command{
@@ -41,6 +42,7 @@ func init() {
 	flags := &cmdStatus.Flags
 	flags.BoolVar(&statusFlags.changes, "changes", true, "Display projects with tracked or un-tracked changes.")
 	flags.BoolVar(&statusFlags.checkHead, "check-head", true, "Display projects that are not on HEAD/pinned revisions.")
+	flags.BoolVar(&statusFlags.commits, "commits", true, "Display commits not merged with remote. This only works with branch flag.")
 	flags.StringVar(&statusFlags.branch, "branch", "", "Display all projects only on this branch along with thier status.")
 }
 
@@ -71,9 +73,9 @@ func runStatus(jirix *jiri.X, args []string) error {
 		if statusFlags.branch != "" && (statusFlags.branch != state.CurrentBranch.Name) {
 			continue
 		}
-		changes, headRev, err := getStatus(jirix, localProject, remoteProject)
+		changes, headRev, extraCommits, err := getStatus(jirix, localProject, remoteProject, state.CurrentBranch.Name)
 		if err != nil {
-			return err
+			return fmt.Errorf("Error while getting status for project %q :%v", localProject.Name, err)
 		}
 		revisionMessage := ""
 		if statusFlags.checkHead {
@@ -83,18 +85,25 @@ func runStatus(jirix *jiri.X, args []string) error {
 				revisionMessage = fmt.Sprintf("Should be on revision %q, but is on revision %q", headRev, state.CurrentBranch.Revision)
 			}
 		}
-		if statusFlags.branch != "" || (changes != "" || revisionMessage != "") {
+		if statusFlags.branch != "" ||
+			(changes != "" || revisionMessage != "" || len(extraCommits) != 0) {
 			relativePath, err := filepath.Rel(cDir, localProject.Path)
 			if err != nil {
 				return err
 			}
-			fmt.Printf("%v(%v): %v", localProject.Name, relativePath, revisionMessage)
+			fmt.Printf("%v: %v", jirix.Color.Yellow("%v(%v)", localProject.Name, relativePath), revisionMessage)
 			fmt.Println()
 			branch := state.CurrentBranch.Name
 			if branch == "" {
 				branch = fmt.Sprintf("DETACHED-HEAD(%v)", state.CurrentBranch.Revision)
 			}
-			fmt.Printf("Branch: %v\n", branch)
+			fmt.Printf("%v: %v\n", jirix.Color.Yellow("Branch"), branch)
+			if len(extraCommits) != 0 {
+				fmt.Printf("%v: %v commit(s) not merged to remote\n", jirix.Color.Yellow("Commits"), len(extraCommits))
+				for _, commitLog := range extraCommits {
+					fmt.Println(commitLog)
+				}
+			}
 			if changes != "" {
 				fmt.Println(changes)
 			}
@@ -105,7 +114,8 @@ func runStatus(jirix *jiri.X, args []string) error {
 	return nil
 }
 
-func getStatus(jirix *jiri.X, local project.Project, remote project.Project) (string, string, error) {
+func getStatus(jirix *jiri.X, local project.Project, remote project.Project, currentBranch string) (string, string, []string, error) {
+	var extraCommits []string
 	headRev := ""
 	changes := ""
 	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
@@ -114,17 +124,33 @@ func getStatus(jirix *jiri.X, local project.Project, remote project.Project) (st
 	if statusFlags.changes {
 		changes, err = scm.ShortStatus()
 		if err != nil {
-			return "", "", err
+			return "", "", nil, err
 		}
 	}
 	if statusFlags.checkHead && remote.Name != "" {
 		headRev, err = project.GetHeadRevision(jirix, remote)
 		if err != nil {
-			return "", "", err
+			return "", "", nil, err
 		}
 		if headRev, err = g.CurrentRevisionForRef(headRev); err != nil {
-			return "", "", fmt.Errorf("Cannot find revision for ref %q for project %q: %v", headRev, local.Name, err)
+			return "", "", nil, fmt.Errorf("Cannot find revision for ref %q for project %q: %v", headRev, local.Name, err)
 		}
 	}
-	return changes, headRev, nil
+
+	if currentBranch != "" && statusFlags.commits {
+		commits, err := scm.ExtraCommits(statusFlags.branch, "origin")
+		if err != nil {
+			return "", "", nil, err
+		}
+		for _, commit := range commits {
+			log, err := scm.OneLineLog(commit)
+			if err != nil {
+				return "", "", nil, err
+			}
+			extraCommits = append(extraCommits, log)
+
+		}
+
+	}
+	return changes, headRev, extraCommits, nil
 }
