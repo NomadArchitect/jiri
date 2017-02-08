@@ -249,6 +249,12 @@ func (g *Git) Committers() ([]string, error) {
 	return out, nil
 }
 
+// Provides list of commits reachable from rev but not from base
+// rev can be a branch/tag or revision name.
+func (g *Git) ExtraCommits(rev, base string) ([]string, error) {
+	return g.runOutput("rev-list", base+".."+rev)
+}
+
 // CountCommits returns the number of commits on <branch> that are not
 // on <base>.
 func (g *Git) CountCommits(branch, base string) (int, error) {
@@ -269,6 +275,18 @@ func (g *Git) CountCommits(branch, base string) (int, error) {
 		return 0, fmt.Errorf("Atoi(%v) failed: %v", out[0], err)
 	}
 	return count, nil
+}
+
+// Get one line log
+func (g *Git) OneLineLog(rev string) (string, error) {
+	out, err := g.runOutput("log", "--pretty=oneline", "-n", "1", "--abbrev-commit", rev)
+	if err != nil {
+		return "", err
+	}
+	if got, want := len(out), 1; got != want {
+		return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+	}
+	return out[0], nil
 }
 
 // CreateBranch creates a new branch with the given name.

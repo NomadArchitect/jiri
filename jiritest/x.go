@@ -12,11 +12,13 @@ import (
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/log"
+	"fuchsia.googlesource.com/jiri/color"
 	"fuchsia.googlesource.com/jiri/tool"
 )
 
 // NewX is similar to jiri.NewX, but is meant for usage in a testing environment.
 func NewX(t *testing.T) (*jiri.X, func()) {
+	color := color.NewColor(false)
 	ctx := tool.NewDefaultContext()
 	logger := log.NewLogger(log.InfoLevel)
 	root, err := ctx.NewSeq().TempDir("", "")
@@ -31,5 +33,5 @@ func NewX(t *testing.T) (*jiri.X, func()) {
 			t.Fatalf("RemoveAll(%q) failed: %v", root, err)
 		}
 	}
-	return &jiri.X{Context: ctx, Root: root, Jobs: jiri.DefaultJobs, Logger: logger}, cleanup
+	return &jiri.X{Context: ctx, Root: root, Jobs: jiri.DefaultJobs, Color: color, Logger: logger}, cleanup
 }
