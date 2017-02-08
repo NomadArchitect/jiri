@@ -19,6 +19,7 @@ func TestColors(t *testing.T) {
 		if colorCode == Defaultfg {
 			expectedStr = str
 		}
+		fmt.Println(coloredStr)
 		if coloredStr != expectedStr {
 			t.Fatalf("Expected string:%v\n, got: %v", expectedStr, coloredStr)
 
