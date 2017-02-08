@@ -11,11 +11,13 @@ import (
 	"testing"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/color"
 	"fuchsia.googlesource.com/jiri/tool"
 )
 
 // NewX is similar to jiri.NewX, but is meant for usage in a testing environment.
 func NewX(t *testing.T) (*jiri.X, func()) {
+	color.InitializeGlobalColors()
 	ctx := tool.NewDefaultContext()
 	root, err := ctx.NewSeq().TempDir("", "")
 	if err != nil {
