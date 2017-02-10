@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4193d26d_3f7de375",
+        "filename": "color/color.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-10T22:32:03Z",
+      "side": 1,
+      "message": "The casing is wrong, this is Go so it should be BlackFg or BlackForeground, the same for all bellow.",
+      "revId": "b7a2a7dd1a82d746b1064046e3ae677e5cb7000e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8006ef85_6261002d",
+        "filename": "color/color.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-10T22:32:03Z",
+      "side": 1,
+      "message": "IMHO this is the wrong abstraction, color module shouldn\u0027t be handling flags, it should have only one responsibility which is producing colored strings. Ideally, all the functions would be wrapped in an interface, and you could then provide two implementations of that interface, one that does the coloring and one that doesn\u0027t. Depending on the value of the flag, users can use one or the other.",
+      "revId": "b7a2a7dd1a82d746b1064046e3ae677e5cb7000e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
