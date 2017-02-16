@@ -340,6 +340,17 @@ func (g *Git) GetSymbolicRef() (string, error) {
 	return out[0], nil
 }
 
+func (g *Git) GetHashFromRef(ref string) (string, error) {
+	out, err := g.runOutput("rev-parse", ref)
+	if err != nil {
+		return "", err
+	}
+	if got, want := len(out), 1; got != want {
+		return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+	}
+	return out[0], nil
+}
+
 // RemoteBranchName returns the name of the tracking branch stripping remote name from it.
 // It will search recursively if current branch tracks a local branch.
 func (g *Git) RemoteBranchName() (string, error) {
