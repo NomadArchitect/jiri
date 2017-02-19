@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e573515_1a95f4b9",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-02-19T18:14:44Z",
+      "side": 1,
+      "message": "you can use function - CurrentRevisionOfBranch",
+      "range": {
+        "startLine": 343,
+        "startChar": 14,
+        "endLine": 343,
+        "endChar": 28
+      },
+      "revId": "72db7719dbca80addfd3c81c64ba5bca80824c7b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
