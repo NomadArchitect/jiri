@@ -192,6 +192,10 @@ func findJiriRoot(timer *timing.Timer) (string, error) {
 		return cleanPath(rootFlag)
 	}
 
+	if rootEnv := os.Getenv("JIRI_ROOT"); rootEnv != "" {
+		return cleanPath(rootEnv)
+	}
+
 	wd, err := os.Getwd()
 	if err != nil {
 		return "", err
