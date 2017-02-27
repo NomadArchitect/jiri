@@ -46,6 +46,30 @@
       "revId": "e9378ec0e9c9f9b60c3a4eeebbba5d4166963748",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55da7de3_2ca45309",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-27T19:14:24Z",
+      "side": 1,
+      "message": "See https://gerrit-review.googlesource.com/Documentation/rest-api-changes.html#change-info for reference.",
+      "parentUuid": "ab71e9f7_bb7919d2",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 24
+      },
+      "revId": "e9378ec0e9c9f9b60c3a4eeebbba5d4166963748",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
