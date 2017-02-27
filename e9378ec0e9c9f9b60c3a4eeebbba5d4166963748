@@ -22,6 +22,30 @@
       "revId": "e9378ec0e9c9f9b60c3a4eeebbba5d4166963748",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab71e9f7_bb7919d2",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-02-27T19:11:34Z",
+      "side": 1,
+      "message": "This is being parsed from the JSON response returned by Gerrit\u0027s API (we\u0027re currently using only a subset of field returned by Gerrit).",
+      "parentUuid": "43901dc2_109836f4",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 24
+      },
+      "revId": "e9378ec0e9c9f9b60c3a4eeebbba5d4166963748",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
