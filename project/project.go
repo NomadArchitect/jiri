@@ -1695,10 +1695,12 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			errs <- err
 			return
 		}
+		jirix.TimerPush("Fetch local projects")
 		if err := fetchLocalProjects(jirix, localProjects, remoteProjects); err != nil {
 			errs <- err
 			return
 		}
+		jirix.TimerPop()
 		s, err := GetProjectStates(jirix, localProjects, false)
 		if err != nil {
 			errs <- err
