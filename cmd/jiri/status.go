@@ -11,6 +11,7 @@ import (
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
+	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/tool"
@@ -25,9 +26,9 @@ var cmdStatus = &cmdline.Command{
 	Name:   "status",
 	Short:  "Prints status of all the projects",
 	Long: `
-Prints status for the the projects. It runs git status -s across all the projects
+Prints status for the the projects. It runs scm status -s across all the projects
 and prints it if there are some changes. It also shows status if the project is on
-a rev other then the one according to manifest(Named as JIRI_HEAD in git)
+a rev other then the one according to manifest(Named as JIRI_HEAD in scm)
 `,
 }
 
@@ -68,8 +69,9 @@ func runStatus(jirix *jiri.X, args []string) error {
 
 func getStatus(jirix *jiri.X, local project.Project, remote project.Project) (string, string, error) {
 	revisionMessage := ""
-	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
-	changes, err := git.ShortStatus()
+	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
+	g := git.NewGit(local.Path)
+	changes, err := scm.ShortStatus()
 	if err != nil {
 		return "", "", err
 	}
@@ -77,10 +79,10 @@ func getStatus(jirix *jiri.X, local project.Project, remote project.Project) (st
 		if expectedRev, err := project.GetHeadRevision(jirix, remote); err != nil {
 			return "", "", err
 		} else {
-			if expectedRev, err = git.CurrentRevisionOfBranch(expectedRev); err != nil {
+			if expectedRev, err = scm.CurrentRevisionOfBranch(expectedRev); err != nil {
 				return "", "", err
 			}
-			if currentRev, err := git.CurrentRevision(); err != nil {
+			if currentRev, err := g.CurrentRevision(); err != nil {
 				return "", "", err
 			} else if expectedRev != currentRev {
 				revisionMessage = fmt.Sprintf("Should be on revision %q, but is on revision %q", expectedRev, currentRev)
