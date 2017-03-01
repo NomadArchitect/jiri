@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Copyright 2017 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+# Usage:
+#
+# Compile git2go dependency
+# > ./scripts/build_git2go
+
+set -e
+set -x
+
+(cd vendor/github.com/libgit2/git2go; ./script/build-libgit2-static.sh; go install ./...)
