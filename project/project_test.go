@@ -17,6 +17,7 @@ import (
 	"testing"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/jiritest"
 	"fuchsia.googlesource.com/jiri/project"
@@ -315,12 +316,12 @@ func TestUpdateUniverseWithCache(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	gitCache := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(cacheDirPath))
+	gitCache := git.New(cacheDirPath)
 	cacheRev, err := gitCache.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
 	}
-	gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProjects[1].Path))
+	gitLocal := git.New(localProjects[1].Path)
 	localRev, err := gitLocal.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
@@ -412,11 +413,10 @@ func TestJiriExcludeForRepoUpdate(t *testing.T) {
 func TestUpdateUniverseWithRevision(t *testing.T) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
-	s := fake.X.NewSeq()
 
 	// Set project 1's revision in the manifest to the current revision.
-	git := gitutil.New(s, gitutil.RootDirOpt(fake.Projects[localProjects[1].Name]))
-	rev, err := git.CurrentRevision()
+	libgit := git.New(fake.Projects[localProjects[1].Name])
+	rev, err := libgit.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -699,12 +699,14 @@ func TestUpdateWhenRemoteChangesRebased(t *testing.T) {
 	}
 
 	gitRemote := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(fake.Projects[localProjects[1].Name]))
+	libgitRemote := git.New(fake.Projects[localProjects[1].Name])
 	if err := gitRemote.CreateAndCheckoutBranch("non-master"); err != nil {
 		t.Fatal(err)
 	}
 
 	gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProjects[1].Path))
-	if err := gitLocal.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+	libgitLocal := git.New(localProjects[1].Path)
+	if err := libgitLocal.Fetch("origin", git.PruneOpt(true)); err != nil {
 		t.Fatal(err)
 	}
 
@@ -716,11 +718,11 @@ func TestUpdateWhenRemoteChangesRebased(t *testing.T) {
 	// Create commits in remote repo
 	writeReadme(t, fake.X, fake.Projects[localProjects[1].Name], "non-master commit")
 	writeFile(t, fake.X, fake.Projects[localProjects[1].Name], "file1", "file1")
-	file1CommitRev, _ := gitRemote.CurrentRevision()
+	file1CommitRev, _ := libgitRemote.CurrentRevision()
 	writeFile(t, fake.X, fake.Projects[localProjects[1].Name], "file2", "file2")
-	file2CommitRev, _ := gitRemote.CurrentRevision()
+	file2CommitRev, _ := libgitRemote.CurrentRevision()
 
-	if err := gitLocal.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+	if err := libgitLocal.Fetch("origin", git.PruneOpt(true)); err != nil {
 		t.Fatal(err)
 	}
 
@@ -735,7 +737,7 @@ func TestUpdateWhenRemoteChangesRebased(t *testing.T) {
 	}
 
 	// It rebased properly and pulled latest changes
-	localRev, _ := gitLocal.CurrentRevision()
+	localRev, _ := libgitLocal.CurrentRevision()
 	if file2CommitRev != localRev {
 		t.Fatalf("Current commit is %v, it should be %v\n", localRev, file2CommitRev)
 	}
@@ -750,7 +752,7 @@ func TestCheckoutSnapshot(t *testing.T) {
 	var latestCommitRevs []string
 
 	for i, localProject := range localProjects {
-		gitRemote := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(fake.Projects[localProject.Name]))
+		gitRemote := git.New(fake.Projects[localProject.Name])
 		writeFile(t, fake.X, fake.Projects[localProject.Name], "file1"+strconv.Itoa(i), "file1"+strconv.Itoa(i))
 		file1CommitRev, _ := gitRemote.CurrentRevision()
 		oldCommitRevs = append(oldCommitRevs, file1CommitRev)
@@ -765,7 +767,8 @@ func TestCheckoutSnapshot(t *testing.T) {
 
 	for i, localProject := range localProjects {
 		gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProject.Path))
-		rev, _ := gitLocal.CurrentRevision()
+		libgitLocal := git.New(localProject.Path)
+		rev, _ := libgitLocal.CurrentRevision()
 		if rev != latestCommitRevs[i] {
 			t.Fatalf("Current commit for project %q is %v, it should be %v\n", localProject.Name, rev, latestCommitRevs[i])
 		}
@@ -795,7 +798,7 @@ func TestCheckoutSnapshot(t *testing.T) {
 	manifest.ToFile(fake.X, snapshotFile)
 	project.CheckoutSnapshot(fake.X, snapshotFile, false, false)
 	for i, localProject := range localProjects {
-		gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProject.Path))
+		gitLocal := git.New(localProject.Path)
 		rev, _ := gitLocal.CurrentRevision()
 		expectedRev := manifest.Projects[i].Revision
 		if rev != expectedRev {
@@ -816,12 +819,14 @@ func TestUpdateWhenRemoteChangesMerged(t *testing.T) {
 	}
 
 	gitRemote := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(fake.Projects[localProjects[1].Name]))
+	libgitRemote := git.New(fake.Projects[localProjects[1].Name])
 	if err := gitRemote.CreateAndCheckoutBranch("non-master"); err != nil {
 		t.Fatal(err)
 	}
 
 	gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProjects[1].Path))
-	if err := gitLocal.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+	libgitLocal := git.New(localProjects[1].Path)
+	if err := libgitLocal.Fetch("origin", git.PruneOpt(true)); err != nil {
 		t.Fatal(err)
 	}
 
@@ -832,7 +837,7 @@ func TestUpdateWhenRemoteChangesMerged(t *testing.T) {
 
 	// creating two sepearte commit and merging them in remote
 	writeFile(t, fake.X, fake.Projects[localProjects[1].Name], "file1", "file1")
-	file1CommitRev, _ := gitRemote.CurrentRevision()
+	file1CommitRev, _ := libgitRemote.CurrentRevision()
 	if err := gitRemote.CheckoutBranch("master"); err != nil {
 		t.Fatal(err)
 	}
@@ -848,9 +853,9 @@ func TestUpdateWhenRemoteChangesMerged(t *testing.T) {
 	if err := gitRemote.Merge("branchToMerge"); err != nil {
 		t.Fatal(err)
 	}
-	mergeCommitRev, _ := gitRemote.CurrentRevision()
+	mergeCommitRev, _ := libgitRemote.CurrentRevision()
 
-	if err := gitLocal.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+	if err := libgitLocal.Fetch("origin", git.PruneOpt(true)); err != nil {
 		t.Fatal(err)
 	}
 
@@ -864,7 +869,7 @@ func TestUpdateWhenRemoteChangesMerged(t *testing.T) {
 	}
 
 	// It rebased properly and pulled latest changes
-	localRev, _ := gitLocal.CurrentRevision()
+	localRev, _ := libgitLocal.CurrentRevision()
 	if mergeCommitRev != localRev {
 		t.Fatalf("Current commit is %v, it should be %v\n", localRev, mergeCommitRev)
 	}
