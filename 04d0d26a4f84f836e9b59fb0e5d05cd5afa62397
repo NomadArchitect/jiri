@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3744d983_4f65f139",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 9565
+      },
+      "writtenOn": "2017-03-01T22:31:48Z",
+      "side": 1,
+      "message": "Typo at the beginning of the second sentence. \"Chnage\" \u003d\u003e \"Change\"",
+      "revId": "04d0d26a4f84f836e9b59fb0e5d05cd5afa62397",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
