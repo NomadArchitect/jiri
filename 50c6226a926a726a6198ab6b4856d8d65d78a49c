@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "622ef275_ac7d922d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1043,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-02T04:33:16Z",
+      "side": 1,
+      "message": "I think you\u0027re missing `cleanLimit \u003c- struct{}{}` here.",
+      "revId": "50c6226a926a726a6198ab6b4856d8d65d78a49c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
