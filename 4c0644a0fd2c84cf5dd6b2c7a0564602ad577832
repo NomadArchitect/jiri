@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "97a3715d_15a2a991",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:30:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be7d9fac_f21e1949",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4afc63c3_6afacb29",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-03T23:22:54Z",
       "side": 1,
       "message": "nit: only fetch origin but without prune option?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 84
+      },
+      "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e565a2e_2beeaac3",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:30:59Z",
+      "side": 1,
+      "message": "I think we can be even stricter and fetch only a single ref.",
+      "parentUuid": "4afc63c3_6afacb29",
       "range": {
         "startLine": 94,
         "startChar": 0,
