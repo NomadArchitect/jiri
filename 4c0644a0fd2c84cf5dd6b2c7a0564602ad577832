@@ -117,6 +117,30 @@
       "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f14d122_2b046015",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:39:39Z",
+      "side": 1,
+      "message": "I\u0027ve already fixed the code, look at the latest revision",
+      "parentUuid": "a74a9137_bfb23555",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 84
+      },
+      "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
