@@ -22,6 +22,30 @@
       "revId": "4e36ffd6e637d05543614b7cc117a868affae9eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d672c0b8_efd0631c",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-03T23:01:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e03cfef8_ed0d9cec",
+      "range": {
+        "startLine": 30,
+        "startChar": 38,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "4e36ffd6e637d05543614b7cc117a868affae9eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
