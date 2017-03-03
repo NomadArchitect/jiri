@@ -7,7 +7,6 @@ package main
 import (
 	"fmt"
 	"net/url"
-	"os"
 	"strconv"
 	"strings"
 
@@ -53,16 +52,6 @@ deleting the branch even if it contains unmerged changes).
 // patchProject changes directory into the project directory, checks out the given
 // change, then cds back to the original directory.
 func patchProject(jirix *jiri.X, project project.Project, ref string) error {
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	if err = os.Chdir(project.Path); err != nil {
-		return err
-	}
-
 	var branch string
 	if branchFlag != "" {
 		branch = branchFlag
@@ -74,7 +63,7 @@ func patchProject(jirix *jiri.X, project project.Project, ref string) error {
 		branch = fmt.Sprintf("change/%v/%v", cl, ps)
 	}
 
-	git := gitutil.New(jirix.NewSeq())
+	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
 	if git.BranchExists(branch) {
 		if deleteFlag {
 			if err := git.CheckoutBranch("origin/master"); err != nil {
@@ -100,6 +89,20 @@ func patchProject(jirix *jiri.X, project project.Project, ref string) error {
 	return nil
 }
 
+func rebaseProject(jirix *jiri.X, project project.Project, branch string) error {
+	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+	if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+		return err
+	}
+	if err := git.Rebase("origin/" + branch); err != nil {
+		if err := git.RebaseAbort(); err != nil {
+			return err
+		}
+		return fmt.Errorf("Cannot rebase the change: %v", err)
+	}
+	return nil
+}
+
 func runPatch(jirix *jiri.X, args []string) error {
 	if expected, got := 1, len(args); expected != got {
 		return jirix.UsageErrorf("unexpected number of arguments: expected %v, got %v", expected, got)
@@ -114,7 +117,6 @@ func runPatch(jirix *jiri.X, args []string) error {
 		}
 	}
 
-	var change gerrit.Change
 	if p, err := currentProject(jirix); err == nil {
 		host := hostFlag
 		if host == "" {
@@ -139,6 +141,11 @@ func runPatch(jirix *jiri.X, args []string) error {
 			}
 		} else {
 			if err := patchProject(jirix, p, change.Reference()); err != nil {
+				return err
+			}
+		}
+		if rebaseFlag {
+			if err := rebaseProject(jirix, p, change.Branch); err != nil {
 				return err
 			}
 		}
@@ -174,21 +181,13 @@ func runPatch(jirix *jiri.X, args []string) error {
 				if err := patchProject(jirix, p, ref); err != nil {
 					return err
 				}
+				if rebaseFlag {
+					if err := rebaseProject(jirix, p, change.Branch); err != nil {
+						return err
+					}
+				}
 				break
 			}
-		}
-	}
-
-	if rebaseFlag {
-		git := gitutil.New(jirix.NewSeq())
-		if err := git.Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
-			return err
-		}
-		if err = git.Rebase("origin/" + change.Branch); err != nil {
-			if err := git.RebaseAbort(); err != nil {
-				return err
-			}
-			return fmt.Errorf("Cannot rebase the branch: %v", err)
 		}
 	}
 
