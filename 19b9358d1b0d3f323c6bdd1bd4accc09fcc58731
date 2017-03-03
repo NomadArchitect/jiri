@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ccd5489d_1c83c1a1",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be used anywhere so I\u0027d remove it.",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89be6dc2_804b490c",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "I\u0027d move the ColorFlag to x.go where we also handle other global flags.",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "964fa614_cb3fbf16",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "I\u0027d rename this to Color.",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d12071f7_2a00946d",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "This should be also defined in x.go inside X struct.",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aecccefc_3da8ca30",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "monochrome maybe?",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c28fd278_e2577f85",
+        "filename": "color/color.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T19:57:42Z",
+      "side": 1,
+      "message": "You should refactor this out into a NewColor constructor, with a signature like:\n\nfunc NewColor(enable bool) *Color {\n  ...\n}\n\n\nIn NewX, you can then do something akin to:\n\nx.Color \u003d NewColor(ColorFlag)\n\nDepending on the value of enable and the terminal support, NewColor will return either an instance of color or noColor (which is an internal implementation detail).",
+      "revId": "19b9358d1b0d3f323c6bdd1bd4accc09fcc58731",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
