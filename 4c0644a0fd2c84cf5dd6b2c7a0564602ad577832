@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be7d9fac_f21e1949",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-03T23:22:54Z",
+      "side": 1,
+      "message": "nit: change the description",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 51
+      },
+      "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4afc63c3_6afacb29",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-03T23:22:54Z",
+      "side": 1,
+      "message": "nit: only fetch origin but without prune option?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 84
+      },
+      "revId": "4c0644a0fd2c84cf5dd6b2c7a0564602ad577832",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
