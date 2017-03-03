@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37720b6c_d1f264ad",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "This file is missing copyright header.",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03eda5ca_087a5229",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "I don\u0027t think you need the git2go here, it\u0027s going to be inferred from the package name",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21034434_3279553d",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "This should be NewGit according to Go conventions.",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7464f1f1_9a6c34c5",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "Would it make more sense to just return git2go.Branch directly?",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4ebdb0d_74a592c3",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "nit: bi rather than branchIterator.",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1678023e_c325f0f0",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "nit: bt rather than bType (Go programmers love acronyms as variable names).",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8414b7d_c2a5313e",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-03T23:46:53Z",
+      "side": 1,
+      "message": "nit: just g, the same below",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
