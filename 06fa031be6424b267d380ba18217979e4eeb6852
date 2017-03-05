@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd7f2d4e_6f05e6e4",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5020
+      },
+      "writtenOn": "2017-03-05T02:45:26Z",
+      "side": 0,
+      "message": "I think you accidentally edited the rebaseUntrackedFlag setting into the hook timeout setting, instead of adding it additionally.",
+      "range": {
+        "startLine": 36,
+        "startChar": 24,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "06fa031be6424b267d380ba18217979e4eeb6852",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
