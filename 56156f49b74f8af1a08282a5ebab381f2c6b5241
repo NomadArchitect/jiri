@@ -16,6 +16,24 @@
       "revId": "56156f49b74f8af1a08282a5ebab381f2c6b5241",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95586806_df180f71",
+        "filename": "jiritest/x.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T22:31:15Z",
+      "side": 1,
+      "message": "using it in other CL\nhttps://fuchsia-review.googlesource.com/c/20456/3/cmd/jiri/status.go\n\nneed to update that CL to use jirix color instance",
+      "parentUuid": "bdf12558_722b9abc",
+      "revId": "56156f49b74f8af1a08282a5ebab381f2c6b5241",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
