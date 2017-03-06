@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdf12558_722b9abc",
+        "filename": "jiritest/x.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-06T22:14:12Z",
+      "side": 1,
+      "message": "Do you ever plan to use the color instance from anywhere else (other than logger)?",
+      "revId": "56156f49b74f8af1a08282a5ebab381f2c6b5241",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
