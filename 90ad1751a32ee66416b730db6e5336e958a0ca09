@@ -122,6 +122,24 @@
       "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdca2089_55e79f14",
+        "filename": "project/state.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T23:14:56Z",
+      "side": 1,
+      "message": "yes, but we would still need to create a map inside git as branch iterator will  return branches in undefined order and then apply below logic in it, and then it would not be a thin client anymore. IMHO the purpose of having gitutil on he top of git2go was to provide thin client which can take care of all the repetitive stuff and not deal with any business logic\n\nright now GetAllbranchinfo just iterates branchiterator and provides an encapsulation on the top of branch data type and it\u0027s functions while taking care of errors and cleaning",
+      "parentUuid": "23df1904_5883f135",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }

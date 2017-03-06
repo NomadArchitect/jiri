@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "01f07a61_8c367f75",
+        "filename": "git/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T23:14:56Z",
+      "side": 1,
+      "message": "but we don\u0027t actually have a reference to tracking branch in here, only it\u0027s name",
+      "parentUuid": "3f449c25_3dc8c821",
+      "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "736206ed_1baee590",
         "filename": "git/git.go",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-06T22:47:03Z",
       "side": 1,
       "message": "This is not set or used so shouldn\u0027t be here.",
+      "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7465e198_c66463a6",
+        "filename": "git/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T23:14:56Z",
+      "side": 1,
+      "message": "we are setting it at line 141",
+      "parentUuid": "736206ed_1baee590",
       "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
