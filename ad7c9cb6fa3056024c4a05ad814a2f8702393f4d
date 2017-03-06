@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f449c25_3dc8c821",
+        "filename": "git/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-06T22:47:03Z",
+      "side": 1,
+      "message": "I\u0027d consider splitting this into type Referece and type Branch same as we did for ReferenceState and BranchState in ProjectState.",
+      "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "736206ed_1baee590",
+        "filename": "git/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-06T22:47:03Z",
+      "side": 1,
+      "message": "This is not set or used so shouldn\u0027t be here.",
+      "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

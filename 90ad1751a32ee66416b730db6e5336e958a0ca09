@@ -104,6 +104,24 @@
       "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23df1904_5883f135",
+        "filename": "project/state.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-06T22:47:03Z",
+      "side": 1,
+      "message": "I understand the use case, but is it really being used like that from anywhere? Right now GetAllbranchesInfo only seems to be used from this method, so this feels like a premature optimization.",
+      "parentUuid": "1eb49de0_d7cc4a16",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
