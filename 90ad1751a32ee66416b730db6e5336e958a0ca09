@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a46af85_63ed14b2",
+        "filename": "git/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T19:39:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fc4dba_45220394",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a0a7159_352584e5",
         "filename": "git/git.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b3dad9c7_82550fc2",
+        "filename": "git/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T19:39:22Z",
+      "side": 1,
+      "message": "i am using map in the caller to get info about the tracking branch",
+      "parentUuid": "4a0a7159_352584e5",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27ae015e_0608d2a3",
         "filename": "project/state.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-03-06T04:39:25Z",
       "side": 1,
       "message": "It might be possible/preferable to move the logic in this loop into GetAllBranchesInfo to avoid having to go over the state twice, but that could be done in a future change.",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb49de0_d7cc4a16",
+        "filename": "project/state.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T19:39:22Z",
+      "side": 1,
+      "message": "GetAllBranchesInfo returns a map so that caller can get info of a branch(local or remote) in o(1) time, If i move this logic into git package then that won\u0027t be possible and in future every caller will need to loop on it, also it won\u0027t be possible to get info about remote branch directly. I think we are just creating a thin client over git2go in our util and we should not move this business logic over there. Please advise",
+      "parentUuid": "27ae015e_0608d2a3",
       "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true

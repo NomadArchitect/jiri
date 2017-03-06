@@ -160,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "722e14c2_ac1add74",
+        "filename": "git/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T19:39:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b7c7803_dc24986f",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4ebdb0d_74a592c3",
         "filename": "git/git.go",
         "patchSetId": 1
@@ -276,6 +294,24 @@
       "writtenOn": "2017-03-06T04:39:25Z",
       "side": 1,
       "message": "nit: g here as well",
+      "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e511481a_de9a03cb",
+        "filename": "project/state.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-06T19:39:22Z",
+      "side": 1,
+      "message": "already did that \nhttps://fuchsia-review.googlesource.com/c/22309/2/project/state.go#37",
+      "parentUuid": "99973fc9_ba630aca",
       "revId": "593dbfe16984ace50c8e8a53df6b538d7eeed4ce",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
