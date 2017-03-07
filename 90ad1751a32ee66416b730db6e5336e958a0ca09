@@ -140,6 +140,24 @@
       "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "000d7622_9d9619a9",
+        "filename": "project/state.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T18:29:43Z",
+      "side": 1,
+      "message": "i can actually get revision of upstream from upstream object, so will not need he map, will update the CL",
+      "parentUuid": "cdca2089_55e79f14",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
