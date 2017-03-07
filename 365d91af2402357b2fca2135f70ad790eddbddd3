@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "687cb93a_7e61c6c6",
+        "filename": "MANIFEST.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-03-07T00:46:17Z",
+      "side": 1,
+      "message": "Make it manifest.md, usually upper case is for standard files (README, CONTRIBUTING, LICENSE, etc...) not for project specifics.\n\nSame with FILESYSTEM.",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e1be740_ce0549a3",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-03-07T00:46:17Z",
+      "side": 1,
+      "message": "space before \"again\"",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ee30b18_98c169b4",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-03-07T00:46:17Z",
+      "side": 1,
+      "message": "\"Main commands\"",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93c95563_5ccbf525",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-03-07T00:46:17Z",
+      "side": 1,
+      "message": "no trailing period to be consistent with the other lines",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b36cc8a6_834b4f49",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 5113
+      },
+      "writtenOn": "2017-03-07T00:46:17Z",
+      "side": 1,
+      "message": "Put the full link at the very bottom and use a link reference instead (like for other links on this page). That usually makes the file more readable.",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
