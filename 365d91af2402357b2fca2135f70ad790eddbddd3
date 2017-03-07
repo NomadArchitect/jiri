@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7e83d605_f8474641",
+        "filename": "MANIFEST.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T01:50:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "687cb93a_7e61c6c6",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6e1be740_ce0549a3",
         "filename": "README.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-07T00:46:17Z",
       "side": 1,
       "message": "space before \"again\"",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d90f926_8243d3f6",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T01:50:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e1be740_ce0549a3",
       "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "8845c03a_9c89273a",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T01:50:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ee30b18_98c169b4",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93c95563_5ccbf525",
         "filename": "README.md",
         "patchSetId": 1
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "890c6a62_e0f649ec",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T01:50:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93c95563_5ccbf525",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b36cc8a6_834b4f49",
         "filename": "README.md",
         "patchSetId": 1
@@ -81,6 +153,24 @@
       "writtenOn": "2017-03-07T00:46:17Z",
       "side": 1,
       "message": "Put the full link at the very bottom and use a link reference instead (like for other links on this page). That usually makes the file more readable.",
+      "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce3f531d_78b5e1ed",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T01:50:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b36cc8a6_834b4f49",
       "revId": "365d91af2402357b2fca2135f70ad790eddbddd3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
