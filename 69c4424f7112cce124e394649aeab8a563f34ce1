@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "910d3ad5_6031fba5",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T02:14:34Z",
+      "side": 1,
+      "message": "if we do this everytime, how are we going to use config, cache, color, flags and logger from x.go?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "69c4424f7112cce124e394649aeab8a563f34ce1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
