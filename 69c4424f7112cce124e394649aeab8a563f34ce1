@@ -22,6 +22,30 @@
       "revId": "69c4424f7112cce124e394649aeab8a563f34ce1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d287ea1_da72289d",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T02:16:17Z",
+      "side": 1,
+      "message": "sorry I see we can get it, i went to wrong function in jiritest",
+      "parentUuid": "910d3ad5_6031fba5",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "69c4424f7112cce124e394649aeab8a563f34ce1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
