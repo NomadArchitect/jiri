@@ -46,6 +46,30 @@
       "revId": "69c4424f7112cce124e394649aeab8a563f34ce1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a834e509_8015b217",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-07T02:24:35Z",
+      "side": 1,
+      "message": "This is just a first iteration, once all commands are converted to the new interface, we could modify NewX to avoid taking cmdline Env as an argument, eliminate the cmdline package and construct the context in main and pass it to all handlers.",
+      "parentUuid": "5d287ea1_da72289d",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "69c4424f7112cce124e394649aeab8a563f34ce1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
