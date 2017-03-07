@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "89dad80a_34377685",
+        "filename": "git/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T19:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01f07a61_8c367f75",
+      "revId": "ad7c9cb6fa3056024c4a05ad814a2f8702393f4d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "736206ed_1baee590",
         "filename": "git/git.go",
         "patchSetId": 4

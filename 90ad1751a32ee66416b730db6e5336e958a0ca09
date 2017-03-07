@@ -158,6 +158,24 @@
       "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12dfbb55_090e15be",
+        "filename": "project/state.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-07T19:47:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "000d7622_9d9619a9",
+      "revId": "90ad1751a32ee66416b730db6e5336e958a0ca09",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
