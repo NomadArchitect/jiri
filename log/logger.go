@@ -37,6 +37,7 @@ type LogLevel int
 
 const (
 	ErrorLevel LogLevel = iota
+	WarningLevel
 	InfoLevel
 	DebugLevel
 	TraceLevel
@@ -73,6 +74,12 @@ func (l Logger) log(colorfn color.Colorfn, format string, a ...interface{}) {
 	l.goLogger.Printf(colorfn(format, a...))
 }
 
+func (l Logger) Warningf(format string, a ...interface{}) {
+	if l.LoggerLevel >= WarningLevel {
+		l.log(l.color.Yellow, format, a...)
+	}
+}
+
 func (l Logger) Infof(format string, a ...interface{}) {
 	if l.LoggerLevel >= InfoLevel {
 		l.log(l.color.DefaultColor, format, a...)
@@ -81,7 +88,7 @@ func (l Logger) Infof(format string, a ...interface{}) {
 
 func (l Logger) Debugf(format string, a ...interface{}) {
 	if l.LoggerLevel >= DebugLevel {
-		l.log(l.color.Yellow, format, a...)
+		l.log(l.color.Cyan, format, a...)
 	}
 }
 

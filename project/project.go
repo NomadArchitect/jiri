@@ -153,6 +153,43 @@ func safeWriteFile(jirix *jiri.X, filename string, data []byte) error {
 		Done()
 }
 
+type LocalConfig struct {
+	Ignore   bool     `xml:"ignore"`
+	NoUpdate bool     `xml:"no-update"`
+	NoRebase bool     `xml:"no-rebase"`
+	XMLName  struct{} `xml:"config"`
+}
+
+func LocalConfigFromFile(jirix *jiri.X, filename string) (LocalConfig, error) {
+	var lc LocalConfig
+	f, err := os.Open(filename)
+	if os.IsNotExist(err) {
+		return lc, nil
+	} else if err != nil {
+		return lc, err
+	}
+	return lc, xml.NewDecoder(f).Decode(&lc)
+}
+
+func (lc *LocalConfig) ToFile(jirix *jiri.X, filename string) error {
+	if err := os.MkdirAll(filepath.Dir(filename), 0755); err != nil {
+		return err
+	}
+	writer, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer writer.Close()
+	encoder := xml.NewEncoder(writer)
+	encoder.Indent("", " ")
+	return encoder.Encode(lc)
+}
+
+func WriteLocalConfig(jirix *jiri.X, project Project, lc LocalConfig) error {
+	configFile := filepath.Join(project.Path, jiri.ProjectMetaDir, jiri.ProjectConfigFile)
+	return lc.ToFile(jirix, configFile)
+}
+
 // Hook represents a hook to run
 type Hook struct {
 	Name        string   `xml:"name,attr"`
@@ -421,6 +458,9 @@ type Project struct {
 	// This is used to store computed key. This is useful when remote and
 	// local projects are same but have different name or remote
 	ComputedKey ProjectKey `xml:"-"`
+
+	// This stores the local configuration file for the project
+	LocalConfig LocalConfig `xml:"-"`
 }
 
 // ProjectFromFile returns a project parsed from the contents of filename,
@@ -784,6 +824,13 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 			return nil, err
 		}
 		if projectsExist {
+			for key, p := range snapshotProjects {
+				localConfigFile := filepath.Join(p.Path, jiri.ProjectMetaDir, jiri.ProjectConfigFile)
+				if p.LocalConfig, err = LocalConfigFromFile(jirix, localConfigFile); err != nil {
+					return nil, fmt.Errorf("Error while reading config for project %s(%s): %v", p.Name, p.Path, err)
+				}
+				snapshotProjects[key] = p
+			}
 			return setProjectRevisions(jirix, snapshotProjects)
 		}
 	}
@@ -1009,13 +1056,18 @@ func CleanupProjects(jirix *jiri.X, localProjects Projects, cleanupBranches bool
 		go func(local Project) {
 			defer func() { <-cleanLimit }()
 			defer wg.Done()
+
+			if local.LocalConfig.Ignore || local.LocalConfig.NoUpdate {
+				jirix.Logger.Warningf("NOTE: project %s(%s) won't be updated due to it's local-config", local.Name, local.Path)
+				return
+			}
 			remote, ok := remoteProjects[local.Key()]
 			if !ok {
-				jirix.Logger.Errorf("Not cleaning project %q(%v). It was not found in manifest", local.Name, local.Path)
+				jirix.Logger.Errorf("Not cleaning project %s(%s). It was not found in manifest", local.Name, local.Path)
 				return
 			}
 			if err := resetLocalProject(jirix, local, remote, cleanupBranches); err != nil {
-				errs <- fmt.Errorf("Erorr cleaning project %q: %v", local.Name, err)
+				errs <- fmt.Errorf("Error cleaning project %q: %v", local.Name, err)
 			}
 		}(local)
 	}
@@ -1093,6 +1145,10 @@ func ProjectAtPath(jirix *jiri.X, path string) (Project, error) {
 	if err != nil {
 		return Project{}, err
 	}
+	localConfigFile := filepath.Join(path, jiri.ProjectMetaDir, jiri.ProjectConfigFile)
+	if project.LocalConfig, err = LocalConfigFromFile(jirix, localConfigFile); err != nil {
+		return *project, fmt.Errorf("Error while reading config for project %s(%s): %v", project.Name, path, err)
+	}
 	return *project, nil
 }
 
@@ -1138,8 +1194,8 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) error {
 				return
 			}
 			if path != project.Path {
-				logs := []string{fmt.Sprintf("NOTE: project %v has path %v", project.Name, project.Path),
-					fmt.Sprintf("but was found in %v.", path),
+				logs := []string{fmt.Sprintf("NOTE: project %s has path %s", project.Name, project.Path),
+					fmt.Sprintf("but was found in %s.", path),
 					fmt.Sprintf("jiri will treat it as a stale project. To remove this warning"),
 					fmt.Sprintf("please delete this or move it out of your root folder")}
 				log <- logs
@@ -1148,7 +1204,7 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) error {
 			projectsMutex.Lock()
 			if p, ok := projects[project.Key()]; ok {
 				projectsMutex.Unlock()
-				errs <- fmt.Errorf("name conflict: both %v and %v contain project with key %v", p.Path, project.Path, project.Key())
+				errs <- fmt.Errorf("name conflict: both %s and %s contain project with key %s", p.Path, project.Path, project.Key())
 				return
 			}
 			projects[project.Key()] = project
@@ -1233,6 +1289,10 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 // syncProjectMaster checks out latest detached head if project is on one
 // else it rebases current branch onto its tracking branch
 func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, snapshot bool) error {
+	if project.LocalConfig.Ignore || project.LocalConfig.NoUpdate {
+		jirix.Logger.Warningf("NOTE: project %q won't be updated due to it's local-config", project.Name)
+		return nil
+	}
 	s := jirix.NewSeq()
 	scm := gitutil.New(s, gitutil.RootDirOpt(project.Path))
 	g := git.NewGit(project.Path)
@@ -1240,7 +1300,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 		if changes, err := g.HasUncommittedChanges(); err != nil {
 			return fmt.Errorf("Cannot get uncommited changes for project %q", project.Name, err)
 		} else if changes {
-			jirix.Logger.Errorf("NOTE: %v(%v) contains uncommited changes.", project.Name, project.Path)
+			jirix.Logger.Errorf("NOTE: %s(%s) contains uncommited changes.", project.Name, project.Path)
 			jirix.Logger.Errorf("Commit or discard the changes and try again.")
 			return nil
 		}
@@ -1249,8 +1309,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			if err2 != nil {
 				return err2
 			}
-			jirix.Logger.Errorf("NOTE: For project (%v), not able to cheackout latest, error: %v", project.Name, err)
-			jirix.Logger.Errorf("Please checkout manually to: %v, use 'git checkout --detach %v'", err, revision, revision)
+			jirix.Logger.Errorf("NOTE: For project %q, not able to checkout latest, error: %v", project.Name, err)
+			jirix.Logger.Errorf("Please checkout manually to JIRI_HEAD, use 'git checkout --detach %s'", revision)
 		}
 		return nil
 	} else {
@@ -1263,14 +1323,18 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			return err
 		}
 		if trackingBranch != "" {
+			if project.LocalConfig.NoRebase {
+				jirix.Logger.Warningf("NOTE: For project %q, not rebasing your local branch due to it's local-config", project.Name)
+				return nil
+			}
 			rebaseSuccess, err := tryRebase(jirix, project, trackingBranch)
 			if err != nil {
 				return err
 			}
 			if rebaseSuccess {
-				jirix.Logger.Debugf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch)
+				jirix.Logger.Debugf("NOTE: For project %q, rebased your local branch %q on %q", project.Name, branch, trackingBranch)
 			} else {
-				jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch)
+				jirix.Logger.Errorf("NOTE: For project %q, not able to rebase your local branch onto %q.", project.Name, trackingBranch)
 				jirix.Logger.Errorf("Please do it manually.")
 			}
 			return nil
@@ -1289,20 +1353,24 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 				relativePath = project.Path
 			}
 			if rebaseUntracked {
+				if project.LocalConfig.NoRebase {
+					jirix.Logger.Warningf("NOTE: For project %q, not rebasing your local branch due to it's local-config", project.Name)
+					return nil
+				}
 				rebaseSuccess, err := tryRebase(jirix, project, revision)
 				if err != nil {
 					return err
 				}
 				if rebaseSuccess {
-					jirix.Logger.Debugf("NOTE: For project (%v), rebased your untracked branch %v on %v", project.Name, branch, revision)
+					jirix.Logger.Debugf("NOTE: For project %q, rebased your untracked branch %s on %s", project.Name, branch, revision)
 				} else {
-					jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your untracked branch onto %v.", project.Name, revision)
-					jirix.Logger.Errorf("To rebase it manually run 'git -C %s rebase %v'", relativePath, revision)
+					jirix.Logger.Errorf("NOTE: For project %q, not able to rebase your untracked branch onto %s.", project.Name, revision)
+					jirix.Logger.Errorf("To rebase it manually run 'git -C %s rebase %s'", relativePath, revision)
 				}
 			} else {
-				jirix.Logger.Errorf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
-				jirix.Logger.Errorf("To rebase it update with -rebase-untracked flag, or to rebase it manually run")
-				jirix.Logger.Errorf("'git -C %s rebase %v'", relativePath, revision)
+				jirix.Logger.Warningf("NOTE: For Project %q, branch %s does not track any remote branch.", project.Name, branch)
+				jirix.Logger.Warningf("To rebase it update with -rebase-untracked flag, or to rebase it manually run")
+				jirix.Logger.Warningf("'git -C %s rebase %s'", relativePath, revision)
 			}
 		}
 		return nil
@@ -1495,14 +1563,14 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 		key := project.Key()
 		if dup, ok := ld.Projects[key]; ok && dup != project {
 			// TODO(toddw): Tell the user the other conflicting file.
-			return fmt.Errorf("duplicate project %q found in %v", key, shortFileName(jirix.Root, file))
+			return fmt.Errorf("duplicate project %q found in %s", key, shortFileName(jirix.Root, file))
 		}
 		ld.Projects[key] = project
 	}
 
 	for _, hook := range m.Hooks {
 		if hook.ActionPath == "" {
-			return fmt.Errorf("invalid hook \"%v\" for project \"%v\"", hook.Name, hook.ProjectName)
+			return fmt.Errorf("invalid hook %q for project %q", hook.Name, hook.ProjectName)
 		}
 		key := hook.Key()
 		ld.Hooks[key] = hook
@@ -1519,7 +1587,7 @@ func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, proje
 	// fetch on updates; non-updates just perform the reset.
 	if ld.update {
 		if err := fetchAll(jirix, project); err != nil {
-			return fmt.Errorf("Fetch failed for project(%v), %v", project.Path, err)
+			return fmt.Errorf("Fetch failed for project(%s), %v", project.Path, err)
 		}
 	}
 
@@ -1692,13 +1760,17 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 	var wg sync.WaitGroup
 	for key, project := range localProjects {
 		if _, ok := remoteProjects[key]; ok {
+			if project.LocalConfig.Ignore || project.LocalConfig.NoUpdate {
+				jirix.Logger.Warningf("NOTE: Not updating remotes for project %q due to its local-config", project.Name)
+				continue
+			}
 			wg.Add(1)
 			fetchLimit <- struct{}{}
 			go func(project Project) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
 				if err := fetchAll(jirix, project); err != nil {
-					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
+					errs <- fmt.Errorf("fetch failed for %q: %v", project.Name, err)
 					return
 				}
 			}(project)
@@ -1912,7 +1984,9 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return err
 	}
 	for _, project := range ps {
-		project.writeJiriHeadFile(jirix)
+		if !(project.LocalConfig.Ignore || project.LocalConfig.NoUpdate) {
+			project.writeJiriHeadFile(jirix)
+		}
 	}
 	if err := runHooks(jirix, ops, hooks, runHookTimeout); err != nil {
 		return err
@@ -1938,7 +2012,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 	// Hack until sequence is changed to use logger or is removed
 	showHookOutput := jirix.Logger.LoggerLevel >= log.DebugLevel
 	for _, hook := range hooks {
-		jirix.Logger.Infof("running hook(%v) for project %q", hook.Name, hook.ProjectName)
+		jirix.Logger.Infof("running hook(%s) for project %q", hook.Name, hook.ProjectName)
 		go func(hook Hook) {
 			outFile, err := ioutil.TempFile(tmpDir, hook.Name+"-out")
 			if err != nil {
@@ -1951,8 +2025,8 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 				return
 			}
 
-			jirix.Logger.Capture(outFile, errFile).Debugf("output for hook(%v) for project %q", hook.Name, hook.ProjectName)
-			jirix.Logger.Capture(outFile, errFile).Errorf("Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
+			jirix.Logger.Capture(outFile, errFile).Debugf("output for hook(%s) for project %q", hook.Name, hook.ProjectName)
+			jirix.Logger.Capture(outFile, errFile).Errorf("Error for hook(%s) for project %q\n", hook.Name, hook.ProjectName)
 			// Hack until sequence is changesd to use logger or is removed
 			s := jirix.NewSeq().Verbose(showHookOutput).CaptureAll(outFile, errFile)
 			if err := s.Dir(hook.ActionPath).Timeout(time.Duration(runHookTimeout) * time.Minute).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {
@@ -2262,6 +2336,10 @@ func (op deleteOperation) Kind() string {
 }
 func (op deleteOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
 	s := jirix.NewSeq()
+	if op.project.LocalConfig.Ignore {
+		jirix.Logger.Warningf("NOTE: project %q won't be deleted due to it's local-config", op.project.Name)
+		return nil
+	}
 	if op.gc {
 		// Never delete projects with non-master branches, uncommitted
 		// work, or untracked content.
@@ -2286,16 +2364,16 @@ func (op deleteOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 			}
 		}
 		if extraBranches || uncommitted || untracked {
-			jirix.Logger.Errorf("NOTE: project %v was not found in the project manifest", op.project.Name)
+			jirix.Logger.Errorf("NOTE: project %q was not found in the project manifest", op.project.Name)
 			jirix.Logger.Errorf("however this project either contains non-master branches, uncommitted")
 			jirix.Logger.Errorf("work, or untracked files and will thus not be deleted")
 			return nil
 		}
 		return s.RemoveAll(op.source).Done()
 	}
-	jirix.Logger.Errorf("NOTE: project %v was not found in the project manifest", op.project.Name)
+	jirix.Logger.Errorf("NOTE: project %q was not found in the project manifest", op.project.Name)
 	jirix.Logger.Errorf("it was not automatically removed to avoid deleting uncommitted work")
-	jirix.Logger.Errorf(`if you no longer need it, invoke "rm -rf %v"`, op.source)
+	jirix.Logger.Errorf(`if you no longer need it, invoke "rm -rf %s"`, op.source)
 	jirix.Logger.Errorf(`or invoke "jiri update -gc" to remove all such local projects`)
 	return nil
 }
@@ -2324,6 +2402,11 @@ func (op moveOperation) Kind() string {
 	return "move"
 }
 func (op moveOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
+	if op.project.LocalConfig.Ignore {
+		jirix.Logger.Warningf("NOTE: project %q won't be moved or updated  due to it's local-config", op.project.Name)
+		return nil
+	}
+
 	// If it was nested project it might have been moved with its parent project
 	if op.source != op.destination {
 		s := jirix.NewSeq()
@@ -2497,6 +2580,7 @@ func computeOp(local, remote *Project, state *ProjectState, gc bool, snapshot bo
 			source:      local.Path,
 		}, gc}
 	case local != nil && remote != nil:
+		remote.LocalConfig = local.LocalConfig
 		switch {
 		case local.Path != remote.Path:
 			// moveOperation also does an update, so we don't need to check the
