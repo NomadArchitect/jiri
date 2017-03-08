@@ -1075,6 +1075,10 @@ func CleanupProjects(jirix *jiri.X, projects Projects, cleanupBranches bool) (e 
 func resetLocalProject(jirix *jiri.X, project Project, cleanupBranches bool) error {
 	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
 
+	if err := git.CleanLockedState(); err != nil {
+		return err
+	}
+
 	if err := checkoutHeadRevision(jirix, project, true); err != nil {
 		return err
 	}
