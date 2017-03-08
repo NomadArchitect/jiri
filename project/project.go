@@ -1083,6 +1083,11 @@ func CleanupProjects(jirix *jiri.X, localProjects Projects, cleanupBranches bool
 // and uncommitted changes, and optionally deletes all the branches except master.
 func resetLocalProject(jirix *jiri.X, local, remote Project, cleanupBranches bool) error {
 	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(local.Path))
+
+	if err := git.CleanLockedState(); err != nil {
+		return err
+	}
+
 	headRev, err := GetHeadRevision(jirix, remote)
 	if err != nil {
 		return err
