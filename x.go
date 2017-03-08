@@ -30,6 +30,7 @@ const (
 	ConfigFile         = "config"
 	DefaultCacheSubdir = "cache"
 	ProjectMetaFile    = "metadata.v2"
+	ProjectConfigFile  = "config"
 	JiriManifestFile   = ".jiri_manifest"
 
 	// PreservePathEnv is the name of the environment variable that, when set to a
@@ -115,7 +116,7 @@ func NewX(env *cmdline.Env) (*X, error) {
 
 	loggerLevel := log.InfoLevel
 	if quietVerboseFlag {
-		loggerLevel = log.ErrorLevel
+		loggerLevel = log.WarningLevel
 	} else if allVerboseFlag {
 		loggerLevel = log.AllLevel
 	} else if traceVerboseFlag {
