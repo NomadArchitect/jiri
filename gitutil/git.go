@@ -764,6 +764,14 @@ func (g *Git) Config(configArgs ...string) error {
 	return g.run(args...)
 }
 
+func (g *Git) CleanLockedState() error {
+	indexLockFile := filepath.Join(g.rootDir, ".git/index.lock")
+	if err := os.Remove(indexLockFile); err != nil && !os.IsNotExist(err) {
+		return err
+	}
+	return nil
+}
+
 // RemoteUrl gets the url of the remote with the given name.
 func (g *Git) RemoteUrl(name string) (string, error) {
 	configKey := fmt.Sprintf("remote.%s.url", name)
