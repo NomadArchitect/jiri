@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77238e24_790da1b3",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-09T23:45:43Z",
+      "side": 1,
+      "message": "I\u0027d still prefer to name this as \"branch\" and make delete the -d option to match Git\u0027s behavior.",
+      "revId": "eaea85f668c6d33dd74a6fbaaa5e00b2a8cca81b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
