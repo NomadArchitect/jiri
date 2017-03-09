@@ -687,8 +687,35 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc bool, runHookTimeout ui
 
 // LoadSnapshotFile loads the specified snapshot manifest.  If the snapshot
 // manifest contains a remote import, an error will be returned.
-func LoadSnapshotFile(jirix *jiri.X, file string) (Projects, Hooks, error) {
-	return loadManifestFile(jirix, file, nil, false)
+func LoadSnapshotFile(jirix *jiri.X, snapshot string) (Projects, Hooks, error) {
+	if _, err := os.Stat(snapshot); err != nil && os.IsNotExist(err) {
+		u, err := url.ParseRequestURI(snapshot)
+		if err != nil {
+			return nil, nil, fmt.Errorf("%q is neither a URL nor a valid file path", snapshot)
+		}
+		jirix.Logger.Infof("Getting snapshot from URL %q", u)
+		resp, err := http.Get(u.String())
+		if err != nil {
+			return nil, nil, fmt.Errorf("Error getting snapshot from URL %q: %v", u, err)
+		}
+		defer resp.Body.Close()
+		if body, err := ioutil.ReadAll(resp.Body); err != nil {
+			return nil, nil, fmt.Errorf("Error reading response body: %v", err)
+		} else {
+			tmpFile, err := ioutil.TempFile("", "snapshot")
+			if err != nil {
+				return nil, nil, fmt.Errorf("Error creating tmp file: %v", err)
+			}
+			defer os.Remove(tmpFile.Name())
+			if _, err = tmpFile.Write(body); err != nil {
+				return nil, nil, fmt.Errorf("Error writing to tmp file: %v", err)
+			}
+			return loadManifestFile(jirix, tmpFile.Name(), nil, false)
+		}
+	} else if err != nil {
+		return nil, nil, err
+	}
+	return loadManifestFile(jirix, snapshot, nil, false)
 }
 
 // CurrentProjectKey gets the key of the current project from the current

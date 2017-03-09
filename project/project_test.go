@@ -8,6 +8,8 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -741,8 +743,17 @@ func TestUpdateWhenRemoteChangesRebased(t *testing.T) {
 	}
 }
 
-// TestCheckoutSnapshot tests checking out snapshot functionality
-func TestCheckoutSnapshot(t *testing.T) {
+// TestCheckoutSnapshotUrl tests checking out snapshot functionality from a url
+func TestCheckoutSnapshotUrl(t *testing.T) {
+	testCheckoutSnapshot(t, true)
+}
+
+// TestCheckoutSnapshotFileSystem tests checking out snapshot functionality from filesystem
+func TestCheckoutSnapshotFileSystem(t *testing.T) {
+	testCheckoutSnapshot(t, false)
+}
+
+func testCheckoutSnapshot(t *testing.T, testURL bool) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
 	s := fake.X.NewSeq()
@@ -793,7 +804,21 @@ func TestCheckoutSnapshot(t *testing.T) {
 	manifest.Projects[2].Revision = latestCommitRevs[2]
 	snapshotFile := filepath.Join(dir, "snapshot")
 	manifest.ToFile(fake.X, snapshotFile)
-	project.CheckoutSnapshot(fake.X, snapshotFile, false, project.DefaultHookTimeout)
+	if testURL {
+		snapBytes, err := ioutil.ReadFile(snapshotFile)
+		if err != nil {
+			t.Fatal(err)
+		}
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "html/text")
+			fmt.Fprintln(w, string(snapBytes[:]))
+		}))
+		defer server.Close()
+
+		project.CheckoutSnapshot(fake.X, server.URL, false, project.DefaultHookTimeout)
+	} else {
+		project.CheckoutSnapshot(fake.X, snapshotFile, false, project.DefaultHookTimeout)
+	}
 	for i, localProject := range localProjects {
 		gitLocal := gitutil.New(s, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(localProject.Path))
 		rev, _ := gitLocal.CurrentRevision()
