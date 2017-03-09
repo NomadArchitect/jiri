@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92883ee8_9262401c",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 2200,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-09T23:38:44Z",
+      "side": 1,
+      "message": "Is this needed? Doesn\u0027t Git allow you to change remote even if you have uncommitted or untracked changes?",
+      "revId": "3c3ea2c0c51cdcff91591597b0f0a409e1ec24bb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
