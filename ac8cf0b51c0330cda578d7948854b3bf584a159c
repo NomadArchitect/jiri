@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa67ef65_89c3cd2d",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T02:45:42Z",
+      "side": 1,
+      "message": "Maybe we should rename it to \u0027clean-all\u0027?",
+      "revId": "ac8cf0b51c0330cda578d7948854b3bf584a159c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68de4f6a_c0259f66",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T02:45:42Z",
+      "side": 1,
+      "message": "We should support this flag with the clean flag as well.",
+      "revId": "ac8cf0b51c0330cda578d7948854b3bf584a159c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
