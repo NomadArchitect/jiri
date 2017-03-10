@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75aafd66_2237d9b8",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T20:06:52Z",
+      "side": 1,
+      "message": "it: I\u0027d change this to \u003cfile or url\u003e",
+      "revId": "a8fd9c331978f0801b16d022afd2436cbe234eba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc74490_1bb5eeb9",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T20:06:52Z",
+      "side": 1,
+      "message": "You can reuse the snapshot variable here for the temporary file name...",
+      "revId": "a8fd9c331978f0801b16d022afd2436cbe234eba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4d519fe_4f95fe55",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T20:06:52Z",
+      "side": 1,
+      "message": "...and you can simply remove this line.",
+      "revId": "a8fd9c331978f0801b16d022afd2436cbe234eba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "584b0469_c5f5c89f",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-10T20:06:52Z",
+      "side": 1,
+      "message": "This is somewhat confusing, I\u0027d consider restructuring this as:\n\nif _, err :\u003d os.Stat(snapshot); err !\u003d nil {\n  if os.IsNotExist(err) {\n    ...\n  } else {\n    return nil, nil, err\n  }\n}",
+      "revId": "a8fd9c331978f0801b16d022afd2436cbe234eba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
