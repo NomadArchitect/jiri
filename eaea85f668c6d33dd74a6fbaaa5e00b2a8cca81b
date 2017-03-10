@@ -16,6 +16,24 @@
       "revId": "eaea85f668c6d33dd74a6fbaaa5e00b2a8cca81b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bee38425_1e090938",
+        "filename": "cmd/jiri/delete_branch.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-10T19:15:56Z",
+      "side": 1,
+      "message": "Done. PTAL",
+      "parentUuid": "77238e24_790da1b3",
+      "revId": "eaea85f668c6d33dd74a6fbaaa5e00b2a8cca81b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
