@@ -10,10 +10,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"path/filepath"
 	"regexp"
 	"sort"
-	"strings"
 	"text/template"
 
 	"fuchsia.googlesource.com/jiri"
@@ -22,45 +20,46 @@ import (
 )
 
 var (
-	branchesFlag        bool
 	cleanupBranchesFlag bool
-	noPristineFlag      bool
-	checkDirtyFlag      bool
-	showNameFlag        bool
+	cleanupFlag         bool
 	jsonOutputFlag      string
 	regexpFlag          bool
 	templateFlag        string
 )
 
 func init() {
-	cmdProjectClean.Flags.BoolVar(&cleanupBranchesFlag, "branches", false, "Delete all non-master branches.")
-	cmdProjectList.Flags.BoolVar(&branchesFlag, "branches", false, "Show project branches.")
-	cmdProjectList.Flags.BoolVar(&noPristineFlag, "nopristine", false, "If true, omit pristine projects, i.e. projects with a clean master branch and no other branches.")
-	cmdProjectShellPrompt.Flags.BoolVar(&checkDirtyFlag, "check-dirty", true, "If false, don't check for uncommitted changes or untracked files. Setting this option to false is dangerous: dirty master branches will not appear in the output.")
-	cmdProjectShellPrompt.Flags.BoolVar(&showNameFlag, "show-name", false, "Show the name of the current repo.")
-	cmdProjectInfo.Flags.StringVar(&jsonOutputFlag, "json-output", "", "Path to write operation results to.")
-	cmdProjectInfo.Flags.BoolVar(&regexpFlag, "regexp", false, "Use argument as regular expression.")
-	cmdProjectInfo.Flags.StringVar(&templateFlag, "template", "", "The template for the fields to display.")
+	cmdProject.Flags.BoolVar(&cleanupBranchesFlag, "branches", false, "Delete all branches. Used with -clean flag.")
+	cmdProject.Flags.BoolVar(&cleanupFlag, "clean", false, "Restore jiri projects to their pristine state. Only -branches flag can be used along with this, all other flags are ignored.")
+	cmdProject.Flags.StringVar(&jsonOutputFlag, "json-output", "", "Path to write operation results to.")
+	cmdProject.Flags.BoolVar(&regexpFlag, "regexp", false, "Use argument as regular expression.")
+	cmdProject.Flags.StringVar(&templateFlag, "template", "", "The template for the fields to display.")
 }
 
 // cmdProject represents the "jiri project" command.
 var cmdProject = &cmdline.Command{
-	Name:     "project",
-	Short:    "Manage the jiri projects",
-	Long:     "Manage the jiri projects.",
-	Children: []*cmdline.Command{cmdProjectClean, cmdProjectInfo, cmdProjectList, cmdProjectShellPrompt},
-}
-
-// cmdProjectClean represents the "jiri project clean" command.
-var cmdProjectClean = &cmdline.Command{
-	Runner:   jiri.RunnerFunc(runProjectClean),
-	Name:     "clean",
-	Short:    "Restore jiri projects to their pristine state",
-	Long:     "Restore jiri projects back to their master branches and get rid of all the local branches and changes.",
+	Runner: jiri.RunnerFunc(runProject),
+	Name:   "project",
+	Short:  "Manage the jiri projects",
+	Long: `Cleans all projects if -clean flag is provided else inspect
+	the local filesystem and provide structured info on the existing
+	projects and branches. Projects are specified using either names or
+	regular expressions that are matched against project names. If no
+	command line arguments are provided the project that the contains the
+	current directory is used, or if run from outside of a given project,
+	all projects will be used. The information to be displayed can be
+	specified using a Go template, supplied via
+the -template flag.`,
 	ArgsName: "<project ...>",
-	ArgsLong: "<project ...> is a list of projects to clean up.",
+	ArgsLong: "<project ...> is a list of projects to clean up or give info about.",
 }
 
+func runProject(jirix *jiri.X, args []string) (e error) {
+	if cleanupFlag {
+		return runProjectClean(jirix, args)
+	} else {
+		return runProjectInfo(jirix, args)
+	}
+}
 func runProjectClean(jirix *jiri.X, args []string) (e error) {
 	localProjects, err := project.LocalProjects(jirix, project.FullScan)
 	if err != nil {
@@ -83,70 +82,6 @@ func runProjectClean(jirix *jiri.X, args []string) (e error) {
 		return err
 	}
 	return nil
-}
-
-// cmdProjectList represents the "jiri project list" command.
-var cmdProjectList = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runProjectList),
-	Name:   "list",
-	Short:  "List existing jiri projects and branches",
-	Long:   "Inspect the local filesystem and list the existing projects and branches.",
-}
-
-// runProjectList generates a listing of local projects.
-func runProjectList(jirix *jiri.X, _ []string) error {
-	projects, err := project.LocalProjects(jirix, project.FastScan)
-	if err != nil {
-		return err
-	}
-	states, err := project.GetProjectStates(jirix, projects, noPristineFlag)
-	if err != nil {
-		return err
-	}
-	var keys project.ProjectKeys
-	for key := range states {
-		keys = append(keys, key)
-	}
-	sort.Sort(keys)
-
-	for _, key := range keys {
-		state := states[key]
-		if noPristineFlag {
-			pristine := len(state.Branches) == 1 && state.CurrentBranch.Name == "master" && !state.HasUncommitted && !state.HasUntracked
-			if pristine {
-				continue
-			}
-		}
-		fmt.Fprintf(jirix.Stdout(), "name=%q remote=%q path=%q\n", state.Project.Name, state.Project.Remote, state.Project.Path)
-		if branchesFlag {
-			for _, branch := range state.Branches {
-				s := "  "
-				if branch.Name == state.CurrentBranch.Name {
-					s += "* "
-				}
-				s += branch.Name
-				fmt.Fprintf(jirix.Stdout(), "%v\n", s)
-			}
-		}
-	}
-	return nil
-}
-
-// cmdProjectInfo represents the "jiri project info" command.
-var cmdProjectInfo = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runProjectInfo),
-	Name:   "info",
-	Short:  "Provided structured input for existing jiri projects and branches",
-	Long: `
-Inspect the local filesystem and provide structured info on the existing
-projects and branches. Projects are specified using either names or regular
-expressions that are matched against project names. If no command line
-arguments are provided the project that the contains the current directory is
-used, or if run from outside of a given project, all projects will be used. The
-information to be displayed can be specified using a Go template, supplied via
-the -template flag.`,
-	ArgsName: "<project-names>...",
-	ArgsLong: "<project-namess>... a list of project names",
 }
 
 // infoOutput defines JSON format for 'project info' output.
@@ -304,72 +239,5 @@ func writeJSONOutput(result interface{}) error {
 		return fmt.Errorf("failed write JSON output to %s: %s\n", jsonOutputFlag, err)
 	}
 
-	return nil
-}
-
-// cmdProjectShellPrompt represents the "jiri project shell-prompt" command.
-var cmdProjectShellPrompt = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runProjectShellPrompt),
-	Name:   "shell-prompt",
-	Short:  "Print a succinct status of projects suitable for shell prompts",
-	Long: `
-Reports current branches of jiri projects (repositories) as well as an
-indication of each project's status:
-  *  indicates that a repository contains uncommitted changes
-  %  indicates that a repository contains untracked files
-`,
-}
-
-func runProjectShellPrompt(jirix *jiri.X, args []string) error {
-	projects, err := project.LocalProjects(jirix, project.FastScan)
-	if err != nil {
-		return err
-	}
-	states, err := project.GetProjectStates(jirix, projects, checkDirtyFlag)
-	if err != nil {
-		return err
-	}
-	var keys project.ProjectKeys
-	for key := range states {
-		keys = append(keys, key)
-	}
-	sort.Sort(keys)
-
-	// Get the key of the current project.
-	currentProjectKey, err := project.CurrentProjectKey(jirix)
-	if err != nil {
-		return err
-	}
-	var statuses []string
-	for _, key := range keys {
-		state := states[key]
-		status := ""
-		if checkDirtyFlag {
-			if state.HasUncommitted {
-				status += "*"
-			}
-			if state.HasUntracked {
-				status += "%"
-			}
-		}
-		short := state.CurrentBranch.Name + status
-		long := filepath.Base(states[key].Project.Name) + ":" + short
-		if key == currentProjectKey {
-			if showNameFlag {
-				statuses = append([]string{long}, statuses...)
-			} else {
-				statuses = append([]string{short}, statuses...)
-			}
-		} else {
-			pristine := state.CurrentBranch.Name == "master"
-			if checkDirtyFlag {
-				pristine = pristine && !state.HasUncommitted && !state.HasUntracked
-			}
-			if !pristine {
-				statuses = append(statuses, long)
-			}
-		}
-	}
-	fmt.Println(strings.Join(statuses, ","))
 	return nil
 }
