@@ -22,6 +22,30 @@
       "revId": "ebc401e7f82e2ea68c1c6582d5267300cbfb85e4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c319e56_51a1d25b",
+        "filename": "cmd/jiri/upload_test.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-13T22:43:54Z",
+      "side": 1,
+      "message": "oh, thanks for catching!, fixed",
+      "parentUuid": "876c2bc8_4e7eb1c7",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "ebc401e7f82e2ea68c1c6582d5267300cbfb85e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
