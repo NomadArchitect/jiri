@@ -16,6 +16,24 @@
       "revId": "2c782db0d08538f3ac5bebd5b653a9eb9b65ea00",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9eff2fd_72f695b4",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-15T17:39:27Z",
+      "side": 1,
+      "message": "but two projects can have same name, it would be difficult to distinguish without project key which user doesn\u0027t know, also i think it is way easier for user to create same branch across projects for same change list rather than remembering project name every time, also if branch name is not same then what about topic? that needs to be same",
+      "parentUuid": "877f4d07_a0350a0c",
+      "revId": "2c782db0d08538f3ac5bebd5b653a9eb9b65ea00",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
