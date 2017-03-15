@@ -64,11 +64,6 @@ if [[ -e "${ROOT_DIR}" ]]; then
   fi
 fi
 
-# Check that go is on the PATH.
-if ! go version >& /dev/null ; then
-  fatal 'ERROR: "go" tool not found, see https://golang.org/doc/install'
-fi
-
 # Remove the root_dir if this script fails so as to not leave the environment in a strange half-state.
 trap "rm -rf ${ROOT_DIR}" INT TERM EXIT
 
@@ -80,20 +75,25 @@ mkdir -p "${BIN_DIR}"
 readonly HOST_OS=$(uname | tr '[:upper:]' '[:lower:]')
 readonly TARGET="${HOST_OS}-amd64"
 readonly COMMIT_URL="${JIRI_REPO_URL}/+refs/heads/master?format=JSON"
+readonly LOG_URL="${JIRI_REPO_URL}/+log/refs/heads/master?format=JSON"
 readonly VERSION=$(curl -sSf "${COMMIT_URL}" | sed -n 's/.*"value": "\([0-9a-f]\{40\}\)"/\1/p')
+readonly VERSIONS=$(curl -sSf "${LOG_URL}" | sed -n 's/.*"commit": "\([0-9a-f]\{40\}\)".*/\1/p')
 if [[ -z ${VERSION} ]]; then
   echo "Cannot determine the latest jiri version" 1>&2
   exit 1
 fi
 
-# Download the jiri binary.
-readonly BIN_URL="${GS_BUCKET_URL}/${TARGET}/${VERSION}"
-if ! curl -sf -o "${BIN_DIR}/jiri" "${BIN_URL}"; then
-  echo "Failed downloading prebuilt jiri binary." 1>&2
-  echo "URL: ${BIN_URL}" 1>&2
-  exit 1
-fi
-chmod 755 "${BIN_DIR}/jiri"
+for version in ${VERSIONS}; do
+  # Download the jiri binary.
+  readonly BIN_URL="${GS_BUCKET_URL}/${TARGET}/${version}"
+  if ! curl -sf -o "${BIN_DIR}/jiri" "${BIN_URL}"; then
+    continue
+  fi
+  chmod 755 "${BIN_DIR}/jiri"
+  echo "Please add ${BIN_DIR} to your PATH"
+  trap - EXIT
+  exit 0
+done
 
-echo "Please add ${BIN_DIR} to your PATH"
-trap - EXIT
+echo "Failed downloading prebuilt jiri binary." 1>&2
+exit 1
