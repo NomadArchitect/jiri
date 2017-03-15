@@ -13,6 +13,7 @@ import (
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gerrit"
+	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 )
@@ -62,26 +63,26 @@ func patchProject(jirix *jiri.X, project project.Project, ref string) error {
 		branch = fmt.Sprintf("change/%v/%v", cl, ps)
 	}
 
-	git := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
-	if git.BranchExists(branch) {
+	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path))
+	if scm.BranchExists(branch) {
 		if deleteFlag {
-			if err := git.CheckoutBranch("origin/master"); err != nil {
+			if err := scm.CheckoutBranch("origin/master"); err != nil {
 				return err
 			}
-			if err := git.DeleteBranch(branch, gitutil.ForceOpt(forceFlag)); err != nil {
+			if err := scm.DeleteBranch(branch, gitutil.ForceOpt(forceFlag)); err != nil {
 				return err
 			}
 		} else {
 			return fmt.Errorf("branch %v already exists in project %q", branch, project.Name)
 		}
 	}
-	if err := git.FetchRefspec("origin", ref); err != nil {
+	if err := git.NewGit(project.Path).FetchRefspec("origin", ref); err != nil {
 		return err
 	}
-	if err := git.CreateBranchWithUpstream(branch, "FETCH_HEAD"); err != nil {
+	if err := scm.CreateBranchWithUpstream(branch, "FETCH_HEAD"); err != nil {
 		return err
 	}
-	if err := git.CheckoutBranch(branch); err != nil {
+	if err := scm.CheckoutBranch(branch); err != nil {
 		return err
 	}
 
@@ -90,12 +91,12 @@ func patchProject(jirix *jiri.X, project project.Project, ref string) error {
 
 // rebaseProject rebases the current branch on top of a given branch.
 func rebaseProject(jirix *jiri.X, project project.Project, change *gerrit.Change) error {
-	git := gitutil.New(jirix.NewSeq(), gitutil.UserNameOpt(change.Owner.Name), gitutil.UserEmailOpt(change.Owner.Email), gitutil.RootDirOpt(project.Path))
-	if err := git.FetchRefspec("origin", change.Branch); err != nil {
+	scm := gitutil.New(jirix.NewSeq(), gitutil.UserNameOpt(change.Owner.Name), gitutil.UserEmailOpt(change.Owner.Email), gitutil.RootDirOpt(project.Path))
+	if err := git.NewGit(project.Path).FetchRefspec("origin", change.Branch); err != nil {
 		return err
 	}
-	if err := git.Rebase("origin/" + change.Branch); err != nil {
-		if err := git.RebaseAbort(); err != nil {
+	if err := scm.Rebase("origin/" + change.Branch); err != nil {
+		if err := scm.RebaseAbort(); err != nil {
 			return err
 		}
 		return fmt.Errorf("Cannot rebase the change: %v", err)
