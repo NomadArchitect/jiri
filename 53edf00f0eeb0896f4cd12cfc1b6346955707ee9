@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ae2a5c0_1f250f95",
+        "filename": "scripts/build_git2go",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-15T16:49:24Z",
+      "side": 1,
+      "message": "How about something like https://fuchsia-review.googlesource.com/c/23166/ instead?",
+      "revId": "53edf00f0eeb0896f4cd12cfc1b6346955707ee9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
