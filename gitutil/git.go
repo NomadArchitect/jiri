@@ -152,23 +152,22 @@ func (g *Git) CheckoutBranch(branch string, opts ...CheckoutOpt) error {
 	return g.run(args...)
 }
 
-// Clone clones the given repository to the given local path.  If reference is
-// not empty it uses the given path as a reference repo.
-func (g *Git) Clone(repo, path string, reference string) error {
-	if reference != "" {
-		return g.run("clone", "--reference", reference, repo, path)
-	}
+// Clone clones the given repository to the given local path.
+// Only use this when using sso protocol
+func (g *Git) Clone(repo, path string) error {
 	return g.run("clone", repo, path)
 }
 
-// CloneMirror clones the given repository using mirror flag.
-func (g *Git) CloneMirror(repo, path string) error {
-	return g.run("clone", "--mirror", repo, path)
+// Clone using --reference flag
+// Only use this when using sso protocol
+func (g *Git) CloneReference(repo, path string, reference string) error {
+	return g.run("clone", "--reference", reference, repo, path)
 }
 
-// CloneRecursive clones the given repository recursively to the given local path.
-func (g *Git) CloneRecursive(repo, path string) error {
-	return g.run("clone", "--recursive", repo, path)
+// CloneMirror clones the given repository using mirror flag.
+// Only use this when using sso protocol
+func (g *Git) CloneMirror(repo, path string) error {
+	return g.run("clone", "--mirror", repo, path)
 }
 
 // Commit commits all files in staging with an empty message.
@@ -416,12 +415,13 @@ func (g *Git) DirExistsOnBranch(dir, branch string) bool {
 }
 
 // Fetch fetches refs and tags from the given remote.
+// Only use this when using sso protocol
 func (g *Git) Fetch(remote string, opts ...FetchOpt) error {
-	return g.FetchRefspec(remote, "", opts...)
+	return g.fetchRefspec(remote, "", opts...)
 }
 
 // FetchRefspec fetches refs and tags from the given remote for a particular refspec.
-func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
+func (g *Git) fetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 	tags := false
 	all := false
 	prune := false

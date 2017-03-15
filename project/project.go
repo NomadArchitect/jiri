@@ -1104,6 +1104,16 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) error {
 	return nil
 }
 
+// Wrapper around git fetch
+func fetch(s runutil.Sequence, remote, remoteName, path string, prune bool) error {
+	if strings.HasPrefix(remote, "sso://") {
+		return gitutil.New(s, gitutil.RootDirOpt(path)).Fetch(remoteName, gitutil.PruneOpt(prune))
+	} else {
+		return git.NewGit(path).Fetch(remoteName, git.PruneOpt(prune))
+	}
+
+}
+
 func fetchAll(jirix *jiri.X, project Project) error {
 	if project.Remote == "" {
 		return fmt.Errorf("project %q does not have a remote", project.Name)
@@ -1112,11 +1122,7 @@ func fetchAll(jirix *jiri.X, project Project) error {
 	if err := g.SetRemoteUrl("origin", project.Remote); err != nil {
 		return err
 	}
-	if strings.HasPrefix(project.Remote, "sso://") {
-		return gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(project.Path)).Fetch("origin", gitutil.PruneOpt(true))
-	} else {
-		return g.Fetch("origin", git.PruneOpt(true))
-	}
+	return fetch(jirix.NewSeq(), project.Remote, "origin", project.Path, true)
 }
 
 func GetHeadRevision(jirix *jiri.X, project Project) (string, error) {
@@ -1365,7 +1371,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
+			if err := clone(jirix.NewSeq(), p.Remote, path, false); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -1572,19 +1578,15 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 			go func(dir, remote string) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
-				// This should be crated inside loop, as when we set git directory,
-				// It changes the dir of previous git in the loop
 				s := jirix.NewSeq()
 				if isPathDir(dir) {
-					// Cache already present, update it
-					// TODO : update this after implementing FetchAll using g
-					if err := gitutil.New(s, gitutil.RootDirOpt(dir)).Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+					if err := fetch(s, remote, "origin", dir, true); err != nil {
 						errs <- err
 						return
 					}
 				} else {
 					// Create cache
-					if err := gitutil.New(s).CloneMirror(remote, dir); err != nil {
+					if err := clone(s, remote, dir, true); err != nil {
 						errs <- err
 						return
 					}
@@ -1973,6 +1975,26 @@ func (op createOperation) Kind() string {
 	return "create"
 }
 
+// wrapper around git Clone
+func clone(s runutil.Sequence, remote, path string, isMirror bool) error {
+	// libgit2 doesn't support sso
+	if strings.HasPrefix(remote, "sso://") {
+		scm := gitutil.New(s)
+		if isMirror {
+			return scm.CloneMirror(remote, path)
+		} else {
+			return scm.Clone(remote, path)
+		}
+	} else {
+		g := git.NewGit(path)
+		if isMirror {
+			return g.CloneMirror(remote, path)
+		} else {
+			return g.Clone(remote, path)
+		}
+	}
+}
+
 func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) (e error) {
 	s := jirix.NewSeq()
 
@@ -1996,8 +2018,14 @@ func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 		cache = ""
 	}
 
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
-		return err
+	if cache == "" {
+		if err := clone(s, op.project.Remote, tmpDir, false); err != nil {
+			return err
+		}
+	} else {
+		if err := gitutil.New(s).CloneReference(op.project.Remote, tmpDir, cache); err != nil {
+			return err
+		}
 	}
 	cwd, err := os.Getwd()
 	if err != nil {
