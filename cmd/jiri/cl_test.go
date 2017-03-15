@@ -340,6 +340,10 @@ func TestCreateReviewBranch(t *testing.T) {
 	fake, _, _, _, cleanup := setupTest(t, true)
 	defer cleanup()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -354,7 +358,7 @@ func TestCreateReviewBranch(t *testing.T) {
 		t.Fatalf("Unexpected review branch name: expected %v, got %v", expected, got)
 	}
 	commitMessage := "squashed commit"
-	if err := review.createReviewBranch(git, commitMessage); err != nil {
+	if err := review.createReviewBranch(git, wd, commitMessage); err != nil {
 		t.Fatalf("%v", err)
 	}
 	// Verify that the branch exists.
@@ -375,6 +379,10 @@ func TestCreateReviewBranchWithEmptyChange(t *testing.T) {
 	fake, _, _, _, cleanup := setupTest(t, true)
 	defer cleanup()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -384,7 +392,7 @@ func TestCreateReviewBranchWithEmptyChange(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	commitMessage := "squashed commit"
-	err = review.createReviewBranch(git, commitMessage)
+	err = review.createReviewBranch(git, wd, commitMessage)
 	if err == nil {
 		t.Fatalf("creating a review did not fail when it should")
 	}
@@ -495,6 +503,10 @@ func TestEndToEnd(t *testing.T) {
 	fake, repoPath, _, gerritPath, cleanup := setupTest(t, true)
 	defer cleanup()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -506,7 +518,7 @@ func TestEndToEnd(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 	expectedRef := gerrit.Reference(review.CLOpts)
@@ -532,6 +544,10 @@ func TestLabelsInCommitMessage(t *testing.T) {
 	defer cleanup()
 	s := fake.X.NewSeq()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -550,7 +566,7 @@ func TestLabelsInCommitMessage(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("%v", err)
 	}
 	expectedRef := gerrit.Reference(review.CLOpts)
@@ -591,7 +607,7 @@ func TestLabelsInCommitMessage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("%v", err)
 	}
 	expectedRef = gerrit.Reference(review.CLOpts)
@@ -619,7 +635,7 @@ func TestLabelsInCommitMessage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("%v", err)
 	}
 	expectedRef = gerrit.Reference(review.CLOpts)
@@ -643,6 +659,10 @@ func TestDirtyBranch(t *testing.T) {
 	defer cleanup()
 	s := fake.X.NewSeq()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -681,7 +701,7 @@ func TestDirtyBranch(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := review.run(git); err == nil {
+	if err := review.run(git, wd); err == nil {
 		t.Fatalf("run() didn't fail when it should")
 	}
 	assertFilesNotCommitted(t, fake.X, []string{stagedFile})
@@ -711,6 +731,10 @@ func TestRunInSubdirectory(t *testing.T) {
 	defer cleanup()
 	s := fake.X.NewSeq()
 	branch := "my-branch"
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
 	git := gitutil.New(fake.X.NewSeq())
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
 		t.Fatalf("%v", err)
@@ -728,7 +752,7 @@ func TestRunInSubdirectory(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 	path := path.Join(repoPath, subdir)
@@ -736,13 +760,13 @@ func TestRunInSubdirectory(t *testing.T) {
 	if err != nil {
 		t.Fatalf("EvalSymlinks(%v) failed: %v", path, err)
 	}
-	cwd, err := os.Getwd()
+	wd, err = os.Getwd()
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	got, err := filepath.EvalSymlinks(cwd)
+	got, err := filepath.EvalSymlinks(wd)
 	if err != nil {
-		t.Fatalf("EvalSymlinks(%v) failed: %v", cwd, err)
+		t.Fatalf("EvalSymlinks(%v) failed: %v", wd, err)
 	}
 	if got != want {
 		t.Fatalf("unexpected working directory: got %v, want %v", got, want)
@@ -917,7 +941,11 @@ func TestDependentClsWithEditDelete(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := review.run(git); err != nil {
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 
@@ -937,7 +965,7 @@ func TestDependentClsWithEditDelete(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%v", err)
 	}
-	if err := review.run(git); err != nil {
+	if err := review.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 
@@ -975,7 +1003,11 @@ func TestParallelDev(t *testing.T) {
 		t.Fatalf("%v", err)
 	}
 	setTopicFlag = false
-	if err := reviewB.run(git); err != nil {
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("%v", err)
+	}
+	if err := reviewB.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 
@@ -1025,8 +1057,7 @@ func TestParallelDev(t *testing.T) {
 	if err != nil {
 		t.Fatalf("review failed: %v", err)
 	}
-
-	if err := reviewA.run(git); err != nil {
+	if err := reviewA.run(git, wd); err != nil {
 		t.Fatalf("run() failed: %v", err)
 	}
 
@@ -1133,7 +1164,7 @@ func TestMultiPart(t *testing.T) {
 	relchdir(ra)
 	cleanupMultiPartFlag = true
 	got := initMP()
-	want := &multiPart{clean: true, states: got.states, keys: got.keys}  // Don't care about the states/keys in this test, just pass them through.
+	want := &multiPart{clean: true, states: got.states, keys: got.keys} // Don't care about the states/keys in this test, just pass them through.
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %#v, want %#v", got, want)
 	}
@@ -1303,7 +1334,7 @@ func TestMultiPart(t *testing.T) {
 				t.Fatalf("%v: %v: %v", loc, p.Path, err)
 			}
 			// use the default commit message
-			if err := review.run(git(p.Path)); err != nil {
+			if err := review.run(git(p.Path), p.Path); err != nil {
 				t.Fatalf("%v: %v, %v", loc, p.Path, err)
 			}
 			filename, err := getCommitMessageFileName(fake.X, branch)

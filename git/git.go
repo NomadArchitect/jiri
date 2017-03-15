@@ -6,6 +6,7 @@ package git
 
 import (
 	"fmt"
+
 	git2go "github.com/libgit2/git2go"
 )
 
@@ -136,7 +137,7 @@ func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
 		} else if u != nil {
 			defer u.Free()
 			branch.Tracking = &Reference{
-				Name: u.Shorthand(),
+				Name:     u.Shorthand(),
 				Revision: u.Target().String(),
 			}
 		}
@@ -144,4 +145,46 @@ func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
 		return nil
 	})
 	return branches, err
+}
+
+// Clone clones the given repository to the given local path.
+func (g *Git) Clone(url, path string) error {
+	repo, err := git2go.Clone(url, path, &git2go.CloneOptions{})
+	if err != nil {
+		return err
+	}
+	repo.Free()
+	return nil
+}
+
+// CloneMirror clones the given repository using mirror flag.
+func (g *Git) CloneMirror(url, path string) error {
+	repo, err := git2go.Clone(url, path, &git2go.CloneOptions{
+		Bare:                 true,
+		RemoteCreateCallback: createMirrorRemote,
+	})
+	if err != nil {
+		return err
+	}
+	repo.Free()
+	return nil
+}
+
+func createMirrorRemote(repo *git2go.Repository, defaultName, url string) (*git2go.Remote, git2go.ErrorCode) {
+	remote, err := repo.Remotes.CreateWithFetchspec(defaultName, url, "+refs/*:refs/*")
+	if err != nil {
+		return nil, git2go.ErrGeneric
+	}
+
+	cfg, err := repo.Config()
+	if err != nil {
+		return nil, git2go.ErrGeneric
+	}
+
+	err = cfg.SetBool(fmt.Sprintf("remote.%s.mirror", defaultName), true)
+	if err != nil {
+		return nil, git2go.ErrGeneric
+	}
+
+	return remote, git2go.ErrOk
 }
