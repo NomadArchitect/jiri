@@ -19,6 +19,7 @@ import (
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/collect"
 	"fuchsia.googlesource.com/jiri/gerrit"
+	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/runutil"
@@ -149,29 +150,33 @@ stops. Otherwise, it deletes the given branches.
 }
 
 func cleanupCL(jirix *jiri.X, branches []string) (e error) {
-	git := gitutil.New(jirix.NewSeq())
-	originalBranch, err := git.CurrentBranchName()
+	cwd, err := os.Getwd()
 	if err != nil {
 		return err
 	}
-	stashed, err := git.Stash()
+	scm := gitutil.New(jirix.NewSeq(), gitutil.RootDirOpt(cwd))
+	originalBranch, err := scm.CurrentBranchName()
+	if err != nil {
+		return err
+	}
+	stashed, err := scm.Stash()
 	if err != nil {
 		return err
 	}
 	if stashed {
-		defer collect.Error(func() error { return git.StashPop() }, &e)
+		defer collect.Error(func() error { return scm.StashPop() }, &e)
 	}
-	if err := git.CheckoutBranch(remoteBranchFlag); err != nil {
+	if err := scm.CheckoutBranch(remoteBranchFlag); err != nil {
 		return err
 	}
 	checkoutOriginalBranch := true
 	defer collect.Error(func() error {
 		if checkoutOriginalBranch {
-			return git.CheckoutBranch(originalBranch)
+			return scm.CheckoutBranch(originalBranch)
 		}
 		return nil
 	}, &e)
-	if err := git.FetchRefspec("origin", remoteBranchFlag); err != nil {
+	if err := git.NewGit(cwd).FetchRefspec("origin", remoteBranchFlag); err != nil {
 		return err
 	}
 	s := jirix.NewSeq()
@@ -728,7 +733,7 @@ func runCLUploadCurrent(jirix *jiri.X, _ []string) error {
 	} else if !confirmed {
 		return nil
 	}
-	err = review.run(git)
+	err = review.run(git, wd)
 	// Ignore the error that is returned when there are no differences
 	// between the local and gerrit branches.
 	if err != nil && noChangesRE.MatchString(err.Error()) {
@@ -920,36 +925,36 @@ func (review *review) cleanup(stashed bool) error {
 // message for all but that last CL is derived from their
 // <commitMessageFileName>, while the <message> argument is used as
 // the commit message for the last commit.
-func (review *review) createReviewBranch(git *gitutil.Git, message string) (e error) {
+func (review *review) createReviewBranch(scm *gitutil.Git, dir, message string) (e error) {
 	// Create the review branch.
-	if err := git.FetchRefspec("origin", review.CLOpts.RemoteBranch); err != nil {
+	if err := git.NewGit(dir).FetchRefspec("origin", review.CLOpts.RemoteBranch); err != nil {
 		return err
 	}
-	if git.BranchExists(review.reviewBranch) {
-		if err := git.DeleteBranch(review.reviewBranch, gitutil.ForceOpt(true)); err != nil {
+	if scm.BranchExists(review.reviewBranch) {
+		if err := scm.DeleteBranch(review.reviewBranch, gitutil.ForceOpt(true)); err != nil {
 			return err
 		}
 	}
 	upstream := "origin/" + review.CLOpts.RemoteBranch
-	if err := git.CreateBranchWithUpstream(review.reviewBranch, upstream); err != nil {
+	if err := scm.CreateBranchWithUpstream(review.reviewBranch, upstream); err != nil {
 		return err
 	}
-	if err := git.CheckoutBranch(review.reviewBranch); err != nil {
+	if err := scm.CheckoutBranch(review.reviewBranch); err != nil {
 		return err
 	}
 	// Register a cleanup handler in case of subsequent errors.
 	cleanup := true
 	defer collect.Error(func() error {
 		if !cleanup {
-			return git.CheckoutBranch(review.CLOpts.Branch)
+			return scm.CheckoutBranch(review.CLOpts.Branch)
 		}
-		git.CheckoutBranch(review.CLOpts.Branch, gitutil.ForceOpt(true))
-		git.DeleteBranch(review.reviewBranch, gitutil.ForceOpt(true))
+		scm.CheckoutBranch(review.CLOpts.Branch, gitutil.ForceOpt(true))
+		scm.DeleteBranch(review.reviewBranch, gitutil.ForceOpt(true))
 		return nil
 	}, &e)
 
 	// Report an error if the CL is empty.
-	hasDiff, err := git.BranchesDiffer(review.CLOpts.Branch, review.reviewBranch)
+	hasDiff, err := scm.BranchesDiffer(review.CLOpts.Branch, review.reviewBranch)
 	if err != nil {
 		return err
 	}
@@ -974,7 +979,7 @@ func (review *review) createReviewBranch(git *gitutil.Git, message string) (e er
 		return err
 	}
 	branches = append(branches, review.CLOpts.Branch)
-	if err := review.squashBranches(git, branches, message); err != nil {
+	if err := review.squashBranches(scm, branches, message); err != nil {
 		return err
 	}
 
@@ -1172,7 +1177,7 @@ func (review *review) processLabelsAndCommitFile(message string) string {
 
 // run implements checks that the review passes all local checks
 // and then uploads it to Gerrit.
-func (review *review) run(git *gitutil.Git) (e error) {
+func (review *review) run(git *gitutil.Git, dir string) (e error) {
 	if uncommittedFlag {
 		changes, err := git.FilesWithUncommittedChanges()
 		if err != nil {
@@ -1232,7 +1237,7 @@ func (review *review) run(git *gitutil.Git) (e error) {
 	if message != "" {
 		message = review.processLabelsAndCommitFile(message)
 	}
-	if err := review.createReviewBranch(git, message); err != nil {
+	if err := review.createReviewBranch(git, dir, message); err != nil {
 		return err
 	}
 	if err := review.updateReviewMessage(git, file); err != nil {

@@ -1361,7 +1361,7 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 			if err := jirix.NewSeq().MkdirAll(path, 0755).Done(); err != nil {
 				return err
 			}
-			if err := gitutil.New(jirix.NewSeq()).Clone(p.Remote, path, ""); err != nil {
+			if err := git.NewGit(path).Clone(p.Remote, path); err != nil {
 				return err
 			}
 			p.Revision = "HEAD"
@@ -1568,19 +1568,14 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 			go func(dir, remote string) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
-				// This should be crated inside loop, as when we set git directory,
-				// It changes the dir of previous git in the loop
-				s := jirix.NewSeq()
 				if isPathDir(dir) {
-					// Cache already present, update it
-					// TODO : update this after implementing FetchAll using g
-					if err := gitutil.New(s, gitutil.RootDirOpt(dir)).Fetch("", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+					if err := git.NewGit(dir).Fetch("origin", git.PruneOpt(true)); err != nil {
 						errs <- err
 						return
 					}
 				} else {
 					// Create cache
-					if err := gitutil.New(s).CloneMirror(remote, dir); err != nil {
+					if err := git.NewGit(dir).CloneMirror(remote, dir); err != nil {
 						errs <- err
 						return
 					}
@@ -1992,9 +1987,17 @@ func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 		cache = ""
 	}
 
-	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
-		return err
+	jirix.TimerPush(fmt.Sprintf("clone-%s", op.project.Name))
+	if cache == "" {
+		if err := git.NewGit(tmpDir).Clone(op.project.Remote, tmpDir); err != nil {
+			return err
+		}
+	} else {
+		if err := gitutil.New(s).CloneReference(op.project.Remote, tmpDir, cache); err != nil {
+			return err
+		}
 	}
+	jirix.TimerPop()
 	cwd, err := os.Getwd()
 	if err != nil {
 		return err
