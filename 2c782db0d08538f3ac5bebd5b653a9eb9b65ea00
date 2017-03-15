@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "877f4d07_a0350a0c",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-15T17:36:11Z",
+      "side": 1,
+      "message": "I\u0027d prefer to specify the list of projects as command line arguments (if none is specified, try the current directory). That way you don\u0027t need the multipart flag, you also don\u0027t need to ensure that the branch names are the same.",
+      "revId": "2c782db0d08538f3ac5bebd5b653a9eb9b65ea00",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
