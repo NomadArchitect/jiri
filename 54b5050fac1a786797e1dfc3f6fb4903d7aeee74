@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "856f4500_63868f10",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 5345
+      },
+      "writtenOn": "2017-03-16T21:08:14Z",
+      "side": 1,
+      "message": "This failure seems to get jiri\u0027s internal state out of sync with what\u0027s on disk.",
+      "revId": "54b5050fac1a786797e1dfc3f6fb4903d7aeee74",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
