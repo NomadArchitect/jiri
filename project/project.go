@@ -1506,9 +1506,11 @@ func groupByGoogleSourceHosts(ps Projects) map[string]Projects {
 // getRemoteHeadRevisions attempts to get the repo statuses from remote for
 // projects at HEAD so we can detect when a local project is already
 // up-to-date.
-func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
+func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) Projects {
 	projectsAtHead := Projects{}
-	for _, rp := range remoteProjects {
+	ps := make(Projects)
+	for k, rp := range remoteProjects {
+		ps[k] = rp
 		if rp.Revision == "HEAD" {
 			projectsAtHead[rp.Key()] = rp
 		}
@@ -1544,11 +1546,12 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) {
 			if !ok || rev == "" {
 				continue
 			}
-			rp := remoteProjects[p.Key()]
+			rp := ps[p.Key()]
 			rp.Revision = rev
-			remoteProjects[p.Key()] = rp
+			ps[p.Key()] = rp
 		}
 	}
+	return ps
 }
 
 // updateCache creates the cache or updates it if already present.
@@ -1672,8 +1675,9 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		}
 		errs <- nil
 	}()
+	var ps Projects
 	go func() {
-		getRemoteHeadRevisions(jirix, remoteProjects)
+		ps = getRemoteHeadRevisions(jirix, remoteProjects)
 		errs <- nil
 	}()
 	multiErr := make(MultiError, 0)
@@ -1686,7 +1690,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	if len(multiErr) != 0 {
 		return multiErr
 	}
-	ops := computeOperations(localProjects, remoteProjects, states, gc, snapshot)
+	ops := computeOperations(localProjects, ps, states, gc, snapshot)
 	updates := newFsUpdates()
 	for _, op := range ops {
 		if err := op.Test(jirix, updates); err != nil {
@@ -1701,7 +1705,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
 		}
 	}
-	for _, project := range remoteProjects {
+	for _, project := range ps {
 		project.writeJiriHeadFile(jirix)
 	}
 	if err := runHooks(jirix, ops, hooks, runHookTimeout); err != nil {
