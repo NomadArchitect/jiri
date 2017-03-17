@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f21cd71c_d2446c94",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-17T01:59:45Z",
+      "side": 1,
+      "message": "nit: you can probably just use ps as name here",
+      "revId": "aeb5a717b44d91c2af349a9cfe59293721cb6f64",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f04efed4_a91e589c",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1678,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-17T01:59:45Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "aeb5a717b44d91c2af349a9cfe59293721cb6f64",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
