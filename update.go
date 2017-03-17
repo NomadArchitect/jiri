@@ -28,7 +28,7 @@ const (
 
 // Update checks whether a new version of Jiri is available and if so,
 // it will download it and replace the current version with the new one.
-func Update(force bool) error {
+func Update(force, updateAndReturn bool) error {
 	if !force && version.GitCommit == "" {
 		return nil
 	}
@@ -59,11 +59,13 @@ func Update(force bool) error {
 			return err
 		}
 
-		// This will overwrite previous force autoupdate if present
-		os.Args = append(os.Args, "-force-autoupdate=false")
-		// Run the update version.
-		if err := syscall.Exec(path, os.Args, os.Environ()); err != nil {
-			return err
+		if !updateAndReturn {
+			// This will overwrite previous force autoupdate if present
+			os.Args = append(os.Args, "-force-autoupdate=false")
+			// Run the update version.
+			if err := syscall.Exec(path, os.Args, os.Environ()); err != nil {
+				return err
+			}
 		}
 	}
 	return nil

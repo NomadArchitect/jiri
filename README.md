@@ -230,10 +230,11 @@ To find documentation about a specific topic or subcommand, run `jiri help
 ```
    cl          Manage changelists for multiple projects
    grep        Search across projects
-   import      Adds imports to .jiri\_manifest file
+   import      Adds imports to .jiri_manifest file
    init        Create a new jiri root
    patch       Patch in the existing change
    project     Manage the jiri projects
+   selfupdate  Update jiri tool
    snapshot    Create a new project snapshot
    status      Prints status of all the projects
    update      Update all jiri projects
