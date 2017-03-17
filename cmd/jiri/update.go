@@ -5,8 +5,6 @@
 package main
 
 import (
-	"fmt"
-
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
@@ -22,6 +20,7 @@ var (
 	forceAutoupdateFlag bool
 	rebaseUntrackedFlag bool
 	hookTimeoutFlag     uint
+	onlyJiri            bool
 )
 
 func init() {
@@ -34,6 +33,7 @@ func init() {
 	cmdUpdate.Flags.BoolVar(&forceAutoupdateFlag, "force-autoupdate", false, "Always update to the current version.")
 	cmdUpdate.Flags.BoolVar(&rebaseUntrackedFlag, "rebase-untracked", false, "Rebase untracked branches onto HEAD.")
 	cmdUpdate.Flags.UintVar(&hookTimeoutFlag, "hook-timeout", project.DefaultHookTimeout, "Timeout in minutes for running the hooks operation.")
+	cmdUpdate.Flags.BoolVar(&onlyJiri, "only-jiri", false, "Updates only jiri and doesn't update your workspace. This will also force update jiri")
 }
 
 // cmdUpdate represents the "jiri update" command.
@@ -59,10 +59,14 @@ func runUpdate(jirix *jiri.X, args []string) error {
 
 	if autoupdateFlag {
 		// Try to update Jiri itself.
-		err := jiri.Update(forceAutoupdateFlag)
+		err := jiri.Update(forceAutoupdateFlag || onlyJiri, onlyJiri)
 		if err != nil {
-			fmt.Printf("warning: automatic update failed: %v\n", err)
+			jirix.Logger.Errorf("warning: automatic update failed: %v", err)
 		}
+	}
+	if onlyJiri {
+		jirix.Logger.Infof("NOTE: Updated this tool. Not updating workspace.")
+		return nil
 	}
 
 	// Update all projects to their latest version.
