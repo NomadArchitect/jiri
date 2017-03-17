@@ -1640,6 +1640,75 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 	return nil
 }
 
+// This function creates dependency tree one level deep and then runs create in
+// parallel. And then runs same function on it recursively so that all
+// independent projects can be created in parallel.
+// ops should be sorted
+func runCreateOperations(jirix *jiri.X, ops operations) error {
+	type Queue struct {
+		ops operations
+	}
+	createBuckets := func(ops operations) ([]Queue, int) {
+		parentPath := ""
+		buckets := []Queue{}
+		count := 0
+		for _, op := range ops {
+			if op.Kind() == "create" {
+				count++
+				q := Queue{}
+				if parentPath != "" && strings.HasPrefix(op.Project().Path, parentPath) {
+					q = buckets[len(buckets)-1]
+				} else {
+					buckets = append(buckets, q)
+					parentPath = op.Project().Path
+				}
+				q.ops = append(q.ops, op)
+				buckets[len(buckets)-1] = q
+			}
+		}
+		return buckets, count
+	}
+	buckets, count := createBuckets(ops)
+
+	runLimit := make(chan struct{}, jirix.Jobs)
+	errs := make(chan error, count)
+	var processBuckets func(buckets []Queue)
+	processBuckets = func(buckets []Queue) {
+		var wg sync.WaitGroup
+		for _, q := range buckets {
+			wg.Add(1)
+			go func(ops operations) {
+				defer wg.Done()
+				op := ops[0]
+				runLimit <- struct{}{}
+				updateFn := func() error {
+					defer func() { <-runLimit }()
+					return op.Run(jirix, false, false)
+				}
+				jirix.Logger.Debugf("%v", op)
+				if err := updateFn(); err != nil {
+					errs <- fmt.Errorf("error creating project %q: %v", op.Project().Name, err)
+					return
+				}
+				subBuckets, _ := createBuckets(ops[1:])
+				processBuckets(subBuckets)
+			}(q.ops)
+		}
+		wg.Wait()
+	}
+	processBuckets(buckets)
+	close(errs)
+
+	multiErr := make(MultiError, 0)
+	for err := range errs {
+		multiErr = append(multiErr, err)
+	}
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+	return nil
+}
+
 func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, runHookTimeout uint, rebaseUntracked, snapshot bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
@@ -1693,13 +1762,16 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			return err
 		}
 	}
-	s := jirix.NewSeq()
 	for _, op := range ops {
-		updateFn := func() error { return op.Run(jirix, rebaseUntracked, snapshot) }
-		jirix.Logger.Debugf("%v", op)
-		if err := s.Call(updateFn, "").Done(); err != nil {
-			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
+		if op.Kind() != "create" {
+			jirix.Logger.Debugf("%v", op)
+			if err := op.Run(jirix, rebaseUntracked, snapshot); err != nil {
+				return fmt.Errorf("error updating project %q: %v, %v", op.Project().Name, op, err)
+			}
 		}
+	}
+	if err := runCreateOperations(jirix, ops); err != nil {
+		return err
 	}
 	for _, project := range remoteProjects {
 		project.writeJiriHeadFile(jirix)
@@ -1895,16 +1967,8 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 // identified by the given path.
 func writeMetadata(jirix *jiri.X, project Project, dir string) (e error) {
 	metadataDir := filepath.Join(dir, jiri.ProjectMetaDir)
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer collect.Error(func() error { return jirix.NewSeq().Chdir(cwd).Done() }, &e)
-
-	s := jirix.NewSeq()
-	if err := s.MkdirAll(metadataDir, os.FileMode(0755)).
-		Chdir(metadataDir).Done(); err != nil {
-		return err
+	if err := os.MkdirAll(metadataDir, os.FileMode(0755)); err != nil {
+		return fmt.Errorf("cannot create %q: %v", metadataDir, err)
 	}
 	metadataFile := filepath.Join(metadataDir, jiri.ProjectMetaFile)
 	return project.ToFile(jirix, metadataFile)
@@ -1997,14 +2061,6 @@ func (op createOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 	}
 
 	if err := gitutil.New(s).Clone(op.project.Remote, tmpDir, cache); err != nil {
-		return err
-	}
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer collect.Error(func() error { return s.Chdir(cwd).Done() }, &e)
-	if err := s.Chdir(tmpDir).Done(); err != nil {
 		return err
 	}
 	if err := writeMetadata(jirix, op.project, tmpDir); err != nil {
