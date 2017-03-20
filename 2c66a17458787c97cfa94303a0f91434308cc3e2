@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a679c5c0_6f90e41f",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-20T20:58:05Z",
+      "side": 1,
+      "message": "ya sorry. Done",
+      "parentUuid": "af5581f5_c50256e9",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74f66e4f_016844e1",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "735ad1bc_3bda381f",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2051,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-20T20:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74f66e4f_016844e1",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18652f29_57d9b890",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2017-03-20T19:53:08Z",
       "side": 1,
       "message": "Why is this needed?",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "304a07fa_886893dc",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2241,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-20T20:58:05Z",
+      "side": 1,
+      "message": "because if we are deleting a folder we first need to update repo to make it empty else we can\u0027t create a new repo in-place of that",
+      "parentUuid": "18652f29_57d9b890",
       "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
