@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af5581f5_c50256e9",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-20T19:53:08Z",
+      "side": 1,
+      "message": "Can you avoid using Seq? We\u0027re trying to eliminate it, not add more uses of it ;)",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74f66e4f_016844e1",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2051,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-20T19:53:08Z",
+      "side": 1,
+      "message": "nit: this line and the one below can be combined into one",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18652f29_57d9b890",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2241,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-20T19:53:08Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "revId": "2c66a17458787c97cfa94303a0f91434308cc3e2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
