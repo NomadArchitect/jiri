@@ -16,6 +16,24 @@
       "revId": "445199fcfdb0128e922b05d780c4f349de691d5a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1e634d9_772a0f96",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-21T05:19:52Z",
+      "side": 1,
+      "message": "hey they are ordered correctly, but if u see runMoveOperation function, it changes the source of nested projects, as when we move parent, nested sources are automatically moved with it, so need to do some pre processing before running each of the operation",
+      "parentUuid": "fcbeeceb_c0ad6c38",
+      "revId": "445199fcfdb0128e922b05d780c4f349de691d5a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
