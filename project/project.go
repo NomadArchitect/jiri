@@ -944,7 +944,9 @@ func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseUntracked 
 	// any errors come up, fallback to the slow path.
 	err := updateFn(FastScan)
 	if err != nil {
-		return updateFn(FullScan)
+		if err2 := updateFn(FullScan); err2 != nil {
+			return fmt.Errorf("%v, %v", err, err2)
+		}
 	}
 
 	return nil
@@ -1717,6 +1719,11 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 
 // This function creates worktree and runs create operation in parallel
 func runCreateOperations(jirix *jiri.X, ops operations) MultiError {
+	count := len(ops)
+	if count == 0 {
+		return nil
+	}
+
 	type workTree struct {
 		// dir is the top level directory in which operations will be performed
 		dir string
@@ -1731,13 +1738,8 @@ func runCreateOperations(jirix *jiri.X, ops operations) MultiError {
 		ops:   []operation{},
 		after: make(map[string]*workTree),
 	}
-	count := 0
 
 	for _, op := range ops {
-		if op.Kind() != "create" {
-			continue
-		}
-		count++
 
 		node := head
 		parts := strings.Split(op.Project().Path, string(filepath.Separator))
@@ -1758,9 +1760,6 @@ func runCreateOperations(jirix *jiri.X, ops operations) MultiError {
 			node = next
 		}
 		node.ops = append(node.ops, op)
-	}
-	if count == 0 {
-		return nil
 	}
 
 	workQueue := make(chan *workTree, count)
@@ -1798,6 +1797,33 @@ func runCreateOperations(jirix *jiri.X, ops operations) MultiError {
 		multiErr = append(multiErr, err)
 	}
 	return multiErr
+}
+
+func runMoveOperations(jirix *jiri.X, ops operations, rebaseUntracked, snapshot bool) error {
+	parentSrcPath := ""
+	parentDestPath := ""
+	for _, op := range ops {
+		mo := op.(moveOperation)
+		if parentSrcPath != "" && strings.HasPrefix(mo.source, parentSrcPath) {
+			mo.source = filepath.Join(parentDestPath, strings.Replace(mo.source, parentSrcPath, "", 1))
+		} else {
+			parentSrcPath = mo.source
+			parentDestPath = mo.destination
+		}
+		if err := mo.Run(jirix, rebaseUntracked, snapshot); err != nil {
+			return fmt.Errorf("error moving and updating project %q: %v", mo.Project().Name, err)
+		}
+	}
+	return nil
+}
+
+func runCommonOperations(jirix *jiri.X, ops operations, rebaseUntracked, snapshot bool) error {
+	for _, op := range ops {
+		if err := op.Run(jirix, rebaseUntracked, snapshot); err != nil {
+			return fmt.Errorf("error updating project %q: %v", op.Project().Name, err)
+		}
+	}
+	return nil
 }
 
 func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, gc bool, runHookTimeout uint, rebaseUntracked, snapshot bool) error {
@@ -1848,21 +1874,42 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return multiErr
 	}
 	ops := computeOperations(localProjects, ps, states, gc, snapshot)
+	moveOperations := operations{}
+	deleteOperations := operations{}
+	updateOperations := operations{}
+	createOperations := operations{}
+	nullOperations := operations{}
 	updates := newFsUpdates()
 	for _, op := range ops {
 		if err := op.Test(jirix, updates); err != nil {
 			return err
 		}
-	}
-	for _, op := range ops {
-		if op.Kind() != "create" {
-			jirix.Logger.Debugf("%v", op)
-			if err := op.Run(jirix, rebaseUntracked, snapshot); err != nil {
-				return fmt.Errorf("error updating project %q: %v, %v", op.Project().Name, op, err)
-			}
+		switch op.Kind() {
+		case "delete":
+			deleteOperations = append(deleteOperations, op)
+		case "move":
+			moveOperations = append(moveOperations, op)
+		case "update":
+			updateOperations = append(updateOperations, op)
+		case "create":
+			createOperations = append(createOperations, op)
+		case "null":
+			nullOperations = append(nullOperations, op)
 		}
 	}
-	if err := runCreateOperations(jirix, ops); err != nil {
+	if err := runCommonOperations(jirix, deleteOperations, rebaseUntracked, snapshot); err != nil {
+		return err
+	}
+	if err := runMoveOperations(jirix, moveOperations, rebaseUntracked, snapshot); err != nil {
+		return err
+	}
+	if err := runCommonOperations(jirix, updateOperations, rebaseUntracked, snapshot); err != nil {
+		return err
+	}
+	if err := runCreateOperations(jirix, createOperations); err != nil {
+		return err
+	}
+	if err := runCommonOperations(jirix, nullOperations, rebaseUntracked, snapshot); err != nil {
 		return err
 	}
 	for _, project := range ps {
@@ -2278,10 +2325,13 @@ func (op moveOperation) Kind() string {
 	return "move"
 }
 func (op moveOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool) error {
-	s := jirix.NewSeq()
-	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
-	if err := s.MkdirAll(path, perm).Rename(op.source, op.destination).Done(); err != nil {
-		return err
+	// If it was nested project it might have been moved with its parent project
+	if op.source != op.destination {
+		s := jirix.NewSeq()
+		path, perm := filepath.Dir(op.destination), os.FileMode(0755)
+		if err := s.MkdirAll(path, perm).Rename(op.source, op.destination).Done(); err != nil {
+			return err
+		}
 	}
 	if err := syncProjectMaster(jirix, op.project, rebaseUntracked, snapshot); err != nil {
 		return err
