@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcbeeceb_c0ad6c38",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1726,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-21T03:07:27Z",
+      "side": 1,
+      "message": "operation already has the Less operator defined so you should be able to just sort them and then ran them in that order.  You\u0027ll need to extend the Less operator to make sure that the move operations are ordered correctly.",
+      "revId": "445199fcfdb0128e922b05d780c4f349de691d5a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
