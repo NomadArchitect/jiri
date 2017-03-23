@@ -91,27 +91,37 @@ func expectedOutput(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []p
 		includeProject := (statusFlags.branch == "" && (includeForNotHead || includeForChanges || includeForCommits)) ||
 			(statusFlags.branch != "" && statusFlags.branch == currentBranch[i])
 		if includeProject {
-			want = fmt.Sprintf("%v%v(%v): ", want, localProject.Name, relativePaths[i])
-			if currentCommits[i] != latestCommitRevs[i] && statusFlags.checkHead {
-				want = fmt.Sprintf("%vShould be on revision %q, but is on revision %q", want, latestCommitRevs[i], currentCommits[i])
+			gitLocal := gitutil.New(fake.X, gitutil.RootDirOpt(localProject.Path))
+			currentLog, err := gitLocal.OneLineLog(currentCommits[i])
+			if err != nil {
+				t.Error(err)
 			}
-			want = fmt.Sprintf("%v\nBranch: ", want)
+			want = fmt.Sprintf("%s%s: ", want, relativePaths[i])
+			if currentCommits[i] != latestCommitRevs[i] && statusFlags.checkHead {
+				log, err := gitLocal.OneLineLog(latestCommitRevs[i])
+				if err != nil {
+					t.Error(err)
+				}
+				want = fmt.Sprintf("%s\nJIRI_HEAD: %s", want, log)
+				want = fmt.Sprintf("%s\nCurrent Revision: %s", want, currentLog)
+			}
+			want = fmt.Sprintf("%s\nBranch: ", want)
 			branchmsg := currentBranch[i]
 			if branchmsg == "" {
-				branchmsg = fmt.Sprintf("DETACHED-HEAD(%v)", currentCommits[i])
+				branchmsg = fmt.Sprintf("DETACHED-HEAD(%s)", currentLog)
 			}
-			want = fmt.Sprintf("%v%v", want, branchmsg)
+			want = fmt.Sprintf("%s%s", want, branchmsg)
 			if extraCommitLogs != nil && statusFlags.commits && len(extraCommitLogs[i]) != 0 {
-				want = fmt.Sprintf("%v\nCommits: %v commit(s) not merged to remote", want, len(extraCommitLogs[i]))
+				want = fmt.Sprintf("%s\nCommits: %d commit(s) not merged to remote", want, len(extraCommitLogs[i]))
 				for _, commitLog := range extraCommitLogs[i] {
-					want = fmt.Sprintf("%v\n%v", want, commitLog)
+					want = fmt.Sprintf("%s\n%s", want, commitLog)
 				}
 
 			}
 			if statusFlags.changes && changes[i] != "" {
-				want = fmt.Sprintf("%v\n%v", want, changes[i])
+				want = fmt.Sprintf("%s\n%s", want, changes[i])
 			}
-			want = fmt.Sprintf("%v\n\n", want)
+			want = fmt.Sprintf("%s\n\n", want)
 		}
 	}
 	want = strings.TrimSpace(want)
@@ -139,7 +149,7 @@ func TestStatus(t *testing.T) {
 	got := executeStatus(t, fake, "")
 	want := ""
 	if got != want {
-		t.Errorf("got %v, want %v", got, want)
+		t.Errorf("got %s, want %s", got, want)
 	}
 
 	// Test when HEAD is on different revsion
@@ -153,7 +163,7 @@ func TestStatus(t *testing.T) {
 	changes := []string{"", "", ""}
 	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, nil)
 	if !equal(got, want) {
-		t.Errorf("got %v, want %v", got, want)
+		t.Errorf("got %s, want %s", got, want)
 	}
 	newfile := func(dir, file string) {
 		testfile := filepath.Join(dir, file)
@@ -176,7 +186,7 @@ func TestStatus(t *testing.T) {
 	changes = []string{"?? untracked1\n?? untracked2", "", "A  uncommitted.go"}
 	want = expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, nil)
 	if !equal(got, want) {
-		t.Errorf("got %v, want %v", got, want)
+		t.Errorf("got %s, want %s", got, want)
 	}
 }
 
@@ -202,7 +212,7 @@ func statusFlagsTest(t *testing.T) {
 		testfile := filepath.Join(dir, file)
 		_, err := s.Create(testfile)
 		if err != nil {
-			t.Errorf("failed to create %s: %v", testfile, err)
+			t.Errorf("failed to create %s: %s", testfile, err)
 		}
 	}
 
@@ -228,7 +238,7 @@ func statusFlagsTest(t *testing.T) {
 
 	extraCommits5 := []string{}
 	for i := 0; i < 2; i++ {
-		file := fmt.Sprintf("extrafile%v", i)
+		file := fmt.Sprintf("extrafile%d", i)
 		writeFile(t, fake.X, localProjects[5].Path, file, file+"log")
 		log, err := gitLocals[5].OneLineLog("HEAD")
 		if err != nil {
@@ -249,12 +259,12 @@ func statusFlagsTest(t *testing.T) {
 	want := expectedOutput(t, fake, localProjects, latestCommitRevs, currentCommits, changes, currentBranch, relativePaths, extraCommitLogs)
 	if !equal(got, want) {
 		printStatusFlags()
-		t.Errorf("got %v, want %v", got, want)
+		t.Errorf("got %s, want %s", got, want)
 	}
 }
 
 func printStatusFlags() {
-	fmt.Printf("changes=%v, check-head=%v, commits=%v\n", statusFlags.changes, statusFlags.checkHead, statusFlags.commits)
+	fmt.Printf("changes=%t, check-head=%t, commits=%t\n", statusFlags.changes, statusFlags.checkHead, statusFlags.commits)
 }
 
 func TestStatusFlags(t *testing.T) {
@@ -341,7 +351,7 @@ func executeStatus(t *testing.T, fake *jiritest.FakeJiriRoot, args ...string) st
 func writeFile(t *testing.T, jirix *jiri.X, projectDir, fileName, message string) {
 	path, perm := filepath.Join(projectDir, fileName), os.FileMode(0644)
 	if err := ioutil.WriteFile(path, []byte(message), perm); err != nil {
-		t.Fatalf("WriteFile(%v, %v) failed: %v", path, perm, err)
+		t.Fatalf("WriteFile(%s, %d) failed: %v", path, perm, err)
 	}
 	if err := gitutil.New(jirix, gitutil.RootDirOpt(projectDir)).CommitFile(path, message); err != nil {
 		t.Fatal(err)
