@@ -91,14 +91,24 @@ func expectedOutput(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []p
 		includeProject := (statusFlags.branch == "" && (includeForNotHead || includeForChanges)) ||
 			(statusFlags.branch != "" && statusFlags.branch == currentBranch[i])
 		if includeProject {
-			want = fmt.Sprintf("%v%v(%v): ", want, localProject.Name, relativePaths[i])
+			gitLocal := gitutil.New(fake.X.NewSeq(), gitutil.RootDirOpt(localProject.Path))
+			currentLog, err := gitLocal.OneLineLog(currentCommits[i])
+			if err != nil {
+				t.Error(err)
+			}
+			want = fmt.Sprintf("%v%v: ", want, relativePaths[i])
 			if currentCommits[i] != latestCommitRevs[i] && statusFlags.notHead {
-				want = fmt.Sprintf("%vShould be on revision %q, but is on revision %q", want, latestCommitRevs[i], currentCommits[i])
+				log, err := gitLocal.OneLineLog(latestCommitRevs[i])
+				if err != nil {
+					t.Error(err)
+				}
+				want = fmt.Sprintf("%v\nJIRI_HEAD: %v", want, log)
+				want = fmt.Sprintf("%v\nCurrent Revision: %v", want, currentLog)
 			}
 			want = fmt.Sprintf("%v\nBranch: ", want)
 			branchmsg := currentBranch[i]
 			if branchmsg == "" {
-				branchmsg = fmt.Sprintf("DETACHED-HEAD(%v)", currentCommits[i])
+				branchmsg = fmt.Sprintf("DETACHED-HEAD(%v)", currentLog)
 			}
 			want = fmt.Sprintf("%v%v", want, branchmsg)
 			if statusFlags.branch != "" && statusFlags.commits && len(extraCommitLogs[i]) != 0 {
