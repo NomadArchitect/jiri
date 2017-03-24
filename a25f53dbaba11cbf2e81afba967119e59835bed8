@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e09dcddd_92153c57",
+        "filename": "git/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-24T23:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89053970_946c81d9",
+      "revId": "a25f53dbaba11cbf2e81afba967119e59835bed8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dee8883_9a23d7e1",
         "filename": "git/git.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4400d4ea_43baf393",
+        "filename": "git/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-24T23:34:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dee8883_9a23d7e1",
+      "revId": "a25f53dbaba11cbf2e81afba967119e59835bed8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "533d1115_fea20ba7",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2017-03-24T22:39:51Z",
       "side": 1,
       "message": "Since you\u0027ve decided to redo all the error messages (I don\u0027t think that\u0027s a good idea, it\u0027d be better to do it in a separate change consistently across entire project), you really need to be consistent:\n\n* saying \"Error ...\" doesn\u0027t make sense because when you\u0027re going to print these error, it\u0027ll be something like \"ERROR: Error ...\"\n* sometimes you say \"for %q\" other times it\u0027s \"for project %q\"\n* there *always* has to be a space between the text and the parentheses\n* you should always use the strictest possible formatting modified, that is %s if you\u0027re expecting a string rather than %v\n\nAlso putting the revision into parentheses just increases confusion (what is that thing in the parentheses?). Just as an example, in this case you could use something like:\n\n\"Cannot find object \\\"%s\\\" for reference \\\"%s\\\" in project \\\"%s\\\": %v\"",
+      "revId": "a25f53dbaba11cbf2e81afba967119e59835bed8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58688d26_39bf76ff",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-24T23:34:08Z",
+      "side": 1,
+      "message": "Done most of the changes...\n\nI need to redo all the error messages as before sequence used to put git command into error message so it was easy to debug when error occurred, now it would be impossible to know where code failed. So I am re-doing error messages as I port as without them I should not merge this change\n\n%q is escaped form of %s according to fmt doc, so I suppose it is safe to use it in-place of %v?",
+      "parentUuid": "533d1115_fea20ba7",
       "revId": "a25f53dbaba11cbf2e81afba967119e59835bed8",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
