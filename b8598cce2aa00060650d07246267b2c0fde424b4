@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "590bfade_76409f2b",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-25T02:50:34Z",
+      "side": 1,
+      "message": "I\u0027d rename this flag to \"shared\".",
+      "revId": "b8598cce2aa00060650d07246267b2c0fde424b4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36a83dc3_1045f409",
+        "filename": "gitutil/git.go",
+        "patchSetId": 13
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-03-25T02:50:34Z",
+      "side": 1,
+      "message": "I\u0027d use \u0027--local\u0027 and \u0027--shared\u0027.",
+      "revId": "b8598cce2aa00060650d07246267b2c0fde424b4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
