@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "208fd558_519cbb0a",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "we are using this for move, update and delete stuff too",
+      "parentUuid": "2818123e_68b6d487",
+      "range": {
+        "startLine": 201,
+        "startChar": 25,
+        "endLine": 201,
+        "endChar": 31
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1e1cca81_577d2e4f",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1b89f4d6_c98a1302",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1698,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e1cca81_577d2e4f",
+      "range": {
+        "startLine": 1698,
+        "startChar": 6,
+        "endLine": 1698,
+        "endChar": 14
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cce3a514_c103732a",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2017-03-29T18:58:44Z",
       "side": 1,
       "message": "use filepath.SplitList",
+      "range": {
+        "startLine": 1721,
+        "startChar": 19,
+        "endLine": 1721,
+        "endChar": 24
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdc5cfb2_238da9cd",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "that doesn\u0027t split by \"/\". it is used to spit PATH env variable",
+      "parentUuid": "cce3a514_c103732a",
       "range": {
         "startLine": 1721,
         "startChar": 19,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "a30b21f8_fecb497b",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "as we are splitting using \"/\", so first element would be \"\"",
+      "parentUuid": "c78a1bc8_95b03d0e",
+      "range": {
+        "startLine": 1724,
+        "startChar": 6,
+        "endLine": 1724,
+        "endChar": 10
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d4a81e0e_07fad5c3",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -114,6 +210,30 @@
       "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96d619b8_328b4c0f",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1743,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a81e0e_07fad5c3",
+      "range": {
+        "startLine": 1743,
+        "startChar": 5,
+        "endLine": 1743,
+        "endChar": 8
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "9efcff0e_855de0ca",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1749,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6840b166_c51018df",
+      "range": {
+        "startLine": 1749,
+        "startChar": 0,
+        "endLine": 1749,
+        "endChar": 26
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad009922_a6be4bb4",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -151,6 +295,30 @@
       "writtenOn": "2017-03-29T18:58:44Z",
       "side": 1,
       "message": "I think this design is more intricate than necessary, can\u0027t you just have a queue of workTree items to work on, and jirix.Jobs worker goroutines to process them until the worktree queue is closed?",
+      "range": {
+        "startLine": 1753,
+        "startChar": 22,
+        "endLine": 1753,
+        "endChar": 30
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f90b0a_b1d93f76",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1753,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "but when do you close worktree? As we need to run  jirix.Jobs  in parallel and then re-use those job slots to process subfolders. The subprocess might goto another job slot than that of parent process",
+      "parentUuid": "ad009922_a6be4bb4",
       "range": {
         "startLine": 1753,
         "startChar": 22,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "d18f9a40_844d1467",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "it is used for runLimit",
+      "parentUuid": "e50e9df2_b17361bf",
+      "range": {
+        "startLine": 1757,
+        "startChar": 14,
+        "endLine": 1757,
+        "endChar": 22
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ddb0d3be_05b3ffa5",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -197,6 +389,30 @@
       "writtenOn": "2017-03-29T18:58:44Z",
       "side": 1,
       "message": "As above, is this still necessary?",
+      "range": {
+        "startLine": 2377,
+        "startChar": 30,
+        "endLine": 2377,
+        "endChar": 36
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d901e59_264b1f4d",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 2377,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-29T20:08:23Z",
+      "side": 1,
+      "message": "yeah also used for move, update, and delete, so fixing those",
+      "parentUuid": "ddb0d3be_05b3ffa5",
       "range": {
         "startLine": 2377,
         "startChar": 30,
