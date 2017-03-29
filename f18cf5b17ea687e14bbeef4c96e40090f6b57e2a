@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34772ba5_d196aac1",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1660,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-29T18:58:44Z",
+      "side": 1,
+      "message": "the queue struct isn\u0027t needed here. This could be [][]operations.",
+      "range": {
+        "startLine": 1660,
+        "startChar": 0,
+        "endLine": 1660,
+        "endChar": 22
+      },
+      "revId": "f18cf5b17ea687e14bbeef4c96e40090f6b57e2a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a7222ad_76409023",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1666,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-29T18:58:44Z",
+      "side": 1,
+      "message": "this method is unsafe, there may be prefix matches in directory paths, such as:\n\nproject: lib\nproject: libc-tests\n\nIt would be preferrable to use:\n\nfilepath.Dir(parentPath) \u003d\u003d op.Project().Path.\n\nNote that filepath.Dir(\"\") \u003d\u003d \".\" so that may enable you to skip the empty string check, depending on what valid values of op.Project().Path are.",
+      "range": {
+        "startLine": 1666,
+        "startChar": 35,
+        "endLine": 1666,
+        "endChar": 44
+      },
+      "revId": "f18cf5b17ea687e14bbeef4c96e40090f6b57e2a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
