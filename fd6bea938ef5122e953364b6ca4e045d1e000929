@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "9070ee01_6c5fd37a",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "Oh, sorry, I obviously moved too fast.  Is op.Project().Path normalized? If not, we should apply filepath.Clean to it first.",
+      "parentUuid": "fdc5cfb2_238da9cd",
+      "range": {
+        "startLine": 1721,
+        "startChar": 19,
+        "endLine": 1721,
+        "endChar": 24
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c78a1bc8_95b03d0e",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -187,6 +211,30 @@
       "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c674ab0_dacf14c0",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a30b21f8_fecb497b",
+      "range": {
+        "startLine": 1724,
+        "startChar": 6,
+        "endLine": 1724,
+        "endChar": 10
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -319,6 +367,30 @@
       "side": 1,
       "message": "but when do you close worktree? As we need to run  jirix.Jobs  in parallel and then re-use those job slots to process subfolders. The subprocess might goto another job slot than that of parent process",
       "parentUuid": "ad009922_a6be4bb4",
+      "range": {
+        "startLine": 1753,
+        "startChar": 22,
+        "endLine": 1753,
+        "endChar": 30
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0029a1f2_1bd4de09",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1753,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "You close the queue after the wait group is done. You populate the waitgroup with count at the beginning.",
+      "parentUuid": "42f90b0a_b1d93f76",
       "range": {
         "startLine": 1753,
         "startChar": 22,

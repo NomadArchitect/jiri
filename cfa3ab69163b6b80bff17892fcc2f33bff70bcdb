@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae4cd5ac_c7d8a2b3",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1749,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "for clarity, the reason you\u0027re doing this func dance is to prevent panics from deadlocking us?\n\nIf so, why are we not recovering them and reporting them to the UI?",
+      "range": {
+        "startLine": 1749,
+        "startChar": 4,
+        "endLine": 1749,
+        "endChar": 9
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e6889f6_110b5192",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "the error returned from op.Run should describe context from op",
+      "range": {
+        "startLine": 1754,
+        "startChar": 24,
+        "endLine": 1754,
+        "endChar": 53
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "126cde5e_6533ed6d",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "this design could use a lot of memory if the tree gets tall, as it is using blocked goroutine stacks to limit concurrency, rather than just putting the work items into a queue. This isn\u0027t a review-blocking issue right now, but a channel that carries work-items would probably be simpler and less prone to related problems.",
+      "range": {
+        "startLine": 1760,
+        "startChar": 3,
+        "endLine": 1760,
+        "endChar": 5
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cb4ef7f_8b35e816",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "if you replace this with `var multiErr MultiError`...",
+      "range": {
+        "startLine": 1768,
+        "startChar": 13,
+        "endLine": 1768,
+        "endChar": 17
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "680e9c25_1c94fe93",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "... then you can just return multiErr here. it will be nil if no errors were appended.",
+      "range": {
+        "startLine": 1772,
+        "startChar": 1,
+        "endLine": 1775,
+        "endChar": 11
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40af578f_f3e5fd82",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-03-31T00:18:55Z",
+      "side": 1,
+      "message": "errors from the OS package have context about the path and operation in the string, e.g.\n\nmkdir /foo: Not a directory",
+      "range": {
+        "startLine": 2038,
+        "startChar": 9,
+        "endLine": 2038,
+        "endChar": 61
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
