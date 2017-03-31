@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "a58544f8_d9d04bd7",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "yes it is",
+      "parentUuid": "9070ee01_6c5fd37a",
+      "range": {
+        "startLine": 1721,
+        "startChar": 19,
+        "endLine": 1721,
+        "endChar": 24
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c78a1bc8_95b03d0e",
         "filename": "project/project.go",
         "patchSetId": 6
@@ -391,6 +415,30 @@
       "side": 1,
       "message": "You close the queue after the wait group is done. You populate the waitgroup with count at the beginning.",
       "parentUuid": "42f90b0a_b1d93f76",
+      "range": {
+        "startLine": 1753,
+        "startChar": 22,
+        "endLine": 1753,
+        "endChar": 30
+      },
+      "revId": "fd6bea938ef5122e953364b6ca4e045d1e000929",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "490e1e80_eff7fb75",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1753,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "ah, but if there are errors we would be stuck, instead i can use wg.Add(1) when ever i add to queue",
+      "parentUuid": "0029a1f2_1bd4de09",
       "range": {
         "startLine": 1753,
         "startChar": 22,

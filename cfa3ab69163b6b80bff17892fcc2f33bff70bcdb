@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "39c5078b_a5df4bfb",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1749,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "no it was to limit the number of parallel creates and to open job slot as soon as a job finishes, removed",
+      "parentUuid": "ae4cd5ac_c7d8a2b3",
+      "range": {
+        "startLine": 1749,
+        "startChar": 4,
+        "endLine": 1749,
+        "endChar": 9
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e6889f6_110b5192",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-31T00:18:55Z",
       "side": 1,
       "message": "the error returned from op.Run should describe context from op",
+      "range": {
+        "startLine": 1754,
+        "startChar": 24,
+        "endLine": 1754,
+        "endChar": 53
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e1fb5b5_876454bd",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "with current design it doesn\u0027t, I will create a new CL for it where i will change move, update, delete and create",
+      "parentUuid": "7e6889f6_110b5192",
       "range": {
         "startLine": 1754,
         "startChar": 24,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9c48e53b_efbe6ac7",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "126cde5e_6533ed6d",
+      "range": {
+        "startLine": 1760,
+        "startChar": 3,
+        "endLine": 1760,
+        "endChar": 5
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cb4ef7f_8b35e816",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2017-03-31T00:18:55Z",
       "side": 1,
       "message": "if you replace this with `var multiErr MultiError`...",
+      "range": {
+        "startLine": 1768,
+        "startChar": 13,
+        "endLine": 1768,
+        "endChar": 17
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a872442_6ad0bc31",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "i am not sure why, i have tried that before but it doesn\u0027t work, some how []error to error conversion doesn\u0027t produce nil, you can try it at\nhttps://play.golang.org/p/VfNOgAw3iM",
+      "parentUuid": "0cb4ef7f_8b35e816",
       "range": {
         "startLine": 1768,
         "startChar": 13,
@@ -137,6 +233,30 @@
       "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51707904_692d4852",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-03-31T19:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40af578f_f3e5fd82",
+      "range": {
+        "startLine": 2038,
+        "startChar": 9,
+        "endLine": 2038,
+        "endChar": 61
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
