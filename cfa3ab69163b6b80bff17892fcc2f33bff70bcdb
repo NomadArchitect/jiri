@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "891bee31_450e15c2",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-03T18:17:24Z",
+      "side": 1,
+      "message": "yeah so I was returning error, I have changed the function to return MultiErr",
+      "parentUuid": "8e9dcd60_6df983a4",
+      "range": {
+        "startLine": 1768,
+        "startChar": 13,
+        "endLine": 1768,
+        "endChar": 17
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "680e9c25_1c94fe93",
         "filename": "project/project.go",
         "patchSetId": 7
@@ -234,6 +258,30 @@
       "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07c7c159_fb0e8a76",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-03T18:17:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "680e9c25_1c94fe93",
+      "range": {
+        "startLine": 1772,
+        "startChar": 1,
+        "endLine": 1775,
+        "endChar": 11
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
