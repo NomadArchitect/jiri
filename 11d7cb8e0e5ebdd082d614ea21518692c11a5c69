@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c9a7ecd_76d4ee4b",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T20:22:18Z",
+      "side": 1,
+      "message": "Strongly prefer using io.Copy(tmpFile, resp.Body) over slurping contents.",
+      "range": {
+        "startLine": 712,
+        "startChar": 24,
+        "endLine": 712,
+        "endChar": 29
+      },
+      "revId": "11d7cb8e0e5ebdd082d614ea21518692c11a5c69",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1267823_b509285d",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T20:22:18Z",
+      "side": 1,
+      "message": "Reduce indentations where possible by using early-exit branches.\n\nIn other words:\n\nif !os.IsNotExist(err) {\n  return nil, nil, err\n}",
+      "range": {
+        "startLine": 716,
+        "startChar": 4,
+        "endLine": 716,
+        "endChar": 8
+      },
+      "revId": "11d7cb8e0e5ebdd082d614ea21518692c11a5c69",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
