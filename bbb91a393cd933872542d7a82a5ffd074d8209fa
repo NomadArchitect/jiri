@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51210cf3_45ae4dcc",
+        "filename": "jiritest/x.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T20:38:48Z",
+      "side": 1,
+      "message": "Not directly relevant to this CL, but this API doesn\u0027t read very well. What is the color \"true\"?\n\nI think I would propose that the color package has a single global variable that handles color on/off, and then use package functions as string wrappers, then you can avoid a lot of deeper coupling in here. Lets discuss off-CL.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "bbb91a393cd933872542d7a82a5ffd074d8209fa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
