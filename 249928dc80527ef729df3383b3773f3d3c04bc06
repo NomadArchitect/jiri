@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a784eee7_62f0ccd2",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1887,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T23:18:01Z",
+      "side": 1,
+      "message": "Why don\u0027t you use a type switch here, and then use specifically typed functions?",
+      "range": {
+        "startLine": 1887,
+        "startChar": 0,
+        "endLine": 1887,
+        "endChar": 20
+      },
+      "revId": "249928dc80527ef729df3383b3773f3d3c04bc06",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
