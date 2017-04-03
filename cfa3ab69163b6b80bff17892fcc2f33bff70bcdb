@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "8e9dcd60_6df983a4",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T17:10:24Z",
+      "side": 1,
+      "message": "Your example code above is not using a concrete typed variable, it is using an interface type. The interface type is not nil.\n\nIf you use a local var of a concrete type, it can be nil, I adjusted your code as follows: https://play.golang.org/p/QiZDEUBhRJ",
+      "parentUuid": "5a872442_6ad0bc31",
+      "range": {
+        "startLine": 1768,
+        "startChar": 13,
+        "endLine": 1768,
+        "endChar": 17
+      },
+      "revId": "cfa3ab69163b6b80bff17892fcc2f33bff70bcdb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "680e9c25_1c94fe93",
         "filename": "project/project.go",
         "patchSetId": 7
