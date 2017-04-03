@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "30ae645e_07ddce61",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T20:32:12Z",
+      "side": 1,
+      "message": "remove this else. Convention in go is to early exit then continue out of conditional.",
+      "range": {
+        "startLine": 705,
+        "startChar": 5,
+        "endLine": 705,
+        "endChar": 9
+      },
+      "revId": "11d7cb8e0e5ebdd082d614ea21518692c11a5c69",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c9a7ecd_76d4ee4b",
         "filename": "project/project.go",
         "patchSetId": 2
