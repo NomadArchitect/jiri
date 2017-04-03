@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a24138f4_58c7ac54",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-03T21:43:06Z",
+      "side": 1,
+      "message": "In the future, if the manifest loader accepted the io.Reader interface, we could even avoid the tempfile here. This is a change for another generation, though.",
+      "range": {
+        "startLine": 717,
+        "startChar": 8,
+        "endLine": 717,
+        "endChar": 24
+      },
+      "revId": "f3c9475a8a7f01dbb232321b52ddc16449abe167",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
