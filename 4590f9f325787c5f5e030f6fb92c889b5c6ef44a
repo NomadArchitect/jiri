@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb9a194b_e6096718",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-04T21:47:04Z",
+      "side": 1,
+      "message": "as we are printing git command in second line, should we provide path here? it would be too much noise IMHO",
+      "revId": "4590f9f325787c5f5e030f6fb92c889b5c6ef44a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4108f41a_64ad1d71",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-04T21:47:04Z",
+      "side": 1,
+      "message": "as we are printing git command in second line, should we provide path here? it would be too much noise IMHO",
+      "revId": "4590f9f325787c5f5e030f6fb92c889b5c6ef44a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e6e6594_043168a1",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-04T21:47:04Z",
+      "side": 1,
+      "message": "as we are printing git command in second line, should we provide path here? it would be too much noise IMHO",
+      "revId": "4590f9f325787c5f5e030f6fb92c889b5c6ef44a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb889e4_8ef1ca93",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-04T21:47:04Z",
+      "side": 1,
+      "message": "as we are printing git command in second line, should we provide path here? it would be too much noise IMHO",
+      "revId": "4590f9f325787c5f5e030f6fb92c889b5c6ef44a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
