@@ -1236,11 +1236,22 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 	s := jirix.NewSeq()
 	scm := gitutil.New(s, gitutil.RootDirOpt(project.Path))
 	g := git.NewGit(project.Path)
+
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	relativePath, err := filepath.Rel(cwd, project.Path)
+	if err != nil {
+		// Just use the full path if an error occurred.
+		relativePath = project.Path
+	}
+
 	if !scm.IsOnBranch() || snapshot {
 		if changes, err := g.HasUncommittedChanges(); err != nil {
-			return fmt.Errorf("Cannot get uncommited changes for project %q", project.Name, err)
+			return fmt.Errorf("Cannot get uncommited changes for project %v (%v)", project.Name, relativePath, err)
 		} else if changes {
-			jirix.Logger.Errorf("NOTE: %v(%v) contains uncommited changes.", project.Name, project.Path)
+			jirix.Logger.Errorf("NOTE: Project %v (%v) contains uncommited changes.", project.Name, relativePath)
 			jirix.Logger.Errorf("Commit or discard the changes and try again.")
 			return nil
 		}
@@ -1249,8 +1260,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			if err2 != nil {
 				return err2
 			}
-			jirix.Logger.Errorf("NOTE: For project (%v), not able to cheackout latest, error: %v", project.Name, err)
-			jirix.Logger.Errorf("Please checkout manually to: %v, use 'git checkout --detach %v'", err, revision, revision)
+			jirix.Logger.Errorf("NOTE: For project %v (%v), not able to cheackout latest, error: %v", project.Name, relativePath, err)
+			jirix.Logger.Errorf("Please checkout manually to: %v, use 'git -C %v checkout --detach %v'", revision, relativePath, revision)
 		}
 		return nil
 	} else {
@@ -1268,10 +1279,10 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 				return err
 			}
 			if rebaseSuccess {
-				jirix.Logger.Debugf("NOTE: For project (%v), rebased your local branch %v on %v", project.Name, branch, trackingBranch)
+				jirix.Logger.Debugf("NOTE: For project %v (%v), rebased your local branch %v on %v", project.Name, relativePath, branch, trackingBranch)
 			} else {
-				jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your local branch onto %v.", project.Name, trackingBranch)
-				jirix.Logger.Errorf("Please do it manually.")
+				jirix.Logger.Errorf("NOTE: For project %v (%v), not able to rebase your local branch onto %v.", project.Name, relativePath, trackingBranch)
+				jirix.Logger.Errorf("To rebase it manually run 'git -C %s rebase %v'", relativePath, trackingBranch)
 			}
 			return nil
 		} else {
@@ -1279,28 +1290,19 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			if err2 != nil {
 				return err2
 			}
-			cwd, err := os.Getwd()
-			if err != nil {
-				return err
-			}
-			relativePath, err := filepath.Rel(cwd, project.Path)
-			if err != nil {
-				// Just use the full path if an error occurred.
-				relativePath = project.Path
-			}
 			if rebaseUntracked {
 				rebaseSuccess, err := tryRebase(jirix, project, revision)
 				if err != nil {
 					return err
 				}
 				if rebaseSuccess {
-					jirix.Logger.Debugf("NOTE: For project (%v), rebased your untracked branch %v on %v", project.Name, branch, revision)
+					jirix.Logger.Debugf("NOTE: For project %v (%v), rebased your untracked branch %v on %v", project.Name, relativePath, branch, revision)
 				} else {
-					jirix.Logger.Errorf("NOTE: For project (%v), not able to rebase your untracked branch onto %v.", project.Name, revision)
+					jirix.Logger.Errorf("NOTE: For project %v (%v), not able to rebase your untracked branch onto %v.", project.Name, relativePath, revision)
 					jirix.Logger.Errorf("To rebase it manually run 'git -C %s rebase %v'", relativePath, revision)
 				}
 			} else {
-				jirix.Logger.Errorf("NOTE: For Project (%v), branch %v does not track any remote branch.", project.Name, branch)
+				jirix.Logger.Errorf("NOTE: For project %v (%v), branch %v does not track any remote branch.", project.Name, relativePath, branch)
 				jirix.Logger.Errorf("To rebase it update with -rebase-untracked flag, or to rebase it manually run")
 				jirix.Logger.Errorf("'git -C %s rebase %v'", relativePath, revision)
 			}
@@ -1519,7 +1521,7 @@ func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, proje
 	// fetch on updates; non-updates just perform the reset.
 	if ld.update {
 		if err := fetchAll(jirix, project); err != nil {
-			return fmt.Errorf("Fetch failed for project(%v), %v", project.Path, err)
+			return fmt.Errorf("Fetch failed for project %v (%v), %v", project.Name, project.Path, err)
 		}
 	}
 
@@ -1698,7 +1700,7 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
 				if err := fetchAll(jirix, project); err != nil {
-					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
+					errs <- fmt.Errorf("fetch failed for %v (%v): %v", project.Name, project.Path, err)
 					return
 				}
 			}(project)
