@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "09dfb7a5_b3bc9e50",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-04T02:21:33Z",
+      "side": 1,
+      "message": "Oh ok. I presume we\u0027re following this pattern elsewhere, so I won\u0027t propose any changes atm, though it comes to mind that there\u0027s no need for a named struct here, statusFlags could just be an anonymous struct.",
+      "parentUuid": "622ccace_4c412500",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 21
+      },
+      "revId": "4f44d6daf1d502e764b9c72e3a79d28afe299d14",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9db951e_ad28b81e",
         "filename": "cmd/jiri/status.go",
         "patchSetId": 7

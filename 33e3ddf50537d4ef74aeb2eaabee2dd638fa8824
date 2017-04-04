@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2697bbbe_e0c3896a",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-04T02:21:33Z",
+      "side": 1,
+      "message": "brackets no longer required.",
+      "range": {
+        "startLine": 86,
+        "startChar": 33,
+        "endLine": 86,
+        "endChar": 34
+      },
+      "revId": "33e3ddf50537d4ef74aeb2eaabee2dd638fa8824",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
