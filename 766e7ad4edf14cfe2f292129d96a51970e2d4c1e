@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7459e652_1d53536c",
+        "filename": "cmd/jiri/project_config.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "You might consider using https://golang.org/pkg/flag/#FlagSet.Visit and boolean flags instead. I don\u0027t know if it will result in a better solution, though.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 84
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28443271_17560136",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "the conditional is not required here, you can always just\n\nreturn lc, xml.Unmarshal(data, \u0026lc)",
+      "range": {
+        "startLine": 165,
+        "startChar": 1,
+        "endLine": 165,
+        "endChar": 3
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee40e648_dde74e8d",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "this method could be simplified by using the reader patterns\n\nvar lc LocalConfig\nf, err :\u003d os.Open(filename)\nif os.IsNotExist(err) {\n   return lc, nil\n} else if err !\u003d nil {\n  return lc, err\n}\n\nreturn lc, xml.NewDecoder(f).Decode(\u0026lc)",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 15
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "536847c8_b8c67558",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "io.WriterTo is an appropriate interface for this use case.",
+      "range": {
+        "startLine": 196,
+        "startChar": 23,
+        "endLine": 196,
+        "endChar": 29
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed9c5c8_8553da9b",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "I\u0027m not sure what the purpose of safewritefile is. It looks like it is trying to do atomic writes by using the atomicity of rename, however, from a concurrency perspective it fails because it shares temporary names with other writers. It is likely unnecessary to do all of this dance, and the code can be simplified to use standard io.Reader, io.Writer, io.ReadFrom, io.WriteTo patterns, along with the Decoder/Encoder conventions if we avoid this.",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 21
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b9535a_9ad9c522",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "This does not seem like an error.",
+      "range": {
+        "startLine": 1077,
+        "startChar": 17,
+        "endLine": 1077,
+        "endChar": 23
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40e28d96_be5a3721",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "this is not a format string, use Fatal here (and in other such cases)",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 363,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d158750b_9c0bb7a5",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "prefer:\n\nif got \u003d p.LocalConfig.Ignore !\u003d expectedIgnore {\n  t.Errorf(\"local config ignore: got %v, want %v\", got, expectedIgnore)\n}",
+      "range": {
+        "startLine": 411,
+        "startChar": 6,
+        "endLine": 411,
+        "endChar": 12
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93f5097b_4d9ea054",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 475,
+        "startChar": 18,
+        "endLine": 475,
+        "endChar": 24
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b72976f0_2ebc9c2c",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "include error in output in case it is not what you originally expected",
+      "range": {
+        "startLine": 807,
+        "startChar": 4,
+        "endLine": 807,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9918f793_39a6a145",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:25:15Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 934,
+        "startChar": 4,
+        "endLine": 934,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
