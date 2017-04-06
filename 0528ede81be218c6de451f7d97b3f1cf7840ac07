@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27f82171_c6fd7e58",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-06T22:37:30Z",
+      "side": 1,
+      "message": "I\u0027d just handle this directly inside the switch statement. Also these two options are not exclusive, they could be used together in theory.",
+      "revId": "0528ede81be218c6de451f7d97b3f1cf7840ac07",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69490458_c0bdb22f",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-06T22:37:30Z",
+      "side": 1,
+      "message": "Why not just do this directly inside the switch statement?",
+      "revId": "0528ede81be218c6de451f7d97b3f1cf7840ac07",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
