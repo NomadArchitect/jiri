@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d8e7fd61_0c06d71b",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T23:01:04Z",
+      "side": 1,
+      "message": "but reference and shared opt can be out of order, also I only set repo below when shared is false. And reference is url",
+      "parentUuid": "27f82171_c6fd7e58",
+      "revId": "0528ede81be218c6de451f7d97b3f1cf7840ac07",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69490458_c0bdb22f",
         "filename": "gitutil/git.go",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "0528ede81be218c6de451f7d97b3f1cf7840ac07",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d311fc10_baeb03ba",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T23:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69490458_c0bdb22f",
+      "revId": "0528ede81be218c6de451f7d97b3f1cf7840ac07",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
