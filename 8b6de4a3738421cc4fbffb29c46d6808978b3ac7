@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "517b66e2_06c88af6",
+        "filename": "gitutil/git.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T05:38:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we want to error for a case like this. If it was caused by, for example, the contents of a commit, it could make recovery very tricky.",
+      "range": {
+        "startLine": 287,
+        "startChar": 17,
+        "endLine": 287,
+        "endChar": 23
+      },
+      "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
