@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3e27bc64_f028b7b7",
+        "filename": "cmd/jiri/project_config.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "hey but how will I test it? We use to do that before in other commands but moved away from it because then it is hard to test",
+      "parentUuid": "7459e652_1d53536c",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 84
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28443271_17560136",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55f6c2c4_e189907c",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28443271_17560136",
+      "range": {
+        "startLine": 165,
+        "startChar": 1,
+        "endLine": 165,
+        "endChar": 3
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "bed16a08_1f56729e",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "not really sure what you mean here?",
+      "parentUuid": "536847c8_b8c67558",
+      "range": {
+        "startLine": 196,
+        "startChar": 23,
+        "endLine": 196,
+        "endChar": 29
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ed9c5c8_8553da9b",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "0f7ed8af_ed491956",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ed9c5c8_8553da9b",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 21
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72b9535a_9ad9c522",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -128,6 +224,30 @@
       "writtenOn": "2017-04-06T05:25:15Z",
       "side": 1,
       "message": "This does not seem like an error.",
+      "range": {
+        "startLine": 1077,
+        "startChar": 17,
+        "endLine": 1077,
+        "endChar": 23
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de2111d9_e9229c11",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "yes you are right",
+      "parentUuid": "72b9535a_9ad9c522",
       "range": {
         "startLine": 1077,
         "startChar": 17,
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "fa6541c7_198c5cfe",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40e28d96_be5a3721",
+      "range": {
+        "startLine": 363,
+        "startChar": 4,
+        "endLine": 363,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d158750b_9c0bb7a5",
         "filename": "project/project_test.go",
         "patchSetId": 3
@@ -183,6 +327,30 @@
       "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7734cb64_1fa0edca",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d158750b_9c0bb7a5",
+      "range": {
+        "startLine": 411,
+        "startChar": 6,
+        "endLine": 411,
+        "endChar": 12
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "2cf30313_1cc91b70",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93f5097b_4d9ea054",
+      "range": {
+        "startLine": 475,
+        "startChar": 18,
+        "endLine": 475,
+        "endChar": 24
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b72976f0_2ebc9c2c",
         "filename": "project/project_test.go",
         "patchSetId": 3
@@ -232,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "f18b76e6_d91a9a66",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b72976f0_2ebc9c2c",
+      "range": {
+        "startLine": 807,
+        "startChar": 4,
+        "endLine": 807,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9918f793_39a6a145",
         "filename": "project/project_test.go",
         "patchSetId": 3
@@ -252,6 +468,30 @@
       "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8689e64f_c4f0f140",
+        "filename": "project/project_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9918f793_39a6a145",
+      "range": {
+        "startLine": 934,
+        "startChar": 4,
+        "endLine": 934,
+        "endChar": 10
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
