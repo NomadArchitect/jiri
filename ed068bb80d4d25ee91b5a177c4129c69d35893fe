@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "870e6263_c0a57158",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T18:30:23Z",
+      "side": 1,
+      "message": "yeah i keep forgetting not to use %v, fixed",
+      "parentUuid": "d3c75910_d62317ad",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "ed068bb80d4d25ee91b5a177c4129c69d35893fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b14052d3_ac8634c7",
         "filename": "cmd/jiri/status.go",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "ed068bb80d4d25ee91b5a177c4129c69d35893fe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b23b2d0_57d68705",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T18:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b14052d3_ac8634c7",
+      "range": {
+        "startLine": 117,
+        "startChar": 43,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "ed068bb80d4d25ee91b5a177c4129c69d35893fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
