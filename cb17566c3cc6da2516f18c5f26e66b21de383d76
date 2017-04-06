@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0baaaff1_de0fcb91",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae6d3e7d_f7449abf",
+      "revId": "cb17566c3cc6da2516f18c5f26e66b21de383d76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69888ff5_f8fa5f28",
         "filename": "x.go",
         "patchSetId": 18
@@ -33,6 +51,24 @@
       "revId": "cb17566c3cc6da2516f18c5f26e66b21de383d76",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e87026c1_b9c1dd2b",
+        "filename": "x.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T22:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69888ff5_f8fa5f28",
+      "revId": "cb17566c3cc6da2516f18c5f26e66b21de383d76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
