@@ -22,6 +22,30 @@
       "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6db02389_ccae187a",
+        "filename": "gitutil/git.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-06T18:05:14Z",
+      "side": 1,
+      "message": "hey I am not sure if any type of content can do that. Even if it does then we will have an error and we can add a fix, I am not sure what to do if we get log more than 1 line in this case, should I join it by \"\\n\"???",
+      "parentUuid": "517b66e2_06c88af6",
+      "range": {
+        "startLine": 287,
+        "startChar": 17,
+        "endLine": 287,
+        "endChar": 23
+      },
+      "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
