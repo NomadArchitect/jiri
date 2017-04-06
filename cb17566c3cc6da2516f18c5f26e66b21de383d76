@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae6d3e7d_f7449abf",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-06T22:37:10Z",
+      "side": 1,
+      "message": "nit: \"Use shared cache, which doesn\u0027t commit or push\" is probably sufficient",
+      "revId": "cb17566c3cc6da2516f18c5f26e66b21de383d76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69888ff5_f8fa5f28",
+        "filename": "x.go",
+        "patchSetId": 18
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-06T22:37:10Z",
+      "side": 1,
+      "message": "nit: just Shared",
+      "revId": "cb17566c3cc6da2516f18c5f26e66b21de383d76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
