@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3c75910_d62317ad",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T04:50:19Z",
+      "side": 1,
+      "message": "sorry for not calling this out earlier, as it\u0027s been in many of your changes, but please use %s for strings.\n\nIn this case, you may actually want to use return strings.Join instead. You can update strs[0], and then strings.Join(strs, \" \"), removing the need for any boolean logic.",
+      "range": {
+        "startLine": 50,
+        "startChar": 23,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "ed068bb80d4d25ee91b5a177c4129c69d35893fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b14052d3_ac8634c7",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-06T04:50:19Z",
+      "side": 1,
+      "message": "why does this need a format string?",
+      "range": {
+        "startLine": 117,
+        "startChar": 43,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "ed068bb80d4d25ee91b5a177c4129c69d35893fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
