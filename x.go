@@ -115,7 +115,7 @@ func NewX(env *cmdline.Env) (*X, error) {
 
 	loggerLevel := log.InfoLevel
 	if quietVerboseFlag {
-		loggerLevel = log.ErrorLevel
+		loggerLevel = log.WarningLevel
 	} else if allVerboseFlag {
 		loggerLevel = log.AllLevel
 	} else if traceVerboseFlag {
