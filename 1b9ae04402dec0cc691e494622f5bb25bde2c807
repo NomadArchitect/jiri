@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0bc7f567_34c52fba",
+        "filename": "project/project.go",
+        "patchSetId": 21
+      },
+      "lineNbr": 2226,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-08T02:21:28Z",
+      "side": 1,
+      "message": "nit: I\u0027d put the invocation into the if and else branch, it\u0027s going to be easier to understand what\u0027s going on",
+      "revId": "1b9ae04402dec0cc691e494622f5bb25bde2c807",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
