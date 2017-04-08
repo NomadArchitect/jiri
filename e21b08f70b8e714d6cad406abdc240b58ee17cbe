@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "603d3124_1d9c68ad",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-08T02:48:16Z",
+      "side": 1,
+      "message": "yeah not using this level, removed",
+      "parentUuid": "3f2a71dd_bb17ebe3",
+      "revId": "e21b08f70b8e714d6cad406abdc240b58ee17cbe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb9ab25c_7bf1e04c",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-08T02:31:08Z",
       "side": 1,
       "message": "This is really difficult to read, I think you can just use string literals (https://golang.org/ref/spec#String_literals) and write this as a single multiline string with formatting specifiers, and just run this through fmt.Sprintf:\n\nfmt.Sprintf(`Project \"%q\" has a path \"%s\" but was found in \"%s\".\nJiri will treat it as a stale project. To remove this warning please delete or move it out of your workspace.\n`, project.Name, project.Path, path)\n\nThe same for all other cases.",
+      "revId": "e21b08f70b8e714d6cad406abdc240b58ee17cbe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9adeea63_435e4e9d",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-08T02:48:16Z",
+      "side": 1,
+      "message": "but that adds a tab infront of second line, if we want to remove tab we need to not add any formatting in code and that makes it harder to read IMHO\n\nand also this is easier case, there are cases in which we are passing args in each line, if I make it multiple it would be difficult to map args to format string when reviewing code.",
+      "parentUuid": "eb9ab25c_7bf1e04c",
       "revId": "e21b08f70b8e714d6cad406abdc240b58ee17cbe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
