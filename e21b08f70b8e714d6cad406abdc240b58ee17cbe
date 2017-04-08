@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f2a71dd_bb17ebe3",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-08T02:31:08Z",
+      "side": 1,
+      "message": "Is the \"LOG: \" bit really needed?",
+      "revId": "e21b08f70b8e714d6cad406abdc240b58ee17cbe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb9ab25c_7bf1e04c",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-08T02:31:08Z",
+      "side": 1,
+      "message": "This is really difficult to read, I think you can just use string literals (https://golang.org/ref/spec#String_literals) and write this as a single multiline string with formatting specifiers, and just run this through fmt.Sprintf:\n\nfmt.Sprintf(`Project \"%q\" has a path \"%s\" but was found in \"%s\".\nJiri will treat it as a stale project. To remove this warning please delete or move it out of your workspace.\n`, project.Name, project.Path, path)\n\nThe same for all other cases.",
+      "revId": "e21b08f70b8e714d6cad406abdc240b58ee17cbe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
