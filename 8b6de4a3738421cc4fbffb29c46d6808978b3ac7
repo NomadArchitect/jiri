@@ -46,6 +46,30 @@
       "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d5a5928_e3f22ae4",
+        "filename": "gitutil/git.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-10T20:42:47Z",
+      "side": 1,
+      "message": "What I mean is, in a situation like this, an error of this nature would prevent anyone from using some jiri commands, which will make recovery difficult. If instead we warned about it, we could fix the error and not have anyone getting blocked - that\u0027s all.",
+      "parentUuid": "6db02389_ccae187a",
+      "range": {
+        "startLine": 287,
+        "startChar": 17,
+        "endLine": 287,
+        "endChar": 23
+      },
+      "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
