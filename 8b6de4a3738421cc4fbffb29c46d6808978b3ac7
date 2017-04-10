@@ -70,6 +70,30 @@
       "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "707c3b2c_a3a8844d",
+        "filename": "gitutil/git.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-10T21:38:49Z",
+      "side": 1,
+      "message": "Gotcha! Done",
+      "parentUuid": "7d5a5928_e3f22ae4",
+      "range": {
+        "startLine": 287,
+        "startChar": 17,
+        "endLine": 287,
+        "endChar": 23
+      },
+      "revId": "8b6de4a3738421cc4fbffb29c46d6808978b3ac7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
