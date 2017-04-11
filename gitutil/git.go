@@ -15,6 +15,7 @@ import (
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/envvar"
+	"fuchsia.googlesource.com/jiri/lookpath"
 )
 
 type GitError struct {
@@ -855,18 +856,24 @@ func (g *Git) runInteractive(args ...string) error {
 }
 
 func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
+	path := "git"
+	env := g.jirix.Env()
+	if binary, err := lookpath.Look(env, path); err == nil {
+		path = binary
+	}
 	if g.userName != "" {
 		args = append([]string{"-c", fmt.Sprintf("user.name=%s", g.userName)}, args...)
 	}
 	if g.userEmail != "" {
 		args = append([]string{"-c", fmt.Sprintf("user.email=%s", g.userEmail)}, args...)
 	}
-	command := exec.Command("git", args...)
+	command := exec.Command(path, args...)
 	command.Dir = g.rootDir
 	command.Stdin = os.Stdin
 	command.Stdout = stdout
 	command.Stderr = stderr
-	command.Env = envvar.MapToSlice(g.opts)
+	env = envvar.MergeMaps(g.opts, env)
+	command.Env = envvar.MapToSlice(env)
 	dir := g.rootDir
 	if dir == "" {
 		if cwd, err := os.Getwd(); err == nil {
@@ -875,7 +882,7 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 			// ignore error
 		}
 	}
-	g.jirix.Logger.Tracef("Run: git %s (%s)", strings.Join(args, " "), dir)
+	g.jirix.Logger.Tracef("Run: %s %s (%s)", path, strings.Join(args, " "), dir)
 	return command.Run()
 }
 
