@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af134f2a_449e4fe3",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-11T03:57:48Z",
+      "side": 1,
+      "message": "This change is no longer needed.",
+      "revId": "538d42e2e0c739897878fc20864c87556fbe7891",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
