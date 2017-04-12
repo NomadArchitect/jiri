@@ -22,6 +22,30 @@
       "revId": "eb6b796415390308017ccf6d49ba9fa582cfda56",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0535a9d_3b97be76",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T19:35:47Z",
+      "side": 1,
+      "message": "After discussion, this looks like somethign that really needs a larger refactor to cover.",
+      "parentUuid": "64d71d23_bd5a8290",
+      "range": {
+        "startLine": 850,
+        "startChar": 5,
+        "endLine": 850,
+        "endChar": 21
+      },
+      "revId": "eb6b796415390308017ccf6d49ba9fa582cfda56",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
