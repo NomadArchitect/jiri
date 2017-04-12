@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a444889a_2b32fccc",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:52:55Z",
+      "side": 1,
+      "message": "nit: this is only used quite far down the context, and could be moved there.",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 3
+      },
+      "revId": "567d91d69e6f0bc27c0d6427b1d403b1c52e1a92",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2de09e7d_3549032b",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:52:55Z",
+      "side": 1,
+      "message": "%s",
+      "range": {
+        "startLine": 97,
+        "startChar": 66,
+        "endLine": 97,
+        "endChar": 67
+      },
+      "revId": "567d91d69e6f0bc27c0d6427b1d403b1c52e1a92",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c202b345_452b4802",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:52:55Z",
+      "side": 1,
+      "message": "%s",
+      "range": {
+        "startLine": 106,
+        "startChar": 67,
+        "endLine": 106,
+        "endChar": 69
+      },
+      "revId": "567d91d69e6f0bc27c0d6427b1d403b1c52e1a92",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
