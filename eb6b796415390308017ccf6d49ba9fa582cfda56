@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64d71d23_bd5a8290",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T19:19:28Z",
+      "side": 1,
+      "message": "I think this name is misleading, particularly with the bool.\n\nThis does \"load manifest\", but which file it loads from changes due to two arguments and now dynamics. Can we make the signature more clear?",
+      "range": {
+        "startLine": 850,
+        "startChar": 5,
+        "endLine": 850,
+        "endChar": 21
+      },
+      "revId": "eb6b796415390308017ccf6d49ba9fa582cfda56",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
