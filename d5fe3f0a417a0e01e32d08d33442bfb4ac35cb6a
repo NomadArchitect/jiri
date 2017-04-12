@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48e16352_70d8eed6",
+        "filename": "update.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T23:30:56Z",
+      "side": 1,
+      "message": "Split this method into two. One that updates the jiri binary, and another that re-execs if necessary.\n\nCompose the two methods together where necessary, or, if there\u0027s too much duplication of that, then introduce a helper that calls them one after the other.",
+      "revId": "d5fe3f0a417a0e01e32d08d33442bfb4ac35cb6a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
