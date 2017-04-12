@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cad3181a_e34c65f5",
+        "filename": "cmd/jiri/project_config.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T19:08:15Z",
+      "side": 1,
+      "message": "That\u0027s a good reason for this approach :)",
+      "parentUuid": "3e27bc64_f028b7b7",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 84
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28443271_17560136",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "not really sure what you mean here?",
       "parentUuid": "536847c8_b8c67558",
+      "range": {
+        "startLine": 196,
+        "startChar": 23,
+        "endLine": 196,
+        "endChar": 29
+      },
+      "revId": "766e7ad4edf14cfe2f292129d96a51970e2d4c1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dbda885_764ec51c",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T19:08:15Z",
+      "side": 1,
+      "message": "It is common in Go to use the io interfaces where appropriate, as they tend to compose really well. One of the appropriate interfaces in this case is io.WriterTo.",
+      "parentUuid": "bed16a08_1f56729e",
       "range": {
         "startLine": 196,
         "startChar": 23,
