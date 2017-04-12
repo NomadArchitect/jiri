@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5de1f97b_a802f16f",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T22:16:43Z",
+      "side": 1,
+      "message": "git branch --list takes an optional match argument, wherein it finds branches that match from the list of all branches. In that form it is similar to this.",
+      "parentUuid": "1b042141_1fea574b",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 109
+      },
+      "revId": "2ba79863ac199abcb4b398815419afd265a7b1f7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74d7d64c_dee81bf5",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T22:16:43Z",
+      "side": 1,
+      "message": "I think Rel supports empty string for \"current directory\"",
+      "range": {
+        "startLine": 60,
+        "startChar": 36,
+        "endLine": 60,
+        "endChar": 40
+      },
+      "revId": "2ba79863ac199abcb4b398815419afd265a7b1f7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6065aaa_26f7e815",
+        "filename": "cmd/jiri/branch_test.go",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T22:16:43Z",
+      "side": 1,
+      "message": "as above, I\u0027m fairly sure filepath.Rel(\"\",...) is equivalent, without the need to grab the working directory up front.",
+      "range": {
+        "startLine": 84,
+        "startChar": 38,
+        "endLine": 84,
+        "endChar": 42
+      },
+      "revId": "2ba79863ac199abcb4b398815419afd265a7b1f7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
