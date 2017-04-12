@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "57c28a27_34adb93d",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:43:45Z",
+      "side": 1,
+      "message": "anonymous struct might be good here too.",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 19,
+        "endChar": 29
+      },
+      "revId": "42ff94b23fb6dbb75ccd4d0f25882241eeb619cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a666e276_f395a9be",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:43:45Z",
+      "side": 1,
+      "message": "typo: git",
+      "range": {
+        "startLine": 41,
+        "startChar": 100,
+        "endLine": 41,
+        "endChar": 102
+      },
+      "revId": "42ff94b23fb6dbb75ccd4d0f25882241eeb619cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de339b3_00f2172a",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:43:45Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 42,
+        "startChar": 111,
+        "endLine": 42,
+        "endChar": 113
+      },
+      "revId": "42ff94b23fb6dbb75ccd4d0f25882241eeb619cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0163a455_09cc8246",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T18:43:45Z",
+      "side": 1,
+      "message": "this is similar to `git branch --list` and so using list might be appropriate given that we\u0027re matching up -d and -D",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 109
+      },
+      "revId": "42ff94b23fb6dbb75ccd4d0f25882241eeb619cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
