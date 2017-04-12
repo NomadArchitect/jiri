@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b8dea18_19ec6a69",
+        "filename": "log/logger.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-12T19:16:07Z",
+      "side": 1,
+      "message": "Isn\u0027t this a prefix?",
+      "range": {
+        "startLine": 71,
+        "startChar": 20,
+        "endLine": 71,
+        "endChar": 26
+      },
+      "revId": "1b029f823f65b72a031b8887c5014d2fc337ef0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
