@@ -104,6 +104,7 @@ func expectedOutput(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []p
 				}
 				want = fmt.Sprintf("%s\nJIRI_HEAD: %s", want, log)
 				want = fmt.Sprintf("%s\nCurrent Revision: %s", want, currentLog)
+				want = fmt.Sprintf("%s\nrun 'git -C %q checkout JIRI_HEAD' to switch project", want, relativePaths[i])
 			}
 			want = fmt.Sprintf("%s\nBranch: ", want)
 			branchmsg := currentBranch[i]

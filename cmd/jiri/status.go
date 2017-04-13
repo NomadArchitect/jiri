@@ -93,6 +93,10 @@ func runStatus(jirix *jiri.X, args []string) error {
 			return fmt.Errorf("Error while getting status for project %q :%s", localProject.Name, err)
 		}
 		currentLog = colorFormatGitLog(jirix, currentLog)
+		relativePath, err := filepath.Rel(cDir, localProject.Path)
+		if err != nil {
+			return err
+		}
 		if statusFlags.checkHead {
 			if headRev == "" {
 				revisionMessage = "Can't find project in manifest, can't get revision status"
@@ -104,14 +108,12 @@ func runStatus(jirix *jiri.X, args []string) error {
 				headLog = colorFormatGitLog(jirix, headLog)
 				revisionMessage = fmt.Sprintf("\n%s: %s", jirix.Color.Yellow("JIRI_HEAD"), headLog)
 				revisionMessage = fmt.Sprintf("%s\n%s: %s", revisionMessage, jirix.Color.Yellow("Current Revision"), currentLog)
+				checkoutCommand := jirix.Color.Green("git -C %q checkout JIRI_HEAD", relativePath)
+				revisionMessage = fmt.Sprintf("%s\nrun '%s' to switch project", revisionMessage, checkoutCommand)
 			}
 		}
 		if statusFlags.branch != "" || changes != "" || revisionMessage != "" ||
 			len(extraCommits) != 0 {
-			relativePath, err := filepath.Rel(cDir, localProject.Path)
-			if err != nil {
-				return err
-			}
 			fmt.Printf("%s: %s", jirix.Color.Yellow(relativePath), revisionMessage)
 			fmt.Println()
 			branch := state.CurrentBranch.Name
