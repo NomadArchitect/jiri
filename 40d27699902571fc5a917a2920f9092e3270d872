@@ -22,6 +22,30 @@
       "revId": "40d27699902571fc5a917a2920f9092e3270d872",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8500be8d_4d042eff",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T21:20:38Z",
+      "side": 1,
+      "message": "Agreed! Removed...",
+      "parentUuid": "55ede69a_a5842d13",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 96
+      },
+      "revId": "40d27699902571fc5a917a2920f9092e3270d872",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
