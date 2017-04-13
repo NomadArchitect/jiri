@@ -2289,7 +2289,7 @@ func (op deleteOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 		}
 		if extraBranches || uncommitted || untracked {
 			msg := fmt.Sprintf("Project %q was not found in the project manifest", op.project.Name)
-			msg += fmt.Sprintf("\nhowever this project either contains non-master branches, uncommitted work, or untracked files and will thus not be deleted\n\n")
+			msg += fmt.Sprintf("\nhowever this project either contains non-master branches, uncommitted work, or untracked files and will thus not be deleted. If you no longer need it, invoke 'rm -rf %s'\n\n", op.source)
 			jirix.Logger.Warningf(msg)
 			return nil
 		}
