@@ -22,6 +22,30 @@
       "revId": "a0aa23a4d61b083c786bb9d01522c8080ac70684",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e36cee67_dfe0f475",
+        "filename": "update.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T01:13:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "249574f3_03dd81a9",
+      "range": {
+        "startLine": 88,
+        "startChar": 1,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "a0aa23a4d61b083c786bb9d01522c8080ac70684",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
