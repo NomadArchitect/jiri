@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55ede69a_a5842d13",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T21:14:28Z",
+      "side": 1,
+      "message": "Are these kinds of outputs necessary? In general I prefer tools that have scriptable output, so when I ask for a list of things, they give me a list of paths, and when they find nothing, they output nothing. Output like to stderr is ok, but I generally prefer not.\n\nI realize that this may be somewhat of a convention for this tool at this point, and if so, then we should discuss this separately.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 96
+      },
+      "revId": "40d27699902571fc5a917a2920f9092e3270d872",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
