@@ -45,6 +45,54 @@
       "revId": "2448a114700ebe4f1d19489c1ba27f4e2cba5ea2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38f77417_f6ae7539",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 2292,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T00:37:29Z",
+      "side": 1,
+      "message": "it is, as user runs jiri update -gc, it will expect jiri to delete projects, but they are not deleted only when it has un-comitted changes",
+      "parentUuid": "78c691ef_7acb338d",
+      "range": {
+        "startLine": 2292,
+        "startChar": 25,
+        "endLine": 2292,
+        "endChar": 149
+      },
+      "revId": "2448a114700ebe4f1d19489c1ba27f4e2cba5ea2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "facaadd2_99f88742",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 2292,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T00:37:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f26c6a6e_6c6b0d6d",
+      "range": {
+        "startLine": 2292,
+        "startChar": 192,
+        "endLine": 2292,
+        "endChar": 193
+      },
+      "revId": "2448a114700ebe4f1d19489c1ba27f4e2cba5ea2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
