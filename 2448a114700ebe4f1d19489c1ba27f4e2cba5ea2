@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f26c6a6e_6c6b0d6d",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 2292,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T00:20:42Z",
+      "side": 1,
+      "message": "Use %q to avoid issues with paths with spaces",
+      "range": {
+        "startLine": 2292,
+        "startChar": 192,
+        "endLine": 2292,
+        "endChar": 193
+      },
+      "revId": "2448a114700ebe4f1d19489c1ba27f4e2cba5ea2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78c691ef_7acb338d",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 2292,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T00:20:42Z",
+      "side": 1,
+      "message": "remove this first sentence, i don\u0027t think it\u0027s helpful.",
+      "range": {
+        "startLine": 2292,
+        "startChar": 25,
+        "endLine": 2292,
+        "endChar": 149
+      },
+      "revId": "2448a114700ebe4f1d19489c1ba27f4e2cba5ea2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
