@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2af71ed9_b00264b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T23:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d078a1d_358d3f01",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "611c982ae6ce426761d4cf7f6b0c165e208ec876",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "309782eb_64e010af",
         "filename": "project/project.go",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-13T21:43:51Z",
       "side": 1,
       "message": "Is this the behavior we want?\n\nIf a user forgets they were mid-rebase on a repo, runs rebase all, then the rebase will fail and the abort will kill their in-progress work.",
+      "range": {
+        "startLine": 1217,
+        "startChar": 0,
+        "endLine": 1217,
+        "endChar": 26
+      },
+      "revId": "611c982ae6ce426761d4cf7f6b0c165e208ec876",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c19a508_4f199e03",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-13T23:26:45Z",
+      "side": 1,
+      "message": "but then user won\u0027t be on a branch so we will not call this funtion",
+      "parentUuid": "309782eb_64e010af",
       "range": {
         "startLine": 1217,
         "startChar": 0,
