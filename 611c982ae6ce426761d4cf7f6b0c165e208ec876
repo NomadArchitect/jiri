@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d078a1d_358d3f01",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T21:43:51Z",
+      "side": 1,
+      "message": "please cleanup the message formatting.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "611c982ae6ce426761d4cf7f6b0c165e208ec876",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "309782eb_64e010af",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T21:43:51Z",
+      "side": 1,
+      "message": "Is this the behavior we want?\n\nIf a user forgets they were mid-rebase on a repo, runs rebase all, then the rebase will fail and the abort will kill their in-progress work.",
+      "range": {
+        "startLine": 1217,
+        "startChar": 0,
+        "endLine": 1217,
+        "endChar": 26
+      },
+      "revId": "611c982ae6ce426761d4cf7f6b0c165e208ec876",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
