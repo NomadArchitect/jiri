@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b6103d7_20d1c9b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-13T21:28:03Z",
+      "side": 1,
+      "message": "These two \"always\" are mutually exclusive and \"always\" is absolute.\n\n\"Set default topic for jiri upload unless set-topic flag is false\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "98bf3bb586be1e67c2e02cdc11c5f95bdc45192c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
