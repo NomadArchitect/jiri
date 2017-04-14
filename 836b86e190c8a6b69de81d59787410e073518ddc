@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37948756_e6c447f2",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-14T20:29:42Z",
+      "side": 1,
+      "message": "only upload if it\u0027s on the current branch? could we support uploading even if the working tree has been switched, but the branch is available in the scm?",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 0
+      },
+      "revId": "836b86e190c8a6b69de81d59787410e073518ddc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45abf8b1_a56ee7fa",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-14T20:29:42Z",
+      "side": 1,
+      "message": "Does this trigger for untracked files? If so, I think it shouldn\u0027t.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 4
+      },
+      "revId": "836b86e190c8a6b69de81d59787410e073518ddc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
