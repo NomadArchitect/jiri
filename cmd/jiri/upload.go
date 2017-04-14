@@ -32,6 +32,14 @@ var (
 	uploadBranchFlag    string
 )
 
+type uploadError string
+
+func (e uploadError) Error() string {
+	result := "sending code review failed\n\n"
+	result += string(e)
+	return result
+}
+
 var cmdUpload = &cmdline.Command{
 	Runner: jiri.RunnerFunc(runUpload),
 	Name:   "upload",
@@ -220,10 +228,10 @@ func runUpload(jirix *jiri.X, _ []string) error {
 					fmt.Printf("%s", gitErr.Output)
 					fmt.Printf("%s", gitErr.ErrorOutput)
 				} else {
-					return gerritError(err.Error())
+					return uploadError(err.Error())
 				}
 			} else {
-				return gerritError(err.Error())
+				return uploadError(err.Error())
 			}
 		}
 		fmt.Println()
