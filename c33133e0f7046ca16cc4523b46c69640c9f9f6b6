@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9ac1f128_86e68b91",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-14T19:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56a50a70_3fbade4c",
+      "range": {
+        "startLine": 60,
+        "startChar": 41,
+        "endLine": 60,
+        "endChar": 42
+      },
+      "revId": "c33133e0f7046ca16cc4523b46c69640c9f9f6b6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe940cad_3a8f3b09",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "c33133e0f7046ca16cc4523b46c69640c9f9f6b6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d312b4b9_768f6002",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-14T19:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe940cad_3a8f3b09",
+      "range": {
+        "startLine": 62,
+        "startChar": 23,
+        "endLine": 62,
+        "endChar": 29
+      },
+      "revId": "c33133e0f7046ca16cc4523b46c69640c9f9f6b6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
