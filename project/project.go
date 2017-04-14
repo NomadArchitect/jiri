@@ -1322,8 +1322,9 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			if err2 != nil {
 				return err2
 			}
+			gitCommand := jirix.Color.Yellow("git -C %q checkout --detach %s", relativePath, revision)
 			msg := fmt.Sprintf("For project %q, not able to checkout latest, error: %v", project.Name, err)
-			msg += fmt.Sprintf("\nPlease checkout manually use: 'git -C %s checkout --detach %s'\n\n", err, relativePath, revision)
+			msg += fmt.Sprintf("\nPlease checkout manually use: '%s'\n\n", gitCommand)
 			jirix.Logger.Errorf(msg)
 		}
 		return nil
@@ -1370,14 +1371,16 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 				if rebaseSuccess {
 					jirix.Logger.Debugf("For project %q, rebased your untracked branch %q on %q", project.Name, branch, revision)
 				} else {
+					gitCommand := jirix.Color.Yellow("git -C %q rebase %s", relativePath, revision)
 					msg := fmt.Sprintf("For project %q, not able to rebase your untracked branch onto %s.", project.Name, revision)
-					msg += fmt.Sprintf("\nTo rebase it manually run 'git -C %s rebase %s'\n\n", relativePath, revision)
+					msg += fmt.Sprintf("\nTo rebase it manually run '%s'\n\n", gitCommand)
 					jirix.Logger.Errorf(msg)
 				}
 			} else {
+				gitCommand := jirix.Color.Yellow("git -C %q rebase %s", relativePath, revision)
 				msg := fmt.Sprintf("For Project %q, branch %q does not track any remote branch.", project.Name, branch)
 				msg += fmt.Sprintf("\nTo rebase it update with -rebase-untracked flag, or to rebase it manually run")
-				msg += fmt.Sprintf("\n'git -C %s rebase %s'\n\n", relativePath, revision)
+				msg += fmt.Sprintf("\n%s\n\n", gitCommand)
 				jirix.Logger.Warningf(msg)
 			}
 		}
@@ -2378,15 +2381,22 @@ func (op deleteOperation) Run(jirix *jiri.X, rebaseUntracked bool, snapshot bool
 			}
 		}
 		if extraBranches || uncommitted || untracked {
+			rmCommand := jirix.Color.Yellow("rm -rf %q", op.source)
+			unManageCommand := jirix.Color.Yellow("rm -rf %q", filepath.Join(op.source, jiri.ProjectMetaDir))
 			msg := fmt.Sprintf("Project %q won't be deleted as it might contain changes", op.project.Name)
-			msg += fmt.Sprintf("\nIf you no longer need it, invoke 'rm -rf %q'\n\n", op.source)
+			msg += fmt.Sprintf("\nIf you no longer need it, invoke '%s'", rmCommand)
+			msg += fmt.Sprintf("\nIf you no longer want jiri to manage it, invoke '%s'\n\n", unManageCommand)
 			jirix.Logger.Warningf(msg)
 			return nil
 		}
 		return s.RemoveAll(op.source).Done()
 	}
-	msg := fmt.Sprintf("Project %q was not found in the project manifest", op.project.Name)
-	msg += fmt.Sprintf("\nit was not automatically removed to avoid deleting uncommitted work if you no longer need it, invoke 'rm -rf %q' or invoke 'jiri update -gc' to remove all such local projects\n\n", op.source)
+	rmCommand := jirix.Color.Yellow("rm -rf %q", op.source)
+	gcCommand := jirix.Color.Yellow("jiri update -gc")
+	unManageCommand := jirix.Color.Yellow("rm -rf %q", filepath.Join(op.source, jiri.ProjectMetaDir))
+	msg := fmt.Sprintf("Project %q was not deleted", op.project.Name)
+	msg += fmt.Sprintf("\nIf you no longer need it, invoke '%s' or invoke '%s' to remove all such local projects", rmCommand, gcCommand)
+	msg += fmt.Sprintf("\nIf you no longer want jiri to manage it, invoke '%s'\n\n", unManageCommand)
 	jirix.Logger.Warningf(msg)
 	return nil
 }
