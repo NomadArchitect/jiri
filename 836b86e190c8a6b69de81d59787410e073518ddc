@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c207705f_1586dda1",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-14T20:40:02Z",
+      "side": 1,
+      "message": "yeah we can do that, I will create new CL for it...but if we support that, we might need to disable rebase command for that case",
+      "parentUuid": "37948756_e6c447f2",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 0
+      },
+      "revId": "836b86e190c8a6b69de81d59787410e073518ddc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "45abf8b1_a56ee7fa",
         "filename": "cmd/jiri/upload.go",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-14T20:29:42Z",
       "side": 1,
       "message": "Does this trigger for untracked files? If so, I think it shouldn\u0027t.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 4
+      },
+      "revId": "836b86e190c8a6b69de81d59787410e073518ddc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a30c5d1_5c0e383c",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-14T20:40:02Z",
+      "side": 1,
+      "message": "no it doesn\u0027t",
+      "parentUuid": "45abf8b1_a56ee7fa",
       "range": {
         "startLine": 119,
         "startChar": 0,
