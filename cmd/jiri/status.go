@@ -162,7 +162,7 @@ func getStatus(jirix *jiri.X, local project.Project, remote project.Project, cur
 	}
 
 	if currentBranch != "" && statusFlags.commits {
-		commits, err := scm.ExtraCommits(statusFlags.branch, "origin")
+		commits, err := scm.ExtraCommits(currentBranch, "origin")
 		if err != nil {
 			return "", "", nil, err
 		}
