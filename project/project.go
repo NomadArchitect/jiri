@@ -1072,6 +1072,7 @@ func CleanupProjects(jirix *jiri.X, localProjects Projects, cleanupBranches bool
 			remote, ok := remoteProjects[local.Key()]
 			if !ok {
 				jirix.Logger.Errorf("Not cleaning project %q(%v). It was not found in manifest\n\n", local.Name, local.Path)
+				jirix.IncrementFailureCount()
 				return
 			}
 			if err := resetLocalProject(jirix, local, remote, cleanupBranches); err != nil {
@@ -1315,6 +1316,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			msg := fmt.Sprintf("Project %v(%v) contains uncommited changes.", project.Name, relativePath)
 			msg += fmt.Sprintf("\nCommit or discard the changes and try again.\n\n")
 			jirix.Logger.Errorf(msg)
+			jirix.IncrementFailureCount()
 			return nil
 		}
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
@@ -1325,6 +1327,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 			msg := fmt.Sprintf("For project %q, not able to checkout latest, error: %v", project.Name, err)
 			msg += fmt.Sprintf("\nPlease checkout manually use: 'git -C %s checkout --detach %s'\n\n", err, relativePath, revision)
 			jirix.Logger.Errorf(msg)
+			jirix.IncrementFailureCount()
 		}
 		return nil
 	} else {
@@ -1351,6 +1354,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 				msg := fmt.Sprintf("For project %s(%s), not able to rebase your local branch onto %s", project.Name, relativePath, trackingBranch)
 				msg += "\nPlease do it manually\n\n"
 				jirix.Logger.Errorf(msg)
+				jirix.IncrementFailureCount()
 			}
 			return nil
 		} else {
@@ -1373,6 +1377,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, rebaseUntracked bool, sna
 					msg := fmt.Sprintf("For project %q, not able to rebase your untracked branch onto %s.", project.Name, revision)
 					msg += fmt.Sprintf("\nTo rebase it manually run 'git -C %s rebase %s'\n\n", relativePath, revision)
 					jirix.Logger.Errorf(msg)
+					jirix.IncrementFailureCount()
 				}
 			} else {
 				msg := fmt.Sprintf("For Project %q, branch %q does not track any remote branch.", project.Name, branch)
@@ -2054,6 +2059,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 		}()
 		if out.err != nil && runutil.IsTimeout(out.err) {
 			jirix.Logger.Errorf("Timeout while executing hook")
+			jirix.IncrementFailureCount()
 			if out.outFile != nil {
 				out.outFile.Sync()
 				out.outFile.Seek(0, 0)
