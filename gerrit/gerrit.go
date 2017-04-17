@@ -90,6 +90,10 @@ func New(s runutil.Sequence, host *url.URL) *Gerrit {
 	}
 }
 
+func (g *Gerrit) Host()  *url.URL {
+	return g.host
+}
+
 // PostReview posts a review to the given Gerrit reference.
 func (g *Gerrit) PostReview(ref string, message string, labels map[string]string) (e error) {
 	cred, err := hostCredentials(g.s, g.host)
@@ -365,6 +369,10 @@ func (g *Gerrit) Query(query string) (_ CLList, e error) {
 	}
 	defer collect.Error(func() error { return res.Body.Close() }, &e)
 	return parseQueryResults(res.Body)
+}
+
+func (g *Gerrit) ListOpenChangesByTopic(topic string) (CLList, error) {
+	return g.Query("topic:\"" + topic + "\" status:open")
 }
 
 // GetChange returns a Change object for the given changeId number.
