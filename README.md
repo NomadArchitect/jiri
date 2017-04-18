@@ -13,6 +13,10 @@ Jiri has an extensible plugin model, making it easy to create new sub-commands.
 
 Jiri is open-source.  See the contributor guidelines [here][contributing].
 
+## Manually build jiri
+We already have prebuilts for linux and darwin `x86_64` systems. If you still
+need to build jiri manually use these [instructions][build jiri]
+
 ## Jiri Basics
 Jiri organizes a set of repositories on your local filesystem according to a
 [manifest][manifests].  These repositories are referred to as "projects", and
@@ -450,3 +454,5 @@ see [Jiri local update][hacking doc]
 [manifest doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/manifest.md "Jiri manifest"
 [filesystem doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/filesystem.md "Jiri filesystem"
 [hacking doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/HACKING.md "Jiri local updates"
+[build jiri]:https://fuchsia.googlesource.com/jiri/+/HEAD/BUILD.md "Build jiri"
+://fuchsia.googlesource.com/jiri/+/HEAD/minimal manifest]: https://fuchsia.googlesource.com/manifest/+/refs/heads/master/minimal "minimal manifest"
