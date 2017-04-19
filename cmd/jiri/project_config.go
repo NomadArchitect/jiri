@@ -9,12 +9,11 @@ import (
 	"strconv"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 )
 
-var cmdProjectConfig = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runProjectConfig),
+var cmdProjectConfig = &Command{
+	Runner: RunnerFunc(runProjectConfig),
 	Name:   "project-config",
 	Short:  "Prints/sets project's local config",
 	Long: `
