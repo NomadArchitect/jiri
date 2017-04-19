@@ -11,7 +11,6 @@ import (
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 )
@@ -22,8 +21,8 @@ var branchFlags struct {
 	listFlag        bool
 }
 
-var cmdBranch = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runBranch),
+var cmdBranch = &Command{
+	Runner: RunnerFunc(runBranch),
 	Name:   "branch",
 	Short:  "Show or delete branches",
 	Long: `

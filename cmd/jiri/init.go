@@ -5,7 +5,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -13,8 +12,8 @@ import (
 	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
-var cmdInit = &cmdline.Command{
-	Runner: cmdline.RunnerFunc(runInit),
+var cmdInit = &Command{
+	Runner: runInit,
 	Name:   "init",
 	Short:  "Create a new jiri root",
 	Long: `
@@ -40,9 +39,9 @@ func init() {
 	cmdInit.Flags.BoolVar(&sharedFlag, "shared", false, "Use shared cache, which doesn't commit or push")
 }
 
-func runInit(env *cmdline.Env, args []string) error {
+func runInit(env *cmdline.Env, cmd *Command, args []string) error {
 	if len(args) > 1 {
-		return fmt.Errorf("wrong number of arguments")
+		return cmd.UsageErrorf("wrong number of arguments")
 	}
 
 	var dir string

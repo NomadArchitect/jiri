@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
@@ -40,8 +39,8 @@ func (e uploadError) Error() string {
 	return result
 }
 
-var cmdUpload = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runUpload),
+var cmdUpload = &Command{
+	Runner: RunnerFunc(runUpload),
 	Name:   "upload",
 	Short:  "Upload a changelist for review",
 	Long:   `Command "upload" uploads all commits of a local branch to Gerrit.`,
