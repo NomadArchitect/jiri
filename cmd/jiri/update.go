@@ -8,7 +8,6 @@ import (
 	"fmt"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/retry"
 	"fuchsia.googlesource.com/jiri/tool"
@@ -39,8 +38,8 @@ func init() {
 }
 
 // cmdUpdate represents the "jiri update" command.
-var cmdUpdate = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runUpdate),
+var cmdUpdate = &Command{
+	Runner: RunnerFunc(runUpdate),
 	Name:   "update",
 	Short:  "Update all jiri projects",
 	Long: `
