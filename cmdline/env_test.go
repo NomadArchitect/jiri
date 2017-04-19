@@ -4,7 +4,6 @@
 package cmdline
 
 import (
-	"bytes"
 	"io"
 	"os"
 	"testing"
@@ -12,32 +11,6 @@ import (
 
 func writeFunc(s string) func(*Env, io.Writer) {
 	return func(_ *Env, w io.Writer) { w.Write([]byte(s)) }
-}
-
-func TestEnvUsageErrorf(t *testing.T) {
-	tests := []struct {
-		format string
-		args   []interface{}
-		usage  func(*Env, io.Writer)
-		want   string
-	}{
-		{"", nil, nil, "ERROR: \n\nusage error\n"},
-		{"", nil, writeFunc("FooBar"), "ERROR: \n\nFooBar"},
-		{"", nil, writeFunc("FooBar\n"), "ERROR: \n\nFooBar\n"},
-		{"A%vB", []interface{}{"x"}, nil, "ERROR: AxB\n\nusage error\n"},
-		{"A%vB", []interface{}{"x"}, writeFunc("FooBar"), "ERROR: AxB\n\nFooBar"},
-		{"A%vB", []interface{}{"x"}, writeFunc("FooBar\n"), "ERROR: AxB\n\nFooBar\n"},
-	}
-	for _, test := range tests {
-		var buf bytes.Buffer
-		env := &Env{Stderr: &buf, Usage: test.usage}
-		if got, want := env.UsageErrorf(test.format, test.args...), ErrUsage; got != want {
-			t.Errorf("%q got error %v, want %v", test.want, got, want)
-		}
-		if got, want := buf.String(), test.want; got != want {
-			t.Errorf("got %v, want %v", got, want)
-		}
-	}
 }
 
 func TestEnvWidth(t *testing.T) {
