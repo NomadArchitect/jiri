@@ -6,12 +6,11 @@ package main
 
 import (
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 )
 
-var cmdSnapshot = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runSnapshot),
+var cmdSnapshot = &Command{
+	Runner: RunnerFunc(runSnapshot),
 	Name:   "snapshot",
 	Short:  "Create a new project snapshot",
 	Long: `

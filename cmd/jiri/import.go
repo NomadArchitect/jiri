@@ -8,7 +8,6 @@ import (
 	"os"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/runutil"
 )
@@ -30,8 +29,8 @@ func init() {
 	cmdImport.Flags.StringVar(&flagImportOut, "out", "", `The output file.  Uses <root>/.jiri_manifest if unspecified.  Uses stdout if set to "-".`)
 }
 
-var cmdImport = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runImport),
+var cmdImport = &Command{
+	Runner: RunnerFunc(runImport),
 	Name:   "import",
 	Short:  "Adds imports to .jiri_manifest file",
 	Long: `
