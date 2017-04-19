@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
@@ -38,8 +37,8 @@ func init() {
 }
 
 // cmdPatch represents the "jiri patch" command.
-var cmdPatch = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runPatch),
+var cmdPatch = &Command{
+	Runner: RunnerFunc(runPatch),
 	Name:   "patch",
 	Short:  "Patch in the existing change",
 	Long: `

@@ -17,7 +17,6 @@ import (
 	"syscall"
 	"time"
 
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/envvar"
 )
 
@@ -254,23 +253,6 @@ func (s Sequence) Error() error {
 		return &wrappedError{oe: s.err, we: fmt.Errorf("%s: %v", s.caller, s.err)}
 	}
 	return s.err
-}
-
-// TranslateExitCode translates errors from the "os/exec" package that
-// contain exit codes into cmdline.ErrExitCode errors.
-func TranslateExitCode(err error) error {
-	return translateExitCode(GetOriginalError(err))
-}
-
-func translateExitCode(err error) error {
-	if exit, ok := err.(*exec.ExitError); ok {
-		if wait, ok := exit.Sys().(syscall.WaitStatus); ok {
-			if status := wait.ExitStatus(); wait.Exited() && status != 0 {
-				return cmdline.ErrExitCode(status)
-			}
-		}
-	}
-	return err
 }
 
 // GetOriginalError gets the original error wrapped in the supplied err.

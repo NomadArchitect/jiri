@@ -9,13 +9,11 @@ import (
 	"fmt"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/version"
 )
 
-
-var cmdVersion = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runVersion),
+var cmdVersion = &Command{
+	Runner: RunnerFunc(runVersion),
 	Name:   "version",
 	Short:  "Print the jiri version",
 	Long: `
