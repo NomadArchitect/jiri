@@ -147,7 +147,6 @@ func NewX(env *cmdline.Env) (*X, error) {
 	x := &X{
 		Context: ctx,
 		Root:    root,
-		Usage:   env.UsageErrorf,
 		Jobs:    jobsFlag,
 		Color:   color,
 		Logger:  logger,
@@ -343,21 +342,4 @@ func (x *X) UpdateHistoryLatestLink() string {
 // the second latest update in the update history directory.
 func (x *X) UpdateHistorySecondLatestLink() string {
 	return filepath.Join(x.UpdateHistoryDir(), "second-latest")
-}
-
-// RunnerFunc is an adapter that turns regular functions into cmdline.Runner.
-// This is similar to cmdline.RunnerFunc, but the first function argument is
-// jiri.X, rather than cmdline.Env.
-func RunnerFunc(run func(*X, []string) error) cmdline.Runner {
-	return runner(run)
-}
-
-type runner func(*X, []string) error
-
-func (r runner) Run(env *cmdline.Env, args []string) error {
-	x, err := NewX(env)
-	if err != nil {
-		return err
-	}
-	return r(x, args)
 }

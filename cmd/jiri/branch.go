@@ -11,7 +11,6 @@ import (
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 )
@@ -22,8 +21,8 @@ var branchFlags struct {
 	listFlag        bool
 }
 
-var cmdBranch = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runBranch),
+var cmdBranch = &Command{
+	Runner: runBranch,
 	Name:   "branch",
 	Short:  "Show or delete branches",
 	Long: `
@@ -100,10 +99,10 @@ func displayProjects(jirix *jiri.X, branch string) error {
 	return nil
 }
 
-func runBranch(jirix *jiri.X, args []string) error {
+func runBranch(jirix *jiri.X, cmd *Command, args []string) error {
 	branch := ""
 	if len(args) > 1 {
-		return jirix.UsageErrorf("Please provide only one branch")
+		return cmd.UsageErrorf("Please provide only one branch %s", args)
 	} else if len(args) == 1 {
 		branch = args[0]
 	}
@@ -111,7 +110,7 @@ func runBranch(jirix *jiri.X, args []string) error {
 		return displayProjects(jirix, branch)
 	}
 	if branch == "" {
-		return jirix.UsageErrorf("Please provide branch to delete")
+		return cmd.UsageErrorf("Please provide branch to delete")
 	}
 	return deleteBranches(jirix, branch)
 }
