@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31311b30_ad318133",
+        "filename": "cmd/jiri/status.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2017-04-19T20:21:24Z",
+      "side": 1,
+      "message": "as discussed, this is not quite sufficient - the \"origin\" shorthand here expands out to remotes/origin/HEAD, which won\u0027t necessarily exist and definitely won\u0027t always match the remotebranch specified in the manifest. this should say \"remotes/origin/$REMOTEBRANCH\", defaulting to remotes/origin/master",
+      "revId": "c910fba06861dfe4d02d717606e127a4bee28813",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
