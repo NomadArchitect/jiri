@@ -8,12 +8,11 @@ import (
 	"fmt"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 )
 
 // cmdSelfUpdate represents the "jiri update" command.
-var cmdSelfUpdate = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runSelfUpdate),
+var cmdSelfUpdate = &Command{
+	Runner: RunnerFunc(runSelfUpdate),
 	Name:   "selfupdate",
 	Short:  "Update jiri tool",
 	Long: `

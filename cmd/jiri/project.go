@@ -15,7 +15,6 @@ import (
 	"text/template"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 )
 
@@ -36,8 +35,8 @@ func init() {
 }
 
 // cmdProject represents the "jiri project" command.
-var cmdProject = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runProject),
+var cmdProject = &Command{
+	Runner: RunnerFunc(runProject),
 	Name:   "project",
 	Short:  "Manage the jiri projects",
 	Long: `Cleans all projects if -clean flag is provided else inspect

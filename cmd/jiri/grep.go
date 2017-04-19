@@ -9,13 +9,12 @@ import (
 	"path/filepath"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
 )
 
-var cmdGrep = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runGrep),
+var cmdGrep = &Command{
+	Runner: RunnerFunc(runGrep),
 	Name:   "grep",
 	Short:  "Search across projects.",
 	Long: `

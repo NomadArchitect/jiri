@@ -11,7 +11,6 @@ import (
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/project"
@@ -24,8 +23,8 @@ var statusFlags struct {
 	commits   bool
 }
 
-var cmdStatus = &cmdline.Command{
-	Runner: jiri.RunnerFunc(runStatus),
+var cmdStatus = &Command{
+	Runner: RunnerFunc(runStatus),
 	Name:   "status",
 	Short:  "Prints status of all the projects",
 	Long: `
