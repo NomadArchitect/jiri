@@ -30,6 +30,7 @@ pushd "${ZLIB_BUILD}"
   -DCMAKE_C_FLAGS=-fPIC \
   ..
 ${NINJA_PROGRAM} zlibstatic
+mv ../zconf.h.included ../zconf.h
 popd
 
 BORINGSSL_SRC="${GIT_DIR}/vendor/github.com/libgit2/git2go/vendor/boringssl"
