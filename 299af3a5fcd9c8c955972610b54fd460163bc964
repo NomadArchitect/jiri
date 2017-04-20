@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b54decc0_a3cbeed9",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "Can you please avoid returning error? If commands want to exit with error, they can always use os.Exit or log.Fatalf, etc. I looked at number of command libraries (e.g. Cobra) and all of them follow that pattern, there\u0027s no reason we should be deviating from that.",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00cf1a27_86ec2c7f",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "This is also unnecessary, it could be parsed from the UsageLine using something like:\n\nfunc (c *Command) Name() string {\n\tname :\u003d c.UsageLine\n\ti :\u003d strings.Index(name, \" \")\n\tif i \u003e\u003d 0 {\n\t\tname \u003d name[:i]\n\t}\n\treturn name\n}",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac457d6_6366d1b7",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "This could be just a part of Long message.",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4d5bc08_cc23f493",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "I really don\u0027t see why this is needed.",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23c9a46f_5517e37b",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "Please don\u0027t do this, I\u0027d really like to keep the default usage message simple, without spitting out all the flags. Can you please use the version I had in my implementation?",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf449cfb_69fcde70",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "This is not used from anywhere else so could be just inlined.",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d82cbd_4996e1d0",
+        "filename": "cmd/jiri/main.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-20T23:59:15Z",
+      "side": 1,
+      "message": "Why not just reuse https://golang.org/pkg/flag/#PrintDefaults instead of doing all of this manually?",
+      "revId": "299af3a5fcd9c8c955972610b54fd460163bc964",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
