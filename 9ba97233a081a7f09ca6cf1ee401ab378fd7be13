@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "2de0f68f_ac717d13",
+        "filename": "cmd/jiri/cmd_util.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-21T22:24:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f0d0594b_6f61fcd4",
+      "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1a0adab_c99f428b",
         "filename": "cmd/jiri/cmd_util.go",
         "patchSetId": 5
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "upload.go",
       "parentUuid": "f1a0adab_c99f428b",
+      "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2168e18_42691c66",
+        "filename": "cmd/jiri/cmd_util.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-21T22:24:36Z",
+      "side": 1,
+      "message": "Shall we move it there then?",
+      "parentUuid": "a3670c1e_8536217b",
       "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
