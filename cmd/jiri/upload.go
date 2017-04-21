@@ -71,10 +71,15 @@ func runUpload(jirix *jiri.X, _ []string) error {
 	// Walk up the path until we find a project at that path, or hit the jirix.Root.
 	// Note that we can't just compare path prefixes because of soft links.
 	for dir != jirix.Root && dir != string(filepath.Separator) {
-		project, err := project.ProjectAtPath(jirix, dir)
-		if err != nil {
+		if isLocal, err := project.IsLocalProject(jirix, dir); err != nil {
+			return fmt.Errorf("Error while checking for local project at path %q: %s", dir, err)
+		} else if !isLocal {
 			dir = filepath.Dir(dir)
 			continue
+		}
+		project, err := project.ProjectAtPath(jirix, dir)
+		if err != nil {
+			return fmt.Errorf("Error while getting project at path %q: %s", dir, err)
 		}
 		p = &project
 		break
@@ -124,11 +129,7 @@ func runUpload(jirix *jiri.X, _ []string) error {
 		}
 
 	} else {
-		if project, err := currentProject(jirix); err != nil {
-			return err
-		} else {
-			projectsToProcess = append(projectsToProcess, project)
-		}
+		projectsToProcess = append(projectsToProcess, *p)
 	}
 	if len(projectsToProcess) == 0 {
 		return fmt.Errorf("Did not find any project to push for branch %q", currentBranch)
@@ -237,4 +238,23 @@ func runUpload(jirix *jiri.X, _ []string) error {
 		fmt.Println()
 	}
 	return nil
+}
+
+// parseEmails input a list of comma separated tokens and outputs a
+// list of email addresses. The tokens can either be email addresses
+// or Google LDAPs in which case the suffix @google.com is appended to
+// them to turn them into email addresses.
+func parseEmails(value string) []string {
+	var emails []string
+	tokens := strings.Split(value, ",")
+	for _, token := range tokens {
+		if token == "" {
+			continue
+		}
+		if !strings.Contains(token, "@") {
+			token += "@google.com"
+		}
+		emails = append(emails, token)
+	}
+	return emails
 }

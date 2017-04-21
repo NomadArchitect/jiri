@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/project"
@@ -25,31 +24,17 @@ func currentProject(jirix *jiri.X) (project.Project, error) {
 	// Walk up the path until we find a project at that path, or hit the jirix.Root.
 	// Note that we can't just compare path prefixes because of soft links.
 	for dir != jirix.Root && dir != string(filepath.Separator) {
-		p, err := project.ProjectAtPath(jirix, dir)
-		if err != nil {
+		if isLocal, err := project.IsLocalProject(jirix, dir); err != nil {
+			return project.Project{}, fmt.Errorf("Error while checking for local project at path %q: %s", dir, err)
+		} else if !isLocal {
 			dir = filepath.Dir(dir)
 			continue
+		}
+		p, err := project.ProjectAtPath(jirix, dir)
+		if err != nil {
+			return project.Project{}, fmt.Errorf("Error while getting project at path %q: %s", dir, err)
 		}
 		return p, nil
 	}
 	return project.Project{}, fmt.Errorf("directory %q is not contained in a project", dir)
-}
-
-// parseEmails input a list of comma separated tokens and outputs a
-// list of email addresses. The tokens can either be email addresses
-// or Google LDAPs in which case the suffix @google.com is appended to
-// them to turn them into email addresses.
-func parseEmails(value string) []string {
-	var emails []string
-	tokens := strings.Split(value, ",")
-	for _, token := range tokens {
-		if token == "" {
-			continue
-		}
-		if !strings.Contains(token, "@") {
-			token += "@google.com"
-		}
-		emails = append(emails, token)
-	}
-	return emails
 }
