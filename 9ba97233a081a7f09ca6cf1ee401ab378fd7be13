@@ -105,6 +105,24 @@
       "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4305e3_efa31bb2",
+        "filename": "cmd/jiri/cmd_util.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-04-21T22:30:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2168e18_42691c66",
+      "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
