@@ -71,22 +71,6 @@ func checkJiriHead(t *testing.T, jirix *jiri.X, p project.Project) {
 	}
 }
 
-// Checks that /.jiri/ is ignored in a local project checkout
-func checkMetadataIsIgnored(t *testing.T, jirix *jiri.X, p project.Project) {
-	if _, err := jirix.NewSeq().Stat(p.Path); err != nil {
-		t.Fatalf("%v", err)
-	}
-	gitInfoExcludeFile := filepath.Join(p.Path, ".git", "info", "exclude")
-	data, err := ioutil.ReadFile(gitInfoExcludeFile)
-	if err != nil {
-		t.Fatalf("ReadFile(%v) failed: %v", gitInfoExcludeFile, err)
-	}
-	excludeString := "/.jiri/"
-	if !strings.Contains(string(data), excludeString) {
-		t.Fatalf("Did not find \"%v\" in exclude file", excludeString)
-	}
-}
-
 func commitFile(t *testing.T, jirix *jiri.X, dir, file, msg string) {
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -263,7 +247,7 @@ func TestUpdateUniverseSimple(t *testing.T) {
 	s := fake.X.NewSeq()
 
 	// Check that calling UpdateUniverse() creates local copies of the remote
-	// repositories, and that jiri metadata is ignored by git.
+	// repositories.
 	if err := fake.UpdateUniverse(false); err != nil {
 		t.Fatal(err)
 	}
@@ -272,8 +256,46 @@ func TestUpdateUniverseSimple(t *testing.T) {
 			t.Fatalf("expected project to exist at path %q but none found", p.Path)
 		}
 		checkReadme(t, fake.X, p, "initial readme")
-		checkMetadataIsIgnored(t, fake.X, p)
 		checkJiriHead(t, fake.X, p)
+	}
+}
+
+// TestOldMetaDirIsMovedOnUpdate tests that old metadir os moved to new
+// location on update and projects are updated properly
+func TestOldMetaDirIsMovedOnUpdate(t *testing.T) {
+	localProjects, fake, cleanup := setupUniverse(t)
+	defer cleanup()
+	s := fake.X.NewSeq()
+
+	if err := fake.UpdateUniverse(false); err != nil {
+		t.Fatal(err)
+	}
+	for i, p := range localProjects {
+		oldPath := filepath.Join(p.Path, jiri.OldProjectMetaDir)
+		newPath := filepath.Join(p.Path, jiri.ProjectMetaDir)
+
+		// move new path to old path to replicate old structure
+		if err := os.Rename(newPath, oldPath); err != nil {
+			t.Fatal(err)
+		}
+		if i != 1 {
+			writeReadme(t, fake.X, fake.Projects[p.Name], "new readme")
+		}
+	}
+	if err := fake.UpdateUniverse(false); err != nil {
+		t.Fatal(err)
+	}
+	for i, p := range localProjects {
+		newPath := filepath.Join(p.Path, jiri.ProjectMetaDir)
+		if err := s.AssertDirExists(newPath).Done(); err != nil {
+			t.Fatalf("expected metadata to exist at path %q but none found", newPath)
+		}
+		// Check all projects are at latest
+		if i != 1 {
+			checkReadme(t, fake.X, p, "new readme")
+		} else {
+			checkReadme(t, fake.X, p, "initial readme")
+		}
 	}
 }
 
@@ -529,41 +551,6 @@ func TestHookLoadError(t *testing.T) {
 	if !strings.Contains(err.Error(), "invalid hook") {
 		t.Fatal(err)
 	}
-}
-
-// TestJiriExcludeForRepoUpdate tests that .git/info/exclude contains
-// /.jiri/ after every update
-func TestJiriExcludeForRepoUpdate(t *testing.T) {
-	localProjects, fake, cleanup := setupUniverse(t)
-	defer cleanup()
-	s := fake.X.NewSeq()
-
-	if err := fake.UpdateUniverse(false); err != nil {
-		t.Fatal(err)
-	}
-	p := localProjects[0]
-	if _, err := s.Stat(p.Path); err != nil {
-		t.Fatalf("%v", err)
-	}
-	gitInfoExcludeFile := filepath.Join(p.Path, ".git", "info", "exclude")
-
-	// Test when exclude doesn't exist
-	if err := os.RemoveAll(gitInfoExcludeFile); err != nil {
-		t.Fatalf("%v", err)
-	}
-	if err := fake.UpdateUniverse(false); err != nil {
-		t.Fatal(err)
-	}
-	checkMetadataIsIgnored(t, fake.X, p)
-
-	// Check when exclude doesn't have /.jiri/
-	if err := ioutil.WriteFile(gitInfoExcludeFile, []byte(""), 0644); err != nil {
-		t.Fatalf("%v", err)
-	}
-	if err := fake.UpdateUniverse(false); err != nil {
-		t.Fatal(err)
-	}
-	checkMetadataIsIgnored(t, fake.X, p)
 }
 
 // TestUpdateUniverseWithRevision checks that UpdateUniverse will pull remote
