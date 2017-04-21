@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9efc8c5d_bc00cbde",
+        "filename": "cmd/jiri/cmd_util.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-21T22:22:07Z",
+      "side": 1,
+      "message": "Where is this being used?",
+      "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1a0adab_c99f428b",
+        "filename": "cmd/jiri/cmd_util.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-21T22:22:07Z",
+      "side": 1,
+      "message": "ditto?",
+      "revId": "9ba97233a081a7f09ca6cf1ee401ab378fd7be13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
