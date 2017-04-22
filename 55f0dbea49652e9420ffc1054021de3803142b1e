@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3ce3377_15fbb430",
+        "filename": "cmd/jiri/upload.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-22T00:23:08Z",
+      "side": 1,
+      "message": "nit: s/ldaps/usernames/g",
+      "range": {
+        "startLine": 244,
+        "startChar": 13,
+        "endLine": 244,
+        "endChar": 18
+      },
+      "revId": "55f0dbea49652e9420ffc1054021de3803142b1e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
