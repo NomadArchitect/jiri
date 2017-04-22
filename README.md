@@ -374,7 +374,8 @@ by running `jiri help upload`.
 1. Note that if the CL conflicts with any changes that have been submitted since
    the last update of the CL, these conflicts need to be resolved before the CL
    can be submitted.  To do so, rebase your changes then upload the updated CL
-   to Gerrit.  ```
+   to Gerrit.
+  ```
   jiri cl upload
   ```
 2. Once a CL meets the conditions for being submitted, it can be merged into
@@ -415,9 +416,9 @@ git checkout feature-B
 git rebase -i origin/master # if u see commit from A, delete it and then rebase
 properly
 jiri upload # send new patch set for feature B
+
 ```
 The CL for feature B can now be submitted.
-
 This process can be extended for more than 2 CLs.  You must keep two things in mind:
 * always create the dependent feature branch from the parent feature branch, and
 * after a parent feature has been submitted, rebase feature-B onto origin/master
@@ -434,7 +435,6 @@ The actual Czech name [Jiří][jiri-wiki] is pronounced something like "yirzhee"
 
 ### How can I test changes to a manifest without pushing it upstream?
 see [Jiri local update][hacking doc]
--->
 
 [android repo]: https://source.android.com/source/using-repo.html "Repo command reference"
 [bootstrap_jiri]: scripts/bootstrap_jiri "bootstrap_jiri"
