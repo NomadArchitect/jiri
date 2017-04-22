@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ff6dc6b_ea04f3af",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-22T00:19:10Z",
+      "side": 1,
+      "message": "nit: variable is local, but has public capitalization.",
+      "range": {
+        "startLine": 1143,
+        "startChar": 3,
+        "endLine": 1143,
+        "endChar": 17
+      },
+      "revId": "0d89298d2d5321028d0673ebe0a2a5c4e835de2d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
