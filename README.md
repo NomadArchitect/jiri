@@ -415,7 +415,7 @@ git checkout feature-B
 git rebase -i origin/master # if u see commit from A, delete it and then rebase
 properly
 jiri upload # send new patch set for feature B
-```
+
 The CL for feature B can now be submitted.
 
 This process can be extended for more than 2 CLs.  You must keep two things in mind:
