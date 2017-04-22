@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "342e9994_ad19a2a6",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-04-22T00:32:11Z",
+      "side": 1,
+      "message": "this is where the breakage starts.",
+      "range": {
+        "startLine": 377,
+        "startChar": 14,
+        "endLine": 377,
+        "endChar": 18
+      },
+      "revId": "6dcbd0a2f7052900ddc99cdf5a814092a23fe162",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
