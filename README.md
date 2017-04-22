@@ -13,6 +13,12 @@ Jiri has an extensible plugin model, making it easy to create new sub-commands.
 
 Jiri is open-source.  See the contributor guidelines [here][contributing].
 
+## Jiri Behaviour
+[See this][behaviour]
+
+## Jiri Tricks
+[See this][how do i]
+
 ## Jiri Basics
 Jiri organizes a set of repositories on your local filesystem according to a
 [manifest][manifests].  These repositories are referred to as "projects", and
@@ -438,7 +444,7 @@ see [Jiri local update][hacking doc]
 
 [android repo]: https://source.android.com/source/using-repo.html "Repo command reference"
 [bootstrap_jiri]: scripts/bootstrap_jiri "bootstrap_jiri"
-[contributing]: CONTRIBUTING.md "contributing"
+[contributing]: /CONTRIBUTING.md "contributing"
 [gerrit]: https://code.google.com/p/gerrit/ "Gerrit code review"
 [gerrit web ui]: https://gerrit-review.googlesource.com/Documentation/user-review-ui.html "Gerrit review UI"
 [github resolve conflict]: https://help.github.com/articles/resolving-a-merge-conflict-from-the-command-line/ "Resolving a merge conflict"
@@ -446,6 +452,8 @@ see [Jiri local update][hacking doc]
 [jiri-wiki]: https://en.wikipedia.org/wiki/Ji%C5%99%C3%AD "Jiří"
 [manifests]: #manifests "manifests"
 [minimal manifest]: https://fuchsia.googlesource.com/manifest/+/refs/heads/master/minimal "minimal manifest"
-[manifest doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/manifest.md "Jiri manifest"
-[filesystem doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/filesystem.md "Jiri filesystem"
-[hacking doc]:https://fuchsia.googlesource.com/jiri/+/HEAD/HACKING.md "Jiri local updates"
+[manifest doc]:/manifest.md "Jiri manifest"
+[filesystem doc]:/filesystem.md "Jiri filesystem"
+[hacking doc]:/HACKING.md "Jiri local updates"
+[behaviour and tricks]:/behaviour.md
+[how do i]:/howdoi.md
