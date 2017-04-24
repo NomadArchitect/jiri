@@ -46,7 +46,7 @@ func Update(force bool) error {
 		// Check if the prebuilt for new version exsits.
 		has, err := hasPrebuilt(JiriStorageBucket, commit)
 		if err != nil {
-			return err
+			return fmt.Errorf("Error getting prebuilt, %s", err)
 		}
 		if !has {
 			return updateNotAvaiableErr
@@ -55,11 +55,11 @@ func Update(force bool) error {
 		// New version is available, download and update to it.
 		b, err := downloadBinary(JiriStorageBucket, commit)
 		if err != nil {
-			return err
+			return fmt.Errorf("Error downloading prebuilt, %s", err)
 		}
 		path, err := osutil.Executable()
 		if err != nil {
-			return err
+			return fmt.Errorf("Error getting current executable, %s", err)
 		}
 		return updateExecutable(path, b)
 	}
@@ -67,6 +67,11 @@ func Update(force bool) error {
 }
 
 func UpdateAndExecute(force bool) error {
+	// Capture executable path before it is replaced in Update func
+	path, err := osutil.Executable()
+	if err != nil {
+		return fmt.Errorf("Error getting current executable, %s", err)
+	}
 	if err := Update(force); err != nil {
 		if err != updateNotAvaiableErr && err != updateVersionErr &&
 			err != updateTestVersionErr {
@@ -78,11 +83,10 @@ func UpdateAndExecute(force bool) error {
 	// This will overwrite previous force autoupdate if present
 	os.Args = append(os.Args, "-force-autoupdate=false")
 	// Run the update version.
-	path, err := osutil.Executable()
-	if err != nil {
-		return err
+	if err = syscall.Exec(path, os.Args, os.Environ()); err != nil {
+		return fmt.Errorf("Error executing %s: %s", path, err)
 	}
-	return syscall.Exec(path, os.Args, os.Environ())
+	return nil
 }
 
 func getCurrentCommit(repository string) (string, error) {
