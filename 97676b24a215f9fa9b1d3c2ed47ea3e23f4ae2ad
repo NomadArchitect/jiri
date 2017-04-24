@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "915917bf_fb42422c",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "s/Avaiable/Available/",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d8261c9_fb1b678a",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "Your error message should never start with \"error\" because what\u0027ll end up in the output is \"ERROR: Error ...\" which is just weird, instead you should say something like \"cannot check whether prebuilt is available: %s\".",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ad27f65_36b606d0",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f970092f_b18a5881",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbec7a5f_c98613aa",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760a38fd_27f6d8ff",
+        "filename": "update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T18:46:46Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "97676b24a215f9fa9b1d3c2ed47ea3e23f4ae2ad",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
