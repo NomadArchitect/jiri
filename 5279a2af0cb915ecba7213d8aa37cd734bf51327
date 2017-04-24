@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4546fbb_31cabcf0",
+        "filename": "update.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-04-24T23:25:02Z",
+      "side": 1,
+      "message": "nit: we should unify the capitalization, errors in Go typically start with lower case letter which  is what I\u0027ve been following below, but the new error messages you\u0027ve added are capitalized",
+      "revId": "5279a2af0cb915ecba7213d8aa37cd734bf51327",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
