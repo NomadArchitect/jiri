@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81f09a21_27a1fa06",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2017-05-02T20:55:09Z",
+      "side": 1,
+      "message": "do --mirror and --depth do the right thing together?",
+      "revId": "989590986decff7293dcc6533fea204d6a03895e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
