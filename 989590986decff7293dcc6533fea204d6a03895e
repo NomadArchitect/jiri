@@ -16,6 +16,24 @@
       "revId": "989590986decff7293dcc6533fea204d6a03895e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd99a356_5728d402",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T20:56:03Z",
+      "side": 1,
+      "message": "yes, I tested, that way our bots would also be fast, elase our bots will take more than 20 min to create cache",
+      "parentUuid": "81f09a21_27a1fa06",
+      "revId": "989590986decff7293dcc6533fea204d6a03895e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
