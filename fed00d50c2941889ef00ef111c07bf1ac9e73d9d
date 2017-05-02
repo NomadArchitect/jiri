@@ -42,6 +42,48 @@
     },
     {
       "key": {
+        "uuid": "9760651d_0c2c223e",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "hey not sure what you mean by bug template, document already mentions commands to run",
+      "parentUuid": "08cff7d9_17808f3a",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 211
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1af452fd_226d4bca",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b55522b_cc54845e",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ef6dc0d_a71fa553",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -53,6 +95,24 @@
       "writtenOn": "2017-04-28T17:05:07Z",
       "side": 1,
       "message": "project --\u003e projects? and trailing period",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffb01ca6_d90d50f7",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ef6dc0d_a71fa553",
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -87,6 +147,48 @@
       "writtenOn": "2017-05-02T18:00:55Z",
       "side": 1,
       "message": "I think we should re-arrange the language to be more formal, as it would clarify and save space.\n\nAssume that \"it will\" are not required. Try to immediately start with a subject and make a statement.\n\n\"Only the working tree branch is considered.\"\n\"Tracked local branches are rebased onto the latest remote change.\"\n\"Untracked local branches are not changed.\"\n\"Deleted projects are unaltered and displayed\"\n\nAvoid terms like \"complain\", explain what it will do, and explain what it will not do only if it is critically non-obvious.\n\nDo not document non-default flags here, use other documentation for that.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36ad2f82_3e10af63",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe855497_2300e49a",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a58837a6_18301ce6",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "hey were should i put non-default flags, isn\u0027t that part of intended behavior and better for user to find it in one document rather than searching in other documents?",
+      "parentUuid": "563c7b6f_86c8c83a",
       "range": {
         "startLine": 10,
         "startChar": 0,
@@ -139,6 +241,48 @@
     },
     {
       "key": {
+        "uuid": "bf17cfd7_4ba3e44f",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d69ecb59_219c65fd",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2dae7138_7ce0ef8f",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79c618b6_9aa2c565",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a07f1a5_884dc5a4",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -167,6 +311,48 @@
       "writtenOn": "2017-05-02T18:00:55Z",
       "side": 1,
       "message": "Wouldn\u0027t it be more accurate to say \"it will checkout a newly updated JIRI_HEAD if the existing state is at the previous JIRI_HEAD\" ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 175
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e232adc_4b0b4b97",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a07f1a5_884dc5a4",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acc0ed76_06f4b51e",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "no, it will even checkout JIRI_HEAD, even when user is on some other \u0027DETACHED_HEAD\u0027",
+      "parentUuid": "32b8278e_3833d2d0",
       "range": {
         "startLine": 13,
         "startChar": 2,
@@ -219,6 +405,48 @@
     },
     {
       "key": {
+        "uuid": "2ce7a4ec_8a0f0c68",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de8a6217_7abe624b",
+      "range": {
+        "startLine": 14,
+        "startChar": 40,
+        "endLine": 14,
+        "endChar": 87
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f044770_675fbf3e",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f39e366_0be348ed",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e968133d_718407a2",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -230,6 +458,24 @@
       "writtenOn": "2017-04-28T17:05:07Z",
       "side": 1,
       "message": "ws after warning, overridden",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b566a0f9_761e987a",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e968133d_718407a2",
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -253,6 +499,24 @@
     },
     {
       "key": {
+        "uuid": "6867442a_4086d661",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2468db3_c7789af2",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b57402e_ea111745",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -264,6 +528,24 @@
       "writtenOn": "2017-04-28T17:05:07Z",
       "side": 1,
       "message": "revision",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "319b5e88_e20c57d4",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b57402e_ea111745",
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -287,6 +569,24 @@
     },
     {
       "key": {
+        "uuid": "ee0f305f_805df092",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "not that is sub heading under jiri update as it is part of that command",
+      "parentUuid": "82143808_e4679703",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "42b368c5_de49b1b4",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -298,6 +598,24 @@
       "writtenOn": "2017-04-28T17:05:07Z",
       "side": 1,
       "message": "Maybe add a word about what a snapshot is and how to generate one first?",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "945b46dd_d824b561",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42b368c5_de49b1b4",
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -321,6 +639,24 @@
     },
     {
       "key": {
+        "uuid": "c5a50f51_fdb87f6d",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24c36c0a_e202e9c9",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64242374_e10e943d",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -338,6 +674,24 @@
     },
     {
       "key": {
+        "uuid": "f8333f8d_a9970451",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64242374_e10e943d",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b1d0872_34a1fc12",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -349,6 +703,24 @@
       "writtenOn": "2017-04-28T17:05:07Z",
       "side": 1,
       "message": "I\u0027d put that in a separate document.",
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3b1da4b_9dc33896",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-02T19:49:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b1d0872_34a1fc12",
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
