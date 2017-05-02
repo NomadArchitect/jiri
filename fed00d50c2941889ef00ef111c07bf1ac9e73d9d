@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "08cff7d9_17808f3a",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-02T18:00:55Z",
+      "side": 1,
+      "message": "A misreading of this might lead some people to thinking that the intended behavior of Jiri is set in stone. I think we should simplify this to just point out where to file bugs.\n\nWe should provide a bug template below that includes commands to run.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 211
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1ef6dc0d_a71fa553",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -53,6 +76,29 @@
     },
     {
       "key": {
+        "uuid": "563c7b6f_86c8c83a",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-02T18:00:55Z",
+      "side": 1,
+      "message": "I think we should re-arrange the language to be more formal, as it would clarify and save space.\n\nAssume that \"it will\" are not required. Try to immediately start with a subject and make a statement.\n\n\"Only the working tree branch is considered.\"\n\"Tracked local branches are rebased onto the latest remote change.\"\n\"Untracked local branches are not changed.\"\n\"Deleted projects are unaltered and displayed\"\n\nAvoid terms like \"complain\", explain what it will do, and explain what it will not do only if it is critically non-obvious.\n\nDo not document non-default flags here, use other documentation for that.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "79c618b6_9aa2c565",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -67,6 +113,29 @@
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d69ecb59_219c65fd",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-02T18:00:55Z",
+      "side": 1,
+      "message": "We should clarify what \"updates all repos in the manifest\" actually means.",
+      "range": {
+        "startLine": 11,
+        "startChar": 15,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     },
     {
       "key": {
@@ -87,6 +156,29 @@
     },
     {
       "key": {
+        "uuid": "32b8278e_3833d2d0",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-02T18:00:55Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be more accurate to say \"it will checkout a newly updated JIRI_HEAD if the existing state is at the previous JIRI_HEAD\" ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 175
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7f39e366_0be348ed",
         "filename": "behaviour.md",
         "patchSetId": 3
@@ -101,6 +193,29 @@
       "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de8a6217_7abe624b",
+        "filename": "behaviour.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-02T18:00:55Z",
+      "side": 1,
+      "message": "\"It will be rebased onto upstream changes\".\n\nWe should describe what is expected to happen when the rebase fails.",
+      "range": {
+        "startLine": 14,
+        "startChar": 40,
+        "endLine": 14,
+        "endChar": 87
+      },
+      "revId": "fed00d50c2941889ef00ef111c07bf1ac9e73d9d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     },
     {
       "key": {
