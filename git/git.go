@@ -33,6 +33,38 @@ func (g *Git) CurrentRevision() (string, error) {
 	return head.Target().String(), nil
 }
 
+func (g *Git) SetBoolConfig(name string, val bool) error {
+	repo, err := git2go.OpenRepository(g.rootDir)
+	if err != nil {
+		return err
+	}
+	defer repo.Free()
+	config, err := repo.Config()
+	if err != nil {
+		return err
+	}
+	return config.SetBool(name, val)
+}
+
+func (g *Git) GetBoolConfig(name string) (bool, error) {
+	repo, err := git2go.OpenRepository(g.rootDir)
+	if err != nil {
+		return false, err
+	}
+	defer repo.Free()
+	config, err := repo.Config()
+	if err != nil {
+		return false, err
+	}
+	val, err := config.LookupBool(name)
+	if err != nil {
+		if git2go.IsErrorCode(err, git2go.ErrNotFound) {
+			return false, nil
+		}
+	}
+	return val, err
+}
+
 // Fetch fetches refs and tags from the given remote.
 func (g *Git) Fetch(remote string, opts ...FetchOpt) error {
 	return g.FetchRefspec(remote, "", opts...)
