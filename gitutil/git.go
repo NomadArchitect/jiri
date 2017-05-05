@@ -116,6 +116,23 @@ func (g *Git) AddRemote(name, path string) error {
 	return g.run("remote", "add", name, path)
 }
 
+// AddRemote adds a new remote with the given name and path.
+func (g *Git) AddRemoteWithBranches(name, path string, mirror string, branches ...string) error {
+	args := []string{"remote", "add"}
+	for _, b := range branches {
+		args = append(args, "-t", b)
+	}
+	if mirror != "" {
+		args = append(args, "--mirror=" + mirror)
+	}
+	args = append(args, name, path)
+	return g.run(args...)
+}
+
+func (g *Git) RemoveRemote(name string) error {
+	return g.run("remote", "remove", name)
+}
+
 // BranchExists tests whether a branch with the given name exists in
 // the local repository.
 func (g *Git) BranchExists(branch string) bool {
@@ -190,8 +207,13 @@ func (g *Git) Clone(repo, path string, opts ...CloneOpt) error {
 }
 
 // CloneMirror clones the given repository using mirror flag.
-func (g *Git) CloneMirror(repo, path string) error {
-	return g.run("clone", "--mirror", repo, path)
+func (g *Git) CloneMirror(repo, path string, depth int) error {
+	args := []string{"clone", "--mirror"}
+	if depth > 0 {
+		args = append(args, []string{"--depth", strconv.Itoa(depth)}...)
+	}
+	args = append(args, []string{repo, path}...)
+	return g.run(args...)
 }
 
 // CloneRecursive clones the given repository recursively to the given local path.
@@ -469,7 +491,8 @@ func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 	tags := false
 	all := false
 	prune := false
-	unshallow := false
+	updateShallow := false
+	depth := 0
 	for _, opt := range opts {
 		switch typedOpt := opt.(type) {
 		case TagsOpt:
@@ -478,8 +501,10 @@ func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 			all = bool(typedOpt)
 		case PruneOpt:
 			prune = bool(typedOpt)
-		case UnshallowOpt:
-			unshallow = bool(typedOpt)
+		case DepthOpt:
+			depth = int(typedOpt)
+		case UpdateShallowOpt:
+			updateShallow = bool(typedOpt)
 		}
 	}
 	args := []string{}
@@ -487,11 +512,14 @@ func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 	if prune {
 		args = append(args, "-p")
 	}
-	if unshallow {
-		args = append(args, "--unshallow")
-	}
 	if tags {
 		args = append(args, "--tags")
+	}
+	if depth > 0 {
+		args = append(args, "--depth", strconv.Itoa(depth))
+	}
+	if updateShallow {
+		args = append(args, "--update-shallow")
 	}
 	if all {
 		args = append(args, "--all")
