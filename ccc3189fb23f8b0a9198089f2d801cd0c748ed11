@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a84f6b3d_0a5cbef0",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2edc7276_b196dba3",
+      "range": {
+        "startLine": 7,
+        "startChar": 158,
+        "endLine": 7,
+        "endChar": 166
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87f19d62_b69b13f8",
         "filename": "BUILD.md",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa74e31d_33be2033",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f19d62_b69b13f8",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 8
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,54 @@
     },
     {
       "key": {
+        "uuid": "6712b5af_4a5b0c95",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aed26a1_76d85dbf",
+      "range": {
+        "startLine": 25,
+        "startChar": 65,
+        "endLine": 25,
+        "endChar": 71
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1965fa_dd68dd13",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca6b0464_e0cd8fab",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 64
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c9c8f03_ea237399",
         "filename": "BUILD.md",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2017-05-12T18:44:24Z",
       "side": 1,
       "message": "s/system/library path/ and we should look into fixing this in build.sh",
+      "range": {
+        "startLine": 29,
+        "startChar": 90,
+        "endLine": 29,
+        "endChar": 106
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71322d71_a29dae84",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "not yet sure how to fix it without changing Cmake file for libgit2 which we are avoiding, I will crate a jira issue for it",
+      "parentUuid": "3c9c8f03_ea237399",
       "range": {
         "startLine": 29,
         "startChar": 90,
@@ -179,6 +299,54 @@
         "startChar": 3,
         "endLine": 17,
         "endChar": 10
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c999372_017e6177",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ea842b3_5bf3e819",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30f4ba26_e0840e4b",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:34Z",
+      "side": 1,
+      "message": "added link to instructions",
+      "parentUuid": "bce8d2e3_ae7e7cda",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 63
       },
       "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
