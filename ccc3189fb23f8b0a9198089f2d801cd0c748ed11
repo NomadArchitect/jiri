@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2edc7276_b196dba3",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 7,
+        "startChar": 158,
+        "endLine": 7,
+        "endChar": 166
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87f19d62_b69b13f8",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "scripts",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 8
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aed26a1_76d85dbf",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "nit: directory",
+      "range": {
+        "startLine": 25,
+        "startChar": 65,
+        "endLine": 25,
+        "endChar": 71
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca6b0464_e0cd8fab",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "does it build into $PWD or does it build into the jiri repo root?",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 64
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c9c8f03_ea237399",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "s/system/library path/ and we should look into fixing this in build.sh",
+      "range": {
+        "startLine": 29,
+        "startChar": 90,
+        "endLine": 29,
+        "endChar": 106
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bce8d2e3_ae7e7cda",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "readers are likely to wonder where, after reading this",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 63
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aedc258_1b6075dd",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "s/If you still need to/In order to/",
+      "range": {
+        "startLine": 17,
+        "startChar": 65,
+        "endLine": 17,
+        "endChar": 77
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ea842b3_5bf3e819",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-12T18:44:24Z",
+      "side": 1,
+      "message": "remove \"already\", implied by \"pre\"",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
