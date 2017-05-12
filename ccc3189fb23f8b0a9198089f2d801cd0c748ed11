@@ -351,6 +351,30 @@
       "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f229471_d30c1d99",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-12T19:19:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aedc258_1b6075dd",
+      "range": {
+        "startLine": 17,
+        "startChar": 65,
+        "endLine": 17,
+        "endChar": 77
+      },
+      "revId": "ccc3189fb23f8b0a9198089f2d801cd0c748ed11",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
