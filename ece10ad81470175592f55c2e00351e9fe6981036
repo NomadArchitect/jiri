@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5eb05a67_d5751f6b",
+        "filename": "scripts/build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-15T23:11:14Z",
+      "side": 1,
+      "message": "here too?",
+      "range": {
+        "startLine": 21,
+        "startChar": 47,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "ece10ad81470175592f55c2e00351e9fe6981036",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e71a4a06_8eafab12",
+        "filename": "scripts/build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-15T23:11:14Z",
+      "side": 1,
+      "message": "and here?",
+      "range": {
+        "startLine": 22,
+        "startChar": 40,
+        "endLine": 22,
+        "endChar": 50
+      },
+      "revId": "ece10ad81470175592f55c2e00351e9fe6981036",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
