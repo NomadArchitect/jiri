@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84f1357d_8d29a4fe",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-15T22:26:45Z",
+      "side": 1,
+      "message": "Add \".\" at end of line.",
+      "revId": "8aaab8503c37266a90c23f4def95eaac34904efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a56c990_c101a950",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-15T22:26:45Z",
+      "side": 1,
+      "message": "Can you put this on the same line as \"curl -s\", otherwise it doesn\u0027t work when copy+pasted.  Or add a \"\\\".",
+      "revId": "8aaab8503c37266a90c23f4def95eaac34904efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8901dd17_68cbd00f",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-15T22:26:45Z",
+      "side": 1,
+      "message": "Nit: End with \".\".",
+      "range": {
+        "startLine": 17,
+        "startChar": 265,
+        "endLine": 17,
+        "endChar": 273
+      },
+      "revId": "8aaab8503c37266a90c23f4def95eaac34904efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d3b3396a_2af4b184",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-15T22:26:45Z",
+      "side": 1,
+      "message": "Ditto: End with \".\".",
+      "revId": "8aaab8503c37266a90c23f4def95eaac34904efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83372726_5af4c9a5",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-15T22:26:45Z",
+      "side": 1,
+      "message": "End with \".\".",
+      "revId": "8aaab8503c37266a90c23f4def95eaac34904efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
