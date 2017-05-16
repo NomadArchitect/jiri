@@ -70,6 +70,24 @@
       "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "713e4f3b_d626dd3d",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-16T19:01:55Z",
+      "side": 1,
+      "message": "So you want to handle the case where other projects might be checked out.  OK, changed.",
+      "parentUuid": "597c130e_6d2c9fee",
+      "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
