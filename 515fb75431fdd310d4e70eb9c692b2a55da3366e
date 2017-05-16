@@ -52,6 +52,24 @@
       "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eb14065_5f264d74",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T18:57:10Z",
+      "side": 1,
+      "message": "all go packages*",
+      "parentUuid": "597c130e_6d2c9fee",
+      "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
