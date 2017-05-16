@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6981d26_4ed2b49d",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T18:18:49Z",
+      "side": 1,
+      "message": "it should be go test $((go list ./... | grep -v /vendor/) 2\u003e/dev/null), because go list ./... gives\n\ncan\u0027t load package: package fuchsia.googlesource.com/jiri/vendor/github.com/libgit2/git2go/vendor/boringssl/crypto/bn: C source files not allowed when not using cgo or SWIG: add.c bn.c bn_asn1.c cmp.c convert.c ctx.c div.c exponentiation.c gcd.c generic.c kronecker.c montgomery.c montgomery_inv.c mul.c prime.c random.c rsaz_exp.c shift.c sqrt.c\ncan\u0027t load package: package fuchsia.googlesource.com/jiri/vendor/github.com/libgit2/git2go/vendor/boringssl/crypto/err: C source files not allowed when not using cgo or SWIG: err.c\ncan\u0027t load package: package fuchsia.googlesource.com/jiri/vendor/github.com/libgit2/git2go/vendor/boringssl/crypto/obj: C source files not allowed when not using cgo or SWIG: obj.c obj_xref.c\ncan\u0027t load package: /usr/local/google/home/anmittal/fuchsia/go/src/fuchsia.googlesource.com/jiri/vendor/github.com/libgit2/git2go/vendor/boringssl/ssl/test/runner/key_agreement.go:19:2: local import \"./curve25519\" in non-local package",
+      "revId": "837aedf04c6c6a79641b0ed152f8dbfd81ac4ac5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
