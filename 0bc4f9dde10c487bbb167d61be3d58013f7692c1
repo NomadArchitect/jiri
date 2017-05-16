@@ -117,6 +117,30 @@
       "revId": "0bc4f9dde10c487bbb167d61be3d58013f7692c1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ad415ef_7ff8823f",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T23:35:11Z",
+      "side": 1,
+      "message": "okay just to confirm you mean remove \"or higher\" right?",
+      "parentUuid": "cc0857ab_133e74a1",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "0bc4f9dde10c487bbb167d61be3d58013f7692c1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
