@@ -16,6 +16,24 @@
       "revId": "837aedf04c6c6a79641b0ed152f8dbfd81ac4ac5",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7784c26_0af476c7",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-16T18:47:47Z",
+      "side": 1,
+      "message": "OK, done.\n\nThe redirection should only need to go on \"go list\", BTW.\n\nFWIW, I didn\u0027t get those errors.  Maybe I\u0027m using a different version of Go.",
+      "parentUuid": "b6981d26_4ed2b49d",
+      "revId": "837aedf04c6c6a79641b0ed152f8dbfd81ac4ac5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
