@@ -34,6 +34,24 @@
       "revId": "837aedf04c6c6a79641b0ed152f8dbfd81ac4ac5",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "105b71df_580fd102",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T18:51:16Z",
+      "side": 1,
+      "message": "oh i am using 1.7.3",
+      "parentUuid": "f7784c26_0af476c7",
+      "revId": "837aedf04c6c6a79641b0ed152f8dbfd81ac4ac5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }

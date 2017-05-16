@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77932855_21eb088e",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T18:51:16Z",
+      "side": 1,
+      "message": "add \ncd src/fuchsia.googlesource.com/jiri\nAfter this line or change go test to\ngo test $(go list fuchsia.googlesource.com/jiri/... 2\u003e/dev/null | grep -v /vendor/)",
+      "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
