@@ -34,6 +34,24 @@
       "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "597c130e_6d2c9fee",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-16T18:56:32Z",
+      "side": 1,
+      "message": "else it will run tests on all the projects in go/src, ./... means all go projects in current dir",
+      "parentUuid": "a99bf761_ef362a66",
+      "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
