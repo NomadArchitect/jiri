@@ -2,6 +2,13 @@
 
 ## Get source
 
+### Prerequisites
+Jiri has been tested to build and work with below versions.
+* cmake 3.7.2 or higher
+* golang 1.7.3 or higher
+* ninja 1.7.2 or higher
+* git 2.7.4 or higher
+
 ### Using jiri prebuilt
 This method only works with linux and darwin `x86_64` systems.
 The bootstrap procedure requires that you have Go 1.6 or newer and Git installed and on your `PATH`. Below command will create checkout in new folder called `fuchsia`.
