@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "244217ee_b1366d1f",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-16T22:21:11Z",
+      "side": 1,
+      "message": "you can probably just drop this sentence",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 59
+      },
+      "revId": "0bc4f9dde10c487bbb167d61be3d58013f7692c1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9385ea3_af888c27",
+        "filename": "BUILD.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-16T22:21:11Z",
+      "side": 1,
+      "message": "we haven\u0027t tested with all higher versions ;)",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 23
+      },
+      "revId": "0bc4f9dde10c487bbb167d61be3d58013f7692c1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
