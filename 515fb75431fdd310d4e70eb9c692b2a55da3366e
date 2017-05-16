@@ -16,6 +16,24 @@
       "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a99bf761_ef362a66",
+        "filename": "BUILD.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2017-05-16T18:53:19Z",
+      "side": 1,
+      "message": "Can you say why?  Is that a preference, or does \"go list ./...\" not work in some cases?",
+      "parentUuid": "77932855_21eb088e",
+      "revId": "515fb75431fdd310d4e70eb9c692b2a55da3366e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
