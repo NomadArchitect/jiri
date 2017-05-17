@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cfcaeb3_5771c9fb",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-17T02:06:01Z",
+      "side": 1,
+      "message": "I don\u0027t think you need a map for this, simple case is sufficient; map is a bash extension and I\u0027d like to avoid that unless absolutely necessary.",
+      "revId": "bb1da2ce78455eaca12ff96a82a367d0bb81dba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fccc044c_ab264674",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-17T02:06:01Z",
+      "side": 1,
+      "message": "s/jiri/Jiri/g",
+      "revId": "bb1da2ce78455eaca12ff96a82a367d0bb81dba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc2b8c4b_0592c7b7",
+        "filename": "scripts/upload_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-17T02:06:01Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "bb1da2ce78455eaca12ff96a82a367d0bb81dba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
