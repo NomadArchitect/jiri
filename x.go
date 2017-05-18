@@ -107,12 +107,14 @@ var (
 	quietVerboseFlag bool
 	debugVerboseFlag bool
 	traceVerboseFlag bool
+	showProgressFlag bool
 )
 
 func init() {
 	flag.StringVar(&rootFlag, "root", "", "Jiri root directory")
 	flag.UintVar(&jobsFlag, "j", DefaultJobs, "Number of jobs (commands) to run simultaneously")
 	flag.BoolVar(&colorFlag, "color", true, "Use color to format output.")
+	flag.BoolVar(&showProgressFlag, "show-progress", true, "Show progress.")
 	flag.BoolVar(&quietVerboseFlag, "quiet", false, "Only print user actionable messages.")
 	flag.BoolVar(&quietVerboseFlag, "q", false, "Same as -quiet")
 	flag.BoolVar(&debugVerboseFlag, "v", false, "Print debug level output.")
@@ -132,7 +134,7 @@ func NewX(env *cmdline.Env) (*X, error) {
 	} else if debugVerboseFlag {
 		loggerLevel = log.DebugLevel
 	}
-	logger := log.NewLogger(loggerLevel, color)
+	logger := log.NewLogger(loggerLevel, color, showProgressFlag)
 
 	ctx := tool.NewContextFromEnv(env, loggerLevel >= log.TraceLevel)
 	root, err := findJiriRoot(ctx.Timer())
