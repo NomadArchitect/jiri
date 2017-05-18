@@ -1808,9 +1808,12 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 			go func(dir, remote string, depth int, branch string) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
+				taskId := ""
+				defer func() { jirix.Logger.RemoveTaskMsg(taskId) }()
 				if isPathDir(dir) {
 					// Cache already present, update it
 					// TODO : update this after implementing FetchAll using g
+					taskId = jirix.Logger.AddTaskMsg("Updating cache: %q", dir)
 					if _, err := os.Stat(filepath.Join(dir, "shallow")); err == nil {
 						// Shallow cache, fetch only manifest tracked remote branch
 						refspec := fmt.Sprintf("+refs/heads/%s:refs/heads/%s", branch, branch)
@@ -1827,6 +1830,7 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 					// Create cache
 					// TODO : If we in future need to support two projects with same remote url,
 					// one with shallow checkout and one with full, we should create two caches
+					taskId = jirix.Logger.AddTaskMsg("Creating cache: %q", dir)
 					if err := gitutil.New(jirix).CloneMirror(remote, dir, depth); err != nil {
 						errs <- err
 					}
@@ -1868,6 +1872,8 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 			go func(project Project) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
+				taskId := jirix.Logger.AddTaskMsg("Fetching remotes for project %q", project.Name)
+				defer jirix.Logger.RemoveTaskMsg(taskId)
 				if err := fetchAll(jirix, project); err != nil {
 					errs <- fmt.Errorf("fetch failed for %v: %v", project.Name, err)
 					return
@@ -1939,11 +1945,14 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	processTree := func(tree *workTree) {
 		defer wg.Done()
 		for _, op := range tree.ops {
+			taskId := jirix.Logger.AddTaskMsg("Creating project %q", op.Project().Name)
 			jirix.Logger.Debugf("%v", op)
 			if err := op.Run(jirix); err != nil {
+				jirix.Logger.RemoveTaskMsg(taskId)
 				errs <- fmt.Errorf("Creating project %q: %v", op.Project().Name, err)
 				return
 			}
+			jirix.Logger.RemoveTaskMsg(taskId)
 		}
 		for _, v := range tree.after {
 			wg.Add(1)
@@ -2035,10 +2044,13 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation) error {
 			jirix.Logger.Warningf(msg)
 			continue
 		}
+		taskId := jirix.Logger.AddTaskMsg("Trying to delete project %q", op.Project().Name)
 		jirix.Logger.Debugf("%s", op)
 		if err := op.Run(jirix); err != nil {
+			jirix.Logger.RemoveTaskMsg(taskId)
 			return fmt.Errorf("Deleting project %q: %s", op.Project().Name, err)
 		}
+		jirix.Logger.RemoveTaskMsg(taskId)
 		if _, err := os.Stat(op.source); err == nil {
 			// project not deleted, add it to trie
 			notDeleted.Insert(op.source)
@@ -2059,20 +2071,26 @@ func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
 			parentSrcPath = op.source
 			parentDestPath = op.destination
 		}
+		taskId := jirix.Logger.AddTaskMsg("Moving project %q", op.Project().Name)
 		jirix.Logger.Debugf("%s", op)
 		if err := op.Run(jirix); err != nil {
+			jirix.Logger.RemoveTaskMsg(taskId)
 			return fmt.Errorf("Moving and updating project %q: %s", op.Project().Name, err)
 		}
+		jirix.Logger.RemoveTaskMsg(taskId)
 	}
 	return nil
 }
 
 func runCommonOperations(jirix *jiri.X, ops operations) error {
 	for _, op := range ops {
+		taskId := jirix.Logger.AddTaskMsg("Updating project %q", op.Project().Name)
 		jirix.Logger.Debugf("%s", op)
 		if err := op.Run(jirix); err != nil {
+			jirix.Logger.RemoveTaskMsg(taskId)
 			return fmt.Errorf("Updating project %q: %s", op.Project().Name, err)
 		}
+		jirix.Logger.RemoveTaskMsg(taskId)
 	}
 	return nil
 }
@@ -2207,8 +2225,8 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 				return
 			}
 
-			jirix.Logger.Capture(outFile, errFile).Debugf("output for hook(%v) for project %q", hook.Name, hook.ProjectName)
-			jirix.Logger.Capture(outFile, errFile).Errorf("Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
+			fmt.Fprintf(outFile, "Output for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
+			fmt.Fprintf(errFile, "%s: hook(%v) for project %q\n", jirix.Color.Red("ERROR: "), hook.Name, hook.ProjectName)
 			// Hack until sequence is changesd to use logger or is removed
 			s := jirix.NewSeq().Verbose(showHookOutput).CaptureAll(outFile, errFile)
 			if err := s.Dir(hook.ActionPath).Timeout(time.Duration(runHookTimeout) * time.Minute).Last(filepath.Join(hook.ActionPath, hook.Action)); err != nil {

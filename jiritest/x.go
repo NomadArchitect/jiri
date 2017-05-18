@@ -21,7 +21,7 @@ import (
 func NewX(t *testing.T) (*jiri.X, func()) {
 	ctx := tool.NewContextFromEnv(cmdline.EnvFromOS(), false)
 	color := color.NewColor(false)
-	logger := log.NewLogger(log.InfoLevel, color)
+	logger := log.NewLogger(log.InfoLevel, color, false)
 	root, err := ctx.NewSeq().TempDir("", "")
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
