@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27c88b7e_34cb30a4",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-18T22:29:05Z",
+      "side": 1,
+      "message": "I don\u0027t think the colors are really necessary here, they just complicate the code, but it\u0027s your call ;)",
+      "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c70bb9d3_eeea1d67",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-18T22:29:05Z",
+      "side": 1,
+      "message": "I don\u0027t think the colors are really necessary here, they just complicate the code, but it\u0027s your call ;)",
+      "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51be6710_f2fa8f73",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-18T22:29:05Z",
+      "side": 1,
+      "message": "Maybe we shouldn\u0027t fail for aarch64 one since it\u0027s not officially supported and might not be always available?",
+      "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
