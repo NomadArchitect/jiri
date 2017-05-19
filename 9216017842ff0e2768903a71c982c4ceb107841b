@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "360ce2f3_54142e9f",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-19T00:50:49Z",
+      "side": 1,
+      "message": "I added color as it was difficult to see error, also it helps us know that aarch64 is currently not supported so we can recify that",
+      "parentUuid": "c70bb9d3_eeea1d67",
+      "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51be6710_f2fa8f73",
         "filename": "scripts/upload_cipd_package",
         "patchSetId": 4
@@ -50,6 +68,24 @@
       "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2693a36_f3a56efa",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-19T00:50:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51be6710_f2fa8f73",
+      "revId": "9216017842ff0e2768903a71c982c4ceb107841b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
