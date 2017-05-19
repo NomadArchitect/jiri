@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ace68eb_9c0f0e26",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-19T02:02:20Z",
+      "side": 1,
+      "message": "Use [[ instead of [ and -a",
+      "revId": "9b8d0ee25bccfe7a73c1f8e019b528dbc09c2881",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1efab27b_b5a87c25",
+        "filename": "scripts/upload_cipd_package",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-19T02:02:20Z",
+      "side": 1,
+      "message": "[[ here as well",
+      "revId": "9b8d0ee25bccfe7a73c1f8e019b528dbc09c2881",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
