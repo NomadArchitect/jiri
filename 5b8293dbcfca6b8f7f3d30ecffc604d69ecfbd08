@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e77d4831_31114674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-05-20T04:59:24Z",
+      "side": 1,
+      "message": "s/D(/D (/",
+      "revId": "5b8293dbcfca6b8f7f3d30ecffc604d69ecfbd08",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
