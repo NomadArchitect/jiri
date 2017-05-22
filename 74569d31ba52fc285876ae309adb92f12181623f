@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90099178_3487b5ad",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-22T23:37:46Z",
+      "side": 1,
+      "message": "these things could race.",
+      "range": {
+        "startLine": 103,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98ee55a8_f1428ba7",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-22T23:37:46Z",
+      "side": 1,
+      "message": "prefer keeping indentation (stack state) small.\n\nif e \u003d\u003d nil { continue }",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 16
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ee52960_02b91015",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-22T23:37:46Z",
+      "side": 1,
+      "message": "just use an unconditional type assertion instead",
+      "range": {
+        "startLine": 156,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 4
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
