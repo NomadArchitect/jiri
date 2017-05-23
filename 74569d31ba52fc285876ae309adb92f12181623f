@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "30fe3019_0994a182",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-23T17:34:32Z",
+      "side": 1,
+      "message": "I must have misread this, sorry.",
+      "parentUuid": "058def5c_303b9a18",
+      "range": {
+        "startLine": 103,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98ee55a8_f1428ba7",
         "filename": "log/logger.go",
         "patchSetId": 7
@@ -188,6 +212,29 @@
       "revId": "74569d31ba52fc285876ae309adb92f12181623f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2135dcad_4e8d8d59",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-23T17:34:32Z",
+      "side": 1,
+      "message": "I don\u0027t think this sleep should be here. log calls this, and this is performed with a lock held. This is going to cause slowdowns in jiri.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 14
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
