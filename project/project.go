@@ -474,10 +474,14 @@ type Project struct {
 	Remote string `xml:"remote,attr,omitempty"`
 	// RemoteBranch is the name of the remote branch to track.
 	RemoteBranch string `xml:"remotebranch,attr,omitempty"`
-	// Revision is the revision the project should be advanced to during "jiri
-	// update".  If Revision is set, RemoteBranch will be ignored.  If Revision
-	// is not set, "HEAD" is used as the default.
+	// Revision is the revision the project should be advanced to during
+	// "jiri update". If Revision/Tag is set, RemoteBranch will be
+	// ignored. If Revision/Tag is not set, "HEAD" is used as the default.
 	Revision string `xml:"revision,attr,omitempty"`
+	// Tag is the tag the project should be advanced to during "jiri
+	// update". If Revision/Tag is set, RemoteBranch will be ignored. If
+	// Revision/Tag is not set, "HEAD" is used as the default.
+	Tag string `xml:"tag,attr,omitempty"`
 	// HistoryDepth is the depth flag passed to git clone and git fetch
 	// commands. It is used to limit downloading large histories for large
 	// projects.
@@ -496,6 +500,22 @@ type Project struct {
 
 	// This stores the local configuration file for the project
 	LocalConfig LocalConfig `xml:"-"`
+}
+
+func (p Project) Ref() string {
+	rev := p.Tag
+	if rev == "" {
+		rev = p.Revision
+	}
+	return rev
+}
+
+func (p Project) RefToDisplay() string {
+	rev := p.Tag
+	if rev == "" {
+		rev = fmtRevision(p.Revision)
+	}
+	return rev
 }
 
 // ProjectFromFile returns a project parsed from the contents of filename,
@@ -581,7 +601,7 @@ func (p *Project) fillDefaults() error {
 	if p.RemoteBranch == "" {
 		p.RemoteBranch = "master"
 	}
-	if p.Revision == "" {
+	if p.Tag == "" && p.Revision == "" {
 		p.Revision = "HEAD"
 	}
 	return p.validate()
@@ -622,15 +642,17 @@ func (p *Project) CacheDirPath(jirix *jiri.X) (string, error) {
 func (p *Project) writeJiriRevisionFiles(jirix *jiri.X) error {
 	g := git.NewGit(p.Path)
 	file := filepath.Join(p.Path, ".git", "JIRI_HEAD")
-	head := "ref: refs/remotes/origin/master"
+	head := "refs/remotes/origin/master"
 	var err error
-	if p.Revision != "" {
-		head, err = g.CurrentRevisionForRef(p.Revision)
-		if err != nil {
-			return fmt.Errorf("Cannot find revision for ref %q for project %s(%s): %s", p.Revision, p.Name, p.Path, err)
-		}
+	ref := p.Ref()
+	if ref != "" && ref != "HEAD" {
+		head = ref
 	} else if p.RemoteBranch != "" {
-		head = "ref: refs/remotes/origin/" + p.RemoteBranch
+		head = "refs/remotes/origin/" + p.RemoteBranch
+	}
+	head, err = g.CurrentRevisionForRef(head)
+	if err != nil {
+		return fmt.Errorf("Cannot find revision for ref %q for project %s(%s): %s", head, p.Name, p.Path, err)
 	}
 	if err := safeWriteFile(jirix, file, []byte(head)); err != nil {
 		return err
@@ -830,6 +852,8 @@ func setProjectRevisions(jirix *jiri.X, projects Projects) (Projects, error) {
 		if err != nil {
 			return nil, fmt.Errorf("Can't get revision for project %q: %v", project.Name, err)
 		}
+		// Remove Tags as they misght be stale
+		project.Tag = ""
 		project.Revision = revision
 		projects[name] = project
 	}
@@ -1035,7 +1059,7 @@ func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseUntracked 
 	err := updateFn(FastScan)
 	if err != nil {
 		if err2 := updateFn(FullScan); err2 != nil {
-			return fmt.Errorf("%v, %v", err, err2)
+			return fmt.Errorf("%v\n%v", err, err2)
 		}
 	}
 
@@ -1284,8 +1308,14 @@ func fetchAll(jirix *jiri.X, project Project) error {
 		return gitutil.New(jirix, gitutil.RootDirOpt(project.Path)).Fetch("origin", gitutil.PruneOpt(true),
 			gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true))
 	} else {
-		return gitutil.New(jirix, gitutil.RootDirOpt(project.Path)).Fetch("origin", gitutil.PruneOpt(true))
+		if err := gitutil.New(jirix, gitutil.RootDirOpt(project.Path)).Fetch("origin", gitutil.PruneOpt(true)); err != nil {
+			return err
+		}
+		if project.Tag != "" {
+			return gitutil.New(jirix, gitutil.RootDirOpt(project.Path)).Fetch("origin", gitutil.FetchTagOpt(project.Tag))
+		}
 	}
+	return nil
 }
 
 func GetHeadRevision(jirix *jiri.X, project Project) (string, error) {
@@ -1293,9 +1323,14 @@ func GetHeadRevision(jirix *jiri.X, project Project) (string, error) {
 		return "", err
 	}
 	// Having a specific revision trumps everything else.
+	if project.Tag != "" {
+		return project.Tag, nil
+	}
+
 	if project.Revision != "HEAD" {
 		return project.Revision, nil
 	}
+
 	return "origin/" + project.RemoteBranch, nil
 }
 
@@ -1654,6 +1689,10 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 
 	// Collect projects.
 	for _, project := range m.Projects {
+		if project.Tag != "" && project.Revision != "" {
+			return fmt.Errorf("Found both tag and revision for project %q in manifest %q. Please provide only one.", project.Name, file)
+		}
+
 		// Make paths absolute by prepending <root>.
 		project.absolutizePaths(filepath.Join(jirix.Root, root))
 
@@ -1758,7 +1797,7 @@ func getRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects) Projects {
 	ps := make(Projects)
 	for k, rp := range remoteProjects {
 		ps[k] = rp
-		if rp.Revision == "HEAD" {
+		if rp.Tag == "" && rp.Revision == "HEAD" {
 			projectsAtHead[rp.Key()] = rp
 		}
 	}
@@ -1883,6 +1922,7 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 			wg.Add(1)
 			fetchLimit <- struct{}{}
 			project.HistoryDepth = r.HistoryDepth
+			project.Tag = r.Tag
 			go func(project Project) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
@@ -2535,7 +2575,7 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 }
 
 func (op createOperation) String() string {
-	return fmt.Sprintf("create project %q in %q and advance it to %q", op.project.Name, op.destination, fmtRevision(op.project.Revision))
+	return fmt.Sprintf("create project %q in %q and advance it to %q", op.project.Name, op.destination, op.project.RefToDisplay())
 }
 
 func isEmpty(path string) (bool, error) {
@@ -2665,7 +2705,7 @@ func (op moveOperation) Run(jirix *jiri.X) error {
 }
 
 func (op moveOperation) String() string {
-	return fmt.Sprintf("move project %q located in %q to %q and advance it to %q", op.project.Name, op.source, op.destination, fmtRevision(op.project.Revision))
+	return fmt.Sprintf("move project %q located in %q to %q and advance it to %q", op.project.Name, op.source, op.destination, fmtRevision(op.project.RefToDisplay()))
 }
 
 func (op moveOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
@@ -2707,7 +2747,7 @@ func (op updateOperation) Run(jirix *jiri.X) error {
 }
 
 func (op updateOperation) String() string {
-	return fmt.Sprintf("advance/rebase project %q located in %q to %q", op.project.Name, op.source, fmtRevision(op.project.Revision))
+	return fmt.Sprintf("advance/rebase project %q located in %q to %q", op.project.Name, op.source, fmtRevision(op.project.RefToDisplay()))
 }
 
 func (op updateOperation) Test(jirix *jiri.X, _ *fsUpdates) error {
@@ -2729,7 +2769,7 @@ func (op nullOperation) Run(jirix *jiri.X) error {
 }
 
 func (op nullOperation) String() string {
-	return fmt.Sprintf("project %q located in %q at revision %q is up-to-date", op.project.Name, op.source, fmtRevision(op.project.Revision))
+	return fmt.Sprintf("project %q located in %q at revision %q is up-to-date", op.project.Name, op.source, fmtRevision(op.project.RefToDisplay()))
 }
 
 func (op nullOperation) Test(jirix *jiri.X, _ *fsUpdates) error {
