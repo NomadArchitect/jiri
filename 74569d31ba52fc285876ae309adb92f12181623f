@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "6d3fbe96_ca918932",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-05-23T00:17:41Z",
+      "side": 1,
+      "message": "repaintProgressMsgs could be midway through operations when l.clearProgress is called, leading to corrupted terminal output.",
+      "parentUuid": "56306d0a_ecb98131",
+      "range": {
+        "startLine": 103,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98ee55a8_f1428ba7",
         "filename": "log/logger.go",
         "patchSetId": 7
