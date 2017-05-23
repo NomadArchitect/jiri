@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "058def5c_303b9a18",
+        "filename": "log/logger.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-05-23T00:22:19Z",
+      "side": 1,
+      "message": "no we take lock in both the functions, so it cannot be",
+      "parentUuid": "6d3fbe96_ca918932",
+      "range": {
+        "startLine": 103,
+        "startChar": 1,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "74569d31ba52fc285876ae309adb92f12181623f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98ee55a8_f1428ba7",
         "filename": "log/logger.go",
         "patchSetId": 7
