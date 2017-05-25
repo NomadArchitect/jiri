@@ -190,6 +190,7 @@ type Change struct {
 	Revisions        Revisions
 	Owner            Owner
 	Labels           map[string]map[string]interface{}
+	Submitted        string
 
 	// Custom labels.
 	AutoSubmit    bool
@@ -387,6 +388,22 @@ func (g *Gerrit) GetChange(changeNumber int) (*Change, error) {
 		// Based on cursory testing with Gerrit, I don't expect this to ever happen, but in
 		// case it does, I'm raising an error to inspire investigation. -- lanechr
 		return nil, fmt.Errorf("Too many changes returned for query '%d'", changeNumber)
+	}
+	return &clList[0], nil
+}
+
+func (g *Gerrit) GetChangeByID(changeID string) (*Change, error) {
+	clList, err := g.Query(fmt.Sprintf("%s", changeID))
+	if err != nil {
+		return nil, err
+	}
+	if len(clList) == 0 {
+		return nil, nil
+	}
+	if len(clList) > 1 {
+		// Based on cursory testing with Gerrit, I don't expect this to ever happen, but in
+		// case it does, I'm raising an error to inspire investigation. -- lanechr
+		return nil, fmt.Errorf("Too many changes returned for query '%s'", changeID)
 	}
 	return &clList[0], nil
 }
