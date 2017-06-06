@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45f53dbb_1423cb88",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2291,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-06-06T19:45:04Z",
+      "side": 1,
+      "message": "nit: \"buf\" is a relatively conventional name for this across other libraries and applications in the language.",
+      "range": {
+        "startLine": 2291,
+        "startChar": 7,
+        "endLine": 2291,
+        "endChar": 17
+      },
+      "revId": "e1d209c16e556af4389d69e5e1e725f632adb2e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77b39f31_20631c98",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2292,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-06-06T19:45:04Z",
+      "side": 1,
+      "message": "given that you slurp the file up here, it may be just as easy to ioutil.ReadFile(outFile)",
+      "range": {
+        "startLine": 2289,
+        "startChar": 3,
+        "endLine": 2292,
+        "endChar": 36
+      },
+      "revId": "e1d209c16e556af4389d69e5e1e725f632adb2e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa65d862_fe798488",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2293,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-06-06T19:45:04Z",
+      "side": 1,
+      "message": "passing .Bytes() would save some copies, but you can also just pass \"byteBuffer\" here, as fmt will detect that it implements the Stringer interface.",
+      "range": {
+        "startLine": 2293,
+        "startChar": 74,
+        "endLine": 2293,
+        "endChar": 82
+      },
+      "revId": "e1d209c16e556af4389d69e5e1e725f632adb2e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
