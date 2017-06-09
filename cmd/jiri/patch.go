@@ -26,6 +26,7 @@ var (
 	patchDeleteFlag bool
 	patchHostFlag   string
 	patchForceFlag  bool
+	cherryPickFlag  bool
 )
 
 func init() {
@@ -35,6 +36,7 @@ func init() {
 	cmdPatch.Flags.BoolVar(&patchRebaseFlag, "rebase", false, "Rebase the change after downloading")
 	cmdPatch.Flags.StringVar(&patchHostFlag, "host", "", `Gerrit host to use. Defaults to gerrit host specified in manifest.`)
 	cmdPatch.Flags.BoolVar(&patchTopicFlag, "topic", false, `Patch whole topic.`)
+	cmdPatch.Flags.BoolVar(&cherryPickFlag, "cherry-pick", false, `Cherry-pick patches.`)
 }
 
 // cmdPatch represents the "jiri patch" command.
@@ -75,10 +77,20 @@ func patchProject(jirix *jiri.X, project project.Project, ref, branch, remote st
 	jirix.Logger.Infof("Patching project %s(%s) on branch %q\n", project.Name, project.Path, branch)
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 	g := git.NewGit(project.Path)
-	if scm.BranchExists(branch) {
+	branchExists, err := g.BranchExists(branch)
+	if err != nil {
+		return false, err
+	}
+	if branchExists {
 		if patchDeleteFlag {
-			if err := scm.CheckoutBranch("origin/master"); err != nil {
+			_, currentBranch, err := g.GetBranches()
+			if err != nil {
 				return false, err
+			}
+			if currentBranch == branch {
+				if err := scm.CheckoutBranch("remotes/origin/"+remote, gitutil.DetachOpt(true)); err != nil {
+					return false, err
+				}
 			}
 			if err := scm.DeleteBranch(branch, gitutil.ForceOpt(patchForceFlag)); err != nil {
 				jirix.Logger.Errorf("Cannot delete branch %q: %s", branch, err)
@@ -94,17 +106,25 @@ func patchProject(jirix *jiri.X, project project.Project, ref, branch, remote st
 	if err := scm.FetchRefspec("origin", ref); err != nil {
 		return false, err
 	}
-
-	if err := g.CreateBranchFromRef(branch, "FETCH_HEAD"); err != nil {
+	branchBase := "FETCH_HEAD"
+	if cherryPickFlag {
+		branchBase = "HEAD"
+	}
+	if err := g.CreateBranchFromRef(branch, branchBase); err != nil {
 		return false, err
 	}
-
 	if err := g.SetUpstream(branch, "origin/"+remote); err != nil {
-		return false, err
+		return false, fmt.Errorf("setting upstream to 'origin/%s': %s", remote, err)
 	}
-
 	if err := scm.CheckoutBranch(branch); err != nil {
 		return false, err
+	}
+	if cherryPickFlag {
+		if err := scm.CherryPick("FETCH_HEAD"); err != nil {
+			jirix.Logger.Errorf("Cherry-pick failed. Error:\n%s\nLeaving it in bad state. Please resolve or run\n%s", err, jirix.Color.Yellow("git -C %q cherry-pick --abort", project.Path))
+			jirix.IncrementFailures()
+			return false, nil
+		}
 	}
 	jirix.Logger.Infof("Project patched\n")
 	return true, nil

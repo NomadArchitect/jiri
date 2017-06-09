@@ -116,12 +116,6 @@ func (g *Git) AddRemote(name, path string) error {
 	return g.run("remote", "add", name, path)
 }
 
-// BranchExists tests whether a branch with the given name exists in
-// the local repository.
-func (g *Git) BranchExists(branch string) bool {
-	return g.run("show-branch", branch) == nil
-}
-
 // BranchesDiffer tests whether two branches have any changes between them.
 func (g *Git) BranchesDiffer(branch1, branch2 string) (bool, error) {
 	out, err := g.runOutput("--no-pager", "diff", "--name-only", branch1+".."+branch2)
