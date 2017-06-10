@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5a5524f_bcdb38e3",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6410
+      },
+      "writtenOn": "2017-06-10T02:22:13Z",
+      "side": 1,
+      "message": "Could be more explicit and say \"Cherry-pick patches instead of checking out.\"\nIt wasn\u0027t clear what the default behavior was, just by reading \"jiri help patch\".",
+      "range": {
+        "startLine": 39,
+        "startChar": 63,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "1a9b6318b21f064db11381191e546fb003c526f5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f06c620_cdd0a727",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 6410
+      },
+      "writtenOn": "2017-06-10T02:22:13Z",
+      "side": 1,
+      "message": "This behavior is a bit concerning to me.\n\nIf I\u0027m trying to patch with -topic -cherry-pick flags and seeing an error in the middle, I would most likely just want to abort the whole patching process, resolve the issues (e.g. stash some local changes and/or jiri update), and then try jiri patch the whole topic again.\n\nIf I\u0027m seeing it correctly, the current behavior could leave multiple repositories in the cherry-picking state, and the user would have to manually run \"git -C \u003cpath\u003e cherry-pick --abort\" for all of them, which could be very inconvenient.\n\nIMO, it\u0027d be better to auto-abort all of them and just show the list of repositories where the cherry-picking failed. (but seems like this would require some non-trivial changes in this code)\n\nWhat do you think?",
+      "revId": "1a9b6318b21f064db11381191e546fb003c526f5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
