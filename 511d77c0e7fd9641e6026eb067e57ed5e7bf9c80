@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2676c097_9f032a3f",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6410
+      },
+      "writtenOn": "2017-06-12T20:47:17Z",
+      "side": 1,
+      "message": "a new",
+      "range": {
+        "startLine": 51,
+        "startChar": 15,
+        "endLine": 51,
+        "endChar": 19
+      },
+      "revId": "511d77c0e7fd9641e6026eb067e57ed5e7bf9c80",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18890613_ad976ea7",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 6410
+      },
+      "writtenOn": "2017-06-12T20:47:17Z",
+      "side": 1,
+      "message": "cherry-pick?",
+      "range": {
+        "startLine": 746,
+        "startChar": 19,
+        "endLine": 746,
+        "endChar": 25
+      },
+      "revId": "511d77c0e7fd9641e6026eb067e57ed5e7bf9c80",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
