@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a7d23d2_6b654db4",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-06-12T19:26:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5a5524f_bcdb38e3",
+      "range": {
+        "startLine": 39,
+        "startChar": 63,
+        "endLine": 39,
+        "endChar": 85
+      },
+      "revId": "1a9b6318b21f064db11381191e546fb003c526f5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f06c620_cdd0a727",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "1a9b6318b21f064db11381191e546fb003c526f5",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bf360c4_01a1d196",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-06-12T19:26:14Z",
+      "side": 1,
+      "message": "Done. Aborting the patch and checking out last branch/revision, also it already used to print all the project where patch fails, so no need to change code for that.",
+      "parentUuid": "6f06c620_cdd0a727",
+      "revId": "1a9b6318b21f064db11381191e546fb003c526f5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
