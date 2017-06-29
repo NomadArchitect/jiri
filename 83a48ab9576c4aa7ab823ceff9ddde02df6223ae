@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d3f378d_f94c2581",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 9007
+      },
+      "writtenOn": "2017-06-29T18:16:51Z",
+      "side": 1,
+      "message": "Nice documentation!",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
