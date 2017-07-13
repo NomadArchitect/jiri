@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c75dc67f_97a1c272",
+        "filename": "analytics_util/analytics_session.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-07-13T22:37:57Z",
+      "side": 1,
+      "message": "Where is this being used?",
+      "revId": "84db2dc8520678b981c9a1a89a488b9cecf4b0e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a7ec3fa_4ab5a25b",
+        "filename": "analytics_util/command.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-07-13T22:37:57Z",
+      "side": 1,
+      "message": "Is there a reason why this is private?",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "84db2dc8520678b981c9a1a89a488b9cecf4b0e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6712d2a_06582f3a",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-07-13T22:37:57Z",
+      "side": 1,
+      "message": "bool?",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 29
+      },
+      "revId": "84db2dc8520678b981c9a1a89a488b9cecf4b0e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e75f320_a23ac15d",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-07-13T22:37:57Z",
+      "side": 1,
+      "message": "s/exists/exits/",
+      "range": {
+        "startLine": 45,
+        "startChar": 136,
+        "endLine": 45,
+        "endChar": 142
+      },
+      "revId": "84db2dc8520678b981c9a1a89a488b9cecf4b0e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25170c9b_c865c862",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-07-13T22:37:57Z",
+      "side": 1,
+      "message": "You should be using BoolVar in that case.",
+      "range": {
+        "startLine": 46,
+        "startChar": 102,
+        "endLine": 46,
+        "endChar": 118
+      },
+      "revId": "84db2dc8520678b981c9a1a89a488b9cecf4b0e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
