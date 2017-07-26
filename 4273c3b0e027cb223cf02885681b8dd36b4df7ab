@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e71b6d0_b572fe8a",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T22:05:42Z",
+      "side": 1,
+      "message": "these could both be const",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "4273c3b0e027cb223cf02885681b8dd36b4df7ab",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

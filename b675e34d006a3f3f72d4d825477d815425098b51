@@ -140,6 +140,30 @@
       "revId": "b675e34d006a3f3f72d4d825477d815425098b51",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c566c298_65ebeef2",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T22:05:42Z",
+      "side": 1,
+      "message": "The pattern is to use the io.WriterTo interface, generally, but if it\u0027s convenient to just give a file path here that\u0027s ok.\n\nYou could stream to file by opening the file, creating a json encoder, then writing it, but there would be more error handling. If the size mattered here it would be worth it, but we mostly know the size here doesn\u0027t matter.\n\nThe buffering question is odd, if we did everything here, that is, opening a file and streaming to it to reduce memory pressure, then buffered too, we\u0027d end up not significantly altering memory pressure anyway. As we want the writes to complete by the end of this function, the buffering wouldn\u0027t help much, and the json package will, iirc, actually buffer this case anyway, so this is all for naught.",
+      "parentUuid": "16e2bb3a_e4ead138",
+      "range": {
+        "startLine": 68,
+        "startChar": 26,
+        "endLine": 68,
+        "endChar": 32
+      },
+      "revId": "b675e34d006a3f3f72d4d825477d815425098b51",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
