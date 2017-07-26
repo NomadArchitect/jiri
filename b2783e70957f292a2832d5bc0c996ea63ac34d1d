@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "744480c3_50fd4f1d",
+        "filename": "cmd/jiri/branch_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:34:05Z",
+      "side": 1,
+      "message": "You could just initialize r above, no need for init(){}",
+      "range": {
+        "startLine": 383,
+        "startChar": 5,
+        "endLine": 384,
+        "endChar": 1
+      },
+      "revId": "b2783e70957f292a2832d5bc0c996ea63ac34d1d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
