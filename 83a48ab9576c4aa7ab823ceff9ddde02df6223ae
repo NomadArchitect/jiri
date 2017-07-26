@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ab1c9aa3_a354f9c0",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T23:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6e54a1_938b36d4",
+      "range": {
+        "startLine": 82,
+        "startChar": 76,
+        "endLine": 82,
+        "endChar": 77
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e1a1d25c_9981d59c",
         "filename": "cmd/jiri/diff.go",
         "patchSetId": 4
@@ -59,6 +83,30 @@
       "writtenOn": "2017-07-26T23:11:56Z",
       "side": 1,
       "message": "how do i spell \"all\" ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 49,
+        "endLine": 84,
+        "endChar": 95
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958b55c3_a3b6b82d",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T23:52:02Z",
+      "side": 1,
+      "message": "we don\u0027t give that option, as that can be infinite(due to history re-write) and can cause it to go into infinite loop",
+      "parentUuid": "e1a1d25c_9981d59c",
       "range": {
         "startLine": 84,
         "startChar": 49,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "2470d977_5e7bd1fc",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T23:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d1323d3_d5bebd63",
+      "range": {
+        "startLine": 91,
+        "startChar": 1,
+        "endLine": 91,
+        "endChar": 4
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62c08ef3_6a3676a2",
         "filename": "cmd/jiri/diff.go",
         "patchSetId": 4
@@ -108,6 +180,24 @@
       "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10cf88b5_bca5bd81",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T23:52:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c08ef3_6a3676a2",
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
