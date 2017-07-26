@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "305e4233_5e5cfda1",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T20:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0143b00d_3c6ea3b6",
+      "range": {
+        "startLine": 38,
+        "startChar": 5,
+        "endLine": 38,
+        "endChar": 21
+      },
+      "revId": "b675e34d006a3f3f72d4d825477d815425098b51",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32e34c75_10049e17",
         "filename": "project/source_manifest.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2098cda6_617e6950",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T20:19:08Z",
+      "side": 1,
+      "message": "projects is map, so can\u0027t get index",
+      "parentUuid": "32e34c75_10049e17",
+      "range": {
+        "startLine": 41,
+        "startChar": 5,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "b675e34d006a3f3f72d4d825477d815425098b51",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "41065833_28c7b844",
         "filename": "project/source_manifest.go",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-07-26T00:02:46Z",
       "side": 1,
       "message": "nit: I\u0027d probably call this something like \"Write\". I\u0027d also consider writing to a buffer rather than to file directly and handle the file creation outside of this method, that makes it more easily testable and composable.",
+      "range": {
+        "startLine": 68,
+        "startChar": 26,
+        "endLine": 68,
+        "endChar": 32
+      },
+      "revId": "b675e34d006a3f3f72d4d825477d815425098b51",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16e2bb3a_e4ead138",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-26T20:19:08Z",
+      "side": 1,
+      "message": "I am not sure golang has a bufferedstring, I can use bufio to wrap file writer and pass that, It that what you want? I cannot use normal byte aarray as I don\u0027t know the size of json",
+      "parentUuid": "41065833_28c7b844",
       "range": {
         "startLine": 68,
         "startChar": 26,
