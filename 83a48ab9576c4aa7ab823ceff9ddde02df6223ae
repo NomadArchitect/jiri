@@ -22,6 +22,92 @@
       "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6e54a1_938b36d4",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:11:56Z",
+      "side": 1,
+      "message": "remove periods from flag docstrings",
+      "range": {
+        "startLine": 82,
+        "startChar": 76,
+        "endLine": 82,
+        "endChar": 77
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1a1d25c_9981d59c",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:11:56Z",
+      "side": 1,
+      "message": "how do i spell \"all\" ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 49,
+        "endLine": 84,
+        "endChar": 95
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d1323d3_d5bebd63",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:11:56Z",
+      "side": 1,
+      "message": "lint: well known acronyms should be uppercased",
+      "range": {
+        "startLine": 91,
+        "startChar": 1,
+        "endLine": 91,
+        "endChar": 4
+      },
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62c08ef3_6a3676a2",
+        "filename": "cmd/jiri/diff.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:11:56Z",
+      "side": 1,
+      "message": "I\u0027m not sure how big these diffs will get - if they include large third party upstream changesets we might actually want to stream the output instead of buffering and copying to a string.",
+      "revId": "83a48ab9576c4aa7ab823ceff9ddde02df6223ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
