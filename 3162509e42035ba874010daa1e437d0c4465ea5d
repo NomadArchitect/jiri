@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7df00e9f_219edb07",
+        "filename": "analytics_util/analytics_session.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:52:41Z",
+      "side": 1,
+      "message": "`When opted in, jiri collects the following anonymized data in order to improve the user experience:`",
+      "range": {
+        "startLine": 23,
+        "startChar": 21,
+        "endLine": 23,
+        "endChar": 95
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "446f6f53_bdeda42d",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:52:41Z",
+      "side": 1,
+      "message": "Use https://golang.org/pkg/crypto/rand/#Reader for this, that way when it comes over to Fuchsia it will continue to work :)",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 26
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd7f7f6e_70f11b19",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:52:41Z",
+      "side": 1,
+      "message": "\"Please select to either opt in or out of analytics collection. You will receive this warning until an option is selected\"",
+      "range": {
+        "startLine": 377,
+        "startChar": 2,
+        "endLine": 378,
+        "endChar": 139
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e6623d2_4ae72f7a",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-07-26T23:52:41Z",
+      "side": 1,
+      "message": "Could we simply treat this case like the unset case? Mostly I prefer to avoid \"Something is wrong\" type error output.",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 115
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
