@@ -22,6 +22,30 @@
       "revId": "b2783e70957f292a2832d5bc0c996ea63ac34d1d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f88c864_e28a2b63",
+        "filename": "cmd/jiri/branch_test.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-27T00:05:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744480c3_50fd4f1d",
+      "range": {
+        "startLine": 383,
+        "startChar": 5,
+        "endLine": 384,
+        "endChar": 1
+      },
+      "revId": "b2783e70957f292a2832d5bc0c996ea63ac34d1d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
