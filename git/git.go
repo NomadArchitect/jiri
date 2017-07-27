@@ -6,6 +6,7 @@ package git
 
 import (
 	"fmt"
+
 	git2go "github.com/libgit2/git2go"
 )
 
@@ -73,6 +74,25 @@ func (g *Git) CommitMsg(ref string) (string, error) {
 // Fetch fetches refs and tags from the given remote.
 func (g *Git) Fetch(remote string, opts ...FetchOpt) error {
 	return g.FetchRefspec(remote, "", opts...)
+}
+
+func (g *Git) CreateLightweightTag(name string) error {
+	repo, err := git2go.OpenRepository(g.rootDir)
+	if err != nil {
+		return err
+	}
+	defer repo.Free()
+	head, err := repo.Head()
+	if err != nil {
+		return err
+	}
+	defer head.Free()
+	c, err := repo.LookupCommit(head.Target())
+	if err != nil {
+		return err
+	}
+	_, err = repo.Tags.CreateLightweight(name, c, false)
+	return err
 }
 
 // FetchRefspec fetches refs and tags from the given remote for a particular refspec.
