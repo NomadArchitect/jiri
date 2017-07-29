@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0073255_0081d439",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-29T00:36:33Z",
+      "side": 1,
+      "message": "Suggest \"Number of attempts must be \u003e\u003d 1\"",
+      "range": {
+        "startLine": 67,
+        "startChar": 28,
+        "endLine": 67,
+        "endChar": 30
+      },
+      "revId": "925aac45f07bedac9beba755bea46d84dbbd10e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf3bedbc_71f19a8a",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-29T00:36:33Z",
+      "side": 1,
+      "message": "Go function comments should begin with the name of the function:\n\n// Clone clones a repo to a local path, retrying on failure.\n\nSimilar with Fetch.",
+      "revId": "925aac45f07bedac9beba755bea46d84dbbd10e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb9b3e56_dd89a84e",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-29T00:36:33Z",
+      "side": 1,
+      "message": "If Clone and Fetch are only used in this file, you could make them private (clone(), fetch())",
+      "revId": "925aac45f07bedac9beba755bea46d84dbbd10e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18a55b92_cb7c0280",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1953,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-29T00:36:33Z",
+      "side": 1,
+      "message": "updateCache is getting very deep. Consider moving this anonymous function into a top-level private function.",
+      "revId": "925aac45f07bedac9beba755bea46d84dbbd10e0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
