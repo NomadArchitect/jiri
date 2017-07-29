@@ -90,6 +90,7 @@ type X struct {
 	Color    color.Color
 	Logger   *log.Logger
 	failures uint32
+	Attempts uint
 }
 
 func (jirix *X) IncrementFailures() {
@@ -172,12 +173,13 @@ func NewX(env *cmdline.Env) (*X, error) {
 	}
 
 	x := &X{
-		Context: ctx,
-		Root:    root,
-		Usage:   env.UsageErrorf,
-		Jobs:    jobsFlag,
-		Color:   color,
-		Logger:  logger,
+		Context:  ctx,
+		Root:     root,
+		Usage:    env.UsageErrorf,
+		Jobs:     jobsFlag,
+		Color:    color,
+		Logger:   logger,
+		Attempts: 1,
 	}
 	configPath := filepath.Join(x.RootMetaDir(), ConfigFile)
 	if _, err := os.Stat(configPath); err == nil {
@@ -322,6 +324,7 @@ func (x *X) Clone(opts tool.ContextOpts) *X {
 		Color:    x.Color,
 		Logger:   x.Logger,
 		failures: x.failures,
+		Attempts: x.Attempts,
 	}
 }
 
