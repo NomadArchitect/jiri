@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb23485c_a18770f4",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6305e384_63da070f",
+      "range": {
+        "startLine": 67,
+        "startChar": 28,
+        "endLine": 67,
+        "endChar": 30
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e496c32d_0d0fb1cf",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ce15333_2c96f8b6",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e496c32d_0d0fb1cf",
+      "range": {
+        "startLine": 791,
+        "startChar": 9,
+        "endLine": 791,
+        "endChar": 16
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "86543d3e_69ab476c",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "893c0928_4a1e70d8",
+      "range": {
+        "startLine": 798,
+        "startChar": 9,
+        "endLine": 798,
+        "endChar": 16
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "978d30b8_ffc4779e",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -85,6 +157,24 @@
       "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a21f397c_24becfd8",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1972,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "978d30b8_ffc4779e",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -105,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "31cc3dd0_62998a6f",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "220d6c13_594554c6",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bd15c4c_de9d8c82",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -116,6 +224,24 @@
       "writtenOn": "2017-07-31T21:38:50Z",
       "side": 1,
       "message": "Side note: This file is getting huge; consider splitting it up soon. May be able to separate it into high-level and low-level operations.",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2adceea5_1b26a7b8",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 3173,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:01:04Z",
+      "side": 1,
+      "message": "yeah planning to do that",
+      "parentUuid": "3bd15c4c_de9d8c82",
       "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
