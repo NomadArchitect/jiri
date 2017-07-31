@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b066bd7_1bc967ba",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T22:31:49Z",
+      "side": 1,
+      "message": "Missing space (gofmt?)",
+      "range": {
+        "startLine": 2016,
+        "startChar": 1,
+        "endLine": 2016,
+        "endChar": 4
+      },
+      "revId": "6580b10a98e337c47d4e9b34f6cb0306a1b5d15c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
