@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6305e384_63da070f",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "Please spell out \"number\", or add a period after \"No.\" to make it more clear it\u0027s an abbreviation.",
+      "range": {
+        "startLine": 67,
+        "startChar": 28,
+        "endLine": 67,
+        "endChar": 30
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e496c32d_0d0fb1cf",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "\"wrapper\"?\n\nAnd, in Go style, it should be a sentence like \"clone is a wrapper that reattempts a git clone operation on failure.\"\n\nSimilar for fetch() below.",
+      "range": {
+        "startLine": 791,
+        "startChar": 9,
+        "endLine": 791,
+        "endChar": 16
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "893c0928_4a1e70d8",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "\"wrapper\"?",
+      "range": {
+        "startLine": 798,
+        "startChar": 9,
+        "endLine": 798,
+        "endChar": 16
+      },
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "978d30b8_ffc4779e",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1972,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "Please move this closer to its first use (somewhere around line 1992)",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "220d6c13_594554c6",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1978,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "Please add some high-level comments throughout this function, explaining what\u0027s going on in the different blocks. Took me a while to figure out what\u0027s going on here.",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd15c4c_de9d8c82",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 3173,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-07-31T21:38:50Z",
+      "side": 1,
+      "message": "Side note: This file is getting huge; consider splitting it up soon. May be able to separate it into high-level and low-level operations.",
+      "revId": "8aa9c091ff5362876951d83d5768cdf49c7ccba0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
