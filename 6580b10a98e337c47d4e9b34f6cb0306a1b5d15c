@@ -22,6 +22,30 @@
       "revId": "6580b10a98e337c47d4e9b34f6cb0306a1b5d15c",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfbaef66_805d12a1",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T22:34:06Z",
+      "side": 1,
+      "message": "go fmt didn\u0027t format it, don\u0027t know why, maybe it only formats comments on top of a function. Done",
+      "parentUuid": "8b066bd7_1bc967ba",
+      "range": {
+        "startLine": 2016,
+        "startChar": 1,
+        "endLine": 2016,
+        "endChar": 4
+      },
+      "revId": "6580b10a98e337c47d4e9b34f6cb0306a1b5d15c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
