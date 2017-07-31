@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6b604937_d510d55d",
+        "filename": "analytics_util/analytics_session.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T23:40:49Z",
+      "side": 1,
+      "message": "thanks :)",
+      "parentUuid": "7df00e9f_219edb07",
+      "range": {
+        "startLine": 23,
+        "startChar": 21,
+        "endLine": 23,
+        "endChar": 95
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "446f6f53_bdeda42d",
         "filename": "cmd/jiri/init.go",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-26T23:52:41Z",
       "side": 1,
       "message": "Use https://golang.org/pkg/crypto/rand/#Reader for this, that way when it comes over to Fuchsia it will continue to work :)",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 26
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eee893f_47ee82ad",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T23:40:49Z",
+      "side": 1,
+      "message": "ah! didn\u0027t know about it",
+      "parentUuid": "446f6f53_bdeda42d",
       "range": {
         "startLine": 127,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a2a9138_31d6f92d",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T23:40:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7f7f6e_70f11b19",
+      "range": {
+        "startLine": 377,
+        "startChar": 2,
+        "endLine": 378,
+        "endChar": 139
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e6623d2_4ae72f7a",
         "filename": "x.go",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a87b94a_6ba1d473",
+        "filename": "x.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-07-31T23:40:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e6623d2_4ae72f7a",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 115
+      },
+      "revId": "3162509e42035ba874010daa1e437d0c4465ea5d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
