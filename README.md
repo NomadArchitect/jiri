@@ -119,16 +119,15 @@ The `jiri` command line tool will be installed in
 export PATH="$MY_ROOT"/.jiri_root/bin:$PATH
 ```
 
-Next, use the `jiri import` command to import the "minimal" manifest from the
-Fuchsia repo.  This manifest includes only the projects needed to
-build the Jiri itself.
+You may now use jiri to fetch your desired manifest.
 
-You can see the minimal manifest [here][minimal manifest].  For more
-information on manifests, read the [manifest docs][manifests].
+For instance, to fetch the projects needed for Fuchsia, import the "fuchsia"
+manifest from the Fuchsia repo.  You can see the manifest [here][fuchsia manifest].
+For more information on manifests read the [manifest docs][manifests].
 
 ```
 cd "$MY_ROOT"
-jiri import minimal https://fuchsia.googlesource.com/manifest
+jiri import fuchsia https://fuchsia.googlesource.com/manifest
 ```
 
 You should now have a file in the root directory called `.jiri_manifest`, which
@@ -137,13 +136,11 @@ will contain a single import.
 Finally, run `jiri update`, which will sync all local projects to the revisions
 listed in the manifest (which in this case will be `HEAD`).
 
-
 ```
 jiri update
 ```
 
-You should now see the jiri project in
-`$MY_ROOT/src/fuchsia.googlesource.com/jiri`.
+You should now see the projects in `$MY_ROOT`.
 
 Running `jiri update` again will sync the local repos to the remotes, and
 update the jiri tool.
@@ -214,7 +211,7 @@ to other users who want to sync the same projects.  For now, however, we'll
 just refer to the repo by its path in the local filesystem.
 
 Now we just need to import that new manifest and `jiri update`.  Since we don't
-want the new manifest repo to conflict with the minimal manifest repo, we must
+want the new manifest repo to conflict with the fuchsia manifest repo, we must
 pass the `-path` flag to the import statement.
 
 ```
@@ -455,7 +452,7 @@ see [Jiri local update][hacking doc]
 [go contrib]: https://golang.org/doc/contribute.html#Code_review "Go Contribution Guidelines - Code Review"
 [jiri-wiki]: https://en.wikipedia.org/wiki/Ji%C5%99%C3%AD "Jiří"
 [manifests]: #manifests "manifests"
-[minimal manifest]: https://fuchsia.googlesource.com/manifest/+/refs/heads/master/minimal "minimal manifest"
+[fuchsia manifest]: https://fuchsia.googlesource.com/manifest/+/refs/heads/master/fuchsia "fuchsia manifest"
 [manifest doc]:/manifest.md "Jiri manifest"
 [filesystem doc]:/filesystem.md "Jiri filesystem"
 [hacking doc]:/HACKING.md "Jiri local updates"
