@@ -121,9 +121,9 @@ export PATH="$MY_ROOT"/.jiri_root/bin:$PATH
 
 Next, use the `jiri import` command to import the "minimal" manifest from the
 Fuchsia repo.  This manifest includes only the projects needed to
-build the Jiri itself.
+make Jiri work.
 
-You can see the minimal manifest [here][minimal manifest].  For more
+You can see the minimal manifest [here][minimal manifest]. For more
 information on manifests, read the [manifest docs][manifests].
 
 ```
@@ -137,13 +137,11 @@ will contain a single import.
 Finally, run `jiri update`, which will sync all local projects to the revisions
 listed in the manifest (which in this case will be `HEAD`).
 
-
 ```
 jiri update
 ```
 
-You should now see the jiri project in
-`$MY_ROOT/src/fuchsia.googlesource.com/jiri`.
+You should now see the imported project in `$MY_ROOT/manifest`.
 
 Running `jiri update` again will sync the local repos to the remotes, and
 update the jiri tool.
@@ -214,7 +212,7 @@ to other users who want to sync the same projects.  For now, however, we'll
 just refer to the repo by its path in the local filesystem.
 
 Now we just need to import that new manifest and `jiri update`.  Since we don't
-want the new manifest repo to conflict with the minimal manifest repo, we must
+want the new manifest repo to conflict with the fuchsia manifest repo, we must
 pass the `-path` flag to the import statement.
 
 ```
