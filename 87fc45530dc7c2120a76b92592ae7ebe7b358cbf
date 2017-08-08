@@ -16,6 +16,24 @@
       "revId": "87fc45530dc7c2120a76b92592ae7ebe7b358cbf",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb2b4452_ac3d832e",
+        "filename": "howdoi.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-08T23:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e122e376_fd3a1936",
+      "revId": "87fc45530dc7c2120a76b92592ae7ebe7b358cbf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
