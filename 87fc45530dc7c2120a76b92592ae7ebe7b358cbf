@@ -34,6 +34,24 @@
       "revId": "87fc45530dc7c2120a76b92592ae7ebe7b358cbf",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c6d1e44_9e065ced",
+        "filename": "howdoi.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-08T23:38:37Z",
+      "side": 1,
+      "message": "https://fuchsia-review.googlesource.com/c/48486",
+      "parentUuid": "bb2b4452_ac3d832e",
+      "revId": "87fc45530dc7c2120a76b92592ae7ebe7b358cbf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
