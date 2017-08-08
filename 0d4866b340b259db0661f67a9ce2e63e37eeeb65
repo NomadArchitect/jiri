@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3641a0b5_dc144bcc",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-08T18:09:16Z",
+      "side": 1,
+      "message": "Add link?",
+      "range": {
+        "startLine": 125,
+        "startChar": 65,
+        "endLine": 125,
+        "endChar": 81
+      },
+      "revId": "0d4866b340b259db0661f67a9ce2e63e37eeeb65",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
