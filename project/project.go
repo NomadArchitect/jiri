@@ -2422,7 +2422,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 			out.outFile.Seek(0, 0)
 			var buf bytes.Buffer
 			io.Copy(&buf, out.outFile)
-			jirix.Logger.Errorf("Timeout while executing hook\n%s\n\n", buf.String())
+			jirix.Logger.Errorf("Timeout while executing hook\n%s\n\n", string(buf))
 			err = fmt.Errorf("Hooks execution failed")
 			continue
 		}
@@ -2432,7 +2432,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 			var buf bytes.Buffer
 			io.Copy(&buf, out.outFile)
 			if buf.String() != "" {
-				jirix.Logger.Debugf("%s\n", buf.String())
+				jirix.Logger.Debugf("%s\n", string(buf))
 			}
 		}
 		if out.err != nil {
@@ -2443,7 +2443,7 @@ func runHooks(jirix *jiri.X, ops []operation, hooks Hooks, runHookTimeout uint) 
 				var buf bytes.Buffer
 				io.Copy(&buf, out.errFile)
 			}
-			jirix.Logger.Errorf("%s\n%s\n", err, buf.String())
+			jirix.Logger.Errorf("%s\n%s\n", out.err, string(buf))
 			err = fmt.Errorf("Hooks execution failed")
 		}
 	}
