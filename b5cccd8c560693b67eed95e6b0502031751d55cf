@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b77d4eb_a66f0638",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-10T20:21:11Z",
+      "side": 1,
+      "message": "if you see this https://fuchsia.googlesource.com/jiri/+/master/project/project.go#391, root is just a prefix, so this is not technically correct.\n\nCorrect thing would be to remove the flag from this doc and then ask user to create project \"my_manifest_repo\" in his/her manifest which has a non-conflicting path.",
+      "revId": "b5cccd8c560693b67eed95e6b0502031751d55cf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
