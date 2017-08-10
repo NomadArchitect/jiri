@@ -7,6 +7,8 @@ package color
 import (
 	"fmt"
 	"os"
+
+	"fuchsia.googlesource.com/jiri/isatty"
 )
 
 type Colorfn func(format string, a ...interface{}) string
@@ -82,11 +84,19 @@ func (monochrome) DefaultColor(format string, a ...interface{}) string {
 	return fmt.Sprintf(format, a...)
 }
 
+// for test cases
+var checkIsAtty = true
+
 func NewColor(enableColor bool) Color {
 	if enableColor {
 		term := os.Getenv("TERM")
 		switch term {
 		case "dumb", "":
+			enableColor = false
+		}
+	}
+	if enableColor && checkIsAtty {
+		if !isatty.IsAtty() {
 			enableColor = false
 		}
 	}
