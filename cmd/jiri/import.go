@@ -14,7 +14,7 @@ import (
 
 var (
 	// Flags for configuring project attributes for remote imports.
-	flagImportName, flagImportRemoteBranch, flagImportRoot string
+	flagImportName, flagImportRemoteBranch, flagImportRoot, flagImportPath string
 	// Flags for controlling the behavior of the command.
 	flagImportOverwrite bool
 	flagImportOut       string
@@ -24,6 +24,7 @@ func init() {
 	cmdImport.Flags.StringVar(&flagImportName, "name", "manifest", `The name of the remote manifest project.`)
 	cmdImport.Flags.StringVar(&flagImportRemoteBranch, "remote-branch", "master", `The branch of the remote manifest project to track, without the leading "origin/".`)
 	cmdImport.Flags.StringVar(&flagImportRoot, "root", "", `Root to store the manifest project locally.`)
+	cmdImport.Flags.StringVar(&flagImportPath, "path", "", `Path to store the manifest project locally.`)
 
 	cmdImport.Flags.BoolVar(&flagImportOverwrite, "overwrite", false, `Write a new .jiri_manifest file with the given specification.  If it already exists, the existing content will be ignored and the file will be overwritten.`)
 	cmdImport.Flags.StringVar(&flagImportOut, "out", "", `The output file.  Uses <root>/.jiri_manifest if unspecified.  Uses stdout if set to "-".`)
@@ -94,6 +95,7 @@ func runImport(jirix *jiri.X, args []string) error {
 		Remote:       args[1],
 		RemoteBranch: flagImportRemoteBranch,
 		Root:         flagImportRoot,
+		Path:         flagImportPath,
 	})
 	// Write output to stdout or file.
 	outFile := flagImportOut
