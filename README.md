@@ -213,11 +213,11 @@ just refer to the repo by its path in the local filesystem.
 
 Now we just need to import that new manifest and `jiri update`.  Since we don't
 want the new manifest repo to conflict with the minimal manifest repo, we must
-pass the `-path` flag to the import statement.
+pass the `-root` flag to the import statement.
 
 ```
 cd "$MY_ROOT"
-jiri import -path="my_manifest_repo" my_manifest /tmp/my_manifest_repo
+jiri import -root="my_manifest_repo" my_manifest /tmp/my_manifest_repo
 jiri update
 ```
 
