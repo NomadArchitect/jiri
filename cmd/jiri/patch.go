@@ -27,6 +27,7 @@ var (
 	patchHostFlag   string
 	patchForceFlag  bool
 	cherryPickFlag  bool
+	noBranchFlag    bool
 )
 
 func init() {
@@ -37,6 +38,7 @@ func init() {
 	cmdPatch.Flags.StringVar(&patchHostFlag, "host", "", `Gerrit host to use. Defaults to gerrit host specified in manifest.`)
 	cmdPatch.Flags.BoolVar(&patchTopicFlag, "topic", false, `Patch whole topic.`)
 	cmdPatch.Flags.BoolVar(&cherryPickFlag, "cherry-pick", false, `Cherry-pick patches instead of checking out.`)
+	cmdPatch.Flags.BoolVar(&noBranchFlag, "no-branch", false, `Don't create the branch for the patch.`)
 }
 
 // cmdPatch represents the "jiri patch" command.
@@ -68,42 +70,45 @@ change "B" is created on top of "A" and both have same topic.
 
 // patchProject checks out the given change.
 func patchProject(jirix *jiri.X, local project.Project, ref, branch, remote string) (bool, error) {
-	if branch == "" {
-		cl, ps, err := gerrit.ParseRefString(ref)
-		if err != nil {
-			return false, err
-		}
-		branch = fmt.Sprintf("change/%v/%v", cl, ps)
-	}
-	jirix.Logger.Infof("Patching project %s(%s) on branch %q\n", local.Name, local.Path, branch)
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(local.Path))
 	g := git.NewGit(local.Path)
-	branchExists, err := g.BranchExists(branch)
-	if err != nil {
-		return false, err
-	}
-	if branchExists {
-		if patchDeleteFlag {
-			_, currentBranch, err := g.GetBranches()
+	if !noBranchFlag {
+		if branch == "" {
+			cl, ps, err := gerrit.ParseRefString(ref)
 			if err != nil {
 				return false, err
 			}
-			if currentBranch == branch {
-				if err := scm.CheckoutBranch("remotes/origin/"+remote, gitutil.DetachOpt(true)); err != nil {
+			branch = fmt.Sprintf("change/%v/%v", cl, ps)
+		}
+		jirix.Logger.Infof("Patching project %s(%s) on branch %q\n", local.Name, local.Path, branch)
+		branchExists, err := g.BranchExists(branch)
+		if err != nil {
+			return false, err
+		}
+		if branchExists {
+			if patchDeleteFlag {
+				_, currentBranch, err := g.GetBranches()
+				if err != nil {
 					return false, err
 				}
-			}
-			if err := scm.DeleteBranch(branch, gitutil.ForceOpt(patchForceFlag)); err != nil {
-				jirix.Logger.Errorf("Cannot delete branch %q: %s", branch, err)
+				if currentBranch == branch {
+					if err := scm.CheckoutBranch("remotes/origin/"+remote, gitutil.DetachOpt(true)); err != nil {
+						return false, err
+					}
+				}
+				if err := scm.DeleteBranch(branch, gitutil.ForceOpt(patchForceFlag)); err != nil {
+					jirix.Logger.Errorf("Cannot delete branch %q: %s", branch, err)
+					jirix.IncrementFailures()
+					return false, nil
+				}
+			} else {
+				jirix.Logger.Errorf("Branch %q already exists in project %q", branch, local.Name)
 				jirix.IncrementFailures()
 				return false, nil
 			}
-		} else {
-			jirix.Logger.Errorf("Branch %q already exists in project %q", branch, local.Name)
-			jirix.IncrementFailures()
-			return false, nil
 		}
 	}
+	jirix.Logger.Infof("Patching project %s(%s)\n", local.Name, local.Path)
 	if err := scm.FetchRefspec("origin", ref); err != nil {
 		return false, err
 	}
@@ -120,13 +125,17 @@ func patchProject(jirix *jiri.X, local project.Project, ref, branch, remote stri
 		}
 		branchBase = "HEAD"
 	}
-	if err := g.CreateBranchFromRef(branch, branchBase); err != nil {
-		return false, err
-	}
-	if err := g.SetUpstream(branch, "origin/"+remote); err != nil {
-		return false, fmt.Errorf("setting upstream to 'origin/%s': %s", remote, err)
-	}
-	if err := scm.CheckoutBranch(branch); err != nil {
+	if !noBranchFlag {
+		if err := g.CreateBranchFromRef(branch, branchBase); err != nil {
+			return false, err
+		}
+		if err := g.SetUpstream(branch, "origin/"+remote); err != nil {
+			return false, fmt.Errorf("setting upstream to 'origin/%s': %s", remote, err)
+		}
+		if err := scm.CheckoutBranch(branch); err != nil {
+			return false, err
+		}
+	} else if err := scm.CheckoutBranch(branchBase); err != nil {
 		return false, err
 	}
 	if cherryPickFlag {
