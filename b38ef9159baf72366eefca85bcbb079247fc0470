@@ -46,6 +46,30 @@
       "revId": "b38ef9159baf72366eefca85bcbb079247fc0470",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "832965bd_ce0fd403",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-08-15T22:34:21Z",
+      "side": 1,
+      "message": "OK, this is probably fine then (in case we\u0027ll ever want to update them in the future from protos again).",
+      "parentUuid": "bb0e88d1_a970791f",
+      "range": {
+        "startLine": 23,
+        "startChar": 19,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "b38ef9159baf72366eefca85bcbb079247fc0470",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
