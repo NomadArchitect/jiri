@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "a95445fc_552554ad",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:27:21Z",
+      "side": 1,
+      "message": "Right, but idiomatic go uses v for the value and i for the index. Using \"i\" for the value is confusing. As shown at:\nhttps://golang.org/doc/effective_go.html",
+      "parentUuid": "baed7776_a0864578",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "232a7a99_63fcb4ca",
         "filename": "cmd/jiri/import.go",
         "patchSetId": 2
@@ -142,6 +160,30 @@
       "side": 1,
       "message": "this is a map, no other way to get the object, and we already checked above that it has only 1 object",
       "parentUuid": "232a7a99_63fcb4ca",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "910865d1_e3be4fda",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:27:21Z",
+      "side": 1,
+      "message": "Ah, I see. Thanks, I didn\u0027t know that.",
+      "parentUuid": "7f9f36ba_4c5a5049",
       "range": {
         "startLine": 127,
         "startChar": 8,
