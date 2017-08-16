@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c0dac3fe_9e6ba73d",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-16T23:15:18Z",
+      "side": 1,
+      "message": "it is checking that there can be 1 or 2 args, so remote is optional",
+      "parentUuid": "bf9c8c6d_cb2c7030",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4c733b9_c4237a97",
         "filename": "cmd/jiri/import.go",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-08-16T23:12:32Z",
       "side": 1,
       "message": "Show usage of the delete command instead. In other words, help the user understand what \"right\" looks like instead of just saying it\u0027s wrong.",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ceae0008_7ed6b4ca",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-16T23:15:18Z",
+      "side": 1,
+      "message": "we do show usuage, whole help message",
+      "parentUuid": "f4c733b9_c4237a97",
       "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "baed7776_a0864578",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-16T23:15:18Z",
+      "side": 1,
+      "message": "i is import object, in golang we keep var short",
+      "parentUuid": "9d9f2bc5_81029419",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "232a7a99_63fcb4ca",
         "filename": "cmd/jiri/import.go",
         "patchSetId": 2
@@ -64,6 +118,30 @@
       "writtenOn": "2017-08-16T23:12:32Z",
       "side": 1,
       "message": "This always breaks after the first element, so why the \"for\" loop?",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f9f36ba_4c5a5049",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-16T23:15:18Z",
+      "side": 1,
+      "message": "this is a map, no other way to get the object, and we already checked above that it has only 1 object",
+      "parentUuid": "232a7a99_63fcb4ca",
       "range": {
         "startLine": 127,
         "startChar": 8,
