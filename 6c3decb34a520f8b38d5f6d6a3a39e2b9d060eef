@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf9c8c6d_cb2c7030",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:12:32Z",
+      "side": 1,
+      "message": "The help message for delete says that \"remote is optional\", but this is checking for a fixed number of arguments.",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4c733b9_c4237a97",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:12:32Z",
+      "side": 1,
+      "message": "Show usage of the delete command instead. In other words, help the user understand what \"right\" looks like instead of just saying it\u0027s wrong.",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d9f2bc5_81029419",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:12:32Z",
+      "side": 1,
+      "message": "I\u0027m confused. It looks like you are marshaling the index, not the value?",
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "232a7a99_63fcb4ca",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5190
+      },
+      "writtenOn": "2017-08-16T23:12:32Z",
+      "side": 1,
+      "message": "This always breaks after the first element, so why the \"for\" loop?",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "6c3decb34a520f8b38d5f6d6a3a39e2b9d060eef",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
