@@ -22,6 +22,30 @@
       "revId": "29b858bd052eaa9d54a27bced117eabf4035750a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21fe18ea_bfcd389a",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-08-18T01:09:18Z",
+      "side": 1,
+      "message": "no because of lines 148 and 141",
+      "parentUuid": "5a81619d_6eb48ab0",
+      "range": {
+        "startLine": 154,
+        "startChar": 6,
+        "endLine": 154,
+        "endChar": 23
+      },
+      "revId": "29b858bd052eaa9d54a27bced117eabf4035750a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
