@@ -46,6 +46,30 @@
       "revId": "71cb27e9b723d78bae7ed0ab92a09b3e566fc443",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e0cb34c_9733c4ee",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 6410
+      },
+      "writtenOn": "2017-08-22T21:16:11Z",
+      "side": 1,
+      "message": "I see. Thanks for the explanation.",
+      "parentUuid": "2e092c88_177a9b53",
+      "range": {
+        "startLine": 300,
+        "startChar": 36,
+        "endLine": 300,
+        "endChar": 39
+      },
+      "revId": "71cb27e9b723d78bae7ed0ab92a09b3e566fc443",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
