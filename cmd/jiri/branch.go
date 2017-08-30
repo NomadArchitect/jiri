@@ -259,6 +259,7 @@ func deleteMergedBranches(jirix *jiri.X, branchToDelete string, deleteMergedCls 
 }
 
 func deleteProjectMergedClsBranches(jirix *jiri.X, local project.Project, remote project.Project, relativePath, branchToDelete string) (map[string]string, MultiError) {
+
 	deletedBranches := make(map[string]string)
 	var retErr MultiError
 	if remote.GerritHost == "" {
@@ -280,6 +281,11 @@ func deleteProjectMergedClsBranches(jirix *jiri.X, local project.Project, remote
 	for _, b := range branches {
 		if branchToDelete != "" && b.Name != branchToDelete {
 			continue
+		}
+		// Only show this message when project has some local branch
+		if strings.HasPrefix(local.Remote, "sso://") {
+			jirix.Logger.Warningf("Skipping project %s(%s) as it uses sso protocol. Not quering gerrit\n\n", local.Name, relativePath)
+			return nil, nil
 		}
 		if b.IsHead {
 			untracked, err := g.HasUntrackedFiles()
