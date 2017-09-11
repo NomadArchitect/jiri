@@ -46,6 +46,30 @@
       "revId": "97880bf71bd735fe91922805156ec99607076924",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76a29b7_39bf872e",
+        "filename": "log/logger.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-11T22:32:50Z",
+      "side": 1,
+      "message": "Do you expect any other error output in your test?",
+      "parentUuid": "4bf13ce7_34277fbe",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 38
+      },
+      "revId": "97880bf71bd735fe91922805156ec99607076924",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
