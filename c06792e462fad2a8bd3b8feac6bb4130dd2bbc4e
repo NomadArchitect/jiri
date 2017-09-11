@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6867f1f_eb0612b9",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-11T18:36:21Z",
+      "side": 1,
+      "message": "\"updating sources\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 76,
+        "endLine": 44,
+        "endChar": 84
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30194355_332c9869",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-11T18:36:21Z",
+      "side": 1,
+      "message": "nit: these two should be reversed",
+      "range": {
+        "startLine": 809,
+        "startChar": 63,
+        "endLine": 809,
+        "endChar": 97
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac9108e_44963b51",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-11T18:36:21Z",
+      "side": 1,
+      "message": "nit: same here",
+      "range": {
+        "startLine": 1053,
+        "startChar": 122,
+        "endLine": 1053,
+        "endChar": 157
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
