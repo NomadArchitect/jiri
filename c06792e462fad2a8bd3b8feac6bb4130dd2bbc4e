@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "727bf21c_1bbb7a5a",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-11T18:42:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6867f1f_eb0612b9",
+      "range": {
+        "startLine": 44,
+        "startChar": 76,
+        "endLine": 44,
+        "endChar": 84
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "30194355_332c9869",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ac1e67f7_452deafe",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-11T18:42:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30194355_332c9869",
+      "range": {
+        "startLine": 809,
+        "startChar": 63,
+        "endLine": 809,
+        "endChar": 97
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ac9108e_44963b51",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85cc4b52_d6432e21",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-11T18:42:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ac9108e_44963b51",
+      "range": {
+        "startLine": 1053,
+        "startChar": 122,
+        "endLine": 1053,
+        "endChar": 157
+      },
+      "revId": "c06792e462fad2a8bd3b8feac6bb4130dd2bbc4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
