@@ -7,6 +7,7 @@ package log
 import (
 	"container/list"
 	"fmt"
+	"io"
 	glog "log"
 	"os"
 	"sync"
@@ -92,6 +93,12 @@ func NewLogger(loggerLevel LogLevel, color color.Color, enableProgress bool, pro
 		}
 	}()
 	return l
+}
+
+func (l Logger) CaptureErrorLogForTest(errWriter io.Writer) *Logger {
+	l.goErrorLogger = glog.New(errWriter, "", 0)
+	l.DisableProgress()
+	return &l
 }
 
 func (l *Logger) IsProgressEnabled() bool {
