@@ -118,6 +118,30 @@
       "revId": "97880bf71bd735fe91922805156ec99607076924",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54a1a675_bc77d2c8",
+        "filename": "log/logger.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-11T23:39:02Z",
+      "side": 1,
+      "message": "update output, so i am using it to test -local-manifest flag and when i jiri update in test I also get error for JIRI_HEAD manifest hook. Anyways instead of this function I will make changes to NewLogger and use that",
+      "parentUuid": "9622d089_25c53f30",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 38
+      },
+      "revId": "97880bf71bd735fe91922805156ec99607076924",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
