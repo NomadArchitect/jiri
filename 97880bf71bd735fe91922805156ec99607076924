@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d0d425b_18492d17",
+        "filename": "log/logger.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-11T22:29:06Z",
+      "side": 1,
+      "message": "Couldn\u0027t you instead pass io.Writer for output and error output to NewLogger (or if null, use Stdout and Stderr as today)?",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 38
+      },
+      "revId": "97880bf71bd735fe91922805156ec99607076924",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
