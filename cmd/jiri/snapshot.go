@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	sourceManifestFilename string
+	sourceManifestFlag bool
 )
 
 var cmdSnapshot = &cmdline.Command{
@@ -27,12 +27,12 @@ in a manifest.
 }
 
 func init() {
-	cmdSnapshot.Flags.StringVar(&sourceManifestFilename, "source-manifest", "", "Source manifest filename.")
+	cmdSnapshot.Flags.BoolVar(&sourceManifestFlag, "source-manifest", false, "Generrate source manifest instead of snapshot.")
 }
 
 func runSnapshot(jirix *jiri.X, args []string) error {
 	if len(args) != 1 {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
-	return project.CreateSnapshot(jirix, args[0], sourceManifestFilename, false)
+	return project.CreateSnapshot(jirix, args[0], sourceManifestFlag, false)
 }

@@ -44,7 +44,7 @@ func remoteProjectName(i int) string {
 }
 
 func setDefaultSnapshotFlag() {
-	sourceManifestFilename = ""
+	sourceManifestFlag = false
 }
 
 func writeReadme(t *testing.T, jirix *jiri.X, projectDir, message string) {
@@ -194,21 +194,15 @@ func TestSourceManifestSnapshot(t *testing.T) {
 	var stdout bytes.Buffer
 	fake.X.Context = tool.NewContext(tool.ContextOpts{Stdout: &stdout, Env: fake.X.Context.Env()})
 
-	tmpfile, err := ioutil.TempFile("", "jiri-snapshot-")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer os.Remove(tmpfile.Name())
-
 	smTmpfile, err := ioutil.TempFile("", "jiri-sm-")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer os.Remove(smTmpfile.Name())
-	sourceManifestFilename = smTmpfile.Name()
+	sourceManifestFlag = true
 
-	if err := runSnapshot(fake.X, []string{tmpfile.Name()}); err != nil {
-		t.Fatalf("%v", err)
+	if err := runSnapshot(fake.X, []string{smTmpfile.Name()}); err != nil {
+		t.Fatalf("%s", err)
 	}
 
 	sm := &project.SourceManifest{
