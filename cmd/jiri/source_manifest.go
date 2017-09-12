@@ -41,5 +41,4 @@ func runSourceManifest(jirix *jiri.X, args []string) error {
 		return mErr
 	}
 	return sm.ToFile(jirix, args[0])
-
 }
