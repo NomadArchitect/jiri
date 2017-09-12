@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b0d6514_03b4ef26",
+        "filename": "cmd/jiri/source_manifest.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-12T01:35:00Z",
+      "side": 1,
+      "message": "nit: no empty line here",
+      "revId": "496018cbf95eef6f72ad4b7e4fbdb09901d00c0a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
