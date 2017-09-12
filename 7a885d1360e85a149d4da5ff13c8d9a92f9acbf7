@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfb4d3d8_41d0c1ca",
+        "filename": "cmd/jiri/source_manifest.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-09-12T01:28:17Z",
+      "side": 1,
+      "message": "nit: this shouldn\u0027t be in else branch, just make this unconditional",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 2
+      },
+      "revId": "7a885d1360e85a149d4da5ff13c8d9a92f9acbf7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
