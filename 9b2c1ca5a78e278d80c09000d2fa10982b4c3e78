@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1dd7294_ed5b3609",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-09-19T21:43:31Z",
+      "side": 1,
+      "message": "nit: this is a GNU pattern",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "9b2c1ca5a78e278d80c09000d2fa10982b4c3e78",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
