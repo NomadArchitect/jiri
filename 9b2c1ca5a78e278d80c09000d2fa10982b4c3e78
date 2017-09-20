@@ -22,6 +22,30 @@
       "revId": "9b2c1ca5a78e278d80c09000d2fa10982b4c3e78",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bfd053e_e01fc9e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-20T20:32:36Z",
+      "side": 1,
+      "message": "I don\u0027t know what you think you\u0027re talking about.\n\"git grep content-regexp -- filename-pattern\" is the syntax we\u0027re talking about.\nThere is no GNU tool that uses this syntax.",
+      "parentUuid": "d1dd7294_ed5b3609",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "9b2c1ca5a78e278d80c09000d2fa10982b4c3e78",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
