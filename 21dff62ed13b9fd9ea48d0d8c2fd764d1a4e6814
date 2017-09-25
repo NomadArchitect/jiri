@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d053c805_1c5944cc",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T21:24:58Z",
+      "side": 1,
+      "message": "quotes here?",
+      "range": {
+        "startLine": 108,
+        "startChar": 25,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87c1de62_9389e079",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T21:24:58Z",
+      "side": 1,
+      "message": "What errors are possible?",
+      "range": {
+        "startLine": 199,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 15
+      },
+      "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
