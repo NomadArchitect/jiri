@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5f05ba69_2f25e7bb",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-25T21:59:07Z",
+      "side": 1,
+      "message": "it works without it, but to make it consistent added the quotes",
+      "parentUuid": "d053c805_1c5944cc",
+      "range": {
+        "startLine": 108,
+        "startChar": 25,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87c1de62_9389e079",
         "filename": "cmd/jiri/project.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-09-25T21:24:58Z",
       "side": 1,
       "message": "What errors are possible?",
+      "range": {
+        "startLine": 199,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 15
+      },
+      "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecea1ae2_3a1c4ad2",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-25T21:59:07Z",
+      "side": 1,
+      "message": "from docs\nAn error is returned if targpath can\u0027t be made relative to basepath or if knowing the current working directory would be necessary to compute it\n\ndo you want me to catch it and return error?",
+      "parentUuid": "87c1de62_9389e079",
       "range": {
         "startLine": 199,
         "startChar": 12,
