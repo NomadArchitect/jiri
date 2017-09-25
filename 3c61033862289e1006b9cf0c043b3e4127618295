@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d02ce21_97556c7e",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T21:26:59Z",
+      "side": 1,
+      "message": "Mention new option in the error msg.",
+      "range": {
+        "startLine": 310,
+        "startChar": 31,
+        "endLine": 310,
+        "endChar": 38
+      },
+      "revId": "3c61033862289e1006b9cf0c043b3e4127618295",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
