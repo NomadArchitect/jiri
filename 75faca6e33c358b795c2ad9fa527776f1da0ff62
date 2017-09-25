@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1804093_69d5d44c",
+        "filename": "cmd/jiri/grep.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T21:30:01Z",
+      "side": 1,
+      "message": "For compatibility with GNU grep and git grep it should also have long names --name-only and --files-with-match.",
+      "range": {
+        "startLine": 43,
+        "startChar": 16,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "75faca6e33c358b795c2ad9fa527776f1da0ff62",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde06ed0_b9e5d00f",
+        "filename": "cmd/jiri/grep.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T21:30:01Z",
+      "side": 1,
+      "message": "The meaning of -L is the inverse of -l: show all files that have no matches.\nFor compatibility with GNU grep and git grep it should also have long name --files-without-match.",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "75faca6e33c358b795c2ad9fa527776f1da0ff62",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
