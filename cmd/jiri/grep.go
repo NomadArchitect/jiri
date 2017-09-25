@@ -30,6 +30,8 @@ var grepFlags struct {
 	h bool
 	i bool
 	e string
+	l bool
+	L bool
 }
 
 func init() {
@@ -38,6 +40,8 @@ func init() {
 	flags.StringVar(&grepFlags.e, "e", "", "The next parameter is the pattern. This option has to be used for patterns starting with -")
 	flags.BoolVar(&grepFlags.h, "H", true, "Does nothing. Just makes this git grep compatible")
 	flags.BoolVar(&grepFlags.i, "i", false, "Ignore case differences between the patterns and the files")
+	flags.BoolVar(&grepFlags.l, "l", false, "Instead of showing every matched line, show only the names of files that contain matches")
+	flags.BoolVar(&grepFlags.L, "L", false, "Same as -l")
 }
 
 func buildFlags() []string {
@@ -50,6 +54,9 @@ func buildFlags() []string {
 	}
 	if grepFlags.i {
 		args = append(args, "-i")
+	}
+	if grepFlags.l || grepFlags.L {
+		args = append(args, "-l")
 	}
 	return args
 }
