@@ -93,6 +93,30 @@
       "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77a93b40_67abd36a",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2017-09-25T23:29:41Z",
+      "side": 1,
+      "message": "Should any of those errors be possible in jiri\u0027s use here?\nIsn\u0027t every Project.Path a subdirectory under Root?\nIf it should be programmatically impossible to fail, then you should have an assert rather than fallback behavior.",
+      "parentUuid": "ecea1ae2_3a1c4ad2",
+      "range": {
+        "startLine": 199,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 15
+      },
+      "revId": "21dff62ed13b9fd9ea48d0d8c2fd764d1a4e6814",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
