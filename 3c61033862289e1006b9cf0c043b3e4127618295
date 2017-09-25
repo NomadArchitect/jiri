@@ -22,6 +22,30 @@
       "revId": "3c61033862289e1006b9cf0c043b3e4127618295",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64e52e6b_d4c8143a",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-25T21:53:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d02ce21_97556c7e",
+      "range": {
+        "startLine": 310,
+        "startChar": 31,
+        "endLine": 310,
+        "endChar": 38
+      },
+      "revId": "3c61033862289e1006b9cf0c043b3e4127618295",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
