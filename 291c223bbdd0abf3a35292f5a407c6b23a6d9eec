@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc1e3e10_7c2afd01",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T00:44:59Z",
+      "side": 1,
+      "message": "nit: individual",
+      "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "088d3f1c_d9238dab",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T00:44:59Z",
+      "side": 1,
+      "message": "might be a silly question, but if noBranchFlag is set, could we set branch equal to the current branch? Would the rest then work without switches?",
+      "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
