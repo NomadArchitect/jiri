@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ffd7f42_bce4c81a",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T21:44:49Z",
+      "side": 1,
+      "message": "I think it is worth a comment at the break or before the for-loop to note that this is only doing the outer loop once because we just need any single change from the topicChanges set to validate that they\u0027re all related.",
+      "revId": "7f657272ef37237ad2c55823b1a1df7071f8363f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
