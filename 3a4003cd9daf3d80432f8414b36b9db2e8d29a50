@@ -371,6 +371,24 @@
     },
     {
       "key": {
+        "uuid": "b33e672a_b8740b9b",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T20:59:37Z",
+      "side": 1,
+      "message": "right now there is an if-else that depends on if the len(v) is 1 or not. In the suggested we\u0027ll have an indented block for the case that len(v) is 1, but it is only four lines. The case where we have greater than 1, is ~35 lines and the indent of these would decrease, because we\u0027re just skipping that section with the continue instead of it being the other part of an if-else.",
+      "parentUuid": "69c3aec4_7ee8d8b1",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "393bffef_bf046966",
         "filename": "gerrit/gerrit.go",
         "patchSetId": 3
