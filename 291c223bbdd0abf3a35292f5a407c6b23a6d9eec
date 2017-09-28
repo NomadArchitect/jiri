@@ -69,6 +69,24 @@
       "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa478d94_4008f560",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T15:49:51Z",
+      "side": 1,
+      "message": "ah, okay!\n\nSeparately, you might consider calling the variable \"detachedHead\" instead of \"noBranchFlag\". Variable names with a \u0027not\u0027 or \u0027no\u0027 read oddly when negated, \"not no branch\"",
+      "parentUuid": "0f91c96a_43f7721c",
+      "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
