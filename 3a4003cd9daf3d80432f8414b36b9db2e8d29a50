@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1b1aa0b_e19f4749",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T01:17:29Z",
+      "side": 1,
+      "message": "just checking since I\u0027m new to the data model of this code...this is a map from project names to a map of change-ids to Change objects?",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8f68d5d_f8747428",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T01:17:29Z",
+      "side": 1,
+      "message": "if you move the assignment out of the if-statement declaration I think this gets simpler.\n\nv, ok :\u003d projectMap[change.Project]\nif !ok {\n  v \u003d make(map[string]gerrit.Change)\n  projectMap[change.Project] \u003d v\n}\nv[change.Change_id] \u003d change",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecf4e45a_9670a9dc",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T01:17:29Z",
+      "side": 1,
+      "message": "I\u0027m assuming that GetRelatedChanges called on L299 gets all the changes that have the same topic as the supplied change. If this is true, then why do we need to validate that all each of the changes for this repo from the project map are present in the topic. It appears to me that we\u0027re looking up the changes in the same topic two ways and then validating the answers are the same. I\u0027m sure I\u0027m missing something.",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
