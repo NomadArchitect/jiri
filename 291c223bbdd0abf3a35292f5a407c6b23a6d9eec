@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "075a71c4_a06e3335",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T02:22:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc1e3e10_7c2afd01",
+      "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "088d3f1c_d9238dab",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-09-28T00:44:59Z",
       "side": 1,
       "message": "might be a silly question, but if noBranchFlag is set, could we set branch equal to the current branch? Would the rest then work without switches?",
+      "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f91c96a_43f7721c",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T02:22:50Z",
+      "side": 1,
+      "message": "that would be cherry-pick, maybe i can add that functionality and add a flag to not create a new branch\n\nnobranch should mean detached head so that jiri update has no problem updating to latest after a patch is tested. that is what original issue wants\nhttps://fuchsia.atlassian.net/browse/TO-407",
+      "parentUuid": "088d3f1c_d9238dab",
       "revId": "291c223bbdd0abf3a35292f5a407c6b23a6d9eec",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
