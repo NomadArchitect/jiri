@@ -16,6 +16,24 @@
       "revId": "7f657272ef37237ad2c55823b1a1df7071f8363f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d341ccc_eb6a6e0c",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T21:58:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ffd7f42_bce4c81a",
+      "revId": "7f657272ef37237ad2c55823b1a1df7071f8363f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
