@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "de539ee2_ab58ca03",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T02:41:22Z",
+      "side": 1,
+      "message": "yes correct",
+      "parentUuid": "c1b1aa0b_e19f4749",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8f68d5d_f8747428",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "6b0873f1_caef9449",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T02:41:22Z",
+      "side": 1,
+      "message": "yes correct thanks",
+      "parentUuid": "d8f68d5d_f8747428",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecf4e45a_9670a9dc",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2017-09-28T01:17:29Z",
       "side": 1,
       "message": "I\u0027m assuming that GetRelatedChanges called on L299 gets all the changes that have the same topic as the supplied change. If this is true, then why do we need to validate that all each of the changes for this repo from the project map are present in the topic. It appears to me that we\u0027re looking up the changes in the same topic two ways and then validating the answers are the same. I\u0027m sure I\u0027m missing something.",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd5c84e2_f468bae9",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T02:41:22Z",
+      "side": 1,
+      "message": "no related changes gets the stacked changes, like when change B is based on A, so B can have different topic from A. this CL handles the case when we have two changes in a project P and suppose they are A and B and both have same supplied topic, then those changes need to be stacked else jiri can\u0027t create a patch if they are not. This code is checking that the CLs on in projectMap are related",
+      "parentUuid": "ecf4e45a_9670a9dc",
       "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
