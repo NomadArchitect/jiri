@@ -389,6 +389,24 @@
     },
     {
       "key": {
+        "uuid": "4c00d4b7_cacd9155",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-09-28T21:31:53Z",
+      "side": 1,
+      "message": "ah u wanted me to inverse it, didn\u0027t read it properly, sry, good idea, thanks!!",
+      "parentUuid": "b33e672a_b8740b9b",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "393bffef_bf046966",
         "filename": "gerrit/gerrit.go",
         "patchSetId": 3
