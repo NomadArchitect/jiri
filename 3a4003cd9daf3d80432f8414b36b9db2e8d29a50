@@ -72,6 +72,74 @@
     },
     {
       "key": {
+        "uuid": "62977916_a79ecdd0",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "suggest changing the name of \u0027v\u0027 to \u0027topicChanges\u0027 or \u0027topicChgs\u0027",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c442f8_54fa5bb2",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "I think you can make this a map[string]struct{} which is slightly more efficient since a struct{}{} takes no space.",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a12ac77_c200dbbc",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "I think having \u0027first\u0027 boolean makes the code flow more difficult to read and generally avoiding a layer of nesting is a good thing. My suggestion is to split this into two loops through \u0027v\u0027. The first of the two loops does the content of \u0027first\u0027 clause here, but also adds the first changeId-change tuple itself to the relatedChangesMap (which is fine, a change is by definition related to itself). Also, this loop breaks after the first iteration, it is only so we can get a key from the map.\n\nThe second loop actually ranges over all of v and performs the logic in the \u0027second\u0027 clause.",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40ee13ce_b5c6e9b8",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "Does GetRelatedChanges return the change itself?",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ecf4e45a_9670a9dc",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 3
@@ -101,6 +169,57 @@
       "side": 1,
       "message": "no related changes gets the stacked changes, like when change B is based on A, so B can have different topic from A. this CL handles the case when we have two changes in a project P and suppose they are A and B and both have same supplied topic, then those changes need to be stacked else jiri can\u0027t create a patch if they are not. This code is checking that the CLs on in projectMap are related",
       "parentUuid": "ecf4e45a_9670a9dc",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab22d81d_04566040",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "perhaps include the topic name here as well? Also I think it might be clearer to say \"Not all changes (%s)...\" since I think some of the listed changes might be related to each other, but not all are.",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dc00328_ab1fe5e8",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "suggestion: instead of an else here, put this inside an \n\nif len(v) \u003d\u003d 1 {\n  //stuff\n  continue\n}\n\nThis way the complicated code drops an indent level",
+      "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "393bffef_bf046966",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 8285
+      },
+      "writtenOn": "2017-09-28T17:32:14Z",
+      "side": 1,
+      "message": "Seems like some common request setup logic that could be shared with Query() here, perhaps other methods for talking to Gerrit?",
       "revId": "3a4003cd9daf3d80432f8414b36b9db2e8d29a50",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
