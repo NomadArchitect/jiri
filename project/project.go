@@ -12,6 +12,7 @@ import (
 	"hash/fnv"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -2361,6 +2362,15 @@ func getProjectStatus(jirix *jiri.X, ps Projects) ([]ProjectStatus, MultiError) 
 	return psa, multiErr
 }
 
+func fileSize(f *os.File) (int64, error) {
+	f.Sync()
+	if stat, err := f.Stat(); err != nil {
+		return stat.Size(), nil
+	} else {
+		return 0, fmtError(err)
+	}
+}
+
 // RunHooks runs all given hooks.
 func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 	jirix.TimerPush("run hooks")
@@ -2392,10 +2402,21 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 
 			fmt.Fprintf(outFile, "output for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
 			fmt.Fprintf(errFile, "Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
+
+			stdOutSize, err := fileSize(outFile)
+			if err != nil {
+				ch <- result{nil, nil, err}
+				return
+			}
+
+			stdErrSize, err := fileSize(errFile)
+			if err != nil {
+				ch <- result{nil, nil, err}
+				return
+			}
+
 			cmdLine := filepath.Join(hook.ActionPath, hook.Action)
-			ctx, cancel := context.WithTimeout(context.Background(), time.Duration(runHookTimeout)*time.Minute)
-			defer cancel()
-			command := exec.CommandContext(ctx, cmdLine)
+			command := exec.Command(cmdLine)
 			command.Dir = hook.ActionPath
 			command.Stdin = os.Stdin
 			command.Stdout = outFile
@@ -2403,7 +2424,39 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 			env := jirix.Env()
 			command.Env = envvar.MapToSlice(env)
 			jirix.Logger.Tracef("Run: %q", cmdLine)
-			err = command.Run()
+			if err := command.Start(); err != nil {
+				ch <- result{outFile, errFile, err}
+				return
+			}
+			done := make(chan error, 1)
+			go func() {
+				done <- command.Wait()
+			}()
+			select {
+			case <-time.After(runHookTimeout * time.Minute):
+				size, err := fileSize(outFile)
+				if err != nil {
+					cmd.Process.Kill()
+					ch <- result{outFile, errFile, err}
+					return
+				}
+
+				stdErrSize, err := fileSize(errFile)
+				if err != nil {
+					ch <- result{nil, nil, err}
+					return
+				}
+				if err := cmd.Process.Kill(); err != nil {
+					log.Fatal("failed to kill: ", err)
+				}
+				log.Println("process killed as timeout reached")
+			case err := <-done:
+				if err != nil {
+					log.Printf("process done with error = %v", err)
+				} else {
+					log.Print("process done gracefully without error")
+				}
+			}
 			if ctx.Err() == context.DeadlineExceeded {
 				err = ctx.Err()
 			}
