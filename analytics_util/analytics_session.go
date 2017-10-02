@@ -114,6 +114,7 @@ func (as *AnalyticsSession) sendAnalytic(params, cds map[string]string) {
 	for k, v := range params {
 		val.Add(k, v)
 	}
+	fmt.Printf("sent %s: %v", analyticsUrl, val)
 	http.PostForm(analyticsUrl, val)
 }
 
