@@ -46,6 +46,30 @@
       "revId": "b0e94d26909603a8efcf0cca837baa24b7542a68",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ef6c3e_728e4c99",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-03T19:40:09Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "8b8b6c0d_261fa2e2",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 43
+      },
+      "revId": "b0e94d26909603a8efcf0cca837baa24b7542a68",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
