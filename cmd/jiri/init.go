@@ -25,12 +25,14 @@ var cmdInit = &cmdline.Command{
 The "init" command creates new jiri "root" - basically a [root]/.jiri_root
 directory and template files.
 
-Running "init" in existing jiri [root] is safe.
+Running "init" in existing jiri [root] is safe. It will search all the parents
+and update root config file if it already exists.
 `,
 	ArgsName: "[directory]",
 	ArgsLong: `
 If you provide a directory, the command is run inside it. If this directory
-does not exists, it will be created.
+does not exists, it will be created. Jiri will not create a root if parent of
+passed directory is already a jiri root.
 `,
 }
 
@@ -48,6 +50,38 @@ func init() {
 	cmdInit.Flags.StringVar(&analyticsOptFlag, "analytics-opt", "", "Opt in/out of analytics collection. Takes true/false")
 }
 
+func cleanPath(path string) (string, error) {
+	result, err := filepath.EvalSymlinks(path)
+	if err != nil {
+		if !os.IsNotExist(err) {
+			return "", fmt.Errorf("EvalSymlinks(%v) failed: %v", path, err)
+		}
+	} else {
+		return result, nil
+	}
+
+	return filepath.Clean(path), nil
+}
+
+// Searches for jiri root starting in parent directories
+// path is absolute cleaned path
+func findJiriRoot(path string) (string, error) {
+	paths := []string{path}
+	for path != "/" {
+		path = filepath.Dir(path)
+		paths = append(paths, path)
+	}
+
+	for i := len(paths) - 1; i >= 0; i-- {
+		fi, err := os.Stat(filepath.Join(paths[i], jiri.RootMetaDir))
+		if err == nil && fi.IsDir() {
+			return paths[i], nil
+		}
+	}
+
+	return "", nil
+}
+
 func runInit(env *cmdline.Env, args []string) error {
 	if len(args) > 1 {
 		return fmt.Errorf("wrong number of arguments")
@@ -60,11 +94,16 @@ func runInit(env *cmdline.Env, args []string) error {
 
 	var dir string
 	var err error
+	passedDir := ""
 	if len(args) == 1 {
-		dir, err = filepath.Abs(args[0])
-		if err != nil {
+		if dir, err = filepath.Abs(args[0]); err != nil {
 			return err
 		}
+		if dir, err = cleanPath(dir); err != nil {
+			return err
+		}
+		passedDir = dir
+
 		if _, err := os.Stat(dir); err != nil {
 			if !os.IsNotExist(err) {
 				return err
@@ -80,14 +119,19 @@ func runInit(env *cmdline.Env, args []string) error {
 		}
 	}
 
+	root, err := findJiriRoot(dir)
+	if err != nil {
+		return err
+	}
+	if root != "" && passedDir != "" && passedDir != root {
+		return fmt.Errorf("Cannot create root at %q as it's parent %q is already a jiri root", args[0], root)
+	}
+
 	d := filepath.Join(dir, jiri.RootMetaDir)
-	if _, err := os.Stat(d); err != nil {
-		if !os.IsNotExist(err) {
-			return err
-		}
-		if err := os.Mkdir(d, 0755); err != nil {
-			return err
-		}
+	if root != "" {
+		d = filepath.Join(root, jiri.RootMetaDir)
+	} else if err := os.Mkdir(d, 0755); err != nil {
+		return err
 	}
 
 	if cacheFlag != "" {
