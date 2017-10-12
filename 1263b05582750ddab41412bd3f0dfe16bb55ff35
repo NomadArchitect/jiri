@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fe73143_5e7d1d6b",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-12T06:27:34Z",
+      "side": 1,
+      "message": "This is not needed.",
+      "range": {
+        "startLine": 50,
+        "startChar": 118,
+        "endLine": 50,
+        "endChar": 224
+      },
+      "revId": "1263b05582750ddab41412bd3f0dfe16bb55ff35",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ad0606b_cbd840ef",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-12T06:27:34Z",
+      "side": 1,
+      "message": "This should be rewrite-sso or rewrite-sso-to-https.",
+      "range": {
+        "startLine": 50,
+        "startChar": 50,
+        "endLine": 50,
+        "endChar": 67
+      },
+      "revId": "1263b05582750ddab41412bd3f0dfe16bb55ff35",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "165f59a2_3c3a8f4e",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-12T06:27:34Z",
+      "side": 1,
+      "message": "s/reWrite/rewrite/",
+      "range": {
+        "startLine": 897,
+        "startChar": 5,
+        "endLine": 897,
+        "endChar": 12
+      },
+      "revId": "1263b05582750ddab41412bd3f0dfe16bb55ff35",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "387faa55_e26840ea",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-12T06:27:34Z",
+      "side": 1,
+      "message": "I don\u0027t think you really need this, Replace isn\u0027t going to do anything if it doesn\u0027t match the string.",
+      "revId": "1263b05582750ddab41412bd3f0dfe16bb55ff35",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
