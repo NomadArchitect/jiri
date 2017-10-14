@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd9b434d_9623aa31",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-14T02:24:37Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be less error prone (what if path is the first attribute immediately following project) to use \"( *?\u003cproject )\" to count the indentation?",
+      "revId": "1d11c58d9b7b08736efeb6320a943d537d5e6753",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
