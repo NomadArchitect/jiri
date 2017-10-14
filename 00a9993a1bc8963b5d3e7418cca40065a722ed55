@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f973ae6f_ed162365",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-14T01:02:37Z",
+      "side": 1,
+      "message": "You don\u0027t need this if you make the change below.",
+      "range": {
+        "startLine": 41,
+        "startChar": 51,
+        "endLine": 41,
+        "endChar": 67
+      },
+      "revId": "00a9993a1bc8963b5d3e7418cca40065a722ed55",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "accfa11f_1d6aab1d",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-14T01:02:37Z",
+      "side": 1,
+      "message": "Can we make it CWD instead? I think that\u0027s more sensible. I\u0027d just use path.filepath.Abs(args[0]), so if it\u0027s already absolute nothing will happen otherwise Abs automatically prepends CWD.",
+      "range": {
+        "startLine": 53,
+        "startChar": 31,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "00a9993a1bc8963b5d3e7418cca40065a722ed55",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
