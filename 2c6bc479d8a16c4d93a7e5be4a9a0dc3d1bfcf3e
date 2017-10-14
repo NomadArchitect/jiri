@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7fe0131_9e85ff32",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-14T00:30:06Z",
+      "side": 1,
+      "message": "I\u0027d make it an argument i.e. `jiri edit -projects a,b,c toolchain`, this is one of the things people were complaining about and I was planning on fixing.",
+      "revId": "2c6bc479d8a16c4d93a7e5be4a9a0dc3d1bfcf3e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
