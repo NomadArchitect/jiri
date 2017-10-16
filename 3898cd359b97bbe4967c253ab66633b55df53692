@@ -22,6 +22,30 @@
       "revId": "3898cd359b97bbe4967c253ab66633b55df53692",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18f9718d_aa5fadf7",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-16T20:04:37Z",
+      "side": 1,
+      "message": "it would be just ugly(not formatted), but i think manifest will work",
+      "parentUuid": "a3d49343_22e1981a",
+      "range": {
+        "startLine": 103,
+        "startChar": 51,
+        "endLine": 103,
+        "endChar": 60
+      },
+      "revId": "3898cd359b97bbe4967c253ab66633b55df53692",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
