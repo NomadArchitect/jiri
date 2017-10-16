@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3d49343_22e1981a",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-16T19:41:52Z",
+      "side": 1,
+      "message": "This is going to break if people don\u0027t align the attributes, but I cannot think of any better way to handle this right now.",
+      "range": {
+        "startLine": 103,
+        "startChar": 51,
+        "endLine": 103,
+        "endChar": 60
+      },
+      "revId": "3898cd359b97bbe4967c253ab66633b55df53692",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
