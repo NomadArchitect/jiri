@@ -1883,8 +1883,19 @@ func (ld *loader) resetAndLoad(jirix *jiri.X, root, file, cycleKey string, proje
 		}
 		return nil
 	}, &e)
-	if err := checkoutHeadRevision(jirix, project, false); err != nil {
-		return fmt.Errorf("Not able to checkout head for %s(%s): %v", project.Name, project.Path, err)
+	checkoutLatestHead := ld.update
+	// if ld.update is false, ie we are running snapshot, status, upload,
+	// etc commands, try to checkout JIRI_HEAD first
+	if !checkoutLatestHead {
+		git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
+		if err := git.CheckoutBranch("JIRI_HEAD", gitutil.DetachOpt(true)); err != nil {
+			checkoutLatestHead = true
+		}
+	}
+	if checkoutLatestHead {
+		if err := checkoutHeadRevision(jirix, project, false); err != nil {
+			return fmt.Errorf("Not able to checkout head for %s(%s): %v", project.Name, project.Path, err)
+		}
 	}
 	return ld.Load(jirix, root, file, cycleKey, localManifest)
 }
