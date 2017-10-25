@@ -640,19 +640,24 @@ func (p *Project) validate() error {
 	return nil
 }
 
-// CacheDirPath returns a generated path to a directory that can be used as a reference repo
-// for the given project.
-func (p *Project) CacheDirPath(jirix *jiri.X) (string, error) {
-	if jirix.Cache != "" {
-		url, err := url.Parse(p.Remote)
+func cacheDirPathFromRemote(cacheRoot, remote string) (string, error) {
+	if cacheRoot != "" {
+		url, err := url.Parse(remote)
 		if err != nil {
 			return "", err
 		}
 		dirname := url.Host + strings.Replace(strings.Replace(url.Path, "-", "--", -1), "/", "-", -1)
-		referenceDir := filepath.Join(jirix.Cache, dirname)
+		referenceDir := filepath.Join(cacheRoot, dirname)
 		return referenceDir, nil
 	}
 	return "", nil
+}
+
+// CacheDirPath returns a generated path to a directory that can be used as a reference repo
+// for the given project.
+func (p *Project) CacheDirPath(jirix *jiri.X) (string, error) {
+	return cacheDirPathFromRemote(jirix.Cache, p.Remote)
+
 }
 
 func (p *Project) writeJiriRevisionFiles(jirix *jiri.X) error {
@@ -1716,6 +1721,12 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 		remote.Name = filepath.Join(nextRoot, remote.Name)
 		key := remote.ProjectKey()
 		p, ok := ld.localProjects[key]
+		remoteUrl := rewriteRemote(jirix, remote.Remote)
+		cacheDirPath, err := cacheDirPathFromRemote(jirix.Cache, remote.Remote)
+		if err != nil {
+			return err
+		}
+
 		if !ok {
 			if !ld.update || localManifest {
 				jirix.Logger.Warningf("import %q not found locally, getting from server.\n\n", remote.Name)
@@ -1734,12 +1745,8 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 			if err := os.MkdirAll(path, 0755); err != nil {
 				return fmtError(err)
 			}
-			remoteUrl := rewriteRemote(jirix, p.Remote)
-			if jirix.Cache != "" {
-				cacheDirPath, err := p.CacheDirPath(jirix)
-				if err != nil {
-					return err
-				}
+
+			if cacheDirPath != "" {
 				if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, remote.RemoteBranch, 0); err != nil {
 					return err
 				}
@@ -1766,6 +1773,10 @@ func (ld *loader) load(jirix *jiri.X, root, file string, localManifest bool) err
 				return fmt.Errorf("Not able to checkout head for %s(%s): %v", p.Name, p.Path, err)
 			}
 			ld.localProjects[key] = p
+		} else if ld.update && cacheDirPath != "" {
+			if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, remote.RemoteBranch, 0); err != nil {
+				return err
+			}
 		}
 		// Reset the project to its specified branch and load the next file.  Note
 		// that we call load() recursively, so multiple files may be loaded by
