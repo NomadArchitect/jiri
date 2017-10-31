@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db0d2e38_98642ea9",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "I don\u0027t think these three should be `omitempty`.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94999cd9_b1effad3",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "s/-/_/g (the same below)",
+      "range": {
+        "startLine": 43,
+        "startChar": 25,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6180152a_6af9df7e",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad93c221_76ccd182",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "This should be the same as for `-json-output` elsewhere.",
+      "range": {
+        "startLine": 89,
+        "startChar": 64,
+        "endLine": 89,
+        "endChar": 105
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40d907af_9ed9273a",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "`-json-output` to be consistent with other commands.",
+      "range": {
+        "startLine": 89,
+        "startChar": 43,
+        "endLine": 89,
+        "endChar": 56
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eddb36d0_d8731b10",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "I\u0027d collect the edits unconditionally...",
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e535d8e4_ed54b225",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-10-31T01:06:38Z",
+      "side": 1,
+      "message": "...and just check `editFlags.printChanges !\u003d \"\"` here.",
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
