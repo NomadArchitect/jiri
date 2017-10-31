@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d1066bf9_53c65677",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db0d2e38_98642ea9",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 38
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94999cd9_b1effad3",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "4aab7544_675467d4",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94999cd9_b1effad3",
+      "range": {
+        "startLine": 43,
+        "startChar": 25,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6180152a_6af9df7e",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "932c1147_c29f931c",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6180152a_6af9df7e",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "0e7863c3_7da3cc4f",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad93c221_76ccd182",
+      "range": {
+        "startLine": 89,
+        "startChar": 64,
+        "endLine": 89,
+        "endChar": 105
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c16d87a8_b7e83357",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40d907af_9ed9273a",
+      "range": {
+        "startLine": 89,
+        "startChar": 43,
+        "endLine": 89,
+        "endChar": 56
+      },
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eddb36d0_d8731b10",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 2
@@ -134,6 +254,24 @@
     },
     {
       "key": {
+        "uuid": "c961b9e2_82ff20e5",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eddb36d0_d8731b10",
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e535d8e4_ed54b225",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 2
@@ -148,6 +286,24 @@
       "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98737848_be823124",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-10-31T01:16:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e535d8e4_ed54b225",
+      "revId": "69b4fc3146530f1d9f2112d2392ab1cc4a050f76",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
