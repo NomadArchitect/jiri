@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e416f91_c72d458f",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1720,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-04T00:21:04Z",
+      "side": 1,
+      "message": "can we make this a shallow clone, to transfer less?",
+      "range": {
+        "startLine": 1720,
+        "startChar": 0,
+        "endLine": 1720,
+        "endChar": 94
+      },
+      "revId": "85df52f4f4f47301b706c656afe9f0d37ec87acc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
