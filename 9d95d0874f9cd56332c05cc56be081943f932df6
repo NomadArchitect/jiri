@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "51c8b25d_71cbdc8f",
+        "filename": "color/color.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-04T05:51:31Z",
+      "side": 1,
+      "message": "this can be written: \n\n  enableColor \u003d isatty.IsAtty()",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 3
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99e04289_2e1de35b",
         "filename": "isatty/isatty.go",
         "patchSetId": 2
@@ -42,6 +65,53 @@
         "startChar": 0,
         "endLine": 5,
         "endChar": 22
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d57224aa_d36f6e14",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-04T05:51:31Z",
+      "side": 1,
+      "message": "Oh, I missed you\u0027d actually done that.",
+      "parentUuid": "bef46bf2_e193ae95",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "188e2c76_cb1bba1a",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-04T05:51:31Z",
+      "side": 1,
+      "message": "nit: this name and it\u0027s casing could be improved.",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 11
       },
       "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
