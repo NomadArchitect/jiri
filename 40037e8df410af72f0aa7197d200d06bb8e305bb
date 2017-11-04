@@ -22,6 +22,30 @@
       "revId": "40037e8df410af72f0aa7197d200d06bb8e305bb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3455fbf1_3f1499d4",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-04T01:40:54Z",
+      "side": 1,
+      "message": "not sure what you mean, can you please provide an example? which all platorms have cacheDirPath?",
+      "parentUuid": "1ca201ec_970aca12",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "40037e8df410af72f0aa7197d200d06bb8e305bb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
