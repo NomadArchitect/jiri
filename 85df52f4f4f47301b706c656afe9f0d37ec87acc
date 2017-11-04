@@ -22,6 +22,30 @@
       "revId": "85df52f4f4f47301b706c656afe9f0d37ec87acc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7821674_0ad1ade1",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1720,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-04T00:22:26Z",
+      "side": 1,
+      "message": "as import versions can be pinned, so can\u0027t make this shallow clone as we don\u0027t know the depth for specified version",
+      "parentUuid": "5e416f91_c72d458f",
+      "range": {
+        "startLine": 1720,
+        "startChar": 0,
+        "endLine": 1720,
+        "endChar": 94
+      },
+      "revId": "85df52f4f4f47301b706c656afe9f0d37ec87acc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
