@@ -22,6 +22,30 @@
       "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bef46bf2_e193ae95",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-04T05:46:06Z",
+      "side": 1,
+      "message": "The problem now is that IsAtty is now not defined for any platform that isn\u0027t linux or darwin.\n\nThe goal is to ensure that this function is always defined (say with a default of false), and then for platforms where termois exists, we implement it differently.",
+      "parentUuid": "99e04289_2e1de35b",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
