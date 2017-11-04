@@ -46,6 +46,30 @@
       "revId": "40037e8df410af72f0aa7197d200d06bb8e305bb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25067efe_5673fa06",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-04T02:33:41Z",
+      "side": 1,
+      "message": "s/cacheDirPath/syscall.Termios",
+      "parentUuid": "3455fbf1_3f1499d4",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 28
+      },
+      "revId": "40037e8df410af72f0aa7197d200d06bb8e305bb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
