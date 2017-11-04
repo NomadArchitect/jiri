@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "99e04289_2e1de35b",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-04T02:38:58Z",
+      "side": 1,
+      "message": "is this what you mean?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 22
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
