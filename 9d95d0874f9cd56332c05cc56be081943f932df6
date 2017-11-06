@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f4024c2b_41eb6a30",
+        "filename": "color/color.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-06T21:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51c8b25d_71cbdc8f",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 3
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99e04289_2e1de35b",
         "filename": "isatty/isatty.go",
         "patchSetId": 2
@@ -116,6 +140,30 @@
       "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5cb3120_1da01dcf",
+        "filename": "isatty/isatty.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-11-06T21:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "188e2c76_cb1bba1a",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "9d95d0874f9cd56332c05cc56be081943f932df6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
