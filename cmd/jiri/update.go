@@ -5,13 +5,20 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"time"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/retry"
 	"fuchsia.googlesource.com/jiri/tool"
+	"go.chromium.org/luci/client/authcli"
+	"go.chromium.org/luci/common/api/gitiles"
+	"go.chromium.org/luci/common/auth"
+	"go.chromium.org/luci/hardcoded/chromeinfra"
+	"golang.org/x/net/context"
 )
 
 var (
@@ -61,6 +68,26 @@ Run "jiri help manifest" for details on manifests.
 }
 
 func runUpdate(jirix *jiri.X, args []string) error {
+	var flags authcli.Flags
+	defaults := chromeinfra.DefaultAuthOptions()
+	defaults.Scopes = []string{gitiles.OAuthScope, auth.OAuthScopeEmail}
+	flags.RegisterScopesFlag = true
+	flags.Register(flag.CommandLine, defaults)
+
+	opts, err := flags.Options()
+	if err != nil {
+		return err
+	}
+	authenticator := auth.NewAuthenticator(context.Background(), auth.SilentLogin, opts)
+	//if err := authenticator.Login(); err != nil {
+	//return fmt.Errorf("Login failed: %s", err)
+	//}
+	t, err := authenticator.GetAccessToken(45 * time.Minute)
+	if err != nil {
+		return fmt.Errorf("cannot get access token: %s", err)
+	}
+	fmt.Printf("username=git-luci\n")
+	fmt.Printf("password=%s\n", t.AccessToken)
 	if len(args) > 1 {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
@@ -83,7 +110,6 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		rebaseTrackedFlag = true
 	}
 
-	var err error
 	if len(args) > 0 {
 		err = project.CheckoutSnapshot(jirix, args[0], gcFlag, runHooksFlag, hookTimeoutFlag)
 	} else {

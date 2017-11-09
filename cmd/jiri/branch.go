@@ -284,7 +284,7 @@ func deleteProjectMergedClsBranches(jirix *jiri.X, local project.Project, remote
 		// Only show this message when project has some local branch
 		if strings.HasPrefix(local.Remote, "sso://") {
 			jirix.Logger.Warningf("Skipping project %s(%s) as it uses sso protocol. Not querying gerrit\n\n", local.Name, relativePath)
-			return nil, nil
+			//return nil, nil
 		}
 		if b.IsHead {
 			untracked, err := g.HasUntrackedFiles()

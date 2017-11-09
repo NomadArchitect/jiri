@@ -276,6 +276,7 @@ func parseQueryResults(reader io.Reader) (CLList, error) {
 	// to return.
 	var changes CLList
 	if err := json.NewDecoder(r).Decode(&changes); err != nil {
+		io.Copy(os.Stdout, reader)
 		return nil, fmt.Errorf("Decode() failed: %v", err)
 	}
 
@@ -339,10 +340,12 @@ func makeRequest(method, url string, body io.Reader, cred *credentials) (*http.R
 		return nil, fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
 	}
 	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Authorization", "Bearer ya29.Glv-BCSfFObcLZWiDPpjpVgsAMx1IxZ_OWZ0KODYzheAqy02jXe6LpphG7WhFdEhjFa-RgPb2QiAsD9AMpEOy_4Nf1s0qiYJL2o0j6zU6OaVubTrC2hokjpCmpU3")
 	// We ignore all errors when obtaining credentials since not every host requires them.
 	if cred != nil {
 		req.SetBasicAuth(cred.username, cred.password)
 	}
+	fmt.Printf("Query: %s\n\n", url)
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
