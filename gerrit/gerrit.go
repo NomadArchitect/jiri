@@ -9,6 +9,7 @@ package gerrit
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -20,6 +21,11 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
+
+	"go.chromium.org/luci/common/api/gitiles"
+	"go.chromium.org/luci/common/auth"
+	"go.chromium.org/luci/hardcoded/chromeinfra"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/collect"
@@ -79,8 +85,9 @@ type CLOpts struct {
 
 // Gerrit records a hostname of a Gerrit instance.
 type Gerrit struct {
-	host  *url.URL
-	jirix *jiri.X
+	host        *url.URL
+	jirix       *jiri.X
+	accessToken string
 }
 
 // New is the Gerrit factory.
@@ -333,12 +340,15 @@ func parsePresubmitTestType(match string) PresubmitTestType {
 	return ret
 }
 
-func makeRequest(method, url string, body io.Reader, cred *credentials) (*http.Response, error) {
+func makeRequest(method, url string, body io.Reader, cred *credentials, accessToken string) (*http.Response, error) {
 	req, err := http.NewRequest(method, url, body)
 	if err != nil {
 		return nil, fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
 	}
 	req.Header.Add("Accept", "application/json")
+	if accessToken != "" {
+		req.Header.Add("Authorization", "Bearer "+accessToken)
+	}
 	// We ignore all errors when obtaining credentials since not every host requires them.
 	if cred != nil {
 		req.SetBasicAuth(cred.username, cred.password)
@@ -383,7 +393,7 @@ func (g *Gerrit) Query(query string) (_ CLList, e error) {
 
 	var body io.Reader
 	method, body := "GET", nil
-	res, err := makeRequest(method, url, body, cred)
+	res, err := makeRequest(method, url, body, cred, g.accessToken)
 	if err != nil {
 		return nil, err
 	}
@@ -397,6 +407,18 @@ func (g *Gerrit) ListOpenChangesByTopic(topic string) (CLList, error) {
 
 func (g *Gerrit) ListChangesByCommit(commit string) (CLList, error) {
 	return g.Query(fmt.Sprintf("commit:%s", commit))
+}
+
+func (g *Gerrit) SetOAuthToken() error {
+	defaults := chromeinfra.DefaultAuthOptions()
+	defaults.Scopes = []string{gitiles.OAuthScope, auth.OAuthScopeEmail}
+	authenticator := auth.NewAuthenticator(context.Background(), auth.SilentLogin, defaults)
+	t, err := authenticator.GetAccessToken(5 * time.Minute)
+	if err != nil {
+		return fmt.Errorf("cannot get access token: %s", err)
+	}
+	g.accessToken = t.AccessToken
+	return nil
 }
 
 // GetChange returns a Change object for the given changeId number.
@@ -431,7 +453,7 @@ func (g *Gerrit) GetRelatedChanges(changeNumber int, revisionId string) (*Relate
 
 	var body io.Reader
 	method, body := "GET", nil
-	res, err := makeRequest(method, url, body, cred)
+	res, err := makeRequest(method, url, body, cred, g.accessToken)
 	if err != nil {
 		return nil, err
 	}

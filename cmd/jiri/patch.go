@@ -28,6 +28,7 @@ var (
 	patchForceFlag   bool
 	cherryPickFlag   bool
 	detachedHeadFlag bool
+	useOAuthFlag     bool
 )
 
 func init() {
@@ -39,6 +40,7 @@ func init() {
 	cmdPatch.Flags.BoolVar(&patchTopicFlag, "topic", false, `Patch whole topic.`)
 	cmdPatch.Flags.BoolVar(&cherryPickFlag, "cherry-pick", false, `Cherry-pick patches instead of checking out.`)
 	cmdPatch.Flags.BoolVar(&detachedHeadFlag, "no-branch", false, `Don't create the branch for the patch.`)
+	cmdPatch.Flags.BoolVar(&useOAuthFlag, "use-oauth", false, `Use OAuth to communicate with gerrit host. Right now this only works on bots.`)
 }
 
 // cmdPatch represents the "jiri patch" command.
@@ -223,6 +225,11 @@ func runPatch(jirix *jiri.X, args []string) error {
 			return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
 		}
 		g := gerrit.New(jirix, hostUrl)
+		if useOAuthFlag {
+			if err := g.SetOAuthToken(); err != nil {
+				return err
+			}
+		}
 
 		change, err := g.GetChange(cl)
 		if err != nil {
@@ -261,6 +268,11 @@ func runPatch(jirix *jiri.X, args []string) error {
 			return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
 		}
 		g := gerrit.New(jirix, hostUrl)
+		if useOAuthFlag {
+			if err := g.SetOAuthToken(); err != nil {
+				return err
+			}
+		}
 
 		var changes gerrit.CLList
 		branch := patchBranchFlag
