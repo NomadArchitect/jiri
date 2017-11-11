@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00a9c754_d899fae3",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-11-11T00:43:41Z",
+      "side": 1,
+      "message": "So ideally we would like to reimplement the Authenticator within Jiri so we don\u0027t have to depend on the rest of luci-go.",
+      "revId": "eafdaadf79945a8edd808f2f4c69bb98e19cdb02",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
