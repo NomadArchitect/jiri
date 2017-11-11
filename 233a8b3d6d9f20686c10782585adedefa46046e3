@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4439219_a37ad36c",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-11-11T00:39:56Z",
+      "side": 1,
+      "message": "This should be a TODO pointing to a bug explaining that we should actually fetch this information from Gerrit.",
+      "revId": "233a8b3d6d9f20686c10782585adedefa46046e3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
