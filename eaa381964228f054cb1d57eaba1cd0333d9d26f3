@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04d54ec0_0266cf8b",
+        "filename": "color/color.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-11-15T06:42:08Z",
+      "side": 1,
+      "message": "Constants in Go usually use CamelCase, so: ColorAlways, ColorNever, ColorAuto.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "eaa381964228f054cb1d57eaba1cd0333d9d26f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
