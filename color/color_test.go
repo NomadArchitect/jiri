@@ -6,8 +6,7 @@ import (
 )
 
 func TestColors(t *testing.T) {
-	checkIsTerminal = false
-	c := NewColor(true)
+	c := NewColor(COLOR_ALWAYS)
 	colorFns := []Colorfn{c.Black, c.Red, c.Green, c.Yellow, c.Magenta, c.Cyan, c.White, c.DefaultColor}
 	colorCodes := []ColorCode{BlackFg, RedFg, GreenFg, YellowFg, MagentaFg, CyanFg, WhiteFg, DefaultFg}
 
@@ -44,8 +43,7 @@ func TestColors(t *testing.T) {
 }
 
 func TestColorsDisabled(t *testing.T) {
-	checkIsTerminal = false
-	c := NewColor(false)
+	c := NewColor(COLOR_NEVER)
 	colorFns := []Colorfn{c.Black, c.Red, c.Green, c.Yellow, c.Magenta, c.Cyan, c.White, c.DefaultColor}
 
 	// Test with attr

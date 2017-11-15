@@ -91,21 +91,29 @@ func (monochrome) Enabled() bool {
 	return false
 }
 
-// for test cases
-var checkIsTerminal = true
+type EnableColor string
 
-func NewColor(enableColor bool) Color {
-	if enableColor {
-		term := os.Getenv("TERM")
-		switch term {
-		case "dumb", "":
-			enableColor = false
+const (
+	COLOR_ALWAYS EnableColor = "always"
+	COLOR_NEVER  EnableColor = "never"
+	COLOR_AUTO   EnableColor = "auto"
+)
+
+func NewColor(enableColor EnableColor) Color {
+	ec := enableColor != COLOR_NEVER
+	if enableColor != COLOR_ALWAYS {
+		if ec {
+			term := os.Getenv("TERM")
+			switch term {
+			case "dumb", "":
+				ec = false
+			}
+		}
+		if ec {
+			ec = isatty.IsTerminal()
 		}
 	}
-	if enableColor && checkIsTerminal {
-		enableColor = isatty.IsTerminal()
-	}
-	if enableColor {
+	if ec {
 		return color{}
 	} else {
 		return monochrome{}
