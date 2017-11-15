@@ -17,7 +17,22 @@ type Command struct {
 	endTime   time.Time
 }
 
+
+
 func newCommand(name string, flags map[string]string) *Command {
+	for k, v := range flags {
+		allowed := false
+		if _, err := strconv.ParseBool(val); err == nil {
+			allowed = true
+		} else if _, err := strconv.ParseFloat(val, 10); err == nil {
+			allowed = true
+		} else if _, err := strconv.ParseInt(val, 10, 64); err == nil {
+			allowed = true
+		}
+		if !allowed {
+			flags[k] = ""
+		}
+	}
 	c := &Command{name: name, flags: flags}
 	c.startTime = time.Now()
 	return c
