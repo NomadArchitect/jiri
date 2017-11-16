@@ -6,6 +6,7 @@ package analytics_util
 
 import (
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -17,16 +18,23 @@ type Command struct {
 	endTime   time.Time
 }
 
-
+// string values allowed to be tracked
+var allowedStrings = map[string]struct{}{
+	"always": struct{}{},
+	"auto":   struct{}{},
+	"never":  struct{}{},
+}
 
 func newCommand(name string, flags map[string]string) *Command {
 	for k, v := range flags {
 		allowed := false
-		if _, err := strconv.ParseBool(val); err == nil {
+		if _, ok := allowedStrings[v]; ok {
 			allowed = true
-		} else if _, err := strconv.ParseFloat(val, 10); err == nil {
+		} else if _, err := strconv.ParseBool(v); err == nil {
 			allowed = true
-		} else if _, err := strconv.ParseInt(val, 10, 64); err == nil {
+		} else if _, err := strconv.ParseFloat(v, 10); err == nil {
+			allowed = true
+		} else if _, err := strconv.ParseInt(v, 10, 64); err == nil {
 			allowed = true
 		}
 		if !allowed {
