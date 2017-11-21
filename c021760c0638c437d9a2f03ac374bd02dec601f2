@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01cec0ca_5759f6c4",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1677,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2017-11-21T23:17:52Z",
+      "side": 1,
+      "message": "incase -\u003e in the case",
+      "range": {
+        "startLine": 1677,
+        "startChar": 12,
+        "endLine": 1677,
+        "endChar": 18
+      },
+      "revId": "c021760c0638c437d9a2f03ac374bd02dec601f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
