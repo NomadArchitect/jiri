@@ -465,3 +465,4 @@ see [Jiri local update][hacking doc]
 [behaviour]:/behaviour.md
 [build jiri]:/BUILD.md "Build jiri"
 [how do i]:/howdoi.md
+[vanadium]: https://v.io/
