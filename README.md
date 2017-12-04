@@ -435,6 +435,11 @@ This process can be extended for more than 2 CLs.  You must keep two things in m
 ## FAQ
 
 ### Why the name "jiri"?
+The tool was conceived by engineers working on the [Vanadium][vanadium] project
+to facilitate the multi-repository management needs of the project. At the time,
+it was called "v23". It was renamed to "jiri" shortly after its creator (named
+Jiří) left the project and Google.
+
 [Jiří][jiri-wiki] is a very popular boys name in the Czech Republic.
 
 ### How do you pronounce "jiri"?
