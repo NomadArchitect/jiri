@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d3dab51_9cc60b8b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2017-12-04T23:48:03Z",
+      "side": 1,
+      "message": "Maybe \"jiri import shouldn\u0027t fail when ...\"?",
+      "revId": "2648fd3b9a0bd8e9f2f7496dfe26153386377a84",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
