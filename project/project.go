@@ -25,7 +25,6 @@ import (
 	"time"
 
 	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/collect"
 	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
@@ -1034,17 +1033,19 @@ func LoadManifestFile(jirix *jiri.X, file string, localProjects Projects, localM
 	if err := ld.Load(jirix, "", "", file, "", "", "", localManifest); err != nil {
 		return nil, nil, err
 	}
+	jirix.AddCleanupFunc(ld.cleanup)
 	return ld.Projects, ld.Hooks, nil
 }
 
-func LoadUpdatedManifest(jirix *jiri.X, localProjects Projects, localManifest bool) (Projects, Hooks, string, error) {
+func LoadUpdatedManifest(jirix *jiri.X, localProjects Projects, localManifest bool) (Projects, Hooks, error) {
 	jirix.TimerPush("load updated manifest")
 	defer jirix.TimerPop()
 	ld := newManifestLoader(localProjects, true, jirix.JiriManifestFile())
 	if err := ld.Load(jirix, "", "", jirix.JiriManifestFile(), "", "", "", localManifest); err != nil {
-		return nil, nil, ld.TmpDir, err
+		return nil, nil, err
 	}
-	return ld.Projects, ld.Hooks, ld.TmpDir, nil
+	jirix.AddCleanupFunc(ld.cleanup)
+	return ld.Projects, ld.Hooks, nil
 }
 
 func MatchLocalWithRemote(localProjects, remoteProjects Projects) {
@@ -1098,13 +1099,8 @@ func UpdateUniverse(jirix *jiri.X, gc bool, localManifest bool, rebaseTracked bo
 		}
 
 		// Determine the set of remote projects and match them up with the locals.
-		remoteProjects, hooks, tmpLoadDir, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
+		remoteProjects, hooks, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
 		MatchLocalWithRemote(localProjects, remoteProjects)
-
-		// Make sure we clean up the tmp dir used to load remote manifest projects.
-		if tmpLoadDir != "" {
-			defer collect.Error(func() error { return fmtError(os.RemoveAll(tmpLoadDir)) }, &e)
-		}
 
 		if err != nil {
 			return err
@@ -1696,6 +1692,13 @@ type loader struct {
 	parentFile     string
 }
 
+func (ld *loader) cleanup() {
+	if ld.TmpDir != "" {
+		os.RemoveAll(ld.TmpDir)
+		ld.TmpDir = ""
+	}
+}
+
 type cycleInfo struct {
 	file, key string
 }
@@ -1771,7 +1774,7 @@ func (ld *loader) Load(jirix *jiri.X, root, repoPath, file, ref, cycleKey, paren
 
 func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath string, localManifest bool) error {
 	if !ld.update || localManifest {
-		jirix.Logger.Warningf("import %q not found locally, getting from server.\n\n", remote.Name)
+		jirix.Logger.Warningf("import %q not found locally, getting from server. Please check your manifest file (default: .jiri_manifest), it might have wrong mappings.\n\n", remote.Name)
 	}
 	// The remote manifest project doesn't exist locally.  Clone it into a
 	// temp directory, and add it to ld.localProjects.
