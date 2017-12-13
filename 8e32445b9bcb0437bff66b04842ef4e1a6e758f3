@@ -52,6 +52,24 @@
       "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1837c69f_9a0beace",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-13T21:38:01Z",
+      "side": 1,
+      "message": "even if there are no hooks in snapshot file LoadManifestFile function will return empty map to it would always be non-nil\n\nI know it is complex, it is on my radar to simplify this logic, but not sure If i can do it right now",
+      "parentUuid": "af1407df_9379dec4",
+      "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
