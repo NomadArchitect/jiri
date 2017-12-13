@@ -85,13 +85,13 @@ func runUpdate(jirix *jiri.X, args []string) error {
 
 	var err error
 	if len(args) > 0 {
-		err = project.CheckoutSnapshot(jirix, args[0], gcFlag, runHooksFlag, hookTimeoutFlag)
+		return project.CheckoutSnapshot(jirix, args[0], gcFlag, runHooksFlag, hookTimeoutFlag)
 	} else {
 		err = project.UpdateUniverse(jirix, gcFlag, localManifestFlag,
 			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, hookTimeoutFlag)
 	}
 
-	if err2 := project.WriteUpdateHistorySnapshot(jirix, "", localManifestFlag); err2 != nil {
+	if err2 := project.WriteUpdateHistorySnapshot(jirix, "", nil, localManifestFlag); err2 != nil {
 		if err != nil {
 			return fmt.Errorf("while updation: %s, while writing history: %s", err, err2)
 		}
