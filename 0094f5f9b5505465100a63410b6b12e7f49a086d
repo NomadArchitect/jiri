@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cd7fde4_68102e3f",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5080
+      },
+      "writtenOn": "2017-12-13T20:30:12Z",
+      "side": 1,
+      "message": "Returning now bypasses the jirix.Failures test. Not sure that\u0027s a problem or not.",
+      "revId": "0094f5f9b5505465100a63410b6b12e7f49a086d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}

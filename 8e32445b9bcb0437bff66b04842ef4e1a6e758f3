@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb319b49_0c9857c9",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5080
+      },
+      "writtenOn": "2017-12-13T20:30:12Z",
+      "side": 1,
+      "message": "I\u0027m trying to see where CreateSnapshot is called with a non-nil value for Hooks. Can you point me at it?\n\nAlso, IWBN to document in the function comment how Hooks is to be used. E.g., when would one pass nil vs non-nil?",
+      "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
