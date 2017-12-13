@@ -34,6 +34,24 @@
       "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af1407df_9379dec4",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5080
+      },
+      "writtenOn": "2017-12-13T21:00:11Z",
+      "side": 1,
+      "message": "Ah, thanks.\n\nThere\u0027s an assumption that the hooks from the snapshot file is non-nil, which may be true in practice, but one could improve on this. [Or is there a hard rule that hooks will always be non-nil?]\n\nOne thought is to move the call to LoadManifestFile into the caller. Then there\u0027s no need question as to whether hooks has been provided or not: CreateSnapshot just uses the hooks it has been given.\n\nAnother thought, which upon reflection I\u0027m liking less but am including for completelness sake, is to split CreateSnapshot into two:\nCreateSnapshot - always calls LoadManifestFile to get the hooks\nCreateSnapshotWithHooks - uses the hooks it\u0027s given\n\nAnd then have the \"got manifest from url\" path call the latter. Alas going through the code employing this doesn\u0027t look simple. There\u0027s two sources of data here (manifest vs url - IIUC!) and the code is mixing them.\n\nI don\u0027t want to drag this review out just for this bug fix, maybe I\u0027m missing something, so I\u0027ll just +1 this and see if someone maybe more familiar with the code has a thought.",
+      "parentUuid": "f5deb98e_c2b1103f",
+      "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
