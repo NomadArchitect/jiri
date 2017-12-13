@@ -70,6 +70,24 @@
       "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6abd9e45_31085690",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5080
+      },
+      "writtenOn": "2017-12-13T22:32:35Z",
+      "side": 1,
+      "message": "Fair enough. Keep on hacking!",
+      "parentUuid": "1837c69f_9a0beace",
+      "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
