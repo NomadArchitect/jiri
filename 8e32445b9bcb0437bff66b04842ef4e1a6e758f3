@@ -16,6 +16,24 @@
       "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5deb98e_c2b1103f",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-13T20:34:01Z",
+      "side": 1,
+      "message": "here\nhttps://fuchsia-review.googlesource.com/c/jiri/+/102824/3/project/project.go#397\n\nalso added comment",
+      "parentUuid": "eb319b49_0c9857c9",
+      "revId": "8e32445b9bcb0437bff66b04842ef4e1a6e758f3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
