@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24eece30_9fdb5583",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-14T23:55:27Z",
+      "side": 1,
+      "message": "I think it\u0027d be useful to print the log message, too, to help track down where the bad value came from.",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd59e4dd_0422d47f",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-14T23:55:27Z",
+      "side": 1,
+      "message": "Another duplicated format string",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e965bbf_3f0af11d",
+        "filename": "project/operations.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-14T23:55:27Z",
+      "side": 1,
+      "message": "Mostly duplicated string, could say Errorf(\"%s: %s\", logMsg, err)\n\nAnd there may be more around, but these are the ones near lines touched by this CL.",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
