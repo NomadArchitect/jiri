@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56e2740b_06668510",
+        "filename": "log/logger.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-14T23:41:22Z",
+      "side": 1,
+      "message": "Would be good to have a default: section for NoLogLevel and unknown values.\n\nNot sure how go code tends to handle that kind of thing; maybe print the provided message then panic, since passing that bad LogLevel would be a bug?",
+      "revId": "04ab76de52f125d818e98111b4ef76099757345a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85ac8aa7_f808abf7",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-14T23:41:22Z",
+      "side": 1,
+      "message": "For patterns like this (log + AddTaskMsg), consider fmt.Sprintf\u0027ing into a common string rather than duplicating the format string and args.\n\nThis is the kind of thing that will drive someone crazy when they only update one copy of the string, but not the one they\u0027re looking for in the output.",
+      "revId": "04ab76de52f125d818e98111b4ef76099757345a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
