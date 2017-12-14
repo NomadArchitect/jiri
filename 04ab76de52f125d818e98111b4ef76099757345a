@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3ac9f516_d5f5bf8e",
+        "filename": "log/logger.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-14T23:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56e2740b_06668510",
+      "revId": "04ab76de52f125d818e98111b4ef76099757345a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85ac8aa7_f808abf7",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "04ab76de52f125d818e98111b4ef76099757345a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c38280be_94a19378",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-14T23:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85ac8aa7_f808abf7",
+      "revId": "04ab76de52f125d818e98111b4ef76099757345a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
