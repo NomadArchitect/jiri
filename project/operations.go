@@ -15,6 +15,7 @@ import (
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/git"
 	"fuchsia.googlesource.com/jiri/gitutil"
+	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/osutil"
 )
 
@@ -792,10 +793,10 @@ func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
 	return nil
 }
 
-func runCommonOperations(jirix *jiri.X, ops operations) error {
+func runCommonOperations(jirix *jiri.X, ops operations, loglevel log.LogLevel) error {
 	for _, op := range ops {
 		task := jirix.Logger.AddTaskMsg("Updating project %q", op.Project().Name)
-		jirix.Logger.Debugf("%s", op)
+		jirix.Logger.Logf(loglevel, "%s", op)
 		if err := op.Run(jirix); err != nil {
 			task.Done()
 			return fmt.Errorf("Updating project %q: %s", op.Project().Name, err)

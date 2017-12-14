@@ -135,6 +135,7 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 	if !ld.update || localManifest {
 		jirix.Logger.Warningf("import %q not found locally, getting from server.\n\n", remote.Name)
 	}
+	jirix.Logger.Debugf("clone manifest project %q", remote.Name)
 	// The remote manifest project doesn't exist locally.  Clone it into a
 	// temp directory, and add it to ld.localProjects.
 	if ld.TmpDir == "" {
@@ -155,6 +156,9 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 	task := jirix.Logger.AddTaskMsg("Creating manifest: %s", remote.Name)
 	defer task.Done()
 	if cacheDirPath != "" {
+		jirix.Logger.Debugf("update/create cache for project %q", remote.Name)
+		task := jirix.Logger.AddTaskMsg("update/create cache for project %q", remote.Name)
+		defer task.Done()
 		if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, remote.RemoteBranch, 0); err != nil {
 			return err
 		}

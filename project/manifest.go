@@ -446,8 +446,10 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 	}
 	defer os.RemoveAll(tmpDir)
 	for _, hook := range hooks {
-		jirix.Logger.Infof("running hook(%s) for project %q", hook.Name, hook.ProjectName)
+		jirix.Logger.Debugf("running hook(%s) for project %q", hook.Name, hook.ProjectName)
 		go func(hook Hook) {
+			task := jirix.Logger.AddTaskMsg("running hook(%s) for project %q", hook.Name, hook.ProjectName)
+			defer task.Done()
 			outFile, err := ioutil.TempFile(tmpDir, hook.Name+"-out")
 			if err != nil {
 				ch <- result{nil, nil, fmtError(err)}
