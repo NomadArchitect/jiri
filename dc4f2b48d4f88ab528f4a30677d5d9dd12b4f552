@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b0a7994f_b50c16d3",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-15T00:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24eece30_9fdb5583",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd59e4dd_0422d47f",
         "filename": "project/manifest.go",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9d4eabdb_355a99dc",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-15T00:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd59e4dd_0422d47f",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e965bbf_3f0af11d",
         "filename": "project/operations.go",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30824d95_ccad5814",
+        "filename": "project/operations.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-15T00:08:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e965bbf_3f0af11d",
+      "revId": "dc4f2b48d4f88ab528f4a30677d5d9dd12b4f552",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
