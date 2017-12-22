@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "464a2d0d_37b9462d",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T23:44:47Z",
+      "side": 1,
+      "message": "As it stands, the call sites to this function are difficult to read and easy to mess up, so I think something needs to change.\n\nI\u0027d argue that Go is fine with using structs to name params, especially effectively-optional/default params like many of these params. See http://g/go-nuts/a72r3hbDbYg for example.\n\nBut, either way, it would be a big enough change to warrant a separate CL.",
+      "parentUuid": "d40936e9_a716613c",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea8ad09e_91f0c39d",
         "filename": "log/timetracker_test.go",
         "patchSetId": 2
