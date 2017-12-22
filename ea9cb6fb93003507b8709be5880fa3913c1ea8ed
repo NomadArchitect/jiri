@@ -42,6 +42,48 @@
     },
     {
       "key": {
+        "uuid": "37d86ca5_b7c3f453",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "468e2f06_4ee4d81f",
+      "range": {
+        "startLine": 70,
+        "startChar": 102,
+        "endLine": 70,
+        "endChar": 118
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d40936e9_a716613c",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "I am not sure about golang style guide, some months back i tried to do same for update function in project.go but got a pushpack from @phosek that we should simply pass it as param as that is how golang expects it to be. I don\u0027t have any link to official style guide so not sure what to follow. \n\nI can change it according to your advise if you want me to.",
+      "parentUuid": "4cda7c38_4dc0e9cf",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea8ad09e_91f0c39d",
         "filename": "log/timetracker_test.go",
         "patchSetId": 2
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "836099dd_8c8abfbb",
+        "filename": "log/timetracker_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "I have to use timeout, but i decreased timeout to 100ms and also these tests run in parallel",
+      "parentUuid": "ea8ad09e_91f0c39d",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "080246bc_9cd56d8d",
         "filename": "log/timetracker_test.go",
         "patchSetId": 2
@@ -73,6 +133,24 @@
       "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dba82786_c215bab2",
+        "filename": "log/timetracker_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "080246bc_9cd56d8d",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -119,6 +197,54 @@
       "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b96c043_c2a616a0",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7210d151_1e1df1ce",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 56
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a447751_fd63c93e",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-22T23:20:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "573780e1_6556c5e7",
+      "range": {
+        "startLine": 149,
+        "startChar": 121,
+        "endLine": 149,
+        "endChar": 124
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
