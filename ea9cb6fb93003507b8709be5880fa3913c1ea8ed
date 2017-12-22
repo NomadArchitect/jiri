@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "468e2f06_4ee4d81f",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "Hard to tell what the units are for timeLogThreshold. Please use a type like time.Duration, or change the name to include the units (like timeLogThresholdMs, assuming these are in milliseconds).\n\nThe nice thing about using Duration is that it makes the call sites more clear, and callers are less likely to use the wrong units.",
+      "range": {
+        "startLine": 70,
+        "startChar": 102,
+        "endLine": 70,
+        "endChar": 118
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cda7c38_4dc0e9cf",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "This parameter list is getting too long. I\u0027m not sure if Go is different, but this is the point where other languages will use builders or options structs.\n\nE.g., passing in a single option struct would let the reader see which fields had which values, like\n\n  log.NewLogger(\u0026log.Options{\n      LoggerLevel: InfoLevel,\n      Color: jirix.Color,\n      EnableProgress: true,\n      ...\n  })\n\nPositional params in a list this long are easy to swap accidentally, and are difficult for readers to understand.\n\nIf you change this, it\u0027d be worth doing it in a separate precursor CL, and then adding this new feature in a followup CL.",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea8ad09e_91f0c39d",
+        "filename": "log/timetracker_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "Is there any way to do these tests without using a timeout? Sleeping for 1 second each time makes the tests take orders of magnitude longer than they need to in the typical case, slowing things down for the developers and bots running the tests.",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "080246bc_9cd56d8d",
+        "filename": "log/timetracker_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "These tests all have very similar structure, and it\u0027s hard to tell what\u0027s different between each one. Please create a helper(s) to factor out the common pieces so that the test bodies more clearly show the details they test.",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7210d151_1e1df1ce",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "If possible, please use a flag.DurationVar to make the units more clear (https://golang.org/pkg/flag/#DurationVar).\n\nOtherwise, consider adding the units to these names, like timeLogThresholdSecsFlag, time-log-threshold-secs.",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 56
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "573780e1_6556c5e7",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 8890
+      },
+      "writtenOn": "2017-12-22T22:45:48Z",
+      "side": 1,
+      "message": "Missing space before the left paren.",
+      "range": {
+        "startLine": 149,
+        "startChar": 121,
+        "endLine": 149,
+        "endChar": 124
+      },
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
