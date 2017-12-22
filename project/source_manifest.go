@@ -87,7 +87,7 @@ func getCLRefByCommit(jirix *jiri.X, gerritHost, revision string) (string, error
 	if err != nil {
 		return "", fmt.Errorf("invalid gerrit host %q: %s", gerritHost, err)
 	}
-	g := gerrit.New(jirix, hostUrl)
+	g := gerrit.New(jirix, hostUrl, false)
 	cls, err := g.ListChangesByCommit(revision)
 	if err != nil {
 		return "", fmt.Errorf("not able to get CL for revision %s: %s", revision, err)

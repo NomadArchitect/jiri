@@ -29,6 +29,7 @@ var (
 	cherryPickFlag   bool
 	detachedHeadFlag bool
 	patchProjectFlag string
+	useSsoFlag       bool
 )
 
 func init() {
@@ -41,6 +42,7 @@ func init() {
 	cmdPatch.Flags.BoolVar(&patchTopicFlag, "topic", false, `Patch whole topic.`)
 	cmdPatch.Flags.BoolVar(&cherryPickFlag, "cherry-pick", false, `Cherry-pick patches instead of checking out.`)
 	cmdPatch.Flags.BoolVar(&detachedHeadFlag, "no-branch", false, `Don't create the branch for the patch.`)
+	cmdPatch.Flags.BoolVar(&useSsoFlag, "use-sso", false, `Use sso.`)
 }
 
 // cmdPatch represents the "jiri patch" command.
@@ -294,13 +296,17 @@ func runPatch(jirix *jiri.X, args []string) error {
 			host = p.GerritHost
 		}
 	}
+	useSso := useSsoFlag
+	if p != nil && !useSso {
+		useSso = strings.HasPrefix(p.Remote, "sso://")
+	}
 	if !patchTopicFlag && p != nil {
 		if remoteBranch == "" || changeRef == "" {
 			hostUrl, err := url.Parse(host)
 			if err != nil {
 				return fmt.Errorf("invalid Gerrit host %q: %s", host, err)
 			}
-			g := gerrit.New(jirix, hostUrl)
+			g := gerrit.New(jirix, hostUrl, useSso)
 
 			change, err := g.GetChange(cl)
 			if err != nil {
@@ -333,7 +339,7 @@ func runPatch(jirix *jiri.X, args []string) error {
 		if err != nil {
 			return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
 		}
-		g := gerrit.New(jirix, hostUrl)
+		g := gerrit.New(jirix, hostUrl, useSso)
 
 		var changes gerrit.CLList
 		branch := patchBranchFlag

@@ -269,7 +269,7 @@ func deleteProjectMergedClsBranches(jirix *jiri.X, local project.Project, remote
 		retErr = append(retErr, err)
 		return nil, retErr
 	}
-	gerrit := gerrit.New(jirix, hostUrl)
+	gerrit := gerrit.New(jirix, hostUrl, false)
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(local.Path))
 	g := git.NewGit(local.Path)
 	branches, err := g.GetAllBranchesInfo()

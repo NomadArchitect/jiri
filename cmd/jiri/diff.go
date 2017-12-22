@@ -218,7 +218,7 @@ func getDiff(jirix *jiri.X, snapshot1, snapshot2 string) (*Diff, error) {
 			} else if hostUrl, err := url.Parse(p1.GerritHost); err != nil {
 				diffP.Error = fmt.Sprintf("invalid gerrit host %q: %s", p2.GerritHost, err)
 			} else {
-				g := gerrit.New(jirix, hostUrl)
+				g := gerrit.New(jirix, hostUrl, false)
 				revision := p2.Revision
 				for i := uint(0); i < diffFlags.maxCls && revision != p1.Revision; i++ {
 					cls, err := g.ListChangesByCommit(revision)

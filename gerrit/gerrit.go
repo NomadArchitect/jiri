@@ -12,7 +12,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
@@ -20,6 +19,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/collect"
@@ -79,99 +79,23 @@ type CLOpts struct {
 
 // Gerrit records a hostname of a Gerrit instance.
 type Gerrit struct {
-	host  *url.URL
-	jirix *jiri.X
+	host   *url.URL
+	jirix  *jiri.X
+	useSso bool
 }
 
 // New is the Gerrit factory.
-func New(jirix *jiri.X, host *url.URL) *Gerrit {
+func New(jirix *jiri.X, host *url.URL, useSso bool) *Gerrit {
+	h := *host // copy host
+	if useSso {
+		h.Scheme = "http"
+		h.Host = strings.Replace(h.Host, "googlesource.com", "git.corp.google.com", 1)
+	}
 	return &Gerrit{
-		host:  host,
-		jirix: jirix,
+		host:   &h,
+		jirix:  jirix,
+		useSso: useSso,
 	}
-}
-
-// PostReview posts a review to the given Gerrit reference.
-func (g *Gerrit) PostReview(ref string, message string, labels map[string]string) (e error) {
-	cred, err := hostCredentials(g.jirix, g.host)
-	if err != nil {
-		return err
-	}
-
-	review := Review{
-		Message: message,
-		Labels:  labels,
-	}
-
-	// Encode "review" as JSON.
-	encodedBytes, err := json.Marshal(review)
-	if err != nil {
-		return fmt.Errorf("Marshal(%#v) failed: %v", review, err)
-	}
-
-	// Construct API URL.
-	// ref is in the form of "refs/changes/<last two digits of change number>/<change number>/<patch set number>".
-	parts := strings.Split(ref, "/")
-	if expected, got := 5, len(parts); expected != got {
-		return fmt.Errorf("unexpected number of %q parts: expected %v, got %v", ref, expected, got)
-	}
-	cl, revision := parts[3], parts[4]
-	url := fmt.Sprintf("%s/a/changes/%s/revisions/%s/review", g.host, cl, revision)
-
-	// Post the review.
-	method, body := "POST", bytes.NewReader(encodedBytes)
-	req, err := http.NewRequest(method, url, body)
-	if err != nil {
-		return fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
-	}
-	req.Header.Add("Content-Type", "application/json;charset=UTF-8")
-	req.SetBasicAuth(cred.username, cred.password)
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return fmt.Errorf("Do(%v) failed: %v", req, err)
-	}
-	if res.StatusCode != http.StatusOK {
-		return fmt.Errorf("PostReview:Do(%v) failed: %v", req, res.StatusCode)
-	}
-	defer collect.Error(func() error { return res.Body.Close() }, &e)
-
-	return nil
-}
-
-type Topic struct {
-	Topic string `json:"topic"`
-}
-
-// SetTopic sets the topic of the given Gerrit reference.
-func (g *Gerrit) SetTopic(cl string, opts CLOpts) (e error) {
-	cred, err := hostCredentials(g.jirix, g.host)
-	if err != nil {
-		return err
-	}
-	topic := Topic{opts.Topic}
-	data, err := json.Marshal(topic)
-	if err != nil {
-		return fmt.Errorf("Marshal(%#v) failed: %v", topic, err)
-	}
-
-	url := fmt.Sprintf("%s/a/changes/%s/topic", g.host, cl)
-	method, body := "PUT", bytes.NewReader(data)
-	req, err := http.NewRequest(method, url, body)
-	if err != nil {
-		return fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
-	}
-	req.Header.Add("Content-Type", "application/json;charset=UTF-8")
-	req.SetBasicAuth(cred.username, cred.password)
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return fmt.Errorf("Do(%v) failed: %v", req, err)
-	}
-	if res.StatusCode != http.StatusOK && res.StatusCode != http.StatusNoContent {
-		return fmt.Errorf("SetTopic:Do(%v) failed: %v", req, res.StatusCode)
-	}
-	defer collect.Error(func() error { return res.Body.Close() }, &e)
-
-	return nil
 }
 
 // The following types reflect the schema Gerrit uses to represent
@@ -333,10 +257,10 @@ func parsePresubmitTestType(match string) PresubmitTestType {
 	return ret
 }
 
-func makeRequest(method, url string, body io.Reader, cred *credentials) (*http.Response, error) {
-	req, err := http.NewRequest(method, url, body)
+func makeHttpRequest(url string, cred *credentials) (io.Reader, func() error, error) {
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		return nil, fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
+		return nil, nil, fmt.Errorf("NewRequest(GET, %q) failed: %s", url, err)
 	}
 	req.Header.Add("Accept", "application/json")
 	// We ignore all errors when obtaining credentials since not every host requires them.
@@ -346,12 +270,112 @@ func makeRequest(method, url string, body io.Reader, cred *credentials) (*http.R
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, fmt.Errorf("Do(%v) failed: %v", req, err)
+		return nil, nil, fmt.Errorf("Do(%v) failed: %s", req, err)
 	}
 	if res.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("Query:Do(%v) failed: %v", req, res.StatusCode)
+		res.Body.Close()
+		return nil, nil, fmt.Errorf("Query:Do(%v) failed: %s", req, res.StatusCode)
 	}
-	return res, nil
+	cleanup := func() error {
+		return res.Body.Close()
+	}
+	return res.Body, cleanup, nil
+}
+
+func (g *Gerrit) makeRequest(url string, cred *credentials) (io.Reader, func() error, error) {
+	if !g.useSso {
+		return makeHttpRequest(url, cred)
+	}
+
+	if _, err := exec.LookPath("git-remote-persistent-https"); err != nil {
+		return nil, nil, fmt.Errorf("cannot find executable 'git-remote-persistent-https', can't make sso request")
+	}
+	if _, err := exec.LookPath("curl"); err != nil {
+		return nil, nil, fmt.Errorf("cannot find executable 'curl', can't make sso request")
+	}
+	type SsoCred struct {
+		cookieFile string
+		proxy      string
+		err        error
+		cmd        *exec.Cmd
+	}
+	c := make(chan SsoCred, 1)
+	command := exec.Command("git-remote-persistent-https", "-print_config", url)
+	defer func() {
+		if command.Process != nil {
+			command.Process.Kill()
+		}
+	}()
+	go func() {
+		cookieprefix := "http.cookiefile="
+		proxyprefix := "http.proxy="
+		var stdout, stderr bytes.Buffer
+		command.Stdin = os.Stdin
+		command.Stdout = &stdout
+		command.Stderr = &stderr
+		command.Env = envvar.MapToSlice(g.jirix.Env())
+		g.jirix.Logger.Tracef("Run: git-remote-persistent-https -print_config %q", url)
+		g.jirix.Logger.Infof("Trying to get sso cookie.")
+		ssoCred := SsoCred{}
+		if err := command.Start(); err != nil {
+			ssoCred.err = err
+			c <- ssoCred
+			return
+		}
+		ticker := time.NewTicker(time.Millisecond * 100)
+		go func() {
+			ssoCred := SsoCred{}
+			maxTicks := 100 // 10 seconds
+			i := 0
+			for _ = range ticker.C {
+				i++
+				txt := stdout.String()
+				lines := strings.Split(txt, "\n")
+				for _, line := range lines {
+					if ssoCred.cookieFile == "" && strings.HasPrefix(line, cookieprefix) {
+						ssoCred.cookieFile = line[len(cookieprefix):]
+					}
+					if ssoCred.proxy == "" && strings.HasPrefix(line, proxyprefix) {
+						ssoCred.proxy = line[len(proxyprefix):]
+					}
+				}
+				if ssoCred.cookieFile != "" && ssoCred.proxy != "" {
+					ticker.Stop()
+					c <- ssoCred
+					return
+				}
+				if i >= maxTicks {
+					ticker.Stop()
+					g.jirix.Logger.Infof("kill")
+					ssoCred.err = fmt.Errorf("Cannot find proper credentials, please run:\n%s\nand report bug", g.jirix.Color.Green("git-remote-persistent-https -print_config %q", url))
+					c <- ssoCred
+					command.Process.Kill()
+					return
+				}
+			}
+		}()
+		// Leave it open, as closing it might delete cookie jar
+		if err := command.Wait(); err != nil {
+			ticker.Stop()
+			ssoCred.err = fmt.Errorf("Error running  'git-remote-persistent-https': %s\nError msg:\n%s\n", err, stderr.String())
+			c <- ssoCred
+		}
+		g.jirix.Logger.Tracef("killed")
+	}()
+	ssoCred := <-c
+	if ssoCred.err != nil {
+		return nil, nil, ssoCred.err
+	}
+	curlCommand := exec.Command("curl", "--fail", "--proxy", ssoCred.proxy, "--cookie", ssoCred.cookieFile, "--cookie-jar", ssoCred.cookieFile, "--location", url)
+	var stdout, stderr bytes.Buffer
+	curlCommand.Stdout = &stdout
+	curlCommand.Stderr = &stderr
+	curlCommand.Env = envvar.MapToSlice(g.jirix.Env())
+	g.jirix.Logger.Tracef("Run: curl on %q", url)
+	if err := curlCommand.Run(); err != nil {
+		return nil, nil, fmt.Errorf("Error running curl: %s\n Error msg:\n%s\n", err, stderr.String())
+	}
+	return &stdout, nil, nil
 }
 
 // Query returns a list of QueryResult entries matched by the given
@@ -381,14 +405,14 @@ func (g *Gerrit) Query(query string) (_ CLList, e error) {
 	u.RawQuery = v.Encode()
 	url := u.String()
 
-	var body io.Reader
-	method, body := "GET", nil
-	res, err := makeRequest(method, url, body, cred)
+	body, cleanup, err := g.makeRequest(url, cred)
 	if err != nil {
 		return nil, err
 	}
-	defer collect.Error(func() error { return res.Body.Close() }, &e)
-	return parseQueryResults(res.Body)
+	if cleanup != nil {
+		defer collect.Error(func() error { return cleanup() }, &e)
+	}
+	return parseQueryResults(body)
 }
 
 func (g *Gerrit) ListOpenChangesByTopic(topic string) (CLList, error) {
@@ -429,14 +453,14 @@ func (g *Gerrit) GetRelatedChanges(changeNumber int, revisionId string) (*Relate
 	}
 	url := u.String()
 
-	var body io.Reader
-	method, body := "GET", nil
-	res, err := makeRequest(method, url, body, cred)
+	body, cleanup, err := g.makeRequest(url, cred)
 	if err != nil {
 		return nil, err
 	}
-	defer res.Body.Close()
-	r := bufio.NewReader(res.Body)
+	if cleanup != nil {
+		defer cleanup()
+	}
+	r := bufio.NewReader(body)
 
 	// The first line of the input is the XSSI guard
 	// ")]}'". Getting rid of that.
@@ -471,61 +495,6 @@ func (g *Gerrit) GetChangeByID(changeID string) (*Change, error) {
 
 func (g *Gerrit) GetChangeURL(changeNumber int) string {
 	return fmt.Sprintf("%s/c/%d", g.host, changeNumber)
-}
-
-// Submit submits the given changelist through Gerrit.
-func (g *Gerrit) Submit(changeID string) (e error) {
-	cred, err := hostCredentials(g.jirix, g.host)
-	if err != nil {
-		return err
-	}
-
-	// Encode data needed for Submit.
-	data := struct {
-		WaitForMerge bool `json:"wait_for_merge"`
-	}{
-		WaitForMerge: true,
-	}
-	encodedBytes, err := json.Marshal(data)
-	if err != nil {
-		return fmt.Errorf("Marshal(%#v) failed: %v", data, err)
-	}
-
-	// Call Submit API.
-	// https://gerrit-review.googlesource.com/Documentation/rest-api-changes.html#submit-change
-	url := fmt.Sprintf("%s/a/changes/%s/submit", g.host, changeID)
-	var body io.Reader
-	method, body := "POST", bytes.NewReader(encodedBytes)
-	req, err := http.NewRequest(method, url, body)
-	if err != nil {
-		return fmt.Errorf("NewRequest(%q, %q, %v) failed: %v", method, url, body, err)
-	}
-	req.Header.Add("Content-Type", "application/json;charset=UTF-8")
-	req.SetBasicAuth(cred.username, cred.password)
-
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return fmt.Errorf("Do(%v) failed: %v", req, err)
-	}
-	if res.StatusCode != http.StatusOK {
-		return fmt.Errorf("Submit:Do(%v) failed: %v", req, res.StatusCode)
-	}
-	defer collect.Error(func() error { return res.Body.Close() }, &e)
-
-	// Check response.
-	bytes, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return err
-	}
-	resContent := string(bytes)
-	// For a "TBR" CL, the response code is not 200 but the submit will still succeed.
-	// In those cases, the "error" message will be "change is new".
-	// We don't treat this case as error.
-	if res.StatusCode != http.StatusOK && strings.TrimSpace(resContent) != "change is new" {
-		return fmt.Errorf("Failed to submit CL %q:\n%s", changeID, resContent)
-	}
-
-	return nil
 }
 
 // formatParams formats parameters of a change list.
