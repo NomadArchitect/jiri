@@ -102,6 +102,24 @@
     },
     {
       "key": {
+        "uuid": "cdad90c7_9947424d",
+        "filename": "log/logger.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2017-12-23T00:04:09Z",
+      "side": 1,
+      "message": "yeah, I am in favor of doing that, I will do that in a separate CL",
+      "parentUuid": "464a2d0d_37b9462d",
+      "revId": "ea9cb6fb93003507b8709be5880fa3913c1ea8ed",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ea8ad09e_91f0c39d",
         "filename": "log/timetracker_test.go",
         "patchSetId": 2
