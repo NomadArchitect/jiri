@@ -545,10 +545,6 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 		if op.Kind() != "delete" && !op.Project().LocalConfig.Ignore && !op.Project().LocalConfig.NoUpdate {
 			if op.Project().GerritHost != "" {
 				hookPath := filepath.Join(op.Project().Path, ".git", "hooks", "commit-msg")
-				commitHook, err := os.Create(hookPath)
-				if err != nil {
-					return fmtError(err)
-				}
 				bytes, ok := commitHookMap[op.Project().GerritHost]
 				if !ok {
 					downloadPath := op.Project().GerritHost + "/tools/hooks/commit-msg"
@@ -556,23 +552,34 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 					if err != nil {
 						return fmt.Errorf("Error while downloading %q: %v", downloadPath, err)
 					}
-					if response.StatusCode != http.StatusOK {
-						return fmt.Errorf("Error while downloading %q, status code: %d", downloadPath, response.StatusCode)
-					}
 					defer response.Body.Close()
-					if b, err := ioutil.ReadAll(response.Body); err != nil {
-						return fmt.Errorf("Error while downloading %q: %v", downloadPath, err)
+					// Don't throw error when 403 is thrown, just skip it
+					if response.StatusCode == http.StatusForbidden {
+						commitHookMap[op.Project().GerritHost] = nil
+						bytes = nil
+					} else if response.StatusCode != http.StatusOK {
+						return fmt.Errorf("Error while downloading %q, status code: %d", downloadPath, response.StatusCode)
 					} else {
-						bytes = b
-						commitHookMap[op.Project().GerritHost] = b
+						if b, err := ioutil.ReadAll(response.Body); err != nil {
+							return fmt.Errorf("Error while downloading %q: %v", downloadPath, err)
+						} else {
+							bytes = b
+							commitHookMap[op.Project().GerritHost] = b
+						}
 					}
 				}
-				if _, err := commitHook.Write(bytes); err != nil {
-					return err
-				}
-				commitHook.Close()
-				if err := os.Chmod(hookPath, 0750); err != nil {
-					return fmtError(err)
+				if bytes != nil {
+					commitHook, err := os.Create(hookPath)
+					if err != nil {
+						return fmtError(err)
+					}
+					if _, err := commitHook.Write(bytes); err != nil {
+						return err
+					}
+					commitHook.Close()
+					if err := os.Chmod(hookPath, 0750); err != nil {
+						return fmtError(err)
+					}
 				}
 			}
 			hookPath := filepath.Join(op.Project().Path, ".git", "hooks", "post-commit")
