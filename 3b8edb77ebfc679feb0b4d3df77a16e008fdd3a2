@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f989f50_ee731bb4",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5020
+      },
+      "writtenOn": "2018-02-22T03:26:16Z",
+      "side": 1,
+      "message": "30",
+      "range": {
+        "startLine": 34,
+        "startChar": 62,
+        "endLine": 34,
+        "endChar": 64
+      },
+      "revId": "3b8edb77ebfc679feb0b4d3df77a16e008fdd3a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
