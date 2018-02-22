@@ -6,8 +6,11 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"time"
 
 	"fuchsia.googlesource.com/jiri"
+	//"fuchsia.googlesource.com/jiri/analytics_util"
 	"fuchsia.googlesource.com/jiri/cmdline"
 	"fuchsia.googlesource.com/jiri/project"
 	"fuchsia.googlesource.com/jiri/retry"
@@ -26,6 +29,11 @@ var (
 	rebaseCurrentFlag   bool
 	rebaseTrackedFlag   bool
 	runHooksFlag        bool
+)
+
+const (
+	MIN_REUSE_TIMING_THRESHOLD time.Duration = time.Duration(10) * time.Minute        // 30 min
+	MAX_REUSE_TIMING_THRESHOLD time.Duration = time.Duration(2) * time.Hour * 24 * 14 // 2 weeks
 )
 
 func init() {
@@ -88,6 +96,15 @@ func runUpdate(jirix *jiri.X, args []string) error {
 			return err
 		}
 	} else {
+		lastSnapshot := jirix.UpdateHistoryLatestLink()
+		duration := time.Duration(0)
+		if info, err := os.Stat(lastSnapshot); err == nil {
+			duration = time.Since(info.ModTime())
+			if duration < MIN_REUSE_TIMING_THRESHOLD || duration > MAX_REUSE_TIMING_THRESHOLD {
+				duration = time.Duration(0)
+			}
+		}
+
 		err := project.UpdateUniverse(jirix, gcFlag, localManifestFlag,
 			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, hookTimeoutFlag)
 		if err2 := project.WriteUpdateHistorySnapshot(jirix, "", nil, localManifestFlag); err2 != nil {
@@ -98,6 +115,11 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		}
 		if err != nil {
 			return err
+		}
+
+		// Only track on successful update
+		if duration.Nanoseconds() > 0 {
+			jirix.AnalyticsSession.AddCommandExecutionTiming("update", duration)
 		}
 	}
 
