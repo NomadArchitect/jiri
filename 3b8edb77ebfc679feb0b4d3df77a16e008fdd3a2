@@ -22,6 +22,30 @@
       "revId": "3b8edb77ebfc679feb0b4d3df77a16e008fdd3a2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc3a6e76_dcb1acd3",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-02-22T07:51:43Z",
+      "side": 1,
+      "message": "thanks for catching, left it stale from testing phase",
+      "parentUuid": "3f989f50_ee731bb4",
+      "range": {
+        "startLine": 34,
+        "startChar": 62,
+        "endLine": 34,
+        "endChar": 64
+      },
+      "revId": "3b8edb77ebfc679feb0b4d3df77a16e008fdd3a2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
