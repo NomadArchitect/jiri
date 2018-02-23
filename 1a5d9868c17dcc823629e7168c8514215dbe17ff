@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25d7947a_62187f7c",
+        "filename": "project/loader.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2018-02-23T21:57:24Z",
+      "side": 1,
+      "message": "This is a bit vague.  Maybe this could point to some docs that explain what mappings are right and wrong?",
+      "range": {
+        "startLine": 143,
+        "startChar": 134,
+        "endLine": 143,
+        "endChar": 162
+      },
+      "revId": "1a5d9868c17dcc823629e7168c8514215dbe17ff",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}

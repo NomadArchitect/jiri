@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "501b9770_1ccbc9b7",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2018-02-23T21:57:24Z",
+      "side": 0,
+      "message": "Did this code path fail to remove the temp dirs?  Maybe you could explain this in the commit message?",
+      "revId": "f7d374bf29cac7dccb1044251366bddc666b0135",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
