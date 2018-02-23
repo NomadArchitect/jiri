@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3bd5aba_675cde23",
+        "filename": "project/loader.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2018-02-23T22:32:21Z",
+      "side": 1,
+      "message": "Typo: corresponding",
+      "range": {
+        "startLine": 143,
+        "startChar": 220,
+        "endLine": 143,
+        "endChar": 233
+      },
+      "revId": "40e5ff4d58c5129c59bb74e81c76dc7aad3fbf52",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff71c3e8_0247fcc8",
+        "filename": "project/loader.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2018-02-23T22:32:21Z",
+      "side": 1,
+      "message": "Grammar nit: how about: \"Make sure that the \u0027name\u0027 attributes on the \u0027import\u0027 and \u0027project\u0027 tags match\"",
+      "range": {
+        "startLine": 143,
+        "startChar": 150,
+        "endLine": 143,
+        "endChar": 199
+      },
+      "revId": "40e5ff4d58c5129c59bb74e81c76dc7aad3fbf52",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
