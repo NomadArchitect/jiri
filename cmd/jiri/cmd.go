@@ -167,6 +167,9 @@ Manifests have the following XML schema:
     <hook name="update"
           project="mojo/public"
           action="update.sh"/>
+    <hook name="custom_command"
+          project="mojo/public"
+          command="echo command"/>
     ...
   </hooks>
 
@@ -230,7 +233,11 @@ They are configured via the following attributes:
 
 * project (required) - The name of the project where the hook is present
 
-* action (required) - Action to be performed inside the project.
+* action (optional) - Action to be performed inside the project.
 It is mostly identified by a script
+
+* command (optional) - Command to execute from inside the project.
+
+**action** or **command** must be provided.
 `,
 }

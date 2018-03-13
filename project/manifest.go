@@ -337,7 +337,8 @@ func WriteLocalConfig(jirix *jiri.X, project Project, lc LocalConfig) error {
 // Hook represents a hook to run
 type Hook struct {
 	Name        string   `xml:"name,attr"`
-	Action      string   `xml:"action,attr"`
+	Action      string   `xml:"action,attr,omitempty"`
+	Command     string   `xml:"command,attr,omitempty"`
 	ProjectName string   `xml:"project,attr"`
 	XMLName     struct{} `xml:"hook"`
 	ActionPath  string   `xml:"-"`
@@ -364,6 +365,12 @@ func (h *Hook) validate() error {
 	}
 	if strings.Contains(h.ProjectName, KeySeparator) {
 		return fmt.Errorf("bad hook: project cannot contain %q: %+v", KeySeparator, *h)
+	}
+	if h.Action != "" && h.Command != "" {
+		return fmt.Errorf("bad hook: %q for project %q: provide either action or command. Not both.", h.Name, h.ProjectName)
+	}
+	if h.Action == "" && h.Command == "" {
+		return fmt.Errorf("bad hook: %q for project %q: provide one of action or command.", h.Name, h.ProjectName)
 	}
 	return nil
 }
@@ -466,11 +473,16 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 
 			fmt.Fprintf(outFile, "output for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
 			fmt.Fprintf(errFile, "Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
-			cmdLine := filepath.Join(hook.ActionPath, hook.Action)
+			cmdLine := "sh"
+			cmdLineArgs := []string{"-c", hook.Command}
+			if hook.Action != "" {
+				cmdLineArgs = []string{}
+				cmdLine = filepath.Join(hook.ActionPath, hook.Action)
+			}
 			err = retry.Function(jirix, func() error {
 				ctx, cancel := context.WithTimeout(context.Background(), time.Duration(runHookTimeout)*time.Minute)
 				defer cancel()
-				command := exec.CommandContext(ctx, cmdLine)
+				command := exec.CommandContext(ctx, cmdLine, cmdLineArgs...)
 				command.Dir = hook.ActionPath
 				command.Stdin = os.Stdin
 				command.Stdout = outFile

@@ -33,6 +33,9 @@ Manifests have the following XML schema:
     <hook name="update"
           project="mojo/public"
           action="update.sh"/>
+    <hook name="custom_command"
+          project="mojo/public"
+          command="echo command"/>
     ...
   </hooks>
 
@@ -70,10 +73,14 @@ The &lt;project> tags describe the projects to sync, and what state they should 
 
 * githooks (optional) - The path (relative to [root]) of a directory containing git hooks that will be installed in the projects .git/hooks directory during each update.
 
-The &lt;hook> tag describes the hooks that must be executed after every 'jiri update' They are configured via the following attributes:
+The &lt;hook> tag describes the hooks that must be executed after every 'jiri update'. They are configured via the following attributes:
 
 * name (required) - The name of the of the hook to identify it
 
 * project (required) - The name of the project where the hook is present
 
-* action (required) - Action to be performed inside the project. It is mostly identified by a script
+* action (optional) - Action to be performed inside the project. It is mostly identified by a script
+
+* command (optional) - Command to execute from inside the project.
+
+**action** or **command** must be provided.
