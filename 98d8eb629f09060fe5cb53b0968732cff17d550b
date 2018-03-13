@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b56b09ab_1c1bc7f9",
+        "filename": "project/source_manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2018-03-13T22:53:18Z",
+      "side": 1,
+      "message": "A comment with a link to the proto defn here would be good.\nIsn\u0027t the current defn version\u003d1?",
+      "revId": "98d8eb629f09060fe5cb53b0968732cff17d550b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
