@@ -32,6 +32,7 @@ func setDefaultImportFlags() {
 	flagImportOverwrite = false
 	flagImportOut = ""
 	flagImportDelete = false
+	flagImportList = false
 }
 
 func TestImport(t *testing.T) {
@@ -107,6 +108,27 @@ func TestImport(t *testing.T) {
   </imports>
 </manifest>
 `,
+		},
+		{
+			SetFlags: func() {
+				flagImportList = true
+			},
+			Exist: `<manifest>
+  <imports>
+    <import manifest="bar" name="manifest" remote="https://github.com/orig.git"/>
+  </imports>
+</manifest>
+`,
+			Stdout: `[
+  {
+    "manifest": "bar",
+    "name": "manifest",
+    "remote": "https://github.com/orig.git",
+    "revision": "",
+    "remoteBranch": "",
+    "root": ""
+  }
+]`,
 		},
 		{
 			Args: []string{"foo", "https://github.com/new.git"},
