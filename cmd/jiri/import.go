@@ -5,8 +5,10 @@
 package main
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	"fuchsia.googlesource.com/jiri"
@@ -22,6 +24,7 @@ var (
 	flagImportOut       string
 	flagImportDelete    bool
 	flagImportRevision  string
+	flagImportList      bool
 )
 
 func init() {
@@ -33,6 +36,7 @@ func init() {
 	cmdImport.Flags.BoolVar(&flagImportOverwrite, "overwrite", false, `Write a new .jiri_manifest file with the given specification.  If it already exists, the existing content will be ignored and the file will be overwritten.`)
 	cmdImport.Flags.StringVar(&flagImportOut, "out", "", `The output file.  Uses <root>/.jiri_manifest if unspecified.  Uses stdout if set to "-".`)
 	cmdImport.Flags.BoolVar(&flagImportDelete, "delete", false, `Delete existing import. Import is matched using <manifest>, <remote> and name. <remote> is optional.`)
+	cmdImport.Flags.BoolVar(&flagImportList, "list", false, `List all the imports from .jiri_manifest. This flag doesnot accept any arguments. -out flag can be used to specify output file.`)
 }
 
 var cmdImport = &cmdline.Command{
@@ -72,14 +76,50 @@ func isFile(file string) (bool, error) {
 	return !fileInfo.IsDir(), nil
 }
 
-func runImport(jirix *jiri.X, args []string) error {
-	if flagImportDelete && len(args) != 1 && len(args) != 2 {
-		return jirix.UsageErrorf("wrong number of arguments with delete flag")
-	} else if !flagImportDelete && len(args) != 2 {
-		return jirix.UsageErrorf("wrong number of arguments")
+type Import struct {
+	Manifest     string `json:"manifest"`
+	Name         string `json:"name"`
+	Remote       string `json:"remote"`
+	Revision     string `json:"revision"`
+	RemoteBranch string `json:"remoteBranch"`
+	Root         string `json:"root"`
+}
+
+func getListObject(imports []project.Import) []Import {
+	arr := []Import{}
+	for _, i := range imports {
+		i.RemoveDefaults()
+		obj := Import{
+			Manifest:     i.Manifest,
+			Name:         i.Name,
+			Remote:       i.Remote,
+			Revision:     i.Revision,
+			RemoteBranch: i.RemoteBranch,
+			Root:         i.Root,
+		}
+		arr = append(arr, obj)
 	}
+	return arr
+}
+
+func runImport(jirix *jiri.X, args []string) error {
 	if flagImportDelete && flagImportOverwrite {
 		return jirix.UsageErrorf("cannot use -delete and -overwrite together")
+	}
+	if flagImportList && flagImportOverwrite {
+		return jirix.UsageErrorf("cannot use -list and -overwrite together")
+	}
+	if flagImportDelete && flagImportList {
+		return jirix.UsageErrorf("cannot use -delete and -list together")
+	}
+
+	if flagImportList && len(args) != 0 {
+		return jirix.UsageErrorf("wrong number of arguments with list flag: %v", len(args))
+	}
+	if flagImportDelete && len(args) != 1 && len(args) != 2 {
+		return jirix.UsageErrorf("wrong number of arguments with delete flag")
+	} else if !flagImportDelete && !flagImportList && len(args) != 2 {
+		return jirix.UsageErrorf("wrong number of arguments")
 	}
 
 	// Initialize manifest.
@@ -97,6 +137,19 @@ func runImport(jirix *jiri.X, args []string) error {
 	}
 	if manifest == nil {
 		manifest = &project.Manifest{}
+	}
+
+	if flagImportList {
+		out, err := json.MarshalIndent(getListObject(manifest.Imports), "", "  ")
+		if err != nil {
+			return fmt.Errorf("failed to serialize JSON output: %s\n", err)
+		}
+		if flagImportOut == "" || flagImportOut == "-" {
+			_, err = os.Stdout.Write(out)
+			return err
+		} else {
+			return ioutil.WriteFile(flagImportOut, out, 0644)
+		}
 	}
 
 	if flagImportDelete {
