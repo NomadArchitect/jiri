@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bc58b5a_32ef3d57",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-03-22T19:57:26Z",
+      "side": 1,
+      "message": "or\ngit add -u?",
+      "revId": "6f7cc7f6f63232b7635933c74a7235445ec249d4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
