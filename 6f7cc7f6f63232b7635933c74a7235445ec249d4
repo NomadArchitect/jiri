@@ -16,6 +16,24 @@
       "revId": "6f7cc7f6f63232b7635933c74a7235445ec249d4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7319967d_52760fd8",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 25085
+      },
+      "writtenOn": "2018-03-22T22:21:13Z",
+      "side": 1,
+      "message": "I\u0027m totally flexible here. Happy to change to `git add -u` :)",
+      "parentUuid": "3bc58b5a_32ef3d57",
+      "revId": "6f7cc7f6f63232b7635933c74a7235445ec249d4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
