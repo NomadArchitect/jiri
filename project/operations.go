@@ -103,12 +103,6 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 			}
 		}
 	}
-	// Create a temporary directory for the initial setup of the
-	// project to prevent an untimely termination from leaving the
-	// root directory in an inconsistent state.
-	if err := os.MkdirAll(path, perm); err != nil {
-		return fmtError(err)
-	}
 
 	cache, err := op.project.CacheDirPath(jirix)
 	if err != nil {
@@ -118,51 +112,56 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 		cache = ""
 	}
 
-	if jirix.Shared && cache != "" {
-		err = clone(jirix, cache, op.destination, gitutil.SharedOpt(true),
-			gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth))
-	} else {
-		ref := cache
-		if op.project.HistoryDepth > 0 {
-			ref = ""
-		}
-		remote := rewriteRemote(jirix, op.project.Remote)
-		err = clone(jirix, remote, op.destination, gitutil.ReferenceOpt(ref),
-			gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth))
-	}
-	if err != nil {
-		if err2 := os.RemoveAll(op.destination); err2 != nil {
-			return fmt.Errorf("Not able to remove %q after clone failed: %s, original error: %s", op.destination, err2, err)
-		}
-		return err
-	}
-	if err := os.Chmod(op.destination, os.FileMode(0755)); err != nil {
-		if err2 := os.RemoveAll(op.destination); err2 != nil {
-			return fmt.Errorf("Not able to remove %q after chmod failed: %s, original error: %s", op.destination, err2, fmtError(err))
-		}
+	if err := os.MkdirAll(path, perm); err != nil {
 		return fmtError(err)
 	}
-
-	if err := checkoutHeadRevision(jirix, op.project, false); err != nil {
-		return err
-	}
-
-	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
-		return err
-	}
-
-	// Delete inital branch(es)
-	if branches, _, err := git.NewGit(op.project.Path).GetBranches(); err != nil {
-		jirix.Logger.Warningf("not able to get branches for newly created project %s(%s)\n\n", op.project.Name, op.project.Path)
-	} else {
-		scm := gitutil.New(jirix, gitutil.RootDirOpt(op.project.Path))
-		for _, b := range branches {
-			if err := scm.DeleteBranch(b); err != nil {
-				jirix.Logger.Warningf("not able to delete branch %s for project %s(%s)\n\n", b, op.project.Name, op.project.Path)
+	err = func() error {
+		if jirix.Shared && cache != "" {
+			if err := clone(jirix, cache, op.destination, gitutil.SharedOpt(true),
+				gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth)); err != nil {
+				return err
+			}
+		} else {
+			ref := cache
+			if op.project.HistoryDepth > 0 {
+				ref = ""
+			}
+			remote := rewriteRemote(jirix, op.project.Remote)
+			if err := clone(jirix, remote, op.destination, gitutil.ReferenceOpt(ref),
+				gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth)); err != nil {
+				return err
 			}
 		}
+
+		if err := os.Chmod(op.destination, os.FileMode(0755)); err != nil {
+			return fmtError(err)
+		}
+
+		if err := checkoutHeadRevision(jirix, op.project, false); err != nil {
+			return err
+		}
+
+		if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
+			return err
+		}
+
+		// Delete inital branch(es)
+		if branches, _, err := git.NewGit(op.project.Path).GetBranches(); err != nil {
+			jirix.Logger.Warningf("not able to get branches for newly created project %s(%s)\n\n", op.project.Name, op.project.Path)
+		} else {
+			scm := gitutil.New(jirix, gitutil.RootDirOpt(op.project.Path))
+			for _, b := range branches {
+				if err := scm.DeleteBranch(b); err != nil {
+					jirix.Logger.Warningf("not able to delete branch %s for project %s(%s)\n\n", b, op.project.Name, op.project.Path)
+				}
+			}
+		}
+		return nil
+	}()
+	if err != nil {
+		os.RemoveAll(op.destination)
 	}
-	return nil
+	return err
 }
 
 func (op createOperation) String() string {
