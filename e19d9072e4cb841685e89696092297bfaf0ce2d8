@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c070884e_23e07eb9",
+        "filename": "project/operations.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-05T06:39:26Z",
+      "side": 1,
+      "message": "I\u0027d split this into a separate function rather than using a lambda.",
+      "revId": "e19d9072e4cb841685e89696092297bfaf0ce2d8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
