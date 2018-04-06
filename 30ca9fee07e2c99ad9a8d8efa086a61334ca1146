@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "599ecb30_73c2bbc2",
+        "filename": "project/operations.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-06T00:35:50Z",
+      "side": 1,
+      "message": "nit: You can call it err, it\u0027ll shadow the outer err only in the scope of this if.",
+      "range": {
+        "startLine": 164,
+        "startChar": 5,
+        "endLine": 164,
+        "endChar": 9
+      },
+      "revId": "30ca9fee07e2c99ad9a8d8efa086a61334ca1146",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
