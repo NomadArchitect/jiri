@@ -413,7 +413,7 @@ func LoadManifest(jirix *jiri.X) (Projects, Hooks, error) {
 // errors about ".git/index.lock exists", you are likely calling
 // LoadManifestFile in parallel.
 func LoadManifestFile(jirix *jiri.X, file string, localProjects Projects, localManifest bool) (Projects, Hooks, error) {
-	ld := newManifestLoader(localProjects, false, file)
+	ld := newManifestLoader(localProjects, false, file, localManifest)
 	if err := ld.Load(jirix, "", "", file, "", "", "", localManifest); err != nil {
 		return nil, nil, err
 	}
@@ -424,7 +424,7 @@ func LoadManifestFile(jirix *jiri.X, file string, localProjects Projects, localM
 func LoadUpdatedManifest(jirix *jiri.X, localProjects Projects, localManifest bool) (Projects, Hooks, error) {
 	jirix.TimerPush("load updated manifest")
 	defer jirix.TimerPop()
-	ld := newManifestLoader(localProjects, true, jirix.JiriManifestFile())
+	ld := newManifestLoader(localProjects, true, jirix.JiriManifestFile(), localManifest)
 	if err := ld.Load(jirix, "", "", jirix.JiriManifestFile(), "", "", "", localManifest); err != nil {
 		return nil, nil, err
 	}

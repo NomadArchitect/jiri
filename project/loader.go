@@ -25,16 +25,17 @@ type importCache struct {
 }
 
 type loader struct {
-	Projects       Projects
-	Hooks          Hooks
-	TmpDir         string
-	localProjects  Projects
-	importProjects Projects
-	importCacheMap map[string]importCache
-	update         bool
-	cycleStack     []cycleInfo
-	manifests      map[string]bool
-	parentFile     string
+	Projects                Projects
+	Hooks                   Hooks
+	TmpDir                  string
+	localProjects           Projects
+	importProjects          Projects
+	importCacheMap          map[string]importCache
+	update                  bool
+	cycleStack              []cycleInfo
+	manifests               map[string]bool
+	parentFile              string
+	localManifestFlagPassed bool
 }
 
 func (ld *loader) cleanup() {
@@ -56,16 +57,17 @@ type cycleInfo struct {
 // If update is true, remote changes to manifest projects will be fetched, and
 // manifest projects that don't exist locally will be created in temporary
 // directories, and added to localProjects.
-func newManifestLoader(localProjects Projects, update bool, file string) *loader {
+func newManifestLoader(localProjects Projects, update bool, file string, localManifest bool) *loader {
 	return &loader{
-		Projects:       make(Projects),
-		Hooks:          make(Hooks),
-		localProjects:  localProjects,
-		importProjects: make(Projects),
-		update:         update,
-		importCacheMap: make(map[string]importCache),
-		manifests:      make(map[string]bool),
-		parentFile:     file,
+		Projects:                make(Projects),
+		Hooks:                   make(Hooks),
+		localProjects:           localProjects,
+		importProjects:          make(Projects),
+		update:                  update,
+		importCacheMap:          make(map[string]importCache),
+		manifests:               make(map[string]bool),
+		parentFile:              file,
+		localManifestFlagPassed: localManifest,
 	}
 }
 
@@ -213,6 +215,12 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 		if s, err2 := gitutil.New(jirix, gitutil.RootDirOpt(repoPath)).Show(ref, file); err2 != nil {
 			return fmt.Errorf("Unable to get manifest file for %s %s:%s:error(%s)", repoPath, ref, file, err2)
 		} else {
+			if ld.localManifestFlagPassed {
+				localFilePath := filepath.Join(repoPath, file)
+				if localFile, err := ioutil.ReadFile(localFilePath); err != nil || strings.TrimSpace(string(localFile)) != strings.TrimSpace(s) {
+					jirix.Logger.Warningf("Not using local manifest for: %q", localFilePath)
+				}
+			}
 			m, err = ManifestFromBytes([]byte(s))
 			if err != nil {
 				err = fmt.Errorf("Error reading from manifest file %s %s:%s:error(%s)", repoPath, ref, file, err)
