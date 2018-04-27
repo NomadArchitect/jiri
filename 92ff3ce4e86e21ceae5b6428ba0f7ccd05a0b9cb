@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61cab8e0_162dd150",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T23:40:30Z",
+      "side": 1,
+      "message": "This should be json-output, not json-out.",
+      "range": {
+        "startLine": 41,
+        "startChar": 51,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "92ff3ce4e86e21ceae5b6428ba0f7ccd05a0b9cb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
