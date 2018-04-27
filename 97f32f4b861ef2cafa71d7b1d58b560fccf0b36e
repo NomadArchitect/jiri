@@ -128,6 +128,24 @@
       "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ea22ba3_14ade289",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T23:39:38Z",
+      "side": 1,
+      "message": "Humans can read it but it\u0027s not really intended for human consumption, it\u0027s primarily a machine readable format.",
+      "parentUuid": "e2950673_d8c9e5e6",
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
