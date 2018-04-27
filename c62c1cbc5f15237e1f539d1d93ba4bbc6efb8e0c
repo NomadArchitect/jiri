@@ -16,6 +16,24 @@
       "revId": "c62c1cbc5f15237e1f539d1d93ba4bbc6efb8e0c",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9206364_fd10dac0",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-04-27T20:37:51Z",
+      "side": 1,
+      "message": "but then they don\u0027t come from manifest file, it is something we fill",
+      "parentUuid": "661bff44_dc893221",
+      "revId": "c62c1cbc5f15237e1f539d1d93ba4bbc6efb8e0c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }

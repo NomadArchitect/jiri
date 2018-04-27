@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "dbdf8d95_5fe207df",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-04-27T20:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9701a5ae_3a4b20c1",
+      "range": {
+        "startLine": 39,
+        "startChar": 110,
+        "endLine": 39,
+        "endChar": 117
+      },
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d47eaabc_6be3396d",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-04-27T20:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2103d06_822eb050",
+      "range": {
+        "startLine": 39,
+        "startChar": 140,
+        "endLine": 39,
+        "endChar": 149
+      },
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff5f6d4d_8da83fb5",
         "filename": "cmd/jiri/import.go",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2018-04-27T18:59:08Z",
       "side": 1,
       "message": "We should only emit JSON when -json-output is specified, otherwise it should be probably be human readable output e.g. could be similar to output of jiri project.",
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2950673_d8c9e5e6",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-04-27T20:37:51Z",
+      "side": 1,
+      "message": "json out put is supposed to be human readable, what is wrong with that?",
+      "parentUuid": "ff5f6d4d_8da83fb5",
       "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
