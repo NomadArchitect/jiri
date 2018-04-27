@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a2103d06_822eb050",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T18:59:08Z",
+      "side": 1,
+      "message": "This should be -json-output\u003d so it\u0027s consistent with other commands that are producing JSON (e.g. edit).",
+      "range": {
+        "startLine": 39,
+        "startChar": 140,
+        "endLine": 39,
+        "endChar": 149
+      },
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9701a5ae_3a4b20c1",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T18:59:08Z",
+      "side": 1,
+      "message": "s/doesnot/doesn\u0027t/",
+      "range": {
+        "startLine": 39,
+        "startChar": 110,
+        "endLine": 39,
+        "endChar": 117
+      },
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff5f6d4d_8da83fb5",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T18:59:08Z",
+      "side": 1,
+      "message": "We should only emit JSON when -json-output is specified, otherwise it should be probably be human readable output e.g. could be similar to output of jiri project.",
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

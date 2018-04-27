@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "661bff44_dc893221",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-04-27T18:59:08Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s any harm in printing default values so this is probably not needed.",
+      "revId": "c62c1cbc5f15237e1f539d1d93ba4bbc6efb8e0c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
