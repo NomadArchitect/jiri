@@ -146,6 +146,24 @@
       "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21ba985_6312aa9a",
+        "filename": "cmd/jiri/import.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-04-30T19:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ea22ba3_14ade289",
+      "revId": "97f32f4b861ef2cafa71d7b1d58b560fccf0b36e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
