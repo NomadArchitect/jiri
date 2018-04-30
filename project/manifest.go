@@ -221,6 +221,7 @@ func (i *Import) unfillDefaults() error {
 	if i.Revision == "HEAD" {
 		i.Revision = ""
 	}
+
 	return i.validate()
 }
 
@@ -437,9 +438,9 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
 	type result struct {
-		outFile *os.File
-		errFile *os.File
-		err     error
+		outFile    *os.File
+		hookString string
+		err        error
 	}
 	ch := make(chan result)
 	tmpDir, err := ioutil.TempDir("", "run-hooks")
@@ -455,17 +456,10 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 			defer task.Done()
 			outFile, err := ioutil.TempFile(tmpDir, hook.Name+"-out")
 			if err != nil {
-				ch <- result{nil, nil, fmtError(err)}
+				ch <- result{nil, "", fmtError(err)}
 				return
 			}
-			errFile, err := ioutil.TempFile(tmpDir, hook.Name+"-err")
-			if err != nil {
-				ch <- result{nil, nil, fmtError(err)}
-				return
-			}
-
-			fmt.Fprintf(outFile, "output for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
-			fmt.Fprintf(errFile, "Error for hook(%v) for project %q\n", hook.Name, hook.ProjectName)
+			hookString := fmt.Sprintf("hook(%s) for project %q", hook.Name, hook.ProjectName)
 			cmdLine := filepath.Join(hook.ActionPath, hook.Action)
 			err = retry.Function(jirix, func() error {
 				ctx, cancel := context.WithTimeout(context.Background(), time.Duration(runHookTimeout)*time.Minute)
@@ -474,7 +468,7 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 				command.Dir = hook.ActionPath
 				command.Stdin = os.Stdin
 				command.Stdout = outFile
-				command.Stderr = errFile
+				command.Stderr = outFile
 				env := jirix.Env()
 				command.Env = envvar.MapToSlice(env)
 				jirix.Logger.Tracef("Run: %q", cmdLine)
@@ -485,7 +479,7 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 				return err
 			}, fmt.Sprintf("running hook(%s) for project %s", hook.Name, hook.ProjectName),
 				retry.AttemptsOpt(jirix.Attempts))
-			ch <- result{outFile, errFile, err}
+			ch <- result{outFile, hookString, err}
 		}(hook)
 
 	}
@@ -497,9 +491,6 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 		defer func() {
 			if out.outFile != nil {
 				out.outFile.Close()
-			}
-			if out.errFile != nil {
-				out.errFile.Close()
 			}
 		}()
 		if out.err == context.DeadlineExceeded {
@@ -519,17 +510,11 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 			io.Copy(&outBuf, out.outFile)
 		}
 		if out.err != nil {
-			var buf bytes.Buffer
-			if out.errFile != nil {
-				out.errFile.Sync()
-				out.errFile.Seek(0, 0)
-				io.Copy(&buf, out.errFile)
-			}
-			jirix.Logger.Errorf("%s\n%s\n%s\n", out.err, buf.String(), outBuf.String())
+			jirix.Logger.Errorf("Failed for %s: %s\nHook output:\n%s\n\n", out.hookString, out.err, outBuf.String())
 			err = fmt.Errorf("Hooks execution failed.")
 		} else {
 			if outBuf.String() != "" {
-				jirix.Logger.Debugf("%s\n", outBuf.String())
+				jirix.Logger.Debugf("Output for %s:\n%s\n\n", out.hookString, outBuf.String())
 			}
 		}
 	}
