@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "8cdc821a_cb3f873a",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:10:18Z",
+      "side": 1,
+      "message": "there won\u0027t be a race condition in tests as they are not run in parallel( we don\u0027t define t.parallel() in tests), also tests are pretty fast, no need to make them parallel, it would be just hard to debug them IMHO",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9ec6445_c7de58d4",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
