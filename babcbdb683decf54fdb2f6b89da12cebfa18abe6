@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "99d068df_86864e78",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ffbdf28_53efbdd5",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8e6eb304_cce12d0a",
         "filename": "cmd/jiri/manifest.go",
         "patchSetId": 19
@@ -45,6 +69,30 @@
       "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bccff2a3_ee43863c",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e6eb304_cce12d0a",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "43bb03c9_5e712e82",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1142f8a_94d3492a",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c056c50a_35abf2f6",
         "filename": "cmd/jiri/manifest.go",
         "patchSetId": 19
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "560f1388_25488fe8",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c056c50a_35abf2f6",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a028becc_32ca0eaf",
         "filename": "cmd/jiri/manifest.go",
         "patchSetId": 19
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "4004acdb_0da801df",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a028becc_32ca0eaf",
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "500ba675_b525a10c",
         "filename": "cmd/jiri/manifest.go",
         "patchSetId": 19
@@ -125,6 +239,24 @@
       "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "623ca29b_1e90f788",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Nope, fixed. Thanks for catching that.",
+      "parentUuid": "500ba675_b525a10c",
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
