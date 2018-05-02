@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1ffbdf28_53efbdd5",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "fix?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e6eb304_cce12d0a",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "nit: the name of \u003cproject\u003e or \u003cimport\u003e",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1142f8a_94d3492a",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "Attribute/property of \u003cproject\u003e/\u003cimport\u003e to read?",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c056c50a_35abf2f6",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "nit: we don\u0027t need abs path as we are not changing directories, simple passing this path to project.ManifestFromFile should work",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a028becc_32ca0eaf",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "why not println?",
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "500ba675_b525a10c",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 19
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "are we only supporting lowercase attr names?",
+      "revId": "babcbdb683decf54fdb2f6b89da12cebfa18abe6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

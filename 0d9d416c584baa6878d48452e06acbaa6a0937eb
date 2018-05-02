@@ -471,6 +471,30 @@
       "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5efb7b2f_5df4d481",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T21:21:12Z",
+      "side": 1,
+      "message": "i suggested it so that if bots or someone wants to read manifest attr(s) in particular format they could, without making any changes to jiri. All the attr are already public details as they are already passed as flags. \n\nbut if this seems fine to you, i am good with it",
+      "parentUuid": "c357e8de_d25172d0",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
