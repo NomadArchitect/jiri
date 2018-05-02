@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "2f0d46d4_3778fe4e",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:03:50Z",
+      "side": 1,
+      "message": "found no project/import %q",
+      "range": {
+        "startLine": 119,
+        "startChar": 24,
+        "endLine": 119,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "778d66ad_882c25d9",
         "filename": "project/project.go",
         "patchSetId": 9
