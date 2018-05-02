@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "94f70548_8546c378",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:47Z",
+      "side": 1,
+      "message": "edit: I\u0027m using a temp file as you suggested in the tests",
+      "parentUuid": "afa740fe_b46fcc1e",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8cdc821a_cb3f873a",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
