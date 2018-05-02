@@ -247,6 +247,26 @@ func (i *Import) toProject(path string) (Project, error) {
 	return p, err
 }
 
+// GetAttribute returns the value of the property having the given name.
+func (i *Import) GetAttribute(name string) (string, error) {
+	switch name {
+	case "manifest":
+		return i.Manifest, nil
+	case "name":
+		return i.Name, nil
+	case "remote":
+		return i.Remote, nil
+	case "revision":
+		return i.Revision, nil
+	case "remotebranch":
+		return i.RemoteBranch, nil
+	case "root":
+		return i.Root, nil
+	default:
+		return "", fmt.Errorf("attribute %s not found in import %s", name, i.Name)
+	}
+}
+
 // ProjectKey returns the unique ProjectKey for the imported project.
 func (i *Import) ProjectKey() ProjectKey {
 	return MakeProjectKey(i.Name, i.Remote)
