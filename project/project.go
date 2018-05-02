@@ -15,6 +15,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -126,6 +127,31 @@ func ProjectFromFile(jirix *jiri.X, filename string) (*Project, error) {
 	}
 	p.absolutizePaths(jirix.Root)
 	return p, nil
+}
+
+// GetAttribute returns the value of the property having the given name.
+func (p Project) GetAttribute(name string) (string, error) {
+	switch name {
+	case "gerrithost":
+		return p.GerritHost, nil
+	case "githooks":
+		return p.GitHooks, nil
+	case "historydepth":
+		// Format HistogryDepth as a base 10 integer.
+		return strconv.FormatInt(int64(p.HistoryDepth), 10), nil
+	case "name":
+		return p.Name, nil
+	case "path":
+		return p.Path, nil
+	case "remote":
+		return p.Remote, nil
+	case "remotebranch":
+		return p.RemoteBranch, nil
+	case "revision":
+		return p.Revision, nil
+	default:
+		return "", fmt.Errorf("attribute %s not found in import %s", name, p.Name)
+	}
 }
 
 // ToFile writes the project p to a file with the given filename, with defaults
