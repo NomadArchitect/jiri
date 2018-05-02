@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18b16c52_75d9045b",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "nit: align with above \"Read\" example",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 2
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34681b15_abc5b667",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "nit: fullstop",
+      "range": {
+        "startLine": 56,
+        "startChar": 90,
+        "endLine": 56,
+        "endChar": 91
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4708b753_ae6d0c62",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "tolower as we are running tolower on elementname",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 18
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e80733_ee26cc14",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "please handle error",
+      "range": {
+        "startLine": 94,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6324192e_9dd871cc",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "tolower as we are running tolower on elementname",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 15
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e8efe8d_15c3f2b7",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 26
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:55:26Z",
+      "side": 1,
+      "message": "please handle error",
+      "range": {
+        "startLine": 102,
+        "startChar": 3,
+        "endLine": 102,
+        "endChar": 34
+      },
+      "revId": "575d5b2a12d3a8d9da7432f607d9311a8f2eec0f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
