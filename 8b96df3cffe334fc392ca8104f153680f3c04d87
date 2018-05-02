@@ -22,6 +22,30 @@
       "revId": "8b96df3cffe334fc392ca8104f153680f3c04d87",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9ec27b1_a114a1d2",
+        "filename": "cmd/jiri/read_manifest_test.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:23Z",
+      "side": 1,
+      "message": "Whoops forgot to handle this error.  And I want ContinueOnError because I don\u0027t think this should stop all of the tests from running (the other options completely terminate the current process).  ContinueOnError still returns an error if parsing fails.",
+      "parentUuid": "59f50e49_40627dd5",
+      "range": {
+        "startLine": 55,
+        "startChar": 56,
+        "endLine": 55,
+        "endChar": 71
+      },
+      "revId": "8b96df3cffe334fc392ca8104f153680f3c04d87",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }

@@ -22,6 +22,30 @@
       "revId": "ea71d358a6806b7b0da33c2e710954ddfc2b8c14",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf97a32e_bd6e8101",
+        "filename": "cmd/jiri/manifest_test.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:23Z",
+      "side": 1,
+      "message": "Ah, thanks!",
+      "parentUuid": "1bdade65_b86bf7df",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "ea71d358a6806b7b0da33c2e710954ddfc2b8c14",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }

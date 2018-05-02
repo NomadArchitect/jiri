@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "afa740fe_b46fcc1e",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:23Z",
+      "side": 1,
+      "message": "sg. Added a test manifest file :) I wasn\u0027t sure if this was kosher.",
+      "parentUuid": "c63d2364_c336ba75",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8cdc821a_cb3f873a",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
@@ -141,6 +165,30 @@
       "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "782d0e0c_1373a3e6",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:23Z",
+      "side": 1,
+      "message": "Ah, I think I was confused: If I run this with a single global instance, the tests would flake.  I thought this was because sometimes the FlagSet for one test is Parse()\u0027d while the Run() function for a previously-started test is attempting to read those flags.  After making a bunch of the changes on this review I can\u0027t repro though, so it\u0027s fine I can remove this.",
+      "parentUuid": "176e83d5_5d8bcf72",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -334,6 +382,24 @@
       "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7643aa43_e3cada37",
+        "filename": "cmd/jiri/read_manifest_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T21:01:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fe8e992_3fc4e19b",
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
