@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9ec6445_c7de58d4",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:02:57Z",
+      "side": 1,
+      "message": "this is not a callback, callback is something which is called when some event occurs or async task finishes, we can directly call this function below, why do we need to abstract it?",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63ef18ee_37a8cee4",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:02:57Z",
+      "side": 1,
+      "message": "nit: %s",
+      "range": {
+        "startLine": 91,
+        "startChar": 47,
+        "endLine": 91,
+        "endChar": 48
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c79c904_71b33242",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:02:57Z",
+      "side": 1,
+      "message": "fmt.Println?",
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "778d66ad_882c25d9",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:02:57Z",
+      "side": 1,
+      "message": "as this is going to be moslty used from bots, maybe we should simple support template\n\nhttps://golang.org/pkg/text/template/\n\nthat way we can support more usecases?",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
