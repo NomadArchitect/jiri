@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59f50e49_40627dd5",
+        "filename": "cmd/jiri/read_manifest_test.go",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T20:19:28Z",
+      "side": 1,
+      "message": "why continue on error? if some thing is changed with flags in original code, this test might not fail",
+      "range": {
+        "startLine": 55,
+        "startChar": 56,
+        "endLine": 55,
+        "endChar": 71
+      },
+      "revId": "8b96df3cffe334fc392ca8104f153680f3c04d87",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

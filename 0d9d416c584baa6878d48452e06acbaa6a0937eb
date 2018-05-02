@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c63d2364_c336ba75",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T20:19:28Z",
+      "side": 1,
+      "message": "we can test them as test are executed sequentially but i do like this way of doing stuff, but please remove callback function else we are not testing full code, just write manifest to temp file in tests",
+      "parentUuid": "4de38b35_51dbe1e0",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cdc821a_cb3f873a",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "From the docs on t.Run():  \"Run runs f as a subtest of t called name. It runs f in a separate goroutine and blocks until f returns\" (https://golang.org/pkg/testing/#T.Run) not run in parallel, but they are run concurrently",
       "parentUuid": "8cdc821a_cb3f873a",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "176e83d5_5d8bcf72",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T20:19:28Z",
+      "side": 1,
+      "message": "what is difference between concurrently and parallel, yes it starts in separate go routine but it is blocked so all t.Run will run sequentially",
+      "parentUuid": "06980df4_29de71a3",
       "range": {
         "startLine": 39,
         "startChar": 43,
@@ -269,6 +317,23 @@
       "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fe8e992_3fc4e19b",
+        "filename": "cmd/jiri/read_manifest_test.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T20:19:28Z",
+      "side": 1,
+      "message": "why not write manifest to file and pass that argument, that way we can test every function that command calls",
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     },
     {
       "key": {
