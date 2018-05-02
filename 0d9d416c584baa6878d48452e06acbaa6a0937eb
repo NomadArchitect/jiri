@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4de38b35_51dbe1e0",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "If I do this it is very difficult to test this command properly, as each test-case cannot start with a fresh instance of the command.",
+      "parentUuid": "e497d95f_da281bc8",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8cdc821a_cb3f873a",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-02T18:10:18Z",
       "side": 1,
       "message": "there won\u0027t be a race condition in tests as they are not run in parallel( we don\u0027t define t.parallel() in tests), also tests are pretty fast, no need to make them parallel, it would be just hard to debug them IMHO",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06980df4_29de71a3",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "From the docs on t.Run():  \"Run runs f as a subtest of t called name. It runs f in a separate goroutine and blocks until f returns\" (https://golang.org/pkg/testing/#T.Run) not run in parallel, but they are run concurrently",
+      "parentUuid": "8cdc821a_cb3f873a",
       "range": {
         "startLine": 39,
         "startChar": 43,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "11bbd1a2_60b5b210",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "This is here because I can\u0027t mock the manifest file for testing if I use project.ManifestFromFile directly",
+      "parentUuid": "b9ec6445_c7de58d4",
+      "range": {
+        "startLine": 55,
+        "startChar": 32,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "63ef18ee_37a8cee4",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "80b31ef5_3ba293ac",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63ef18ee_37a8cee4",
+      "range": {
+        "startLine": 91,
+        "startChar": 47,
+        "endLine": 91,
+        "endChar": 48
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c79c904_71b33242",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
@@ -108,6 +204,24 @@
       "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b8e739c_74e99d5b",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c79c904_71b33242",
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "3aeec973_8a786e2e",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f0d46d4_3778fe4e",
+      "range": {
+        "startLine": 119,
+        "startChar": 24,
+        "endLine": 119,
+        "endChar": 60
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "778d66ad_882c25d9",
         "filename": "project/project.go",
         "patchSetId": 9
@@ -145,6 +283,30 @@
       "writtenOn": "2018-05-02T18:02:57Z",
       "side": 1,
       "message": "as this is going to be moslty used from bots, maybe we should simple support template\n\nhttps://golang.org/pkg/text/template/\n\nthat way we can support more usecases?",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c357e8de_d25172d0",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-05-02T20:02:10Z",
+      "side": 1,
+      "message": "Just to clarify, I think you are asking whether we should just have the caller of Jiri pass in a Go template on the command line, and then Jiri would just fill in the template (kind of how the `project` subcommand works).  Having bots create a Go template is actually harder than using individual flags, plus it exposes an implementation detail of Jiri to the caller.\n\nFor this method specifically, we could actually use a template instead of having GetAttribute. e.g.\n\n   stringTemplate :\u003d fmt.Sprintf(\"{{.%s}}\", Capitalize(attributeName))\n   template.Parse(stringTemplate).Execute(project) // or Execute(import)",
+      "parentUuid": "778d66ad_882c25d9",
       "range": {
         "startLine": 133,
         "startChar": 0,
