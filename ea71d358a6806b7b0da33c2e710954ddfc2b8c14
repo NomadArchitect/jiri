@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bdade65_b86bf7df",
+        "filename": "cmd/jiri/manifest_test.go",
+        "patchSetId": 16
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T20:54:31Z",
+      "side": 1,
+      "message": "ioutil.Tempfile?",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "ea71d358a6806b7b0da33c2e710954ddfc2b8c14",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
