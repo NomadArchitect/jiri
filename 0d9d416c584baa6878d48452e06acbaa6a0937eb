@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e497d95f_da281bc8",
+        "filename": "cmd/jiri/read_manifest.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T18:05:45Z",
+      "side": 1,
+      "message": "please make command declaration consistent with other commands like\n\nhttps://fuchsia.googlesource.com/jiri/+/master/cmd/jiri/edit.go",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "0d9d416c584baa6878d48452e06acbaa6a0937eb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b9ec6445_c7de58d4",
         "filename": "cmd/jiri/read_manifest.go",
         "patchSetId": 9
