@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <imports>
+	<import name="the_import"
+			manifest="the_import_manifest"
+			remote="https://fuchsia.googlesource.com/the_import"
+			revision="the_import_revision"
+			remotebranch="the_import_remotebranch"
+			root="the_import_root"/>
+  </imports>
+  <projects>
+	<project name="the_project"
+			 path="path/to/the_project"
+			 remote="https://fuchsia.googlesource.com/the_project"
+			 remotebranch="the_project_remotebranch"
+			 revision="the_project_revision"
+			 githooks="the_project_githooks"
+			 gerrithost="https://fuchsia-review.googlesource.com"
+			 historydepth="2"/>
+ </projects>
+</manifest>
