@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea092e2_50fa1d74",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "nit: remove?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5edccbb_aa3c0244",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "toLower",
+      "range": {
+        "startLine": 93,
+        "startChar": 5,
+        "endLine": 93,
+        "endChar": 17
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7cb0986_192407d4",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "not catching error?",
+      "range": {
+        "startLine": 94,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee18ef0_12b6f357",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "toLower",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 15
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73d5b898_9a698710",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "not catching error?",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 32
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37e985ed_c909b51e",
+        "filename": "project/manifest.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 0
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16d61320_0031e4be",
+        "filename": "project/project.go",
+        "patchSetId": 20
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-02T23:32:37Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 0
+      },
+      "revId": "e1ddceaeaf36b4e5e95da3c7d9e7465522245e7e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
