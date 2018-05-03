@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f3503cf_916aad08",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-03T00:14:13Z",
+      "side": 1,
+      "message": "nit: project\u0027s",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "3cef16d3e810070275bc3141033a55af51f5a39f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04f7e0a1_9869826d",
+        "filename": "cmd/jiri/manifest.go",
+        "patchSetId": 27
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-03T00:14:13Z",
+      "side": 1,
+      "message": "nit: import\u0027s",
+      "range": {
+        "startLine": 43,
+        "startChar": 17,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "3cef16d3e810070275bc3141033a55af51f5a39f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
