@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bdf9f5f1_9b5a876a",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 24521
+      },
+      "writtenOn": "2018-05-08T20:36:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fb6e282_827dac54",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 8
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c92ae02_648038f7",
         "filename": "cmd/jiri/runp.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "564e9dc9_dd7fb60b",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 24521
+      },
+      "writtenOn": "2018-05-08T20:36:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c92ae02_648038f7",
+      "range": {
+        "startLine": 289,
+        "startChar": 23,
+        "endLine": 289,
+        "endChar": 32
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -83,6 +131,30 @@
       "side": 1,
       "message": "or maybe just match host and not repo?",
       "parentUuid": "d2c98e5e_ac4b06e3",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 2
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "415b9973_1e85edb3",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 24521
+      },
+      "writtenOn": "2018-05-08T20:36:45Z",
+      "side": 1,
+      "message": "I made it consistent with -projects and -branch. If users want a full match then they can enclose with ^ and $. WDUT?",
+      "parentUuid": "7ea3dc7a_4cbdeed5",
       "range": {
         "startLine": 311,
         "startChar": 0,
