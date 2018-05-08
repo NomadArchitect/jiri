@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3acc772d_2cf090ce",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:42:02Z",
+      "side": 1,
+      "message": "remote",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b362e85a_3b6049bd",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:42:02Z",
+      "side": 1,
+      "message": "setDefaultRunpFlags?",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 22
+      },
+      "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
