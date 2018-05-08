@@ -68,6 +68,30 @@
       "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ea3dc7a_4cbdeed5",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:27:34Z",
+      "side": 1,
+      "message": "or maybe just match host and not repo?",
+      "parentUuid": "d2c98e5e_ac4b06e3",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 2
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
