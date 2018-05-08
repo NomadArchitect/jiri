@@ -45,6 +45,29 @@
       "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e6ac508_1bd67666",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:42:26Z",
+      "side": 1,
+      "message": "remote",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 18
+      },
+      "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
