@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fb6e282_827dac54",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:25:50Z",
+      "side": 1,
+      "message": "nit: remote?",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 8
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c92ae02_648038f7",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:25:50Z",
+      "side": 1,
+      "message": "remoteRE as we check single remote string?",
+      "range": {
+        "startLine": 289,
+        "startChar": 23,
+        "endLine": 289,
+        "endChar": 32
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2c98e5e_ac4b06e3",
+        "filename": "cmd/jiri/runp.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-08T20:25:50Z",
+      "side": 1,
+      "message": "do we want to make it regular expression as remote urls start with https:// and // means something in RE, better to match it in full or just match prefix IMHO",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 2
+      },
+      "revId": "d2252cf514439227aa8a132d4c9852159c533c18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
