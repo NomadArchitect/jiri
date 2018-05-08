@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "99290c0f_42c0fac3",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 24521
+      },
+      "writtenOn": "2018-05-08T20:44:32Z",
+      "side": 1,
+      "message": "Oh good one.",
+      "parentUuid": "b362e85a_3b6049bd",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 22
+      },
+      "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e6ac508_1bd67666",
         "filename": "cmd/jiri/runp_test.go",
         "patchSetId": 2
@@ -68,6 +92,30 @@
       "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90d42cc5_bba63944",
+        "filename": "cmd/jiri/runp_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 24521
+      },
+      "writtenOn": "2018-05-08T20:44:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e6ac508_1bd67666",
+      "range": {
+        "startLine": 269,
+        "startChar": 11,
+        "endLine": 269,
+        "endChar": 18
+      },
+      "revId": "47a7d5649dd6366c1c51f518e425375e3aad3396",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
