@@ -20,15 +20,16 @@ import (
 )
 
 var (
-	patchRebaseFlag  bool
-	patchTopicFlag   bool
-	patchBranchFlag  string
-	patchDeleteFlag  bool
-	patchHostFlag    string
-	patchForceFlag   bool
-	cherryPickFlag   bool
-	detachedHeadFlag bool
-	patchProjectFlag string
+	patchRebaseFlag       bool
+	patchTopicFlag        bool
+	patchBranchFlag       string
+	patchDeleteFlag       bool
+	patchHostFlag         string
+	patchForceFlag        bool
+	cherryPickFlag        bool
+	detachedHeadFlag      bool
+	patchProjectFlag      string
+	patchRebaseBranchFlag string
 )
 
 func init() {
@@ -38,6 +39,7 @@ func init() {
 	cmdPatch.Flags.BoolVar(&patchRebaseFlag, "rebase", false, "Rebase the change after downloading")
 	cmdPatch.Flags.StringVar(&patchHostFlag, "host", "", `Gerrit host to use. Defaults to gerrit host specified in manifest.`)
 	cmdPatch.Flags.StringVar(&patchProjectFlag, "project", "", `Project to apply patch to. This cannot be passed with topic flag.`)
+	cmdPatch.Flags.StringVar(&patchRebaseBranchFlag, "rebase-branch", "master", `Branch to rebase on. Only works with -project flag.`)
 	cmdPatch.Flags.BoolVar(&patchTopicFlag, "topic", false, `Patch whole topic.`)
 	cmdPatch.Flags.BoolVar(&cherryPickFlag, "cherry-pick", false, `Cherry-pick patches instead of checking out.`)
 	cmdPatch.Flags.BoolVar(&detachedHeadFlag, "no-branch", false, `Don't create the branch for the patch.`)
@@ -268,8 +270,8 @@ func runPatch(jirix *jiri.X, args []string) error {
 	var p *project.Project
 	host := patchHostFlag
 	if patchProjectFlag != "" {
-		// TODO: TO-592 - remove this hardcode
-		remoteBranch = "master"
+		// TODO: TO-592 - remove this flag hardcode
+		remoteBranch = patchRebaseBranchFlag
 		projects, err := project.LocalProjects(jirix, project.FastScan)
 		if err != nil {
 			return err
