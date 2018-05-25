@@ -543,6 +543,11 @@ func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 	if refspec != "" {
 		args = append(args, refspec)
 	}
+	g.opts["GIT_TRACE"] = "1"
+	g.opts["GIT_TRACE_PACKET"] = "1"
+
+	defer delete(g.opts, "GIT_TRACE")
+	defer delete(g.opts, "GIT_TRACE_PACKET")
 
 	return g.run(args...)
 }
