@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "476bd6fa_3187615b",
+        "filename": "project/operations.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-05-25T01:35:53Z",
+      "side": 1,
+      "message": "nit: capitalize, no need to break it into two lines",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 48
+      },
+      "revId": "c18f4ce16da9f9a8ff97a526ae4991f2430e04cb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
