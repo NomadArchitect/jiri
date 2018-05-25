@@ -22,6 +22,30 @@
       "revId": "c18f4ce16da9f9a8ff97a526ae4991f2430e04cb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "672f31de_ac90c7c0",
+        "filename": "project/operations.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-05-25T18:42:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "476bd6fa_3187615b",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 48
+      },
+      "revId": "c18f4ce16da9f9a8ff97a526ae4991f2430e04cb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
