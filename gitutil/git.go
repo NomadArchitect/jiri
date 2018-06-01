@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -52,6 +53,7 @@ type Git struct {
 	rootDir   string
 	userName  string
 	userEmail string
+	logfile   string
 }
 
 type gitOpt interface {
@@ -543,6 +545,11 @@ func (g *Git) FetchRefspec(remote, refspec string, opts ...FetchOpt) error {
 	if refspec != "" {
 		args = append(args, refspec)
 	}
+	f, _ := ioutil.TempFile("", "jiri-trace")
+	g.logfile = f.Name()
+	defer func() {
+		g.logfile = ""
+	}()
 
 	return g.run(args...)
 }
@@ -995,7 +1002,15 @@ func (g *Git) Version() (int, int, error) {
 func (g *Git) run(args ...string) error {
 	var stdout, stderr bytes.Buffer
 	if err := g.runGit(&stdout, &stderr, args...); err != nil {
-		return Error(stdout.String(), stderr.String(), err, g.rootDir, args...)
+		e := stderr.String()
+		if g.logfile != "" {
+			e = e + "\nlogfile:" + g.logfile + "\n"
+		}
+		return Error(stdout.String(), e, err, g.rootDir, args...)
+	} else {
+		if g.logfile != "" {
+			os.Remove(g.logfile)
+		}
 	}
 	return nil
 }
@@ -1034,6 +1049,10 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 		args = append([]string{"-c", fmt.Sprintf("user.email=%s", g.userEmail)}, args...)
 	}
 	command := exec.Command("git", args...)
+	if g.logfile != "" {
+		args = append([]string{"-f", "-o", g.logfile, "git"}, args...)
+		command = exec.Command("strace", args...)
+	}
 	command.Dir = g.rootDir
 	command.Stdin = os.Stdin
 	command.Stdout = stdout
