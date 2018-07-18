@@ -120,25 +120,29 @@ func NewSourceManifest(jirix *jiri.X, projects Projects) (*SourceManifest, Multi
 	var mux sync.Mutex
 	processProject := func(proj Project) error {
 		gc := &SourceManifest_GitCheckout{
-			RepoUrl: proj.Remote,
+			RepoUrl:  proj.Remote,
 		}
 		g := git.NewGit(filepath.Join(jirix.Root, proj.Path))
 		scm := gitutil.New(jirix, gitutil.RootDirOpt(filepath.Join(jirix.Root, proj.Path)))
-		if rev, err := g.CurrentRevision(); err != nil {
-			return err
+		if proj.Revision == "" {
+			if rev, err := g.CurrentRevision(); err != nil {
+				return err
+			} else {
+				gc.Revision = rev
+			}
 		} else {
-			gc.Revision = rev
+			gc.Revision = proj.Revision
 		}
 		if proj.RemoteBranch == "" {
 			proj.RemoteBranch = "master"
 		}
 		branchMap, err := scm.ListRemoteBranchesContainingRef(gc.Revision)
-		if err != nil {
-			return err
-		}
-		if branchMap["origin/"+proj.RemoteBranch] {
+		switch {
+		case err != nil:
+			// If we can't get the fetch_ref, that's OK. It's optional.
+		case branchMap["origin/"+proj.RemoteBranch]:
 			gc.FetchRef = "refs/heads/" + proj.RemoteBranch
-		} else {
+		default:
 			for b, _ := range branchMap {
 				if strings.HasPrefix(b, "origin/HEAD ") {
 					continue
