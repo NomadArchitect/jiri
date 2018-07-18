@@ -10,6 +10,14 @@ import (
 	"fuchsia.googlesource.com/jiri/project"
 )
 
+var (
+	snapshotFlag string
+)
+
+func init() {
+	cmdSourceManifest.Flags.StringVar(&snapshotFlag, "snapshot", "", "Snapshot to generate a source manifest for")
+}
+
 var cmdSourceManifest = &cmdline.Command{
 	Runner: jiri.RunnerFunc(runSourceManifest),
 	Name:   "source-manifest",
@@ -31,12 +39,18 @@ func runSourceManifest(jirix *jiri.X, args []string) error {
 		return jirix.UsageErrorf("unexpected number of arguments")
 	}
 
-	localProjects, err := project.LocalProjects(jirix, project.FullScan)
+	var projects project.Projects
+	var err error
+	if snapshotFlag != "" {
+		projects, _, err = project.LoadSnapshotFile(jirix, snapshot)
+	} else {
+		projects, err = project.LocalProjects(jirix, project.FullScan)
+	}
 	if err != nil {
 		return err
 	}
 
-	sm, mErr := project.NewSourceManifest(jirix, localProjects)
+	sm, mErr := project.NewSourceManifest(jirix, projects)
 	if mErr != nil {
 		return mErr
 	}
