@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d703a413_cb78afa4",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-09-26T18:49:59Z",
+      "side": 1,
+      "message": "maybe pass it as a argument?",
+      "revId": "0165aed7a38c0b065a2e849bbcbdb2edb350c39b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
