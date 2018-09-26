@@ -426,6 +426,40 @@ func TestOldMetaDirIsMovedOnUpdate(t *testing.T) {
 func testWithCache(t *testing.T, shared bool) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
+	// Set-up to make sure history depth is respected on all branches.
+	if localProjects[2].HistoryDepth != 1 {
+		t.Fatalf("This code assumes localProjects[2].HistoryDepth == 1")
+	}
+	// Create multiple branches in remote project 2
+	gitRemote2 := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"),
+		gitutil.UserEmailOpt("john.doe@example.com"),
+		gitutil.RootDirOpt(fake.Projects[localProjects[2].Name]))
+	gr2 := git.NewGit(fake.Projects[localProjects[2].Name])
+	if err := gitRemote2.CreateAndCheckoutBranch("2A"); err != nil {
+		t.Fatal(err)
+	}
+	// 2A is behind master by one commit.
+	aRev, err := gr2.CurrentRevision()
+	if err != nil {
+		t.Fatal(err)
+	}
+	gitRemote2.CheckoutBranch("master")
+	writeFile(t, fake.X, fake.Projects[localProjects[2].Name], "foo", "foo")
+	// 2B is ahead of master by one commit.
+	if err := gitRemote2.CreateAndCheckoutBranch("2B"); err != nil {
+		t.Fatal(err)
+	}
+	writeFile(t, fake.X, fake.Projects[localProjects[2].Name], "fileB", "fileB")
+	bRev, err := gr2.CurrentRevision()
+	if err != nil {
+		t.Fatal(err)
+	}
+	// Later code expects the remote to be on master
+	gitRemote2.CheckoutBranch("master")
+	masterRev, err := gr2.CurrentRevision()
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	// Create cache directory
 	cacheDir, err := ioutil.TempDir("", "cache")
@@ -469,17 +503,17 @@ func testWithCache(t *testing.T, shared bool) {
 	checkJiriRevFiles(t, fake.X, localProjects[1])
 
 	// Check that cache was updated
-	cacheDirPath, err := localProjects[1].CacheDirPath(fake.X)
+	cacheDirPath1, err := localProjects[1].CacheDirPath(fake.X)
 	if err != nil {
 		t.Fatal(err)
 	}
-	gCache := git.NewGit(cacheDirPath)
-	cacheRev, err := gCache.CurrentRevision()
+	gitCache1 := git.NewGit(cacheDirPath1)
+	cacheRev, err := gitCache1.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
 	}
-	gl := git.NewGit(localProjects[1].Path)
-	localRev, err := gl.CurrentRevision()
+	gitLocal1 := git.NewGit(localProjects[1].Path)
+	localRev, err := gitLocal1.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -487,6 +521,37 @@ func testWithCache(t *testing.T, shared bool) {
 		t.Fatalf("Cache revision(%v) not equal to local revision(%v)", cacheRev, localRev)
 	}
 
+	// Check the branches other than master were cloned even if they're more than HistoryDepth ahead or behind.
+	cacheDirPath2, err := localProjects[2].CacheDirPath(fake.X)
+	if err != nil {
+		t.Fatal(err)
+	}
+	gitCache2 := git.NewGit(cacheDirPath2)
+	branches, err := gitCache2.GetAllBranchesInfo()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(branches) != 3 {
+		t.Fatalf("Expected exactly 3 branches on cached clone of project 2, found %v", branches)
+	}
+	for _, branch := range branches {
+		switch branch.Name {
+		case "2A":
+			if branch.Revision != aRev {
+				t.Fatalf("Expected branch 2A to be on revision %s, got %s", aRev, branch.Revision)
+			}
+		case "2B":
+			if branch.Revision != bRev {
+				t.Fatalf("Expected branch 2B to be on revision %s, got %s", bRev, branch.Revision)
+			}
+		case "master":
+			if branch.Revision != masterRev {
+				t.Fatalf("Expected branch master to be on revision %s, got %s", masterRev, branch.Revision)
+			}
+		default:
+			t.Fatalf("Unexpected branch name %s", branch.Name)
+		}
+	}
 }
 
 // TestUpdateUniverseWithCache checks that UpdateUniverse can clone and pull
