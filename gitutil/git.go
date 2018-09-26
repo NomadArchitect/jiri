@@ -200,7 +200,10 @@ func (g *Git) Clone(repo, path string, opts ...CloneOpt) error {
 func (g *Git) CloneMirror(repo, path string, depth int) error {
 	args := []string{"clone", "--mirror"}
 	if depth > 0 {
-		args = append(args, []string{"--depth", strconv.Itoa(depth)}...)
+		// no-single-branch so that --depth is respected across all branches.
+		// This lets the repository owner effectively force commits to be included
+		// in this mirror by creating branches at those commits.
+		args = append(args, []string{"--depth", strconv.Itoa(depth), "--no-single-branch"}...)
 	}
 	args = append(args, []string{repo, path}...)
 	return g.run(args...)
