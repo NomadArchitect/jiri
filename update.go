@@ -24,7 +24,7 @@ import (
 
 const (
 	JiriRepository    = "https://fuchsia.googlesource.com/jiri"
-	JiriStorageBucket = "https://storage.googleapis.com/fuchsia-build/jiri"
+	JiriStorageBucket = "https://storage.googleapis.com/fuchsia/jiri"
 )
 
 var (

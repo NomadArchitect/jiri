@@ -11,7 +11,7 @@
 
 # This script uploads jiri binaries to Google storage, therefore it expects to
 # be run in an environment with the credentials necessary for uploading to
-# gs://fuchsia-build.  The binaries stored in a convention which matches the
+# gs://fuchsia.  The binaries stored in a convention which matches the
 # expectations of bootstrap_jiri.
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -29,7 +29,7 @@ fi
 readonly HOST_OS="$(uname | tr '[:upper:]' '[:lower:]')"
 
 readonly PKG_PATH="fuchsia.googlesource.com/jiri"
-readonly GS_BUCKET="gs://fuchsia-build/jiri"
+readonly GS_BUCKET="gs://fuchsia/jiri"
 
 # Use the git SHA of the latest commit in the jiri repo as the version of the binaries.
 readonly VERSION="$(git --git-dir="${GIT_DIR}/.git" --work-tree="${GIT_DIR}" log -1 --format=%H)"

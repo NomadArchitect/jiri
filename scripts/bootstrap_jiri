@@ -19,7 +19,7 @@ set -euf -o pipefail
 readonly JIRI_REPO_URL="https://fuchsia.googlesource.com/jiri"
 
 # Google Storage bucket that contains prebuilt versions of jiri.
-readonly GS_BUCKET_URL="https://fuchsia-build.storage.googleapis.com/jiri"
+readonly GS_BUCKET_URL="https://fuchsia.storage.googleapis.com/jiri"
 
 # fatal prints an error message, followed by the usage string, and then exits.
 fatal() {

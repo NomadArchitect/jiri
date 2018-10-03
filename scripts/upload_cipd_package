@@ -6,7 +6,7 @@
 set -euf -o pipefail
 
 readonly JIRI_REPO_URL="https://fuchsia.googlesource.com/jiri"
-readonly GS_BUCKET_URL="https://fuchsia-build.storage.googleapis.com/jiri"
+readonly GS_BUCKET_URL="https://fuchsia.storage.googleapis.com/jiri"
 
 # Accept the first argument as a list of OSes to build for.  Possible values
 # are valid GOOS strings from [linux darwin]
