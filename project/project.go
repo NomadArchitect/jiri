@@ -951,11 +951,11 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 }
 
 // syncProjectMaster checks out latest detached head if project is on one
-// else it rebases current branch onto its tracking branch
-func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) error {
+// else it rebases current branch onto its tracking branch. It returns a bool indicating whether the operation completely succeeded and an error in the case of a fatal error.
+func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) (bool, error) {
 	cwd, err := os.Getwd()
 	if err != nil {
-		return fmtError(err)
+		return false, fmtError(err)
 	}
 	relativePath, err := filepath.Rel(cwd, project.Path)
 	if err != nil {
@@ -964,36 +964,39 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	}
 	if project.LocalConfig.Ignore || project.LocalConfig.NoUpdate {
 		jirix.Logger.Warningf("Project %s(%s) won't be updated due to it's local-config\n\n", project.Name, relativePath)
-		return nil
+		return false, nil
 	}
 
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 	g := git.NewGit(project.Path)
 
 	if uncommitted, err := g.HasUncommittedChanges(); err != nil {
-		return fmt.Errorf("Cannot get uncommited changes for project %q: %s", project.Name, err)
+		return false, fmt.Errorf("Cannot get uncommited changes for project %q: %s", project.Name, err)
 	} else if uncommitted {
 		msg := fmt.Sprintf("Project %s(%s) contains uncommited changes.", project.Name, relativePath)
 		msg += fmt.Sprintf("\nCommit or discard the changes and try again.\n\n")
 		jirix.Logger.Errorf(msg)
 		jirix.IncrementFailures()
-		return nil
+		return false, nil
 	}
+
+	success := true
 
 	if state.CurrentBranch.Name == "" || snapshot { // detached head
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
 			revision, err2 := GetHeadRevision(jirix, project)
 			if err2 != nil {
-				return err2
+				return false, err2
 			}
 			gitCommand := jirix.Color.Yellow("git -C %q checkout --detach %s", relativePath, revision)
 			msg := fmt.Sprintf("For project %q, not able to checkout latest, error: %s", project.Name, err)
 			msg += fmt.Sprintf("\nPlease checkout manually use: '%s'\n\n", gitCommand)
 			jirix.Logger.Errorf(msg)
 			jirix.IncrementFailures()
+			success = false
 		}
 		if snapshot || !rebaseAll {
-			return nil
+			return success, nil
 		}
 		// This should run after program exit so that detached head can be restored
 		defer func() {
@@ -1016,18 +1019,19 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	if !rebaseTracked && !rebaseAll && state.CurrentBranch.Tracking != nil {
 		tracking := state.CurrentBranch.Tracking
 		if tracking.Revision == state.CurrentBranch.Revision {
-			return nil
+			return success, nil
 		}
 		if project.LocalConfig.NoRebase {
 			jirix.Logger.Warningf("For project %s(%s), not merging your local branches due to it's local-config\n\n", project.Name, relativePath)
-			return nil
+			return false, nil
 		}
 		if err := scm.Merge(tracking.Name, gitutil.FfOnlyOpt(true)); err != nil {
 			msg := fmt.Sprintf("For project %s(%s), not able to fast forward your local branch %q to %q\n\n", project.Name, relativePath, state.CurrentBranch.Name, tracking.Name)
 			jirix.Logger.Errorf(msg)
 			jirix.IncrementFailures()
+			success = false
 		}
-		return nil
+		return success, nil
 	}
 
 	branches := state.Branches
@@ -1041,11 +1045,11 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	rebaseUntrackedMessage := false
 	headRevision, err := GetHeadRevision(jirix, project)
 	if err != nil {
-		return err
+		return false, err
 	}
 	branchesContainingHead, err := scm.ListBranchesContainingRef(headRevision)
 	if err != nil {
-		return err
+		return false, err
 	}
 	for _, branch := range branches {
 		tracking := branch.Tracking
@@ -1065,6 +1069,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 					msg := fmt.Sprintf("For project %s(%s), branch %q has circular dependency, not rebasing it.\n\n", project.Name, relativePath, branch.Name)
 					jirix.Logger.Errorf(msg)
 					jirix.IncrementFailures()
+					success = false
 					break
 				}
 				circularDependencyMap[t.Name] = true
@@ -1089,6 +1094,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				msg += "\nPlease do it manually\n\n"
 				jirix.Logger.Errorf(msg)
 				jirix.IncrementFailures()
+				success = false
 				continue
 			}
 			rebaseSuccess, err := tryRebase(jirix, project, tracking.Name)
@@ -1102,6 +1108,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				msg += "\nPlease do it manually\n\n"
 				jirix.Logger.Errorf(msg)
 				jirix.IncrementFailures()
+				success = false
 				continue
 			}
 		} else {
@@ -1119,6 +1126,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 					msg += "\nPlease do it manually\n\n"
 					jirix.Logger.Errorf(msg)
 					jirix.IncrementFailures()
+					success = false
 					continue
 				}
 				rebaseSuccess, err := tryRebase(jirix, project, headRevision)
@@ -1132,6 +1140,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 					msg += "\nPlease do it manually\n\n"
 					jirix.Logger.Errorf(msg)
 					jirix.IncrementFailures()
+					success = false
 					continue
 				}
 			} else if !rebaseUntrackedMessage {
@@ -1394,24 +1403,42 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			nullOperations = append(nullOperations, o)
 		}
 	}
+	
+	var failureSet map[string]struct{}
+	addFailures := func (failures []string) {
+		for _, failure := range failures {
+			failureSet[failure] = struct{}{}
+		}
+	}
+
 	if err := runDeleteOperations(jirix, deleteOperations, gc); err != nil {
 		return err
 	}
-	if err := runCommonOperations(jirix, changeRemoteOperations, log.DebugLevel); err != nil {
+	failures, err := runCommonOperations(jirix, changeRemoteOperations, log.DebugLevel)
+	if err != nil {
 		return err
 	}
-	if err := runMoveOperations(jirix, moveOperations); err != nil {
+	addFailures(failures)
+	failures, err = runMoveOperations(jirix, moveOperations)
+	if err != nil {
 		return err
 	}
-	if err := runCommonOperations(jirix, updateOperations, log.DebugLevel); err != nil {
+	addFailures(failures)
+	failures, err = runCommonOperations(jirix, updateOperations, log.DebugLevel)
+	if err != nil {
 		return err
 	}
-	if err := runCreateOperations(jirix, createOperations); err != nil {
+	addFailures(failures)
+	failures, err = runCreateOperations(jirix, createOperations)
+	if err != nil {
 		return err
 	}
-	if err := runCommonOperations(jirix, nullOperations, log.TraceLevel); err != nil {
+	addFailures(failures)
+	failures, err = runCommonOperations(jirix, nullOperations, log.TraceLevel)
+	if err != nil {
 		return err
 	}
+	addFailures(failures)
 	jirix.TimerPush("jiri revision files")
 	for _, project := range remoteProjects {
 		if !(project.LocalConfig.Ignore || project.LocalConfig.NoUpdate) {

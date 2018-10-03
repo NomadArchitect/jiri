@@ -49,8 +49,11 @@ type operation interface {
 	Project() Project
 	// Kind returns the kind of operation.
 	Kind() string
-	// Run executes the operation.
-	Run(jirix *jiri.X) error
+	// Run executes the operation. Operations may complete in the following ways:
+	//   - Sucessfully (true, nil)
+	//   - Partial success/nonfatal error (false, nil)
+	//   - Fatal error (false, error)
+	Run(jirix *jiri.X) (success bool, err error)
 	// String returns a string representation of the operation.
 	String() string
 	// Test checks whether the operation would fail.
@@ -134,33 +137,33 @@ func (op createOperation) checkoutProject(jirix *jiri.X, cache string) error {
 	return nil
 }
 
-func (op createOperation) Run(jirix *jiri.X) (e error) {
+func (op createOperation) Run(jirix *jiri.X) (bool, error) {
 	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
 
 	// Check the local file system.
 	if _, err := os.Stat(op.destination); err != nil {
 		if !os.IsNotExist(err) {
-			return fmtError(err)
+			return false, fmtError(err)
 		}
 	} else {
 		if isEmpty, err := isEmpty(op.destination); err != nil {
-			return err
+			return false, err
 		} else if !isEmpty {
-			return fmt.Errorf("cannot create %q as it already exists and is not empty", op.destination)
+			return false, fmt.Errorf("cannot create %q as it already exists and is not empty", op.destination)
 		} else {
 			if err := os.RemoveAll(op.destination); err != nil {
-				return fmt.Errorf("Not able to delete %q", op.destination)
+				return false, fmt.Errorf("Not able to delete %q", op.destination)
 			}
 		}
 	}
 
 	if err := os.MkdirAll(path, perm); err != nil {
-		return fmtError(err)
+		return false, fmtError(err)
 	}
 
 	cache, err := op.project.CacheDirPath(jirix)
 	if err != nil {
-		return err
+		return false, err
 	}
 	if !isPathDir(cache) {
 		cache = ""
@@ -170,9 +173,9 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 		if err := os.RemoveAll(op.destination); err != nil {
 			jirix.Logger.Warningf("Not able to remove %q after create failed: %s", op.destination, err)
 		}
-		return err
+		return false, err
 	}
-	return nil
+	return true, nil
 }
 
 func (op createOperation) String() string {
@@ -192,25 +195,25 @@ func (op deleteOperation) Kind() string {
 	return "delete"
 }
 
-func (op deleteOperation) Run(jirix *jiri.X) error {
+func (op deleteOperation) Run(jirix *jiri.X) (bool, error) {
 	if op.project.LocalConfig.Ignore {
 		jirix.Logger.Warningf("Project %s(%s) won't be deleted due to it's local-config\n\n", op.project.Name, op.source)
-		return nil
+		return false, nil
 	}
 	// Never delete projects with non-master branches, uncommitted
 	// work, or untracked content.
 	g := git.NewGit(op.project.Path)
 	branches, _, err := g.GetBranches()
 	if err != nil {
-		return fmt.Errorf("Cannot get branches for project %q: %s", op.Project().Name, err)
+		return false, fmt.Errorf("Cannot get branches for project %q: %s", op.Project().Name, err)
 	}
 	uncommitted, err := g.HasUncommittedChanges()
 	if err != nil {
-		return fmt.Errorf("Cannot get uncommited changes for project %q: %s", op.Project().Name, err)
+		return false, fmt.Errorf("Cannot get uncommited changes for project %q: %s", op.Project().Name, err)
 	}
 	untracked, err := g.HasUntrackedFiles()
 	if err != nil {
-		return fmt.Errorf("Cannot get untracked changes for project %q: %s", op.Project().Name, err)
+		return false, fmt.Errorf("Cannot get untracked changes for project %q: %s", op.Project().Name, err)
 	}
 	extraBranches := false
 	for _, branch := range branches {
@@ -232,10 +235,14 @@ func (op deleteOperation) Run(jirix *jiri.X) error {
 		msg += fmt.Sprintf("\nIf you no longer need it, invoke '%s'", rmCommand)
 		msg += fmt.Sprintf("\nIf you no longer want jiri to manage it, invoke '%s'\n\n", unManageCommand)
 		jirix.Logger.Warningf(msg)
-		return nil
+		return false, nil
 	}
 
-	return fmtError(os.RemoveAll(op.source))
+	if err := os.RemoveAll(op.source); err != nil {
+		return false, fmtError(err)
+	}
+
+	return true, nil
 }
 
 func (op deleteOperation) String() string {
@@ -266,25 +273,28 @@ func (op moveOperation) Kind() string {
 	return "move"
 }
 
-func (op moveOperation) Run(jirix *jiri.X) error {
+func (op moveOperation) Run(jirix *jiri.X) (success bool, err error) {
 	if op.project.LocalConfig.Ignore {
 		jirix.Logger.Warningf("Project %s(%s) won't be moved or updated  due to it's local-config\n\n", op.project.Name, op.source)
-		return nil
+		return false, nil
 	}
 	// If it was nested project it might have been moved with its parent project
 	if op.source != op.destination {
 		path, perm := filepath.Dir(op.destination), os.FileMode(0755)
 		if err := os.MkdirAll(path, perm); err != nil {
-			return fmtError(err)
+			return false, fmtError(err)
 		}
 		if err := osutil.Rename(op.source, op.destination); err != nil {
-			return fmtError(err)
+			return false, fmtError(err)
 		}
 	}
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
-		return err
+	if success, err = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+		return false, err
 	}
-	return writeMetadata(jirix, op.project, op.project.Path)
+	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
+		return false, err
+	}
+	return success, nil
 }
 
 func (op moveOperation) String() string {
@@ -322,26 +332,26 @@ func (op changeRemoteOperation) Kind() string {
 	return "change-remote"
 }
 
-func (op changeRemoteOperation) Run(jirix *jiri.X) error {
+func (op changeRemoteOperation) Run(jirix *jiri.X) (success bool, err error) {
 	if op.project.LocalConfig.Ignore || op.project.LocalConfig.NoUpdate {
 		jirix.Logger.Warningf("Project %s(%s) won't be updated due to it's local-config. It has a changed remote\n\n", op.project.Name, op.project.Path)
-		return nil
+		return false, nil
 	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(op.project.Path))
 	tempRemote := "new-remote-origin"
 	if err := git.AddRemote(tempRemote, op.project.Remote); err != nil {
-		return err
+		return false, err
 	}
 	defer git.DeleteRemote(tempRemote)
 
 	if err := fetch(jirix, op.project.Path, tempRemote); err != nil {
-		return err
+		return false, err
 	}
 
 	// Check for all leaf commits in new remote
 	for _, branch := range op.state.Branches {
 		if containingBranches, err := git.GetRemoteBranchesContaining(branch.Revision); err != nil {
-			return err
+			return false, err
 		} else {
 			foundBranch := false
 			for _, remoteBranchName := range containingBranches {
@@ -354,7 +364,7 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 				jirix.Logger.Errorf("Note: For project %q(%v), remote url has changed. Its branch %q is on a commit", op.project.Name, op.project.Path, branch.Name)
 				jirix.Logger.Errorf("which is not in new remote(%v). Please manually reset your branches or move", op.project.Remote)
 				jirix.Logger.Errorf("your project folder out of the root and try again")
-				return nil
+				return false, nil
 			}
 
 		}
@@ -362,18 +372,22 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 
 	// Everything ok, change the remote url
 	if err := git.SetRemoteUrl("origin", op.project.Remote); err != nil {
-		return err
+		return false, err
 	}
 
 	if err := fetch(jirix, op.project.Path, "", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
-		return err
+		return false, err
 	}
 
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
-		return err
+	if success, err = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+		return false, err
 	}
 
-	return writeMetadata(jirix, op.project, op.project.Path)
+	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
+		return false, err
+	}
+
+	return success, nil
 }
 
 func (op changeRemoteOperation) String() string {
@@ -397,11 +411,14 @@ func (op updateOperation) Kind() string {
 	return "update"
 }
 
-func (op updateOperation) Run(jirix *jiri.X) error {
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
-		return err
+func (op updateOperation) Run(jirix *jiri.X) (success bool, err error) {
+	if success, err = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+		return false, err
 	}
-	return writeMetadata(jirix, op.project, op.project.Path)
+	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
+		return false, err
+	}
+	return success, nil
 }
 
 func (op updateOperation) String() string {
@@ -422,8 +439,11 @@ func (op nullOperation) Kind() string {
 	return "null"
 }
 
-func (op nullOperation) Run(jirix *jiri.X) error {
-	return writeMetadata(jirix, op.project, op.project.Path)
+func (op nullOperation) Run(jirix *jiri.X) (bool, error) {
+	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
+		return false, err
+	}
+	return true, nil
 }
 
 func (op nullOperation) String() string {
@@ -609,11 +629,11 @@ func computeOp(local, remote *Project, state *ProjectState, gc, rebaseTracked, r
 	}
 }
 
-// This function creates worktree and runs create operation in parallel
-func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
+// This function creates worktree and runs create operation in parallel. It returns the names of projects for which the create operation failed (including nonfatals) and the fatal errors encountered.
+func runCreateOperations(jirix *jiri.X, ops []createOperation) ([]string, MultiError) {
 	count := len(ops)
 	if count == 0 {
-		return nil
+		return nil, nil
 	}
 
 	type workTree struct {
@@ -655,6 +675,7 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	}
 
 	workQueue := make(chan *workTree, count)
+	failures := make(chan string, count)
 	errs := make(chan error, count)
 	var wg sync.WaitGroup
 	processTree := func(tree *workTree) {
@@ -663,7 +684,12 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 			logMsg := fmt.Sprintf("Creating project %q", op.Project().Name)
 			task := jirix.Logger.AddTaskMsg(logMsg)
 			jirix.Logger.Debugf("%v", op)
-			if err := op.Run(jirix); err != nil {
+
+			success, err := op.Run(jirix)
+			if !success {
+				failures <- op.Project().Name
+			}
+			if err != nil {
 				task.Done()
 				errs <- fmt.Errorf("%s: %s", logMsg, err)
 				return
@@ -688,11 +714,15 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	close(workQueue)
 	close(errs)
 
+	var failureArray []string
 	var multiErr MultiError
+	for failure := range failures {
+		failureArray = append(failureArray, failure)
+	}
 	for err := range errs {
 		multiErr = append(multiErr, err)
 	}
-	return multiErr
+	return failureArray, multiErr
 }
 
 type PathTrie struct {
@@ -774,7 +804,7 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 		logMsg := fmt.Sprintf("Deleting project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Debugf("%s", op)
-		if err := op.Run(jirix); err != nil {
+		if _, err := op.Run(jirix); err != nil {
 			task.Done()
 			return fmt.Errorf("%s: %s", logMsg, err)
 		}
@@ -789,9 +819,10 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 	return nil
 }
 
-func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
+func runMoveOperations(jirix *jiri.X, ops []moveOperation) ([]string, error) {
 	parentSrcPath := ""
 	parentDestPath := ""
+	var failures []string
 	for _, op := range ops {
 		if parentSrcPath != "" && strings.HasPrefix(op.source, parentSrcPath) {
 			op.source = filepath.Join(parentDestPath, strings.Replace(op.source, parentSrcPath, "", 1))
@@ -802,25 +833,34 @@ func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
 		logMsg := fmt.Sprintf("Moving and updating project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Debugf("%s", op)
-		if err := op.Run(jirix); err != nil {
+		success, err := op.Run(jirix)
+		if err != nil {
 			task.Done()
-			return fmt.Errorf("%s: %s", logMsg, err)
+			return failures, fmt.Errorf("%s: %s", logMsg, err)
+		}
+		if !success {
+			failures = append(failures, op.Project().Name)
 		}
 		task.Done()
 	}
-	return nil
+	return failures, nil
 }
 
-func runCommonOperations(jirix *jiri.X, ops operations, loglevel log.LogLevel) error {
+func runCommonOperations(jirix *jiri.X, ops operations, loglevel log.LogLevel) ([]string, error) {
+	var failures []string
 	for _, op := range ops {
 		logMsg := fmt.Sprintf("Updating project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Logf(loglevel, "%s", op)
-		if err := op.Run(jirix); err != nil {
+		success, err := op.Run(jirix)
+		if err != nil {
 			task.Done()
-			return fmt.Errorf("%s: %s", logMsg, err)
+			return failures, fmt.Errorf("%s: %s", logMsg, err)
+		}
+		if !success {
+			failures = append(failures, op.Project().Name)
 		}
 		task.Done()
 	}
-	return nil
+	return failures, nil
 }
