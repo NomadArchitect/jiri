@@ -5,6 +5,7 @@
 package project
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -44,12 +45,23 @@ func (u *fsUpdates) isDeleted(dir string) bool {
 	return ok
 }
 
+// errPartialSuccess is a sentinel error indicating that an operation did not
+// complete fully but should not abort other operations. This can happen
+// because a project was configured to be excluded from the operation, or
+// because an operation requires manual intervention to be completed.
+var errPartialSuccess = errors.New("operation: partial success")
+
+func shouldAbort(err error) bool {
+	return err != nil && err != errPartialSuccess
+}
+
 type operation interface {
 	// Project identifies the project this operation pertains to.
 	Project() Project
 	// Kind returns the kind of operation.
 	Kind() string
-	// Run executes the operation.
+	// Run executes the operation. Operations may complete with partial success,
+	// in which case Run should return errPartialSuccess.
 	Run(jirix *jiri.X) error
 	// String returns a string representation of the operation.
 	String() string
@@ -134,7 +146,7 @@ func (op createOperation) checkoutProject(jirix *jiri.X, cache string) error {
 	return nil
 }
 
-func (op createOperation) Run(jirix *jiri.X) (e error) {
+func (op createOperation) Run(jirix *jiri.X) error {
 	path, perm := filepath.Dir(op.destination), os.FileMode(0755)
 
 	// Check the local file system.
@@ -195,7 +207,7 @@ func (op deleteOperation) Kind() string {
 func (op deleteOperation) Run(jirix *jiri.X) error {
 	if op.project.LocalConfig.Ignore {
 		jirix.Logger.Warningf("Project %s(%s) won't be deleted due to it's local-config\n\n", op.project.Name, op.source)
-		return nil
+		return errPartialSuccess
 	}
 	// Never delete projects with non-master branches, uncommitted
 	// work, or untracked content.
@@ -232,7 +244,7 @@ func (op deleteOperation) Run(jirix *jiri.X) error {
 		msg += fmt.Sprintf("\nIf you no longer need it, invoke '%s'", rmCommand)
 		msg += fmt.Sprintf("\nIf you no longer want jiri to manage it, invoke '%s'\n\n", unManageCommand)
 		jirix.Logger.Warningf(msg)
-		return nil
+		return errPartialSuccess
 	}
 
 	return fmtError(os.RemoveAll(op.source))
@@ -266,25 +278,28 @@ func (op moveOperation) Kind() string {
 	return "move"
 }
 
-func (op moveOperation) Run(jirix *jiri.X) error {
+func (op moveOperation) Run(jirix *jiri.X) (err error) {
 	if op.project.LocalConfig.Ignore {
 		jirix.Logger.Warningf("Project %s(%s) won't be moved or updated  due to it's local-config\n\n", op.project.Name, op.source)
-		return nil
+		return errPartialSuccess
 	}
 	// If it was nested project it might have been moved with its parent project
 	if op.source != op.destination {
 		path, perm := filepath.Dir(op.destination), os.FileMode(0755)
-		if err := os.MkdirAll(path, perm); err != nil {
+		if err2 := os.MkdirAll(path, perm); err2 != nil {
 			return fmtError(err)
 		}
-		if err := osutil.Rename(op.source, op.destination); err != nil {
-			return fmtError(err)
+		if err2 := osutil.Rename(op.source, op.destination); err2 != nil {
+			return fmtError(err2)
 		}
 	}
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+	if err = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); shouldAbort(err) {
 		return err
 	}
-	return writeMetadata(jirix, op.project, op.project.Path)
+	if err2 := writeMetadata(jirix, op.project, op.project.Path); err2 != nil {
+		return err2
+	}
+	return err
 }
 
 func (op moveOperation) String() string {
@@ -322,10 +337,10 @@ func (op changeRemoteOperation) Kind() string {
 	return "change-remote"
 }
 
-func (op changeRemoteOperation) Run(jirix *jiri.X) error {
+func (op changeRemoteOperation) Run(jirix *jiri.X) (retErr error) {
 	if op.project.LocalConfig.Ignore || op.project.LocalConfig.NoUpdate {
 		jirix.Logger.Warningf("Project %s(%s) won't be updated due to it's local-config. It has a changed remote\n\n", op.project.Name, op.project.Path)
-		return nil
+		return errPartialSuccess
 	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(op.project.Path))
 	tempRemote := "new-remote-origin"
@@ -354,7 +369,7 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 				jirix.Logger.Errorf("Note: For project %q(%v), remote url has changed. Its branch %q is on a commit", op.project.Name, op.project.Path, branch.Name)
 				jirix.Logger.Errorf("which is not in new remote(%v). Please manually reset your branches or move", op.project.Remote)
 				jirix.Logger.Errorf("your project folder out of the root and try again")
-				return nil
+				return errPartialSuccess
 			}
 
 		}
@@ -369,11 +384,15 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 		return err
 	}
 
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+	if retErr = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); shouldAbort(retErr) {
+		return retErr
+	}
+
+	if err := writeMetadata(jirix, op.project, op.project.Path); err != nil {
 		return err
 	}
 
-	return writeMetadata(jirix, op.project, op.project.Path)
+	return retErr
 }
 
 func (op changeRemoteOperation) String() string {
@@ -397,11 +416,14 @@ func (op updateOperation) Kind() string {
 	return "update"
 }
 
-func (op updateOperation) Run(jirix *jiri.X) error {
-	if err := syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); err != nil {
+func (op updateOperation) Run(jirix *jiri.X) (err error) {
+	if err = syncProjectMaster(jirix, op.project, op.state, op.rebaseTracked, op.rebaseUntracked, op.rebaseAll, op.snapshot); shouldAbort(err) {
 		return err
 	}
-	return writeMetadata(jirix, op.project, op.project.Path)
+	if err2 := writeMetadata(jirix, op.project, op.project.Path); err2 != nil {
+		return err2
+	}
+	return err
 }
 
 func (op updateOperation) String() string {
@@ -609,11 +631,13 @@ func computeOp(local, remote *Project, state *ProjectState, gc, rebaseTracked, r
 	}
 }
 
-// This function creates worktree and runs create operation in parallel
-func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
+// This function creates worktree and runs create operation in parallel. It
+// returns the names of projects for which the create operation failed
+// (including nonfatals) and the fatal errors encountered.
+func runCreateOperations(jirix *jiri.X, ops []createOperation) ([]string, error) {
 	count := len(ops)
 	if count == 0 {
-		return nil
+		return nil, nil
 	}
 
 	type workTree struct {
@@ -632,7 +656,6 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	}
 
 	for _, op := range ops {
-
 		node := head
 		parts := strings.Split(op.Project().Path, string(filepath.Separator))
 		// walk down the file path tree, creating any work tree nodes as required
@@ -655,6 +678,7 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	}
 
 	workQueue := make(chan *workTree, count)
+	failures := make(chan string, count)
 	errs := make(chan error, count)
 	var wg sync.WaitGroup
 	processTree := func(tree *workTree) {
@@ -663,10 +687,14 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 			logMsg := fmt.Sprintf("Creating project %q", op.Project().Name)
 			task := jirix.Logger.AddTaskMsg(logMsg)
 			jirix.Logger.Debugf("%v", op)
+
 			if err := op.Run(jirix); err != nil {
 				task.Done()
-				errs <- fmt.Errorf("%s: %s", logMsg, err)
-				return
+				failures <- op.Project().Name
+				if shouldAbort(err) {
+					errs <- fmt.Errorf("%s: %s", logMsg, err)
+					return
+				}
 			}
 			task.Done()
 		}
@@ -686,13 +714,23 @@ func runCreateOperations(jirix *jiri.X, ops []createOperation) MultiError {
 	}
 	wg.Wait()
 	close(workQueue)
+	close(failures)
 	close(errs)
 
+	var failureArray []string
 	var multiErr MultiError
+	for failure := range failures {
+		failureArray = append(failureArray, failure)
+	}
 	for err := range errs {
 		multiErr = append(multiErr, err)
 	}
-	return multiErr
+	var err error
+	// nil MultiError ([]error) as error is not nil
+	if multiErr != nil {
+		err = multiErr
+	}
+	return failureArray, err
 }
 
 type PathTrie struct {
@@ -774,7 +812,7 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 		logMsg := fmt.Sprintf("Deleting project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Debugf("%s", op)
-		if err := op.Run(jirix); err != nil {
+		if err := op.Run(jirix); shouldAbort(err) {
 			task.Done()
 			return fmt.Errorf("%s: %s", logMsg, err)
 		}
@@ -789,9 +827,10 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 	return nil
 }
 
-func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
+func runMoveOperations(jirix *jiri.X, ops []moveOperation) ([]string, error) {
 	parentSrcPath := ""
 	parentDestPath := ""
+	var failures []string
 	for _, op := range ops {
 		if parentSrcPath != "" && strings.HasPrefix(op.source, parentSrcPath) {
 			op.source = filepath.Join(parentDestPath, strings.Replace(op.source, parentSrcPath, "", 1))
@@ -804,23 +843,30 @@ func runMoveOperations(jirix *jiri.X, ops []moveOperation) error {
 		jirix.Logger.Debugf("%s", op)
 		if err := op.Run(jirix); err != nil {
 			task.Done()
-			return fmt.Errorf("%s: %s", logMsg, err)
+			failures = append(failures, op.Project().Name)
+			if shouldAbort(err) {
+				return failures, fmt.Errorf("%s: %s", logMsg, err)
+			}
 		}
 		task.Done()
 	}
-	return nil
+	return failures, nil
 }
 
-func runCommonOperations(jirix *jiri.X, ops operations, loglevel log.LogLevel) error {
+func runCommonOperations(jirix *jiri.X, ops operations, loglevel log.LogLevel) ([]string, error) {
+	var failures []string
 	for _, op := range ops {
 		logMsg := fmt.Sprintf("Updating project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Logf(loglevel, "%s", op)
 		if err := op.Run(jirix); err != nil {
 			task.Done()
-			return fmt.Errorf("%s: %s", logMsg, err)
+			failures = append(failures, op.Project().Name)
+			if shouldAbort(err) {
+				return failures, fmt.Errorf("%s: %s", logMsg, err)
+			}
 		}
 		task.Done()
 	}
-	return nil
+	return failures, nil
 }
