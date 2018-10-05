@@ -22,6 +22,30 @@
       "revId": "cf9ef6fe4619f4fe4b54767fa5bf46dd65f14cc1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7640e2b_fff6e8c6",
+        "filename": "project/operations.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7955
+      },
+      "writtenOn": "2018-10-05T21:59:53Z",
+      "side": 1,
+      "message": "Please clarify. Do you think we should make the handling of warnings consistent with other non-panic errors? (i.e. make the warnings errors? Non-panic errors tend to fail fast in today\u0027s implementation, whereas warnings fail their operation but subsequent operations continue.) Or, were you thinking more of a particular error instance or type that should represent these warnings?",
+      "parentUuid": "0110203f_a0eb309f",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "cf9ef6fe4619f4fe4b54767fa5bf46dd65f14cc1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
