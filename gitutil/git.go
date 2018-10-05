@@ -189,6 +189,11 @@ func (g *Git) Clone(repo, path string, opts ...CloneOpt) error {
 			if typedOpt > 0 {
 				args = append(args, []string{"--depth", strconv.Itoa(int(typedOpt))}...)
 			}
+		case ShallowSinceOpt:
+			shallowSince := string(typedOpt)
+			if shallowSince != "" {
+				args = append(args, []string{"--shallow-since", shallowSince}...)
+			}
 		}
 	}
 	args = append(args, repo)
@@ -197,10 +202,13 @@ func (g *Git) Clone(repo, path string, opts ...CloneOpt) error {
 }
 
 // CloneMirror clones the given repository using mirror flag.
-func (g *Git) CloneMirror(repo, path string, depth int) error {
+func (g *Git) CloneMirror(repo, path, shallowSince string, depth int) error {
 	args := []string{"clone", "--mirror"}
 	if depth > 0 {
 		args = append(args, []string{"--depth", strconv.Itoa(depth)}...)
+	}
+	if shallowSince != "" {
+		args = append(args, []string{"--shallow-since", shallowSince}...)
 	}
 	args = append(args, []string{repo, path}...)
 	return g.run(args...)

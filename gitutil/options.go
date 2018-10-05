@@ -89,6 +89,10 @@ type DepthOpt int
 
 func (DepthOpt) fetchOpt() {}
 
+type ShallowSinceOpt string
+
+func (ShallowSinceOpt) fetchOpt() {}
+
 type UpdateShallowOpt bool
 
 func (UpdateShallowOpt) fetchOpt() {}
@@ -110,3 +114,5 @@ type NoCheckoutOpt bool
 func (NoCheckoutOpt) cloneOpt() {}
 
 func (DepthOpt) cloneOpt() {}
+
+func (ShallowSinceOpt) cloneOpt() {}

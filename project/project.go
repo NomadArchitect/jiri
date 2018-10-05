@@ -59,7 +59,12 @@ type Project struct {
 	// HistoryDepth is the depth flag passed to git clone and git fetch
 	// commands. It is used to limit downloading large histories for large
 	// projects.
+	// DEPRECATED. Use ShallowSince instead.
 	HistoryDepth int `xml:"historydepth,attr,omitempty"`
+	// ShallowSince is a date in YYYY-MM-DD format that limits history to only those
+	// commits after this date.
+	// See https://git-scm.com/docs/git-clone#git-clone---shallow-sinceltdategt.
+	ShallowSince string `xml:"shallow_since,attr,omitempty"`
 	// GerritHost is the gerrit host where project CLs will be sent.
 	GerritHost string `xml:"gerrithost,attr,omitempty"`
 	// GitHooks is a directory containing git hooks that will be installed for
@@ -902,6 +907,9 @@ func fetchAll(jirix *jiri.X, project Project) error {
 	if project.HistoryDepth > 0 {
 		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true),
 			gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true))
+	} else if project.ShallowSince != "" {
+		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true),
+			gitutil.ShallowSinceOpt(project.ShallowSince))
 	} else {
 		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true))
 	}
@@ -1210,7 +1218,7 @@ func setRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects, localProject
 	return multiErr
 }
 
-func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) error {
+func updateOrCreateCache(jirix *jiri.X, dir, remote, branch, shallowSince string, depth int) error {
 	if isPathDir(dir) {
 		if err := git.NewGit(dir).SetRemoteUrl("origin", remote); err != nil {
 			return err
@@ -1247,7 +1255,7 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		defer task.Done()
 		t := jirix.Logger.TrackTime(msg)
 		defer t.Done()
-		if err := gitutil.New(jirix).CloneMirror(remote, dir, depth); err != nil {
+		if err := gitutil.New(jirix).CloneMirror(remote, dir, shallowSince, depth); err != nil {
 			return err
 		}
 	}
@@ -1278,15 +1286,15 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 				errs <- err
 				continue
 			}
-			go func(dir, remote string, depth int, branch string) {
+			go func(dir, remote, shallowSince string, depth int, branch string) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
 				remote = rewriteRemote(jirix, remote)
-				if err := updateOrCreateCache(jirix, dir, remote, branch, depth); err != nil {
+				if err := updateOrCreateCache(jirix, dir, remote, branch, shallowSince, depth); err != nil {
 					errs <- err
 					return
 				}
-			}(cacheDirPath, project.Remote, project.HistoryDepth, project.RemoteBranch)
+			}(cacheDirPath, project.Remote, project.ShallowSince, project.HistoryDepth, project.RemoteBranch)
 		} else {
 			errs <- err
 		}

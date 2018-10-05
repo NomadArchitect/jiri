@@ -89,14 +89,16 @@ func (op createOperation) checkoutProject(jirix *jiri.X, cache string) error {
 	remote := rewriteRemote(jirix, op.project.Remote)
 	if jirix.Shared && cache != "" {
 		err = clone(jirix, cache, op.destination, gitutil.SharedOpt(true),
-			gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth))
+			gitutil.NoCheckoutOpt(true), gitutil.ShallowSinceOpt(op.project.ShallowSince),
+			gitutil.DepthOpt(op.project.HistoryDepth))
 	} else {
 		ref := cache
 		if op.project.HistoryDepth > 0 {
 			ref = ""
 		}
 		err = clone(jirix, remote, op.destination, gitutil.ReferenceOpt(ref),
-			gitutil.NoCheckoutOpt(true), gitutil.DepthOpt(op.project.HistoryDepth))
+			gitutil.NoCheckoutOpt(true), gitutil.ShallowSinceOpt(op.project.ShallowSince),
+			gitutil.DepthOpt(op.project.HistoryDepth))
 	}
 	if err != nil {
 		return err

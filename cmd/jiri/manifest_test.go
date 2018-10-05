@@ -38,6 +38,7 @@ func TestManifest(t *testing.T) {
 				revision="the_project_revision"
 				githooks="the_project_githooks"
 				gerrithost="https://fuchsia-review.googlesource.com"
+				shallow_since="2018-10-05"
 				historydepth="2"/>
 	</projects>
 </manifest>
@@ -173,6 +174,13 @@ func TestManifest(t *testing.T) {
 			testManifestFile.Name(),
 		},
 			"path/to/the_project")
+
+		expectAttributeValue(t, []string{
+			"-element=the_project",
+			"-template={{.ShallowSince}}",
+			testManifestFile.Name(),
+		},
+			"2018-10-05")
 	})
 
 	t.Run("should read <import> attributes", func(t *testing.T) {

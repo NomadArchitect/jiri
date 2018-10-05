@@ -257,6 +257,7 @@ func setupUniverse(t *testing.T) ([]project.Project, *jiritest.FakeJiriRoot, fun
 	}
 	localProjects[2].HistoryDepth = 1
 	localProjects[3].Path = filepath.Join(localProjects[2].Path, "path-3")
+	localProjects[3].ShallowSince = "2018-10-05"
 	localProjects[4].Path = filepath.Join(localProjects[3].Path, "path-4")
 	localProjects[5].Path = filepath.Join(localProjects[2].Path, "path-5")
 	localProjects[6].Path = filepath.Join(localProjects[0].Path, "path-6")
@@ -1240,7 +1241,7 @@ func TestUpdateUniverseMovedProject(t *testing.T) {
 		t.Fatalf("expected project %q at path %q not to exist but it did", localProjects[1].Name, oldProjectPath)
 	}
 	if err := dirExists(localProjects[2].Path); err != nil {
-		t.Fatalf("expected project %q at path %q to exist but it did not", localProjects[1].Name, localProjects[1].Path)
+		t.Fatalf("expected project %q at path %q to exist but it did not", localProjects[2].Name, localProjects[2].Path)
 	}
 	checkReadme(t, fake.X, localProjects[1], "initial readme")
 }
@@ -1320,7 +1321,7 @@ func TestIgnoredProjectsNotMoved(t *testing.T) {
 		t.Fatalf("expected project %q at path %q to exist but it did not: %s", localProjects[1].Name, oldProjectPath, err)
 	}
 	if err := dirExists(localProjects[2].Path); err != nil {
-		t.Fatalf("expected project %q at path %q to not exist but it did", localProjects[1].Name, localProjects[1].Path)
+		t.Fatalf("expected project %q at path %q to not exist but it did", localProjects[2].Name, localProjects[2].Path)
 	}
 }
 

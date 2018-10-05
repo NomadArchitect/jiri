@@ -167,7 +167,7 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 		jirix.Logger.Debugf(logStr)
 		task := jirix.Logger.AddTaskMsg(logStr)
 		defer task.Done()
-		if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, remote.RemoteBranch, 0); err != nil {
+		if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, remote.RemoteBranch, "", 0); err != nil {
 			return err
 		}
 		if jirix.Shared {
@@ -352,7 +352,7 @@ func (ld *loader) loadImport(jirix *jiri.X, root, file, cycleKey, cacheDirPath, 
 				if fetch {
 					if cacheDirPath != "" {
 						remoteUrl := rewriteRemote(jirix, project.Remote)
-						if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, project.RemoteBranch, 0); err != nil {
+						if err := updateOrCreateCache(jirix, cacheDirPath, remoteUrl, project.RemoteBranch, "", 0); err != nil {
 							return err
 						}
 					}
