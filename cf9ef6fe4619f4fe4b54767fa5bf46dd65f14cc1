@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0110203f_a0eb309f",
+        "filename": "project/operations.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-05T03:40:14Z",
+      "side": 1,
+      "message": "This is not very idiomatic and the changes throughout the codebase are far too intrusive. Fatal error in Go should panic, other error types should simply return non-nil error, and everything else should be considered success, there should be no need to introduce a secondary mechanism to represent failure/non-failure state.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "cf9ef6fe4619f4fe4b54767fa5bf46dd65f14cc1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
