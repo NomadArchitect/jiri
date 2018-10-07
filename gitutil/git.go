@@ -69,7 +69,17 @@ func (RootDirOpt) gitOpt()       {}
 func (UserNameOpt) gitOpt()      {}
 func (UserEmailOpt) gitOpt()     {}
 
-type TrackingBranch string
+type Reference struct {
+	Name     string
+	Revision string
+	IsHead   bool
+}
+
+type Branch struct {
+	*Reference
+	Tracking *Reference
+}
+
 type Revision string
 type BranchName string
 
@@ -141,6 +151,33 @@ func (g *Git) BranchesDiffer(branch1, branch2 string) (bool, error) {
 	}
 	// Otherwise there is a difference.
 	return true, nil
+}
+
+func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
+	branchesInfo, err := g.runOutput("for-each-ref", "--format", "%(refname:short):%(upstream:short):%(objectname):%(HEAD)", "refs/heads")
+	if err != nil {
+		return nil, err
+	}
+	var branches []Branch
+	for _, branchInfo := range branchesInfo {
+		s := strings.SplitN(branchInfo, ":", 4)
+		branch := Branch{
+			&Reference{
+				Name:     s[0],
+				Revision: s[2],
+				IsHead:   s[3] == "*",
+			},
+			nil,
+		}
+		if s[1] != "" {
+			branch.Tracking = &Reference{
+				Name:     s[1],
+				Revision: s[2],
+			}
+		}
+		branches = append(branches, branch)
+	}
+	return branches, nil
 }
 
 // CheckoutBranch checks out the given branch.
@@ -329,6 +366,10 @@ func (g *Git) CreateBranch(branch string) error {
 	return g.run("branch", branch)
 }
 
+func (g *Git) CreateBranchFromRef(branch, ref string) error {
+	return g.run("branch", branch, ref)
+}
+
 // CreateAndCheckoutBranch creates a new branch with the given name
 // and checks it out.
 func (g *Git) CreateAndCheckoutBranch(branch string) error {
@@ -358,8 +399,8 @@ func (g *Git) CreateBranchWithUpstream(branch, upstream string) error {
 	return g.run("branch", branch, upstream)
 }
 
-func (g *Git) GetShortHash(hash string) (string, error) {
-	out, err := g.runOutput("rev-parse", "--short", hash)
+func (g *Git) ShortHash(ref string) (string, error) {
+	out, err := g.runOutput("rev-parse", "--short", ref)
 	if err != nil {
 		return "", err
 	}
@@ -367,6 +408,15 @@ func (g *Git) GetShortHash(hash string) (string, error) {
 		return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
 	}
 	return out[0], nil
+}
+
+func (g *Git) UserInfoForCommit(ref string) (string, string, error) {
+	out, err := g.runOutput("log", "-n", "1", "--format=format:%cn:%ce", ref)
+	if err != nil {
+		return "", "", err
+	}
+	info := strings.SplitN(out[0], ":", 2)
+	return info[0], info[1], nil
 }
 
 // CurrentBranchName returns the name of the current branch.
@@ -451,6 +501,36 @@ func (g *Git) IsOnBranch() bool {
 	return err == nil
 }
 
+// CurrentRevision returns the current revision.
+func (g *Git) CurrentRevision() (string, error) {
+	return g.CurrentRevisionForRef("HEAD")
+}
+
+// CurrentRevisionForRef gets current rev for ref/branch/tags
+func (g *Git) CurrentRevisionForRef(ref string) (string, error) {
+	out, err := g.runOutput("rev-parse", ref)
+	if err != nil {
+		return "", err
+	}
+	if got, want := len(out), 1; got != want {
+		return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+	}
+	return out[0], nil
+}
+
+// CurrentRevisionOfBranch returns the current revision of the given branch.
+func (g *Git) CurrentRevisionOfBranch(branch string) (string, error) {
+	// Using rev-list instead of rev-parse as latter doesn't work well with tag
+	out, err := g.runOutput("rev-list", "-n", "1", branch)
+	if err != nil {
+		return "", err
+	}
+	if got, want := len(out), 1; got != want {
+		return "", fmt.Errorf("unexpected length of %v: got %v, want %v", out, got, want)
+	}
+	return out[0], nil
+}
+
 func (g *Git) CherryPick(rev string) error {
 	err := g.run("cherry-pick", rev)
 	return err
@@ -486,6 +566,10 @@ func (g *Git) DirExistsOnBranch(dir, branch string) bool {
 	}
 	args := []string{"ls-tree", "-d", branch + ":" + dir}
 	return g.run(args...) == nil
+}
+
+func (g *Git) CreateLightweightTag(name string) error {
+	return g.run("tag", name)
 }
 
 // Fetch fetches refs and tags from the given remote.
@@ -561,6 +645,11 @@ func (g *Git) FilesWithUncommittedChanges() ([]string, error) {
 	return append(out, out2...), nil
 }
 
+func (g *Git) MergedBranches(ref string) ([]string, error) {
+	branches, _, err := g.GetBranches("--merged", ref)
+	return branches, err
+}
+
 // GetBranches returns a slice of the local branches of the current
 // repository, followed by the name of the current branch. The
 // behavior can be customized by providing optional arguments
@@ -585,6 +674,18 @@ func (g *Git) GetBranches(args ...string) ([]string, string, error) {
 		branches = append(branches, strings.TrimSpace(branch))
 	}
 	return branches, current, nil
+}
+
+// BranchExists tests whether a branch with the given name exists in
+// the local repository.
+func (g *Git) BranchExists(branch string) (bool, error) {
+	var stdout, stderr bytes.Buffer
+	args := []string{"rev-parse", "--verify", "--quiet", branch}
+	err := g.runGit(&stdout, &stderr, args...)
+	if err != nil && stderr.String() != "" {
+		return false, Error(stdout.String(), stderr.String(), err, g.rootDir, args...)
+	}
+	return stdout.String() != "", nil
 }
 
 // ListRemoteBranchesContainingRef returns a slice of the remote branches
@@ -632,6 +733,26 @@ func (g *Git) Grep(query string, pathSpecs []string, flags ...string) ([]string,
 	return g.runOutput(args...)
 }
 
+// HasUncommittedChanges checks whether the current branch contains
+// any uncommitted changes.
+func (g *Git) HasUncommittedChanges() (bool, error) {
+	out, err := g.FilesWithUncommittedChanges()
+	if err != nil {
+		return false, err
+	}
+	return len(out) != 0, nil
+}
+
+// HasUntrackedFiles checks whether the current branch contains any
+// untracked files.
+func (g *Git) HasUntrackedFiles() (bool, error) {
+	out, err := g.UntrackedFiles()
+	if err != nil {
+		return false, err
+	}
+	return len(out) != 0, nil
+}
+
 // Init initializes a new git repository.
 func (g *Git) Init(path string) error {
 	return g.run("init", path)
@@ -650,6 +771,14 @@ func (g *Git) IsFileCommitted(file string) bool {
 
 func (g *Git) ShortStatus() (string, error) {
 	out, err := g.runOutput("status", "-s")
+	if err != nil {
+		return "", err
+	}
+	return strings.Join(out, "\n"), nil
+}
+
+func (g *Git) CommitMsg(ref string) (string, error) {
+	out, err := g.runOutput("log", "-n", "1", "--format=format:%B", ref)
 	if err != nil {
 		return "", err
 	}
@@ -962,6 +1091,15 @@ func (g *Git) Show(ref, file string) (string, error) {
 		return "", err
 	}
 	return strings.Join(out, "\n"), nil
+}
+
+// UntrackedFiles returns the list of files that are not tracked.
+func (g *Git) UntrackedFiles() ([]string, error) {
+	out, err := g.runOutput("ls-files", "--others", "--directory", "--exclude-standard")
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 // Version returns the major and minor git version.
