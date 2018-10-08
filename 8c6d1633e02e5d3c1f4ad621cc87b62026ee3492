@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3c60366_744663f7",
+        "filename": "scripts/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-08T08:12:05Z",
+      "side": 0,
+      "message": "we still need some build script. no? to set versions and all",
+      "revId": "8c6d1633e02e5d3c1f4ad621cc87b62026ee3492",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
