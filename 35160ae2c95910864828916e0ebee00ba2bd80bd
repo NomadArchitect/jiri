@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "b3a1a33d_80b83886",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-08T15:57:00Z",
+      "side": 1,
+      "message": "1. Thank you for taking a look, though the feedback would have been more useful if you\u0027d given it earlier.\n2. Can you please explain in detail the difference and the advantage between what you suggest and what\u0027s currently happening?\n3. I think unbounded cache growth is pretty much what we get for all repos except those where we set \"historydepth\" today, so are you suggesting we move towards setting historydepth for all jiri projects?",
+      "parentUuid": "83b6d1b4_1f6d7721",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
