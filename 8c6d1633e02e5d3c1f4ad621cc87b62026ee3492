@@ -16,6 +16,24 @@
       "revId": "8c6d1633e02e5d3c1f4ad621cc87b62026ee3492",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f329f11_cc863b39",
+        "filename": "scripts/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-08T15:11:33Z",
+      "side": 0,
+      "message": "I\u0027ll update the recipe to build Jiri directly and set the version, I\u0027m not sure if we need the script then since developers should never be building \"official\" version of Jiri on their machines.",
+      "parentUuid": "d3c60366_744663f7",
+      "revId": "8c6d1633e02e5d3c1f4ad621cc87b62026ee3492",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
