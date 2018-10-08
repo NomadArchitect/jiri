@@ -22,7 +22,6 @@ import (
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/log"
-	"fuchsia.googlesource.com/jiri/retry"
 )
 
 var (
@@ -1233,7 +1232,6 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).SetRemoteUrl("origin", remote); err != nil {
 			return err
 		}
-
 		// Cache already present, update it
 		// TODO : update this after implementing FetchAll using g
 		msg := fmt.Sprintf("Updating cache: %q", dir)
@@ -1241,20 +1239,8 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		defer task.Done()
 		t := jirix.Logger.TrackTime(msg)
 		defer t.Done()
-		if _, err := os.Stat(filepath.Join(dir, "shallow")); err == nil {
-			// Shallow cache, fetch only manifest tracked remote branch
-			refspec := fmt.Sprintf("+refs/heads/%s:refs/heads/%s", branch, branch)
-
-			if err := retry.Function(jirix, func() error {
-				return gitutil.New(jirix, gitutil.RootDirOpt(dir)).FetchRefspec("origin", refspec, gitutil.PruneOpt(true))
-			}, fmt.Sprintf("Fetching for %s:%s", dir, refspec),
-				retry.AttemptsOpt(jirix.Attempts)); err != nil {
-				return err
-			}
-		} else {
-			if err := fetch(jirix, dir, "origin", gitutil.PruneOpt(true)); err != nil {
-				return err
-			}
+		if err := fetch(jirix, dir, "origin", gitutil.PruneOpt(true)); err != nil {
+			return err
 		}
 	} else {
 		// Create cache
@@ -1265,7 +1251,11 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		defer task.Done()
 		t := jirix.Logger.TrackTime(msg)
 		defer t.Done()
-		if err := gitutil.New(jirix).CloneMirror(remote, dir, depth); err != nil {
+		// Bypass caching for shallow repos
+		if depth > 0 {
+			return nil
+		}
+		if err := gitutil.New(jirix).Clone(remote, dir, gitutil.BareOpt(true)); err != nil {
 			return err
 		}
 	}
