@@ -34,6 +34,24 @@
       "revId": "8c6d1633e02e5d3c1f4ad621cc87b62026ee3492",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d724975_c8425290",
+        "filename": "scripts/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-08T15:32:15Z",
+      "side": 0,
+      "message": "makes sense, please also update jiri build documentation",
+      "parentUuid": "3f329f11_cc863b39",
+      "revId": "8c6d1633e02e5d3c1f4ad621cc87b62026ee3492",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
