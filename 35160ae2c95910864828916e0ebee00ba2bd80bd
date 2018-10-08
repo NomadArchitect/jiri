@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "83b6d1b4_1f6d7721",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-08T03:51:50Z",
+      "side": 1,
+      "message": "Please reconsider this approach.  I suggest implementing \u0027git init \u0026\u0026 git remote add \u003cremote\u003e \u0026\u0026 git fetch --depth \u003cdepth\u003e origin \u003ccommit\u003e\u0027 into a cache that includes the revision + depth into its name.  Otherwise we are forever tied to the ShallowSince date for each repo and would be subject to unbound cache growth on the bots.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
