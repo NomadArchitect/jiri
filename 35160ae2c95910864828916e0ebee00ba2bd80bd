@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "d81d2f46_edbe2919",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-09T20:46:35Z",
+      "side": 1,
+      "message": "If we have shallow clones of unpinned projects, then won\u0027t the cache lookup fail just like it does today? \nThat is if your cache keys are (remote, depth, revision) and revision is unspecified, then the logic will think it\u0027s a cache hit but the cache won\u0027t actually have the commit and we\u0027ll fail just like we do today.",
+      "parentUuid": "83c7dd00_ff23ec03",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
