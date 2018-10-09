@@ -46,6 +46,30 @@
       "revId": "cf9ef6fe4619f4fe4b54767fa5bf46dd65f14cc1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f370a639_22e303f0",
+        "filename": "project/operations.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 7955
+      },
+      "writtenOn": "2018-10-09T19:25:26Z",
+      "side": 1,
+      "message": "Done, based on my interpretation. Please clarify if you had something different in mind.",
+      "parentUuid": "f7640e2b_fff6e8c6",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 34
+      },
+      "revId": "cf9ef6fe4619f4fe4b54767fa5bf46dd65f14cc1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
