@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "83c7dd00_ff23ec03",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-09T20:20:49Z",
+      "side": 1,
+      "message": "No we would not need to pin all repos.\n\nWe would have a branch in the cache logic, where:\n\nif p.revision \u0026\u0026 p.historyDepth {\n  cachePath \u003d mkdir(cacheDir + \u0027/\u0027 + uniqueCacheName(p.remote, p.revision, p.historyDepth))\n  git -C cachePath init\n  git -C cachePath remote add p.remote\n  git -C cachePath fetch --depth p.historyDepth origin p.revision\n}\n\nThis will create a shallow cache specifically at that commit,  if we ever change the revision of the project it would just create a new cache and they would coexist.  Unpinned projects would continue to work normally and could revert to a history depth of 1.",
+      "parentUuid": "5084fc80_3e675075",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
