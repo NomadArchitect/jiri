@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5084fc80_3e675075",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-09T17:13:46Z",
+      "side": 1,
+      "message": "We discussed this briefly in person but I still would appreciate it if you\u0027d elaborate in writing.\nIn particular, currently the repos where we use historydepth are not pinned to a revision.\ne.g. https://fuchsia.googlesource.com/topaz/+/master/manifest/third_party#19\n\nSo would we have to pin all repos first for your suggestion to work?\nAnd what happens if we encounter an un-pinned repo?",
+      "parentUuid": "b3a1a33d_80b83886",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
