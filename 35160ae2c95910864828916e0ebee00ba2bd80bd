@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "25b26a2f_9bdc1abb",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-10T20:34:50Z",
+      "side": 1,
+      "message": "Unpinned projects are not a problem under normal circumstances, the cache always contains history up to the specified depth, and the project builds using HEAD of that cache effectively.  The problem lies when consuming a snapshot on a builder because the snapshot translates the unpinned project to a pinned one, and once that pinned commit falls out of the specified history depth of the cache then it fails.",
+      "parentUuid": "d81d2f46_edbe2919",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
