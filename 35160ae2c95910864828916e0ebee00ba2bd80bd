@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "a32fc8f3_aba5b2ea",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-10T21:32:26Z",
+      "side": 1,
+      "message": "that is why we are changing --dept to --since, we anyways can\u0027t download full history for pinned repos as that timeout",
+      "parentUuid": "25b26a2f_9bdc1abb",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
