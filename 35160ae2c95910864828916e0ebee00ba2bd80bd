@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "cda5d8ac_c1e38de4",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-10T22:23:59Z",
+      "side": 1,
+      "message": "Nathan, it seems like you just restated the issue but didn\u0027t explain how your per-revision cache solution would avoid it or fix it.\nSorry if I\u0027m just being thick, but could you please elaborate how would we fix this snapshot vs unpinned-with-history-depth mismatch as part of your suggested scheme?",
+      "parentUuid": "a32fc8f3_aba5b2ea",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
