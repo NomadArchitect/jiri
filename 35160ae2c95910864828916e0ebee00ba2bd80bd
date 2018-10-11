@@ -360,6 +360,30 @@
     },
     {
       "key": {
+        "uuid": "5e5abc52_b0602bba",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T18:56:51Z",
+      "side": 1,
+      "message": "yeah, because we anyways don\u0027t need more commits, but only if project has depth field",
+      "parentUuid": "961bd79c_abebb793",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
