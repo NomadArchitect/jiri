@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "292d0aaf_a88d8da2",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-11T18:09:20Z",
+      "side": 1,
+      "message": "Ack, thanks for explaining.\nI can try to implement that.\nI\u0027ll put this CL on hold in the mean time.\nPetr and Ankur, if you have any objections to this scheme, please state them now rather than once I mail out another CL that implements it.",
+      "parentUuid": "9a350de5_d5750201",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
