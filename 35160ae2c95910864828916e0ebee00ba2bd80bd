@@ -264,6 +264,30 @@
     },
     {
       "key": {
+        "uuid": "7cb3baae_0e396611",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T18:17:23Z",
+      "side": 1,
+      "message": "I have no objection, but git allows you to pull N commits since a commit?",
+      "parentUuid": "292d0aaf_a88d8da2",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
