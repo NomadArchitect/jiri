@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8806ea35_87400324",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T20:15:43Z",
+      "side": 1,
+      "message": "we should do this before importing manifest so that we can pick correct manifest if that project is also overridden",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 0
+      },
+      "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
