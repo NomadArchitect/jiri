@@ -46,6 +46,30 @@
       "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea78ec58_d1ea59a4",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T20:24:22Z",
+      "side": 1,
+      "message": "okay if that is the intent, but it might fail for hooks if old manifest has stale hooks definition",
+      "parentUuid": "fcf0e5ff_cb8b64bb",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 0
+      },
+      "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
