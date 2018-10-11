@@ -70,6 +70,30 @@
       "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c930f9a4_ea3959e7",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 5275
+      },
+      "writtenOn": "2018-10-11T20:28:05Z",
+      "side": 1,
+      "message": "I see, because the hooks are specified by the manifest, which could be imported and then out-of-sync.\n\nMaybe we should disallow the case where the project is both imported and overridden to avoid these issues.",
+      "parentUuid": "ea78ec58_d1ea59a4",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 0
+      },
+      "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
