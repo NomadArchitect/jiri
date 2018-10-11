@@ -45,6 +45,54 @@
       "revId": "cd4414257fbd6568727017a0d9e728754c004f46",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f86eba6b_d59f8ddc",
+        "filename": "manifest.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5275
+      },
+      "writtenOn": "2018-10-11T22:29:50Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "c324f71d_87025369",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 14
+      },
+      "revId": "cd4414257fbd6568727017a0d9e728754c004f46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "732669a0_9136c667",
+        "filename": "manifest.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5275
+      },
+      "writtenOn": "2018-10-11T22:29:50Z",
+      "side": 1,
+      "message": "\u003e Is this statement correct?\n\nNot quite.  Any repository that is referenced by an \u003cimport\u003e tag cannot be overridden.",
+      "parentUuid": "b7248d83_3dd6891e",
+      "range": {
+        "startLine": 77,
+        "startChar": 50,
+        "endLine": 77,
+        "endChar": 90
+      },
+      "revId": "cd4414257fbd6568727017a0d9e728754c004f46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
