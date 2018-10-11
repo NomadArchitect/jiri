@@ -216,6 +216,30 @@
     },
     {
       "key": {
+        "uuid": "9a350de5_d5750201",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-11T16:31:38Z",
+      "side": 1,
+      "message": "You would end up with your current cache from HEAD with depth N, and for each pinned revision on the same project, you would create a separate cache from REVISION with depth N, that way you are no longer relying on REVISION being within HEAD~N..HEAD.\n\nSo currently for webkit we have:\nfuchsia.googlesource.com-third_party-webkit (Contains last N commit on Master)\n\nI\u0027m proposing that if we have a project that is unpinned then we have the following:\nfuchsia.googlesource.com-third_party-webkit-revision1-N (Contains N commits from revision1)\nfuchsia.googlesource.com-third_party-webkit-revision2-N (Contains N commits from revision2)\nfuchsia.googlesource.com-third_party-webkit-revision3-N (Contains N commits from revision3)\nfuchsia.googlesource.com-third_party-webkit (Contains last N commit on Master)\n\nThis way when the builder encounters a snapshot of a pinned repo, it doesn\u0027t try to pull from the shallow cache at HEAD, it creates its own unique cache at the commit it needs.",
+      "parentUuid": "cda5d8ac_c1e38de4",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
