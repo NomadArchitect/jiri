@@ -45,6 +45,30 @@
       "revId": "40a446f3ada8e15eeea62850db2f9b4fe91057db",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44a62098_75623f19",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 5275
+      },
+      "writtenOn": "2018-10-11T20:51:34Z",
+      "side": 1,
+      "message": "Ah, good point.",
+      "parentUuid": "0e0de3bb_439d6320",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 24
+      },
+      "revId": "40a446f3ada8e15eeea62850db2f9b4fe91057db",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
