@@ -288,6 +288,30 @@
     },
     {
       "key": {
+        "uuid": "38f068af_53471945",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-11T18:25:05Z",
+      "side": 1,
+      "message": "I just tried running the commands Nathan suggested and it seems to work:\n\n/tmp\n➜  mkdir cachePath\n/tmp\n➜  git -C cachePath init\nInitialized empty Git repository in /tmp/cachePath/.git/\n/tmp\n➜  git -C cachePath remote add origin https://fuchsia.googlesource.com/infra/config\n/tmp\n➜  git -C cachePath fetch --depth 2 origin 1a39c5e73d5105570b5812cfd1781fd39765aa2a\nremote: Counting objects: 93, done\nremote: Finding sources: 100% (93/93)\nremote: Total 93 (delta 12), reused 71 (delta 12)\nUnpacking objects: 100% (93/93), done.\nFrom https://fuchsia.googlesource.com/infra/config\n * branch            1a39c5e73d5105570b5812cfd1781fd39765aa2a -\u003e FETCH_HEAD\n/tmp\n➜  cd cachePath/\n/tmp/cachePath  master ✔\n➜  git checkout FETCH_HEAD\nNote: checking out \u0027FETCH_HEAD\u0027.\n\nHEAD is now at 1a39c5e [buildbucket] Add flattened configs as generated files.\n/tmp/cachePath  (1a39c5e...) ✔                                                                                                              \n➜ git log --pretty\u003doneline | wc -l\n2",
+      "parentUuid": "7cb3baae_0e396611",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
