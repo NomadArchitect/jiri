@@ -22,6 +22,30 @@
       "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcf0e5ff_cb8b64bb",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 5275
+      },
+      "writtenOn": "2018-10-11T20:22:05Z",
+      "side": 1,
+      "message": "That doesn\u0027t match the intent of the feature.  The intent of the feature is that you get whatever you manifest specifies (including whatever transitive imports it specifies) but with the projects listed in \u003coverrides\u003e replaced with the projects specified there.\n\nConceptually, the overrides are applied after updating the revisions of all the repositories and before running the hooks (i.e., as if you issued the listed git commands at that point).\n\nIf you try to apply the overrides to the imports, then you\u0027re very likely to get into manifest conflict situations because you\u0027re trying to assemble a manifest with internal version skew.",
+      "parentUuid": "8806ea35_87400324",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 0
+      },
+      "revId": "5676be11b0ec37ef317092da95dfd2b24f69b792",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
