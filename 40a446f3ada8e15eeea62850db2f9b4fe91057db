@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eadb8723_d48932ea",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T20:45:51Z",
+      "side": 1,
+      "message": "nit: sort",
+      "range": {
+        "startLine": 128,
+        "startChar": 18,
+        "endLine": 128,
+        "endChar": 22
+      },
+      "revId": "40a446f3ada8e15eeea62850db2f9b4fe91057db",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e0de3bb_439d6320",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T20:45:51Z",
+      "side": 1,
+      "message": "i don\u0027t think you want to put override in snapshot as overridden revision was already captured by project",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 24
+      },
+      "revId": "40a446f3ada8e15eeea62850db2f9b4fe91057db",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
