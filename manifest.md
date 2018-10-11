@@ -29,6 +29,9 @@ Manifests have the following XML schema:
     />
     ...
   </projects>
+  <overrides>
+    <project ... />
+  </overrides>
   <hooks>
     <hook name="update"
           project="mojo/public"
@@ -69,6 +72,9 @@ The &lt;project> tags describe the projects to sync, and what state they should 
 * gerrithost (optional) - The url of the Gerrit host for the project.  If specified, then running "jiri cl upload" will upload a CL to this Gerrit host.
 
 * githooks (optional) - The path (relative to [root]) of a directory containing git hooks that will be installed in the projects .git/hooks directory during each update.
+
+The projects in the &lt;overrides> tag replace existing projects defined by in the &lt;projects> tag (and from transitively imported lt;projects> tags).
+Only the first manifest can contain overrides and projects that contain imported manifests cannot be overridden.
 
 The &lt;hook> tag describes the hooks that must be executed after every 'jiri update' They are configured via the following attributes:
 

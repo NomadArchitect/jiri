@@ -30,6 +30,7 @@ type Manifest struct {
 	Imports      []Import      `xml:"imports>import"`
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
+	Overrides    []Project     `xml:"overrides>project"`
 	Hooks        []Hook        `xml:"hooks>hook"`
 	XMLName      struct{}      `xml:"manifest"`
 }
@@ -73,6 +74,7 @@ var (
 	newlineBytes       = []byte("\n")
 	emptyImportsBytes  = []byte("\n  <imports></imports>\n")
 	emptyProjectsBytes = []byte("\n  <projects></projects>\n")
+	emptyOverridesBytes = []byte("\n  <overrides></overrides>\n")
 	emptyHooksBytes    = []byte("\n  <hooks></hooks>\n")
 
 	endElemBytes        = []byte("/>\n")
@@ -92,6 +94,7 @@ func (m *Manifest) deepCopy() *Manifest {
 	x.Imports = append([]Import(nil), m.Imports...)
 	x.LocalImports = append([]LocalImport(nil), m.LocalImports...)
 	x.Projects = append([]Project(nil), m.Projects...)
+	x.Overrides = append([]Project(nil), m.Overrides...)
 	x.Hooks = append([]Hook(nil), m.Hooks...)
 	return x
 }
@@ -110,6 +113,7 @@ func (m *Manifest) ToBytes() ([]byte, error) {
 	// elements, or produce short empty elements, so we post-process the data.
 	data = bytes.Replace(data, emptyImportsBytes, newlineBytes, -1)
 	data = bytes.Replace(data, emptyProjectsBytes, newlineBytes, -1)
+	data = bytes.Replace(data, emptyOverridesBytes, newlineBytes, -1)
 	data = bytes.Replace(data, emptyHooksBytes, newlineBytes, -1)
 	data = bytes.Replace(data, endImportBytes, endElemBytes, -1)
 	data = bytes.Replace(data, endLocalImportBytes, endElemBytes, -1)
@@ -121,24 +125,37 @@ func (m *Manifest) ToBytes() ([]byte, error) {
 	return data, nil
 }
 
+func relativizeAndSoryByPath(jirix *jiri.X, projects []Project) ([]Project, error) {
+	// Replace absolute paths with relative paths to make it possible to move
+	// the root directory locally.
+	p := []Project{}
+	for _, project := range projects {
+		if err := project.relativizePaths(jirix.Root); err != nil {
+			return nil, err
+		}
+		p = append(p, project)
+	}
+	sort.Sort(ProjectsByPath(p))
+	return p, nil
+}
+
 // ToFile writes the manifest m to a file with the given filename, with
 // defaults unfilled and all project paths relative to the jiri root.
 func (m *Manifest) ToFile(jirix *jiri.X, filename string) error {
-	// Replace absolute paths with relative paths to make it possible to move
-	// the root directory locally.
-	projects := []Project{}
-	for _, project := range m.Projects {
-		if err := project.relativizePaths(jirix.Root); err != nil {
-			return err
-		}
-		projects = append(projects, project)
-	}
 	// Sort the projects and hooks to ensure that the output of "jiri
 	// snapshot" is deterministic.  Sorting the hooks by name allows
 	// some control over the ordering of the hooks in case that is
 	// necessary.
-	sort.Sort(ProjectsByPath(projects))
+	projects, err := relativizeAndSoryByPath(jirix, m.Projects)
+	if err != nil {
+		return err
+	}
 	m.Projects = projects
+	overrides, err := relativizeAndSoryByPath(jirix, m.Overrides)
+	if err != nil {
+		return err
+	}
+	m.Overrides = overrides
 	sort.Sort(HooksByName(m.Hooks))
 	data, err := m.ToBytes()
 	if err != nil {
@@ -163,6 +180,11 @@ func (m *Manifest) fillDefaults() error {
 			return err
 		}
 	}
+	for index := range m.Overrides {
+		if err := m.Overrides[index].fillDefaults(); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
@@ -179,6 +201,11 @@ func (m *Manifest) unfillDefaults() error {
 	}
 	for index := range m.Projects {
 		if err := m.Projects[index].unfillDefaults(); err != nil {
+			return err
+		}
+	}
+	for index := range m.Overrides {
+		if err := m.Overrides[index].unfillDefaults(); err != nil {
 			return err
 		}
 	}
