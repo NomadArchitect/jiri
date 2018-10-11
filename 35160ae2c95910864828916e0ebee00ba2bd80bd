@@ -312,6 +312,30 @@
     },
     {
       "key": {
+        "uuid": "bb9aac37_6e7baf6b",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-10-11T18:35:06Z",
+      "side": 1,
+      "message": "Oh wow!!! didn\u0027t know that, just one thing, we should use --depth 1 with pinned revs so that we don\u0027t download big commit inadvertently.",
+      "parentUuid": "38f068af_53471945",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
