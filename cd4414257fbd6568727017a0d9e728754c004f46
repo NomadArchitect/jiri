@@ -93,6 +93,30 @@
       "revId": "cd4414257fbd6568727017a0d9e728754c004f46",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f055ecfc_512f250b",
+        "filename": "manifest.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2018-10-11T23:28:49Z",
+      "side": 1,
+      "message": "So basically the problem is when the overridden project.remote \u003d\u003d any import.remote?\nIf so, please spell that out.\nEven if not, I think some explanation that\u0027s in terms of the XML tags that are described above would be easier for me to understand.",
+      "parentUuid": "732669a0_9136c667",
+      "range": {
+        "startLine": 77,
+        "startChar": 50,
+        "endLine": 77,
+        "endChar": 90
+      },
+      "revId": "cd4414257fbd6568727017a0d9e728754c004f46",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
