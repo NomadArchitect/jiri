@@ -384,6 +384,30 @@
     },
     {
       "key": {
+        "uuid": "c7afd6c2_cd3a0dfb",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-18T17:14:06Z",
+      "side": 1,
+      "message": "It also means you don\u0027t need to do fetches on pinned revisions after you\u0027ve cached them.",
+      "parentUuid": "5e5abc52_b0602bba",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
