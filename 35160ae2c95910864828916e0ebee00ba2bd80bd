@@ -408,6 +408,30 @@
     },
     {
       "key": {
+        "uuid": "6d9650a7_028d2e5b",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-19T18:37:15Z",
+      "side": 1,
+      "message": "This is an optimization we already do, if the cache contains the pinned revision, Jiri doesn\u0027t update it.",
+      "parentUuid": "c7afd6c2_cd3a0dfb",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "35160ae2c95910864828916e0ebee00ba2bd80bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d009d09f_0fe52882",
         "filename": "project/project.go",
         "patchSetId": 1
