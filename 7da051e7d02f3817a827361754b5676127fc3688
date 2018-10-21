@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "5b34033f_776242f7",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 23653
+      },
+      "writtenOn": "2018-10-21T17:14:13Z",
+      "side": 1,
+      "message": "isn\u0027t revision passed in under -revision?",
+      "range": {
+        "startLine": 45,
+        "startChar": 50,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1285df0_377fc7cd",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 23653
+      },
+      "writtenOn": "2018-10-21T17:14:13Z",
+      "side": 1,
+      "message": "missing \u003cpath\u003e in example invocation",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 26
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fecbec58_caf9fe5f",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
