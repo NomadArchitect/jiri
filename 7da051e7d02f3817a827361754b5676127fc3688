@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "95a733bb_6cdd51b7",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b931f8e_961ec06b",
+      "range": {
+        "startLine": 25,
+        "startChar": 1,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b34033f_776242f7",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "e3b12ab8_704de658",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b34033f_776242f7",
+      "range": {
+        "startLine": 45,
+        "startChar": 50,
+        "endLine": 45,
+        "endChar": 56
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81f38b7f_18bd6d0d",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1285df0_377fc7cd",
+      "range": {
+        "startLine": 45,
+        "startChar": 25,
+        "endLine": 45,
+        "endChar": 26
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fecbec58_caf9fe5f",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "7da051e7d02f3817a827361754b5676127fc3688",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f704a34f_63cf5a21",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fecbec58_caf9fe5f",
+      "range": {
+        "startLine": 86,
+        "startChar": 35,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -165,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "5bb02f45_e38a78f0",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "I\u0027ve restructured the code a bit.",
+      "parentUuid": "063e763f_e9c7e1b6",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 4
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94715f10_91dee24d",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
@@ -185,6 +305,30 @@
       "revId": "7da051e7d02f3817a827361754b5676127fc3688",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cf4a542_1890103f",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-21T23:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94715f10_91dee24d",
+      "range": {
+        "startLine": 154,
+        "startChar": 34,
+        "endLine": 154,
+        "endChar": 43
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
