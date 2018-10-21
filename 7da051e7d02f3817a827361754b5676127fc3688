@@ -141,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "063e763f_e9c7e1b6",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-10-21T23:13:01Z",
+      "side": 1,
+      "message": "oh, yes. so \u0026\u0026 (len(args) \u003d\u003d 1 || (len(args) \u003e 1 \u0026\u0026 p.Path \u003d\u003d args[1])",
+      "parentUuid": "ea64a6f2_7dbca6c6",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 4
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94715f10_91dee24d",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
