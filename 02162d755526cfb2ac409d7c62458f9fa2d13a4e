@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4efe763a_385f8183",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-10-21T04:41:42Z",
+      "side": 1,
+      "message": "Both the if and else branches return nil with no error. We can at least lift this return nil out of both branches.\n\nSince delete and list are mutually exclusive, and there\u0027s a lot of logic in the if/else bodies, I wonder if it would make sense to factor this out into functions instead? I think this is preferential because if the list flag is set, we never runt he manifest.ToFile, and it\u0027s kind of confusing as to whether that\u0027s expected.",
+      "range": {
+        "startLine": 118,
+        "startChar": 3,
+        "endLine": 118,
+        "endChar": 13
+      },
+      "revId": "02162d755526cfb2ac409d7c62458f9fa2d13a4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0014eda_b4787ca2",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-10-21T04:41:42Z",
+      "side": 1,
+      "message": "I think we should add a `defer file.Close()` here",
+      "range": {
+        "startLine": 120,
+        "startChar": 3,
+        "endLine": 120,
+        "endChar": 7
+      },
+      "revId": "02162d755526cfb2ac409d7c62458f9fa2d13a4e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
