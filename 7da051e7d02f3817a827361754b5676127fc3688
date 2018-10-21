@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "ea64a6f2_7dbca6c6",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-10-21T17:43:37Z",
+      "side": 1,
+      "message": "What if len(args) !\u003d 2? In the original code, the \"match\" will still be true and \"deleted \u003d append(deleted, p) will still be executed.",
+      "parentUuid": "bd13787d_a38aa6a7",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 4
+      },
+      "revId": "7da051e7d02f3817a827361754b5676127fc3688",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "94715f10_91dee24d",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 3
