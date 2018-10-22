@@ -324,7 +324,11 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 				return fmt.Errorf("failed to override %q found in %q. Original project not found in manifest", key, shortFileName(jirix.Root, repoPath, file, ref))
 			}
 
-			ld.Projects[key] = override
+			project := ld.Projects[key]
+			if err := project.merge(&override); err != nil {
+				return err
+			}
+			ld.Projects[key] = project
 		}
 	} else if len(m.Overrides) != 0 {
 		return fmt.Errorf("manifest %q contains overrides but was imported by %q. Overrides are allowed only in the root manifest.", shortFileName(jirix.Root, repoPath, file, ref), parentImport)
