@@ -81,6 +81,48 @@
       "revId": "54c993db561b702339828a45e82836970cfe39f2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "051e6507_2415852d",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 23653
+      },
+      "writtenOn": "2018-10-22T02:03:42Z",
+      "side": 1,
+      "message": "Please add to the flag documentation that HEAD is a -revision default, in that case.\n\nAlthough it seems strangely ambiguous to me for -revision to have a default: If I \"override\" something, I need to specify what was overrode and what that new value is.",
+      "parentUuid": "73f2464d_2a0f7343",
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebc3361b_8cf03dbe",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 23653
+      },
+      "writtenOn": "2018-10-22T02:03:42Z",
+      "side": 1,
+      "message": "In the recipes, the \u0027path\u0027 of the checked out project is opaque. I only know\n(1) name of the project to checkout\n(2) remote manifest repo\n(3) manifest filepath in that repo\n\nIt would be very nice to be able to override during api.jiri.checkout().\n\nSuppose buildbucket passes in gitiles commit of revision R:\n-if the manifest is local to the repo -\u003e jiri import at revision R of the repo\n-if the manifest is not local -\u003e jiri import at HEAD and then override the project to use R\n\nWe don\u0027t supply path to checkout(), however. Is it possible to have the override subcommand only key on project and remote?",
+      "parentUuid": "e1455de0_9fcf876a",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
