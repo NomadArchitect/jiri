@@ -123,6 +123,48 @@
       "revId": "54c993db561b702339828a45e82836970cfe39f2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4a4cd5f_01de924a",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T02:29:31Z",
+      "side": 1,
+      "message": "No, not at the moment. The way overrides are currently implemented is by completely replacing the original project definition. You also cannot override the import, you can only override the project itself. We could change the override implementation to merge the definition rather than replacing it but that might turn this command into even bigger footgun than it already is.\n\nFurthermore, you\u0027re also confusing two aspects: what we pass to recipes is remote, manifest path and name, but those properties refer to imports, not projects and they shouldn\u0027t be used interchangeably. For imports, name doesn\u0027t refer to the name of the project, it\u0027s the name of the project that contains the manifest itself and is needed because of Jiri\u0027s manifest resolution algorithm. While it\u0027s typically the same as the primary project itself, it doesn\u0027t have to and great example is for manifests in fuchsia.googlesource.com/manifest.\n\nSo when using this feature from recipes, we\u0027ll probably need to add name, path, and remote properties to each builder. That\u0027s the only way to ensure that things work as expected. We hope to eliminate the key/name from Jiri\u0027s manifests in the future altogether which might simplify this, but that\u0027s likely months away as it\u0027ll require reworking Jiri\u0027s internals considerably.",
+      "parentUuid": "ebc3361b_8cf03dbe",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a18189d_e81427ee",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T02:29:31Z",
+      "side": 1,
+      "message": "We can make revision a required argument, but in that case it should be a positional argument rather than a flag, would you prefer that?",
+      "parentUuid": "051e6507_2415852d",
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
