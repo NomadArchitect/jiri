@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "60df80b1_7e8d1392",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-10-22T20:42:23Z",
+      "side": 1,
+      "message": "Since this is intended to override manifest \u003cproject\u003es, should these subcommand helptexts use the word \"project\" instead of \"import?\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 82,
+        "endLine": 32,
+        "endChar": 88
+      },
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce977547_08f5ef20",
         "filename": "cmd/jiri/override.go",
         "patchSetId": 5
