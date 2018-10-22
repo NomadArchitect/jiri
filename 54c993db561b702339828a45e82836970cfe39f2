@@ -39,6 +39,48 @@
       "revId": "54c993db561b702339828a45e82836970cfe39f2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f2464d_2a0f7343",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T01:13:11Z",
+      "side": 1,
+      "message": "If you don\u0027t specify revision, Jiri defaults to HEAD which presumably is what many people will use this functionality for (i.e. instead of using pinned revision, override the project to use HEAD)?",
+      "parentUuid": "680f18aa_f064d796",
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1455de0_9fcf876a",
+        "filename": "cmd/jiri/override.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T01:13:11Z",
+      "side": 1,
+      "message": "This is correct, these three arguments are equivalent to \"name\", \"path\" and \"remote\" attributes from manifests, so the second argument is indeed a path to the project in your Jiri checkout.",
+      "parentUuid": "ce977547_08f5ef20",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "54c993db561b702339828a45e82836970cfe39f2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
