@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df09f2c3_480526ca",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T05:10:44Z",
+      "side": 1,
+      "message": "Alternatively, we could also omit this check and make it the \"we assume you know what you\u0027re doing\" kind of method.",
+      "revId": "bd18f22bae194fe9caeda8f28b03ae0413ea155b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
