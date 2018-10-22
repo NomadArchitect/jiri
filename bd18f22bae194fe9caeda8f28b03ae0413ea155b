@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d7f59b94_bd639308",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-22T05:37:19Z",
+      "side": 1,
+      "message": "Maybe this should be rather called update/override?",
+      "range": {
+        "startLine": 217,
+        "startChar": 18,
+        "endLine": 217,
+        "endChar": 23
+      },
+      "revId": "bd18f22bae194fe9caeda8f28b03ae0413ea155b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df09f2c3_480526ca",
         "filename": "project/project.go",
         "patchSetId": 1
