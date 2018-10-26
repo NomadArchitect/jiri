@@ -1196,7 +1196,7 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 	if g.userEmail != "" {
 		args = append([]string{"-c", fmt.Sprintf("user.email=%s", g.userEmail)}, args...)
 	}
-	command := exec.Command("git", args...)
+	command := exec.Command("GIT_TRACE_PACKET=1 GIT_TRACE_CURL=1 GIT_TRACE_CURL_NO_DATA=1 GIT_REDACT_COOKIES=o,SSO,GSSO_UberProxy git", args...)
 	command.Dir = g.rootDir
 	command.Stdin = os.Stdin
 	command.Stdout = stdout
