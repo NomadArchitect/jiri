@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fc3f446_70313d2f",
+        "filename": "project/project.go",
+        "patchSetId": 9
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-10-27T13:41:24Z",
+      "side": 1,
+      "message": "Webkit was taking an unreasonable amount of time to update (O(minutes)) without this optimization.",
+      "range": {
+        "startLine": 1266,
+        "startChar": 26,
+        "endLine": 1266,
+        "endChar": 54
+      },
+      "revId": "dc546665e6fdf67e944b75eae978e703b63e1e16",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
