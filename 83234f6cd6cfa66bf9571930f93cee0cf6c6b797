@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27caf115_8aaf92ec",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-27T02:35:30Z",
+      "side": 1,
+      "message": "These needs to be set through the environment, see line 1206, but we already have a way to set these on the Git object, see line 97-110. The first argument of exec.Command is the path to the executable itself.",
+      "range": {
+        "startLine": 1199,
+        "startChar": 26,
+        "endLine": 1199,
+        "endChar": 126
+      },
+      "revId": "83234f6cd6cfa66bf9571930f93cee0cf6c6b797",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
