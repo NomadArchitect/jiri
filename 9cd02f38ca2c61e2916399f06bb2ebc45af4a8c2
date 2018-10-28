@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f86220b9_51f6a235",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-28T23:51:40Z",
+      "side": 1,
+      "message": "Empty line?",
+      "revId": "9cd02f38ca2c61e2916399f06bb2ebc45af4a8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

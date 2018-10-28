@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e884450_de8255b2",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-28T23:51:40Z",
+      "side": 0,
+      "message": "Should we keep this around as well? Shouldn\u0027t hurt and ensures that things will work properly if someone tries to run just `git fetch` on the cache.",
+      "range": {
+        "startLine": 1263,
+        "startChar": 0,
+        "endLine": 1271,
+        "endChar": 0
+      },
+      "revId": "03ea2bafa25eb923c14615dd200ed1ac2be90a50",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
