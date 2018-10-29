@@ -943,21 +943,13 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 		return err
 	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
-	err = git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
-	if err == nil {
-		return nil
+	if err := retry.Function(jirix, func() error {
+		return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
+	}, fmt.Sprintf("Checking out %s @ %s", project.Name, revision),
+		retry.AttemptsOpt(jirix.Attempts)); err != nil {
+		return err
 	}
-	if project.Revision != "" && project.Revision != "HEAD" {
-		//might be a tag
-		if err2 := fetch(jirix, project.Path, "origin", gitutil.FetchTagOpt(project.Revision)); err2 != nil {
-			// error while fetching tag, return original err and debug log this err
-			jirix.Logger.Debugf("Error while fetching tag for project %s (%s): %s\n\n", project.Name, project.Path, err2)
-			return err
-		} else {
-			return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
-		}
-	}
-	return err
+	return nil
 }
 
 func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
@@ -1229,10 +1221,10 @@ func setRemoteHeadRevisions(jirix *jiri.X, remoteProjects Projects, localProject
 }
 
 func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) error {
-	refspec := "+refs/heads/*:refs/heads/*"
+	refspecs := "+refs/heads/*:refs/heads/* +refs/tags/*:refs/tags/*"
 	if depth > 0 {
 		// Shallow cache, fetch only manifest tracked remote branch
-		refspec = fmt.Sprintf("+refs/heads/%s:refs/heads/%s", branch, branch)
+		refspecs = fmt.Sprintf("+refs/heads/%s:refs/heads/%s", branch, branch)
 	}
 	if isPathDir(dir) {
 		if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).SetRemoteUrl("origin", remote); err != nil {
@@ -1248,8 +1240,8 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		// We need to explicitly specify the ref for fetch to update in case
 		// the cache was created with a previous version and uses "refs/*"
 		if err := retry.Function(jirix, func() error {
-			return gitutil.New(jirix, gitutil.RootDirOpt(dir)).FetchRefspec("origin", refspec, gitutil.PruneOpt(true))
-		}, fmt.Sprintf("Fetching for %s:%s", dir, refspec),
+			return gitutil.New(jirix, gitutil.RootDirOpt(dir)).FetchRefspec("origin", refspecs, gitutil.PruneOpt(true))
+		}, fmt.Sprintf("Fetching for %s:%s", dir, refspecs),
 			retry.AttemptsOpt(jirix.Attempts)); err != nil {
 			return err
 		}
@@ -1265,10 +1257,12 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		if err := gitutil.New(jirix).Clone(remote, dir, gitutil.BareOpt(true), gitutil.DepthOpt(depth)); err != nil {
 			return err
 		}
-		// We need to explicitly specify the ref for fetch to update the bare
+		// We need to explicitly specify each ref for fetch to update the bare
 		// repository.
-		if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).Config("remote.origin.fetch", refspec); err != nil {
-			return err
+		for _, refspec := range strings.Split(refspecs, " ") {
+			if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).Config("--add", "remote.origin.fetch", refspec); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
