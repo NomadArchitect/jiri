@@ -943,21 +943,13 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 		return err
 	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
-	err = git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
-	if err == nil {
-		return nil
+	if err := retry.Function(jirix, func() error {
+		return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
+	}, fmt.Sprintf("Checking out %s @ %s", project.Name, revision),
+		retry.AttemptsOpt(jirix.Attempts)); err != nil {
+		return err
 	}
-	if project.Revision != "" && project.Revision != "HEAD" {
-		//might be a tag
-		if err2 := fetch(jirix, project.Path, "origin", gitutil.FetchTagOpt(project.Revision)); err2 != nil {
-			// error while fetching tag, return original err and debug log this err
-			jirix.Logger.Debugf("Error while fetching tag for project %s (%s): %s\n\n", project.Name, project.Path, err2)
-			return err
-		} else {
-			return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
-		}
-	}
-	return err
+	return nil
 }
 
 func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
