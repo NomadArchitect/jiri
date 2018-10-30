@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5bf8353_9ce873b5",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-30T00:49:56Z",
+      "side": 1,
+      "message": "Does this do anything when the repository is not shallow? We do the following in fetchAll: https://fuchsia.googlesource.com/jiri/+/master/project/project.go#921",
+      "range": {
+        "startLine": 1252,
+        "startChar": 53,
+        "endLine": 1252,
+        "endChar": 83
+      },
+      "revId": "5ee9600e28212c630659fadad26ebf5a17573cc3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
