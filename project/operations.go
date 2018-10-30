@@ -101,6 +101,13 @@ func (op createOperation) checkoutProject(jirix *jiri.X, cache string) error {
 		return fmtError(err)
 	}
 
+	// might be a gerrit patchset.
+	if op.project.Revision != "" && strings.HasPrefix(op.project.RemoteBranch, "refs/changes") {
+		if err := checkoutRemoteBranch(jirix, op.project, false); err != nil {
+			return err
+		}
+	}
+
 	if err := checkoutHeadRevision(jirix, op.project, false); err != nil {
 		return err
 	}

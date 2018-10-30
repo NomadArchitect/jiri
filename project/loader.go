@@ -171,12 +171,15 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 			return err
 		}
 	}
+
 	if err := clone(jirix, remoteUrl, path, gitutil.ReferenceOpt(cacheDirPath),
 		gitutil.NoCheckoutOpt(true)); err != nil {
 		return err
 	}
+
 	p.Revision = remote.Revision
 	p.RemoteBranch = remote.RemoteBranch
+
 	if err := checkoutHeadRevision(jirix, p, false); err != nil {
 		return fmt.Errorf("Not able to checkout head for %s(%s): %v", p.Name, p.Path, err)
 	}

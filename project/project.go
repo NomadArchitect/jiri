@@ -947,6 +947,7 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 	if err == nil {
 		return nil
 	}
+
 	if project.Revision != "" && project.Revision != "HEAD" {
 		//might be a tag
 		if err2 := fetch(jirix, project.Path, "origin", gitutil.FetchTagOpt(project.Revision)); err2 != nil {
@@ -957,6 +958,26 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 			return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
 		}
 	}
+	return err
+}
+
+func checkoutRemoteBranch(jirix *jiri.X, project Project, forceCheckout bool) error {
+	revision, err := GetHeadRevision(jirix, project)
+	if err != nil {
+		return err
+	}
+	git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
+	err = git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
+	if err == nil {
+		return nil
+	}
+
+	if err := fetchRefspec(jirix, project.Path, project.RemoteBranch, "origin"); err != nil {
+		jirix.Logger.Debugf("Error while fetching branch for project %s (%s): %s\n\n",
+			project.RemoteBranch, project.Name, project.Path, err)
+		return err
+	}
+
 	return err
 }
 
