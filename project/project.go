@@ -947,6 +947,13 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 	if err == nil {
 		return nil
 	}
+
+	// might be a gerrit patchset.
+	if project.Revision != "" && strings.HasPrefix(project.RemoteBranch, "refs/changes") {
+		fetchRefspec(jirix, project.Path, project.RemoteBranch, "origin")
+		return git.CheckoutBranch(project.Revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
+	}
+
 	if project.Revision != "" && project.Revision != "HEAD" {
 		//might be a tag
 		if err2 := fetch(jirix, project.Path, "origin", gitutil.FetchTagOpt(project.Revision)); err2 != nil {
