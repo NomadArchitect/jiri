@@ -919,10 +919,10 @@ func fetchAll(jirix *jiri.X, project Project) error {
 		return err
 	}
 	if project.HistoryDepth > 0 {
-		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true),
+		return fetch(jirix, project.Path, "origin", "", gitutil.PruneOpt(true),
 			gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true))
 	} else {
-		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true))
+		return fetch(jirix, project.Path, "origin", "", gitutil.PruneOpt(true))
 	}
 }
 
@@ -947,15 +947,13 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 	if err == nil {
 		return nil
 	}
-	if project.Revision != "" && project.Revision != "HEAD" {
-		//might be a tag
-		if err2 := fetch(jirix, project.Path, "origin", gitutil.FetchTagOpt(project.Revision)); err2 != nil {
+	if project.Revision != "" {
+		if err2 := fetch(jirix, project.Path, "origin", project.RemoteBranch, gitutil.FetchTagOpt(project.Revision)); err2 != nil {
 			// error while fetching tag, return original err and debug log this err
 			jirix.Logger.Debugf("Error while fetching tag for project %s (%s): %s\n\n", project.Name, project.Path, err2)
 			return err
-		} else {
-			return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
 		}
+		return git.CheckoutBranch(revision, gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout))
 	}
 	return err
 }

@@ -329,7 +329,7 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 	}
 	defer git.DeleteRemote(tempRemote)
 
-	if err := fetch(jirix, op.project.Path, tempRemote); err != nil {
+	if err := fetch(jirix, op.project.Path, tempRemote, ""); err != nil {
 		return err
 	}
 
@@ -360,7 +360,7 @@ func (op changeRemoteOperation) Run(jirix *jiri.X) error {
 		return err
 	}
 
-	if err := fetch(jirix, op.project.Path, "", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
+	if err := fetch(jirix, op.project.Path, "", "", gitutil.AllOpt(true), gitutil.PruneOpt(true)); err != nil {
 		return err
 	}
 
