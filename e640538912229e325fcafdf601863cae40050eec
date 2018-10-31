@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2e0e14d_806a93c8",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-31T21:49:48Z",
+      "side": 1,
+      "message": "This isn\u0027t going to work, gitutil.FetchTagOpt is going to result in the following invocation:\n\n  git fetch tag \u003crevision\u003e\n\nwhich git will interpret as:\n\n  git fetch refs/tags/\u003crevision\u003e\n\nso if you set project.RemoteBranch to for example refs/changes/45/12345/1 you\u0027ll end up with:\n\n  git fetch refs/tags/refs/changes/45/12345/1\n\nwhich wouldn\u0027t exist.",
+      "range": {
+        "startLine": 951,
+        "startChar": 72,
+        "endLine": 951,
+        "endChar": 109
+      },
+      "revId": "e640538912229e325fcafdf601863cae40050eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88cad0b8_49bfe904",
+        "filename": "project/utils.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-10-31T21:49:48Z",
+      "side": 1,
+      "message": "I\u0027d prefer to separate fetch and fetchRefspec the same way you had it in the earlier version.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "e640538912229e325fcafdf601863cae40050eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
