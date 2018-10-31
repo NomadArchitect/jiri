@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "538fdeea_b991cbd4",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-10-31T22:03:42Z",
+      "side": 1,
+      "message": "Thanks for catching that. Remove this opt completely, since it looks like fetch does not require revision.",
+      "parentUuid": "b2e0e14d_806a93c8",
+      "range": {
+        "startLine": 951,
+        "startChar": 72,
+        "endLine": 951,
+        "endChar": 109
+      },
+      "revId": "e640538912229e325fcafdf601863cae40050eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88cad0b8_49bfe904",
         "filename": "project/utils.go",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "e640538912229e325fcafdf601863cae40050eec",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d6a2a9c_8cef01d7",
+        "filename": "project/utils.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2018-10-31T22:03:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88cad0b8_49bfe904",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 0
+      },
+      "revId": "e640538912229e325fcafdf601863cae40050eec",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
