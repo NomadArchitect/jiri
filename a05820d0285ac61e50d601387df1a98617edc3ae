@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29faea02_55c84a23",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-05T08:48:25Z",
+      "side": 1,
+      "message": "I\u0027d call it just \"version\" and refer to it as manifest rather than snapshot version.",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 16
+      },
+      "revId": "a05820d0285ac61e50d601387df1a98617edc3ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d25bfa1c_7f7bc5bb",
+        "filename": "version/version.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-05T08:48:25Z",
+      "side": 1,
+      "message": "I think this should be defined as a constant in project.go since it\u0027s a manifest version, not Jiri version. The reason these variables are defined here is so that they can be overridden through linker flags.",
+      "revId": "a05820d0285ac61e50d601387df1a98617edc3ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
