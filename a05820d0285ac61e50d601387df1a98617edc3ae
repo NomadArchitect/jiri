@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6949eafa_940cd2d3",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-05T18:26:05Z",
+      "side": 1,
+      "message": "They are changed to \"Version\" and \"version\" attr now.",
+      "parentUuid": "29faea02_55c84a23",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 16
+      },
+      "revId": "a05820d0285ac61e50d601387df1a98617edc3ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d25bfa1c_7f7bc5bb",
         "filename": "version/version.go",
         "patchSetId": 4
@@ -39,6 +63,24 @@
       "revId": "a05820d0285ac61e50d601387df1a98617edc3ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c8e1e07_a0a074a0",
+        "filename": "version/version.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-05T18:26:05Z",
+      "side": 1,
+      "message": "This field was moved to project.go as ManifestVersion",
+      "parentUuid": "d25bfa1c_7f7bc5bb",
+      "revId": "a05820d0285ac61e50d601387df1a98617edc3ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
