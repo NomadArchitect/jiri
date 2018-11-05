@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e91f18d_571c5d84",
+        "filename": "cmd/jiri/diff_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "m1 :\u003d \u0026project.Manifest{Version: project.ManifestVersion}\nm2 :\u003d \u0026project.Manifest{Version: project.ManifestVersion}",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 37
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63e0f401_12e5a86c",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "Would these work better as part of a const block? I\u0027m not sure why they should be mutable.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55c5ef30_2e7b1b27",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "If the above are changed to const, this should move down to the var block immediately below this.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 54
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "972ed480_49dd1c85",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "Normally not a fan of unrelated changes, but if the above changes to const, and `ssoRe` moves in here, this comment can be attached to the end of the DefaultHookTimeout line.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ddea2fe_0172baee",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "// Create a new Manifest with a Jiri version pinned to each snapshot\nmanifest :\u003d Manifest{Version: ManifestVersion}",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 378,
+        "endChar": 35
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a344bd8f_70f829b1",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "As of this commit, it does not seem possible for ManifestVersion to ever be an empty string, so the first condition here seems like it can / should be removed.",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 457,
+        "endChar": 59
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b464b90_b3e891fe",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "This doesn\u0027t use any formatting, consider using errors.New instead.",
+      "range": {
+        "startLine": 458,
+        "startChar": 19,
+        "endLine": 458,
+        "endChar": 63
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff41eca_11c4db66",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "This is brittle: if the error text ever changes, this code path will magically stop working and it will not be clear why (especially since it\u0027s about 100 lines removed from the error).\n\nConsider instead doing e.g.\n\nvar versionMismatchErr \u003d errors.New(\"Snapshot file version mismatch\")\n\n...\n\nif err !\u003d nil {\n    if err \u003d\u003d versionMismatchErr {\n        return loadLocalProjectsSlow(jirix)\n    }\n}",
+      "range": {
+        "startLine": 534,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 55
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f947c2d6_08d9a301",
+        "filename": "project/project_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1694,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-05T22:27:08Z",
+      "side": 1,
+      "message": "This could be more succinctly expressed with compound initialization:\n\nmainfest :\u003d \u0026project.Manifest{Version: project.ManifestVersion}",
+      "range": {
+        "startLine": 1693,
+        "startChar": 0,
+        "endLine": 1694,
+        "endChar": 43
+      },
+      "revId": "43cdf97b9678b1928b70633d93911e1ab140caa1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
