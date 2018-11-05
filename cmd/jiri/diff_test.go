@@ -23,6 +23,8 @@ func setUpSnapshots(t *testing.T, rootDir string) ([]byte, []byte, *Diff) {
 	n := 7
 	m1 := &project.Manifest{}
 	m2 := &project.Manifest{}
+	m1.Version = project.ManifestVersion
+	m2.Version = project.ManifestVersion
 	m1.Projects = make([]project.Project, n)
 	m2.Projects = make([]project.Project, n)
 	for i := 0; i < n; i++ {
