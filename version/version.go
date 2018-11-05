@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	GitCommit string
-	BuildTime string
+	GitCommit       string
+	BuildTime       string
+	SnapshotVersion string = "1.0"
 )
 
 func FormattedVersion() string {
