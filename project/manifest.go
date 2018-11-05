@@ -27,12 +27,13 @@ import (
 
 // Manifest represents a setting used for updating the universe.
 type Manifest struct {
-	Imports      []Import      `xml:"imports>import"`
-	LocalImports []LocalImport `xml:"imports>localimport"`
-	Projects     []Project     `xml:"projects>project"`
-	Overrides    []Project     `xml:"overrides>project"`
-	Hooks        []Hook        `xml:"hooks>hook"`
-	XMLName      struct{}      `xml:"manifest"`
+	SnapshotVersion string        `xml:"snapshot_version,attr,omitempty"`
+	Imports         []Import      `xml:"imports>import"`
+	LocalImports    []LocalImport `xml:"imports>localimport"`
+	Projects        []Project     `xml:"projects>project"`
+	Overrides       []Project     `xml:"overrides>project"`
+	Hooks           []Hook        `xml:"hooks>hook"`
+	XMLName         struct{}      `xml:"manifest"`
 }
 
 // ManifestFromBytes returns a manifest parsed from data, with defaults filled
@@ -71,11 +72,11 @@ func ManifestFromFile(jirix *jiri.X, filename string) (*Manifest, error) {
 }
 
 var (
-	newlineBytes       = []byte("\n")
-	emptyImportsBytes  = []byte("\n  <imports></imports>\n")
-	emptyProjectsBytes = []byte("\n  <projects></projects>\n")
+	newlineBytes        = []byte("\n")
+	emptyImportsBytes   = []byte("\n  <imports></imports>\n")
+	emptyProjectsBytes  = []byte("\n  <projects></projects>\n")
 	emptyOverridesBytes = []byte("\n  <overrides></overrides>\n")
-	emptyHooksBytes    = []byte("\n  <hooks></hooks>\n")
+	emptyHooksBytes     = []byte("\n  <hooks></hooks>\n")
 
 	endElemBytes        = []byte("/>\n")
 	endImportBytes      = []byte("></import>\n")
@@ -96,6 +97,7 @@ func (m *Manifest) deepCopy() *Manifest {
 	x.Projects = append([]Project(nil), m.Projects...)
 	x.Overrides = append([]Project(nil), m.Overrides...)
 	x.Hooks = append([]Hook(nil), m.Hooks...)
+	x.SnapshotVersion = m.SnapshotVersion
 	return x
 }
 

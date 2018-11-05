@@ -16,6 +16,7 @@ import (
 
 	"fuchsia.googlesource.com/jiri/jiritest"
 	"fuchsia.googlesource.com/jiri/project"
+	"fuchsia.googlesource.com/jiri/version"
 )
 
 // Setup two snapshots and also return their diff
@@ -23,6 +24,8 @@ func setUpSnapshots(t *testing.T, rootDir string) ([]byte, []byte, *Diff) {
 	n := 7
 	m1 := &project.Manifest{}
 	m2 := &project.Manifest{}
+	m1.SnapshotVersion = version.SnapshotVersion
+	m2.SnapshotVersion = version.SnapshotVersion
 	m1.Projects = make([]project.Project, n)
 	m2.Projects = make([]project.Project, n)
 	for i := 0; i < n; i++ {

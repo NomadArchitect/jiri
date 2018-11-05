@@ -23,6 +23,7 @@ import (
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/retry"
+	"fuchsia.googlesource.com/jiri/version"
 )
 
 var (
@@ -373,6 +374,9 @@ func CreateSnapshot(jirix *jiri.X, file string, hooks Hooks, localManifest bool)
 
 	manifest := Manifest{}
 
+	// Pin Jiri version to each snapshot
+	manifest.SnapshotVersion = version.SnapshotVersion
+
 	// Add all local projects to manifest.
 	localProjects, err := LocalProjects(jirix, FullScan)
 	if err != nil {
@@ -445,6 +449,15 @@ func LoadSnapshotFile(jirix *jiri.X, snapshot string) (Projects, Hooks, error) {
 		}
 
 	}
+
+	m, err := ManifestFromFile(jirix, snapshot)
+	if err != nil {
+		return nil, nil, err
+	}
+	if version.SnapshotVersion != "" && version.SnapshotVersion != m.SnapshotVersion {
+		return nil, nil, fmt.Errorf("Snapshot file version mismatch")
+	}
+
 	return LoadManifestFile(jirix, snapshot, nil, false)
 }
 
@@ -518,6 +531,9 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 		// load the snapshot, in order to determine the local projects.
 		snapshotProjects, _, err := LoadSnapshotFile(jirix, latestSnapshot)
 		if err != nil {
+			if err.Error() == "Snapshot file version mismatch" {
+				return loadLocalProjectsSlow(jirix)
+			}
 			return nil, err
 		}
 		projectsExist, err := projectsExistLocally(jirix, snapshotProjects)
@@ -536,6 +552,10 @@ func LocalProjects(jirix *jiri.X, scanMode ScanMode) (Projects, error) {
 		}
 	}
 
+	return loadLocalProjectsSlow(jirix)
+}
+
+func loadLocalProjectsSlow(jirix *jiri.X) (Projects, error) {
 	// Slow path: Either full scan was requested, or projects exist in manifest
 	// that were not found locally.  Do a recursive scan of all projects under
 	// the root.

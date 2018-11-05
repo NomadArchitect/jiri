@@ -22,6 +22,7 @@ import (
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/jiritest"
 	"fuchsia.googlesource.com/jiri/project"
+	"fuchsia.googlesource.com/jiri/version"
 )
 
 func dirExists(dirname string) error {
@@ -189,6 +190,7 @@ func TestLocalProjects(t *testing.T) {
 
 	// Create a latest update snapshot but only tell it about the first project.
 	manifest := project.Manifest{
+		SnapshotVersion = version.SnapshotVersion
 		Projects: []project.Project{
 			{
 				Name: projectName(0),
@@ -1690,6 +1692,7 @@ func testCheckoutSnapshot(t *testing.T, testURL bool) {
 	}
 	defer os.RemoveAll(dir)
 	manifest := &project.Manifest{}
+	manifest.SnapshotVersion = version.SnapshotVersion
 	for _, localProject := range localProjects {
 		manifest.Projects = append(manifest.Projects, localProject)
 	}
