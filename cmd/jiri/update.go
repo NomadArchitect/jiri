@@ -23,10 +23,12 @@ var (
 	forceAutoupdateFlag bool
 	rebaseUntrackedFlag bool
 	hookTimeoutFlag     uint
+	packagesTimeoutFlag uint
 	rebaseAllFlag       bool
 	rebaseCurrentFlag   bool
 	rebaseTrackedFlag   bool
 	runHooksFlag        bool
+	runPackagesFlag     bool
 )
 
 const (
@@ -42,10 +44,12 @@ func init() {
 	cmdUpdate.Flags.BoolVar(&forceAutoupdateFlag, "force-autoupdate", false, "Always update to the current version.")
 	cmdUpdate.Flags.BoolVar(&rebaseUntrackedFlag, "rebase-untracked", false, "Rebase untracked branches onto HEAD.")
 	cmdUpdate.Flags.UintVar(&hookTimeoutFlag, "hook-timeout", project.DefaultHookTimeout, "Timeout in minutes for running the hooks operation.")
+	cmdUpdate.Flags.UintVar(&packagesTimeoutFlag, "packages-timeout", project.DefaultPackageTimeout, "Timeout in minutes for fetching packages using cipd.")
 	cmdUpdate.Flags.BoolVar(&rebaseAllFlag, "rebase-all", false, "Rebase all tracked branches. Also rebase all untracked branches if -rebase-untracked is passed")
 	cmdUpdate.Flags.BoolVar(&rebaseCurrentFlag, "rebase-current", false, "Deprecated. Implies -rebase-tracked. Would be removed in future.")
 	cmdUpdate.Flags.BoolVar(&rebaseTrackedFlag, "rebase-tracked", false, "Rebase current tracked branches instead of fast-forwarding them.")
 	cmdUpdate.Flags.BoolVar(&runHooksFlag, "run-hooks", true, "Run hooks after updating sources.")
+	cmdUpdate.Flags.BoolVar(&runPackagesFlag, "run-packages", true, "Run cipd to download packages.")
 }
 
 // cmdUpdate represents the "jiri update" command.
@@ -88,7 +92,7 @@ func runUpdate(jirix *jiri.X, args []string) error {
 	}
 
 	if len(args) > 0 {
-		if err := project.CheckoutSnapshot(jirix, args[0], gcFlag, runHooksFlag, hookTimeoutFlag); err != nil {
+		if err := project.CheckoutSnapshot(jirix, args[0], gcFlag, runHooksFlag, runPackagesFlag, hookTimeoutFlag, packagesTimeoutFlag); err != nil {
 			return err
 		}
 	} else {
@@ -102,8 +106,8 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		}
 
 		err := project.UpdateUniverse(jirix, gcFlag, localManifestFlag,
-			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, hookTimeoutFlag)
-		if err2 := project.WriteUpdateHistorySnapshot(jirix, "", nil, localManifestFlag); err2 != nil {
+			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, runPackagesFlag, hookTimeoutFlag, packagesTimeoutFlag)
+		if err2 := project.WriteUpdateHistorySnapshot(jirix, "", nil, nil, localManifestFlag); err2 != nil {
 			if err != nil {
 				return fmt.Errorf("while updating: %s, while writing history: %s", err, err2)
 			}
