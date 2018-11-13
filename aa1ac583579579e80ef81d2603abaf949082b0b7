@@ -1,0 +1,803 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5fe04e8_ae46be0b",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "This comment should be closer to where this assumption is made (perhaps on line 23) and can be folded to a single line.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b97a5407_aab000c0",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "\"cipd binary was not found at %q\"",
+      "range": {
+        "startLine": 26,
+        "startChar": 24,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5da36562_e4329016",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "What about other errors os.Stat could return? These are masked away here.\n\nWhat if the binary is not executable?",
+      "range": {
+        "startLine": 28,
+        "startChar": 1,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a61fc8d5_00709b66",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Stray newline",
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da03b09c_d50ef785",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this means. Would:\n\n\"Ensure runs the cipd binary\u0027s ensure functionality over ensureFile, found inside the project root directory specified by projectRoot. The timeout is specified in minutes.\"\n\nbe accurate? Doc comments should help users understand all of what a function does and are suggested to be complete sentences.",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 45
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21b411a1_14ac7fa8",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "It\u0027s probably more idiomatic to name these \"file\" and \"root\". If the doc comment is changed as above, it also reads a bit nicer:\n\n\"Ensure runs ... ensure functionality over file, found inside the project root directory specified by root.\"\n\nThis stutters a bit less, while still being clear about what the names mean with regard to the functionality.",
+      "range": {
+        "startLine": 33,
+        "startChar": 27,
+        "endLine": 33,
+        "endChar": 50
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64031ea5_718abbb7",
+        "filename": "cmd/jiri/branch.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "This comment shouldn\u0027t be necessary. Better would be to have a boolean type with values useLocalManifest or dontUseLocalManifest corresponding to true/false. We can fix this in a later CL, but I wanted to point it out here so that we can create a ticket for this work -- especially since this convention isn\u0027t uniformly applied (project.CreateSnapshot doesn\u0027t do this later in this CL, for example).\n\nSimilar comments apply to other files below for things like doRunHooks / dontRunHooks / etc.",
+      "range": {
+        "startLine": 180,
+        "startChar": 103,
+        "endLine": 180,
+        "endChar": 126
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdcb6eaa_32812b20",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "This flag should be called something like fetchPkgsTimeoutFlag. Since this applies only to fetching, that should be obvious in the name of the variable and the string exported to the user to use.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 153
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70ad7a71_656a8625",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Based on what I\u0027ve read below, I think this should be called \"fetch-packages\", and the documentation string for the flag can be something like \"Use cipd to fetch prebuilt packages\" or somesuch.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 98
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6af0d26_65715263",
+        "filename": "project/loader.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "probably this should be pkg instead of pack",
+      "range": {
+        "startLine": 333,
+        "startChar": 8,
+        "endLine": 333,
+        "endChar": 12
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47270b34_fa944d7a",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "This exported function does not have a doc comment. Let\u0027s take this opportunity to add one, even if it just says \"LoadUpdatedManifest loads an updated manifest for the projects in localProjects...\" or something.",
+      "range": {
+        "startLine": 470,
+        "startChar": 5,
+        "endLine": 470,
+        "endChar": 24
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02ad5d5b_7c509518",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Does RunPackages actually run anything? If not, this function should probably be called FetchPackages. The comment should also be made a complete sentence, since it will be shown to people in documentation:\n\n\"FetchPackages fetches prebuilt packages using cipd.\"",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 49
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dd2bfbf_a5f9871b",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 482,
+        "startChar": 32,
+        "endLine": 482,
+        "endChar": 37
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e12221eb_1a0b8e10",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchTimeout",
+      "range": {
+        "startLine": 482,
+        "startChar": 48,
+        "endLine": 482,
+        "endChar": 66
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e83e56b1_a28a76ff",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Please add spaces after //",
+      "range": {
+        "startLine": 500,
+        "startChar": 1,
+        "endLine": 501,
+        "endChar": 45
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78811b06_53e5e45a",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Please add space after //",
+      "range": {
+        "startLine": 508,
+        "startChar": 1,
+        "endLine": 508,
+        "endChar": 3
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e27c4046_41a76012",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkg",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 537,
+        "endChar": 10
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f652312_b072a2dd",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "This method is already attached to the Package type, so naming it packageFoo is said to \"stutter\". We can just call this cipdDecl, which is much less typing and also doesn\u0027t lose meaning!",
+      "range": {
+        "startLine": 537,
+        "startChar": 21,
+        "endLine": 537,
+        "endChar": 45
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "197ac748_f573161d",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure these comments actually say much, but I appreciate that you thought the code might warrant some description of what\u0027s going on. If not, please remove the comments. Otherwise, please add some additional context about what\u0027s actually going on. If I read \"Put subdir\" while scanning code, it just makes me ask \"put what where?\" This adds cognitive overhead that wouldn\u0027t have existed if the comment didn\u0027t exist; and if the comment was more descriptive, I might be able to skip over scanning the code.\n\nPlease use a space after //",
+      "range": {
+        "startLine": 539,
+        "startChar": 1,
+        "endLine": 539,
+        "endChar": 13
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af00a455_bcb760d8",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Error strings shouldn\u0027t be capitalized.\n\n\"parsing package path %q failed\"",
+      "range": {
+        "startLine": 544,
+        "startChar": 24,
+        "endLine": 544,
+        "endChar": 61
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07eb37bf_04a4b460",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Similar comment as above, but I think that this comment really isn\u0027t necessary.",
+      "range": {
+        "startLine": 550,
+        "startChar": 1,
+        "endLine": 550,
+        "endChar": 22
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c9c2bf8_6549a73c",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "\"snapshot\" shouldn\u0027t be capitalized here. Let\u0027s take an opportunity to fix this one since the line is changing, and there\u0027s no surrounding context to fix.",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 45
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3c6ef94_11aa8c5b",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "Please add a period to the end of the sentences of these comments.\n\nWe might also want to update the comments to say \"the default time in minutes\".",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 115
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab76b8c2_fa64eec3",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 373,
+        "startChar": 61,
+        "endLine": 373,
+        "endChar": 66
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e15c4216_e274962a",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "tmpPkgs",
+      "range": {
+        "startLine": 391,
+        "startChar": 18,
+        "endLine": 391,
+        "endChar": 29
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f0702e4_90541e58",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchTimeout",
+      "range": {
+        "startLine": 416,
+        "startChar": 102,
+        "endLine": 416,
+        "endChar": 120
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97087327_c200ecb8",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "I think this should be fetchPkgs",
+      "range": {
+        "startLine": 416,
+        "startChar": 68,
+        "endLine": 416,
+        "endChar": 79
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4976b158_f299fb09",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 426,
+        "startChar": 24,
+        "endLine": 426,
+        "endChar": 29
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "823bcbb1_a0996ad0",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchTimeout",
+      "range": {
+        "startLine": 640,
+        "startChar": 141,
+        "endLine": 640,
+        "endChar": 159
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46b8727d_d9bc5405",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchPkgs",
+      "range": {
+        "startLine": 640,
+        "startChar": 107,
+        "endLine": 640,
+        "endChar": 118
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6edfae7b_8707d9a2",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 654,
+        "startChar": 25,
+        "endLine": 654,
+        "endChar": 30
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b3f5003_c5d6fdc2",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 688,
+        "startChar": 81,
+        "endLine": 688,
+        "endChar": 86
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "575f973a_e9f13274",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchPkgs",
+      "range": {
+        "startLine": 1405,
+        "startChar": 223,
+        "endLine": 1405,
+        "endChar": 242
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75687454_9f1db730",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "pkgs",
+      "range": {
+        "startLine": 1405,
+        "startChar": 88,
+        "endLine": 1405,
+        "endChar": 93
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e3ef7b_65412476",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-13T19:06:38Z",
+      "side": 1,
+      "message": "fetchTimeout",
+      "range": {
+        "startLine": 1405,
+        "startChar": 129,
+        "endLine": 1405,
+        "endChar": 147
+      },
+      "revId": "aa1ac583579579e80ef81d2603abaf949082b0b7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
