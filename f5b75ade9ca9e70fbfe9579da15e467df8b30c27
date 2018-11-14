@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33bb1c7f_bcf5c6d1",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "This file needs copyright header.",
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0781625d_0d9591de",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "I\u0027d slightly prefer to call this package just \u0027cipd\u0027.",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c47dec_cec4af3e",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "Why do we need this check?",
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07e951e3_ac5aabfb",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "I\u0027d omit this since we won\u0027t be using CIPD just for prebuilt packages, but for arbitrary binary artifacts.",
+      "range": {
+        "startLine": 52,
+        "startChar": 84,
+        "endLine": 52,
+        "endChar": 92
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a27ef6a_d28724ef",
+        "filename": "project/manifest.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "bool?",
+      "range": {
+        "startLine": 422,
+        "startChar": 10,
+        "endLine": 422,
+        "endChar": 16
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b4d7b78_11c80396",
+        "filename": "project/manifest.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-14T07:42:15Z",
+      "side": 1,
+      "message": "Do we need this? I think it should be sufficient just use the default temporary directory.",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 27
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
