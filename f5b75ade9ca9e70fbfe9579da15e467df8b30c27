@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0de9eb1d_420f2bd4",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33bb1c7f_bcf5c6d1",
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0781625d_0d9591de",
         "filename": "cipdutil/cipd.go",
         "patchSetId": 6
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "75c39e5b_0f93b7f9",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0781625d_0d9591de",
+      "range": {
+        "startLine": 1,
+        "startChar": 8,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48c47dec_cec4af3e",
         "filename": "cipdutil/cipd.go",
         "patchSetId": 6
@@ -56,6 +98,24 @@
       "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6613ad60_59bfd70f",
+        "filename": "cipdutil/cipd.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "I thought some day we might support windows in the future. But windows does not have execution permission. I will remove it.",
+      "parentUuid": "48c47dec_cec4af3e",
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "23857543_f97d1112",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07e951e3_ac5aabfb",
+      "range": {
+        "startLine": 52,
+        "startChar": 84,
+        "endLine": 52,
+        "endChar": 92
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a27ef6a_d28724ef",
         "filename": "project/manifest.go",
         "patchSetId": 6
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "89bd02f3_1af271f7",
+        "filename": "project/manifest.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a27ef6a_d28724ef",
+      "range": {
+        "startLine": 422,
+        "startChar": 10,
+        "endLine": 422,
+        "endChar": 16
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b4d7b78_11c80396",
         "filename": "project/manifest.go",
         "patchSetId": 6
@@ -125,6 +233,30 @@
       "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcd5c242_ea974309",
+        "filename": "project/manifest.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-11-14T18:57:49Z",
+      "side": 1,
+      "message": "I will remove it.",
+      "parentUuid": "3b4d7b78_11c80396",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 27
+      },
+      "revId": "f5b75ade9ca9e70fbfe9579da15e467df8b30c27",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
