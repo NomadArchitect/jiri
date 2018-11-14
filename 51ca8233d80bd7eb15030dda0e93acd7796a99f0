@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f282dd1d_0ffbd4f5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5195
+      },
+      "writtenOn": "2018-11-14T22:51:30Z",
+      "side": 1,
+      "message": "i do not have cipd along side my jiri, are we going to push that change before merging this?",
+      "revId": "51ca8233d80bd7eb15030dda0e93acd7796a99f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
