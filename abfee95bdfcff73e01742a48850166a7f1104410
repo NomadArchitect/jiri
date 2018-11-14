@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d997d5c_a2366e04",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-14T19:03:31Z",
+      "side": 1,
+      "message": "This part of the comment can be dropped.",
+      "range": {
+        "startLine": 34,
+        "startChar": 50,
+        "endLine": 34,
+        "endChar": 65
+      },
+      "revId": "abfee95bdfcff73e01742a48850166a7f1104410",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28c77cac_89754d20",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-11-14T19:03:31Z",
+      "side": 1,
+      "message": "minutes",
+      "range": {
+        "startLine": 43,
+        "startChar": 59,
+        "endLine": 43,
+        "endChar": 66
+      },
+      "revId": "abfee95bdfcff73e01742a48850166a7f1104410",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
