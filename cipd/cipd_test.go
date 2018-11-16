@@ -25,6 +25,11 @@ const (
 	cipdDigestForTestLinuxARM64B  = "e1d6aadc9bfc155e9088aa3de39b9d3311c7359f398f372b5ad1c308e25edfeb"
 	cipdDigestForTestLinuxARMv6lB = "3ad97b47ecc1b358c8ebd1b0307087d354433d88f24bf8ece096fb05452837f9"
 	cipdDigestForTestMacAMD64B    = "167edadf7c7c019a40b9f7869a4c05b2d9834427dad68e295442ef9ebce88dba"
+	// package path and versions for ACL tests
+	cipdPkgPathA    = "gn/gn/${platform}"
+	cipdPkgVersionA = "git_revision:bdb0fd02324b120cacde634a9235405061c8ea06"
+	cipdPkgPathB    = "notexist/notexist"
+	cipdPkgVersionB = "git_revision:bdb0fd02324b120cacde634a9235405061c8ea06"
 )
 
 func retrieveDigestA(platform string) string {
@@ -179,5 +184,50 @@ gn/gn/${platform} git_revision:bdb0fd02324b120cacde634a9235405061c8ea06
 			t.Fatalf("fetched cipd package is not found at %q", gnPath)
 		}
 		t.Fatal(err)
+	}
+}
+
+func TestCheckACL(t *testing.T) {
+	cipdPath, err := Bootstrap()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(cipdPath)
+
+	pkgMap := make(map[string]bool)
+	pkgMap[cipdPkgPathA] = false
+	pkgMap[cipdPkgPathB] = false
+	versionMap := make(map[string]string)
+	versionMap[cipdPkgPathA] = cipdPkgVersionA
+	versionMap[cipdPkgPathB] = cipdPkgVersionB
+	if err := CheckPackageACL(nil, pkgMap, versionMap); err != nil {
+		t.Fatal(err)
+	}
+
+	if !pkgMap[cipdPkgPathA] {
+		t.Fatalf("pkg %q should be accessible, but it is not accessible by cipd", cipdPkgPathA)
+	}
+
+	if pkgMap[cipdPkgPathB] {
+		t.Fatalf("pkg %q should not be accessible, but it is accessible by cipd", cipdPkgPathB)
+	}
+
+}
+
+func TestLoggedIn(t *testing.T) {
+	cipdPath, err := Bootstrap()
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(cipdPath)
+
+	loggedIn, err := CheckLoggedIn(nil)
+	if loggedIn {
+		t.Log("cipd logged in")
+	} else {
+		t.Log("cipd not logged in")
+	}
+	if err != nil {
+		t.Fatalf("CheckCipdLoggedIn returned an error %v", err)
 	}
 }
