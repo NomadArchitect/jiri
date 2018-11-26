@@ -503,8 +503,24 @@ func FetchPackages(jirix *jiri.X, pkgs Packages, fetchTimeout uint) error {
 	ensureFileBuf.WriteString("$ParanoidMode CheckPresence\n")
 	ensureFileBuf.WriteString("\n")
 
-	// TODO: perform ACL checks on internal projects
+	// Perform ACL checks on internal projects
+	pkgACLMap := make(map[string]bool)
 	for _, pkg := range pkgs {
+		pkg.Name = strings.TrimRight(pkg.Name, "/")
+		if pkg.Internal {
+			pkgACLMap[pkg.Name] = false
+		}
+	}
+	if len(pkgACLMap) != 0 {
+		if err := cipd.CheckPackageACL(jirix, pkgACLMap); err != nil {
+			return err
+		}
+	}
+
+	for _, pkg := range pkgs {
+		if val, ok := pkgACLMap[pkg.Name]; ok && !val {
+			continue
+		}
 		cipdDecl, err := pkg.cipdDecl()
 		if err != nil {
 			return err

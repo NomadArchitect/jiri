@@ -30,6 +30,7 @@ const (
 	cipdBackend          = "https://chrome-infra-packages.appspot.com"
 	cipdVersionURL       = "https://fuchsia.googlesource.com/buildtools/+/master/.cipd_version"
 	cipdVersionDigestURL = "https://fuchsia.googlesource.com/buildtools/+/master/.cipd_version.digests"
+	pkgNotFoundStr       = "No matching packages."
 )
 
 var (
@@ -252,6 +253,132 @@ func getAndCheckCipdPath() (string, error) {
 	}
 	return cipdBinary, nil
 
+}
+
+func getPrefix(path string) string {
+	// trailing '/' should be trimmed before calling
+	// this function
+	return path[:strings.LastIndexByte(path, '/')]
+}
+
+// resolvePkgPath replace ${platform}, ${os}, ${arch} in path
+// with runtime GOOS and GOARCH values
+func resolvePkgPath(path string) string {
+	path = strings.Replace(path, "${platform}", "${os}-${arch}", -1)
+
+	os := runtime.GOOS
+	if os == "darwin" {
+		os = "mac"
+	}
+	arch := runtime.GOARCH
+	if arch == "arm" {
+		arch = "armv6l"
+	}
+
+	path = strings.Replace(path, "${os}", os, -1)
+	path = strings.Replace(path, "${arch}", arch, -1)
+	return path
+}
+
+func returnCheckPrefixResults(rtnList []bool, commu chan bool) {
+	for _, val := range rtnList {
+		commu <- val
+	}
+}
+
+func checkPackagesWithSamePrefix(jirix *jiri.X, paths []string, commu chan bool) {
+	if len(paths) == 0 {
+		return
+	}
+	// Sent back results in all cases
+	rtnList := make([]bool, len(paths))
+	defer returnCheckPrefixResults(rtnList, commu)
+
+	// cipd should be bootstrapped by caller
+	// silent return just in case if cipd is
+	// not found
+	cipdPath, err := getCipdPath()
+	if err != nil {
+		return
+	}
+	// Map from path to its index in paths
+	// In rare cases, "example_package/${platform}" and
+	// "example_package/linux-amd64" may both exist in paths.
+	// We use []int to resolve index collisions
+	pathIndex := make(map[string][]int)
+	for idx, currStr := range paths {
+		currStr = resolvePkgPath(currStr)
+		pathIndex[currStr] = append(pathIndex[currStr], idx)
+	}
+
+	// Run cipd command
+	prefix := getPrefix(paths[0])
+	args := []string{"ls", prefix}
+	if jirix != nil {
+		jirix.Logger.Debugf("Invoke cipd with %v", args)
+	}
+	command := exec.Command(cipdPath, args...)
+	var stdoutBuf bytes.Buffer
+	command.Stdout = &stdoutBuf
+	// Silent return if cipd cannot be executed
+	if err := command.Run(); err != nil {
+		return
+	}
+	// Parse cipd output
+	stdoutScanner := bufio.NewScanner(&stdoutBuf)
+	for stdoutScanner.Scan() {
+		currLine := strings.Trim(stdoutScanner.Text(), "\n\r ")
+		if currLine == pkgNotFoundStr {
+			// All packages not exist under this prefix
+			return
+		}
+		if idxList, ok := pathIndex[currLine]; ok {
+			for _, idx := range idxList {
+				rtnList[idx] = true
+			}
+		}
+	}
+}
+
+// CheckPackageACL will check if cipd has access to packages
+// in map "pkgs". The package names in "pkgs" should have trailing '/'
+// removed before calling this function
+func CheckPackageACL(jirix *jiri.X, pkgs map[string]bool) error {
+	if err := cipdSelfUpdate(); err != nil {
+		// Allow cipd execution if cipd binary exists but version file is not available
+		if err != cipdVersionFetchErr {
+			// Self update failure, do bootstrap
+			err = boostrapCipd()
+			if err != nil {
+				return err
+			}
+		}
+	}
+
+	// Find common prefix for all pkgs
+	prefixMap := make(map[string][]string)
+	for key := range pkgs {
+		prefix := getPrefix(key)
+		val, _ := prefixMap[prefix]
+		prefixMap[prefix] = append(val, key)
+	}
+
+	// Distribute work
+	chanMap := make(map[string]chan bool)
+	for key, val := range prefixMap {
+		currChan := make(chan bool)
+		chanMap[key] = currChan
+		go checkPackagesWithSamePrefix(jirix, val, currChan)
+	}
+
+	for key, val := range prefixMap {
+		currChan := chanMap[key]
+		for i := 0; i < len(val); i++ {
+			pkgs[val[i]] = <-currChan
+		}
+	}
+
+	return nil
 }
 
 // Ensure runs cipd binary's ensure funcationality over file. Fetched packages will be
