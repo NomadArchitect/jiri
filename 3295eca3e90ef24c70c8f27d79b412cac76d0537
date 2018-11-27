@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7887b871_f489eac1",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "Our eventual goal is to remove buildtools repository altogether, so we cannot rely on this file, rather we\u0027ll probably need to hardcode the CIPD version into Jiri :(",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c70a0f0a_81c3159a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b2aa38_3e4149a6",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "Check return value of Chmod as well.",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1525174d_1dc88773",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "I\u0027d just hardcode sha256, we won\u0027t support any other hash methods for the foreseeable future.",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4f66ad0_afca03a5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "I\u0027d imagine that this would be useful separately even outside of the bootstrap logic, so we should probably have method to obtain CIPD platform and arch independently. Even better, we should make this plain variables and initialize those in init() akin to GOOS and GOARCH.",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1dd1225a_4f130688",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "Let server backend handle this, it\u0027s more future proof in case CIPD starts supporting more platform in the future (e.g. Fuchsia :)",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8b7dfc9_191c0ef2",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff6e3ae5_a227ab4c",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "Nit: make it a verb, e.g. \"getUserAgent()\".",
+      "range": {
+        "startLine": 185,
+        "startChar": 5,
+        "endLine": 185,
+        "endChar": 14
+      },
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c455a81d_bf56eef3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-11-27T03:37:58Z",
+      "side": 1,
+      "message": "Nit: this could be a single line.",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 18
+      },
+      "revId": "3295eca3e90ef24c70c8f27d79b412cac76d0537",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
