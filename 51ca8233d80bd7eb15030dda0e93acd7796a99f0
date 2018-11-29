@@ -34,6 +34,24 @@
       "revId": "51ca8233d80bd7eb15030dda0e93acd7796a99f0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90b9b986_a81d3df3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2018-11-29T21:10:34Z",
+      "side": 1,
+      "message": "If I change this line to:\n\n-       cipdBinary :\u003d path.Join(jiriBinaryRoot, \"cipd\")\n+       cipdBinary :\u003d path.Join(jiriBinaryRoot, \"..\", \"..\", \"buildtools\", \"cipd\")\n\nthen it works as expect, but I doubt this is what we\u0027ll want to hardcode into jiri",
+      "parentUuid": "5e93d487_442e1f52",
+      "revId": "51ca8233d80bd7eb15030dda0e93acd7796a99f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
