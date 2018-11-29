@@ -16,6 +16,24 @@
       "revId": "51ca8233d80bd7eb15030dda0e93acd7796a99f0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e93d487_442e1f52",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5030
+      },
+      "writtenOn": "2018-11-29T20:49:49Z",
+      "side": 1,
+      "message": "I don\u0027t either - and I don\u0027t know how to tell jiri where cipd is.  I tried symlinking //buildtools/cipd into .jiri_root/bin, but it can\u0027t find //buildtools/.cipd_version.digests",
+      "parentUuid": "f282dd1d_0ffbd4f5",
+      "revId": "51ca8233d80bd7eb15030dda0e93acd7796a99f0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
