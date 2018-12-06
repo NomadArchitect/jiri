@@ -1,0 +1,579 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bee1b5fc_55f4fa5f",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "HTTP should be capitalized here: https://github.com/golang/go/wiki/CodeReviewComments#initialisms",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6af977c_99f829b9",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "I would avoid linking to this source file for reference purposes. As the file changes, the comment will grow stale.",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20e47b08_dacbe9e0",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "extra space here",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d690ae51_cbc32800",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "add period at end of sentence, please",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "335a8606_8a898d68",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "This seems to be called only once, and from a single place 100 lines down. As such I think this would work better as a once.Do function (https://golang.org/pkg/sync/#Once.Do) at the callsite.",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fdb2fc3_f61798d9",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "similar comment to above -- it should be easy enough for someone to find the implementation without a direct link which can grow stale",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 77
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b502c77_972cd48a",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "period at the end of this sentence please",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 16
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53a02b54_40aa2bcb",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "Please add a doc comment for this function, and the rest of the exported functions in this file.",
+      "range": {
+        "startLine": 95,
+        "startChar": 23,
+        "endLine": 95,
+        "endChar": 33
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e59a0f2e_a2add36a",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "period please",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 112,
+        "endChar": 32
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e00e7efa_b19ec389",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "a",
+      "range": {
+        "startLine": 117,
+        "startChar": 66,
+        "endLine": 117,
+        "endChar": 72
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56b1040e_5d192898",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "\"returning a byte slice.\" (please add period)",
+      "range": {
+        "startLine": 117,
+        "startChar": 82,
+        "endLine": 117,
+        "endChar": 97
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef2aa103_daf8e9b1",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "period please",
+      "range": {
+        "startLine": 119,
+        "startChar": 45,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce3d3bac_449fd722",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "I think we can just call this \"Fetch\".",
+      "range": {
+        "startLine": 120,
+        "startChar": 5,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "648c3ec2_e54fb045",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "fetchSSO",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 35
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ba58ec6_b993785a",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "Let\u0027s call this FetchSSO",
+      "range": {
+        "startLine": 170,
+        "startChar": 5,
+        "endLine": 170,
+        "endChar": 31
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "744cd5f4_09fcc6f8",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "This short function has a single caller, LoadCookiesForGerrit. Let\u0027s move it into that function.",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 1
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "743869de_6d82be8c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "Is this function really necessary? I think it should be sufficient to have https://%s/new-password in the format strings which currently consume this.",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 1
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "747ab93c_b8badc75",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "The package is already called \"gerrit\" so it should be clear that any functionality in this package has to do with Gerrit. I think this function would be better named \"LoadCookies\".\n\nThis function needs doc comments as it is exported.",
+      "range": {
+        "startLine": 328,
+        "startChar": 5,
+        "endLine": 328,
+        "endChar": 25
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1139bfb0_0e6e511c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "have",
+      "range": {
+        "startLine": 331,
+        "startChar": 32,
+        "endLine": 331,
+        "endChar": 35
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28eb5297_810183e0",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "fall back",
+      "range": {
+        "startLine": 344,
+        "startChar": 49,
+        "endLine": 344,
+        "endChar": 57
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05f8740b_0c71c24c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "unexpired",
+      "range": {
+        "startLine": 344,
+        "startChar": 14,
+        "endLine": 344,
+        "endChar": 23
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acc8c523_df69ae46",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "at",
+      "range": {
+        "startLine": 370,
+        "startChar": 81,
+        "endLine": 370,
+        "endChar": 83
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb00c65_d65f796f",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "Since this function is in the Gerrit package, this name stutters (gerrit.CacheCookiesForGerrit). Let\u0027s just call this function \"CacheCookies\".",
+      "range": {
+        "startLine": 403,
+        "startChar": 5,
+        "endLine": 403,
+        "endChar": 26
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa84676a_9b91208c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "Let\u0027s just call this function \"gitCookiePath\".",
+      "range": {
+        "startLine": 471,
+        "startChar": 5,
+        "endLine": 471,
+        "endChar": 21
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958879ea_c762b94f",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-06T22:35:12Z",
+      "side": 1,
+      "message": "I see what you\u0027re doing here, and it\u0027s clever, but I think we could stand to make this less clever because the behavior is not obvious. I\u0027d suggest instead implementing e.g. a gerritCommitFetcher type, which is effectively this map, which has a function that can be called on the type to populate the map from the jirix/host/path arguments.\n\nThen in the code below, you can do:\n\nmsgFetcher :\u003d newGerritCommitFetcher()\nfor ... {\n  ...\n    bytes, err :\u003d msgFetcher.Fetch(...)\n  ...\n}",
+      "range": {
+        "startLine": 565,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 1
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
