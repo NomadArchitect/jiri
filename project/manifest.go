@@ -12,7 +12,6 @@ import (
 	"hash/fnv"
 	"io"
 	"io/ioutil"
-	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -22,6 +21,7 @@ import (
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/envvar"
+	"fuchsia.googlesource.com/jiri/gerrit"
 	"fuchsia.googlesource.com/jiri/retry"
 )
 
@@ -573,21 +573,27 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 				}
 				bytes, ok := commitHookMap[op.Project().GerritHost]
 				if !ok {
-					downloadPath := op.Project().GerritHost + "/tools/hooks/commit-msg"
-					response, err := http.Get(downloadPath)
+					data, err := gerrit.FetchFileFromGerritHost(op.Project().GerritHost, "/tools/hooks/commit-msg")
 					if err != nil {
-						return fmt.Errorf("Error while downloading %q: %v", downloadPath, err)
+						if err == gerrit.ErrRedirectOnGerrit {
+							// Require SSO
+							if jirix.RewriteSsoToHttps {
+								// Gerrit host require SSO but jiri is rewriting sso to https
+								// In this case git hooks are useless, skip this project
+								continue
+							}
+							jirix.Logger.Debugf("Fetching %q using SSO credentials", op.Project().GerritHost+"/tools/hooks/commit-msg")
+							data, err = gerrit.FetchFileFromGerritHostSSO(jirix, op.Project().GerritHost, "/tools/hooks/commit-msg")
+							if err != nil {
+								return err
+							}
+						} else {
+							// Other network or IO issues, halt jiri
+							return fmtError(err)
+						}
 					}
-					if response.StatusCode != http.StatusOK {
-						return fmt.Errorf("Error while downloading %q, status code: %d", downloadPath, response.StatusCode)
-					}
-					defer response.Body.Close()
-					if b, err := ioutil.ReadAll(response.Body); err != nil {
-						return fmt.Errorf("Error while downloading %q: %v", downloadPath, err)
-					} else {
-						bytes = b
-						commitHookMap[op.Project().GerritHost] = b
-					}
+					bytes = data
+					commitHookMap[op.Project().GerritHost] = data
 				}
 				if _, err := commitHook.Write(bytes); err != nil {
 					return err
