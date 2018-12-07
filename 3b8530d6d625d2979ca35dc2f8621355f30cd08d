@@ -1,0 +1,619 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2123d8d_2908cb6f",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Since this is part of a package called \"cipd\", these names contain redundant information. Generally speaking, variables (exported or not) should not contain the name of the package in their name.\n\nThis comment applies to arguments to various functions below as well.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74a69324_886496d1",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Generally speaking, functions called `fooImpl` should be avoided in Go for a few reasons. First, Go\u0027s abstractions for OO are typically built around interfaces (rather than e.g. abstract classes) so a ClassImpl is not something one would really ever expect to see. Secondly, Go suggests names to be (or contain) verbs if they perform an action (hex.Encode), nouns if they exist to provide information (hex.Dumper), or some combination of the two if they perform an action to provide information, or perform an action on a specific thing (hex.DecodeString, hex.EncodeToString).\n\nI see that you\u0027ve broken out this functionality so that you can write unit tests without calling fetchCipdDigest. I\u0027d suggest naming this function along the lines of what it does. \"fetchBinary\" might be a good candidate.",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 86,
+        "endChar": 18
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7a76dd9_967cb3a2",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I think this function should probably be defined inside Bootstrap (e.g. bootstrap :\u003d func() error { ... }) since it\u0027s not expected to be called elsewhere yet makes sense to be broken out.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2edbe2dc_438e881e",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "is not",
+      "range": {
+        "startLine": 118,
+        "startChar": 49,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08df7cd6_4376764f",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Could",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 123,
+        "endChar": 10
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ed7c16b_6ce414eb",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I think this may be my fault from suggestions in previous code reviews, but if Bootstrap is not expected to be called concurrently, then there\u0027s no reason to use sync/once here.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 3
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "056d6d92_b819a618",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I don\u0027t think this needs to be its own function; it\u0027s not a big deal if it lives inside Bootstrap, which is its only caller.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 32
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd89ed3b_a0703849",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "\"cipd binary path was not set\"",
+      "range": {
+        "startLine": 146,
+        "startChar": 25,
+        "endLine": 146,
+        "endChar": 59
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8c54948_306836a5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "As with the earlier comment on the package name appearing in variables, this function can just be called \"fetchDigest\"",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 20
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a328ae0_1b9de1d7",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I think this check could be if len(curline) \u003d\u003d 0 || curLine[0] \u003d\u003d \u0027#\u0027. If it was, then the later check of len(fields) \u003d\u003d 0 could be removed.",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 44
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6271818b_7e240d01",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s call this \"writeFile\" or similar",
+      "range": {
+        "startLine": 196,
+        "startChar": 5,
+        "endLine": 196,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dec9b1f_9458f636",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "\"Workaround to avoid import cycle\"\n\nWhat is the import cycle? A test package generally lives in the same package as the thing it\u0027s testing (and this one does), so it should be able to have all of the same imports.",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 36
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2107ee2e_20442a14",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "When do these change? Do we have to change the test when we make changes? Is there any chance that future repository moves / changes will change these strings such that the test needs to be updated? Mostly I just want to make sure that this test isn\u0027t going to start failing because someone else makes a change unrelated to this.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcc35e95_d15e4aab",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "might I suggest making this a couple of `map[string]string`s that maps a platform string to a digest? In doing this, you wouldn\u0027t need the retrieveDigest{A,B} functions.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 99
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a06dc190_17ba8930",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a useful test and I would suggest removing it, but I would also point out that it can\u0027t fail since the platform variable will always be at least \"-\" based on the init function\u0027s behavior.\n\nInstead, the init() function should simply exit if the platform is invalid.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d148dd8_9add84fb",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s rename this since bootstrapCipdImpl is being renamed. I don\u0027t think \"ForAllPlatforms\" needs to be part of the name.",
+      "range": {
+        "startLine": 64,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "789cd613_61820c15",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "It is idiomatic for Go unit tests to be table-based tests, where each test is defined in a table, and all tests are executed. For example:\n\ntests :\u003d []struct{\n  platform string\n  version string\n  digest string\n}{\n  {\"linux-amd64\", versionA, digestLinuxAMD64A,},\n  {\"linux-arm64\", versionA, digestLinuxARM64A,},\n  ...\n}\n\nfor _, test :\u003d range tests {\n  // insert logic in testBootstrapImpl here, removing that function\n}",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 91
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ae75daa_b4b8a498",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "It\u0027s worth a comment on tests that require network access, that that\u0027s required.",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebe0df6a_09f6e80c",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "It is rare to call Fatalf in a test. The usual use-case for doing this is if there are dependencies between tests. For example, if test N fails in the table, and some side-effect of running test N would also cause future tests to fail, this would be a reason to use t.Fatalf. This is the case in some of your other tests, where e.g. it doesn\u0027t make sense to test a digest if you couldn\u0027t retrieve it.\n\nInstead, consider using t.Errorf. The rationale here is that it is more useful to provide a developer with information about _all_ failing tests rather than just the first one. This is because it may be annoying to discover a failure, only to fix it and discover the very next test is failing as well.",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "237ccb52_b6b0a2eb",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "This test seems indirect. Let\u0027s use strings.HasPrefix(version, \"git_revision:\") for this test.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb19d736_50029c2a",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "I would suggest making this test a table-based test for all platforms as well.",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 24
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b18a3cff_18c83a7c",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "spurious newline",
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4e596aa_488b03f8",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "create",
+      "range": {
+        "startLine": 117,
+        "startChar": 21,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "310d94d3_ca6d2cf5",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s use Fatalf here and add a prefix so it\u0027s clear what part of this test failed.",
+      "range": {
+        "startLine": 136,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f7ec984_5f205478",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s use Fatalf here and add a prefix so it\u0027s clear what part of this test failed.",
+      "range": {
+        "startLine": 146,
+        "startChar": 2,
+        "endLine": 146,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8abce158_21a96211",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s use Fatalf here and add a prefix so it\u0027s clear what part of this test failed.",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c8fe38_45f74407",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T22:41:00Z",
+      "side": 1,
+      "message": "Let\u0027s use Fatalf here and add a prefix so it\u0027s clear what part of this test failed.",
+      "range": {
+        "startLine": 181,
+        "startChar": 2,
+        "endLine": 181,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
