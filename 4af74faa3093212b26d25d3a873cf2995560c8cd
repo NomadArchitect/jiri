@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4f13330_e25eeba9",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T23:47:11Z",
+      "side": 1,
+      "message": "a map is a fat pointer; you don\u0027t need a pointer receiver here. a good rule of thumb is that you usually do not need a pointer to a fat pointer type (maps, slices, etc).\n\nthis will make later code doing (*fetcher)[host] -\u003e fetcher[host]\n\nreceiver names should generally be short per https://github.com/golang/go/wiki/CodeReviewComments#receiver-names. maybe consider just calling the receiver \"f\"",
+      "range": {
+        "startLine": 567,
+        "startChar": 6,
+        "endLine": 567,
+        "endChar": 31
+      },
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e09c2674_a4bbdb42",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-07T23:47:11Z",
+      "side": 1,
+      "message": "f :\u003d commitMsgFetcher{} might read better here.",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 599,
+        "endChar": 43
+      },
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
