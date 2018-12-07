@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9bfa2a8a_e5e9cc9d",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bee1b5fc_55f4fa5f",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6af977c_99f829b9",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "512e650c_6dbd388f",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6af977c_99f829b9",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 78
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2edaa339_86dc94e9",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20e47b08_dacbe9e0",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d690ae51_cbc32800",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "201aad94_7ce32d0d",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d690ae51_cbc32800",
+      "range": {
+        "startLine": 59,
+        "startChar": 3,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3f52b439_080a7680",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "There is an error that might be returned. If I understand correctly, I cannot pass arguments or retrieve return values from function passed to sync.Once.Do(func ()). I changed this function to use sync.Once.Do at caller site. Please let me know if you think it is acceptable.",
+      "parentUuid": "335a8606_8a898d68",
+      "range": {
+        "startLine": 60,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 23
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fdb2fc3_f61798d9",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "9bb28b3b_96227557",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fdb2fc3_f61798d9",
+      "range": {
+        "startLine": 82,
+        "startChar": 3,
+        "endLine": 82,
+        "endChar": 77
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6b502c77_972cd48a",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81c929df_33519beb",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b502c77_972cd48a",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 16
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "110d8740_402fd61d",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e59a0f2e_a2add36a",
+      "range": {
+        "startLine": 112,
+        "startChar": 27,
+        "endLine": 112,
+        "endChar": 32
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e00e7efa_b19ec389",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -255,6 +447,54 @@
     },
     {
       "key": {
+        "uuid": "96d1d465_56018ab6",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56b1040e_5d192898",
+      "range": {
+        "startLine": 117,
+        "startChar": 82,
+        "endLine": 117,
+        "endChar": 97
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c442eb46_f2147af8",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e00e7efa_b19ec389",
+      "range": {
+        "startLine": 117,
+        "startChar": 66,
+        "endLine": 117,
+        "endChar": 72
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef2aa103_daf8e9b1",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -275,6 +515,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20b5818d_7f83727c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef2aa103_daf8e9b1",
+      "range": {
+        "startLine": 119,
+        "startChar": 45,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "c1418228_45917bcf",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "gerrit.Fetch was already declared in gerrit.go:214 . Would you mind if I rename it to FetchFile?",
+      "parentUuid": "ce3d3bac_449fd722",
+      "range": {
+        "startLine": 120,
+        "startChar": 5,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "648c3ec2_e54fb045",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -321,6 +609,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7087d0e_08c836ca",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Due to FetchFileFromGerritHost renamed to FetchFile, I changed this one to fetchFileSSO",
+      "parentUuid": "648c3ec2_e54fb045",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 35
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +659,30 @@
     },
     {
       "key": {
+        "uuid": "39172447_ecd9fd0a",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "I changed it to FetchFileSSO due to the reason explained earlier",
+      "parentUuid": "2ba58ec6_b993785a",
+      "range": {
+        "startLine": 170,
+        "startChar": 5,
+        "endLine": 170,
+        "endChar": 31
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "744cd5f4_09fcc6f8",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -367,6 +703,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a6d5967_11408de3",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744cd5f4_09fcc6f8",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 1
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +753,30 @@
     },
     {
       "key": {
+        "uuid": "b6abd40f_da6d9848",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "743869de_6d82be8c",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 1
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "747ab93c_b8badc75",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -416,6 +800,30 @@
     },
     {
       "key": {
+        "uuid": "39b78de0_f4de498b",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "747ab93c_b8badc75",
+      "range": {
+        "startLine": 328,
+        "startChar": 5,
+        "endLine": 328,
+        "endChar": 25
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1139bfb0_0e6e511c",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -436,6 +844,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "848097f9_564e489c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1139bfb0_0e6e511c",
+      "range": {
+        "startLine": 331,
+        "startChar": 32,
+        "endLine": 331,
+        "endChar": 35
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -485,6 +917,54 @@
     },
     {
       "key": {
+        "uuid": "9cecb8ea_8c63b2cb",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05f8740b_0c71c24c",
+      "range": {
+        "startLine": 344,
+        "startChar": 14,
+        "endLine": 344,
+        "endChar": 23
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f555ffe_26b75bd4",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28eb5297_810183e0",
+      "range": {
+        "startLine": 344,
+        "startChar": 49,
+        "endLine": 344,
+        "endChar": 57
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "acc8c523_df69ae46",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -505,6 +985,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1982bcb9_c3d5acfb",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acc8c523_df69ae46",
+      "range": {
+        "startLine": 370,
+        "startChar": 81,
+        "endLine": 370,
+        "endChar": 83
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -531,6 +1035,30 @@
     },
     {
       "key": {
+        "uuid": "7485f02d_31f0e978",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beb00c65_d65f796f",
+      "range": {
+        "startLine": 403,
+        "startChar": 5,
+        "endLine": 403,
+        "endChar": 26
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa84676a_9b91208c",
         "filename": "gerrit/sso.go",
         "patchSetId": 2
@@ -551,6 +1079,30 @@
       "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e6e587f_6e0e6f9f",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-07T02:37:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa84676a_9b91208c",
+      "range": {
+        "startLine": 471,
+        "startChar": 5,
+        "endLine": 471,
+        "endChar": 21
+      },
+      "revId": "adcf9382793619a0d41ae83f28f61b1a4300011f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
