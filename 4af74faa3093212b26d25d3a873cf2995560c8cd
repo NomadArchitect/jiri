@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "52bf929f_e1b06d8c",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-08T00:32:01Z",
+      "side": 1,
+      "message": "May I propose a third option? If these vars are separated by a newline of whitespace, the horizontal whitespace will look more natural and will introduce less vertical space (three lines for the var block versus one for the newline). E.g.:\n\nvar (\n  ErrFooBarBat \u003d ...\n  ErrBatBaz    \u003d ...\n\n  ssoFooA \u003d ...\n  ssoBarB \u003d ...\n\n  once sync.Once\n)",
+      "parentUuid": "2eac02a7_76184ad3",
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4f13330_e25eeba9",
         "filename": "project/manifest.go",
         "patchSetId": 3
