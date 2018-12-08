@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a7905f0_c85b5530",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "But for this special case, it might cause naming collisions if I stripped the \"cipd\" away. E.g. platform is used in func fetchCipdDigest(platform string). And it is used in tests so it is would be unwise to remove arguments from that function completely. If I rename the \"platform\" to \"plat\", well it works but does not look nice either. Is there a better solution?",
+      "parentUuid": "f2123d8d_2908cb6f",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74a69324_886496d1",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62606883_2b119fb5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "To use \"Impl\" is just for the convenience of writing tests. I will avoid this naming in the future.",
+      "parentUuid": "74a69324_886496d1",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 86,
+        "endChar": 18
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "29887a6e_a3fd18d8",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7a76dd9_967cb3a2",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 1
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2edbe2dc_438e881e",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c7ff4de_8e3d4d45",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2edbe2dc_438e881e",
+      "range": {
+        "startLine": 118,
+        "startChar": 49,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "cadbc57f_4744c120",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08df7cd6_4376764f",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 123,
+        "endChar": 10
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ed7c16b_6ce414eb",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2018-12-07T22:41:00Z",
       "side": 1,
       "message": "I think this may be my fault from suggestions in previous code reviews, but if Bootstrap is not expected to be called concurrently, then there\u0027s no reason to use sync/once here.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 3
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d0c1546_946157c3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "The Bootstrap() is not supposed to be called concurrently. The currently exposed functions in cipd is just Ensure, CheckACL, which are not expected (and shouldn\u0027t) be called concurrently. They both invoke Bootstrap() to ensure cipd is properly installed though. \n\nI just need a way to ensure the selfUpdate will be run no more than once during a single jiri session. As it will cause a slow HTTP request. Should I just use a global flag instead of the sync.Once? What is the best practice to do this in golang?",
+      "parentUuid": "4ed7c16b_6ce414eb",
       "range": {
         "startLine": 132,
         "startChar": 0,
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "6e056263_021118b3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8c54948_306836a5",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 20
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a328ae0_1b9de1d7",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -229,6 +397,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee23ae1c_e0ffa38f",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a328ae0_1b9de1d7",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 44
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "f4c1b908_3db5ed4a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6271818b_7e240d01",
+      "range": {
+        "startLine": 196,
+        "startChar": 5,
+        "endLine": 196,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dec9b1f_9458f636",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -266,6 +482,30 @@
       "writtenOn": "2018-12-07T22:41:00Z",
       "side": 1,
       "message": "\"Workaround to avoid import cycle\"\n\nWhat is the import cycle? A test package generally lives in the same package as the thing it\u0027s testing (and this one does), so it should be able to have all of the same imports.",
+      "range": {
+        "startLine": 260,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 36
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8431f3_8c2546ef",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "If I use NewFakeJiriRoot function from jiritest, will cause an import cycle. jiritest imports jiri/project; jiri/project imports jiri/cipd as it perform the call to cipd.Ensure. If I import jiritest to jiri/cipd, it will cause import cycles.\n\nI just need a Logger to print some debug logs and I saw loggers in jiri.X. But in tests there is no jiri.X. There is a jiritest.NewX to create a fake jiri.X but if I use it, it causes import cycles.",
+      "parentUuid": "5dec9b1f_9458f636",
       "range": {
         "startLine": 260,
         "startChar": 4,
@@ -301,6 +541,30 @@
     },
     {
       "key": {
+        "uuid": "fd08cfdb_be5826c6",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "They are digests generated at the time when I wrote jiri/cipd.go. They represents a published cipd release and it is stored in \"https://chrome-infra-packages.appspot.com\". It won\u0027t break unless someone delete this particular release. If there is a new cipd release, it will be totally fine, as we pin our tests on a specific cipd release.",
+      "parentUuid": "2107ee2e_20442a14",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fcc35e95_d15e4aab",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -321,6 +585,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bdd754b_0675856f",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcc35e95_d15e4aab",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 99
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -347,6 +635,30 @@
     },
     {
       "key": {
+        "uuid": "8d892a56_ede8f957",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "I removed it.",
+      "parentUuid": "a06dc190_17ba8930",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d148dd8_9add84fb",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -367,6 +679,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3c3bbd_5c31ba5b",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d148dd8_9add84fb",
+      "range": {
+        "startLine": 64,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +729,30 @@
     },
     {
       "key": {
+        "uuid": "acd03a72_3f5d6ead",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789cd613_61820c15",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 91
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ae75daa_b4b8a498",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -413,6 +773,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "233f2cfa_25950dab",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ae75daa_b4b8a498",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -439,6 +823,30 @@
     },
     {
       "key": {
+        "uuid": "65346fb0_3f6134f5",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe0df6a_09f6e80c",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "237ccb52_b6b0a2eb",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -459,6 +867,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feb1ea26_c12d947d",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "237ccb52_b6b0a2eb",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -485,6 +917,30 @@
     },
     {
       "key": {
+        "uuid": "cfe52646_706e352d",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb19d736_50029c2a",
+      "range": {
+        "startLine": 103,
+        "startChar": 5,
+        "endLine": 103,
+        "endChar": 24
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b18a3cff_18c83a7c",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -499,6 +955,24 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a05a1b0_031f3130",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b18a3cff_18c83a7c",
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -525,6 +999,30 @@
     },
     {
       "key": {
+        "uuid": "d537c092_fe42e45a",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4e596aa_488b03f8",
+      "range": {
+        "startLine": 117,
+        "startChar": 21,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "310d94d3_ca6d2cf5",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -545,6 +1043,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "269aae05_4a764344",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310d94d3_ca6d2cf5",
+      "range": {
+        "startLine": 136,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -571,6 +1093,30 @@
     },
     {
       "key": {
+        "uuid": "2ff40327_35578eeb",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f7ec984_5f205478",
+      "range": {
+        "startLine": 146,
+        "startChar": 2,
+        "endLine": 146,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8abce158_21a96211",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -594,6 +1140,30 @@
     },
     {
       "key": {
+        "uuid": "22d06a74_ab9ec4e7",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8abce158_21a96211",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6c8fe38_45f74407",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 4
@@ -614,6 +1184,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2eb0cad_a7a5114b",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-08T22:40:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6c8fe38_45f74407",
+      "range": {
+        "startLine": 181,
+        "startChar": 2,
+        "endLine": 181,
+        "endChar": 14
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
