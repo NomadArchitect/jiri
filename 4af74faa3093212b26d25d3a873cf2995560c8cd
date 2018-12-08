@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "8c57ba47_ae8043c1",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-12-08T00:27:07Z",
+      "side": 1,
+      "message": "This file needs a copyright header.",
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2eac02a7_76184ad3",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-12-08T00:27:07Z",
+      "side": 1,
+      "message": "nit: could you split errors into a separate `var` block so it\u0027s visually separated? (unless Devon disagrees)",
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b4f13330_e25eeba9",
         "filename": "project/manifest.go",
         "patchSetId": 3
