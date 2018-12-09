@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8d88e2ba_139e0298",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-09T00:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c57ba47_ae8043c1",
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2eac02a7_76184ad3",
         "filename": "gerrit/sso.go",
         "patchSetId": 3
@@ -54,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "30d64685_e4f8160e",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-09T00:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52bf929f_e1b06d8c",
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4f13330_e25eeba9",
         "filename": "project/manifest.go",
         "patchSetId": 3
@@ -77,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "aa794f90_342d9922",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-09T00:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4f13330_e25eeba9",
+      "range": {
+        "startLine": 567,
+        "startChar": 6,
+        "endLine": 567,
+        "endChar": 31
+      },
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e09c2674_a4bbdb42",
         "filename": "project/manifest.go",
         "patchSetId": 3
@@ -97,6 +157,30 @@
       "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28631631_73669e7f",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-09T00:28:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e09c2674_a4bbdb42",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 599,
+        "endChar": 43
+      },
+      "revId": "4af74faa3093212b26d25d3a873cf2995560c8cd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
