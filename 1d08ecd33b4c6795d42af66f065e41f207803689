@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad583609_d9b0f6bd",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "This is conflating too many different errors. A short write is different from an error in write or chmod, and it would be nice to disambiguate these for callers. I know the if err :\u003d thing(); err { ... } pattern gets annoying, but it really does improve the quality for users.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 49
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd92c69_34095b8d",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "I think you can defer both of these things after you create the tempfile with the same semantics. os.Remove will fail if the rename succeeds, but who cares? :)",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 28
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e1e03ba_68aa4dac",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "minutes",
+      "range": {
+        "startLine": 247,
+        "startChar": 59,
+        "endLine": 247,
+        "endChar": 67
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee157cce_f31419a0",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "Let\u0027s update the comment to mention exactly what the workaround is for. Something like:\n\n\"Workaround so tests don\u0027t have to create a new fake jirix, which would result in an import cycle\"",
+      "range": {
+        "startLine": 256,
+        "startChar": 4,
+        "endLine": 256,
+        "endChar": 52
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddf79d7e_cd5be025",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "create",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843cedb2_98602f2a",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "digest could be a map[string]string, and you could just pass map A or B in those tests, and you wouldn\u0027t need to write the platform name twice, just use digest[platform].",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1706d6bd_fbb43f83",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "test failures should tell you which test failed. if you do for i, test :\u003d range tests, you can output \"test N failed\". I think this is especially true here because it\u0027s going to be annoying for folks to disambiguate between a bunch of digests if this test fails.",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 19
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cba6f9ef_5a333fcd",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "since these can happen for any platform now, it would be useful to say for which platform the test failed.",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 19
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "579a5053_685b0be9",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "shorter, still meaningful variable names are encouraged, especially when they have a small scope. So it wouldn\u0027t really be odd to see something called \"platform\" as a package-scoped variable with functions taking something like \"p\" or \"plat\" as arguments.",
+      "parentUuid": "3a7905f0_c85b5530",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "74a69324_886496d1",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -281,6 +305,30 @@
       "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc69417f_0fb30237",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T18:45:27Z",
+      "side": 1,
+      "message": "Well, on the other hand, sync.Once will ensure the thing only happens once, while also ensuring it continues to work if it ever is called concurrently. This is probably fine!",
+      "parentUuid": "9d0c1546_946157c3",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 3
+      },
+      "revId": "3b8530d6d625d2979ca35dc2f8621355f30cd08d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
