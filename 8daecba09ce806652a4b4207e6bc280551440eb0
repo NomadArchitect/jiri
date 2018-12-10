@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72e4bc43_b6fa4c51",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-10T22:59:18Z",
+      "side": 1,
+      "message": "convention is just to call a channel \"c\"",
+      "range": {
+        "startLine": 252,
+        "startChar": 70,
+        "endLine": 252,
+        "endChar": 75
+      },
+      "revId": "8daecba09ce806652a4b4207e6bc280551440eb0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
