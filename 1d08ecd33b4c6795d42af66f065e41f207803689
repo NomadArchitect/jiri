@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "00ad7b07_65d585ff",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad583609_d9b0f6bd",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 49
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fd92c69_34095b8d",
         "filename": "cipd/cipd.go",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e45156_7ff54bf2",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "I thought os.Rename will fall if I do not close that file first, but it does not.",
+      "parentUuid": "1fd92c69_34095b8d",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 28
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "14bab5ef_f28ed8cc",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e1e03ba_68aa4dac",
+      "range": {
+        "startLine": 247,
+        "startChar": 59,
+        "endLine": 247,
+        "endChar": 67
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee157cce_f31419a0",
         "filename": "cipd/cipd.go",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee16a8d6_fe9e2838",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee157cce_f31419a0",
+      "range": {
+        "startLine": 256,
+        "startChar": 4,
+        "endLine": 256,
+        "endChar": 52
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "e256a2a2_1b630a4d",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddf79d7e_cd5be025",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "843cedb2_98602f2a",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 5
@@ -137,6 +257,30 @@
       "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a74452f3_7a23d53c",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "843cedb2_98602f2a",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 17
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "44ab3fea_842c76b3",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1706d6bd_fbb43f83",
+      "range": {
+        "startLine": 65,
+        "startChar": 13,
+        "endLine": 65,
+        "endChar": 19
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cba6f9ef_5a333fcd",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 5
@@ -183,6 +351,30 @@
       "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9453050_5ecc58f1",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-10T19:55:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cba6f9ef_5a333fcd",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 19
+      },
+      "revId": "1d08ecd33b4c6795d42af66f065e41f207803689",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
