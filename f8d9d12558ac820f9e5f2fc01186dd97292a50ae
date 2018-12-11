@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "01490fd9_28bc513b",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97e802d4_da27205d",
+      "range": {
+        "startLine": 251,
+        "startChar": 58,
+        "endLine": 251,
+        "endChar": 73
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a624cbbd_f7f181e1",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c5224b7e_98212d8d",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "I rewrote the comments to avoid confusions. These issues definitely need to be addressed but they might take lots of time though.",
+      "parentUuid": "a624cbbd_f7f181e1",
+      "range": {
+        "startLine": 305,
+        "startChar": 1,
+        "endLine": 305,
+        "endChar": 58
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0bf7f99e_af6c5bd0",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2018-12-10T22:59:18Z",
       "side": 1,
       "message": "The chanMap here seems to be used to ensure we don\u0027t return before we\u0027ve checked the ACLs for all packages. A better way to do this is to use a sync.WaitGroup. So something like the following would be a good pattern for this sort of thing:\n\nvar wg sync.WaitGroup\nfor key :\u003d range pkgs {\n  wg.Add(1)\n  go func(key string) {\n    defer wg.Done()\n    checkPackageACL(jirix, key, versions[key])\n  }(key)\n}\nwg.Wait()\n\nThis is the same LOC for the two loops, but reduces the LOC/complexity in checkPackageACL.",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 2
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db75c993_98af0fd3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "I thought about this before. But if I use this way instead of a channel, there would be a concurrent write to the `pkgs map[string]bool`. And according to https://blog.golang.org/go-maps-in-action\n\n```\nMaps are not safe for concurrent use: it\u0027s not defined what happens when you read and write to them simultaneously. If you need to read from and write to a map from concurrently executing goroutines, the accesses must be mediated by some kind of synchronization mechanism. One common way to protect maps is with sync.RWMutex.\n```\n\nIn this case, I need to add a sync.RWMutex to guard `pkgs` map. I am fine with both implementation, let me know which one you would prefer.\n\nThe LOC of checkPackageACL can be greatly reduced if we just check the return code instead of stdout/stderr messages. Cipd will return zero if package is found and return non-zero for packages that have access issues. It might be better choice as the stdout/stderr message might change in the future, but the behavior of returned code is quite constant.",
+      "parentUuid": "0bf7f99e_af6c5bd0",
       "range": {
         "startLine": 310,
         "startChar": 0,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "52145824_42ad4943",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a404a3fb_e9b64cdf",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 9
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1914f66_5120b8d3",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efeb8227_67ca0a8f",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1914f66_5120b8d3",
+      "range": {
+        "startLine": 204,
+        "startChar": 4,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "958b0fcc_e192d9a6",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f60aad8a_4a79c387",
+      "range": {
+        "startLine": 208,
+        "startChar": 4,
+        "endLine": 208,
+        "endChar": 10
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dfd5cae5_fc6e04f9",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 2
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "469dbcec_c881fd87",
+        "filename": "cipd/cipd_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "I removed this test because it does not make much sense. It will only fail if cipd is not properly boostraped and this issue will be reported by existing tests.",
+      "parentUuid": "dfd5cae5_fc6e04f9",
+      "range": {
+        "startLine": 231,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 29
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de164735_0d44a8e4",
         "filename": "project/manifest.go",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c3459b8_3122d50d",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de164735_0d44a8e4",
+      "range": {
+        "startLine": 551,
+        "startChar": 0,
+        "endLine": 552,
+        "endChar": 51
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }

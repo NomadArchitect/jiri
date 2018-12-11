@@ -22,6 +22,30 @@
       "revId": "8daecba09ce806652a4b4207e6bc280551440eb0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f0475a4_a627ca54",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T00:00:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72e4bc43_b6fa4c51",
+      "range": {
+        "startLine": 252,
+        "startChar": 70,
+        "endLine": 252,
+        "endChar": 75
+      },
+      "revId": "8daecba09ce806652a4b4207e6bc280551440eb0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
