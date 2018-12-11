@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "f7f2b053_423c5af1",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2018-12-11T19:58:00Z",
+      "side": 1,
+      "message": "I have modified to the code to use a single channel. Let me know if you feel the naming of that struct should be simplified. The output parsing is removed as well. It now just use the return value.",
+      "parentUuid": "b119f20f_8ef891ff",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 2
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a404a3fb_e9b64cdf",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 2
