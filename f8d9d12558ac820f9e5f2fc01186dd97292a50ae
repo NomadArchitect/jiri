@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "b119f20f_8ef891ff",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2018-12-11T18:19:39Z",
+      "side": 1,
+      "message": "Oh, I see. I didn\u0027t realize that the mutation of the pkgs map was meaningful, but now that you mention it, I see that the side-effect is used.\n\nYou might consider having the channel return some struct { k string, v bool } and just using a single channel that returns the package name and status in that struct. Then, you can range over the packages and assign from the struct.\n\nWith this approach, I\u0027d still suggest calling the channel \"c\" in the goroutine. Then in the loop where you receive on the channel:\n\nfor i :\u003d 0; i \u003c len(pkgs); i++ {\n  kv :\u003d \u003c-c\n  pkgs[kv.k] \u003d v\n}\n\nThis signals the idea that the keys will come out-of-order, but that we expect to receive an answer from all of them. The channel will be GC\u0027ed when it goes out of scope, so still no need to close. This would also allow you to set a deadline channel later in case we ever run into any case where executing the binary takes too long, we can set a timeout and select on receiving from the channel, or the deadline timer.\n\nIf return value from executing the program is sufficient to for this, then I\u0027d definitely suggest using that instead of parsing output.",
+      "parentUuid": "db75c993_98af0fd3",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 2
+      },
+      "revId": "f8d9d12558ac820f9e5f2fc01186dd97292a50ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a404a3fb_e9b64cdf",
         "filename": "cipd/cipd_test.go",
         "patchSetId": 2
