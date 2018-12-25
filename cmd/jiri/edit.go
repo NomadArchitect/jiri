@@ -51,9 +51,16 @@ type importChanges struct {
 	NewRev string `json:"new_revision"`
 }
 
+type packageChanges struct {
+	Name   string `json:"name"`
+	OldVer string `json:"old_version"`
+	NewVer string `json:"new_version"`
+}
+
 type editChanges struct {
 	Projects []projectChanges `json:"projects"`
 	Imports  []importChanges  `json:"imports"`
+	Packages []packageChanges `json:"packages"`
 }
 
 func (ec *editChanges) toFile(filename string) error {
@@ -78,7 +85,7 @@ var cmdEdit = &cmdline.Command{
 	Runner:   jiri.RunnerFunc(runEdit),
 	Name:     "edit",
 	Short:    "Edit manifest file",
-	Long:     `Edit manifest file by rolling the revision of provided projects`,
+	Long:     `Edit manifest file by rolling the revision of provided projects, imports or packages`,
 	ArgsName: "<manifest>",
 	ArgsLong: "<manifest> is path of the manifest",
 }
@@ -87,6 +94,7 @@ func init() {
 	flags := &cmdEdit.Flags
 	flags.Var(&editFlags.projects, "project", "List of projects to update. It is of form <project-name>=<newRef> where newRef is optional. It can be specified multiple times.")
 	flags.Var(&editFlags.imports, "import", "List of imports to update. It is of form <import-name>=<newRef> where newRef is optional. It can be specified multiple times.")
+	flags.Var(&editFlags.packages, "package", "List of packages to update. It is of form <package-name>=<newVer> where newVer is optional. It can be specified multiple times.")
 	flags.StringVar(&editFlags.jsonOutput, "json-output", "", "File to print changes to, in json format.")
 }
 
@@ -98,11 +106,12 @@ func runEdit(jirix *jiri.X, args []string) error {
 	if err != nil {
 		return err
 	}
-	if len(editFlags.projects) == 0 && len(editFlags.imports) == 0 {
-		return jirix.UsageErrorf("Please provide -project or/and -import flag")
+	if len(editFlags.projects) == 0 && len(editFlags.imports) == 0 && len(editFlags.packages) == 0 {
+		return jirix.UsageErrorf("Please provide -project, -import and/or -package flag")
 	}
 	projects := make(map[string]string)
 	imports := make(map[string]string)
+	packages :=make(map[string]string)
 	for _, p := range editFlags.projects {
 		s := strings.SplitN(p, "=", 2)
 		if len(s) == 1 {
@@ -119,8 +128,16 @@ func runEdit(jirix *jiri.X, args []string) error {
 			imports[s[0]] = s[1]
 		}
 	}
+	for _, p := range editFlags.packages {
+		s := strings.SplitN(p, "=", 2)
+		if len(s) == 1 {
+			return jirix.UsageErrorf("Please provide the -package flag in the form <package-name>=<newVer>")
+		} else {
+			packages[s[0]] = s[1]
+		}
+	}
 
-	return updateManifest(jirix, manifestPath, projects, imports)
+	return updateManifest(jirix, manifestPath, projects, imports, packages)
 }
 
 func updateRevision(manifestContent, tag, currentRevision, newRevision, name string) (string, error) {
@@ -144,10 +161,15 @@ func updateRevision(manifestContent, tag, currentRevision, newRevision, name str
 	return strings.Replace(manifestContent, s, us, 1), nil
 }
 
-func updateManifest(jirix *jiri.X, manifestPath string, projects, imports map[string]string) error {
+func updateVersion(manifestContent, currentVersion, newVersion string) string {
+	return strings.Replace(manifestContent, currentVersion, newVersion, 1)
+}
+
+func updateManifest(jirix *jiri.X, manifestPath string, projects, imports, packages map[string]string) error {
 	ec := &editChanges{
 		Projects: []projectChanges{},
 		Imports:  []importChanges{},
+		Packages: []packageCHanges{},
 	}
 
 	m, err := project.ManifestFromFile(jirix, manifestPath)
@@ -224,6 +246,24 @@ func updateManifest(jirix *jiri.X, manifestPath string, projects, imports map[st
 			Remote: i.Remote,
 			OldRev: i.Revision,
 			NewRev: newRevision,
+		})
+	}
+
+	for _, p := range m.Packages {
+		newVersion := ""
+		if ver, ok := packages[p.Name]; !ok {
+			continue
+		} else {
+			newVersion = ver
+		}
+		if newVersion == "" || p.Version == newVersion {
+			continue
+		}
+		manifestContent = updateVersion(manifestContent, p.Version, newVersion)
+		ec.Packages = append(ec.Packages, packageChanges{
+			Name:   p.Name,
+			OldVer: p.Version,
+			NewVer: newVersion,
 		})
 	}
 	if editFlags.jsonOutput != "" {
