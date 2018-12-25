@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2976bab4_9eef604b",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-12-25T22:13:07Z",
+      "side": 1,
+      "message": "Nit: \"version\" or \"new-version\" for consistency with \"package-name\".",
+      "range": {
+        "startLine": 135,
+        "startChar": 90,
+        "endLine": 135,
+        "endChar": 96
+      },
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4197a03a_ac2d3d20",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-12-25T22:13:07Z",
+      "side": 1,
+      "message": "This is insufficient without also matching the name. Imagine something like:\n\n  \u003cpackage name\u003d\"foo/linux-amd64\" version\u003d\"git_revision:abc123\"/\u003e\n  \u003cpackage name\u003d\"foo/mac-amd64\" version\u003d\"git_revision:abc123\"/\u003e\n\nWhen you invoke Jiri as:\n\n  jiri edit -package \"foo/mac-amd64\u003dgit_revision:xyz789\"\n\nit\u0027s going to result in the following:\n\n  \u003cpackage name\u003d\"foo/linux-amd64\" version\u003d\"git_revision:xyz789\"/\u003e\n  \u003cpackage name\u003d\"foo/mac-amd64\" version\u003d\"git_revision:abc123\"/\u003e\n\nwhich is not what the user wanted.",
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
