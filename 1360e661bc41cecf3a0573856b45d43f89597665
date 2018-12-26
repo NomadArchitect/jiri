@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "870d04e2_fff0b63b",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-12-26T14:07:00Z",
+      "side": 1,
+      "message": "Done \u0026 updated the strings for project/import to match",
+      "parentUuid": "2976bab4_9eef604b",
+      "range": {
+        "startLine": 135,
+        "startChar": 90,
+        "endLine": 135,
+        "endChar": 96
+      },
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4197a03a_ac2d3d20",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 2
@@ -75,6 +99,24 @@
       "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f074674_2aaf364f",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-12-26T14:07:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29e31c8d_3e9d22fc",
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
