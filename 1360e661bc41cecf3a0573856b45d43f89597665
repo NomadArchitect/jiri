@@ -39,6 +39,24 @@
       "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae7ec765_75c60184",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2018-12-26T02:34:55Z",
+      "side": 1,
+      "message": "I thought you had mentioned removing git tag support from Jiri manifests, why do we want to include a new scheme type that allows for indirection?\n\nThe existing Chromium roller resolves to Instance ID and writes it directly to the ensure file and generally speaking I have no reason to remove that logic from the generalized roller.",
+      "parentUuid": "4197a03a_ac2d3d20",
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
