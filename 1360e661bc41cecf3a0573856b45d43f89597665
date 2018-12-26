@@ -57,6 +57,24 @@
       "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29e31c8d_3e9d22fc",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2018-12-26T02:57:10Z",
+      "side": 1,
+      "message": "We cannot remove it because there are cases that depend on it like Dart, forcing everyone to use instance ID everywhere isn\u0027t going to work, but we plan to address it via another level of indirection (i.e. lockfile that I referred to in the comment). Independently from the mechanism we use to address that issue, the edit command should always produce valid output.",
+      "parentUuid": "ae7ec765_75c60184",
+      "revId": "1360e661bc41cecf3a0573856b45d43f89597665",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
