@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c5fe82d_d7971c0e",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-01-02T23:51:17Z",
+      "side": 1,
+      "message": "Can you reformat this with gofmt?",
+      "revId": "d242664b45c7f90e99e133a303145193430c536b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
