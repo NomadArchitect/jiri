@@ -16,6 +16,24 @@
       "revId": "fb37d76f922604abfde5cb402113e9610b99c833",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "262fb173_172f4d1f",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-08T15:37:20Z",
+      "side": 1,
+      "message": "Good catch! Yes, would be good to lift this and ssoCookieLife into the const block above.",
+      "parentUuid": "66d98a8b_46fae31f",
+      "revId": "fb37d76f922604abfde5cb402113e9610b99c833",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
