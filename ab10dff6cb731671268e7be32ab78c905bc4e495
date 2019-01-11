@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d755e746_a3df39a4",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf110a24_8a02a708",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44e0f7d2_a5b91469",
         "filename": "cipd/cipd.go",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9efb8151_e5e7f5b7",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44e0f7d2_a5b91469",
+      "range": {
+        "startLine": 368,
+        "startChar": 11,
+        "endLine": 368,
+        "endChar": 14
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d99a7136_b5902c9d",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f85106cb_f2339a6a",
+      "range": {
+        "startLine": 376,
+        "startChar": 4,
+        "endLine": 376,
+        "endChar": 14
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4752a55_02f8868b",
         "filename": "cipd/cipd.go",
         "patchSetId": 3
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "dc6641ce_e70e2dbf",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4752a55_02f8868b",
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0074b8e3_9de311e0",
         "filename": "cipd/cipd.go",
         "patchSetId": 3
@@ -99,6 +189,30 @@
       "writtenOn": "2019-01-11T19:37:27Z",
       "side": 1,
       "message": "Since you\u0027re representing this as a FSM, I would suggest naming the states. You can include a const block here, e.g.\n\n    const (\n        stateStart int \u003d iota\n        statePrefix\n        stateRevision\n        stateInstanceID\n    )\n\nThen you can track the state in a variable called state and check it against the constants defining the states in the FSM.\n\nI think this code would be better expressed if scanning a byte slice rather than dealing with line-by-line input. This is because the only really meaningful tokens you have to deal with are \u0027\\n\u0027 or \u0027\\t\u0027 or \u0027#\u0027.\n\nIn stateStart, you can skip empty lines by consuming input while the next token is \u0027\\n\u0027. Currently, this parser will allow empty lines anywhere, and it\u0027s unclear that\u0027s a valid way to express this file. You can match comment lines by being in stateStart, and transition to stateComment when the next token is \u0027#\u0027. stateComment transitions to stateStart when it consumes a newline. We can elide statePrefix entirely: from stateStart, we transition to stateRevision when we consume a \u0027\\t\u0027 token.\n\nIn stateRevision, it would be good to ensure that the line starts with \"git_revision:\" and that the following data looks like a git revision (consume 40 hex characters or whatever). This would be a bit more robust. When a newline is consumed, that transitions over an edge to stateInstanceID, which operates as it does currently, and transitions back to stateStart when it consumes a newline.",
+      "range": {
+        "startLine": 433,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 10
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef7365c7_8215c9e6",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "I made a mistake in determine the operator precedence of \"||\" and \"\u0026\u0026\". An arbitrary empty line should not be permitted unless it is outside of the package block. Comment line should be permitted anywhere. I correct this in the following patch.\n\nThe reason I scan the input line by line instead of token by token is that I would like to minimize number the states. I implemented a token by token DFA as the parseVersionMK2 method. Let me know which one you would prefer and I will delete the other one. Both implementation passed the test.\n\nThe \"git_revision\" is not guaranteed to be the prefix, as cipd support any string as its version tag. E.g., package cmake is using \"version:3.10.0\" as its version tag. So I did not perform the verification at all. Even if someone put a bad version tag in the manifest file, cipd will report an error before jiri parsing the version file. So I think it is OK to skip the verification here.",
+      "parentUuid": "0074b8e3_9de311e0",
       "range": {
         "startLine": 433,
         "startChar": 1,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "18efff60_b108d737",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "There is a description at line 22 that will be printed to user if user types jiri help resolve. Do you mean I should copy this description to a docstring above \"package main\"? I saw a \"doc.go\" file but it contains a line \"This file was auto-generated via go generate.\" and it has not been updated for years. What should I do to include the description for resolve command in this \"doc.go\" file?",
+      "parentUuid": "f8f40b69_599bbbaf",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d88d4143_80711feb",
         "filename": "project/manifest.go",
         "patchSetId": 3
@@ -154,6 +292,30 @@
       "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "020f10fd_614993af",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d88d4143_80711feb",
+      "range": {
+        "startLine": 499,
+        "startChar": 22,
+        "endLine": 499,
+        "endChar": 31
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "ce7cc100_ef7670a5",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5962bd02_1a8bf68e",
+      "range": {
+        "startLine": 243,
+        "startChar": 15,
+        "endLine": 243,
+        "endChar": 25
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf1471ef_2d5655d7",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -194,6 +380,24 @@
       "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d85237e_b9a91a4d",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf1471ef_2d5655d7",
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -220,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "8f555d03_51a1d3ac",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66292a30_fbd438b4",
+      "range": {
+        "startLine": 267,
+        "startChar": 46,
+        "endLine": 267,
+        "endChar": 48
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "13634b8d_1f190f01",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -243,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "1b7d8a0d_d8fd6879",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13634b8d_1f190f01",
+      "range": {
+        "startLine": 774,
+        "startChar": 32,
+        "endLine": 774,
+        "endChar": 36
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e07d1099_4ec5acd2",
         "filename": "project/project.go",
         "patchSetId": 3
@@ -263,6 +515,30 @@
       "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d3b9cb8_d2d2bf11",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-11T23:00:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07d1099_4ec5acd2",
+      "range": {
+        "startLine": 797,
+        "startChar": 32,
+        "endLine": 797,
+        "endChar": 44
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
