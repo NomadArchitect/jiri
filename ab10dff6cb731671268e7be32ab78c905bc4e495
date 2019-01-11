@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf110a24_8a02a708",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "Exported members of exported types should be documented with comments. Since the TODO above is directly attached to the PackageName member below, documentation will show the TODO as part of the documentation string for PackageName. To avoid this, move the TODO (maybe above the doc comment for the type, and separated with at least one newline).",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 19
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e0f7d2_a5b91469",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "runs",
+      "range": {
+        "startLine": 368,
+        "startChar": 11,
+        "endLine": 368,
+        "endChar": 14
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f85106cb_f2339a6a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "Workaround",
+      "range": {
+        "startLine": 376,
+        "startChar": 4,
+        "endLine": 376,
+        "endChar": 14
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4752a55_02f8868b",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "This line should continue the comment",
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0074b8e3_9de311e0",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "Since you\u0027re representing this as a FSM, I would suggest naming the states. You can include a const block here, e.g.\n\n    const (\n        stateStart int \u003d iota\n        statePrefix\n        stateRevision\n        stateInstanceID\n    )\n\nThen you can track the state in a variable called state and check it against the constants defining the states in the FSM.\n\nI think this code would be better expressed if scanning a byte slice rather than dealing with line-by-line input. This is because the only really meaningful tokens you have to deal with are \u0027\\n\u0027 or \u0027\\t\u0027 or \u0027#\u0027.\n\nIn stateStart, you can skip empty lines by consuming input while the next token is \u0027\\n\u0027. Currently, this parser will allow empty lines anywhere, and it\u0027s unclear that\u0027s a valid way to express this file. You can match comment lines by being in stateStart, and transition to stateComment when the next token is \u0027#\u0027. stateComment transitions to stateStart when it consumes a newline. We can elide statePrefix entirely: from stateStart, we transition to stateRevision when we consume a \u0027\\t\u0027 token.\n\nIn stateRevision, it would be good to ensure that the line starts with \"git_revision:\" and that the following data looks like a git revision (consume 40 hex characters or whatever). This would be a bit more robust. When a newline is consumed, that transitions over an edge to stateInstanceID, which operates as it does currently, and transitions back to stateStart when it consumes a newline.",
+      "range": {
+        "startLine": 433,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 10
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8f40b69_599bbbaf",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "It would be good to have a docstring for what this subcommand does",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d88d4143_80711feb",
+        "filename": "project/manifest.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "boilerplate",
+      "range": {
+        "startLine": 499,
+        "startChar": 22,
+        "endLine": 499,
+        "endChar": 31
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5962bd02_1a8bf68e",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "describes",
+      "range": {
+        "startLine": 243,
+        "startChar": 15,
+        "endLine": 243,
+        "endChar": 25
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf1471ef_2d5655d7",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "describes",
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66292a30_fbd438b4",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "Note that %q generates a quoted string. This means that if the input is not a string, you\u0027ll get weird output. For example:\n\n\tfmt.Printf(\"package name %q is not a valid string\\n\", struct {a int; b int}{1234, 2345})\n\nwill result in the output:\n\n        package name {\u0027Ӓ\u0027 \u0027ऩ\u0027} is not a valid string\n\nYou could consider using the %+v or %v format specifiers instead, here and below.",
+      "range": {
+        "startLine": 267,
+        "startChar": 46,
+        "endLine": 267,
+        "endChar": 48
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13634b8d_1f190f01",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "jiri",
+      "range": {
+        "startLine": 774,
+        "startChar": 32,
+        "endLine": 774,
+        "endChar": 36
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e07d1099_4ec5acd2",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-11T19:37:27Z",
+      "side": 1,
+      "message": "This is the only caller and it seems premature to move the logic into its own function (especially since this function is \u003c10 lines, and the resolveLocks function is \u003c15) unless it\u0027s clear there will be another caller at some point. Otherwise, the additional indirection and relative distance between these two functions makes the logic a bit more difficult to follow.",
+      "range": {
+        "startLine": 797,
+        "startChar": 32,
+        "endLine": 797,
+        "endChar": 44
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
