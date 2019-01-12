@@ -225,6 +225,30 @@
     },
     {
       "key": {
+        "uuid": "25231a98_a92b46a6",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-12T00:03:20Z",
+      "side": 1,
+      "message": "Update: I discovered that the cipd itself is using a 4 states DFA to parse the version file using bufio.Scanner. I will update my code to use cipd\u0027s approach.",
+      "parentUuid": "ef7365c7_8215c9e6",
+      "range": {
+        "startLine": 433,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 10
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8f40b69_599bbbaf",
         "filename": "cmd/jiri/resolve.go",
         "patchSetId": 3
