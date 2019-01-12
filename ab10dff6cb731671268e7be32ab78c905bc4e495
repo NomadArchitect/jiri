@@ -249,6 +249,30 @@
     },
     {
       "key": {
+        "uuid": "ee2cf903_b919fb7a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-12T00:20:08Z",
+      "side": 1,
+      "message": "Sounds great!",
+      "parentUuid": "25231a98_a92b46a6",
+      "range": {
+        "startLine": 433,
+        "startChar": 1,
+        "endLine": 433,
+        "endChar": 10
+      },
+      "revId": "ab10dff6cb731671268e7be32ab78c905bc4e495",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f8f40b69_599bbbaf",
         "filename": "cmd/jiri/resolve.go",
         "patchSetId": 3
