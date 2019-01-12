@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3ebf069_c67c0215",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-12T00:23:05Z",
+      "side": 1,
+      "message": "Updated cipd version file parser using the implemetation in:  https://cs.corp.google.com/piper///depot/google3/third_party/golang/luci_go/cipd/client/cipd/ensure/versions_file.go?rcl\u003d219515781\u0026l\u003d144",
+      "range": {
+        "startLine": 405,
+        "startChar": 5,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "d3d9899ecea0754854ca206bde1ca4bb6bf55f57",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
