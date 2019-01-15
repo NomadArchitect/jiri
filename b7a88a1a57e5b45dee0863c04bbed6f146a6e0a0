@@ -22,6 +22,30 @@
       "revId": "b7a88a1a57e5b45dee0863c04bbed6f146a6e0a0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "487a90d4_d24dc814",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-15T19:47:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4152f5c2_bd009857",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 10
+      },
+      "revId": "b7a88a1a57e5b45dee0863c04bbed6f146a6e0a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
