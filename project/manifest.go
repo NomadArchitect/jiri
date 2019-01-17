@@ -783,27 +783,20 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 					return fmtError(err)
 				}
 				bytes, err := commitMsgFetcher.fetch(jirix, op.Project().GerritHost, "/tools/hooks/commit-msg")
-				if err == errGitHookNotRequired {
-					// Skip fetching git hooks for this sso project
-					// if RewriteSSOToHttps flag is on (for bots)
+				if err != nil {
+					if err != gerrit.ErrSSOPathNotSet || err != errGitHookNotRequired {
+						jirix.Logger.Warningf("fetching \"%s/%s\" using sso failed due to error: %v",
+							op.Project().GerritHost, "/tools/hooks/commit-msg", err)
+					}
 					commitHook.Close()
 					os.Remove(hookPath)
 					continue
 				}
-				// TODO: should be changed to if err != nil {return err}
-				// once jirissohelper can be bootstrapped by jiri
-				// fallback to manifest githooks attribute for now
-				if err != nil && err != gerrit.ErrSSOPathNotSet {
-					commitHook.Close()
-					os.Remove(hookPath)
+
+				if _, err := commitHook.Write(bytes); err != nil {
 					return err
 				}
-				if err == nil {
-					if _, err := commitHook.Write(bytes); err != nil {
-						return err
-					}
-					jirix.Logger.Debugf("Saved commit-msg hook to project %q", op.Project().Path)
-				}
+				jirix.Logger.Debugf("Saved commit-msg hook to project %q", op.Project().Path)
 				commitHook.Close()
 				if err := os.Chmod(hookPath, 0750); err != nil {
 					return fmtError(err)
