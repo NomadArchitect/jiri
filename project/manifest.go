@@ -790,10 +790,11 @@ func applyGitHooks(jirix *jiri.X, ops []operation) error {
 					os.Remove(hookPath)
 					continue
 				}
-				// TODO: should be changed to if err != nil {return err}
-				// once jirissohelper can be bootstrapped by jiri
-				// fallback to manifest githooks attribute for now
-				if err != nil && err != gerrit.ErrSSOPathNotSet {
+				if err != nil {
+					if err != gerrit.ErrSSOPathNotSet {
+						jirix.Logger.Warningf("fetching \"%s/%s\" using sso failed due to error: %v. Fall back to use hooks at %q ",
+							op.Project().GerritHost, "/tools/hooks/commit-msg", err, op.Project().GitHooks)
+					}
 					commitHook.Close()
 					os.Remove(hookPath)
 					return err
