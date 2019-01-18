@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0d2f205_e3790d6b",
+        "filename": "gerrit/sso.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-18T15:20:11Z",
+      "side": 1,
+      "message": "dumpHeaders or somesuch would probably be a more appropriate name here. Go likes shorter names that convey an action on some state.",
+      "range": {
+        "startLine": 168,
+        "startChar": 5,
+        "endLine": 168,
+        "endChar": 22
+      },
+      "revId": "1a2d2e8c47b80b7ce4d568a3a82b0cc23ec5eda0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
