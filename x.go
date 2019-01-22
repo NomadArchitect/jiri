@@ -49,6 +49,8 @@ type Config struct {
 	Shared            bool   `xml:"cache>shared,omitempty"`
 	RewriteSsoToHttps bool   `xml:"rewriteSsoToHttps,omitempty"`
 	SsoCookiePath     string `xml:"SsoCookiePath,omitempty"`
+	LockfileEnabled   bool   `xml:"lockfile>enabled,omitempty"`
+	LockfileName      string `xml:"lockfile>name,omitempty"`
 	AnalyticsOptIn    string `xml:"analytics>optin,omitempty"`
 	AnalyticsUserId   string `xml:"analytics>userId,omitempty"`
 	// version user has opted-in to
@@ -98,6 +100,8 @@ type X struct {
 	Shared            bool
 	Jobs              uint
 	RewriteSsoToHttps bool
+	LockfileEnabled   bool
+	LockfileName      string
 	SsoCookiePath     string
 	Color             color.Color
 	Logger            *log.Logger
@@ -226,6 +230,11 @@ func NewX(env *cmdline.Env) (*X, error) {
 	if x.config != nil {
 		x.RewriteSsoToHttps = x.config.RewriteSsoToHttps
 		x.SsoCookiePath = x.config.SsoCookiePath
+		x.LockfileEnabled = x.config.LockfileEnabled
+		x.LockfileName = x.config.LockfileName
+		if x.LockfileName == "" {
+			x.LockfileName = "jiri.lock"
+		}
 	}
 	x.Cache, err = findCache(root, x.config)
 	if x.config != nil {

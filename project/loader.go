@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -26,8 +27,10 @@ type importCache struct {
 
 type loader struct {
 	Projects       Projects
+	ProjectLocks   ProjectLocks
 	Hooks          Hooks
 	Packages       Packages
+	PackageLocks   PackageLocks
 	TmpDir         string
 	localProjects  Projects
 	importProjects Projects
@@ -35,6 +38,7 @@ type loader struct {
 	update         bool
 	cycleStack     []cycleInfo
 	manifests      map[string]bool
+	lockfiles      map[string]bool
 	parentFile     string
 }
 
@@ -60,13 +64,16 @@ type cycleInfo struct {
 func newManifestLoader(localProjects Projects, update bool, file string) *loader {
 	return &loader{
 		Projects:       make(Projects),
+		ProjectLocks:   make(ProjectLocks),
 		Hooks:          make(Hooks),
 		Packages:       make(Packages),
+		PackageLocks:   make(PackageLocks),
 		localProjects:  localProjects,
 		importProjects: make(Projects),
 		update:         update,
 		importCacheMap: make(map[string]importCache),
 		manifests:      make(map[string]bool),
+		lockfiles:      make(map[string]bool),
 		parentFile:     file,
 	}
 }
@@ -186,6 +193,64 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 	return nil
 }
 
+// loadLocksFromFile will only report errors on lockfiles such as unknown format or confliting data.
+// All I/O related errors will be ignored.
+func (ld *loader) loadLocksFromFile(jirix *jiri.X, dir, lockFileName string) (err error) {
+	lockfile := path.Join(dir, lockFileName)
+	if ld.lockfiles[lockfile] {
+		return nil
+	}
+	ld.lockfiles[lockfile] = true
+	if !(dir == "" || dir == "." || dir == jirix.Root) {
+		err = ld.loadLocksFromFile(jirix, path.Join(path.Dir(dir)), lockFileName)
+	}
+	if _, err2 := os.Stat(lockfile); err != nil {
+		if os.IsNotExist(err2) {
+			jirix.Logger.Debugf("could not find %s file at %q", lockFileName, lockfile)
+		}
+		jirix.Logger.Debugf("could not access %s file at %q due to error %v", lockFileName, lockfile, err2)
+		return
+	}
+	data, err2 := ioutil.ReadFile(lockfile)
+	if err2 != nil {
+		jirix.Logger.Debugf("could not read %s file at %q due to error %v", lockFileName, lockfile, err2)
+		return
+	}
+	if err2 = ld.loadLocksFromBytes(jirix, data); err2 != nil {
+		return err2
+	}
+	return
+}
+
+func (ld *loader) loadLocksFromBytes(jirix *jiri.X, data []byte) error {
+	projectLocks, pkgLocks, err := UnmarshalLockEntries(data)
+	if err != nil {
+		return err
+	}
+
+	for k, v := range projectLocks {
+		if projLock, ok := ld.ProjectLocks[k]; ok {
+			if projLock != v {
+				return fmt.Errorf("conflicting project lock entries %+v with %+v", projLock, v)
+			}
+		} else {
+			ld.ProjectLocks[k] = v
+		}
+	}
+
+	for k, v := range pkgLocks {
+		if pkgLock, ok := ld.PackageLocks[k]; ok {
+			if pkgLock != v {
+				return fmt.Errorf("conflicting package lock entries %+v with %+v", pkgLock, v)
+			}
+		} else {
+			ld.PackageLocks[k] = v
+		}
+	}
+
+	return nil
+}
+
 func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport string, localManifest bool) error {
 	f := file
 	if repoPath != "" {
@@ -199,6 +264,11 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 	var err error
 	if repoPath == "" {
 		m, err = ManifestFromFile(jirix, file)
+		if jirix.LockfileEnabled {
+			if err2 := ld.loadLocksFromFile(jirix, path.Dir(file), jirix.LockfileName); err2 != nil {
+				return err2
+			}
+		}
 	} else {
 		if s, err2 := gitutil.New(jirix, gitutil.RootDirOpt(repoPath)).Show(ref, file); err2 != nil {
 			return fmt.Errorf("Unable to get manifest file for %s %s:%s:error(%s)", repoPath, ref, file, err2)
@@ -206,6 +276,18 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 			m, err = ManifestFromBytes([]byte(s))
 			if err != nil {
 				err = fmt.Errorf("Error reading from manifest file %s %s:%s:error(%s)", repoPath, ref, file, err)
+			}
+		}
+		if jirix.LockfileEnabled {
+			lockfile := path.Join(path.Dir(file), jirix.LockfileName)
+			if s, err2 := gitutil.New(jirix, gitutil.RootDirOpt(repoPath)).Show(ref, lockfile); err2 != nil {
+				// It's fine if jiri.lock cannot be read, ignore the error for now
+				jirix.Logger.Debugf("Could not find jiri.lock at %s/%s", repoPath, lockfile)
+			} else {
+				err2 = ld.loadLocksFromBytes(jirix, []byte(s))
+				if err2 != nil {
+					return err2
+				}
 			}
 		}
 	}
