@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "85bc4228_ab272ea2",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T21:30:32Z",
+      "side": 1,
+      "message": "That\u0027s unfortunate, but ok. The templates should\u0027ve used {{.Arch}}.\n\nCould you please add doc comments to these (and possibly also a comment about the casing)",
+      "parentUuid": "da17aa77_6344ac71",
+      "range": {
+        "startLine": 498,
+        "startChar": 1,
+        "endLine": 498,
+        "endChar": 5
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6f3f52a7_5df85c7e",
         "filename": "cipd/cipd.go",
         "patchSetId": 1
@@ -399,6 +423,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42f8f191_295c0a7e",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T21:30:32Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "7f719c48_a7aedd44",
+      "range": {
+        "startLine": 203,
+        "startChar": 1,
+        "endLine": 203,
+        "endChar": 30
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {

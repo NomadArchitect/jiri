@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86c91d4a_76f2d168",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T21:30:32Z",
+      "side": 1,
+      "message": "Sorry for missing this, should this be in an else block?",
+      "range": {
+        "startLine": 213,
+        "startChar": 2,
+        "endLine": 213,
+        "endChar": 100
+      },
+      "revId": "84fdeec1babef8a7860e877be263d75526d5d2f6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
