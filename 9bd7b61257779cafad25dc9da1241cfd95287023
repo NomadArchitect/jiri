@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "425cfc83_bbe23bfd",
+        "filename": "cmd/jiri/fetch_pkgs.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:37:54Z",
+      "side": 1,
+      "message": "it\u0027s fine to just call this \"flags\"",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "9bd7b61257779cafad25dc9da1241cfd95287023",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c345ddc_af6a5671",
+        "filename": "cmd/jiri/fetch_pkgs.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:37:54Z",
+      "side": 1,
+      "message": "can just call this run",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 35,
+        "endChar": 17
+      },
+      "revId": "9bd7b61257779cafad25dc9da1241cfd95287023",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
