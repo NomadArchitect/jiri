@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a11044a_58a69af4",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "Please call this templateRE (or similar). It wasn\u0027t obvious to me in looking at the code that this was a regex that already matched ${...}",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 64,
+        "endChar": 13
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6bf8c2ab_00e871f8",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "This should be \"Arch\" as it is not an initialism",
+      "range": {
+        "startLine": 498,
+        "startChar": 1,
+        "endLine": 498,
+        "endChar": 5
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f3f52a7_5df85c7e",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "Should we be validating that this actually contains the string?",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 11
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a600484f_b757c424",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "It looks like there\u0027s one expander per platform; why not hoist this into the above:\n\n    for _, plat :\u003d range platforms {\n        pkg, err :\u003d plat.Expander().Expand(cipdPath)\n        ...\n    }",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 37
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "236ca775_4c62bdef",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "These are jiri flags, so \"for jiri\" is redundant.",
+      "range": {
+        "startLine": 55,
+        "startChar": 97,
+        "endLine": 55,
+        "endChar": 106
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "238b985b_d9fd582e",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "loadLockfile?",
+      "range": {
+        "startLine": 196,
+        "startChar": 3,
+        "endLine": 196,
+        "endChar": 20
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e16203f_60a1c7fd",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "no need to name this return, it is causing confusion about what error is returned when",
+      "range": {
+        "startLine": 198,
+        "startChar": 78,
+        "endLine": 198,
+        "endChar": 81
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c981913_bdc28979",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "Probably we shouldn\u0027t be setting this unless we succeed in loading the file. Would recommend moving to the bottom of the function",
+      "range": {
+        "startLine": 203,
+        "startChar": 1,
+        "endLine": 203,
+        "endChar": 30
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eabe60b5_be1937b5",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "if err :\u003d ld.loadLockfile(...); err !\u003d nil { return err }",
+      "range": {
+        "startLine": 205,
+        "startChar": 2,
+        "endLine": 205,
+        "endChar": 75
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b569a45_a46c4ced",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "I think this is the wrong error variable tested here, but if the return value is not named, then you can just keep using \"err\" (here and below in ReadFile) which would clear things up quite a lot.",
+      "range": {
+        "startLine": 207,
+        "startChar": 34,
+        "endLine": 207,
+        "endChar": 37
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d2e4c6b_64f7c214",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "Should use %q. These are reversed; \"file %q\" is more correct than \"%q file\" (here and below)",
+      "range": {
+        "startLine": 209,
+        "startChar": 39,
+        "endLine": 209,
+        "endChar": 46
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "695c6863_5fbc40ae",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "here and below, \"due to error\" can be replaced with a colon (:), e.g. \"could not verb file %q at %q: %v\"",
+      "range": {
+        "startLine": 211,
+        "startChar": 53,
+        "endLine": 211,
+        "endChar": 66
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dba27b82_b91b02e3",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "extractLocks or parseLockData?\n\nThere usually isn\u0027t a need to codify the type or name of thing you\u0027re working on since the type and name information is available in the function signature. Go prefers terse names.",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 36
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b6c5c1_eb27ebae",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "I don\u0027t think you need \"err2\" here  or really below since you aren\u0027t returning any information about ManifestFromFile in this case. But I think this is a bit weird control flow; if ManifestFromFile fails, and that occurs before loading the lockfile, probably we should return that information immediately rather than continuing on.",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 268,
+        "endChar": 10
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f0cdcbc_3137d40c",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "This can go away.",
+      "range": {
+        "startLine": 464,
+        "startChar": 1,
+        "endLine": 464,
+        "endChar": 14
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6e111c7_594eb6a3",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "I would recomment using s :\u003d fmt.Sprintf(\"Project %+v...\") and then passing s to Debugf and returning errors.New(s)",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 473,
+        "endChar": 131
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2920ec9_383bf99f",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "In general, return as soon as you find an error rather than later. The return should be above in the loop.",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2989ac2_bc725e5a",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "if ensureFilePath, err :\u003d ...; err !\u003d nil { return err }",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 602,
+        "endChar": 16
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93adced7_ad7deb09",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "This seems superfluous; there\u0027s already an error check above.",
+      "range": {
+        "startLine": 607,
+        "startChar": 0,
+        "endLine": 609,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "963bab03_89120d8a",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "I believe you can just put \"plat\" here. Any type that implements the fmt.Stringer interface can be passed to %s. This saves some paren matching :)",
+      "range": {
+        "startLine": 640,
+        "startChar": 67,
+        "endLine": 640,
+        "endChar": 80
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0074ee70_cbc60455",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T19:35:00Z",
+      "side": 1,
+      "message": "Are you explicitly trying to not modify the slices passed in? If that\u0027s the case, you can just use the copy() built-in instead of these loops. If it doesn\u0027t matter, why not just sort the things passed in?",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
