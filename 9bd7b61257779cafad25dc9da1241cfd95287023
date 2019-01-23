@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f33fdc9d_4d7c5356",
+        "filename": "cmd/jiri/fetch_pkgs.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:15:14Z",
+      "side": 1,
+      "message": "This type is in package main. All other subcommands in main are putting prefix in their flag struct, so I think we should keep this naming. The same goes for the \u0027runFetchPkgs\u0027",
+      "parentUuid": "425cfc83_bbe23bfd",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "9bd7b61257779cafad25dc9da1241cfd95287023",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c345ddc_af6a5671",
         "filename": "cmd/jiri/fetch_pkgs.go",
         "patchSetId": 2
