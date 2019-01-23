@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "e08fc67e_3c040934",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-23T20:46:19Z",
+      "side": 1,
+      "message": "Er, I wrote this before I realized that templateParm was a regex.",
+      "parentUuid": "6f3f52a7_5df85c7e",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 11
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a600484f_b757c424",
         "filename": "cipd/cipd.go",
         "patchSetId": 1
