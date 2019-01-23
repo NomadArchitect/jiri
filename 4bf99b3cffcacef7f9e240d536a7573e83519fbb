@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c5b3ad44_b9a3ae50",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a11044a_58a69af4",
+      "range": {
+        "startLine": 64,
+        "startChar": 1,
+        "endLine": 64,
+        "endChar": 13
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bf8c2ab_00e871f8",
         "filename": "cipd/cipd.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-01-23T19:35:00Z",
       "side": 1,
       "message": "This should be \"Arch\" as it is not an initialism",
+      "range": {
+        "startLine": 498,
+        "startChar": 1,
+        "endLine": 498,
+        "endChar": 5
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da17aa77_6344ac71",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Platform struct was used in cipdDecl() function in manifest.go to expanded template strings in manifest.\ne.g.\n\nbuildtools/{{.OS}}-{{.ARCH}} needs to be expanded to buildtools/linux-amd64 . So here in this struct declaration, we use all capital characters.",
+      "parentUuid": "6bf8c2ab_00e871f8",
       "range": {
         "startLine": 498,
         "startChar": 1,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "c0f51ddc_586c185e",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "I think it\u0027s fine. The Expander only contains \"os, arch, platform\" keys. If the string in ${...} is other than those, err \u003d fmt.Errorf(\"unknown variable %q\", parm) will be thrown.",
+      "parentUuid": "6f3f52a7_5df85c7e",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 11
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a600484f_b757c424",
         "filename": "cipd/cipd.go",
         "patchSetId": 1
@@ -115,6 +187,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5beaade7_57f4210e",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a600484f_b757c424",
+      "range": {
+        "startLine": 592,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 37
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "2b3541ae_20df9282",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "236ca775_4c62bdef",
+      "range": {
+        "startLine": 55,
+        "startChar": 97,
+        "endLine": 55,
+        "endChar": 106
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "238b985b_d9fd582e",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -161,6 +281,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4184563f_bb63e7c2",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "238b985b_d9fd582e",
+      "range": {
+        "startLine": 196,
+        "startChar": 3,
+        "endLine": 196,
+        "endChar": 20
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "9256fb2a_be8b164f",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e16203f_60a1c7fd",
+      "range": {
+        "startLine": 198,
+        "startChar": 78,
+        "endLine": 198,
+        "endChar": 81
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7c981913_bdc28979",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -198,6 +366,30 @@
       "writtenOn": "2019-01-23T19:35:00Z",
       "side": 1,
       "message": "Probably we shouldn\u0027t be setting this unless we succeed in loading the file. Would recommend moving to the bottom of the function",
+      "range": {
+        "startLine": 203,
+        "startChar": 1,
+        "endLine": 203,
+        "endChar": 30
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f719c48_a7aedd44",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "I moved it to the bottom but I think it is fine to be placed here. It allows a early return to save some time. If a lockfile is causing trouble, scanning it more than 1 time does not make sense.",
+      "parentUuid": "7c981913_bdc28979",
       "range": {
         "startLine": 203,
         "startChar": 1,
@@ -233,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "407324e3_57a61836",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eabe60b5_be1937b5",
+      "range": {
+        "startLine": 205,
+        "startChar": 2,
+        "endLine": 205,
+        "endChar": 75
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b569a45_a46c4ced",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -253,6 +469,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b08bf7c_72148290",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b569a45_a46c4ced",
+      "range": {
+        "startLine": 207,
+        "startChar": 34,
+        "endLine": 207,
+        "endChar": 37
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -279,6 +519,30 @@
     },
     {
       "key": {
+        "uuid": "6f22aeb9_5568eca8",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d2e4c6b_64f7c214",
+      "range": {
+        "startLine": 209,
+        "startChar": 39,
+        "endLine": 209,
+        "endChar": 46
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "695c6863_5fbc40ae",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -302,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "a8b3b6b0_6d3d247c",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "695c6863_5fbc40ae",
+      "range": {
+        "startLine": 211,
+        "startChar": 53,
+        "endLine": 211,
+        "endChar": 66
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dba27b82_b91b02e3",
         "filename": "project/loader.go",
         "patchSetId": 1
@@ -322,6 +610,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58839fb4_dc265a54",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dba27b82_b91b02e3",
+      "range": {
+        "startLine": 225,
+        "startChar": 18,
+        "endLine": 225,
+        "endChar": 36
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -417,6 +729,30 @@
     },
     {
       "key": {
+        "uuid": "8f6b6a35_ce9a673b",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "The reason that I postponed the error return is that there might be multiple conflicts between lockfile and manifest files. If this function return early, the user will only be warned by 1 of these conflicts. It would be painful to fix the conflicts one by one if jiri just report 1 conflict at a time. By send all conflicts to Debugf, the user can just read the bot\u0027s log to fix the conflicts.",
+      "parentUuid": "b2920ec9_383bf99f",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2989ac2_bc725e5a",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -428,6 +764,30 @@
       "writtenOn": "2019-01-23T19:35:00Z",
       "side": 1,
       "message": "if ensureFilePath, err :\u003d ...; err !\u003d nil { return err }",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 602,
+        "endChar": 16
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aed2cff0_0f802dd0",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "variable \u0027ensureFilePath\u0027 will be used the code below, I would need to use a else {} block if change it to an in-line if.",
+      "parentUuid": "b2989ac2_bc725e5a",
       "range": {
         "startLine": 600,
         "startChar": 0,
@@ -463,6 +823,30 @@
     },
     {
       "key": {
+        "uuid": "6e940840_a413a24b",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93adced7_ad7deb09",
+      "range": {
+        "startLine": 607,
+        "startChar": 0,
+        "endLine": 609,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "963bab03_89120d8a",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -486,6 +870,30 @@
     },
     {
       "key": {
+        "uuid": "0b8501d9_f66d425c",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "963bab03_89120d8a",
+      "range": {
+        "startLine": 640,
+        "startChar": 67,
+        "endLine": 640,
+        "endChar": 80
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0074ee70_cbc60455",
         "filename": "project/project.go",
         "patchSetId": 1
@@ -497,6 +905,30 @@
       "writtenOn": "2019-01-23T19:35:00Z",
       "side": 1,
       "message": "Are you explicitly trying to not modify the slices passed in? If that\u0027s the case, you can just use the copy() built-in instead of these loops. If it doesn\u0027t matter, why not just sort the things passed in?",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6d0c143_90da2f69",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-23T21:08:58Z",
+      "side": 1,
+      "message": "Both projectLocks and PackageLocks are maps instead of slices so I cannot use copy or sort on them if I understand correctly. Since the lockfile will be constantly updated by bots, I would like the output to be ordered, otherwise a single line change in manifest may cause a whole lockfile to be rewritten, as map does not guarantee orders.",
+      "parentUuid": "0074ee70_cbc60455",
       "range": {
         "startLine": 339,
         "startChar": 0,
