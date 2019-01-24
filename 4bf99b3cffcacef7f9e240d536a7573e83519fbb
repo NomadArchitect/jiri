@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "3aec3107_829998a9",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-24T18:01:01Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "3e6177fd_d4b16427",
+      "range": {
+        "startLine": 498,
+        "startChar": 1,
+        "endLine": 498,
+        "endChar": 5
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f3f52a7_5df85c7e",
         "filename": "cipd/cipd.go",
         "patchSetId": 1
@@ -212,6 +236,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "477be917_b5986e7a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-24T18:01:01Z",
+      "side": 1,
+      "message": "It is -- I forgot to delete this comment after checking the type of (what was then) templateParm.",
+      "parentUuid": "c0f51ddc_586c185e",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 11
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -825,6 +873,30 @@
     },
     {
       "key": {
+        "uuid": "630d7412_d6848276",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-24T18:01:01Z",
+      "side": 1,
+      "message": "May I suggest then putting this loop into a function that returns a single error if any conflict is found? e.g.\n\n  func (ld *loader) projectConflicts(jirix *jiri.X) (err error) {\n    for ... {\n      if v.Revision !\u003d lock.Revision \u0026\u0026 err \u003d\u003d nil {\n        err \u003d errors.New(\"conflict\")\n      }\n    }\n  }\n\nand then here you can just do\n\n  if err :\u003d ld.projectConflicts(jirix); err !\u003d nil { \n    return err\n  }",
+      "parentUuid": "8f6b6a35_ce9a673b",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b2989ac2_bc725e5a",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -869,6 +941,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b2864e6_568ad29d",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-24T18:01:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aed2cff0_0f802dd0",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 602,
+        "endChar": 16
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -1010,6 +1106,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b17e5448_61c8553a",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-24T18:01:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d6d0c143_90da2f69",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
