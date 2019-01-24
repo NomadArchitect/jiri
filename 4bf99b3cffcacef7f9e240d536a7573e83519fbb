@@ -780,6 +780,30 @@
     },
     {
       "key": {
+        "uuid": "2d4dfa08_f61267d7",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-24T22:57:34Z",
+      "side": 1,
+      "message": "If m, err \u003d ManifestFromFile(jirix, file) failed, it will be returned at line 294. If I use err at 268, the error from ManifestFromFile might be hidden. Let me see if I could do a better refactoring.",
+      "parentUuid": "03b6c5c1_eb27ebae",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 268,
+        "endChar": 10
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f0cdcbc_3137d40c",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -803,6 +827,30 @@
     },
     {
       "key": {
+        "uuid": "2480ee0e_dd9f2090",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-24T22:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f0cdcbc_3137d40c",
+      "range": {
+        "startLine": 464,
+        "startChar": 1,
+        "endLine": 464,
+        "endChar": 14
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6e111c7_594eb6a3",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -823,6 +871,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "942eb6e5_92d474c5",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-24T22:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6e111c7_594eb6a3",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 473,
+        "endChar": 131
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -894,6 +966,30 @@
       "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b001acc_fdaf9238",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-24T22:57:34Z",
+      "side": 1,
+      "message": "I changed the name of projectConflicts into enforceProjectLocks since it is responsible to copy the Revision of ProjectLocks into Projects.",
+      "parentUuid": "630d7412_d6848276",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 2
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
