@@ -804,6 +804,30 @@
     },
     {
       "key": {
+        "uuid": "cf5e80c4_ec2a7654",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-25T18:43:47Z",
+      "side": 1,
+      "message": "I have refactored this part of code to make it more clear.",
+      "parentUuid": "2d4dfa08_f61267d7",
+      "range": {
+        "startLine": 268,
+        "startChar": 6,
+        "endLine": 268,
+        "endChar": 10
+      },
+      "revId": "4bf99b3cffcacef7f9e240d536a7573e83519fbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1f0cdcbc_3137d40c",
         "filename": "project/manifest.go",
         "patchSetId": 1
