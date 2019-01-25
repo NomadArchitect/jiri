@@ -22,6 +22,30 @@
       "revId": "ba75710cddf03e1d7917ab506ddfc0b9e4a1e687",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb31cafc_b0a57b85",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-01-25T23:44:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e1a8760_bf0a9054",
+      "range": {
+        "startLine": 113,
+        "startChar": 23,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "ba75710cddf03e1d7917ab506ddfc0b9e4a1e687",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
