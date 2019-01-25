@@ -16,6 +16,24 @@
       "revId": "78189ecb4724baeb7127437f641bd2439c592108",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe74d8be_3567f1a0",
+        "filename": "project/manifest.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-25T19:55:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f869421_9327e7d4",
+      "revId": "78189ecb4724baeb7127437f641bd2439c592108",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
