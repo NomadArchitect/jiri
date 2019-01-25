@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e1a8760_bf0a9054",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-25T23:35:11Z",
+      "side": 1,
+      "message": "jiri bootstrap just print supported packages. you need \"jiri bootstrap cipd\". Maybe I should add a \"jiri bootstrap ALL\" to jiri.",
+      "range": {
+        "startLine": 113,
+        "startChar": 23,
+        "endLine": 113,
+        "endChar": 32
+      },
+      "revId": "ba75710cddf03e1d7917ab506ddfc0b9e4a1e687",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
