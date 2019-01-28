@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ba7dfdb_fef42227",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-01-28T19:03:41Z",
+      "side": 1,
+      "message": "It might make sense to pass in the packageChanges struct instead of having 3 arguments that are repeated. This will also reduce line length.",
+      "range": {
+        "startLine": 270,
+        "startChar": 67,
+        "endLine": 270,
+        "endChar": 96
+      },
+      "revId": "3c2a63067c7293344a7a59559980f832422fb126",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
