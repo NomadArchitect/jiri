@@ -34,6 +34,24 @@
       "revId": "d189041a4d9a236a831a635997acf1f181ff7e18",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4567dc80_e71cd4db",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-01-28T21:04:53Z",
+      "side": 1,
+      "message": "Ah now I understand.\nI don\u0027t think you need to remove the dependency on .jiri_root for the bootstrap command.",
+      "parentUuid": "8bbdb82b_a1383e94",
+      "revId": "d189041a4d9a236a831a635997acf1f181ff7e18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
