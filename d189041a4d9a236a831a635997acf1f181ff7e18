@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f44f2628_3aed9280",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-01-28T20:52:30Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "revId": "d189041a4d9a236a831a635997acf1f181ff7e18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
