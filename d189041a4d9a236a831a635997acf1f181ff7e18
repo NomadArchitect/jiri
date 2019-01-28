@@ -16,6 +16,24 @@
       "revId": "d189041a4d9a236a831a635997acf1f181ff7e18",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bbdb82b_a1383e94",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-01-28T21:01:28Z",
+      "side": 1,
+      "message": "Jiri will look for .jiri_root directory for any subcommand including \"jiri bootstrap\" due to jiri\u0027s design issues. If it is not found, it will report an error and fail. Only \"jiri init\" does not require .jiri_root. I am adding these to fix a breakage on fuchsia bootstrap reported by venkateshs@. I am investigating how to remove dependency on .jiri_root for \"jiri bootstrap\". In the mean time, this 3 lines patch will resolve the breakage.",
+      "parentUuid": "f44f2628_3aed9280",
+      "revId": "d189041a4d9a236a831a635997acf1f181ff7e18",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
