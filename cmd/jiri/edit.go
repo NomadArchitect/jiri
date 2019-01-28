@@ -148,7 +148,10 @@ func updateRevision(manifestContent, tag, currentRevision, newRevision, name str
 	return updateRevisionOrVersionAttr(manifestContent, tag, newRevision, name, "revision")
 }
 
-func updateVersion(manifestContent, tag, newVersion, name string) (string, error) {
+func updateVersion(manifestContent, tag, currentVersion, newVersion, name string) (string, error) {
+	if currentVersion != "" && currentVersion != "HEAD" {
+		return strings.Replace(manifestContent, currentVersion, newVersion, 1), nil
+	}
 	return updateRevisionOrVersionAttr(manifestContent, tag, newVersion, name, "version")
 }
 
@@ -264,7 +267,7 @@ func updateManifest(jirix *jiri.X, manifestPath string, projects, imports, packa
 		if newVersion == "" || p.Version == newVersion {
 			continue
 		}
-		manifestContent, err = updateVersion(manifestContent, "package", newVersion, p.Name)
+		manifestContent, err = updateVersion(manifestContent, "package", p.Version, newVersion, p.Name)
 		if err != nil {
 			return err
 		}
