@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e090b43e_c9fd4b50",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-01-30T23:47:11Z",
+      "side": 1,
+      "message": "This logic will delete all of fuchsia/ if the fuchsia.git checkout fails.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 2
+      },
+      "revId": "8748a7d11bdc674a903a1a4f7f807ce9b30cd829",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
