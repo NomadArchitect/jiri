@@ -179,11 +179,14 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 		cache = ""
 	}
 
-	if err := op.checkoutProject(jirix, cache); err != nil {
-		if err := os.RemoveAll(op.destination); err != nil {
-			jirix.Logger.Warningf("Not able to remove %q after create failed: %s", op.destination, err)
+
+	if op.destination != jirix.Root {
+		if err := op.checkoutProject(jirix, cache); err != nil {
+			if err := os.RemoveAll(op.destination); err != nil {
+				jirix.Logger.Warningf("Not able to remove %q after create failed: %s", op.destination, err)
+			}
+			return err
 		}
-		return err
 	}
 	return nil
 }
