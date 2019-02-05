@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a9cdf3d5_4b7ea269",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb49ce23_831bf25e",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b218420_37dfede5",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c173e257_c0582d92",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b218420_37dfede5",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7e306fa_7c3777d8",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-02-05T16:04:06Z",
       "side": 1,
       "message": "What does this mean?",
+      "range": {
+        "startLine": 109,
+        "startChar": 60,
+        "endLine": 109,
+        "endChar": 69
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c6a00ea_4637318b",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "I changed the command description.",
+      "parentUuid": "b7e306fa_7c3777d8",
       "range": {
         "startLine": 109,
         "startChar": 60,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "7cfdbd07_8c2f42a6",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "By design, jiri supports 2 types of lockfile placements. \n* One single lockfile for whole integration repo\n* Each manifest in integration repo has its own lockfile\n\nIn the first case, a project should always in projectLocks, since it is a super lockfile that contains all projects. In the second case, the project in the map may not be found in current projectLocks, it can appear in the lockfile from a parent directory.\n\n\u0027jiri edit\u0027 is not capable to add new project to a manifest. Before this patch, the \u0027jirji edit\u0027 will also ignore the projects that are not found in the manifest file as well.",
+      "parentUuid": "28d3c054_4313b0e6",
+      "range": {
+        "startLine": 219,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 3
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5920c690_9e3332d2",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2019-02-05T16:04:06Z",
       "side": 1,
       "message": "It seems to me that if we have called this function, we are going to make a change. To that end, I wonder if this can be outdented because we expect to rewrite the file anyway?",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 2
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "443b4431_94d2d665",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "This function will only make a change if the lockfile which is currently under processing contains the project in the project map. For the case 2 in the earlier explanation, it is likely a lockfile does not have the project that this function is looking for.  If it found a matching project, the found will be true, and the lockfile will be backuped up and rewritten.",
+      "parentUuid": "5920c690_9e3332d2",
       "range": {
         "startLine": 226,
         "startChar": 0,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "71c77abe_a72b5418",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c0c82d6_470429fc",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 2
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68e99f5e_4b92c658",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 1
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "577bcf8a_266d0cc3",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "I don\u0027t like this design either. The purpose is to ensure jiri will not change any file in repo when \u0027jiri edit\u0027 fails.\n\ncleanup is already called unconditionally to ensure that the backuped lockfile will be erased at the end of \u0027jiri edit\u0027 command. It cannot be called within updateLockfiles since the ioutil.WriteFile in line 408 may fail. In that case, the backup files are needed for rewind()\n\nWhen errors occurs, the rewind() is called to restore all changed lockfiles and \u0027jiri edit\u0027 returns.",
+      "parentUuid": "68e99f5e_4b92c658",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 78
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31d0d6d3_8e3f815f",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 1
@@ -174,6 +342,30 @@
       "writtenOn": "2019-02-05T16:04:06Z",
       "side": 1,
       "message": "If the above condition is executed, this file is written twice, but it maybe fails the second time. I would recommend just having the entire block above be a call to a writeManifest function that updates the lockfiles if necessary, and writes the file once. At that point you can just return writeManifest(jirix, path, content, mode, editedprojects) or similar.",
+      "range": {
+        "startLine": 416,
+        "startChar": 1,
+        "endLine": 416,
+        "endChar": 76
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfe5912f_6c345c6d",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T19:10:41Z",
+      "side": 1,
+      "message": "It won\u0027t be written twice. If line 408 successes without error, it returns at line 413. If line 408 fails, it returns at line 411. I tried to move it into a function but it does not improve readability much. e.g.\n\nwriteManifest :\u003d func() error {\n\tif len(editedProjects) !\u003d 0 \u0026\u0026 jirix.LockfileEnabled \u0026\u0026 (editFlags.editModeI \u003d\u003d Lockfile || editFlags.editModeI \u003d\u003d Both) {\n\t\tcleanup, rewind, err :\u003d updateLockfiles(jirix, manifestPath, editedProjects)\n\t\tdefer cleanup()\n\t\tif err !\u003d nil {\n\t\t\tif rewind !\u003d nil {\n\t\t\t\trewind()\n\t\t\t}\n\t\t\treturn err\n\t\t}\n\t\tif err :\u003d ioutil.WriteFile(manifestPath, []byte(manifestContent), os.ModePerm); err !\u003d nil {\n\t\t\t// rewind will not be nil since updateLockfiles completed without error.\n\t\t\trewind()\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t}\n\treturn ioutil.WriteFile(manifestPath, []byte(manifestContent), os.ModePerm)\n}\nreturn writeManifest()",
+      "parentUuid": "31d0d6d3_8e3f815f",
       "range": {
         "startLine": 416,
         "startChar": 1,
