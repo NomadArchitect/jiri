@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9a4927_ea6b4a19",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T21:21:32Z",
+      "side": 1,
+      "message": "please add a final period to the end of this sentence",
+      "range": {
+        "startLine": 108,
+        "startChar": 254,
+        "endLine": 108,
+        "endChar": 255
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d91decf0_7515536f",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T21:21:32Z",
+      "side": 1,
+      "message": "Maybe change this to dir !\u003d \"\" \u0026\u0026 dir !\u003d \".\" etc. Not-ing a group of ors requires some mental gymnastics. Alternatively, you might make this a function like:\n\n  func isLockfileDir(jirix *jiri.X, s string) bool {\n    switch dir {\n    case \"\", \".\", jirix.Root, string(filepath.Separator):\n      return false\n    }\n    return true\n  }\n\nwhich might make `for ; isLockfileDir(dir); dir \u003d path.Dir(dir)` a bit easier to read semantically.",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 182,
+        "endChar": 92
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84bec2f7_0e708f25",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T21:21:32Z",
+      "side": 1,
+      "message": "please remove this comment; rewind can\u0027t be nil in any context in this function (except where it doesn\u0027t exist as a name, so can\u0027t be used)",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38b4ac84_a517191e",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T21:21:32Z",
+      "side": 1,
+      "message": "I think there\u0027s a potential bug here that\u0027s easier to see now with the new code layout. In particular, if updateLocks is called and os.Stat succeeds but this WriteFile call fails, the file referenced by backup[lockfile] could be truncated. In that scenario, when rewind is called after the error is returned, the truncated backup file will be renamed to the original name, corrupting the lockfile.\n\nI think this is solved by not setting backup[lockfile] \u003d backupName until after WriteFile succeeds.",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 3
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
