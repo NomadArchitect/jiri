@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d6e18d86_339b9423",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d30df49a_781c5d94",
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81b09e53_f82c4247",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f964e451_96b5794e",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81b09e53_f82c4247",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 17
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "019dcad0_f08e1397",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f9f4b6f_742d54c9",
+      "range": {
+        "startLine": 177,
+        "startChar": 26,
+        "endLine": 177,
+        "endChar": 62
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2230fee8_f68cc002",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 3
@@ -85,6 +151,30 @@
       "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b8fe184_a24c9e74",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2230fee8_f68cc002",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 24
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "ea7eb76e_e4ad8629",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "It\u0027s common. For single lockfile for whole integration repo, the lockfile is placed at root of integration repo. So the lockfile will not be found until this loop reached the integration root.\nI\u0027ve added a log here, it\u0027s good for debugging anyway.",
+      "parentUuid": "e394851e_6e444d50",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 12
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "705f164d_4a21e3c5",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 3
@@ -131,6 +245,30 @@
       "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c174f7ef_fd0d4b87",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T20:08:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "705f164d_4a21e3c5",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 76
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
