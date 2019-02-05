@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb49ce23_831bf25e",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "There should be a single source of truth for this; having multiple bits of state to represent a single value is a recipe for disaster. Does this need to be fast? I suspect it probably doesn\u0027t, and so it\u0027s likely OK to just have this be a string only. The const values below can also be strings and you can use those to compare the flag to make sure it\u0027s valid.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b218420_37dfede5",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "Since this is the main package, I don\u0027t think it makes a ton of sense to have these be exported, unless you\u0027re planning on putting them in a separate package later. In that case, please add a doc comment.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7e306fa_7c3777d8",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "What does this mean?",
+      "range": {
+        "startLine": 109,
+        "startChar": 60,
+        "endLine": 109,
+        "endChar": 69
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28d3c054_4313b0e6",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "Can you provide some commentary about the semantics here? In particular, it\u0027s not clear to me why we should be ignoring cases where a project not in projectLocks appears in the map passed in.",
+      "range": {
+        "startLine": 219,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 3
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5920c690_9e3332d2",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "It seems to me that if we have called this function, we are going to make a change. To that end, I wonder if this can be outdented because we expect to rewrite the file anyway?",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 2
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c0c82d6_470429fc",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "If we just inserted into this map in the above loop where we append to ec.Projects, we don\u0027t need to do another loop here.",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 2
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68e99f5e_4b92c658",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "This pattern of returning functions with internal state from another function that is only called from here seems a little brittle. Why not have this function take care of the cleanup if it fails to write the manifest, and why not call it unconditionally?",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 78
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31d0d6d3_8e3f815f",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T16:04:06Z",
+      "side": 1,
+      "message": "If the above condition is executed, this file is written twice, but it maybe fails the second time. I would recommend just having the entire block above be a call to a writeManifest function that updates the lockfiles if necessary, and writes the file once. At that point you can just return writeManifest(jirix, path, content, mode, editedprojects) or similar.",
+      "range": {
+        "startLine": 416,
+        "startChar": 1,
+        "endLine": 416,
+        "endChar": 76
+      },
+      "revId": "b868fc229e1db7332937684f3b7f128a900e4578",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
