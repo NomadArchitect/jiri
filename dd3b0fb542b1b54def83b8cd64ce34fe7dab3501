@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d30df49a_781c5d94",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "stray newline",
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81b09e53_f82c4247",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "This can be shortened to:\n\ndefer os.RemoveAll(tempDir)",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 17
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f9f4b6f_742d54c9",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "\"failed to revert changes to lockfile %q\"",
+      "range": {
+        "startLine": 177,
+        "startChar": 26,
+        "endLine": 177,
+        "endChar": 62
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2230fee8_f68cc002",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "This is no longer necessary: we\u0027re guaranteed to be doing this because of the defer now.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 24
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e394851e_6e444d50",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "Do we maybe want to log something here? This seems like an odd case.",
+      "range": {
+        "startLine": 191,
+        "startChar": 4,
+        "endLine": 191,
+        "endChar": 12
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "705f164d_4a21e3c5",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-05T19:51:46Z",
+      "side": 1,
+      "message": "If you move backup/rewind to the top of this function (so it\u0027s valid for the entire block), the highlighted can be replaced with:\n\n  }\n  if err :\u003d ioutil.WriteFile(manifestPath, []byte(manifestContent), os.ModePerm); err !\u003d nil {\n    rewind()\n    return err\n  }\n  return nil\n\nIn this way, there\u0027s only one place where you need to call ioutil.WriteFile.\n\nAnd the rewind !\u003d nil comment can go because it\u0027s always defined (and there\u0027s really no benefit for it not to be now that it doesn\u0027t escape).",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 76
+      },
+      "revId": "dd3b0fb542b1b54def83b8cd64ce34fe7dab3501",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
