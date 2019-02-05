@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "2c424de4_9ce556e1",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T22:47:20Z",
+      "side": 1,
+      "message": "Sorry I must have clicked \"Done\" on wrong comment and missed this issue. I have deleted this comment in the latest patch.",
+      "parentUuid": "15bb9f14_c810397d",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38b4ac84_a517191e",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 4
