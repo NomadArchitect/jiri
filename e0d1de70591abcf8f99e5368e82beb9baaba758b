@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e1f07767_ffe1fd75",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T22:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da9a4927_ea6b4a19",
+      "range": {
+        "startLine": 108,
+        "startChar": 254,
+        "endLine": 108,
+        "endChar": 255
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d91decf0_7515536f",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bf36454_67d79ef2",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T22:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d91decf0_7515536f",
+      "range": {
+        "startLine": 182,
+        "startChar": 8,
+        "endLine": 182,
+        "endChar": 92
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "461cf7a2_d9bdf33d",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T22:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84bec2f7_0e708f25",
+      "range": {
+        "startLine": 197,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 72
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38b4ac84_a517191e",
         "filename": "cmd/jiri/edit.go",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32591459_4d493690",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-05T22:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38b4ac84_a517191e",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 3
+      },
+      "revId": "e0d1de70591abcf8f99e5368e82beb9baaba758b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
