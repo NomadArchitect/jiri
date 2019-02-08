@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08b1f757_a5f4d69f",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-02-08T19:21:12Z",
+      "side": 1,
+      "message": "mismatch between GOROOT above and GOPATH here?",
+      "revId": "7224c3c2de0e016005d702ea1e4090774ba7c140",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
