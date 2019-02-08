@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8dcd1b8_1a5bafec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-02-08T00:04:01Z",
+      "side": 1,
+      "message": "Please update commit message to reflect new command name",
+      "revId": "b41ee84de608a346a496043cf5b108268fa4a0e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74485e94_f40e68d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-02-08T00:04:01Z",
+      "side": 1,
+      "message": "It\u0027s conventional to use Gerrit tag format to refer to bugs:\nBug: INTK-818",
+      "revId": "b41ee84de608a346a496043cf5b108268fa4a0e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
