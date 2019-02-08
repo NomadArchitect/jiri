@@ -16,6 +16,24 @@
       "revId": "7224c3c2de0e016005d702ea1e4090774ba7c140",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "605c58b9_ed821dd1",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-08T19:52:50Z",
+      "side": 1,
+      "message": "My bad. Fixed in following patchset.",
+      "parentUuid": "08b1f757_a5f4d69f",
+      "revId": "7224c3c2de0e016005d702ea1e4090774ba7c140",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
