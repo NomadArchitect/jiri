@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a757e9bc_fb8f51f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-02-08T00:31:16Z",
+      "side": 1,
+      "message": "Move it to its own line.\nSo it looks like\nChange-Id: ...\n\nThis way it\u0027s formatted like the other change metadata that\u0027s at the bottom of the commit message.",
+      "range": {
+        "startLine": 10,
+        "startChar": 21,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "6404d09b52e86e43a17288531cde3de5248afb58",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
