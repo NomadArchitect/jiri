@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cc34fcf_ed7f359b",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 19891
+      },
+      "writtenOn": "2019-02-08T18:58:46Z",
+      "side": 1,
+      "message": "This is pre-build, this is how to get the sourc.\nI suggest we inline all this into the README.md and remove the link to BUILD.md altogether.\nWDYT?",
+      "revId": "210b48d7f755eb8171513aa53f869cd8a941fc61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
