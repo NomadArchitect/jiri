@@ -16,6 +16,24 @@
       "revId": "210b48d7f755eb8171513aa53f869cd8a941fc61",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78a86b6e_972cc4ef",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-08T19:04:13Z",
+      "side": 1,
+      "message": "Yeah, I agree it can be inlined into README.md I will do it in next patch.\n\n\u0027go get\u0027 will do \u0027git clone\u0027 to fetch the source and \u0027go install\u0027 to build from local source. \n\nIt\u0027s really not necessary to split this process into two. Most go project will just wrote a \u0027go get\u0027 command in their README.md",
+      "parentUuid": "3cc34fcf_ed7f359b",
+      "revId": "210b48d7f755eb8171513aa53f869cd8a941fc61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
