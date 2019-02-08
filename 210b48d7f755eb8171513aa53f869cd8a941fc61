@@ -52,6 +52,24 @@
       "revId": "210b48d7f755eb8171513aa53f869cd8a941fc61",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "698d7d85_b49b74b1",
+        "filename": "BUILD.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-08T19:14:58Z",
+      "side": 1,
+      "message": "Next patchset*",
+      "parentUuid": "38cedaf7_e554f9b3",
+      "revId": "210b48d7f755eb8171513aa53f869cd8a941fc61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
