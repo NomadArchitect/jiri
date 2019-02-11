@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6b8d1c27_ced3d3e0",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "I have renamed prefixTree to projectTree and renamed \"next\" to children.",
+      "parentUuid": "3ae9ab3d_cd8dc042",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "91768230_5032e964",
         "filename": "cmd/jiri/generate-gitmodules.go",
         "patchSetId": 7
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "79d0192b_0e49df04",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "The reason that I did not make \"addProj\" as a structure method is that it can only be called on a root node. It will have unexpected results if it is called on a node other than root. But make it a normal function does not prevent it from calling on a non-root node, so I have changed it to a structure method in latest patch set.",
+      "parentUuid": "3630aa2f_d31450ab",
+      "range": {
+        "startLine": 65,
+        "startChar": 31,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4292748f_f9b34a55",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "\"dropped\" is a map and \"addToTree\" is supposed to be called multiple times, each time adds a single project to the tree. It would be inefficient and it needs extra step of collect dropped packages at each callsite if this function returns a new map (or a new slice). I could make it returns a new slice if you insist \"dropped\" should be returned.",
+      "parentUuid": "91768230_5032e964",
+      "range": {
+        "startLine": 65,
+        "startChar": 70,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e027b95_e907b128",
         "filename": "cmd/jiri/generate-gitmodules.go",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-11T20:35:20Z",
       "side": 1,
       "message": "Is this really the most direct way to detect fuchsia.git? (I don\u0027t know!) Would it make more sense to just not add that project from the caller instead of special case it here?",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 84
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf4ff6f3_f75eda5e",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "Well, it does not make the code simpler since this check will needs to be moved to the loop at line 151. It does reduced the lines of code if the prefixTree is reused by some other jiri component for nested project detection (which is unlikely to happen). And if some call site forget to perform fuchsia.git check, it will cause entire project tree to be dropped as all other projects are nested under fuchsia.git",
+      "parentUuid": "2e027b95_e907b128",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "71a33547_0220aa0b",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "I have updated the comment to a more detailed version.",
+      "parentUuid": "db906f59_a4fc277c",
+      "range": {
+        "startLine": 76,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 52
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a648e83_d816aee3",
         "filename": "cmd/jiri/generate-gitmodules.go",
         "patchSetId": 7
@@ -137,6 +257,30 @@
       "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f728459a_2e4c4952",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a648e83_d816aee3",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +330,54 @@
     },
     {
       "key": {
+        "uuid": "eee5c706_0daafb8b",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f324d0e2_839cae67",
+      "range": {
+        "startLine": 104,
+        "startChar": 32,
+        "endLine": 104,
+        "endChar": 48
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22a8de5c_1e548ac1",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "reasons why it is not returned is mentioned in the earlier comments.",
+      "parentUuid": "4f7704c8_c5f84051",
+      "range": {
+        "startLine": 104,
+        "startChar": 50,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce0df209_1d63b9cf",
         "filename": "cmd/jiri/generate-gitmodules.go",
         "patchSetId": 7
@@ -206,6 +398,30 @@
       "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "544d8ad5_c06dc3f5",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "I missed an assignment. Added in the updated patch. It is used to avoid naming collisions with existing projects.",
+      "parentUuid": "ce0df209_1d63b9cf",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "c315eefb_6eb52e06",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af745b25_4f086ff1",
+      "range": {
+        "startLine": 191,
+        "startChar": 40,
+        "endLine": 191,
+        "endChar": 43
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "73249913_6fe479a0",
         "filename": "cmd/jiri/generate-gitmodules.go",
         "patchSetId": 7
@@ -252,6 +492,30 @@
       "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc89cb62_353040c9",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T23:05:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73249913_6fe479a0",
+      "range": {
+        "startLine": 213,
+        "startChar": 5,
+        "endLine": 213,
+        "endChar": 19
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
