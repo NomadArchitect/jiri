@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "54bc4e09_cadc61e2",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T19:58:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15f96763_77dc404e",
+      "range": {
+        "startLine": 20,
+        "startChar": 69,
+        "endLine": 20,
+        "endChar": 77
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "973a2669_0dacb006",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T19:58:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26a5ffa2_cf32e1f5",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 9
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "622c3608_e8366ad6",
         "filename": "README.md",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2019-02-11T19:48:51Z",
       "side": 1,
       "message": "This can be on one line",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "151aa838_22708048",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T19:58:57Z",
+      "side": 1,
+      "message": "Make them one line will make this line over 80 characters? Is it OK to do that in fuchsia markdown files? At least for this file, I did not see any line breached 80 characters limit except for my changes.",
+      "parentUuid": "622c3608_e8366ad6",
       "range": {
         "startLine": 27,
         "startChar": 0,
