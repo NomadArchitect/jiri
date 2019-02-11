@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26a5ffa2_cf32e1f5",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T19:48:51Z",
+      "side": 1,
+      "message": "[Go](https://golang.org)",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 9
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15f96763_77dc404e",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T19:48:51Z",
+      "side": 1,
+      "message": "`GOPATH`",
+      "range": {
+        "startLine": 20,
+        "startChar": 69,
+        "endLine": 20,
+        "endChar": 77
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "622c3608_e8366ad6",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T19:48:51Z",
+      "side": 1,
+      "message": "This can be on one line",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "e8d121a80b3858e3d7a2ca9787ee72bc9c150053",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
