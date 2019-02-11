@@ -22,6 +22,30 @@
       "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "408c274f_8cdeaca5",
+        "filename": "cmd/jiri/generate-gitmodules_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-11T20:09:10Z",
+      "side": 1,
+      "message": "The problem is, each time when tests are running, 3 git repos will be created and each will have an initial commit. So each time they will have a different revision hash. In this case, I cannot create a golden file to compare against. Another workaround is to wrote another gitmodules generator, which I think will make this matter worse.",
+      "parentUuid": "f5e5d2f1_f4eee6b0",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 71
+      },
+      "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
