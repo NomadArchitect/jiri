@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ae9ab3d_cd8dc042",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "I would recommend calling this type \"projectTree\".\n\nI think \"next\" should be called \"children\": as it\u0027s a collection of child nodes, and next is usually used for following a list, this makes more sense.\n\nI think the \"addToTree\" and \"purgeLeaves\" functions should be added as methods to this structure, and instead called \"addProject\" and \"prune\".",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91768230_5032e964",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "This is effectively an output parameter, so it should be returned rather than accepted.",
+      "range": {
+        "startLine": 65,
+        "startChar": 70,
+        "endLine": 65,
+        "endChar": 94
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3630aa2f_d31450ab",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "this can go away if this is func (*t projTree) addProj or similar",
+      "range": {
+        "startLine": 65,
+        "startChar": 31,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e027b95_e907b128",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "Is this really the most direct way to detect fuchsia.git? (I don\u0027t know!) Would it make more sense to just not add that project from the caller instead of special case it here?",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 84
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db906f59_a4fc277c",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "Can you improve this comment to discuss what the rules are for the following approach? While I can understand what the code is doing, I am not easily able to understand why it\u0027s correct.",
+      "range": {
+        "startLine": 76,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 52
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a648e83_d816aee3",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "Please handle errors returned from this function",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 34
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f7704c8_c5f84051",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "again, should be returned rather than accepted.",
+      "range": {
+        "startLine": 104,
+        "startChar": 50,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f324d0e2_839cae67",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "this can go away if this is func (t *projTree) prune(jirix *jiri.X) (project.Projects, error) or similar",
+      "range": {
+        "startLine": 104,
+        "startChar": 32,
+        "endLine": 104,
+        "endChar": 48
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce0df209_1d63b9cf",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "This variable doesn\u0027t appear to be set to anything between this assignment and its only use on line 187, so the test there will never yield the error. Is something missing?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af745b25_4f086ff1",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "%+v",
+      "range": {
+        "startLine": 191,
+        "startChar": 40,
+        "endLine": 191,
+        "endChar": 43
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73249913_6fe479a0",
+        "filename": "cmd/jiri/generate-gitmodules.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T20:35:20Z",
+      "side": 1,
+      "message": "makePathRel",
+      "range": {
+        "startLine": 213,
+        "startChar": 5,
+        "endLine": 213,
+        "endChar": 19
+      },
+      "revId": "0a0bab4dcb6e213fb9383875ca9741da04e01a4f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
