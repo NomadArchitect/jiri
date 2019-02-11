@@ -46,6 +46,30 @@
       "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a6d6ac_3dddd522",
+        "filename": "cmd/jiri/generate-gitmodules_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-11T22:02:28Z",
+      "side": 1,
+      "message": "that\u0027s unfortunate; there\u0027s a bug in the test (harmless, but still): below, len(\"[submodue \") is a typo, but the test will succeed because strings.HasPrefix already does the right thing (so the length test isn\u0027t really needed).\n\nin general, i\u0027m kind of adverse to tests that aren\u0027t self-contained. if the submodule syntax changes, this test will continue to pass, so i don\u0027t think it\u0027s really buying us much of anything, and so i wonder whether this test is better off not existing. if it\u0027s not buying us any correctness guarantees, it\u0027s just more code to maintain.\n\nso we should really find a way to have this test be meaningful: if the git format changes, the test will fail, and if we have a bug, the test will fail.\n\nan approach that might get us there is to still use golden files, but run a diff. if the only differences between the contents look like git hashes, we\u0027re good?",
+      "parentUuid": "408c274f_8cdeaca5",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 71
+      },
+      "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
