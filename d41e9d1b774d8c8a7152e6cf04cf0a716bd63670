@@ -22,6 +22,30 @@
       "revId": "d41e9d1b774d8c8a7152e6cf04cf0a716bd63670",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a4aa362_8a6668f5",
+        "filename": "cmd/jiri/generate-gitmodules_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-12T18:17:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6ae700a_9c739c87",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 4
+      },
+      "revId": "d41e9d1b774d8c8a7152e6cf04cf0a716bd63670",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
