@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6ae700a_9c739c87",
+        "filename": "cmd/jiri/generate-gitmodules_test.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-12T17:49:10Z",
+      "side": 1,
+      "message": "can we additionally test that this is 40 bytes?",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 4
+      },
+      "revId": "d41e9d1b774d8c8a7152e6cf04cf0a716bd63670",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
