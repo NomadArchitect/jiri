@@ -70,6 +70,30 @@
       "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59840d9f_ace48f0a",
+        "filename": "cmd/jiri/generate-gitmodules_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-12T01:18:02Z",
+      "side": 1,
+      "message": "I have changed the code to use \"diff\" against golden files.",
+      "parentUuid": "86a6d6ac_3dddd522",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 71
+      },
+      "revId": "0168ce8d5f53a6429bc3d358995e2e237c077b3b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
