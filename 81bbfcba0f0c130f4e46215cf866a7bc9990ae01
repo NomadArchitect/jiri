@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d5813025_a54b99ac",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-12T19:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a950159_6b812260",
+      "range": {
+        "startLine": 21,
+        "startChar": 68,
+        "endLine": 21,
+        "endChar": 75
+      },
+      "revId": "81bbfcba0f0c130f4e46215cf866a7bc9990ae01",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "086fa420_3822bf59",
         "filename": "README.md",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-12T19:48:19Z",
       "side": 1,
       "message": "Why doesn\u0027t go get work? If it has to do with Gerrit, let\u0027s add a little context.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 89
+      },
+      "revId": "81bbfcba0f0c130f4e46215cf866a7bc9990ae01",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e020d8d6_1a0ea110",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-12T19:58:26Z",
+      "side": 1,
+      "message": "On a fresh machine, using \u0027go get\u0027 to install jiri will result in following error:\n\n➜  ~ go get fuchsia.googlesource.com/jiri/cmd/jiri\npackage fuchsia.googlesource.com/jiri/cmd/jiri: unrecognized import path \"fuchsia.googlesource.com/jiri/cmd/jiri\" (parse https://fuchsia.googlesource.com/jiri/cmd/jiri?go-get\u003d1: no go-import meta tags ())\n\nThe reason is that \u0027go get\u0027 will look for \u003cmeta name\u003d\"go-import\" ... /\u003e in returned HTML page, and it does not exist in projects from googlesource.com . Github will automatically add this meta data to its repositories and that\u0027s why \u0027go get\u0027 from github always work.\n\nDo we need to include this detailed explanation in the README.md?",
+      "parentUuid": "086fa420_3822bf59",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -68,6 +116,30 @@
       "revId": "81bbfcba0f0c130f4e46215cf866a7bc9990ae01",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5ac9320_ee3a7c4e",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-12T19:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb67f1e2_e989906b",
+      "range": {
+        "startLine": 29,
+        "startChar": 49,
+        "endLine": 29,
+        "endChar": 58
+      },
+      "revId": "81bbfcba0f0c130f4e46215cf866a7bc9990ae01",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
