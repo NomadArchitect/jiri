@@ -135,6 +135,23 @@ func (g *Git) AddRemote(name, path string) error {
 	return g.run("remote", "add", name, path)
 }
 
+// AddOrReplaceRemote adds a new remote with given name and path. If the name
+// already exists, it replaces the named remote with new path.
+func (g *Git) AddOrReplaceRemote(name, path string) error {
+	var stdout, stderr bytes.Buffer
+	args := []string{"remote", "add", name, path}
+	if err := g.runGit(&stdout, &stderr, args...); err != nil {
+		if strings.TrimSpace(stderr.String()) == fmt.Sprintf("fatal: remote %s already exists.", name) {
+			if err := g.DeleteRemote(name); err != nil {
+				return err
+			}
+			return g.AddRemote(name, path)
+		}
+		return Error(stdout.String(), stderr.String(), err, g.rootDir, args...)
+	}
+	return nil
+}
+
 // GetRemoteBranchesContaining returns a slice of the remote branches
 // which contains the given commit
 func (g *Git) GetRemoteBranchesContaining(commit string) ([]string, error) {
