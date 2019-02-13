@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "088136d8_71e85543",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-02-13T04:16:03Z",
+      "side": 1,
+      "message": "nit: space between colon and the message",
+      "range": {
+        "startLine": 1748,
+        "startChar": 73,
+        "endLine": 1748,
+        "endChar": 75
+      },
+      "revId": "23bf63934cd8a8299bb5b9a96e2af14381d24d60",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
