@@ -503,6 +503,15 @@ type Platform struct {
 	Arch string
 }
 
+// NewPlatform parses a platform string into Platform struct.
+func NewPlatform(s string) (Platform, error) {
+	fields := strings.Split(s, "-")
+	if len(fields) != 2 {
+		return Platform{"", ""}, fmt.Errorf("illegal platform %q", s)
+	}
+	return Platform{fields[0], fields[1]}, nil
+}
+
 // String generates a string represents the Platform in "OS"-"Arch" form.
 func (p Platform) String() string {
 	return p.OS + "-" + p.Arch
@@ -587,7 +596,7 @@ func (t Expander) Expand(template string) (pkg string, err error) {
 func Expand(cipdPath string, platforms []Platform) ([]string, error) {
 	output := make([]string, 0)
 	//expanders := make([]Expander, 0)
-	if !templateRE.MatchString(cipdPath) {
+	if !MustExpand(cipdPath) {
 		output = append(output, cipdPath)
 		return output, nil
 	}
@@ -603,6 +612,52 @@ func Expand(cipdPath string, platforms []Platform) ([]string, error) {
 		output = append(output, pkg)
 	}
 	return output, nil
+}
+
+// Decl method expands a cipdPath that contains ${platform}, ${os}, ${arch}
+// with information in platforms.
+func Decl(cipdPath string, platforms []Platform) (string, error) {
+	if !MustExpand(cipdPath) || len(platforms) == 0 {
+		return cipdPath, nil
+	}
+
+	osMap := make(map[string]bool)
+	platMap := make(map[string]bool)
+	archMap := make(map[string]bool)
+
+	replacedOS := "${os="
+	replacedArch := "${arch="
+	replacedPlat := "${platform="
+
+	for _, plat := range platforms {
+		if _, ok := osMap[plat.OS]; !ok {
+			replacedOS += plat.OS + ","
+			osMap[plat.OS] = true
+		}
+		if _, ok := archMap[plat.Arch]; !ok {
+			replacedArch += plat.Arch + ","
+			archMap[plat.Arch] = true
+		}
+		if _, ok := platMap[plat.String()]; !ok {
+			replacedPlat += plat.String() + ","
+			platMap[plat.String()] = true
+		}
+	}
+	replacedOS = replacedOS[:len(replacedOS)-1] + "}"
+	replacedArch = replacedArch[:len(replacedArch)-1] + "}"
+	replacedPlat = replacedPlat[:len(replacedPlat)-1] + "}"
+
+	cipdPath = strings.Replace(cipdPath, "${os}", replacedOS, -1)
+	cipdPath = strings.Replace(cipdPath, "${arch}", replacedArch, -1)
+	cipdPath = strings.Replace(cipdPath, "${platform}", replacedPlat, -1)
+	return cipdPath, nil
+}
+
+// MustExpand checks if template usages such as "${platform}" exist
+// in cipdPath. If they exist, this function will return true. Otherwise
+// it returns false.
+func MustExpand(cipdPath string) bool {
+	return templateRE.MatchString(cipdPath)
 }
 
 // DefaultPlatforms returns a slice of Platform objects that are currently
