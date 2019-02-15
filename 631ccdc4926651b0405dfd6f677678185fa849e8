@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8d658e1_0f34b3b9",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-02-15T19:47:47Z",
+      "side": 1,
+      "message": "Matching the error message seems potentially fragile, could we instead use git config to set the remote url like we do in the recipe: https://fuchsia.googlesource.com/infra/recipes/+/master/recipe_modules/git/api.py#82",
+      "revId": "631ccdc4926651b0405dfd6f677678185fa849e8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
