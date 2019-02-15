@@ -294,3 +294,57 @@ func TestExpand(t *testing.T) {
 		}
 	}
 }
+
+func TestRequireExpand(t *testing.T) {
+	tests := map[string]bool{
+		"fuchsia/clang/${platform}":               true,
+		"fuchsia/clang/${os}-${arch}":             true,
+		"fuchsia/clang/${os=linux}-${arch=amd64}": true,
+		"fuchsia/clang/linux-amd64":               false,
+	}
+	for k, v := range tests {
+		if RequireExpand(k) != v {
+			t.Errorf("RequireExpand failed on package %q, expecting %v got %v", k, v, RequireExpand(k))
+		}
+	}
+}
+
+func TestIsInstanceID(t *testing.T) {
+	tests := map[string]bool{
+		"vYijdTfWLAWorkERrmcNKJQDtbFWVkccyMtIA0tf3tAC":          true,
+		"47ecedd9b12f160104aeece9ae750bffde45e93b":              true,
+		"git_revision:6922d7833617841e853a0be52a285f6cd07a0a10": false,
+		"version:1.8.2": false,
+	}
+	for k, v := range tests {
+		if IsInstanceID(k) != v {
+			t.Errorf("IsInstanceID failed on version %q, expecting %v got %v", k, v, IsInstanceID(k))
+		}
+	}
+}
+
+func TestDecl(t *testing.T) {
+	platforms := []Platform{
+		Platform{"linux", "amd64"},
+		Platform{"linux", "arm64"},
+		Platform{"mac", "amd64"},
+	}
+
+	tests := map[string]string{
+		"fuchsia/clang/${platform}":               "fuchsia/clang/${platform=linux-amd64,linux-arm64,mac-amd64}",
+		"fuchsia/clang/${os}-${arch}":             "fuchsia/clang/${os=linux,mac}-${arch=amd64,arm64}",
+		"fuchsia/clang/${os=linux}-${arch}":       "fuchsia/clang/${os=linux}-${arch=amd64,arm64}",
+		"fuchsia/clang/${os=linux}-${arch=amd64}": "fuchsia/clang/${os=linux}-${arch=amd64}",
+		"fuchsia/clang/linux-amd64":               "fuchsia/clang/linux-amd64",
+	}
+
+	for k, v := range tests {
+		cipdPath, err := Decl(k, platforms)
+		if err != nil {
+			t.Errorf("Decl failed on cipdPath %q due to error: %v", k, err)
+		}
+		if cipdPath != v {
+			t.Errorf("test on %q failed: expecting %q, got %q", k, v, cipdPath)
+		}
+	}
+}
