@@ -701,6 +701,11 @@ func (pkg *Package) cipdDecl() (string, error) {
 	// Write "@Subdir" line to cipd declaration
 	subdir := pkg.Path
 	arch := cipd.Platform{runtime.GOOS, runtime.GOARCH}
+	// Local buildfiles is using "mac-x64" instead of "darwin-amd64".
+	// Rewrite "darwin" to "mac"
+	if arch.OS == "darwin" {
+		arch.OS = "mac"
+	}
 	tmpl, err := template.New("pack").Parse(subdir)
 	if err != nil {
 		return "", fmt.Errorf("parsing package path %q failed", subdir)
