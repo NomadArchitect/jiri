@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "017d0ffc_3f58514d",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T20:03:00Z",
+      "side": 1,
+      "message": "Would you mind putting this context into documentation for these functions?",
+      "parentUuid": "d1c87c20_f3545231",
+      "range": {
+        "startLine": 621,
+        "startChar": 5,
+        "endLine": 621,
+        "endChar": 9
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "834621dd_3c3ab566",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
