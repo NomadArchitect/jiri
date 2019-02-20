@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cf943df3_7195a11d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:29:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "455393eb_88879035",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "71ad8727cce166124f07ba5622ca7b6f6daec88a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4c4f243d_5317281f",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "71ad8727cce166124f07ba5622ca7b6f6daec88a",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f26067dd_7b1e8a62",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:29:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4f243d_5317281f",
+      "range": {
+        "startLine": 781,
+        "startChar": 9,
+        "endLine": 781,
+        "endChar": 12
+      },
+      "revId": "71ad8727cce166124f07ba5622ca7b6f6daec88a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
