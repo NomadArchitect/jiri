@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4db77cbe_13e17e70",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "This would typically be called NewPlatform",
+      "range": {
+        "startLine": 509,
+        "startChar": 5,
+        "endLine": 509,
+        "endChar": 18
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67034fc8_453d7c87",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "How does this differ from Expand?",
+      "range": {
+        "startLine": 621,
+        "startChar": 5,
+        "endLine": 621,
+        "endChar": 9
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "834621dd_3c3ab566",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "checks",
+      "range": {
+        "startLine": 658,
+        "startChar": 16,
+        "endLine": 658,
+        "endChar": 21
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3dee3704_c50f410f",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "it\u0027s fine for this to just be \"id\"; there\u0027s no other kind of ID that this could be confused for in the context.",
+      "range": {
+        "startLine": 659,
+        "startChar": 18,
+        "endLine": 659,
+        "endChar": 21
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f52a258_1ac73ed0",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "40?",
+      "range": {
+        "startLine": 660,
+        "startChar": 36,
+        "endLine": 660,
+        "endChar": 38
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258743d1_71fa90b5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be either 29 or \u003c\u003d 28?",
+      "range": {
+        "startLine": 662,
+        "startChar": 15,
+        "endLine": 662,
+        "endChar": 17
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca568f27_ba70768b",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "I think we can remove this comment; the comment above the two ifs already tells us that we\u0027re skipping obviously invalid IDs",
+      "range": {
+        "startLine": 663,
+        "startChar": 2,
+        "endLine": 663,
+        "endChar": 38
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74fc0225_c6dd1aa1",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T16:50:29Z",
+      "side": 1,
+      "message": "let\u0027s call this \"MustExpand\"",
+      "range": {
+        "startLine": 689,
+        "startChar": 5,
+        "endLine": 689,
+        "endChar": 18
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
