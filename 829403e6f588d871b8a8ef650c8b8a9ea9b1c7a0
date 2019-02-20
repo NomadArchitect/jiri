@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "40a3fd9f_eb1c43d6",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4db77cbe_13e17e70",
+      "range": {
+        "startLine": 509,
+        "startChar": 5,
+        "endLine": 509,
+        "endChar": 18
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "67034fc8_453d7c87",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-20T16:50:29Z",
       "side": 1,
       "message": "How does this differ from Expand?",
+      "range": {
+        "startLine": 621,
+        "startChar": 5,
+        "endLine": 621,
+        "endChar": 9
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1c87c20_f3545231",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Expand will try to replace ${platform} into real platform strings such as linux-amd64. Expand function returns a list. This is used in lockfile support to match cipd package from manifest with concrete full path in lockfile.\n\nDecl will replace ${platform} to ${platform\u003dlinux-amd64,linux-arm64}. It returns a single path instead of a list of paths. This is used in \u0027jiri resolve\u0027 so jiri could invoke cipd to generate .version files which includes instance ids for all supported platforms.\n\nThere is a limitation in \u0027cipd ensure-file-resolve\u0027 that it requires the \u0027.ensure\u0027 file declares all supporting platforms at the head of the .ensure file. But if one of the package in that .ensure file does not have any platform listed in the header, it will fail. So we came up with this workaround to list all implemented platforms inside ${platform\u003d...}.",
+      "parentUuid": "67034fc8_453d7c87",
       "range": {
         "startLine": 621,
         "startChar": 5,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bbbefb84_53addc68",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "This function is no longer needed so I just removed it.",
+      "parentUuid": "834621dd_3c3ab566",
+      "range": {
+        "startLine": 658,
+        "startChar": 16,
+        "endLine": 658,
+        "endChar": 21
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3dee3704_c50f410f",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd99e78a_bce70903",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dee3704_c50f410f",
+      "range": {
+        "startLine": 659,
+        "startChar": 18,
+        "endLine": 659,
+        "endChar": 21
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2a18cfae_65061f86",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f52a258_1ac73ed0",
+      "range": {
+        "startLine": 660,
+        "startChar": 36,
+        "endLine": 660,
+        "endChar": 38
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "258743d1_71fa90b5",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a84e07cc_dd450e0c",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "258743d1_71fa90b5",
+      "range": {
+        "startLine": 662,
+        "startChar": 15,
+        "endLine": 662,
+        "endChar": 17
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e7d1f800_d8a92d74",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca568f27_ba70768b",
+      "range": {
+        "startLine": 663,
+        "startChar": 2,
+        "endLine": 663,
+        "endChar": 38
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74fc0225_c6dd1aa1",
         "filename": "cipd/cipd.go",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e934a9b2_a09e263e",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-20T19:24:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74fc0225_c6dd1aa1",
+      "range": {
+        "startLine": 689,
+        "startChar": 5,
+        "endLine": 689,
+        "endChar": 18
+      },
+      "revId": "829403e6f588d871b8a8ef650c8b8a9ea9b1c7a0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
