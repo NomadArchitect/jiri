@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "455393eb_88879035",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T17:09:20Z",
+      "side": 1,
+      "message": "snapshot",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "71ad8727cce166124f07ba5622ca7b6f6daec88a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c4f243d_5317281f",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-20T17:09:20Z",
+      "side": 1,
+      "message": "i think \"i\" or \"inst\" would be better names here",
+      "range": {
+        "startLine": 781,
+        "startChar": 9,
+        "endLine": 781,
+        "endChar": 12
+      },
+      "revId": "71ad8727cce166124f07ba5622ca7b6f6daec88a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
