@@ -51,6 +51,8 @@ type Config struct {
 	SsoCookiePath     string `xml:"SsoCookiePath,omitempty"`
 	LockfileEnabled   bool   `xml:"lockfile>enabled,omitempty"`
 	LockfileName      string `xml:"lockfile>name,omitempty"`
+	PrebuiltGNIName   string `xml:"prebuilt>GNI,omitempty"`
+	PrebuiltGNIFlag   string `xml:"prebuilt>GNIFlag,omitempty"`
 	AnalyticsOptIn    string `xml:"analytics>optin,omitempty"`
 	AnalyticsUserId   string `xml:"analytics>userId,omitempty"`
 	// version user has opted-in to
@@ -105,6 +107,8 @@ type X struct {
 	LockfileEnabled     bool
 	LockfileName        string
 	SsoCookiePath       string
+	PrebuiltGNIName     string
+	PrebuiltGNIFlag     string
 	UsingSnapshot       bool
 	IgnoreLockConflicts bool
 	Color               color.Color
@@ -237,8 +241,16 @@ func NewX(env *cmdline.Env) (*X, error) {
 		x.SsoCookiePath = x.config.SsoCookiePath
 		x.LockfileEnabled = x.config.LockfileEnabled
 		x.LockfileName = x.config.LockfileName
+		x.PrebuiltGNIName = x.config.PrebuiltGNIName
+		x.PrebuiltGNIFlag = x.config.PrebuiltGNIFlag
 		if x.LockfileName == "" {
 			x.LockfileName = "jiri.lock"
+		}
+		if x.PrebuiltGNIName == "" {
+			x.PrebuiltGNIName = "config.gn"
+		}
+		if x.PrebuiltGNIFlag == "" {
+			x.PrebuiltGNIFlag = "internal_access"
 		}
 	}
 	x.Cache, err = findCache(root, x.config)
