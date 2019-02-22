@@ -44,6 +44,8 @@ var (
 	keepGitHooks          string
 	enableLockfileFlag    string
 	lockfileNameFlag      string
+	prebuiltGNIFilename   string
+	prebuiltGNIFlagname   string
 )
 
 func init() {
@@ -56,6 +58,8 @@ func init() {
 	cmdInit.Flags.StringVar(&keepGitHooks, "keep-git-hooks", "", "Whether to keep current git hooks in '.git/hooks' when doing 'jiri update'. Takes true/false.")
 	cmdInit.Flags.StringVar(&enableLockfileFlag, "enable-lockfile", "", "Enable lockfile enforcement")
 	cmdInit.Flags.StringVar(&lockfileNameFlag, "lockfile-name", "", "Set up filename of lockfile")
+	cmdInit.Flags.StringVar(&prebuiltGNIFilename, "prebuilt-gni-file", "", "Set up filename for prebuilt gni file")
+	cmdInit.Flags.StringVar(&prebuiltGNIFlagname, "prebuilt-gni-flag", "", "Set up flag name for prebuilt gni file")
 }
 
 func runInit(env *cmdline.Env, args []string) error {
@@ -149,6 +153,14 @@ func runInit(env *cmdline.Env, args []string) error {
 
 	if lockfileNameFlag != "" {
 		config.LockfileName = lockfileNameFlag
+	}
+
+	if prebuiltGNIFilename != "" {
+		config.PrebuiltGNIName = prebuiltGNIFilename
+	}
+
+	if prebuiltGNIFlagname != "" {
+		config.PrebuiltGNIFlag = prebuiltGNIFlagname
 	}
 
 	if enableLockfileFlag != "" {
