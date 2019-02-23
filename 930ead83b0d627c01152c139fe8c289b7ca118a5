@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f648c00_c5fcb17e",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-23T01:45:49Z",
+      "side": 1,
+      "message": "Please only remove .jiri_root/bin instead of entire .jiri_root",
+      "revId": "930ead83b0d627c01152c139fe8c289b7ca118a5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
