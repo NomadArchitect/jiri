@@ -61,18 +61,20 @@ if [[ $# -ne 1 ]]; then
   fatal "need <root_dir> argument"
 fi
 
-# Ensure <root_dir> doesn't already exist: this is important since we trap this script and
-# rm -rf <root_dir> if anything fails.
-mkdir -p "$(dirname $1)"
-readonly ROOT_DIR="$(toabs $1)"
-if [[ -e "${ROOT_DIR}" ]]; then
-  if ! [[ -z "$(ls -A "$ROOT_DIR")" ]]; then
-    fatal "${ROOT_DIR} is not empty"
-  fi
+# If <root_dir> doesn't already exist, we will destroy it during the exit trap,
+# otherwise we will only destroy the .jiri_root.
+ROOT_DIR="$(dirname $1)"
+if [[ -d "${ROOT_DIR}" ]]; then
+  ROOT_DIR="$(toabs ${ROOT_DIR})"
+  CLEANUP_DIR="${ROOT_DIR}/.jiri_root/bin"
+else
+  mkdir -p "${ROOT_DIR}"
+  ROOT_DIR="$(toabs ${ROOT_DIR})"
+  CLEANUP_DIR="${ROOT_DIR}"
 fi
 
 # Remove the root_dir if this script fails so as to not leave the environment in a strange half-state.
-trap "rm -rf ${ROOT_DIR}" INT TERM EXIT
+trap "rm -rf -- \"${CLEANUP_DIR}\"" INT TERM EXIT
 
 # Make the output directories.
 readonly BIN_DIR="${ROOT_DIR}/.jiri_root/bin"
