@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9dfb874_7a9fdfee",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-23T02:05:27Z",
+      "side": 1,
+      "message": "Forgot to mention it earlier. Needs to be changed to \u0027.jiri_root/bin\u0027",
+      "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8da102e_d3654ce9",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-23T02:05:27Z",
+      "side": 1,
+      "message": "There is actually a bug here. \nROOT_DIR should be set to \"$(toabs $1)\". In your change it is set to \"$(dirname $1)\", which is the parent directory of user\u0027s input. \n\nMaybe it\u0027s better to add \u0027ROOT_PARENT_DIR\u0027 which is set to \"$(dirname $1)\" and ROOT_DIR pins to \"$(toabs $1)\" to avoid confusions.",
+      "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
