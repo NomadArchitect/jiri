@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66b12ec2_1e5e3866",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-25T22:13:24Z",
+      "side": 1,
+      "message": "I think we should be using `filepath.Join` here and below to avoid issues on Windows.",
+      "range": {
+        "startLine": 687,
+        "startChar": 21,
+        "endLine": 687,
+        "endChar": 30
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d6e1f33_a7aa164b",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-25T22:13:24Z",
+      "side": 1,
+      "message": "Is there a regular logger.Warning? Useful to use such an interface when you\u0027re not relying on format strings.",
+      "range": {
+        "startLine": 712,
+        "startChar": 16,
+        "endLine": 712,
+        "endChar": 24
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "447d0699_c436ac36",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-02-25T22:13:24Z",
+      "side": 1,
+      "message": "Can we put this as a method on the Packages type and call it something like FilterACL?",
+      "range": {
+        "startLine": 718,
+        "startChar": 5,
+        "endLine": 718,
+        "endChar": 28
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
