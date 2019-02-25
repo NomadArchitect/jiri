@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f1b530ca_43570a53",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2019-02-25T19:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9dfb874_7a9fdfee",
+      "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8da102e_d3654ce9",
         "filename": "scripts/bootstrap_jiri",
         "patchSetId": 2
@@ -33,6 +51,24 @@
       "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "419eb2f2_8b15637c",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2019-02-25T19:15:41Z",
+      "side": 1,
+      "message": "This is all kind of a mess still, I simplified it.",
+      "parentUuid": "d8da102e_d3654ce9",
+      "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
