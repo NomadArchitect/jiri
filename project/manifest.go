@@ -462,6 +462,35 @@ func (p *Package) FillDefaults() error {
 	return nil
 }
 
+// GetPath returns the relative path that Package p should be
+// downloaded to.
+func (p *Package) GetPath() (string, error) {
+	if p.Path == "" {
+		cipdPath := p.Name
+		// Replace template with current platform information.
+		// If failed, skip filling in default path.
+		if cipd.MustExpand(cipdPath) {
+			expanded, err := cipd.Expand(cipdPath, []cipd.Platform{cipd.CipdPlatform})
+			if err != nil {
+				return "", err
+			}
+			if len(expanded) > 0 {
+				cipdPath = expanded[0]
+			}
+		}
+		if !cipd.MustExpand(cipdPath) {
+			base := path.Base(cipdPath)
+			if _, err := cipd.NewPlatform(base); err == nil {
+				// base is the name for a platform
+				base = path.Join(path.Base(path.Dir(cipdPath)), base)
+			}
+			return path.Join("prebuilt", base), nil
+		}
+		return "prebuilt", nil
+	}
+	return p.Path, nil
+}
+
 // GetPlatforms returns the platforms information of
 // this Package struct.
 func (p *Package) GetPlatforms() ([]cipd.Platform, error) {
@@ -807,7 +836,10 @@ func generateEnsureFile(jirix *jiri.X, pkgs Packages, ignoreCryptoCheck bool) (s
 func (p *Package) cipdDecl(usingSnapshot bool) (string, error) {
 	var buf bytes.Buffer
 	// Write "@Subdir" line to cipd declaration
-	subdir := p.Path
+	subdir, err := p.GetPath()
+	if err != nil {
+		return "", err
+	}
 	tmpl, err := template.New("pack").Parse(subdir)
 	if err != nil {
 		return "", fmt.Errorf("parsing package path %q failed", subdir)
