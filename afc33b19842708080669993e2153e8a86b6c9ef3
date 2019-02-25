@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2bd2d92d_c8794b18",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-25T22:42:22Z",
+      "side": 1,
+      "message": "Done. Though there are a lot of path.Join in jiri and jiri is not windows compatible.",
+      "parentUuid": "66b12ec2_1e5e3866",
+      "range": {
+        "startLine": 687,
+        "startChar": 21,
+        "endLine": 687,
+        "endChar": 30
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d6e1f33_a7aa164b",
         "filename": "project/manifest.go",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-25T22:13:24Z",
       "side": 1,
       "message": "Is there a regular logger.Warning? Useful to use such an interface when you\u0027re not relying on format strings.",
+      "range": {
+        "startLine": 712,
+        "startChar": 16,
+        "endLine": 712,
+        "endChar": 24
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "975026ed_710e2e73",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-25T22:42:22Z",
+      "side": 1,
+      "message": "We don\u0027t have any. I could submit another patch to add those.",
+      "parentUuid": "0d6e1f33_a7aa164b",
       "range": {
         "startLine": 712,
         "startChar": 16,
@@ -68,6 +116,30 @@
       "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e7f9da2_2deb3f26",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-25T22:42:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "447d0699_c436ac36",
+      "range": {
+        "startLine": 718,
+        "startChar": 5,
+        "endLine": 718,
+        "endChar": 28
+      },
+      "revId": "afc33b19842708080669993e2153e8a86b6c9ef3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
