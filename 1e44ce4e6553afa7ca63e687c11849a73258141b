@@ -69,6 +69,24 @@
       "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d69be3f8_02bf3df7",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 9195
+      },
+      "writtenOn": "2019-02-25T19:15:57Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "419eb2f2_8b15637c",
+      "revId": "1e44ce4e6553afa7ca63e687c11849a73258141b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
