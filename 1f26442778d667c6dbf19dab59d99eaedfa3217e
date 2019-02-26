@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "88b17e8e_826b0a02",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-26T23:43:58Z",
+      "side": 1,
+      "message": "It is a cipdPath, which is always a unix path, like \"fuchsia/tools/jiri/linux-amd64\" at https://chrome-infra-packages.appspot.com/p/fuchsia/tools/jiri/linux-amd64/+/",
+      "parentUuid": "26611ee1_0fa75c78",
+      "range": {
+        "startLine": 512,
+        "startChar": 11,
+        "endLine": 512,
+        "endChar": 15
+      },
+      "revId": "1f26442778d667c6dbf19dab59d99eaedfa3217e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1abf39fa_abe9437a",
         "filename": "project/manifest.go",
         "patchSetId": 2
@@ -59,6 +83,54 @@
       "writtenOn": "2019-02-26T22:08:11Z",
       "side": 1,
       "message": "filepath",
+      "range": {
+        "startLine": 515,
+        "startChar": 25,
+        "endLine": 515,
+        "endChar": 29
+      },
+      "revId": "1f26442778d667c6dbf19dab59d99eaedfa3217e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0888b94c_90998b0d",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-26T23:43:58Z",
+      "side": 1,
+      "message": "The same here. I use filepath to construct local paths, but use path.Base and path.Dir to retrieve some elements from the cipdPath.",
+      "parentUuid": "1abf39fa_abe9437a",
+      "range": {
+        "startLine": 515,
+        "startChar": 35,
+        "endLine": 515,
+        "endChar": 39
+      },
+      "revId": "1f26442778d667c6dbf19dab59d99eaedfa3217e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d106bd2_51212812",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-26T23:43:58Z",
+      "side": 1,
+      "message": "The same.",
+      "parentUuid": "c5b1033f_1a2f9fb5",
       "range": {
         "startLine": 515,
         "startChar": 25,
