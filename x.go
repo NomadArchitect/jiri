@@ -15,6 +15,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"runtime"
 	"sync/atomic"
 	"time"
 
@@ -273,7 +274,7 @@ func NewX(env *cmdline.Env) (*X, error) {
 	return x, nil
 }
 
-const DefaultJobs = 25
+var DefaultJobs = runtime.NumCPU() * 2
 
 func cleanPath(path string) (string, error) {
 	result, err := filepath.EvalSymlinks(path)
