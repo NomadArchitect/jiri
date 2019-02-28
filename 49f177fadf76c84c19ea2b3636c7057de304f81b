@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f4a15c8c_bec2720f",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-28T08:59:13Z",
+      "side": 1,
+      "message": "Can we put a cap for the DefaultJobs to 50? Sometimes too many requests to gerrit can cause HTTP 502 error.",
+      "range": {
+        "startLine": 277,
+        "startChar": 18,
+        "endLine": 277,
+        "endChar": 44
+      },
+      "revId": "49f177fadf76c84c19ea2b3636c7057de304f81b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
