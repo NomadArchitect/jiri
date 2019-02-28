@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/osutil"
 	"fuchsia.googlesource.com/jiri/version"
 )
@@ -352,6 +353,11 @@ func Ensure(jirix *jiri.X, file, projectRoot string, timeout uint) error {
 	// Workaround so tests do not have to create a new fake jirix, which would
 	// result in an import cycle
 	if jirix != nil {
+		// If jiri is running with -v, change cipd log-level
+		// from warning to default.
+		if jirix.Logger.LoggerLevel >= log.DebugLevel {
+			args = args[:len(args)-2]
+		}
 		jirix.Logger.Debugf("Invoke cipd with %v", args)
 	}
 	// Construct arguments and invoke cipd for ensure file
