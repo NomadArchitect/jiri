@@ -16,6 +16,24 @@
       "revId": "70c270455572b7180460ea215a54d2607230e8c3",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e99af16_929d5220",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-02-28T21:56:49Z",
+      "side": 1,
+      "message": "Thanks for pointing out.",
+      "parentUuid": "978b7c19_96cfbe66",
+      "revId": "70c270455572b7180460ea215a54d2607230e8c3",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
