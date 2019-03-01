@@ -730,10 +730,8 @@ func FetchPackages(jirix *jiri.X, pkgs Packages, fetchTimeout uint) error {
 		return err
 	}
 
-	if hasInternalPkgs {
-		if err := writePackageJSON(jirix, len(pkgs) == len(pkgsWAccess)); err != nil {
-			return err
-		}
+	if err := writePackageJSON(jirix, hasInternalPkgs, len(pkgs) == len(pkgsWAccess)); err != nil {
+		return err
 	}
 
 	if len(pkgs) > len(pkgsWAccess) {
@@ -748,14 +746,17 @@ func FetchPackages(jirix *jiri.X, pkgs Packages, fetchTimeout uint) error {
 	return nil
 }
 
-// GenerateJSON generates a json file which contains fetched
-// packages.
-func writePackageJSON(jirix *jiri.X, access bool) error {
+// GenerateJSON generates a json file which contains a flag
+// to indicate if internal packages are fetched.
+func writePackageJSON(jirix *jiri.X, hasInternal, access bool) error {
 	var internalAccess struct {
 		Access bool `json:"internal_access"`
 	}
 	internalAccess.Access = access
 	jsonData, err := json.MarshalIndent(&internalAccess, "", "    ")
+	if !hasInternal {
+		jsonData = []byte("{}")
+	}
 	if err != nil {
 		return err
 	}
