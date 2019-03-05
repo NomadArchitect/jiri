@@ -14,6 +14,7 @@ var fetchPkgsFlags struct {
 	localManifest    bool
 	fetchPkgsTimeout uint
 	attempts         uint
+	updateManifest   bool
 }
 
 var cmdFetchPkgs = &cmdline.Command{
@@ -30,9 +31,10 @@ func init() {
 	cmdFetchPkgs.Flags.BoolVar(&fetchPkgsFlags.localManifest, "local-manifest", false, "Use local checked out manifest.")
 	cmdFetchPkgs.Flags.UintVar(&fetchPkgsFlags.fetchPkgsTimeout, "fetch-packages-timeout", project.DefaultPackageTimeout, "Timeout in minutes for fetching prebuilt packages using cipd.")
 	cmdFetchPkgs.Flags.UintVar(&fetchPkgsFlags.attempts, "attempts", 1, "Number of attempts before failing.")
+	cmdFetchPkgs.Flags.BoolVar(&fetchPkgsFlags.updateManifest, "update-manifest", true, "Update manifests from remote.")
 }
 
-func runFetchPkgs(jirix *jiri.X, args []string) error {
+func runFetchPkgs(jirix *jiri.X, args []string) (err error) {
 	localProjects, err := project.LocalProjects(jirix, project.FastScan)
 	if err != nil {
 		return err
@@ -43,7 +45,12 @@ func runFetchPkgs(jirix *jiri.X, args []string) error {
 	jirix.Attempts = fetchPkgsFlags.attempts
 
 	// Get pkgs.
-	_, _, pkgs, err := project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, fetchPkgsFlags.localManifest)
+	var pkgs project.Packages
+	if fetchPkgsFlags.updateManifest {
+		_, _, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, fetchPkgsFlags.localManifest)
+	} else {
+		_, _, pkgs, err = project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, fetchPkgsFlags.localManifest)
+	}
 	if err != nil {
 		return err
 	}

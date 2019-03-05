@@ -11,10 +11,11 @@ import (
 )
 
 var runHooksFlags struct {
-	localManifest bool
-	hookTimeout   uint
-	attempts      uint
-	fetchPackages bool
+	localManifest  bool
+	hookTimeout    uint
+	attempts       uint
+	fetchPackages  bool
+	updateManifest bool
 }
 
 var cmdRunHooks = &cmdline.Command{
@@ -32,9 +33,10 @@ func init() {
 	cmdRunHooks.Flags.UintVar(&runHooksFlags.hookTimeout, "hook-timeout", project.DefaultHookTimeout, "Timeout in minutes for running the hooks operation.")
 	cmdRunHooks.Flags.UintVar(&runHooksFlags.attempts, "attempts", 1, "Number of attempts before failing.")
 	cmdRunHooks.Flags.BoolVar(&runHooksFlags.fetchPackages, "fetch-packages", true, "Use fetching packages using jiri.")
+	cmdRunHooks.Flags.BoolVar(&runHooksFlags.updateManifest, "update-manifest", true, "Update manifests from remote.")
 }
 
-func runHooks(jirix *jiri.X, args []string) error {
+func runHooks(jirix *jiri.X, args []string) (err error) {
 	localProjects, err := project.LocalProjects(jirix, project.FastScan)
 	if err != nil {
 		return err
@@ -45,7 +47,13 @@ func runHooks(jirix *jiri.X, args []string) error {
 	jirix.Attempts = runHooksFlags.attempts
 
 	// Get hooks.
-	_, hooks, pkgs, err := project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, runHooksFlags.localManifest)
+	var hooks project.Hooks
+	var pkgs project.Packages
+	if runHooksFlags.updateManifest {
+		_, hooks, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, runHooksFlags.localManifest)
+	} else {
+		_, hooks, pkgs, err = project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, runHooksFlags.localManifest)
+	}
 	if err != nil {
 		return err
 	}
