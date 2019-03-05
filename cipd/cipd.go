@@ -267,7 +267,7 @@ func checkPackageACL(jirix *jiri.X, path, version string, c chan<- packageACL) {
 		return
 	}
 
-	args := []string{"resolve", path, "-version", version}
+	args := []string{"describe", path, "-version", version}
 	if jirix != nil {
 		jirix.Logger.Debugf("Invoke cipd with %v", args)
 	}
