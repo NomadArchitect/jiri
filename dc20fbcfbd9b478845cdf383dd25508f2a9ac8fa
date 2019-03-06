@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "251ce4c7_4568b62f",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-06T23:39:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8afaef74_7521df70",
+      "range": {
+        "startLine": 766,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 2
+      },
+      "revId": "dc20fbcfbd9b478845cdf383dd25508f2a9ac8fa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fa06549_ed484f77",
         "filename": "project/manifest.go",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "dc20fbcfbd9b478845cdf383dd25508f2a9ac8fa",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccc2ce33_add7dce4",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-06T23:39:55Z",
+      "side": 1,
+      "message": "Each file is represents the state of a single package. You are right, it should continue on single package failures and returns a summary of errors when it finished.",
+      "parentUuid": "3fa06549_ed484f77",
+      "range": {
+        "startLine": 805,
+        "startChar": 0,
+        "endLine": 809,
+        "endChar": 2
+      },
+      "revId": "dc20fbcfbd9b478845cdf383dd25508f2a9ac8fa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
