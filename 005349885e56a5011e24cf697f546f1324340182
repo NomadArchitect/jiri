@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fed13a86_91866bc3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-03-06T19:48:17Z",
+      "side": 1,
+      "message": "Use the `-json-output` flag and you don\u0027t need to parse the text output which is potentially fragile.",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 2
+      },
+      "revId": "005349885e56a5011e24cf697f546f1324340182",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
