@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acf9f7fa_d3184e2c",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-03-06T02:29:22Z",
+      "side": 1,
+      "message": "I\u0027d use acl-check which was added to CIPD for this purpose.",
+      "range": {
+        "startLine": 270,
+        "startChar": 19,
+        "endLine": 270,
+        "endChar": 27
+      },
+      "revId": "af709b15b8226ebd8c57ee14970e10071fc4a8e9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
