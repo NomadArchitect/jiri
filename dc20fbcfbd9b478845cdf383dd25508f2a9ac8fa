@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8afaef74_7521df70",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-06T23:26:36Z",
+      "side": 1,
+      "message": "This function is pretty far from its use, and it\u0027s really small. I\u0027d recommend just inlining it at its callsite.",
+      "range": {
+        "startLine": 766,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 2
+      },
+      "revId": "dc20fbcfbd9b478845cdf383dd25508f2a9ac8fa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fa06549_ed484f77",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-06T23:26:36Z",
+      "side": 1,
+      "message": "Can this yield some weird / inconsistent state? (I.e. do we need to roll-back any flagfiles applied before the error? If not, would it make sense to just continue writing flag files and return an error detailing the ones that failed?)",
+      "range": {
+        "startLine": 805,
+        "startChar": 0,
+        "endLine": 809,
+        "endChar": 2
+      },
+      "revId": "dc20fbcfbd9b478845cdf383dd25508f2a9ac8fa",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
