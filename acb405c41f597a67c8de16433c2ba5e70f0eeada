@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6f9a421_3bd30c83",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-03-07T03:02:18Z",
+      "side": 1,
+      "message": "This seems like a very powerful mechanism, but I\u0027 wondering if we need that much power? Why is this needed compared to a simple true/false signifying whether the package has been downloaded or not?",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 23
+      },
+      "revId": "acb405c41f597a67c8de16433c2ba5e70f0eeada",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
