@@ -22,6 +22,30 @@
       "revId": "acb405c41f597a67c8de16433c2ba5e70f0eeada",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927dc17b_341adc07",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-07T04:28:41Z",
+      "side": 1,
+      "message": "Currently, zircon and garnet is using gn file. However, we would like to migrate to json format in the future. So just providing a \"flag \u003d true/false\" is not enough. This mechanism is quite flexible to allow as to write any format we want.",
+      "parentUuid": "f6f9a421_3bd30c83",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 23
+      },
+      "revId": "acb405c41f597a67c8de16433c2ba5e70f0eeada",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
