@@ -52,6 +52,7 @@ func runFetchPkgs(jirix *jiri.X, args []string) (err error) {
 	if err != nil {
 		return err
 	}
+	_, pkgs = project.FilterOptionalProjectsPackages(jirix.FetchingAttrs, nil, pkgs)
 	if len(pkgs) > 0 {
 		return project.FetchPackages(jirix, pkgs, fetchPkgsFlags.fetchPkgsTimeout)
 	}

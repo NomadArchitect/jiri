@@ -58,6 +58,7 @@ func runHooks(jirix *jiri.X, args []string) (err error) {
 	if err = project.RunHooks(jirix, hooks, runHooksFlags.hookTimeout); err != nil {
 		return err
 	}
+	_, pkgs = project.FilterOptionalProjectsPackages(jirix.FetchingAttrs, nil, pkgs)
 	// Get packages if the fetchPackages is true
 	if runHooksFlags.fetchPackages && len(pkgs) > 0 {
 		// Extend timeout for packages to be 5 times the timeout of a single hook.
