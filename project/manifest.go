@@ -36,6 +36,7 @@ import (
 // Manifest represents a setting used for updating the universe.
 type Manifest struct {
 	Version      string        `xml:"version,attr,omitempty"`
+	Attributes   string        `xml:"attributes,attr,omitempty"`
 	Imports      []Import      `xml:"imports>import"`
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
@@ -116,6 +117,7 @@ func (m *Manifest) deepCopy() *Manifest {
 	x.Hooks = append([]Hook(nil), m.Hooks...)
 	x.Packages = append([]Package(nil), m.Packages...)
 	x.Version = m.Version
+	x.Attributes = m.Attributes
 	return x
 }
 
@@ -427,14 +429,43 @@ func (hooks HooksByName) Less(i, j int) bool {
 
 // Package struct represents the <package> tag in manifest files.
 type Package struct {
-	Name      string            `xml:"name,attr"`
-	Version   string            `xml:"version,attr"`
-	Path      string            `xml:"path,attr,omitempty"`
-	Internal  bool              `xml:"internal,attr,omitempty"`
-	Platforms string            `xml:"platforms,attr,omitempty"`
-	Flag      string            `xml:"flag,attr,omitempty"`
+	// Name represents the remote cipd path of the package.
+	Name string `xml:"name,attr"`
+
+	// Version represents the version tag of the cipd package.
+	Version string `xml:"version,attr"`
+
+	// Path stores the local path of fetched cipd package.
+	Path string `xml:"path,attr,omitempty"`
+
+	// Internal marks if this package require special permission
+	// for access
+	Internal bool `xml:"internal,attr,omitempty"`
+
+	// Platforms defines the available platforms for this cipd package.
+	Platforms string `xml:"platforms,attr,omitempty"`
+
+	// Flag defines the content that should be written to a file when
+	// this package is successfully fetched.
+	Flag string `xml:"flag,attr,omitempty"`
+
+	// Optional controls whether this package should be
+	// fetched automatically during jiri update/fetch-packages.
+	Optional bool `xml:"optional,attr,omitempty"`
+
+	// Attributes store the the list attributes for this package.
+	// When it starts with "+", a computed default attributes will
+	// be appended.
+	Attributes string `xml:"attributes,attr,omitempty"`
+
+	// Instances store the known instance ids for this package.
+	// It is mainly used by snapshot file.
 	Instances []PackageInstance `xml:"instance"`
 	XMLName   struct{}          `xml:"package"`
+
+	// ComputedAttributes stores computed attributes object
+	// which is easiler to perform matching and comparing.
+	ComputedAttributes attributes `xml:"-"`
 }
 
 type PackageKey string
@@ -470,6 +501,19 @@ func (p *Packages) FilterACL(jirix *jiri.X) (Packages, bool, error) {
 		retPkgs[pkg.Key()] = pkg
 	}
 	return retPkgs, hasInternal, nil
+}
+
+// FillAttrs fill attributes for a package. If the package already
+// explicitly defined its attributes, this function will not
+// overwrite it.
+func (p *Package) FillAttrs(jirix *jiri.X, attrs string) {
+	if p.Attributes == "" {
+		p.Attributes = attrs
+	} else if strings.HasPrefix(p.Attributes, "+") {
+		p.Attributes = attrs + "," + p.Attributes[1:]
+	}
+	p.ComputedAttributes = newAttributes(p.Attributes)
+	p.Attributes = p.ComputedAttributes.String()
 }
 
 type PackageInstance struct {
