@@ -20,6 +20,7 @@ import (
 	"reflect"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -71,6 +72,17 @@ type Project struct {
 	// GitHooks is a directory containing git hooks that will be installed for
 	// this project.
 	GitHooks string `xml:"githooks,attr,omitempty"`
+
+	// Attributes is a list of attributes for a project seperated by comma that
+	// will be helpful to group projects with similar purposes together. By
+	// default, jiri will use the directory name as attribute.
+	Attributes string `xml:"attributes,attr,omitempty"`
+
+	// Fetch is a flag to control jiri should fetch the project by default.
+	// It can be overrided by jiri override or attributes. The default value
+	// is true. Due to a limitation in go that we cannot set a bool xml
+	// attribute's to true, we use type string instead of type bool.
+	Fetch string `xml:"fetch,attr,omitempty"`
 
 	XMLName struct{} `xml:"project"`
 
@@ -132,6 +144,26 @@ func ProjectFromFile(jirix *jiri.X, filename string) (*Project, error) {
 	}
 	p.absolutizePaths(jirix.Root)
 	return p, nil
+}
+
+// FillAttrs fill attributes for a project. If the project already
+// explicitly defined its attributes, this function will not
+// override it.
+func (p *Project) FillAttrs(jirix *jiri.X, attrs string) error {
+	if p.Fetch == "" {
+		p.Fetch = "true"
+	}
+	// normalize the Fetch flag
+	fetch, err := strconv.ParseBool(p.Fetch)
+	if err != nil {
+		return err
+	}
+	p.Fetch = strconv.FormatBool(fetch)
+
+	if p.Attributes == "" {
+		p.Attributes = attrs
+	}
+	return nil
 }
 
 // ToFile writes the project p to a file with the given filename, with defaults
@@ -527,8 +559,12 @@ func CreateSnapshot(jirix *jiri.X, file string, hooks Hooks, pkgs Packages, loca
 	jirix.TimerPush("create snapshot")
 	defer jirix.TimerPop()
 
-	// Create a new Manifest with a Jiri version pinned to each snapshot
-	manifest := Manifest{Version: ManifestVersion}
+	// Create a new Manifest with a Jiri version and current attributes
+	// pinned to each snapshot
+	manifest := Manifest{
+		Version:    ManifestVersion,
+		Attributes: jirix.FetchingAttrs,
+	}
 
 	// Add all local projects to manifest.
 	localProjects, err := LocalProjects(jirix, FullScan)
@@ -1681,6 +1717,58 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, pkgs Packages, gc bool, runHookTimeout, fetchTimeout uint, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, shouldRunHooks, shouldFetchPkgs bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
+
+	// filter optional projects
+	filterOptional := func(projects Projects, pkgs Packages) (Projects, Packages) {
+		allowedAttrs := make(map[string]bool)
+		for _, v := range strings.Split(jirix.FetchingAttrs, ",") {
+			v = strings.TrimSpace(v)
+			allowedAttrs[v] = true
+		}
+		revisedProjs := make(Projects)
+		revisedPkgs := make(Packages)
+		for k, v := range projects {
+			if v.Fetch != "true" {
+				for _, attr := range strings.Split(v.Attributes, ",") {
+					attr := strings.TrimSpace(attr)
+					if _, ok := allowedAttrs[attr]; ok {
+						revisedProjs[k] = v
+						break
+					}
+				}
+			} else {
+				revisedProjs[k] = v
+			}
+		}
+		for k, v := range pkgs {
+			if v.Fetch != "true" {
+				for _, attr := range strings.Split(v.Attributes, ",") {
+					attr := strings.TrimSpace(attr)
+					if _, ok := allowedAttrs[attr]; ok {
+						revisedPkgs[k] = v
+						break
+					}
+				}
+			} else {
+				revisedPkgs[k] = v
+			}
+		}
+		return revisedProjs, revisedPkgs
+	}
+
+	oldRemoteProjs := remoteProjects
+	oldPkgs := pkgs
+	remoteProjects, pkgs = filterOptional(remoteProjects, pkgs)
+	for k, v := range oldRemoteProjs {
+		if _, ok := remoteProjects[k]; !ok {
+			jirix.Logger.Debugf("Project %q is not fetched as its attributes are not set", v.Name)
+		}
+	}
+	for k, v := range oldPkgs {
+		if _, ok := pkgs[k]; !ok {
+			jirix.Logger.Debugf("Package %q is not fetched as its attributes are not set", v.Name)
+		}
+	}
 
 	if err := updateCache(jirix, remoteProjects); err != nil {
 		return err
