@@ -324,6 +324,12 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 		return err
 	}
 
+	if jirix.UsingSnapshot {
+		// using attributes defined in snapshot file instead of
+		// using predefined ones in jiri init.
+		jirix.FetchingAttrs = m.Attributes
+	}
+
 	// Process remote imports.
 	for _, remote := range m.Imports {
 		nextRoot := filepath.Join(root, remote.Root)
@@ -375,8 +381,24 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 		hookMap[hook.ProjectName] = append(hookMap[hook.ProjectName], hook)
 	}
 
+	// Using the name of the parent directory as the default
+	// attribute name if the project.
+	defaultAttrs := func() string {
+		manifestFile := file
+		if repoPath != "" {
+			manifestFile = filepath.Join(repoPath, manifestFile)
+		}
+		containingDir := filepath.Base(filepath.Dir(manifestFile))
+		return containingDir
+	}
+
 	// Collect projects.
 	for _, project := range m.Projects {
+		// Apply default attributes and fetch flags if they are not
+		// explicitly set.
+		if err := project.FillAttrs(jirix, defaultAttrs()); err != nil {
+			return err
+		}
 		// Make paths absolute by prepending <root>.
 		project.absolutizePaths(filepath.Join(jirix.Root, root))
 
@@ -442,6 +464,9 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 	}
 
 	for _, pkg := range m.Packages {
+		if err := pkg.FillAttrs(jirix, defaultAttrs()); err != nil {
+			return nil
+		}
 		key := pkg.Key()
 		ld.Packages[key] = pkg
 	}
