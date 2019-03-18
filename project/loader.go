@@ -280,6 +280,9 @@ func (ld *loader) parseLockData(jirix *jiri.X, data []byte) error {
 }
 
 func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport string, localManifest bool) error {
+	if root != "" {
+		jirix.Logger.Warningf("root is not empty: %q, repoPath: %q, file: %q ", root, repoPath, file)
+	}
 	f := file
 	if repoPath != "" {
 		f = filepath.Join(repoPath, file)
@@ -322,6 +325,12 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 	m, err := loadManifestAndLocks(jirix, file)
 	if err != nil {
 		return err
+	}
+
+	if jirix.UsingSnapshot {
+		// using attributes defined in snapshot file instead of
+		// using predefined ones in jiri init.
+		jirix.FetchingAttrs = m.Attributes
 	}
 
 	// Process remote imports.
@@ -375,8 +384,21 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 		hookMap[hook.ProjectName] = append(hookMap[hook.ProjectName], hook)
 	}
 
+	defaultAttrs := func() string {
+		manifestFile := file
+		if repoPath != "" {
+			manifestFile = filepath.Join(repoPath, manifestFile)
+		}
+		containingDir := filepath.Base(filepath.Dir(manifestFile))
+		return containingDir
+	}
+
 	// Collect projects.
 	for _, project := range m.Projects {
+		// Apply default attributes and fetch flags
+		if err := project.FillAttrs(jirix, defaultAttrs()); err != nil {
+			return err
+		}
 		// Make paths absolute by prepending <root>.
 		project.absolutizePaths(filepath.Join(jirix.Root, root))
 
@@ -442,6 +464,9 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 	}
 
 	for _, pkg := range m.Packages {
+		if err := pkg.FillAttrs(jirix, defaultAttrs()); err != nil {
+			return nil
+		}
 		key := pkg.Key()
 		ld.Packages[key] = pkg
 	}

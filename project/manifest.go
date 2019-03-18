@@ -20,6 +20,7 @@ import (
 	"path"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -35,6 +36,7 @@ import (
 // Manifest represents a setting used for updating the universe.
 type Manifest struct {
 	Version      string        `xml:"version,attr,omitempty"`
+	Attributes   string        `xml:"attributes,attr,omitempty"`
 	Imports      []Import      `xml:"imports>import"`
 	LocalImports []LocalImport `xml:"imports>localimport"`
 	Projects     []Project     `xml:"projects>project"`
@@ -115,6 +117,7 @@ func (m *Manifest) deepCopy() *Manifest {
 	x.Hooks = append([]Hook(nil), m.Hooks...)
 	x.Packages = append([]Package(nil), m.Packages...)
 	x.Version = m.Version
+	x.Attributes = m.Attributes
 	return x
 }
 
@@ -426,14 +429,16 @@ func (hooks HooksByName) Less(i, j int) bool {
 
 // Package struct represents the <package> tag in manifest files.
 type Package struct {
-	Name      string            `xml:"name,attr"`
-	Version   string            `xml:"version,attr"`
-	Path      string            `xml:"path,attr,omitempty"`
-	Internal  bool              `xml:"internal,attr,omitempty"`
-	Platforms string            `xml:"platforms,attr,omitempty"`
-	Flag      string            `xml:"flag,attr,omitempty"`
-	Instances []PackageInstance `xml:"instance"`
-	XMLName   struct{}          `xml:"package"`
+	Name       string            `xml:"name,attr"`
+	Version    string            `xml:"version,attr"`
+	Path       string            `xml:"path,attr,omitempty"`
+	Internal   bool              `xml:"internal,attr,omitempty"`
+	Platforms  string            `xml:"platforms,attr,omitempty"`
+	Flag       string            `xml:"flag,attr,omitempty"`
+	Fetch      string            `xml:"fetch,attr,omitempty"`
+	Attributes string            `xml:"attributes,attr,omitempty"`
+	Instances  []PackageInstance `xml:"instance"`
+	XMLName    struct{}          `xml:"package"`
 }
 
 type PackageKey string
@@ -469,6 +474,26 @@ func (p *Packages) FilterACL(jirix *jiri.X) (Packages, bool, error) {
 		retPkgs[pkg.Key()] = pkg
 	}
 	return retPkgs, hasInternal, nil
+}
+
+// FillAttrs fill attributes for a package. If the package already
+// explicitly defined its attributes, this function will not
+// override it.
+func (p *Package) FillAttrs(jirix *jiri.X, attrs string) error {
+	if p.Fetch == "" {
+		p.Fetch = "true"
+	}
+	// formalize the Fetch flag
+	fetch, err := strconv.ParseBool(p.Fetch)
+	if err != nil {
+		return err
+	}
+	p.Fetch = strconv.FormatBool(fetch)
+
+	if p.Attributes == "" {
+		p.Attributes = attrs
+	}
+	return nil
 }
 
 type PackageInstance struct {
