@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12fe0c3e_c9967d0f",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1719,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-20T18:18:20Z",
+      "side": 1,
+      "message": "If the Projects and Packages types were given a method to allow retrieving the Fetch flag, e.g.\n\n  func (p Projects) Fetchable() bool {\n    return p.Fetch \u003d\u003d true\n  }\n\nand a function to remove a key:\n\n  function (p Projects) Filter(k string) {\n    delete(p, ProjectsKey(k))\n  }\n\nYou\u0027d also do the same for the Packages type.\n\nthen you could make an interface in this file like\n\n  interface FilterFetchable {\n    Fetchable() bool\n    Filter(string)\n  }\n\nand this function signature could be changed to\n\nfunc FilterOptional(attrs string, f FilterFetchable)\n\nIt seems like this would make things easier to use in the two cases where you\u0027re filtering packages only. In the case where you filter both, you could call this function for each. To avoid doing a deep copy on the map, the function could be:\n\nfunc FilterOptional(attrs string, f FilterFetchable) []string\n\nand you could return a slice of keys that were filtered from the underlying maps.",
+      "range": {
+        "startLine": 1719,
+        "startChar": 0,
+        "endLine": 1719,
+        "endChar": 104
+      },
+      "revId": "cb4699b32d6954d65a89d67b9949ee6987113e95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c46419f_e7f6f331",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1733,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-20T18:18:20Z",
+      "side": 1,
+      "message": "What if a subsequent attr is not allowed? What does it mean to be an \"allowed attribute\"? It seems like the documentation for this function could use some updating, because it seems like fetch\u003d\"false\" isn\u0027t enough to ensure that a project or package is filtered here.",
+      "range": {
+        "startLine": 1733,
+        "startChar": 5,
+        "endLine": 1733,
+        "endChar": 10
+      },
+      "revId": "cb4699b32d6954d65a89d67b9949ee6987113e95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
