@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43dabcbd_54fd94cd",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-20T21:40:48Z",
+      "side": 1,
+      "message": "Stray empty lines. You might want to use gofmt to automatically clean them up.",
+      "revId": "21df2f7464948d14888567f052b29a47fc17bf21",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
