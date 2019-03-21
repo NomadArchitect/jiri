@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bde58ab7_a6669550",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1719,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-21T07:17:14Z",
+      "side": 1,
+      "message": "The \"Projects\" type is a map of all available projects so the first example won\u0027t work.\nI tried to use interface but I feel like it won\u0027t save any lines of code. In run_hooks and fetch_packages, I actually did not pass the projects into the FilterOptionalProjectsAndPackage function, as it is safe to iterate a nil map in golang.\n\nI have modified this function to perform filtering in place.",
+      "parentUuid": "12fe0c3e_c9967d0f",
+      "range": {
+        "startLine": 1719,
+        "startChar": 0,
+        "endLine": 1719,
+        "endChar": 104
+      },
+      "revId": "cb4699b32d6954d65a89d67b9949ee6987113e95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c46419f_e7f6f331",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2019-03-20T18:18:20Z",
       "side": 1,
       "message": "What if a subsequent attr is not allowed? What does it mean to be an \"allowed attribute\"? It seems like the documentation for this function could use some updating, because it seems like fetch\u003d\"false\" isn\u0027t enough to ensure that a project or package is filtered here.",
+      "range": {
+        "startLine": 1733,
+        "startChar": 5,
+        "endLine": 1733,
+        "endChar": 10
+      },
+      "revId": "cb4699b32d6954d65a89d67b9949ee6987113e95",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b65e3778_f7302374",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1733,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-21T07:17:14Z",
+      "side": 1,
+      "message": "After some discussion in document https://docs.google.com/document/d/1o1dFiLrUS5Lb30f_jpXV-aoYVwmKi0nLb6ULj5QNDzA/edit?usp\u003dsharing we decide to use \"optional\" as the name of the flag instead of \"fetch\".\n\nThe purpose of this function is that, if the \"optional\u003d\"true\"\", the attributes of this project/package will be matched with attrs, which should be the attributes set by \"jiri init fetch-optional\u003d\"...\"\". If there is no intersection, this package/project will be removed in place so it won\u0027t be fetched by jiri. This allow a user or a bot to control the download some optional project/package.\n\nThe documentation of this function is updated.\n\nIf there is a requirement of more complex matching strategies in the future, we can add them at that time. For now I think the \"allowed attribute\" is good enough.",
+      "parentUuid": "6c46419f_e7f6f331",
       "range": {
         "startLine": 1733,
         "startChar": 5,
