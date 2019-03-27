@@ -637,6 +637,22 @@ func (t Expander) Expand(template string) (pkg string, err error) {
 	return
 }
 
+// FailedToExpandErr represents an error occurred when Expand function
+// failed to expand a cipd package with given platforms information.
+type FailedToExpandErr struct {
+	s string
+}
+
+func (f *FailedToExpandErr) Error() string {
+	return f.s
+}
+
+func newFailedToExpandErr(cipdPath string, platforms []Platform) error {
+	return &FailedToExpandErr{
+		s: fmt.Sprintf("failed to expand cipd path %q using platforms %v", cipdPath, platforms),
+	}
+}
+
 // Expand method expands a cipdPath that contains templates such as ${platform}
 // into concrete full paths.
 func Expand(cipdPath string, platforms []Platform) ([]string, error) {
@@ -656,6 +672,10 @@ func Expand(cipdPath string, platforms []Platform) ([]string, error) {
 			return nil, err
 		}
 		output = append(output, pkg)
+	}
+
+	if len(output) == 0 {
+		return nil, newFailedToExpandErr(cipdPath, platforms)
 	}
 	return output, nil
 }

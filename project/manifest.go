@@ -528,11 +528,10 @@ func (p *Package) GetPath() (string, error) {
 		// If failed, skip filling in default path.
 		if cipd.MustExpand(cipdPath) {
 			expanded, err := cipd.Expand(cipdPath, []cipd.Platform{cipd.CipdPlatform})
-			if err != nil {
-				return "", err
-			}
-			if len(expanded) > 0 {
+			if err == nil {
 				cipdPath = expanded[0]
+			} else if _, ok := err.(*cipd.FailedToExpandErr); !ok {
+				return "", err
 			}
 		}
 		if !cipd.MustExpand(cipdPath) {
