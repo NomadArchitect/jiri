@@ -657,6 +657,10 @@ func Expand(cipdPath string, platforms []Platform) ([]string, error) {
 		}
 		output = append(output, pkg)
 	}
+
+	if len(output) == 0 {
+		return nil, fmt.Errorf("failed to expand cipd path %q using platforms %v", cipdPath, platforms)
+	}
 	return output, nil
 }
 
