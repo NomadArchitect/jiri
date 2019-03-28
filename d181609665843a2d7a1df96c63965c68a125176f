@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd5a7166_f02303b5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-28T18:49:37Z",
+      "side": 1,
+      "message": "I think this should probably be called ExpandError and the constructor newExpandError",
+      "range": {
+        "startLine": 642,
+        "startChar": 5,
+        "endLine": 642,
+        "endChar": 22
+      },
+      "revId": "d181609665843a2d7a1df96c63965c68a125176f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f31a3cd_f3972095",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-03-28T18:49:37Z",
+      "side": 1,
+      "message": "From what I can tell, this will only result in returning an error when the returned error is _not_ a cipd.ExpandError. Are there some types of errors that you want to ignore? The CL description seems to indicate that we want to provide folks with this information, so if we don\u0027t want to ignore any errors, I think the following is more accurate:\n\n  if err !\u003d nil {\n    return \"\", err\n  }\n  cipdPath \u003d expanded[0]\n\n(Also note typically you only want the error flow indented.)",
+      "range": {
+        "startLine": 533,
+        "startChar": 0,
+        "endLine": 535,
+        "endChar": 4
+      },
+      "revId": "d181609665843a2d7a1df96c63965c68a125176f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
