@@ -45,6 +45,30 @@
       "revId": "d181609665843a2d7a1df96c63965c68a125176f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "298e52b7_c0227dd6",
+        "filename": "project/manifest.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-03-28T19:29:16Z",
+      "side": 1,
+      "message": "So cipd.Expand(path,platforms) is expected to return at least one path. Otherwise it should be considered as an error. It can be either the path is invalid (an error returned by Expander.Expand()) or the path just do not allow supplied platform, e.g.:\n\n \"test3/${platform\u003dlinux-armv6l}\" to be expanded with platform\u003d\"linux-amd64\". It cannot be expanded.\n\nFor Package.GetPath() function, the second case is expected since we do have a few packages that only support linux and they should be ignored when jiri is run on macs. In this case, this function should return a generic \"prebuilt\" directory instead of an error. That\u0027s why here I did not return every error. \n\nAnother way we can achieve this is to break the promise that cipd.Expand() will return at least one path, and the caller should always check if an empty slice is being returned and prepare the error message if that happens. In this case, I can get rid of the customized error type. I am not sure if this is the better way to go.",
+      "parentUuid": "1f31a3cd_f3972095",
+      "range": {
+        "startLine": 533,
+        "startChar": 0,
+        "endLine": 535,
+        "endChar": 4
+      },
+      "revId": "d181609665843a2d7a1df96c63965c68a125176f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
