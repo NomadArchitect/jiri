@@ -11,10 +11,11 @@ import (
 )
 
 var resolveFlags struct {
-	lockFilePath      string
-	localManifestFlag bool
-	enablePackageLock bool
-	enableProjectLock bool
+	lockFilePath         string
+	localManifestFlag    bool
+	enablePackageLock    bool
+	enableProjectLock    bool
+	enablePackageVersion bool
 }
 
 var cmdResolve = &cmdline.Command{
@@ -35,6 +36,7 @@ func init() {
 	flags.BoolVar(&resolveFlags.localManifestFlag, "local-manifest", false, "Use local manifest")
 	flags.BoolVar(&resolveFlags.enablePackageLock, "enable-package-lock", true, "Enable resolving packages in lockfile")
 	flags.BoolVar(&resolveFlags.enableProjectLock, "enable-project-lock", false, "Enable resolving projects in lockfile")
+	flags.BoolVar(&resolveFlags.enablePackageVersion, "enable-package-version", false, "Enable version tag for packages in lockfile")
 }
 
 func runResolve(jirix *jiri.X, args []string) error {
@@ -55,5 +57,5 @@ func runResolve(jirix *jiri.X, args []string) error {
 	// Jiri will halt when detecting conflicts in locks. So to make it work,
 	// we need to temporarily disable the conflicts detection.
 	jirix.IgnoreLockConflicts = true
-	return project.GenerateJiriLockFile(jirix, manifestFiles, resolveFlags.lockFilePath, resolveFlags.enableProjectLock, resolveFlags.enablePackageLock, resolveFlags.localManifestFlag)
+	return project.GenerateJiriLockFile(jirix, manifestFiles, resolveFlags.lockFilePath, resolveFlags.enableProjectLock, resolveFlags.enablePackageLock, resolveFlags.enablePackageVersion, resolveFlags.localManifestFlag)
 }
