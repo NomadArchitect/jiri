@@ -1,0 +1,46 @@
+=== RUN   TestGetCurrentCommit
+--- PASS: TestGetCurrentCommit (0.00s)
+=== RUN   TestHasPrebuilt
+--- PASS: TestHasPrebuilt (0.00s)
+=== RUN   TestDoesNotHavePrebuilt
+--- PASS: TestDoesNotHavePrebuilt (0.00s)
+=== RUN   TestDownloadBinary
+--- PASS: TestDownloadBinary (0.00s)
+=== RUN   TestUpdateExecutable
+--- PASS: TestUpdateExecutable (0.00s)
+=== RUN   TestFindRootEnvSymlink
+--- PASS: TestFindRootEnvSymlink (0.00s)
+PASS
+ok  	fuchsia.googlesource.com/jiri	(cached)
+=== RUN   TestAnalyticsDisabled
+--- PASS: TestAnalyticsDisabled (0.00s)
+=== RUN   TestSendExecutionCommandTiming
+--- PASS: TestSendExecutionCommandTiming (0.00s)
+=== RUN   TestSendCommand
+--- PASS: TestSendCommand (0.00s)
+PASS
+ok  	fuchsia.googlesource.com/jiri/analytics_util	(cached)
+=== RUN   TestFetchBinary
+--- PASS: TestFetchBinary (17.29s)
+=== RUN   TestCipdVersion
+--- PASS: TestCipdVersion (0.00s)
+=== RUN   TestFetchDigest
+--- PASS: TestFetchDigest (0.00s)
+=== RUN   TestSelfUpdate
+--- PASS: TestSelfUpdate (4.54s)
+=== RUN   TestBootsrap
+--- PASS: TestBootsrap (2.29s)
+=== RUN   TestEnsure
+--- PASS: TestEnsure (1.60s)
+=== RUN   TestCheckACL
+--- PASS: TestCheckACL (2.65s)
+=== RUN   TestResolve
+--- PASS: TestResolve (2.42s)
+=== RUN   TestExpand
+--- PASS: TestExpand (0.00s)
+=== RUN   TestMustExpand
+--- PASS: TestMustExpand (0.00s)
+=== RUN   TestDecl
+--- PASS: TestDecl (0.00s)
+PASS
+ok  	fuchsia.googlesource.com/jiri/cipd	(cached)
