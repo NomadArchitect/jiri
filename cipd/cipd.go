@@ -538,6 +538,119 @@ func parseVersions(file string) ([]PackageInstance, error) {
 	return output, nil
 }
 
+type packageFloatingRef struct {
+	pkg      PackageInstance
+	err      error
+	floating bool
+}
+
+// CheckFloatingRefs determines if pkgs contains a floating ref which shouldn't
+// be used normally.
+func CheckFloatingRefs(jirix *jiri.X, pkgs map[PackageInstance]bool) error {
+	if _, err := Bootstrap(); err != nil {
+		return err
+	}
+
+	c := make(chan packageFloatingRef)
+	for k := range pkgs {
+		go checkFloatingRefs(jirix, k, c)
+	}
+
+	var err error
+	for i := 0; i < len(pkgs); i++ {
+		floatingRef := <-c
+		pkgs[floatingRef.pkg] = floatingRef.floating
+		if floatingRef.err != nil {
+			err = floatingRef.err
+			if jirix != nil {
+				jirix.Logger.Debugf("checkFloatingRefs failed due to error: %v", err)
+			}
+		}
+	}
+	return err
+}
+
+func checkFloatingRefs(jirix *jiri.X, pkg PackageInstance, c chan<- packageFloatingRef) {
+	// cipd should already bootstrapped before calling
+	// this function.
+	if cipdBinary == "" {
+		c <- packageFloatingRef{
+			pkg:      pkg,
+			err:      errors.New("cipd is not bootstrapped when calling checkFloatingRefs"),
+			floating: false,
+		}
+		return
+	}
+	args := []string{"describe", pkg.PackageName, "-version", pkg.VersionTag}
+	if jirix != nil {
+		jirix.Logger.Debugf("Invoke cipd with %v", args)
+	}
+	var stdoutBuf bytes.Buffer
+	var stderrBuf bytes.Buffer
+	command := exec.Command(cipdBinary, args...)
+	command.Env = append(os.Environ(), "CIPD_HTTP_USER_AGENT_PREFIX="+getUserAgent())
+	command.Stdin = os.Stdin
+	command.Stdout = &stdoutBuf
+	command.Stderr = &stderrBuf
+
+	if err := command.Run(); err != nil {
+		c <- packageFloatingRef{pkg: pkg, err: err, floating: false}
+		return
+	}
+	// Example of stdout:
+	// #1
+	// Package:       gn/gn/linux-amd64
+	// Instance ID:   4usiirrra6WbnCKgplRoiJ8EcAsCuqCOd_7tpf_yXrAC
+	// Registered by: user:infra-internal-gn-builder@chops-service-accounts.iam.gserviceaccount.com
+	// Registered at: 2019-04-03 15:02:05.553392 -0700 PDT
+	// Refs:
+	//   latest
+	// Tags:
+	//   git_repository:https://gn.googlesource.com/gn
+	//   git_revision:64b846c96daeb3eaf08e26d8a84d8451c6cb712b
+	//
+	// #2
+	// Package:       gn/gn/linux-amd64
+	// Instance ID:   VRY1me4gvKSv4EauLziimxJp4TvShj4xMekCIlWsp1cC
+	// Registered by: user:infra-internal-gn-builder@chops-service-accounts.iam.gserviceaccount.com
+	// Registered at: 2019-02-27 10:14:57.901896 -0800 PST
+	// Refs:          none
+	// Tags:
+	//   git_repository:https://gn.googlesource.com/gn
+	//   git_revision:d062e74fbc255aa2d33cb71321b322fc94ae6810
+
+	RefsScanner := bufio.NewScanner(&stdoutBuf)
+	hitRefs := false
+	for RefsScanner.Scan() {
+		curLine := RefsScanner.Text()
+		if strings.HasPrefix(curLine, "Refs:") {
+			hitRefs = true
+			refLine := strings.Fields(curLine)
+			if len(refLine) == 2 && refLine[1] == "none" {
+				// The version is a tag as the refs for this
+				// instance id is empty.
+				c <- packageFloatingRef{pkg: pkg, err: nil, floating: false}
+				return
+			}
+			continue
+		}
+		if !hitRefs || len(curLine) == 0 {
+			continue
+		}
+		if curLine[0] == ' ' || curLine[0] == '\t' {
+			ref := strings.TrimSpace(curLine)
+			if ref == pkg.VersionTag {
+				c <- packageFloatingRef{pkg: pkg, err: nil, floating: true}
+				return
+			}
+		} else {
+			break
+		}
+	}
+	c <- packageFloatingRef{pkg: pkg, err: nil, floating: false}
+	return
+}
+
 // Platform contains the parameters for a "${platform}" template.
 // The string value can be obtained by calling String().
 type Platform struct {
