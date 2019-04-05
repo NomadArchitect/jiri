@@ -331,3 +331,18 @@ func TestDecl(t *testing.T) {
 		}
 	}
 }
+
+func TestFloatingRefs(t *testing.T) {
+	tests := map[string]bool{
+		"latest": true,
+		"git_revision:bdb0fd02324b120cacde634a9235405061c8ea06": false,
+	}
+
+	for k, v := range tests {
+		if ok, err := UsedFloatingRefs(nil, "gn/gn/${platform}", k); err != nil {
+			t.Errorf("UsedFloatingRefs failed due to error: %v", err)
+		} else if ok != v {
+			t.Errorf("expecting %v, got %v for test %q", v, ok, k)
+		}
+	}
+}

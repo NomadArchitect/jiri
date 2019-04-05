@@ -538,6 +538,81 @@ func parseVersions(file string) ([]PackageInstance, error) {
 	return output, nil
 }
 
+// UsedFloatingRefs determines if the version is a floating ref which shouldn't be used
+// normally.
+func UsedFloatingRefs(jirix *jiri.X, pkg, version string) (bool, error) {
+	cipdPath, err := Bootstrap()
+	if err != nil {
+		return false, err
+	}
+	args := []string{"describe", pkg, "-version", version}
+	if jirix != nil {
+		jirix.Logger.Debugf("Invoke cipd with %v", args)
+	}
+	fmt.Println(args)
+	var stdoutBuf bytes.Buffer
+	var stderrBuf bytes.Buffer
+	command := exec.Command(cipdPath, args...)
+	command.Env = append(os.Environ(), "CIPD_HTTP_USER_AGENT_PREFIX="+getUserAgent())
+	command.Stdin = os.Stdin
+	command.Stdout = &stdoutBuf
+	command.Stderr = &stderrBuf
+
+	err = command.Run()
+	if err != nil {
+		return false, fmt.Errorf("cipd described failed due to error: %v\nstdout:%s\nstderr:%s", err, stdoutBuf.String(), stderrBuf.String())
+	}
+	// Example of stdout:
+	// #1
+	// Package:       gn/gn/linux-amd64
+	// Instance ID:   4usiirrra6WbnCKgplRoiJ8EcAsCuqCOd_7tpf_yXrAC
+	// Registered by: user:infra-internal-gn-builder@chops-service-accounts.iam.gserviceaccount.com
+	// Registered at: 2019-04-03 15:02:05.553392 -0700 PDT
+	// Refs:
+	//   latest
+	// Tags:
+	//   git_repository:https://gn.googlesource.com/gn
+	//   git_revision:64b846c96daeb3eaf08e26d8a84d8451c6cb712b
+	//
+	// #2
+	// Package:       gn/gn/linux-amd64
+	// Instance ID:   VRY1me4gvKSv4EauLziimxJp4TvShj4xMekCIlWsp1cC
+	// Registered by: user:infra-internal-gn-builder@chops-service-accounts.iam.gserviceaccount.com
+	// Registered at: 2019-02-27 10:14:57.901896 -0800 PST
+	// Refs:          none
+	// Tags:
+	//   git_repository:https://gn.googlesource.com/gn
+	//   git_revision:d062e74fbc255aa2d33cb71321b322fc94ae6810
+
+	RefsScanner := bufio.NewScanner(&stdoutBuf)
+	hitRefs := false
+	for RefsScanner.Scan() {
+		curLine := RefsScanner.Text()
+		if strings.HasPrefix(curLine, "Refs:") {
+			hitRefs = true
+			refLine := strings.Fields(curLine)
+			if len(refLine) == 2 && refLine[1] == "none" {
+				// The version is a tag as the refs for this
+				// instance id is empty.
+				return false, nil
+			}
+			continue
+		}
+		if !hitRefs || len(curLine) == 0 {
+			continue
+		}
+		if curLine[0] == ' ' || curLine[0] == '\t' {
+			ref := strings.TrimSpace(curLine)
+			if ref == version {
+				return true, nil
+			}
+		} else {
+			break
+		}
+	}
+	return false, nil
+}
+
 // Platform contains the parameters for a "${platform}" template.
 // The string value can be obtained by calling String().
 type Platform struct {
