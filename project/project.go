@@ -25,6 +25,7 @@ import (
 	"time"
 
 	"fuchsia.googlesource.com/jiri"
+	"fuchsia.googlesource.com/jiri/cipd"
 	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/log"
 	"fuchsia.googlesource.com/jiri/retry"
@@ -942,7 +943,7 @@ func writeLockFile(jirix *jiri.X, lockfilePath string, projectLocks ProjectLocks
 
 // GenerateJiriLockFile generates jiri lockfile to lockFilePath using
 // manifests in manifestFiles slice.
-func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, lockFilePath string, enableProjectLocks, enablePkgLocks, localManifest bool) error {
+func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, lockFilePath string, enableProjectLocks, enablePkgLocks, allowFloatingRefs, localManifest bool) error {
 	jirix.Logger.Debugf("Generate jiri lockfile for manifests %v to %q", manifestFiles, lockFilePath)
 
 	resolveLocks := func(jirix *jiri.X, manifestFiles []string, localManifest bool) (projectLocks ProjectLocks, pkgLocks PackageLocks, err error) {
@@ -957,12 +958,34 @@ func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, lockFilePath st
 			}
 		}
 		if enablePkgLocks {
+			if !allowFloatingRefs {
+				pkgsForRefCheck := make(map[cipd.PackageInstance]bool)
+				for _, v := range pkgs {
+					pkgInstance := cipd.PackageInstance{
+						PackageName: v.Name,
+						VersionTag:  v.Version,
+					}
+					pkgsForRefCheck[pkgInstance] = false
+				}
+				if err := cipd.CheckFloatingRefs(jirix, pkgsForRefCheck); err != nil {
+					return nil, nil, err
+				}
+				for k, v := range pkgsForRefCheck {
+					var err error
+					if v {
+						err = fmt.Errorf("package %q used floating ref %q, which is not allowed", k.PackageName, k.VersionTag)
+						jirix.Logger.Debugf(err.Error())
+					}
+					if err != nil {
+						return nil, nil, err
+					}
+				}
+			}
 			pkgLocks, err = resolvePackageLocks(jirix, projects, pkgs)
 			if err != nil {
 				return
 			}
 		}
-
 		return
 	}
 
