@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e0f6096_bf23b2f8",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 5235
+      },
+      "writtenOn": "2019-04-08T21:46:23Z",
+      "side": 1,
+      "message": "Use -json-output.\nI think you can also short-circuit this because anything with a `:` in it is a tag.\nIt\u0027s only instance IDs that might not be easy to tell from refs.",
+      "revId": "4d425cc6c57f2d501c67e7d0b297c8fab5506351",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
