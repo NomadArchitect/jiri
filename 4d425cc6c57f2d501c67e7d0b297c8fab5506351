@@ -16,6 +16,24 @@
       "revId": "4d425cc6c57f2d501c67e7d0b297c8fab5506351",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69259d3f_0ba9daa9",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-08T22:32:05Z",
+      "side": 1,
+      "message": "I would like to avoid short-circuit this as to properly detect instance ids, I need to copy some code from luci-go, which is not ideal compare to properly parse the JSON output.",
+      "parentUuid": "8e0f6096_bf23b2f8",
+      "revId": "4d425cc6c57f2d501c67e7d0b297c8fab5506351",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
