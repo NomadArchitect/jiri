@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4995b033_60b78461",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:52:53Z",
+      "side": 1,
+      "message": "In the case that we have two packages a, and b, when the first package returns an error and the second does not, we will return a nil error (though it will be logged). Given how this is consumed, it seems like the GenerateJiriLockfile function that calls this would go on to try to resolve locks, when it actually expects to return an error.\n\nAlong with the comment below about adding a semaphore, I wonder if this loop could be executed in an async closure started before the checkFloatingRefs goroutines are spawned. This closure could then populate a slice of errors, and this function could return []error. If a floatingRef containing an error comes it, that error would be appended to the slice. Then the caller will know _all_ the errors, and if none are present, a range over the slice would do nothing. This would allow the caller to provide information about all errors, and go about its business if none were present.",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 573,
+        "endChar": 3
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5553a410_a7f1d46a",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:52:53Z",
+      "side": 1,
+      "message": "nice!",
+      "range": {
+        "startLine": 586,
+        "startChar": 77,
+        "endLine": 586,
+        "endChar": 83
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efff8b9b_b7fd4e18",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:52:53Z",
+      "side": 1,
+      "message": "How many goroutines are likely to be spawned here? I think this is a good use for concurrency, but I am slightly worried if we are spawning hundreds of processes that people on slower/smaller systems may have a poor experience when this check runs. If we\u0027re expecting that this could result in a bunch of processes, perhaps we should consider a semaphore that limits the goroutines.",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 38
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
