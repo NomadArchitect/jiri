@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a5919c6f_c86296cb",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T17:43:50Z",
+      "side": 1,
+      "message": "If I land this change with this flag to true, the update-lockfile.sh will rewrite all lockfiles with new Version tag. It will cause merge conflicts with all rollers. \n\nThe version check is always enforced if they are available. This just control whether the \u0027jiri resolve\u0027 will output the package version tags in lockfile.",
+      "parentUuid": "46990f5f_1c2a0c14",
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ed75831e_50a9e46a",
         "filename": "cmd/jiri/resolve.go",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2019-04-11T16:31:13Z",
       "side": 1,
       "message": "I think it\u0027s starting to make sense to have something like a project.Config struct that is effectively the resolveFlags struct which is used to populate the flags and is just passed into GenerateJiriLockFile -- or alternatively, is constructed based on the flags read.\n\nThis function call is getting hard to read and analyze for correctness, especially since the order of arguments does not match their order in the struct, and I seem to recall having either had this thought or commenting on it before in prior CLs touching this function.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 216
+      },
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "714a65d5_7c913a0d",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T17:43:50Z",
+      "side": 1,
+      "message": "Or maybe we can have a unified type that wraps around a map to store different flags for different jiri commands. It implements some interface like \"getBoolFlag(\"flag name\")\" etc. We can pass that wrapped map object to different callees.\n\nI changed the long args list into A ResolveConfig struct in latest patchset. I am reluctant to name it ProjectConfig since it is currently only used by \u0027jiri resolve\u0027. The ResolveConfig is defined in package \u0027project\u0027 instead of \u0027main\u0027, otherwise it will cause import cycles. Please let me know your thoughts.",
+      "parentUuid": "ed75831e_50a9e46a",
       "range": {
         "startLine": 60,
         "startChar": 8,
