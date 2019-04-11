@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "300fa553_fab292f0",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T22:21:03Z",
+      "side": 1,
+      "message": "The err will not be ignored. The err is reused and it will be returned at the end of this function. We have a similar implementation in https://fuchsia.googlesource.com/jiri/+/a017bef6a229864531a01512766f0179e1bb777d/project/manifest.go#601\n\nLet me think about the async closure design. It may simplify a lot of things.",
+      "parentUuid": "4995b033_60b78461",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 573,
+        "endChar": 3
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5553a410_a7f1d46a",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -59,6 +83,30 @@
       "writtenOn": "2019-04-11T21:52:53Z",
       "side": 1,
       "message": "How many goroutines are likely to be spawned here? I think this is a good use for concurrency, but I am slightly worried if we are spawning hundreds of processes that people on slower/smaller systems may have a poor experience when this check runs. If we\u0027re expecting that this could result in a bunch of processes, perhaps we should consider a semaphore that limits the goroutines.",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 38
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a279be29_9458757f",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T22:21:03Z",
+      "side": 1,
+      "message": "I think this is limited by runtime.GOMAXPROCS(runtime.NumCPU()) in cmd.go . So it could be hundreds in some cases. The cipd acl check is also using go routine without semaphore. Though there are only few packages need acl check. I will try the async closure and put a limit of concurrent go routines in a follow up patch set.",
+      "parentUuid": "efff8b9b_b7fd4e18",
       "range": {
         "startLine": 622,
         "startChar": 0,
