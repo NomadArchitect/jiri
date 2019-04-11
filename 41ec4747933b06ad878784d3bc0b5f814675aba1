@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eea7f952_8dcdc484",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-04-11T18:48:50Z",
+      "side": 1,
+      "message": "Could we make this the default behavior?",
+      "revId": "41ec4747933b06ad878784d3bc0b5f814675aba1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
