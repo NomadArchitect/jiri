@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7225ea0d_27d63242",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:36:38Z",
+      "side": 1,
+      "message": "It\u0027s valid to make a slice of zero length, and that comes in handy here: the test for `len(args) \u003e 0` above can be removed as ranging over an empty slice will not execute the range body. Note also that when the capacity argument to `make` is omitted, the length is used as the capacity argument. So make([]T, len(a), len(a)) is equivalent to make([]T, len(a)).\n\nWe can also remove additional state below if we don\u0027t treat args very specially as we don\u0027t have to later check regexpFlag again. Consider implementing this bit as:\n\n  matches :\u003d make([]*regexp.Regexp, len(args))\n  for _, arg :\u003d range args {\n    if !regexpFlag {\n      arg \u003d regexp.QuoteMeta(arg)\n    }\n    if re, err :\u003d regexp.Compile(arg); err !\u003d nil {\n      return fmt.Errorf(\"failed to compile regexp %v: %v\", a, err)\n    } else {\n      matches \u003d append(matches, re)\n    }\n  }",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47f72016_5bec52c6",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:36:38Z",
+      "side": 1,
+      "message": "We can make this logic simpler and reduce indentation by moving the length check into the loop. If the above suggestion is also taken into account, we can elide an additional else case. So for example, the whole of the above can turn into:\n\n  for k, v :\u003d range pkgs {\n    if len(args) \u003d\u003d 0 {\n      keys \u003d append(keys, k)\n    } else {\n      for _, re :\u003d range matches {\n        if re.MatchString(v.Name) {\n          keys \u003d append(keys, k)\n          break   \n        }       \n      }       \n    }       \n  }\n\nThis works because when we use regexp.QuoteMeta in the matching suggestion above, we get a regular expression that matches the literal text. So there can\u0027t be any case where we end up matching something we shouldn\u0027t because of a . somewhere, or we mess up compiling because of an unterminated parenthesis (for example).",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3faa60ab_75a13f6d",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T21:36:38Z",
+      "side": 1,
+      "message": "I think it\u0027s slightly more idiomatic to write this as:\n\n  for _, key :\u003d range keys {\n    ...\n    info \u003d append(info, packageInfoOutput{\n      Name: ...\n      ...\n    })\n  }\n\n...if only because the index of the range is additional state we don\u0027t have to worry about.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 27
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
