@@ -105,6 +105,30 @@
       "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fea4ace4_c78968be",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T18:57:56Z",
+      "side": 1,
+      "message": "I rewrite it with interface approach.",
+      "parentUuid": "fa2518ef_280072aa",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 216
+      },
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
