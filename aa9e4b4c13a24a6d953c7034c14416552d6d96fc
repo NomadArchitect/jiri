@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "46990f5f_1c2a0c14",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-04-11T16:24:05Z",
+      "side": 1,
+      "message": "Why do we need this option? Why not always enforce this when package lock is enabled?",
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
