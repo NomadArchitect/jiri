@@ -81,6 +81,30 @@
       "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa2518ef_280072aa",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T17:49:51Z",
+      "side": 1,
+      "message": "Another common approach for configuration (that I forgot to mention, sorry!) is to declare an interface with function members that are expected to yield configuration parameters for that thing. So you could imagine an interface ResolveConfig with functions LockfilePath, LocalManifest, EnablePackageLock, etc. You could then attach functions to resolveFlags that implement this interface and have the function take that interface.\n\nThe approach described above I think is one of the cleaner solutions to this sort of problem -- the main package doesn\u0027t really need to know or fill in any types, and we don\u0027t have issues with effectively having flags in a non-main package.\n\nI think what you\u0027ve done is Just Fine(tm) for now, so I\u0027ll mark this comment resolved. I\u0027ll leave it up to you if you want to do the interface approach.",
+      "parentUuid": "714a65d5_7c913a0d",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 216
+      },
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
