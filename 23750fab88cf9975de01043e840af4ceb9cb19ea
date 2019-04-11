@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5ff8c9dd_d772dc10",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T22:50:30Z",
+      "side": 1,
+      "message": "Most of the code here is a copy of project.go. I didn\u0027t think too much about it. \n\nThe code example in your comment does not have the same behavior as the PatchSet 2.\n\nE.g. if I try \u0027jiri package gn\u0027 using PatchSet 2, it returns nothing. But if I use the QuoteMeta here, it will return the package gn/gn/${platform} because the regex engine will perform a partial match.\n\nI would prefer to stick to the behavior of the original code so it would be consistent with \u0027jiri project\u0027 command.",
+      "parentUuid": "7225ea0d_27d63242",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47f72016_5bec52c6",
         "filename": "cmd/jiri/package.go",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ea98403c_82a1226f",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T22:50:30Z",
+      "side": 1,
+      "message": "I simplified the implementation a little bit. But I didn\u0027t use your implementation. The explanation is in an earlier comment.",
+      "parentUuid": "47f72016_5bec52c6",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3faa60ab_75a13f6d",
         "filename": "cmd/jiri/package.go",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11a121e4_5417286f",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T22:50:30Z",
+      "side": 1,
+      "message": "I changed len(keys) to 0, otherwise it will have a lot of empty packageInfoOutput object in the slice.",
+      "parentUuid": "3faa60ab_75a13f6d",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 27
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
