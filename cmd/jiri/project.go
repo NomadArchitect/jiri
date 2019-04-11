@@ -21,11 +21,12 @@ import (
 )
 
 var (
-	cleanAllFlag   bool
-	cleanupFlag    bool
-	jsonOutputFlag string
-	regexpFlag     bool
-	templateFlag   string
+	cleanAllFlag      bool
+	cleanupFlag       bool
+	useRemoteProjects bool
+	jsonOutputFlag    string
+	regexpFlag        bool
+	templateFlag      string
 )
 
 func init() {
@@ -34,6 +35,7 @@ func init() {
 	cmdProject.Flags.StringVar(&jsonOutputFlag, "json-output", "", "Path to write operation results to.")
 	cmdProject.Flags.BoolVar(&regexpFlag, "regexp", false, "Use argument as regular expression.")
 	cmdProject.Flags.StringVar(&templateFlag, "template", "", "The template for the fields to display.")
+	cmdProject.Flags.BoolVar(&useRemoteProjects, "list-remote-projects", false, "List remote projects instead of local projects.")
 }
 
 // cmdProject represents the "jiri project" command.
@@ -110,6 +112,7 @@ type infoOutput struct {
 	Revision      string   `json:"revision"`
 	CurrentBranch string   `json:"current_branch,omitempty"`
 	Branches      []string `json:"branches,omitempty"`
+	Manifest      string   `json:"manifest,omitempty"`
 }
 
 // runProjectInfo provides structured info on local projects.
@@ -141,10 +144,23 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 	if err != nil {
 		return err
 	}
+	if useRemoteProjects {
+		projects, _, _, err = project.LoadManifestFile(jirix, jirix.JiriManifestFile(), projects, false)
+		if err != nil {
+			return err
+		}
+	}
 	if len(args) == 0 {
 		currentProject, err := project.CurrentProject(jirix)
 		if err != nil {
 			return err
+		}
+		// Due to fuchsia.git is checked out at root.
+		// set currentProject to nil if current working
+		// dir is JIRI_ROOT to allow list all projects.
+		cwd, err := os.Getwd()
+		if cwd == jirix.Root {
+			currentProject = nil
 		}
 		if currentProject == nil {
 			// jiri was run from outside of a project so let's
@@ -207,6 +223,7 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 			Remote:        state.Project.Remote,
 			Revision:      state.Project.Revision,
 			CurrentBranch: state.CurrentBranch.Name,
+			Manifest:      state.Project.ManifestPath,
 		}
 		for _, b := range state.Branches {
 			info[i].Branches = append(info[i].Branches, b.Name)
@@ -225,6 +242,9 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 			fmt.Printf("  Path:     %s\n", i.Path)
 			fmt.Printf("  Remote:   %s\n", i.Remote)
 			fmt.Printf("  Revision: %s\n", i.Revision)
+			if useRemoteProjects {
+				fmt.Printf("  Manifest: %s\n", i.Manifest)
+			}
 			if len(i.Branches) != 0 {
 				fmt.Printf("  Branches:\n")
 				width := 0

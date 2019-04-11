@@ -416,6 +416,9 @@ func (ld *loader) load(jirix *jiri.X, root, repoPath, file, ref, parentImport st
 			return fmt.Errorf("duplicate project %q found in %q", key, shortFileName(jirix.Root, repoPath, file, ref))
 		}
 
+		// Record manifest location.
+		project.ManifestPath = f
+
 		ld.Projects[key] = project
 	}
 
