@@ -16,6 +16,29 @@
       "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed75831e_50a9e46a",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-11T16:31:13Z",
+      "side": 1,
+      "message": "I think it\u0027s starting to make sense to have something like a project.Config struct that is effectively the resolveFlags struct which is used to populate the flags and is just passed into GenerateJiriLockFile -- or alternatively, is constructed based on the flags read.\n\nThis function call is getting hard to read and analyze for correctness, especially since the order of arguments does not match their order in the struct, and I seem to recall having either had this thought or commenting on it before in prior CLs touching this function.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 216
+      },
+      "revId": "aa9e4b4c13a24a6d953c7034c14416552d6d96fc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
