@@ -16,6 +16,24 @@
       "revId": "41ec4747933b06ad878784d3bc0b5f814675aba1",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc50b60b_765b5e55",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-11T20:53:12Z",
+      "side": 1,
+      "message": "I would like to but it may break existing infra recipes. \"jiri project\" is used extensively in infra recipes after \"jiri patch\" which does not modify manifests. So if I flip it to true here, it will yield different results in infra recipes.",
+      "parentUuid": "eea7f952_8dcdc484",
+      "revId": "41ec4747933b06ad878784d3bc0b5f814675aba1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
