@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03c7d84b_b739433d",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-12T20:24:50Z",
+      "side": 1,
+      "message": "can we keep the struct named \"resolveFlags\" so we don\u0027t stutter?",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "15e858c4689c25bd12dc36c9398ccf06fe0739ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
