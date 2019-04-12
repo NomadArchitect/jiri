@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2dc95cc8_a10a7962",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-12T00:07:33Z",
+      "side": 1,
+      "message": "I updated the code with semaphore and error text buffer. I tried async clousure but I don\u0027t think it can simplify the problem.",
+      "parentUuid": "300fa553_fab292f0",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 573,
+        "endChar": 3
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5553a410_a7f1d46a",
         "filename": "cipd/cipd.go",
         "patchSetId": 4
@@ -116,6 +140,30 @@
       "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d311b53b_983cbeed",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-12T00:07:33Z",
+      "side": 1,
+      "message": "The total spawned call to cipd describe is limited to 10.",
+      "parentUuid": "a279be29_9458757f",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 38
+      },
+      "revId": "23668dc4a762bff40bce3190fcb53499227d8cf6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
