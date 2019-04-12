@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "f1cd212a_495d57f9",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-04-12T02:50:04Z",
+      "side": 1,
+      "message": "That issue could be solved by doing re :\u003d \"^\" + regexp.QuoteMeta(a) + \"$\" instead of the pure QuoteMeta.\n\nI notice that you have the QuoteMeta still in PS3, which isn\u0027t necessary if you\u0027re maintaining the separate if/else below.",
+      "parentUuid": "5ff8c9dd_d772dc10",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47f72016_5bec52c6",
         "filename": "cmd/jiri/package.go",
         "patchSetId": 2
