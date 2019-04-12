@@ -22,6 +22,30 @@
       "revId": "15e858c4689c25bd12dc36c9398ccf06fe0739ae",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc3036c_026f0f26",
+        "filename": "cmd/jiri/resolve.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-12T20:42:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03c7d84b_b739433d",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "15e858c4689c25bd12dc36c9398ccf06fe0739ae",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
