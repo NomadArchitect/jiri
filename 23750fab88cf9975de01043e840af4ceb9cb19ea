@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "b9e689f0_95ff88cc",
+        "filename": "cmd/jiri/package.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-04-12T04:38:15Z",
+      "side": 1,
+      "message": "I have added \"^\" and \"$\" in the latest patch.",
+      "parentUuid": "f1cd212a_495d57f9",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 2
+      },
+      "revId": "23750fab88cf9975de01043e840af4ceb9cb19ea",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47f72016_5bec52c6",
         "filename": "cmd/jiri/package.go",
         "patchSetId": 2
