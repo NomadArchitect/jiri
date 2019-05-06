@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c684ebf0_f5c662d1",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-06T22:29:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33bf8935_f5a83163",
+      "range": {
+        "startLine": 210,
+        "startChar": 3,
+        "endLine": 210,
+        "endChar": 16
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "413dd215_468d7123",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-06T21:50:32Z",
       "side": 1,
       "message": "We may want to just rename `rebaseProject` to `rebaseProjectOntoRef(..., ref string)` and update callsites that do `rebaseProject(..., remoteBranchName)` to prepend `rebaseProject(..., \"remotes/origin/\"+remoteBranchName)`.  (And also update the error messages here to say \u0027ref\u0027)",
+      "range": {
+        "startLine": 211,
+        "startChar": 5,
+        "endLine": 211,
+        "endChar": 27
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66e22c04_ea89f8bb",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-06T22:29:02Z",
+      "side": 1,
+      "message": "I tried and it comes with following error:\nERROR: Not able to fetch ref \"remotes/origin/master\": \u0027git fetch origin remotes/origin/master\u0027 failed:\n\nSo I need to add a condition check at git fetch to remove the \"remotes/origin\" if they are present. Still quite hacky.",
+      "parentUuid": "413dd215_468d7123",
       "range": {
         "startLine": 211,
         "startChar": 5,
@@ -68,6 +116,30 @@
       "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eab5f4f9_19f69d45",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-06T22:29:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cfef16c_0ce4990e",
+      "range": {
+        "startLine": 220,
+        "startChar": 41,
+        "endLine": 220,
+        "endChar": 47
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
