@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33bf8935_f5a83163",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2019-05-06T21:50:32Z",
+      "side": 1,
+      "message": "nit: update doc comment.",
+      "range": {
+        "startLine": 210,
+        "startChar": 3,
+        "endLine": 210,
+        "endChar": 16
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "413dd215_468d7123",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2019-05-06T21:50:32Z",
+      "side": 1,
+      "message": "We may want to just rename `rebaseProject` to `rebaseProjectOntoRef(..., ref string)` and update callsites that do `rebaseProject(..., remoteBranchName)` to prepend `rebaseProject(..., \"remotes/origin/\"+remoteBranchName)`.  (And also update the error messages here to say \u0027ref\u0027)",
+      "range": {
+        "startLine": 211,
+        "startChar": 5,
+        "endLine": 211,
+        "endChar": 27
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cfef16c_0ce4990e",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2019-05-06T21:50:32Z",
+      "side": 1,
+      "message": "\"revision\"",
+      "range": {
+        "startLine": 220,
+        "startChar": 41,
+        "endLine": 220,
+        "endChar": 47
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
