@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "282a35bc_ee31fbe9",
+        "filename": "cmd/jiri/patch.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 18706
+      },
+      "writtenOn": "2019-05-06T23:36:42Z",
+      "side": 1,
+      "message": "Ah, I understand. Thanks for clarifying.",
+      "parentUuid": "66e22c04_ea89f8bb",
+      "range": {
+        "startLine": 211,
+        "startChar": 5,
+        "endLine": 211,
+        "endChar": 27
+      },
+      "revId": "f6292530e23535b26be3e4d9ee49332c417cc8c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cfef16c_0ce4990e",
         "filename": "cmd/jiri/patch.go",
         "patchSetId": 1
