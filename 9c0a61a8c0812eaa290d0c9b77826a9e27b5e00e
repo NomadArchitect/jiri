@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2b76a44b_fe7ded9c",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 37018
+      },
+      "writtenOn": "2019-05-07T17:05:02Z",
+      "side": 1,
+      "message": "As far as I know, \"go get fuchsia.googlesource.com/jiri/...\u0027 doesn\u0027t work, e.g.:\n\n  $ go get -d -t fuchsia.googlesource.com/jiri/cmd/jiri\n  package fuchsia.googlesource.com/jiri/cmd/jiri: unrecognized import path \"fuchsia.googlesource.com/jiri/cmd/jiri\" (parse https://fuchsia.googlesource.com/jiri/cmd/jiri?go-get\u003d1: no go-import meta tags ())\n\nSame when using fuchsia.googlesource.com/jiri as the import path.",
+      "parentUuid": "109becf6_a056d385",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 64
+      },
+      "revId": "9c0a61a8c0812eaa290d0c9b77826a9e27b5e00e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99ba6f53_0519f9ae",
         "filename": "README.md",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-07T16:56:02Z",
       "side": 1,
       "message": "Could you reflow this paragraph please? This line is 81 characters. This document uses a 80 characters per line format(except for command lines and urls), I am not sure if that is required for fuchsia markdowns but I don\u0027t want to break it here.",
+      "range": {
+        "startLine": 48,
+        "startChar": 79,
+        "endLine": 48,
+        "endChar": 80
+      },
+      "revId": "9c0a61a8c0812eaa290d0c9b77826a9e27b5e00e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71e71a09_0bbd0e3e",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 37018
+      },
+      "writtenOn": "2019-05-07T17:05:02Z",
+      "side": 1,
+      "message": "Sure, will do.",
+      "parentUuid": "99ba6f53_0519f9ae",
       "range": {
         "startLine": 48,
         "startChar": 79,
