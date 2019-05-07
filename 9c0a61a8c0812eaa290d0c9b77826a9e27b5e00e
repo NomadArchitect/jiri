@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "43c3bcbb_ecadb3fb",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-07T17:19:07Z",
+      "side": 1,
+      "message": "Really? I locally tested and it works. Due to the fact that gitile does not support go metadata, we cannot use \u0027go get fuchsia.googlesource.com/jiri/...\u0027 to automatically fetch source and install it. But if the source is already in the GOPATH, go get will not attempt to fetch the source but just install the dependencies.",
+      "parentUuid": "2b76a44b_fe7ded9c",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 64
+      },
+      "revId": "9c0a61a8c0812eaa290d0c9b77826a9e27b5e00e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99ba6f53_0519f9ae",
         "filename": "README.md",
         "patchSetId": 1
