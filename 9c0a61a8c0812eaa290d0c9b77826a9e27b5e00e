@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "109becf6_a056d385",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-07T16:56:02Z",
+      "side": 1,
+      "message": "After the source is fetched to local. All dependencies for a go project can be fetched using \u0027go get -d PROJ_PATH\u0027. Therefore, this line can be simplified to \u0027go get -d -t fuchsia.googlesource.com/jiri/...\u0027 . The \u0027-t\u0027 arg is used to fetch dependencies for tests.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 64
+      },
+      "revId": "9c0a61a8c0812eaa290d0c9b77826a9e27b5e00e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ba6f53_0519f9ae",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-07T16:56:02Z",
+      "side": 1,
+      "message": "Could you reflow this paragraph please? This line is 81 characters. This document uses a 80 characters per line format(except for command lines and urls), I am not sure if that is required for fuchsia markdowns but I don\u0027t want to break it here.",
+      "range": {
+        "startLine": 48,
+        "startChar": 79,
+        "endLine": 48,
+        "endChar": 80
+      },
+      "revId": "9c0a61a8c0812eaa290d0c9b77826a9e27b5e00e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
