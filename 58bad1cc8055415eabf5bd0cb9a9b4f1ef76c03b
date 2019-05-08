@@ -70,6 +70,30 @@
       "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ab991a9_337d206d",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-08T18:28:10Z",
+      "side": 1,
+      "message": "It\u0027s already using the /changes API at line 374 (I didn\u0027t put a debug print to actually verified it). I could take a look at gerrit api manuall (if there is one) to see if I can use a different API to remove invalid results.",
+      "parentUuid": "2652fd94_59b271f4",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 2
+      },
+      "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
