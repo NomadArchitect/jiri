@@ -409,6 +409,14 @@ func (g *Gerrit) GetChange(changeNumber int) (*Change, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Filter the results that do not have a matching CL number.
+	clListFiltered := make(CLList, 0)
+	for _, v := range clList {
+		if v.Number == changeNumber {
+			clListFiltered = append(clListFiltered, v)
+		}
+	}
+	clList = clListFiltered
 	if len(clList) == 0 {
 		return nil, fmt.Errorf("Query for change '%d' returned no results", changeNumber)
 	}
