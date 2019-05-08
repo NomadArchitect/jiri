@@ -22,6 +22,30 @@
       "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86a442f7_79770377",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-08T17:41:48Z",
+      "side": 1,
+      "message": "It seems that gerrit do a partial match for git hashes as well.\nhttps://fuchsia-review.googlesource.com/c/manifest/+/85407 has a git has prefix of 277373a and this result was returned by gerrit when run g.Query(277373). Ideally it should only return https://fuchsia-review.googlesource.com/c/fuchsia/+/277373",
+      "parentUuid": "eadc4796_5961a147",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 2
+      },
+      "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
