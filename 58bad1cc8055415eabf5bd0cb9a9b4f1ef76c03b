@@ -46,6 +46,30 @@
       "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2652fd94_59b271f4",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-05-08T18:20:36Z",
+      "side": 1,
+      "message": "I wonder what this looks like if you use the GET /changes/{changeid} API instead of the generic query API?",
+      "parentUuid": "86a442f7_79770377",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 2
+      },
+      "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
