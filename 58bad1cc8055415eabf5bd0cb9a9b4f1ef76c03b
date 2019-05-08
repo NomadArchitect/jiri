@@ -94,6 +94,30 @@
       "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a457f9d_4be9a29f",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-08T20:29:17Z",
+      "side": 1,
+      "message": "I modified the query string so the return results will not have git hashes matches anymore.",
+      "parentUuid": "1ab991a9_337d206d",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 2
+      },
+      "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
