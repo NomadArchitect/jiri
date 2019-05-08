@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eadc4796_5961a147",
+        "filename": "gerrit/gerrit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-05-08T17:29:07Z",
+      "side": 1,
+      "message": "Do you know why Gerrit returns changes without the matching number even though we request it in the query?",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 2
+      },
+      "revId": "58bad1cc8055415eabf5bd0cb9a9b4f1ef76c03b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
