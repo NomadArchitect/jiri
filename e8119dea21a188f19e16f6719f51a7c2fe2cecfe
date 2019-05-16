@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9b6049f_52c3734e",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-05-16T16:36:38Z",
+      "side": 1,
+      "message": "This is going to reap the cache when there is an error at the remote end and possibly cause poor behavior against GoB (If they have an outage, we potentially wipe our caches and create a load spike when they come back up). `git -C \u003ccache\u003e rev-parse --git-dir` or `git -C \u003ccache\u003e rev-parse --is-inside-work-tree` is going to tell you if the cache is a valid git checkout.",
+      "range": {
+        "startLine": 1731,
+        "startChar": 2,
+        "endLine": 1731,
+        "endChar": 39
+      },
+      "revId": "e8119dea21a188f19e16f6719f51a7c2fe2cecfe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
