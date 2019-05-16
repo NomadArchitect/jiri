@@ -1684,7 +1684,7 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		// Shallow cache, fetch only manifest tracked remote branch
 		refspec = fmt.Sprintf("+refs/heads/%s:refs/heads/%s", branch, branch)
 	}
-	if isPathDir(dir) {
+	updateCache := func() error {
 		if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).SetRemoteUrl("origin", remote); err != nil {
 			return err
 		}
@@ -1704,7 +1704,10 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 			retry.AttemptsOpt(jirix.Attempts)); err != nil {
 			return err
 		}
-	} else {
+		return nil
+	}
+
+	createCache := func() error {
 		// Create cache
 		// TODO : If we in future need to support two projects with same remote url,
 		// one with shallow checkout and one with full, we should create two caches
@@ -1721,8 +1724,21 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch string, depth int) e
 		if err := gitutil.New(jirix, gitutil.RootDirOpt(dir)).Config("remote.origin.fetch", refspec); err != nil {
 			return err
 		}
+		return nil
 	}
-	return nil
+
+	if isPathDir(dir) {
+		if err := updateCache(); err != nil {
+			jirix.Logger.Warningf("Updating git cache %q failed due to error: %v, cache will be cleared", dir, err)
+			if err := os.RemoveAll(dir); err != nil {
+				return fmt.Errorf("failed to clear cache dir %q due to error: %v", dir, err)
+			}
+			return createCache()
+		}
+		return nil
+	}
+
+	return createCache()
 }
 
 // updateCache creates the cache or updates it if already present.
