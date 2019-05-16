@@ -22,6 +22,30 @@
       "revId": "e8119dea21a188f19e16f6719f51a7c2fe2cecfe",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb43aa9_0861ff85",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-05-16T17:34:05Z",
+      "side": 1,
+      "message": "FYI, both of these commands returns 0 (true) on the corrupted cache directory. So they are not suitable to test if a git cache is intact. I am thinking about only clear the cache when the first set-remote-url command failed. It will prevent the load spike you mentioned.",
+      "parentUuid": "a9b6049f_52c3734e",
+      "range": {
+        "startLine": 1731,
+        "startChar": 2,
+        "endLine": 1731,
+        "endChar": 39
+      },
+      "revId": "e8119dea21a188f19e16f6719f51a7c2fe2cecfe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
