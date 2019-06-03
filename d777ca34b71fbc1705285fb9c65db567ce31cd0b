@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ceb83b11_da13d5cc",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "These types aren\u0027t exported, so I don\u0027t think that their members should be?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 1
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180aac23_83af3fce",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "orphan",
+      "range": {
+        "startLine": 98,
+        "startChar": 29,
+        "endLine": 98,
+        "endChar": 34
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76d8343b_69b04c6b",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "orphan",
+      "range": {
+        "startLine": 99,
+        "startChar": 16,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "397de6b7_49481b14",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "This comment can probably be 1 line.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 24
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "698c816f_98e8271f",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "Can we make this a TODO for visibility?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e7595ab_afed473d",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "Can we call this something like \"generateAttributeGraph\"? \".gitattribute\" is a so-called \"dotfile\", and so it was initially a little confusing to me why we\u0027d remove a thing that generates a dotfile. (It\u0027s clear that this is a graphviz .dot file after more careful reading, but someone unfamiliar with it might still be confused.)",
+      "range": {
+        "startLine": 140,
+        "startChar": 21,
+        "endLine": 140,
+        "endChar": 41
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c40c6ac_ce13e39f",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "later",
+      "range": {
+        "startLine": 513,
+        "startChar": 31,
+        "endLine": 513,
+        "endChar": 37
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a506bf4_e9e36c91",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "I think this might read better if the action is first, and when the condition is specified positively:\n\n\"The project will not be fetched by default when attributes are present.\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 76
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4598bfec_d7613f60",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-06-03T16:34:38Z",
+      "side": 1,
+      "message": "\"list of comma-separated attributes for a project,\"",
+      "range": {
+        "startLine": 81,
+        "startChar": 23,
+        "endLine": 81,
+        "endChar": 75
+      },
+      "revId": "d777ca34b71fbc1705285fb9c65db567ce31cd0b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
