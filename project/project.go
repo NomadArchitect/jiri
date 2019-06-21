@@ -1836,6 +1836,11 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 				errs <- err
 				continue
 			}
+			scm := gitutil.New(jirix, gitutil.RootDirOpt(cacheDirPath))
+			if scm.CheckRevAvailable(project.Revision) == nil {
+				jirix.Logger.Infof("%s cache up-to-date; skipping\n", project.Name)
+				continue
+			}
 			go func(dir, remote string, depth int, branch string) {
 				defer func() { <-fetchLimit }()
 				defer wg.Done()
