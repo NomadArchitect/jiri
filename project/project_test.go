@@ -471,6 +471,10 @@ func TestUpdateUniverseWithCache(t *testing.T) {
 	checkReadme(t, fake.X, localProjects[1], "master commit")
 	checkJiriRevFiles(t, fake.X, localProjects[1])
 
+	gitLocal := gitutil.New(fake.X, gitutil.RootDirOpt(localProjects[1].Path))
+	localRev, err := gitLocal.CurrentRevision()
+	fake.ProjectHashes[localProjects[1].Name] = append(fake.ProjectHashes[localProjects[1].Name], localRev)
+
 	// Check that cache was updated
 	cacheDirPath, err := localProjects[1].CacheDirPath(fake.X)
 	if err != nil {
@@ -481,8 +485,6 @@ func TestUpdateUniverseWithCache(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	gitLocal := gitutil.New(fake.X, gitutil.RootDirOpt(localProjects[1].Path))
-	localRev, err := gitLocal.CurrentRevision()
 	if err != nil {
 		t.Fatal(err)
 	}
