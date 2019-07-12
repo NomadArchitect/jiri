@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2ee5401f_625e1b05",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-12T19:23:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a43852b_c050ce80",
+      "range": {
+        "startLine": 1013,
+        "startChar": 45,
+        "endLine": 1013,
+        "endChar": 51
+      },
+      "revId": "d03164d4ba962052d5b2dc11d18a583c6abb8cca",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ae952bf_907f52d9",
         "filename": "project/project.go",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "d03164d4ba962052d5b2dc11d18a583c6abb8cca",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f564c35_5180bf62",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-12T19:23:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ae952bf_907f52d9",
+      "range": {
+        "startLine": 1015,
+        "startChar": 21,
+        "endLine": 1015,
+        "endChar": 29
+      },
+      "revId": "d03164d4ba962052d5b2dc11d18a583c6abb8cca",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
