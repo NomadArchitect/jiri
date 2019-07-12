@@ -359,7 +359,7 @@ type ResolveConfig interface {
 	LocalManifest() bool
 	EnablePackageLock() bool
 	EnableProjectLock() bool
-	EnablePackageVersion() bool
+	HostnameAllowList() []string
 }
 
 // UnmarshalLockEntries unmarshals project locks and package locks from
@@ -1010,6 +1010,27 @@ func writeLockFile(jirix *jiri.X, lockfilePath string, projectLocks ProjectLocks
 	return nil
 }
 
+// HostnameAllowed determines if hostname is allowd under reference by matching
+// each character in reverse order.
+func HostnameAllowed(referece, hostname string) bool {
+	i := len(referece) - 1
+	j := len(hostname) - 1
+	for i >= 0 && j >= 0 {
+		if hostname[j] != referece[i] {
+			return false
+		}
+		i--
+		j--
+	}
+	if i >= 0 {
+		return false
+	}
+	if j >= 0 && hostname[j] != '.' {
+		return false
+	}
+	return true
+}
+
 // GenerateJiriLockFile generates jiri lockfile to lockFilePath using
 // manifests in manifestFiles slice.
 func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, resolveConfig ResolveConfig) error {
@@ -1019,6 +1040,28 @@ func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, resolveConfig R
 		projects, pkgs, err := loadManifestFiles(jirix, manifestFiles, localManifest)
 		if err != nil {
 			return nil, nil, err
+		}
+		// Check hostnames of projects.
+		allowList := resolveConfig.HostnameAllowList()
+		if len(allowList) > 0 {
+			for _, proj := range projects {
+				projURL, err := url.Parse(proj.Remote)
+				if err != nil {
+					return nil, nil, err
+				}
+				remoteHost := projURL.Hostname()
+				allowed := false
+				for _, item := range allowList {
+					if HostnameAllowed(item, remoteHost) {
+						allowed = true
+						break
+					}
+				}
+				if !allowed {
+					err := fmt.Errorf("hostname: %s in project %s is not allowed", remoteHost, proj.Name)
+					return nil, nil, err
+				}
+			}
 		}
 		if resolveConfig.EnableProjectLock() {
 			projectLocks, err = resolveProjectLocks(jirix, projects)
