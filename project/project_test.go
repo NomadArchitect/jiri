@@ -2567,3 +2567,25 @@ func TestOverrideProject(t *testing.T) {
 		t.Errorf("expected git hash %q, got %q", testHash, currentHash)
 	}
 }
+
+func TestHostnameAllowed(t *testing.T) {
+	tests := map[string]bool{
+		"google.com,fuchsia.google.com":     true,
+		"google.com,fuchsia.dev.google.com": true,
+		"google.com,google.com":             true,
+		"google.com,fuchsiagoogle.com":      false,
+		"google.com,oogle.com":              false,
+		"fuchsia-internal,fuchsia-internal": true,
+		"fuchsia-internal,fuchsia":          false,
+	}
+	for k, v := range tests {
+		test := strings.Split(k, ",")
+		if len(test) != 2 {
+			t.Errorf("expecting a single ',' in %q", k)
+		}
+		ret := project.HostnameAllowed(test[0], test[1])
+		if v != ret {
+			t.Errorf("expecting %v, got %v from test %q", v, ret, k)
+		}
+	}
+}
