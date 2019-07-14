@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e95ce6d_e6d4d884",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-14T19:14:52Z",
+      "side": 1,
+      "message": "This is a nice approach! I think it may not be obvious why this particular approach is taken. Can you expand the comment to mention that this reverse-matching approach is intended to allow hierarchical matching for hostnames?\n\nOften when this is done, it\u0027s also desirable to have some form of explicit wildcarding support for the \"reference\" domain. For example, \"*.google.com\" or \".google.com\" might be inputs that would support matching \"foo.google.com\", whereas \"google.com\" might be stricter in that it would _only_ match \"google.com\". Do you think this sort of thing would be useful for the expected use-case here?",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70e2b0c9_90ff497d",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-14T19:14:52Z",
+      "side": 1,
+      "message": "I would like to suggest breaking this code out into its own function, partially because this function is already really long, but partially also because the amount of code added here (and the functionality in it) would be good to test in its own unit. The HostnameAllowed test doesn\u0027t really do a good job of testing the aggregate case.",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3866ec3_c17068bb",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-14T19:14:52Z",
+      "side": 1,
+      "message": "Do we expect these lists to ever get large? It may be worth putting a comment to consider switching to a suffix tree in case this whitelist grows significantly since this is n^2.",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8281453_62c20359",
+        "filename": "project/project_test.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 2585,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-14T19:14:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure we really need a test for the test data itself.\n\nIt would be good to add tests with empty strings on either side.",
+      "range": {
+        "startLine": 2583,
+        "startChar": 0,
+        "endLine": 2585,
+        "endChar": 3
+      },
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
