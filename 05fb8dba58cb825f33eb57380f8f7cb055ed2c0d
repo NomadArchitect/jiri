@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "c9331400_575a452c",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-15T22:35:01Z",
+      "side": 1,
+      "message": "Yes, if we allow only 1 star in the beginning of the reference, it would require O(n). My concern was when the future maintainer found out they can put a star in the allowlist, they might not be aware of the star restrictions. That\u0027s why I put a general purpose wildcard matching function here. The worst case complexity is O(m*n) to be precise.\n\nI think if we can document that only a single prefix star is allowed, your proposal is actually better. It will allow us to use \"google.com\" to match \"google.com\" only while \"*.google.com\" to match \"fuchsia.google.com\" etc. I have patched the code to use your approach.",
+      "parentUuid": "6067827d_95ff22ff",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70e2b0c9_90ff497d",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -140,6 +158,24 @@
       "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fedf64d1_73aada83",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-15T22:35:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "667fb598_5257edd9",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
