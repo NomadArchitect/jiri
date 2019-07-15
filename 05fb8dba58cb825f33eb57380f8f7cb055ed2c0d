@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6067827d_95ff22ff",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-15T21:45:04Z",
+      "side": 1,
+      "message": "Wildcards shouldn\u0027t require n^2 effort; I don\u0027t think we would need to support e.g. `foo*bar.com`, just e.g. `*bar.com` or `*.bar.com`.\n\nBut I don\u0027t mean to derail this to add unnecessary complication. Mostly I\u0027m concerned about the documentation since it may not be super clear to someone why this isn\u0027t just some strcmp operation. :)",
+      "parentUuid": "9bea1b93_7a887f85",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70e2b0c9_90ff497d",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "For now, we only allow googlesource.com and the one in sso. In the future we might need to add fuchsia.dev . So overall we will have a very small set of whitelisted domains. I think suffix tree is kind of overkill here. Besides, if we need wildcard matching, suffix tree will not work.",
       "parentUuid": "f3866ec3_c17068bb",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "667fb598_5257edd9",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-07-15T21:45:04Z",
+      "side": 1,
+      "message": "Sounds good! Though with the wildcard-style matching I mentioned in my reply to the previous comment, you can special case finding `*` in the tree, so it still works. But as I also said there, based on your reply, it seems like a needless complication. Just wanted to make sure :)",
+      "parentUuid": "ed21cb08_7a541f40",
       "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
