@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9bea1b93_7a887f85",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-15T21:30:09Z",
+      "side": 1,
+      "message": "For restricting the hostname for fuchsia code base, I think wildcard support might be unnecessary as we just want to whitelist very few secend level domains like googlesource.com . It would be useful if we want to reuse this function for other purposes. \n\nI have included a wildcard version of this function using greedy approach. In worst case it would require O(n^2) instead of O(n) of current suffix matching. Consider the length of urls in Fuchsia, it\u0027s probably not a big deal. Please let me know what\u0027s your preference. I will delete the other one.",
+      "parentUuid": "1e95ce6d_e6d4d884",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "70e2b0c9_90ff497d",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "f24e3c66_822edb31",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-15T21:30:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70e2b0c9_90ff497d",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3866ec3_c17068bb",
         "filename": "project/project.go",
         "patchSetId": 5
@@ -47,6 +83,24 @@
       "writtenOn": "2019-07-14T19:14:52Z",
       "side": 1,
       "message": "Do we expect these lists to ever get large? It may be worth putting a comment to consider switching to a suffix tree in case this whitelist grows significantly since this is n^2.",
+      "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed21cb08_7a541f40",
+        "filename": "project/project.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-07-15T21:30:09Z",
+      "side": 1,
+      "message": "For now, we only allow googlesource.com and the one in sso. In the future we might need to add fuchsia.dev . So overall we will have a very small set of whitelisted domains. I think suffix tree is kind of overkill here. Besides, if we need wildcard matching, suffix tree will not work.",
+      "parentUuid": "f3866ec3_c17068bb",
       "revId": "05fb8dba58cb825f33eb57380f8f7cb055ed2c0d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
