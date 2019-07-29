@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "be05c460_e861fdf8",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-07-29T07:34:03Z",
+      "side": 1,
+      "message": "\u003e Current cipd unit tests does not have jirix available. It\u0027s not possible to get jirix in cipd unit tests due to go import loops, so it would requires some time to fix these tests, even with some hacks. \n\u003e \n\u003e Some current cipd APIs also does not require jirix. Without jirix, it\u0027s not possible to get current jiri\u0027s meta directory to pinpoint cipd location.\n\nI see, that\u0027s not obvious, it might be worth leaving a TODO comment pointing to an issue so we don\u0027t loose track of that. It\u0027d be nice to have just a single copy of CIPD.\n\n\u003e I was this jiri feature was blocking rollers. I would prefer to use this copy approach to unblock rollers first and fix the two problems above later.\n\nWe could have also reverted the offending change but this is fine as well.",
+      "parentUuid": "176c1ed3_94439863",
+      "range": {
+        "startLine": 210,
+        "startChar": 36,
+        "endLine": 210,
+        "endChar": 74
+      },
+      "revId": "56566a3a61b2c680285ebf8e03ffb2749374f6c4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e72380b_c94c92b9",
         "filename": "cmd/jiri/init.go",
         "patchSetId": 1
