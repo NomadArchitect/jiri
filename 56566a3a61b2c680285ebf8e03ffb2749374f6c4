@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "065b917e_15739ea3",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-07-29T05:22:55Z",
+      "side": 1,
+      "message": "nit: space after colon",
+      "range": {
+        "startLine": 116,
+        "startChar": 80,
+        "endLine": 116,
+        "endChar": 81
+      },
+      "revId": "56566a3a61b2c680285ebf8e03ffb2749374f6c4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af875667_9f4eeffd",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-07-29T05:22:55Z",
+      "side": 1,
+      "message": "I\u0027d omit this part, it\u0027s not necessary.",
+      "range": {
+        "startLine": 116,
+        "startChar": 67,
+        "endLine": 116,
+        "endChar": 80
+      },
+      "revId": "56566a3a61b2c680285ebf8e03ffb2749374f6c4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e89d8321_46039df1",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-07-29T05:22:55Z",
+      "side": 1,
+      "message": "Why not use this as the default location for Jiri rather than making a separate copy?",
+      "range": {
+        "startLine": 210,
+        "startChar": 36,
+        "endLine": 210,
+        "endChar": 74
+      },
+      "revId": "56566a3a61b2c680285ebf8e03ffb2749374f6c4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e72380b_c94c92b9",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-07-29T05:22:55Z",
+      "side": 1,
+      "message": "ditto, just drop this part.",
+      "range": {
+        "startLine": 211,
+        "startChar": 43,
+        "endLine": 211,
+        "endChar": 56
+      },
+      "revId": "56566a3a61b2c680285ebf8e03ffb2749374f6c4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
