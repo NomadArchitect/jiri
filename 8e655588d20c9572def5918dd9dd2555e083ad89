@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50f6ea2e_dc1dd939",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-02T21:10:35Z",
+      "side": 1,
+      "message": "Minor nit: just comma, not a full stop.",
+      "range": {
+        "startLine": 281,
+        "startChar": 40,
+        "endLine": 281,
+        "endChar": 46
+      },
+      "revId": "8e655588d20c9572def5918dd9dd2555e083ad89",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f4cc9a6_b5e1fcd6",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-02T21:10:35Z",
+      "side": 1,
+      "message": "Minor nit: you can omit this.",
+      "range": {
+        "startLine": 311,
+        "startChar": 81,
+        "endLine": 311,
+        "endChar": 94
+      },
+      "revId": "8e655588d20c9572def5918dd9dd2555e083ad89",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
