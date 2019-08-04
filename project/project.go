@@ -1985,6 +1985,14 @@ func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) e
 			if r.Remote != project.Remote {
 				continue
 			}
+			cachePath, err := project.CacheDirPath(jirix)
+			if err != nil {
+				return err
+			}
+			if cachePath != "" {
+				// Don't bother fetching for the local checkout, the cache should already be updated
+				continue
+			}
 			wg.Add(1)
 			fetchLimit <- struct{}{}
 			project.HistoryDepth = r.HistoryDepth
