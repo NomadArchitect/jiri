@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "285511d7_1a2716e1",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-08-04T17:11:36Z",
+      "side": 0,
+      "message": "This was probably a bug if we ever tried to patch from something shallow.",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 27
+      },
+      "revId": "c2fa69e98ae982e2610c09093c3d860d1e957f78",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
