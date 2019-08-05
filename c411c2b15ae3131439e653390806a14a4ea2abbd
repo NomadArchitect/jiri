@@ -22,6 +22,30 @@
       "revId": "c411c2b15ae3131439e653390806a14a4ea2abbd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebf355ac_3846898d",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-05T18:41:02Z",
+      "side": 1,
+      "message": "My bad. This solution will hide the errors from L352 and L354.\n\nCould you add jiri.Logger output inside defer, like\n\ndefer func() {\n      if err :\u003d scm.AddOrReplaceRemote(\"origin\", remoteUrl); err !\u003d nil {\n            jirix.Logger.Errorf(\"failed to set remote back to %v for project %+v\", remoteUrl, p)\n      }\n}()",
+      "parentUuid": "af38da01_c426ba07",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 29
+      },
+      "revId": "c411c2b15ae3131439e653390806a14a4ea2abbd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
