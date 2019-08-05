@@ -1505,15 +1505,29 @@ func fetchAll(jirix *jiri.X, project Project) error {
 	}
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 	remote := rewriteRemote(jirix, project.Remote)
-	if err := scm.SetRemoteUrl("origin", remote); err != nil {
+	r := remote
+	cachePath, err := project.CacheDirPath(jirix)
+	if err != nil {
+		return err
+	}
+	if cachePath != "" {
+		r = cachePath
+	}
+	defer scm.SetRemoteUrl("origin", remote)
+	if err := scm.SetRemoteUrl("origin", r); err != nil {
 		return err
 	}
 	if project.HistoryDepth > 0 {
-		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true),
-			gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true))
+		if err := fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true),
+			gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true)); err != nil {
+			return err
+		}
 	} else {
-		return fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true))
+		if err := fetch(jirix, project.Path, "origin", gitutil.PruneOpt(true)); err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
 func GetHeadRevision(jirix *jiri.X, project Project) (string, error) {
