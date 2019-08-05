@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c4eab8b_bcd3fe72",
+        "filename": "project/loader.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-05T17:34:33Z",
+      "side": 1,
+      "message": "If L350 failed, the origin will not be reverted back  to remoteUrl.\nI would prefer to use defer right after L346 and wrap scm.AddOrReplaceRemote in a local function, something like:\n\nfunc (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath string, localManifest bool) (rerr error) {\n\n   ...\n   L346:\n   defer func() {\n     rerr \u003d scm.AddOrReplaceRemote(\"origin\", remoteUrl)\n   }()\n   ...\n\n   return rerr\n}\n\nIt ensure origin is always reverted if it is ever changed. If the revert results in error it will still be returned.",
+      "range": {
+        "startLine": 353,
+        "startChar": 14,
+        "endLine": 353,
+        "endChar": 32
+      },
+      "revId": "4dfa22f58552b650932607308228d225b42cf4cf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
