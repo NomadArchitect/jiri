@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8aa186a9_c3ca6940",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-05T18:50:32Z",
+      "side": 1,
+      "message": "Please do:\n\ndiff --git a/project/project.go b/project/project.go\nindex 4ec9920..8e9e76b 100644\n--- a/project/project.go\n+++ b/project/project.go\n@@ -1499,7 +1499,7 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError\n        return multiErr\n }\n \n-func fetchAll(jirix *jiri.X, project Project) error {\n+func fetchAll(jirix *jiri.X, project Project) (rerr error) {\n        if project.Remote \u003d\u003d \"\" {\n                return fmt.Errorf(\"project %q does not have a remote\", project.Name)\n        }\n@@ -1513,7 +1513,11 @@ func fetchAll(jirix *jiri.X, project Project) error {\n        if cachePath !\u003d \"\" {\n                r \u003d cachePath\n        }\n-       defer scm.SetRemoteUrl(\"origin\", remote)\n+       defer func() {\n+               if err :\u003d scm.SetRemoteUrl(\"origin\", remote); err !\u003d nil {\n+                       rerr \u003d err\n+               }\n+       }()\n        if err :\u003d scm.SetRemoteUrl(\"origin\", r); err !\u003d nil {\n                return err\n        }\n\n\nI think this is a better solution compared to omitting the error from SetRemoteUrl or just printing the error without stopping jiri\u0027s execution.\n\nSorry for the back and forth, I would like to find a way to preserve all the errors that may occur during checkout. Please modify https://fuchsia-review.googlesource.com/c/jiri/+/308146 to use similar approach.",
+      "range": {
+        "startLine": 1516,
+        "startChar": 1,
+        "endLine": 1516,
+        "endChar": 41
+      },
+      "revId": "43d547592cd0b58a3ad99672bc6139724539f76b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
