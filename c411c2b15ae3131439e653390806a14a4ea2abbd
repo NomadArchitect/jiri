@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af38da01_c426ba07",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-05T18:31:41Z",
+      "side": 1,
+      "message": "If AddOrReplaceRemote returns an error here (though very unlikely), it is omitted.\n\nI mean it should be changed to:\n\ndiff --git a/project/loader.go b/project/loader.go\nindex e07c6a5..4aea4fe 100644\n--- a/project/loader.go\n+++ b/project/loader.go\n@@ -302,7 +302,7 @@ func (ld *loader) Load(jirix *jiri.X, root, repoPath, file, ref, cycleKey, paren\n        return ld.loadNoCycles(jirix, root, repoPath, file, ref, cycleKey, parentImport, localManifest)\n }\n \n-func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath string, localManifest bool) error {\n+func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath string, localManifest bool) (rerr error) {\n        if !ld.update || localManifest {\n                jirix.Logger.Warningf(\"import %q not found locally, getting from server. Please check your manifest file (default: .jiri_manifest).\\nMake sure that the \u0027name\u0027 attributes on the \u0027import\u0027 and \u0027project\u0027 tags match and that there is a corresponding \u0027project\u0027 tag for every \u0027import\u0027 tag.\\n\\n\", remote.Name)\n        }\n@@ -345,7 +345,9 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath\n                return err\n        }\n        scm :\u003d gitutil.New(jirix, gitutil.RootDirOpt(path))\n-       defer scm.AddOrReplaceRemote(\"origin\", remoteUrl)\n+       defer func() {\n+               rerr \u003d scm.AddOrReplaceRemote(\"origin\", remoteUrl)\n+       }()\n        p.Revision \u003d remote.Revision\n        p.RemoteBranch \u003d remote.RemoteBranch\n        if err :\u003d checkoutHeadRevision(jirix, p, false); err !\u003d nil {\n(END)",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 29
+      },
+      "revId": "c411c2b15ae3131439e653390806a14a4ea2abbd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
