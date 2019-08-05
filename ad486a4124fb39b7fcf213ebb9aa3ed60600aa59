@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77a39c9d_4842d5ff",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-05T17:36:26Z",
+      "side": 1,
+      "message": "please use the defer similar to the comment in https://fuchsia-review.googlesource.com/c/jiri/+/308146",
+      "range": {
+        "startLine": 1472,
+        "startChar": 8,
+        "endLine": 1472,
+        "endChar": 24
+      },
+      "revId": "ad486a4124fb39b7fcf213ebb9aa3ed60600aa59",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
