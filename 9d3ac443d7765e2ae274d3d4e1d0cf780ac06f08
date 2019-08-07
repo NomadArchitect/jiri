@@ -22,6 +22,30 @@
       "revId": "9d3ac443d7765e2ae274d3d4e1d0cf780ac06f08",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4652967_c868cb15",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-07T17:49:16Z",
+      "side": 1,
+      "message": "That was my understanding as well. See VC-173 for more details.",
+      "parentUuid": "65c6f9c4_def5c291",
+      "range": {
+        "startLine": 175,
+        "startChar": 24,
+        "endLine": 175,
+        "endChar": 33
+      },
+      "revId": "9d3ac443d7765e2ae274d3d4e1d0cf780ac06f08",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
