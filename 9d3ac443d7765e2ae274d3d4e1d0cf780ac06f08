@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65c6f9c4_def5c291",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-07T17:31:39Z",
+      "side": 1,
+      "message": "It invokes exec.Command which does not use system shell according to document: https://golang.org/pkg/os/exec/\nDo you have the error message due to interpreting the format string in the wrong way?",
+      "range": {
+        "startLine": 175,
+        "startChar": 24,
+        "endLine": 175,
+        "endChar": 33
+      },
+      "revId": "9d3ac443d7765e2ae274d3d4e1d0cf780ac06f08",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
