@@ -172,7 +172,7 @@ func (g *Git) BranchesDiffer(branch1, branch2 string) (bool, error) {
 
 // GetAllBranchesInfo returns information about all branches.
 func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
-	branchesInfo, err := g.runOutput("for-each-ref", "--format", "%(refname:short):%(upstream:short):%(objectname):%(HEAD):%(upstream)", "refs/heads")
+	branchesInfo, err := g.runOutput("for-each-ref", "--format=\"%(refname:short):%(upstream:short):%(objectname):%(HEAD):%(upstream)\"", "refs/heads")
 	if err != nil {
 		return nil, err
 	}
