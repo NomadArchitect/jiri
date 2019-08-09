@@ -46,6 +46,30 @@
       "revId": "c411c2b15ae3131439e653390806a14a4ea2abbd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87d7743c_a7ce705d",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-08-09T17:57:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebf355ac_3846898d",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 29
+      },
+      "revId": "c411c2b15ae3131439e653390806a14a4ea2abbd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
