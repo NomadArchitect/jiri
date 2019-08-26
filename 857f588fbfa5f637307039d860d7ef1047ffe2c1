@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d574cfd_ec30c88d",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-26T01:59:28Z",
+      "side": 1,
+      "message": "What does the m prefix stand for? I\u0027d use something like outbuf and errbuff instead.",
+      "range": {
+        "startLine": 1252,
+        "startChar": 5,
+        "endLine": 1252,
+        "endChar": 12
+      },
+      "revId": "857f588fbfa5f637307039d860d7ef1047ffe2c1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65e0a037_87e562e8",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-26T01:59:28Z",
+      "side": 1,
+      "message": "Rather than writing the output to a buffer and then copying it over, you could use io.MultiWriter:\n\n  command.Stdout \u003d io.MultiWrite(stdout, outbuf)\n\nand then just print the content of outbuf.",
+      "range": {
+        "startLine": 1257,
+        "startChar": 0,
+        "endLine": 1258,
+        "endChar": 26
+      },
+      "revId": "857f588fbfa5f637307039d860d7ef1047ffe2c1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
