@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e446005_e6765b81",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-29T19:52:02Z",
+      "side": 1,
+      "message": "Can we define a custom error (e.g. CheckRevError) and then check it in the project.go to differentiate from other errors?",
+      "revId": "6328e1898235c771b082dab9a93e9c751c0203cc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
