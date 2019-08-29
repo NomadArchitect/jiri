@@ -22,6 +22,30 @@
       "revId": "5de8b5569e2391af3155a86f65bf707913a9f408",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d99a9900_db96b918",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-29T23:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6e232f1_1fec7e4c",
+      "range": {
+        "startLine": 220,
+        "startChar": 14,
+        "endLine": 220,
+        "endChar": 31
+      },
+      "revId": "5de8b5569e2391af3155a86f65bf707913a9f408",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
