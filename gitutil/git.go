@@ -18,6 +18,8 @@ import (
 	"fuchsia.googlesource.com/jiri/envvar"
 )
 
+const GIT_EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904"
+
 type GitError struct {
 	Root        string
 	Args        []string
@@ -215,9 +217,10 @@ func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
 	return branches, nil
 }
 
-// CheckRevAvailable runs cat-file on a commit or tag is available locally.
+// CheckRevAvailable runs diff between an empty tree and rev
+// to see if a commit or tag is available locally.
 func (g *Git) CheckRevAvailable(rev string) error {
-	return g.run("cat-file", "-e", rev)
+	return g.run("diff", "--no-patch", GIT_EMPTY_TREE, rev)
 }
 
 // CheckoutBranch checks out the given branch.
@@ -1268,7 +1271,13 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 		}
 	}
 	err := command.Run()
-	g.jirix.Logger.Tracef("Run: git %s (%s), \nstdout: %s\nstderr: %s\n", strings.Join(args, " "), dir, outbuf.String(), errbuf.String())
+	exitCode := 0
+	if err != nil {
+		if exitError, ok := err.(*exec.ExitError); ok {
+			exitCode = exitError.ExitCode()
+		}
+	}
+	g.jirix.Logger.Tracef("Run: git %s (%s), \nstdout: %s\nstderr: %s\nexit code: %v\n", strings.Join(args, " "), dir, outbuf.String(), errbuf.String(), exitCode)
 	return err
 }
 
