@@ -34,6 +34,24 @@
       "revId": "6328e1898235c771b082dab9a93e9c751c0203cc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9c61264_fdea71d5",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-29T23:12:35Z",
+      "side": 1,
+      "message": "I changed it to boolean. Please let me know if it is an acceptable solution.",
+      "parentUuid": "846ad442_bab5abf3",
+      "revId": "6328e1898235c771b082dab9a93e9c751c0203cc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
