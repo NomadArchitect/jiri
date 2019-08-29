@@ -6,16 +6,24 @@ package gitutil
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 
 	"fuchsia.googlesource.com/jiri"
 	"fuchsia.googlesource.com/jiri/envvar"
+)
+
+var (
+	// ErrCheckRev indicates that the requested revision is not available
+	// in local git cache repository.
+	ErrCheckRev = errors.New("Revision is not available")
 )
 
 type GitError struct {
@@ -217,7 +225,17 @@ func (g *Git) GetAllBranchesInfo() ([]Branch, error) {
 
 // CheckRevAvailable runs cat-file on a commit or tag is available locally.
 func (g *Git) CheckRevAvailable(rev string) error {
-	return g.run("cat-file", "-e", rev)
+	// TODO: (haowei@)(11517) We are having issues with corrupted
+	// cache data on mac builders. Return a non-nil error
+	// to force the mac builders fetch from remote to avoid
+	// jiri checkout failures.
+	if runtime.GOOS == "darwin" {
+		return ErrCheckRev
+	}
+	if err := g.run("cat-file", "-e", rev); err != nil {
+		return ErrCheckRev
+	}
+	return nil
 }
 
 // CheckoutBranch checks out the given branch.
@@ -1268,7 +1286,13 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 		}
 	}
 	err := command.Run()
-	g.jirix.Logger.Tracef("Run: git %s (%s), \nstdout: %s\nstderr: %s\n", strings.Join(args, " "), dir, outbuf.String(), errbuf.String())
+	exitCode := 0
+	if err != nil {
+		if exitError, ok := err.(*exec.ExitError); ok {
+			exitCode = exitError.ExitCode()
+		}
+	}
+	g.jirix.Logger.Tracef("Run: git %s (%s), \nstdout: %s\nstderr: %s\nexit code: %v\n", strings.Join(args, " "), dir, outbuf.String(), errbuf.String(), exitCode)
 	return err
 }
 
