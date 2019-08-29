@@ -16,6 +16,24 @@
       "revId": "6328e1898235c771b082dab9a93e9c751c0203cc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "846ad442_bab5abf3",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-29T22:05:30Z",
+      "side": 1,
+      "message": "Maybe a better way is to just return a boolean. As currently project.go only care if the \u0027cat-file\u0027 returns \u00270\u0027. It does not process or output the error messages at all. If it has a non zero return code, it just continue to do the git checkout to update the cache.",
+      "parentUuid": "6e446005_e6765b81",
+      "revId": "6328e1898235c771b082dab9a93e9c751c0203cc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
