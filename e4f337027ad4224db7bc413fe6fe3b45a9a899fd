@@ -94,6 +94,30 @@
       "revId": "e4f337027ad4224db7bc413fe6fe3b45a9a899fd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cada8123_c4f7f463",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-08-29T02:34:59Z",
+      "side": 1,
+      "message": "Filed https://bugs.chromium.org/p/git/issues/detail?id\u003d39\n\nShould I reverted this piece back to \u0027git cat-file -e\u0027 or should I make it return Non-nil to avoid the infra issues that we encountered today?",
+      "parentUuid": "5c43217a_52d36e38",
+      "range": {
+        "startLine": 223,
+        "startChar": 1,
+        "endLine": 223,
+        "endChar": 56
+      },
+      "revId": "e4f337027ad4224db7bc413fe6fe3b45a9a899fd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
