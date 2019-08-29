@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6e232f1_1fec7e4c",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-08-29T23:27:19Z",
+      "side": 1,
+      "message": "Nit: maybe call it IsRevAvailable?",
+      "range": {
+        "startLine": 220,
+        "startChar": 14,
+        "endLine": 220,
+        "endChar": 31
+      },
+      "revId": "5de8b5569e2391af3155a86f65bf707913a9f408",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
