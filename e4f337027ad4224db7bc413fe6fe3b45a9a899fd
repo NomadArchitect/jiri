@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49517283_78388376",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-08-29T00:49:53Z",
+      "side": 1,
+      "message": "That just downloads the blobs for the revision, it doesn\u0027t check if its already available.",
+      "range": {
+        "startLine": 223,
+        "startChar": 1,
+        "endLine": 223,
+        "endChar": 56
+      },
+      "revId": "e4f337027ad4224db7bc413fe6fe3b45a9a899fd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
