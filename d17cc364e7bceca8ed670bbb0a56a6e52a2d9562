@@ -16,6 +16,24 @@
       "revId": "d17cc364e7bceca8ed670bbb0a56a6e52a2d9562",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ace3e334_74805d85",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-09-06T20:42:46Z",
+      "side": 1,
+      "message": "The other one is fixed in: https://fuchsia-review.googlesource.com/c/jiri/+/317253 . Thanks for pointing out.",
+      "parentUuid": "bf3adbc0_455cfdce",
+      "revId": "d17cc364e7bceca8ed670bbb0a56a6e52a2d9562",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
