@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf3adbc0_455cfdce",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-09-06T20:29:35Z",
+      "side": 1,
+      "message": "please make this error message consistent with the name of the flag as the user would type it. it looks like the enableLockfileFlag thing above missed this in review too; would recommend another CL for fixing that.",
+      "revId": "d17cc364e7bceca8ed670bbb0a56a6e52a2d9562",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
