@@ -29,6 +29,7 @@ import (
 	"fuchsia.googlesource.com/jiri/cipd"
 	"fuchsia.googlesource.com/jiri/envvar"
 	"fuchsia.googlesource.com/jiri/gerrit"
+	"fuchsia.googlesource.com/jiri/gitutil"
 	"fuchsia.googlesource.com/jiri/retry"
 	"golang.org/x/net/publicsuffix"
 )
@@ -1100,6 +1101,9 @@ func generateVersionFile(jirix *jiri.X, ensureFile string, pkgs Packages) (strin
 func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 	jirix.TimerPush("run hooks")
 	defer jirix.TimerPop()
+	// For bug 37076
+	jirix.Logger.Infof("Running Jiri hooks")
+	defer jirix.Logger.Infof("Running Jiri hooks finished")
 	type result struct {
 		outFile *os.File
 		errFile *os.File
@@ -1145,6 +1149,13 @@ func RunHooks(jirix *jiri.X, hooks Hooks, runHookTimeout uint) error {
 				err = command.Run()
 				if ctx.Err() == context.DeadlineExceeded {
 					err = ctx.Err()
+				}
+				// For Bug 37076, explicitly print the name of the hook and its revision
+				// when it finished running.
+				scm := gitutil.New(jirix, gitutil.RootDirOpt(filepath.Dir(filepath.Dir(cmdLine))))
+				revision, err2 := scm.CurrentRevisionOfBranch("HEAD")
+				if err2 == nil {
+					jirix.Logger.Infof("  Invoked hook(%v) for project %q on revision %q", hook.Name, hook.ProjectName, revision)
 				}
 				return err
 			}, fmt.Sprintf("running hook(%s) for project %s", hook.Name, hook.ProjectName),

@@ -2123,6 +2123,14 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
+	// For Bug 37076
+	hookRun := false
+	defer func() {
+		if shouldRunHooks && !hookRun {
+			jirix.Logger.Infof("Jiri hooks are not run due to fatal errors when updating projects.")
+		}
+	}()
+
 	// filter optional projects
 	if err := FilterOptionalProjectsPackages(jirix, jirix.FetchingAttrs, remoteProjects, pkgs); err != nil {
 		return err
@@ -2240,6 +2248,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	}
 
 	if shouldRunHooks {
+		hookRun = true
 		if err := RunHooks(jirix, hooks, runHookTimeout); err != nil {
 			return err
 		}
