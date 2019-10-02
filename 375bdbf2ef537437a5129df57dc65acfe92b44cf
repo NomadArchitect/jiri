@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a30b440_d230b61f",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-10-02T05:53:34Z",
+      "side": 1,
+      "message": "If use unzip with -d as suggested below, you can download the archive to $TMPDIR (you can probably even avoid deleting it, it\u0027ll get deleted on reboot).",
+      "range": {
+        "startLine": 104,
+        "startChar": 19,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "375bdbf2ef537437a5129df57dc65acfe92b44cf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e779af6_f7cf8a3d",
+        "filename": "scripts/bootstrap_jiri",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-10-02T05:53:34Z",
+      "side": 1,
+      "message": "Rather than extracting everything and then removing everything except for jiri, I\u0027d just use `unzip \"jiri.zip\" jiri -d ${BIN_DIR}`.",
+      "range": {
+        "startLine": 110,
+        "startChar": 5,
+        "endLine": 110,
+        "endChar": 21
+      },
+      "revId": "375bdbf2ef537437a5129df57dc65acfe92b44cf",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
