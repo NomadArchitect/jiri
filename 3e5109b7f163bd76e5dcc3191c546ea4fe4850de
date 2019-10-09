@@ -16,6 +16,24 @@
       "revId": "3e5109b7f163bd76e5dcc3191c546ea4fe4850de",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6eabe39_86d643aa",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-10-09T17:07:17Z",
+      "side": 1,
+      "message": "The lockfile does not record the local path so it is impossible to sort the lockfile using local paths. Two identical packages share the same version number is not a problem, their lock entries will be the same and get merged. We have 2 dart-sdk packages that have the same version number but different local paths for a long time time. We also use this feature for soft breaking changes.",
+      "parentUuid": "b50dbabd_5e5f0b06",
+      "revId": "3e5109b7f163bd76e5dcc3191c546ea4fe4850de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
