@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b50dbabd_5e5f0b06",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 30743
+      },
+      "writtenOn": "2019-10-09T16:12:05Z",
+      "side": 1,
+      "message": "out of curiosity, could we use the path here instead of the version? \n\nThere may be a case at some point when latest and non-latest are pointing to the same revision.",
+      "revId": "3e5109b7f163bd76e5dcc3191c546ea4fe4850de",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
