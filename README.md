@@ -102,7 +102,7 @@ one) with an `import` tag that imports the jiri manifest from the
 `https://fuchsia.googlesource.com/jiri` repo.
 
 ```
-jiri import manifests/jiri https://fuchsia.googlesource.com/jiri
+jiri import -name jiri manifest https://fuchsia.googlesource.com/jiri
 ```
 
 The next time you run `jiri update`, jiri will sync all projects listed in the
@@ -151,7 +151,7 @@ information on manifests, read the [manifest docs][manifests].
 
 ```
 cd "$MY_ROOT"
-jiri import manifests/jiri https://fuchsia.googlesource.com/jiri
+jiri import -name jiri manifest https://fuchsia.googlesource.com/jiri
 ```
 
 You should now have a file in the root directory called `.jiri_manifest`, which
@@ -486,7 +486,7 @@ see [Jiri local update][hacking doc]
 [go contrib]: https://golang.org/doc/contribute.html#Code_review "Go Contribution Guidelines - Code Review"
 [jiri-wiki]: https://en.wikipedia.org/wiki/Ji%C5%99%C3%AD "Jiří"
 [manifests]: #manifests "manifests"
-[jiri manifest]: https://fuchsia.googlesource.com/jiri/+/refs/heads/master/manifests/jiri "jiri manifest"
+[jiri manifest]: https://fuchsia.googlesource.com/jiri/+/refs/heads/master/manifest "jiri manifest"
 [manifest doc]:/manifest.md "Jiri manifest"
 [filesystem doc]:/filesystem.md "Jiri filesystem"
 [hacking doc]:/HACKING.md "Jiri local updates"
