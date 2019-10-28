@@ -22,6 +22,30 @@
       "revId": "dcbaa3d1950ec80fc6634ce19b9da428d4fb4dba",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c64004e7_d437e019",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-10-28T17:53:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26216ab6_79900d54",
+      "range": {
+        "startLine": 641,
+        "startChar": 52,
+        "endLine": 641,
+        "endChar": 61
+      },
+      "revId": "dcbaa3d1950ec80fc6634ce19b9da428d4fb4dba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
