@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26216ab6_79900d54",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 30867
+      },
+      "writtenOn": "2019-10-28T15:35:32Z",
+      "side": 1,
+      "message": "\"overridden\" here and below",
+      "range": {
+        "startLine": 641,
+        "startChar": 52,
+        "endLine": 641,
+        "endChar": 61
+      },
+      "revId": "dcbaa3d1950ec80fc6634ce19b9da428d4fb4dba",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
