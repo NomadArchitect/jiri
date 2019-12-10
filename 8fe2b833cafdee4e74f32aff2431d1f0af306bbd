@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31e5384b_344e0674",
+        "filename": "x.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2019-12-10T08:10:45Z",
+      "side": 1,
+      "message": "I\u0027d call it just `attributes.json`.",
+      "range": {
+        "startLine": 33,
+        "startChar": 23,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "8fe2b833cafdee4e74f32aff2431d1f0af306bbd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
