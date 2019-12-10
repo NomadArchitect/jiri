@@ -30,6 +30,7 @@ import (
 )
 
 const (
+	AttrsJSON          = "optionalattrs.json"
 	RootMetaDir        = ".jiri_root"
 	ProjectMetaDir     = ".git/jiri"
 	OldProjectMetaDir  = ".jiri"
