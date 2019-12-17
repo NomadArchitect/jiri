@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5ee2ee6_850bf514",
+        "filename": "gitutil/options.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-12-17T00:55:14Z",
+      "side": 1,
+      "message": "Please add a newline at the end.",
+      "range": {
+        "startLine": 132,
+        "startChar": 34,
+        "endLine": 132,
+        "endChar": 36
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4d42213_5c0151f2",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-12-17T00:55:14Z",
+      "side": 1,
+      "message": "We don\u0027t have to remove the \"cache\" attribute after it finished? What if the dev decide not to use cache after initial jiri setup? Does he need to recreate the workspace from scratch?",
+      "range": {
+        "startLine": 351,
+        "startChar": 16,
+        "endLine": 351,
+        "endChar": 41
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5456975c_09e93399",
+        "filename": "project/operations.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-12-17T00:55:14Z",
+      "side": 1,
+      "message": "please use filepath, the same for other path.Join",
+      "range": {
+        "startLine": 123,
+        "startChar": 30,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86c9939f_dd736802",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2019-12-17T00:55:14Z",
+      "side": 1,
+      "message": "Could you add a comment why this flag is needed?",
+      "range": {
+        "startLine": 1981,
+        "startChar": 85,
+        "endLine": 1981,
+        "endChar": 114
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
