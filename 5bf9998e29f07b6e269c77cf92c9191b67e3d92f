@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "87bd9240_6789e682",
+        "filename": "gitutil/options.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-12-24T00:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ee2ee6_850bf514",
+      "range": {
+        "startLine": 132,
+        "startChar": 34,
+        "endLine": 132,
+        "endChar": 36
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4d42213_5c0151f2",
         "filename": "project/loader.go",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-12-17T00:55:14Z",
       "side": 1,
       "message": "We don\u0027t have to remove the \"cache\" attribute after it finished? What if the dev decide not to use cache after initial jiri setup? Does he need to recreate the workspace from scratch?",
+      "range": {
+        "startLine": 351,
+        "startChar": 16,
+        "endLine": 351,
+        "endChar": 41
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96f8f143_4328b20a",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-12-24T00:43:30Z",
+      "side": 1,
+      "message": "This is adding the cache as another remote, and telling git it can resolve promisors via this remote, we  also denote \"origin\" can do the same at L348, however by specifying \"extensions.partialClone\": \"origin\", git will always choose that remote last for promisor resolution.\n\nSo if a developer did happen to use -partial, they could stop updating the cache and everything would continue to work, there may just be an extra round-trip to the local file system.",
+      "parentUuid": "d4d42213_5c0151f2",
       "range": {
         "startLine": 351,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9b6478db_6f63f9c3",
+        "filename": "project/operations.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-12-24T00:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5456975c_09e93399",
+      "range": {
+        "startLine": 123,
+        "startChar": 30,
+        "endLine": 123,
+        "endChar": 34
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86c9939f_dd736802",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa253e92_2bd7788a",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2019-12-24T00:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86c9939f_dd736802",
+      "range": {
+        "startLine": 1981,
+        "startChar": 85,
+        "endLine": 1981,
+        "endChar": 114
+      },
+      "revId": "5bf9998e29f07b6e269c77cf92c9191b67e3d92f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
