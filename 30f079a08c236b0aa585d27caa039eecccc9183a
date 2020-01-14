@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f05aa8d_f139c8d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5215
+      },
+      "writtenOn": "2020-01-14T00:10:28Z",
+      "side": 1,
+      "message": "Does this mean .jiri_root or the parent directory of .jiri_root?  If that latter, does that mean the comments being removed are wrong?  If so, it might be worth noting that in the commit message.",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "30f079a08c236b0aa585d27caa039eecccc9183a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
