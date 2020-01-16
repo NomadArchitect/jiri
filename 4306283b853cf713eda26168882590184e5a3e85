@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84c430e8_8f6521bf",
+        "filename": "retry/retry_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5050
+      },
+      "writtenOn": "2020-01-16T02:18:29Z",
+      "side": 1,
+      "message": "This file needs copyright header.",
+      "revId": "4306283b853cf713eda26168882590184e5a3e85",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
