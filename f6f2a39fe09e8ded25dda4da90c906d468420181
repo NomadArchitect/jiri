@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "265a829d_38fc1118",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2020-03-12T20:22:58Z",
+      "side": 1,
+      "message": "FYI, you can remove the \"ok\" variable too.",
+      "range": {
+        "startLine": 448,
+        "startChar": 14,
+        "endLine": 448,
+        "endChar": 16
+      },
+      "revId": "f6f2a39fe09e8ded25dda4da90c906d468420181",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
