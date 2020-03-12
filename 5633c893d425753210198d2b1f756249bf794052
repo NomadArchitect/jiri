@@ -364,6 +364,24 @@
     },
     {
       "key": {
+        "uuid": "2583efbc_0f5bcf90",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T20:54:07Z",
+      "side": 1,
+      "message": "The returned error is already logged as a warning at L1255.",
+      "parentUuid": "7e5758dd_0cc61679",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d09203b_5efe215c",
         "filename": "project/project.go",
         "patchSetId": 2
