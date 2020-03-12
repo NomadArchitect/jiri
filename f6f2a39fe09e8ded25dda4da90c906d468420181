@@ -46,6 +46,30 @@
       "revId": "f6f2a39fe09e8ded25dda4da90c906d468420181",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e93e9b_b1bf8262",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2020-03-12T21:36:07Z",
+      "side": 1,
+      "message": "Oh sorry I was not clear, I meant:\n\n  localPath, _ :\u003d entryMap[\"path\"].(string)\n\nI\u0027m surprised the suffix cast works here. I wasn\u0027t aware it\u0027s processed correctly.",
+      "parentUuid": "bbf367ef_1463979a",
+      "range": {
+        "startLine": 448,
+        "startChar": 14,
+        "endLine": 448,
+        "endChar": 16
+      },
+      "revId": "f6f2a39fe09e8ded25dda4da90c906d468420181",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
