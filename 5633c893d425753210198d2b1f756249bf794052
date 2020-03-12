@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "58b73697_491e1b6c",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "080c072b_20b8fafb",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fced935_2571368c",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "35cad442_3361f6c9",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Comments added.",
+      "parentUuid": "6ab86eba_bdc9843e",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a48ee18_6179aae0",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -76,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "aeb869b7_b95a2495",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "I probably stayed up too late and thought something wrong. Pointers are not necessary here and I have removed them.",
+      "parentUuid": "4a48ee18_6179aae0",
+      "range": {
+        "startLine": 1148,
+        "startChar": 15,
+        "endLine": 1148,
+        "endChar": 16
+      },
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b167c1ee_23ab94b3",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -90,6 +150,24 @@
       "revId": "5633c893d425753210198d2b1f756249bf794052",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b8a8d6e_3f070bcd",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b167c1ee_23ab94b3",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -110,6 +188,24 @@
     },
     {
       "key": {
+        "uuid": "3419b0aa_1845f504",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0264b9c6_8bcb5df3",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a66e74c9_1b6bd2ce",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -124,6 +220,24 @@
       "revId": "5633c893d425753210198d2b1f756249bf794052",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04588a74_c242f93f",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a66e74c9_1b6bd2ce",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     },
     {
       "key": {
@@ -144,6 +258,24 @@
     },
     {
       "key": {
+        "uuid": "286d0f45_ea1dd892",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa595403_e189f0eb",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31607c15_07484a60",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -161,6 +293,24 @@
     },
     {
       "key": {
+        "uuid": "cf41fa18_0414eb65",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31607c15_07484a60",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "058b99b2_7233254b",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -172,6 +322,24 @@
       "writtenOn": "2020-03-12T00:53:17Z",
       "side": 1,
       "message": "If this really an error?",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44cf84bb_b9fd5452",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1190,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "It causes lockfile to be fully re-resolved. I guess it does not matter if it is an error or not.",
+      "parentUuid": "058b99b2_7233254b",
       "revId": "5633c893d425753210198d2b1f756249bf794052",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
@@ -195,6 +363,24 @@
     },
     {
       "key": {
+        "uuid": "291f1b54_679dbd36",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Emmm, dhobsd@ usually prefer to have local functions if they are only used in a single function. I don\u0027t have an opinion of both.",
+      "parentUuid": "8d09203b_5efe215c",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8bceb014_b541e6a9",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -212,6 +398,24 @@
     },
     {
       "key": {
+        "uuid": "f797c65a_277a9b06",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bceb014_b541e6a9",
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a79497da_a8647b46",
         "filename": "project/project.go",
         "patchSetId": 2
@@ -223,6 +427,30 @@
       "writtenOn": "2020-03-12T00:53:17Z",
       "side": 1,
       "message": "That\u0027s too bad that we have to return both, I wish there was a single data structure that would encompass the needed information.",
+      "range": {
+        "startLine": 1223,
+        "startChar": 8,
+        "endLine": 1223,
+        "endChar": 25
+      },
+      "revId": "5633c893d425753210198d2b1f756249bf794052",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9af9b95_baff3674",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-12T19:51:23Z",
+      "side": 1,
+      "message": "The caller need to know what package should be resolved and what lock entries should be invalid. Return both is the most straight forward solution. The lock entries cannot be easily concluded from package entry due to the fact that package entries have names that contains templates. They need to be expanded before matching, which is why this one reason function is so complicated.",
+      "parentUuid": "a79497da_a8647b46",
       "range": {
         "startLine": 1223,
         "startChar": 8,
