@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "932bddac_df9f8f88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7291
+      },
+      "writtenOn": "2020-03-24T01:00:33Z",
+      "side": 1,
+      "message": "nit: jiri convention appears to be to put the subsystem in brackets, like\n\n [githook] remove post-commit hook",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "132f56fc9037e1b7c39b7aa26094a50a45c380d2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "655fe3f0_90fb999a",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -42,6 +65,23 @@
         "endLine": 11,
         "endChar": 22
       },
+      "revId": "132f56fc9037e1b7c39b7aa26094a50a45c380d2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a603e3c3_844ea5c1",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1311,
+      "author": {
+        "id": 7291
+      },
+      "writtenOn": "2020-03-24T01:00:33Z",
+      "side": 1,
+      "message": "What should happen in existing working copies that already have the post-commit hook? Should we call os.Remove(hookPath)?",
       "revId": "132f56fc9037e1b7c39b7aa26094a50a45c380d2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
