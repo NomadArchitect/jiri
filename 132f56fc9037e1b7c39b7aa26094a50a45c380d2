@@ -85,6 +85,24 @@
       "revId": "132f56fc9037e1b7c39b7aa26094a50a45c380d2",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70830591_d85cbdcd",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1311,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-03-24T01:12:19Z",
+      "side": 1,
+      "message": "Please don\u0027t do that. This message is more or less harmless.",
+      "parentUuid": "a603e3c3_844ea5c1",
+      "revId": "132f56fc9037e1b7c39b7aa26094a50a45c380d2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
