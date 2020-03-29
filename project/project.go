@@ -1586,6 +1586,10 @@ func IsLocalProject(jirix *jiri.X, path string) (bool, error) {
 			jirix.Logger.Warningf("Directory %q doesn't have read permission, skipping it\n\n", path)
 			return false, nil
 		}
+		// .git is a file in submodules.
+		if s, err := os.Stat(filepath.Dir(metadataDir)); err == nil && !s.IsDir() {
+			return false, nil
+		}
 		return false, fmtError(err)
 	}
 	return true, nil
