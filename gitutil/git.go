@@ -6,6 +6,7 @@ package gitutil
 
 import (
 	"bytes"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"os"
@@ -139,20 +140,21 @@ func (g *Git) AddRemote(name, path string) error {
 // AddOrReplacePartialRemote adds a new partial remote with given name and path.
 // If the name already exists, it replaces the named remote with new path.
 func (g *Git) AddOrReplacePartialRemote(name, path string) error {
-	configStr := fmt.Sprintf("remote.%s.url", name)
-	if err := g.Config(configStr, path); err != nil {
+	configKey := fmt.Sprintf("remote.%s.url", name)
+	if err := g.Config(configKey, path); err != nil {
 		return err
 	}
-	configStr = fmt.Sprintf("remote.%s.partialCloneFilter", name)
-	if err := g.Config(configStr, "blob:none"); err != nil {
+	configKey = fmt.Sprintf("remote.%s.partialCloneFilter", name)
+	if err := g.Config(configKey, "blob:none"); err != nil {
 		return err
 	}
-	configStr = fmt.Sprintf("remote.%s.promisor", name)
-	if err := g.Config(configStr, "true"); err != nil {
+	configKey = fmt.Sprintf("remote.%s.promisor", name)
+	if err := g.Config(configKey, "true"); err != nil {
 		return err
 	}
-	configStr = fmt.Sprintf("remote.%s.fetch", name)
-	if err := g.Config(configStr, "+refs/heads/*:refs/remotes/origin/*"); err != nil {
+	configKey = fmt.Sprintf("remote.%s.fetch", name)
+	configVal := fmt.Sprintf("+refs/heads/*:refs/remotes/%s/*", name)
+	if err := g.Config(configKey, configVal); err != nil {
 		return err
 	}
 	return nil
@@ -161,12 +163,13 @@ func (g *Git) AddOrReplacePartialRemote(name, path string) error {
 // AddOrReplaceRemote adds a new remote with given name and path. If the name
 // already exists, it replaces the named remote with new path.
 func (g *Git) AddOrReplaceRemote(name, path string) error {
-	configStr := fmt.Sprintf("remote.%s.url", name)
-	if err := g.Config(configStr, path); err != nil {
+	configKey := fmt.Sprintf("remote.%s.url", name)
+	if err := g.Config(configKey, path); err != nil {
 		return err
 	}
-	configStr = fmt.Sprintf("remote.%s.fetch", name)
-	if err := g.Config(configStr, "+refs/heads/*:refs/remotes/origin/*"); err != nil {
+	configKey = fmt.Sprintf("remote.%s.fetch", name)
+	configVal := fmt.Sprintf("+refs/heads/*:refs/remotes/%s/*", name)
+	if err := g.Config(configKey, configVal); err != nil {
 		return err
 	}
 	return nil
@@ -258,10 +261,21 @@ func (g *Git) IsRevAvailable(jirix *jiri.X, rev string) bool {
 			jirix.Logger.Errorf("could not get current revision\n")
 			return false
 		}
-		expectedRevision, err := g.CurrentRevisionForRef(rev)
-		if err != nil {
-			jirix.Logger.Errorf("could not get revision\n")
-			return false
+		// Check if we have a commit-id and whether it already exists locally.
+		// This removes a `git rev-list -n 1 <rev>` which takes ~30 seconds for
+		// git partial-clones on `fuchsia/fuchsia`
+		var expectedRevision string
+		if _, err := hex.DecodeString(rev); len(rev) == 40 && err != nil {
+			if commitExists, err := g.CommitExists(rev); commitExists && err != nil {
+				expectedRevision = rev
+			}
+		}
+		if expectedRevision == "" {
+			expectedRevision, err = g.CurrentRevisionForRef(rev)
+			if err != nil {
+				jirix.Logger.Errorf("could not get revision\n")
+				return false
+			}
 		}
 		if currentRevision != expectedRevision {
 			return false
@@ -788,6 +802,18 @@ func (g *Git) GetBranches(args ...string) ([]string, string, error) {
 		branches = append(branches, strings.TrimSpace(branch))
 	}
 	return branches, current, nil
+}
+
+// CommitExists tests whether a commit with the given id exists in
+// the local repository.
+func (g *Git) CommitExists(commit string) (bool, error) {
+	var stdout, stderr bytes.Buffer
+	args := []string{"rev-parse", "--verify", "--quiet", commit + "^{commit}"}
+	err := g.runGit(&stdout, &stderr, args...)
+	if err != nil && stderr.String() != "" {
+		return false, Error(stdout.String(), stderr.String(), err, g.rootDir, args...)
+	}
+	return stdout.String() != "", nil
 }
 
 // BranchExists tests whether a branch with the given name exists in
