@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dafe072_3eecebb7",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-05-12T02:28:20Z",
+      "side": 1,
+      "message": "This is only called with name \u003d origin currently so changes here are a no-op but correct the functional behavior around overlapping refspecs.",
+      "range": {
+        "startLine": 164,
+        "startChar": 14,
+        "endLine": 164,
+        "endChar": 32
+      },
+      "revId": "3e386564dfeb3a37daf3e6230aaf72a37dd36f61",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
