@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b173fca6_47024926",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 7291
+      },
+      "writtenOn": "2020-05-19T00:01:45Z",
+      "side": 1,
+      "message": "should this be `err \u003d\u003d nil`?",
+      "range": {
+        "startLine": 268,
+        "startChar": 56,
+        "endLine": 268,
+        "endChar": 66
+      },
+      "revId": "73f5eb20c8ae94bb66866647a67852dbe746583b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
