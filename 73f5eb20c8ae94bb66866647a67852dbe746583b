@@ -22,6 +22,30 @@
       "revId": "73f5eb20c8ae94bb66866647a67852dbe746583b",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33caa86e_490c099e",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-05-21T23:05:51Z",
+      "side": 1,
+      "message": "Thanks fxr/392217",
+      "parentUuid": "b173fca6_47024926",
+      "range": {
+        "startLine": 268,
+        "startChar": 56,
+        "endLine": 268,
+        "endChar": 66
+      },
+      "revId": "73f5eb20c8ae94bb66866647a67852dbe746583b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
