@@ -219,6 +219,8 @@ func (op createOperation) Run(jirix *jiri.X) (e error) {
 	}
 	if !isPathDir(cache) {
 		cache = ""
+	} else {
+		cache = "file://" + cache
 	}
 
 	if err := op.checkoutProject(jirix, cache); err != nil {
