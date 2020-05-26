@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0767fb53_08c20515",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2408,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-05-26T19:26:44Z",
+      "side": 1,
+      "message": "nit: should be removed.",
+      "range": {
+        "startLine": 2408,
+        "startChar": 0,
+        "endLine": 2408,
+        "endChar": 1
+      },
+      "revId": "152d8db10cb9fdbdfc533b0480e35d8976117f22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
