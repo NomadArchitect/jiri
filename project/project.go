@@ -1801,7 +1801,10 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 		}
 		msg += fmt.Sprintf("\nCommit or discard the changes and try again.\n\n")
 		jirix.Logger.Errorf(msg)
-		// Do not call jirix.IncrementFailures() here. See fxb/42984.
+		// Avoid return 0 on builders. See fxb/42984.
+		if !jirix.IgnoreUncommitted {
+			jirix.IncrementFailures()
+		}
 		return nil
 	}
 
@@ -2410,7 +2413,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	var wg sync.WaitGroup
 	for _, project := range remoteProjects {
 		wg.Add(1)
-		go func (jirix *jiri.X, project Project) {
+		go func(jirix *jiri.X, project Project) {
 			defer wg.Done()
 			if !(project.LocalConfig.Ignore || project.LocalConfig.NoUpdate) {
 				project.writeJiriRevisionFiles(jirix)
@@ -2418,7 +2421,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 					jirix.Logger.Debugf("set up default push target failed due to error: %v", err)
 				}
 			}
-		} (jirix, project)
+		}(jirix, project)
 	}
 	wg.Wait()
 	jirix.TimerPop()

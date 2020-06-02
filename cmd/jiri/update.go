@@ -30,6 +30,7 @@ var (
 	runHooksFlag         bool
 	fetchPkgsFlag        bool
 	overrideOptionalFlag bool
+	ignoreUncommitted    bool
 )
 
 const (
@@ -52,6 +53,7 @@ func init() {
 	cmdUpdate.Flags.BoolVar(&runHooksFlag, "run-hooks", true, "Run hooks after updating sources.")
 	cmdUpdate.Flags.BoolVar(&fetchPkgsFlag, "fetch-packages", true, "Use cipd to fetch packages.")
 	cmdUpdate.Flags.BoolVar(&overrideOptionalFlag, "override-optional", false, "Override existing optional attributes in the snapshot file with current jiri settings")
+	cmdUpdate.Flags.BoolVar(&ignoreUncommitted, "ignore-uncommitted", true, "Make jiri return 0 when there are uncommitted changes in local projects")
 }
 
 // cmdUpdate represents the "jiri update" command.
@@ -79,6 +81,7 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		return jirix.UsageErrorf("Number of attempts should be >= 1")
 	}
 	jirix.Attempts = attemptsFlag
+	jirix.IgnoreUncommitted = ignoreUncommitted
 
 	if autoupdateFlag {
 		// Try to update Jiri itself.
