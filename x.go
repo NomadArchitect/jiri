@@ -122,6 +122,7 @@ type X struct {
 	UsingImportOverride bool
 	OverrideOptional    bool
 	IgnoreLockConflicts bool
+	IgnoreUncommitted   bool
 	Color               color.Color
 	Logger              *log.Logger
 	failures            uint32
