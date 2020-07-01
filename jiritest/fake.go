@@ -26,11 +26,11 @@ type FakeJiriRoot struct {
 
 const (
 	ManifestFileName    = "public"
-	ManifestProjectPath = "manifest"
+	ManifestProjectPath = "XXXmanifest"
 )
 const (
 	defaultDataDir      = "data"
-	ManifestProjectName = "manifest"
+	ManifestProjectName = "XXXmanifest"
 )
 
 // NewFakeJiriRoot returns a new FakeJiriRoot and a cleanup closure.  The
