@@ -28,6 +28,9 @@ func NewX(t *testing.T) (*jiri.X, func()) {
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
 	}
+	if err := os.Chdir(root); err != nil {
+		t.Fatalf("Setting cwd failed: %v", err)
+	}
 	if err := os.Mkdir(filepath.Join(root, jiri.RootMetaDir), 0755); err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
 	}
