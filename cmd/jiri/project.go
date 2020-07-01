@@ -149,6 +149,12 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 		if err != nil {
 			return err
 		}
+		// filter optional projects
+		// we only need to filter in the remote projects path, otherwise it is only using
+		// projects that already exist on disk.
+		if err := project.FilterOptionalProjectsPackages(jirix, jirix.FetchingAttrs, projects, nil); err != nil {
+			return err
+		}
 	}
 	if len(args) == 0 {
 		currentProject, err := project.CurrentProject(jirix)
