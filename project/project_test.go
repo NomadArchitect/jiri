@@ -108,15 +108,7 @@ func checkJiriRevFiles(t *testing.T, jirix *jiri.X, p project.Project) {
 }
 
 func commitFile(t *testing.T, jirix *jiri.X, dir, file, msg string) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer os.Chdir(cwd)
-	if err := os.Chdir(dir); err != nil {
-		t.Fatal(err)
-	}
-	if err := gitutil.New(jirix, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com")).CommitFile(file, msg); err != nil {
+	if err := gitutil.New(jirix, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"), gitutil.RootDirOpt(dir)).CommitFile(file, msg); err != nil {
 		t.Fatal(err)
 	}
 }
