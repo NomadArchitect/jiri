@@ -150,6 +150,10 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 			return err
 		}
 	}
+	// filter optional projects
+	if err := project.FilterOptionalProjectsPackages(jirix, jirix.FetchingAttrs, projects, nil); err != nil {
+		return err
+	}
 	if len(args) == 0 {
 		currentProject, err := project.CurrentProject(jirix)
 		if err != nil {
