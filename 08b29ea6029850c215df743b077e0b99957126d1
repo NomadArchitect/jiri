@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4684128_58a39399",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-08-03T18:36:27Z",
+      "side": 1,
+      "message": "Sorry for the delay. LGTM",
+      "revId": "08b29ea6029850c215df743b077e0b99957126d1",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
