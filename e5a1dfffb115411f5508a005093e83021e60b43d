@@ -16,6 +16,29 @@
       "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "984a7e11_cfdb2a96",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-14T18:40:37Z",
+      "side": 1,
+      "message": "If I understood correctly, it sets the fetch protocol to https. Is it enough to make git to use packfile? What effect will it have on SSO repos?",
+      "range": {
+        "startLine": 340,
+        "startChar": 22,
+        "endLine": 340,
+        "endChar": 53
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
