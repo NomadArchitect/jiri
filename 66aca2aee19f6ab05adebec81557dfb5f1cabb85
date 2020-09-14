@@ -34,6 +34,24 @@
       "revId": "66aca2aee19f6ab05adebec81557dfb5f1cabb85",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0689deed_a771ab23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-09-14T22:40:46Z",
+      "side": 1,
+      "message": "The T.Parallel()s combined with the fact that the tests are actually dependent on jiri\u0027s own manifest were being a problem. I think I can just remove all the T.Parallel()\u0027s and it\u0027ll go green, just seemed heavy handed.",
+      "parentUuid": "8e5b9687_3898873e",
+      "revId": "66aca2aee19f6ab05adebec81557dfb5f1cabb85",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
     }
   ]
 }
