@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1fd59181_0e7414eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-09-14T18:32:26Z",
+      "side": 1,
+      "message": "This is the replacement for the older GCS bundle flows, and is now part of the git protocol (still uses GCS).",
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
