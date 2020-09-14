@@ -335,6 +335,12 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 			return err
 		}
 	}
+	scm := gitutil.New(jirix, gitutil.RootDirOpt(p.Path))
+	if jirix.OffloadPackfiles {
+		if err := scm.Config("fetch.uriprotocols", "https"); err != nil {
+			return err
+		}
+	}
 	opts := []gitutil.CloneOpt{gitutil.ReferenceOpt(cacheDirPath), gitutil.NoCheckoutOpt(true)}
 	if jirix.Partial {
 		opts = append(opts, gitutil.OmitBlobsOpt(true))
@@ -344,7 +350,6 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 	}
 	if jirix.Partial && cacheDirPath != "" {
 		// Set Cache Remote
-		scm := gitutil.New(jirix, gitutil.RootDirOpt(p.Path))
 		if err := scm.Config("extensions.partialClone", "origin"); err != nil {
 			return err
 		}
