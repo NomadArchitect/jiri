@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb6b373b_dda6d598",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35964
+      },
+      "writtenOn": "2020-09-14T21:14:33Z",
+      "side": 1,
+      "message": "I noticed that we tried to make vulkan_cts optional, and we had another `jiri project` issue in release infra: https://logs.chromium.org/logs/turquoise/buildbucket/cr-buildbucket.appspot.com/8869152990108071296/+/steps/snap_petals/0/steps/jiri_project/0/stdout\n\nCan we land this before the vulkan_cts attribute is relanded? Happy to help work on this if you don\u0027t have cycles, Nathan or Haowei.",
+      "revId": "66aca2aee19f6ab05adebec81557dfb5f1cabb85",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    }
+  ]
+}
