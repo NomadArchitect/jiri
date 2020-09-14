@@ -39,6 +39,30 @@
       "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea43044_c2ed9854",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-09-14T18:44:52Z",
+      "side": 1,
+      "message": "Its an option that needs to specifically be enabled server side and it only works for public repos. It should have no affect on private repos at this time.\n\nThe fetch.uriprotocols is not concerned with whether the repository is configured to use sso:// or https:// but is rather us telling the server we are willing to be redirected to an https:// uri to download the precomputed packfiles in the CDN instead of making the frontend serve it to us directly.",
+      "parentUuid": "984a7e11_cfdb2a96",
+      "range": {
+        "startLine": 340,
+        "startChar": 22,
+        "endLine": 340,
+        "endChar": 53
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
