@@ -63,6 +63,76 @@
       "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a718667c_10d928e7",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-14T18:51:11Z",
+      "side": 1,
+      "message": "I see. Do you need to consider disabling packfile in case OffloadPackfiles is set to false?",
+      "parentUuid": "8ea43044_c2ed9854",
+      "range": {
+        "startLine": 340,
+        "startChar": 22,
+        "endLine": 340,
+        "endChar": 53
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1eb9cfce_b0f027f6",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-14T18:51:11Z",
+      "side": 1,
+      "message": "nit: format issue.\nPlease run gofmt on this file.",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 24
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a51769ef_52b26185",
+        "filename": "x.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-14T18:51:11Z",
+      "side": 1,
+      "message": "nit: format issue.\nPlease run gofmt on this file.",
+      "range": {
+        "startLine": 118,
+        "startChar": 17,
+        "endLine": 118,
+        "endChar": 18
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
     }
   ]
 }
