@@ -114,6 +114,30 @@
     },
     {
       "key": {
+        "uuid": "e3aa0d7a_b4704c5a",
+        "filename": "project/loader.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-14T19:04:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d84ae324_e7238667",
+      "range": {
+        "startLine": 340,
+        "startChar": 22,
+        "endLine": 340,
+        "endChar": 53
+      },
+      "revId": "e5a1dfffb115411f5508a005093e83021e60b43d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1eb9cfce_b0f027f6",
         "filename": "x.go",
         "patchSetId": 2
