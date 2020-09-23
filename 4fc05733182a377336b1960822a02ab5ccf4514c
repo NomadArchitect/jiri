@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec0dada5_5ef03f58",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-09-23T21:10:34Z",
+      "side": 1,
+      "message": "It is probably unnecessary since your the for look will not be executed if partialSkipFlag is empty.",
+      "range": {
+        "startLine": 175,
+        "startChar": 1,
+        "endLine": 175,
+        "endChar": 30
+      },
+      "revId": "4fc05733182a377336b1960822a02ab5ccf4514c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269",
+      "unresolved": true
+    }
+  ]
+}
