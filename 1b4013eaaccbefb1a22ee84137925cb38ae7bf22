@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0931d2df_c2f208f7",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-10-27T18:46:12Z",
+      "side": 1,
+      "message": "This also drops retry implemented in the fetch() function. Is that what you intended to do?",
+      "range": {
+        "startLine": 1757,
+        "startChar": 17,
+        "endLine": 1757,
+        "endChar": 29
+      },
+      "revId": "1b4013eaaccbefb1a22ee84137925cb38ae7bf22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
