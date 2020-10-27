@@ -22,6 +22,30 @@
       },
       "revId": "1b4013eaaccbefb1a22ee84137925cb38ae7bf22",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30f1a38_4dc21e3b",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-10-27T19:11:00Z",
+      "side": 1,
+      "message": "For Infra, we don\u0027t rely on any jiri internal retries, do you think that retry function is important for developers? I\u0027ve never seen this code block actually fix an error because it retries the transient failure as a tag which never succeeded in Infra.",
+      "parentUuid": "0931d2df_c2f208f7",
+      "range": {
+        "startLine": 1757,
+        "startChar": 17,
+        "endLine": 1757,
+        "endChar": 29
+      },
+      "revId": "1b4013eaaccbefb1a22ee84137925cb38ae7bf22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
