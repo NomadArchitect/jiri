@@ -906,6 +906,10 @@ func FetchPackages(jirix *jiri.X, projects Projects, pkgs Packages, fetchTimeout
 			return err
 		}
 		defer os.Remove(versionFilePath)
+
+		if err := cipd.EnsureFileVerify(jirix, ensureFilePath); err != nil {
+			return err
+		}
 	}
 
 	if err := cipd.Ensure(jirix, ensureFilePath, jirix.Root, fetchTimeout); err != nil {
