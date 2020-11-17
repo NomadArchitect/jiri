@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92cc39bd_0ae90353",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2020-11-17T20:34:15Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "c3066ae4e67795698a44d459f7895c9cd90baf26",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9443c26b_c8909cc5",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2020-11-17T20:34:15Z",
+      "side": 1,
+      "message": "I guess you could call CIPDPath() yourself, but shrug.",
+      "range": {
+        "startLine": 120,
+        "startChar": 30,
+        "endLine": 120,
+        "endChar": 40
+      },
+      "revId": "c3066ae4e67795698a44d459f7895c9cd90baf26",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
