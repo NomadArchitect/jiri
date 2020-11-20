@@ -872,7 +872,7 @@ func (g *Git) HasUntrackedFiles() (bool, error) {
 
 // Init initializes a new git repository.
 func (g *Git) Init(path string, opts ...CloneOpt) error {
-	args := []string{"init"}
+	args := []string{"init", "--initial-branch=master"}
 	for _, opt := range opts {
 		switch typedOpt := opt.(type) {
 		case BareOpt:
