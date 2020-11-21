@@ -16,6 +16,24 @@
       "message": "Can this get a TODO(bug#) comment?",
       "revId": "69d459132cd3c26c6b1cc00937bb787602cd98c0",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92376841_54119809",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-11-21T01:51:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3f7130d_c51833bc",
+      "revId": "69d459132cd3c26c6b1cc00937bb787602cd98c0",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
