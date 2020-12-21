@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56c0d96_e67438d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2020-12-21T21:14:21Z",
+      "side": 1,
+      "message": "-1 for prod freeze.",
+      "revId": "8e75ae4dd65468e3a3d9788947da8c751e65ea5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
