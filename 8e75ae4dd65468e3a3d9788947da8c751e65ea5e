@@ -16,6 +16,23 @@
       "message": "-1 for prod freeze.",
       "revId": "8e75ae4dd65468e3a3d9788947da8c751e65ea5e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f971617_066bdb72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2020-12-21T22:28:40Z",
+      "side": 1,
+      "message": "LGTM\nPing me when you need to land it.",
+      "revId": "8e75ae4dd65468e3a3d9788947da8c751e65ea5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
