@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640a0188_9c18ed29",
+        "filename": "cmdline/cmdline.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2020-12-21T18:43:32Z",
+      "side": 1,
+      "message": "This gives a particularly ugly output for exit code only error. Still, better than silent failure. Please update the test.",
+      "revId": "b588e7ad05cbcfdb0ced1dfb801a829b77620379",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
