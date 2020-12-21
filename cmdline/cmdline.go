@@ -165,6 +165,9 @@ func Main(root *Command) {
 			}
 		}
 	}
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+	}
 	os.Exit(code)
 }
 
