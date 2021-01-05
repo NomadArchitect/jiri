@@ -86,6 +86,24 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f060a2f_5cba7e02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-01-05T15:45:24Z",
+      "side": 1,
+      "message": "Sorry, time gets the best of all of us.",
+      "parentUuid": "e5f0dd8e_bbb99373",
+      "revId": "8e75ae4dd65468e3a3d9788947da8c751e65ea5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22b03d55_1d2d9f49",
@@ -123,6 +141,30 @@
       "side": 1,
       "message": "Also %v -\u003e %w",
       "parentUuid": "22b03d55_1d2d9f49",
+      "range": {
+        "startLine": 402,
+        "startChar": 28,
+        "endLine": 402,
+        "endChar": 29
+      },
+      "revId": "8e75ae4dd65468e3a3d9788947da8c751e65ea5e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7ce1200_3c09aeaf",
+        "filename": "cipd/cipd.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-01-05T15:45:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9da96260_5f264c18",
       "range": {
         "startLine": 402,
         "startChar": 28,
