@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a4a76c8_380b678a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2021-02-06T20:29:53Z",
+      "side": 1,
+      "message": "Commented on patchset #2 but compared with #5 as I saw you already fixed some of the places I had noted that should not be changed.",
+      "revId": "810a6e67e29b52847ba6f336cbeea0057adca498",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}

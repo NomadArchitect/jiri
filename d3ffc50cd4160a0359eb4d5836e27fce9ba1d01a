@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173646fc_5a003060",
+        "filename": "cmd/jiri/edit_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2021-02-06T20:29:53Z",
+      "side": 0,
+      "message": "Revert these.",
+      "revId": "d3ffc50cd4160a0359eb4d5836e27fce9ba1d01a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b56ca99_59393427",
+        "filename": "cmd/jiri/manifest_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2021-02-06T20:29:53Z",
+      "side": 0,
+      "message": "Revert these",
+      "revId": "d3ffc50cd4160a0359eb4d5836e27fce9ba1d01a",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
