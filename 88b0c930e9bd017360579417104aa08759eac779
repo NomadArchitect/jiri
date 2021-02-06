@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "989c8cc7_4f5fcc2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14161
+      },
+      "writtenOn": "2021-02-06T20:39:10Z",
+      "side": 1,
+      "message": "I would generally have preferred the non-replacement changes to be separate.\nUpdated CL description to note the non-replacement changes.",
+      "revId": "88b0c930e9bd017360579417104aa08759eac779",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
