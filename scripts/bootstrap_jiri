@@ -16,7 +16,7 @@
 set -euf -o pipefail
 
 # Jiri repo, from which we will download the jiri script wrapper.
-readonly JIRI_REPO_URL="https://fuchsia.googlesource.com/jiri"
+readonly JIRI_REPO_URL="https://go.fuchsia.dev/jiri"
 
 # Google Storage bucket that contains prebuilt versions of jiri.
 readonly CIPD_ENDPOINT_URL="https://chrome-infra-packages.appspot.com/dl/fuchsia/tools/jiri"
@@ -30,7 +30,7 @@ Usage:
 
 A typical bootstrap workflow looks like this:
 
-$ curl -s https://fuchsia.googlesource.com/jiri/+/master/scripts/bootstrap_jiri?format=TEXT | base64 --decode | bash -s myroot
+$ curl -s https://go.fuchsia.dev/jiri/+/master/scripts/bootstrap_jiri?format=TEXT | base64 --decode | bash -s myroot
 $ export PATH=myroot/.jiri_root/bin:$PATH
 $ cd myroot
 $ jiri import manifest https://example.com/manifest

@@ -29,7 +29,7 @@
 // an init function to accomplish this:
 //
 //   package mypkg
-//   import "fuchsia.googlesource.com/jiri/metadata"
+//   import "go.fuchsia.dev/jiri/metadata"
 //
 //   func init() {
 //     metadata.Insert("myproject.myid", "value")

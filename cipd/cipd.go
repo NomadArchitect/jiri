@@ -25,11 +25,11 @@ import (
 	"sync"
 	"time"
 
-	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/cmdline"
-	"fuchsia.googlesource.com/jiri/log"
-	"fuchsia.googlesource.com/jiri/retry"
-	"fuchsia.googlesource.com/jiri/version"
+	"go.fuchsia.dev/jiri"
+	"go.fuchsia.dev/jiri/cmdline"
+	"go.fuchsia.dev/jiri/log"
+	"go.fuchsia.dev/jiri/retry"
+	"go.fuchsia.dev/jiri/version"
 	"golang.org/x/sync/semaphore"
 )
 

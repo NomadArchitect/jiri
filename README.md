@@ -21,7 +21,7 @@ of [Go](https://golang.org) should be installed. After installing Go, you can
 fetch the latest jiri source code by using the command:
 
 ```
-git clone https://fuchsia.googlesource.com/jiri
+git clone https://go.fuchsia.dev/jiri
 ```
 
 To build (or rebuild) jiri, simply type the following commands:
@@ -99,10 +99,10 @@ Jiri makes it easy to "import" a remote manifest from your local
 `.jiri_manifest` file with the `jiri import` command.  For example, running the
 following command will create a `.jiri_manifest` file (or append to an existing
 one) with an `import` tag that imports the jiri manifest from the
-`https://fuchsia.googlesource.com/jiri` repo.
+`https://go.fuchsia.dev/jiri` repo.
 
 ```
-jiri import -name jiri manifest https://fuchsia.googlesource.com/jiri
+jiri import -name jiri manifest https://go.fuchsia.dev/jiri
 ```
 
 The next time you run `jiri update`, jiri will sync all projects listed in the
@@ -133,7 +133,7 @@ Execute the `jiri_bootstrap` script, which will fetch and build the jiri tool,
 and initialize the root directory.
 
 ```
-curl -s https://fuchsia.googlesource.com/jiri/+/master/scripts/bootstrap_jiri?format=TEXT | base64 --decode | bash -s "$MY_ROOT"
+curl -s https://go.fuchsia.dev/jiri/+/master/scripts/bootstrap_jiri?format=TEXT | base64 --decode | bash -s "$MY_ROOT"
 ```
 
 The `jiri` command line tool will be installed in
@@ -151,7 +151,7 @@ information on manifests, read the [manifest docs][manifests].
 
 ```
 cd "$MY_ROOT"
-jiri import -name jiri manifest https://fuchsia.googlesource.com/jiri
+jiri import -name jiri manifest https://go.fuchsia.dev/jiri
 ```
 
 You should now have a file in the root directory called `.jiri_manifest`, which
@@ -164,7 +164,7 @@ listed in the manifest (which in this case will be `HEAD`).
 jiri update
 ```
 
-You should now see the imported project in `$MY_ROOT/go/src/fuchsia.googlesource.com/jiri`.
+You should now see the imported project in `$MY_ROOT/go/src/go.fuchsia.dev/jiri`.
 
 Running `jiri update` again will sync the local repos to the remotes, and
 update the jiri tool.
@@ -486,7 +486,7 @@ see [Jiri local update][hacking doc]
 [go contrib]: https://golang.org/doc/contribute.html#Code_review "Go Contribution Guidelines - Code Review"
 [jiri-wiki]: https://en.wikipedia.org/wiki/Ji%C5%99%C3%AD "Jiří"
 [manifests]: #manifests "manifests"
-[jiri manifest]: https://fuchsia.googlesource.com/jiri/+/refs/heads/master/manifest "jiri manifest"
+[jiri manifest]: https://go.fuchsia.dev/jiri/+/refs/heads/master/manifest "jiri manifest"
 [manifest doc]:/manifest.md "Jiri manifest"
 [filesystem doc]:/filesystem.md "Jiri filesystem"
 [hacking doc]:/HACKING.md "Jiri local updates"

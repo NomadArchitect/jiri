@@ -19,7 +19,7 @@ import (
 	"strings"
 	"testing"
 
-	"fuchsia.googlesource.com/jiri/envvar"
+	"go.fuchsia.dev/jiri/envvar"
 )
 
 var (
