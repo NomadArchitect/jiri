@@ -14,9 +14,9 @@ import (
 	"strings"
 	"sync"
 
-	"fuchsia.googlesource.com/jiri"
-	"fuchsia.googlesource.com/jiri/gerrit"
-	"fuchsia.googlesource.com/jiri/gitutil"
+	"go.fuchsia.dev/jiri"
+	"go.fuchsia.dev/jiri/gerrit"
+	"go.fuchsia.dev/jiri/gitutil"
 )
 
 const (
