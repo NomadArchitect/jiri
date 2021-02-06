@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"fuchsia.googlesource.com/jiri/project"
+	"go.fuchsia.dev/jiri/project"
 )
 
 func TestPrefixTree(t *testing.T) {

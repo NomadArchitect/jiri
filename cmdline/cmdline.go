@@ -51,9 +51,9 @@ import (
 	"strings"
 	"syscall"
 
-	"fuchsia.googlesource.com/jiri/envvar"
-	_ "fuchsia.googlesource.com/jiri/metadata" // for the -metadata flag
-	"fuchsia.googlesource.com/jiri/timing"
+	"go.fuchsia.dev/jiri/envvar"
+	_ "go.fuchsia.dev/jiri/metadata" // for the -metadata flag
+	"go.fuchsia.dev/jiri/timing"
 )
 
 // Command represents a single command in a command-line program.  A program
