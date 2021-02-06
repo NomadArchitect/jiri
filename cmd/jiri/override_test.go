@@ -11,8 +11,8 @@ import (
 	"strings"
 	"testing"
 
-	"fuchsia.googlesource.com/jiri/jiritest/xtest"
-	"fuchsia.googlesource.com/jiri/project"
+	"go.fuchsia.dev/jiri/jiritest/xtest"
+	"go.fuchsia.dev/jiri/project"
 )
 
 type overrideTestCase struct {

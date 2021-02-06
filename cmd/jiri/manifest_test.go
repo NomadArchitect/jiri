@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"fuchsia.googlesource.com/jiri/cipd"
-	"fuchsia.googlesource.com/jiri/jiritest"
+	"go.fuchsia.dev/jiri/cipd"
+	"go.fuchsia.dev/jiri/jiritest"
 )
 
 func TestManifest(t *testing.T) {
@@ -26,7 +26,7 @@ func TestManifest(t *testing.T) {
 	<imports>
 		<import name="the_import"
 			manifest="the_import_manifest"
-			remote="https://fuchsia.googlesource.com/the_import"
+			remote="https://go.fuchsia.dev/the_import"
 			revision="the_import_revision"
 			remotebranch="the_import_remotebranch"
 			root="the_import_root"/>
@@ -34,7 +34,7 @@ func TestManifest(t *testing.T) {
 	<projects>
 		<project name="the_project"
 			path="path/to/the_project"
-			remote="https://fuchsia.googlesource.com/the_project"
+			remote="https://go.fuchsia.dev/the_project"
 			remotebranch="the_project_remotebranch"
 			revision="the_project_revision"
 			githooks="the_project_githooks"
@@ -158,7 +158,7 @@ func TestManifest(t *testing.T) {
 			"-template={{.Remote}}",
 			testManifestFile.Name(),
 		},
-			"https://fuchsia.googlesource.com/the_project")
+			"https://go.fuchsia.dev/the_project")
 
 		expectAttributeValue(t, []string{
 			"-element=the_project",
@@ -195,7 +195,7 @@ func TestManifest(t *testing.T) {
 			"-template={{.Remote}}",
 			testManifestFile.Name(),
 		},
-			"https://fuchsia.googlesource.com/the_import")
+			"https://go.fuchsia.dev/the_import")
 
 		expectAttributeValue(t, []string{
 			"-element=the_import",

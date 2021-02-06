@@ -108,7 +108,7 @@ func TestUpdateRevision(t *testing.T) {
 
 	<project name="third_party/dart-pkg"
 				path="third_party/dart-pkg/pub"
-				remote="https://fuchsia.googlesource.com/third_party/dart-pkg"
+				remote="https://go.fuchsia.dev/third_party/dart-pkg"
 				gerrithost="https://fuchsia-review.googlesource.com"/>
 	</projects>
 </manifest>
@@ -139,7 +139,7 @@ func TestUpdateRevision(t *testing.T) {
 
 	<project name="third_party/dart-pkg"
 				path="third_party/dart-pkg/pub"
-				remote="https://fuchsia.googlesource.com/third_party/dart-pkg"
+				remote="https://go.fuchsia.dev/third_party/dart-pkg"
 				gerrithost="https://fuchsia-review.googlesource.com"/>
 	</projects>
 </manifest>
@@ -169,7 +169,7 @@ func TestUpdateRevision(t *testing.T) {
 
 	<project name="third_party/dart-pkg"
 				path="third_party/dart-pkg/pub"
-				remote="https://fuchsia.googlesource.com/third_party/dart-pkg"
+				remote="https://go.fuchsia.dev/third_party/dart-pkg"
 				gerrithost="https://fuchsia-review.googlesource.com"
          revision="ffffffffffffffffffffffffffffffffffffffff"/>
 	</projects>

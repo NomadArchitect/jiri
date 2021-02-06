@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"fuchsia.googlesource.com/jiri/version"
+	"go.fuchsia.dev/jiri/version"
 )
 
 var Version = "1.0v"
