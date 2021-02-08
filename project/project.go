@@ -6,6 +6,7 @@ package project
 
 import (
 	"bytes"
+	"crypto/sha256"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -1473,6 +1474,13 @@ func WriteUpdateHistorySnapshot(jirix *jiri.X, snapshotPath string, hooks Hooks,
 		if err != nil {
 			return fmtError(err)
 		}
+		// If the snapshot file didn't change, do nothing and return.
+		if changed, err := diff(latestFile, snapshotFile); err != nil {
+			return fmtError(err)
+		} else if !changed {
+			return nil
+		}
+
 		if err := os.RemoveAll(secondLatestLink); err != nil {
 			return fmtError(err)
 		}
@@ -1481,9 +1489,9 @@ func WriteUpdateHistorySnapshot(jirix *jiri.X, snapshotPath string, hooks Hooks,
 		}
 	}
 
-	// Point the "latest" update history symlink to the new snapshot file.  Try
-	// to keep the symlink relative, to make it easy to move or copy the entire
-	// update_history directory.
+	// If the snapshot file was updated, point the "latest" update history
+	// symlink to the new snapshot file.  Try to keep the symlink relative,
+	// to make it easy to move or copy the entire update_history directory.
 	if rel, err := filepath.Rel(filepath.Dir(latestLink), snapshotFile); err == nil {
 		snapshotFile = rel
 	}
@@ -1491,6 +1499,22 @@ func WriteUpdateHistorySnapshot(jirix *jiri.X, snapshotPath string, hooks Hooks,
 		return fmtError(err)
 	}
 	return fmtError(os.Symlink(snapshotFile, latestLink))
+}
+
+// diff compares the shasum of the passed in files. Returns true if the files
+// are different.
+func diff(path1, path2 string) (bool, error) {
+	d1, err := ioutil.ReadFile(path1)
+	if err != nil {
+		return false, err
+	}
+	d2, err := ioutil.ReadFile(path2)
+	if err != nil {
+		return false, err
+	}
+	path1Sha := fmt.Sprintf("%x", sha256.Sum256(d1))
+	path2Sha := fmt.Sprintf("%x", sha256.Sum256(d2))
+	return (path1Sha != path2Sha), nil
 }
 
 // CleanupProjects restores the given jiri projects back to their detached
