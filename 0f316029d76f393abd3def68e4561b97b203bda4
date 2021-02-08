@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b25f4f_ca47ea46",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-02-08T20:39:11Z",
+      "side": 1,
+      "message": "I very much think that using the latest commit time in integration, or aggregating the mtime from all manifests and choosing the latest would also improve the determinism here. You would need to email users and let them know of the behavior change though.",
+      "range": {
+        "startLine": 1460,
+        "startChar": 57,
+        "endLine": 1460,
+        "endChar": 88
+      },
+      "revId": "0f316029d76f393abd3def68e4561b97b203bda4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
