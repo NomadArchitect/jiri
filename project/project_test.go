@@ -844,6 +844,32 @@ func TestProjectUpdateWhenIgnore(t *testing.T) {
 	}
 }
 
+func TestProjectUpdateWhenNoChanges(t *testing.T) {
+	_, fake, cleanup := setupUniverse(t)
+	defer cleanup()
+	if err := fake.UpdateUniverse(false); err != nil {
+		t.Fatal(err)
+	}
+	project.WriteUpdateHistorySnapshot(fake.X, "", nil, nil, false)
+	origSnapshot, err := os.Readlink(fake.X.UpdateHistoryLatestLink())
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Run update again, there should be no changes.
+	if err := fake.UpdateUniverse(false); err != nil {
+		t.Fatal(err)
+	}
+	project.WriteUpdateHistorySnapshot(fake.X, "", nil, nil, false)
+	newSnapshot, err := os.Readlink(fake.X.UpdateHistoryLatestLink())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if newSnapshot != origSnapshot {
+		t.Errorf("no-op update changed the snapshot the latest symlink pointed to; got %s, want %s", newSnapshot, origSnapshot)
+	}
+}
+
 func TestLocalProjectWithConfig(t *testing.T) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
