@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51acc722_2f5e2737",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2021-02-09T22:01:45Z",
+      "side": 1,
+      "message": "Is this a typo of `Packages`?",
+      "range": {
+        "startLine": 516,
+        "startChar": 7,
+        "endLine": 516,
+        "endChar": 14
+      },
+      "revId": "0777f68ab487a72ba33d7a1f73e17cdc78c0999f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
