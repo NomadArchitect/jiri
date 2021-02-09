@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c268ff8e_08fdb040",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2021-02-09T03:56:39Z",
+      "side": 1,
+      "message": "Since there is no unit test for it, could you update the commit msg with the manual test procedures you have done please? Something like:\n\nTest: manually run `jiri update`, ... `jiri update` again, `ls -al .jiri_root/updateHistory`",
+      "revId": "ea6f397a26a707148f269f992058a068a5b783c2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
