@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3191c0b2_8d764bf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59526
+      },
+      "writtenOn": "2021-06-10T03:35:39Z",
+      "side": 1,
+      "message": "Open to ideas on a different way to re-factor, but b/c the snapshot function is in project.go it\u0027s easy to get into a circular dependency issue trying to separate things.",
+      "revId": "7957876da6b27fce70f7de22de0af7295ea8f764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
