@@ -16,6 +16,24 @@
       "message": "Going through the bootstrap scripts and saw this inconsistency. 😊",
       "revId": "94518e8898e8910bfb6eeb942fd456c35a67d85f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67fd5b4_4db546d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 36224
+      },
+      "writtenOn": "2021-06-15T01:18:50Z",
+      "side": 1,
+      "message": "Nice, thanks for the fix!",
+      "parentUuid": "1c44f0d9_d8caed9c",
+      "revId": "94518e8898e8910bfb6eeb942fd456c35a67d85f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
