@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de0abea_b056b024",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 37097
+      },
+      "writtenOn": "2021-07-20T13:16:25Z",
+      "side": 1,
+      "message": "I don\u0027t think this has any effect? You\u0027re only decoding into map[string]string, so we lose field validation.",
+      "range": {
+        "startLine": 445,
+        "startChar": 1,
+        "endLine": 445,
+        "endChar": 32
+      },
+      "revId": "b46b8a93d88a6f0c125d6c02f84e3ec50ad579b2",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
