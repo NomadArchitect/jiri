@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7642a45_ec21f7c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2021-07-26T20:22:23Z",
+      "side": 1,
+      "message": "Is it really necessary? Maybe 2 locks(version, InstanceID) can be merged if they are the same?\n\n",
+      "revId": "d142747aea5ae43b6fe004dfcebde3e1c6004c67",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
