@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdaa54c_3f7029f1",
+        "filename": "gitutil/git.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-07-30T16:21:31Z",
+      "side": 1,
+      "message": "I suspect in the fullness of time, we\u0027d want to just pass-through the jiri jobs value here.",
+      "range": {
+        "startLine": 318,
+        "startChar": 21,
+        "endLine": 318,
+        "endChar": 32
+      },
+      "revId": "e304cf42f5994a5f5204c42d17e53695969d56d6",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
