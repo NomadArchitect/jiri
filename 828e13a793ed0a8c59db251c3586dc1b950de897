@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63254bfd_1f47dfb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-08-27T17:19:48Z",
+      "side": 1,
+      "message": "I still need to make sure this doesn\u0027t break normal Fuchsia checkout flows but it passes all the various tests, and contrived situations I created locally",
+      "revId": "828e13a793ed0a8c59db251c3586dc1b950de897",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
