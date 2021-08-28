@@ -35,6 +35,24 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "166b0944_ab3e6e65",
+        "filename": "project/operations.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-08-28T00:00:56Z",
+      "side": 1,
+      "message": "I added an attempt to restore back to the original directory structure and logged a message about what failed.\n\nFailures are likely more indicative of whole disk problems (out of space, failure) or manifest mis-configuration at this point though so I wasn\u0027t quite sure what else to write besides please move the directory back if it failed.",
+      "parentUuid": "16225c4b_03408336",
+      "revId": "828e13a793ed0a8c59db251c3586dc1b950de897",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24155fab_ad54d9ad",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-08-27T17:42:45Z",
       "side": 1,
       "message": "Nit: I\u0027d call it parentDir to make it clear what\u0027s going on even without reading the comment.",
+      "range": {
+        "startLine": 953,
+        "startChar": 1,
+        "endLine": 953,
+        "endChar": 5
+      },
+      "revId": "828e13a793ed0a8c59db251c3586dc1b950de897",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ef0307_4c648de8",
+        "filename": "project/operations.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-08-28T00:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24155fab_ad54d9ad",
       "range": {
         "startLine": 953,
         "startChar": 1,
