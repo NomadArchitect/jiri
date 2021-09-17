@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb0f674_2b0bd8db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 12756
+      },
+      "writtenOn": "2021-09-17T23:24:14Z",
+      "side": 1,
+      "message": "Sorry it took me awhile to pick this bug and fix it. My hands were quite full with other projects and technically jiri is no longer maintained by toolchain team.\n\nKey() function is defined at https://fuchsia.googlesource.com/jiri/+/6fbf3e390ec99b6557340f55a6726bb74381ce95/project/manifest.go#550 , which is package local path and URL connected with a separator. So this change makes Jiri fail if it finds another package with the same package url and local path, regardless of the package revision.",
+      "revId": "2308c33d85839ad64d9480cd6c0c4d111789f764",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
