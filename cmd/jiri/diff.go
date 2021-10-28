@@ -123,16 +123,44 @@ func (p DiffProjectsByName) Less(i, j int) bool {
 	return p[i].Name < p[j].Name
 }
 
+type DiffPackage struct {
+	Name            string   `json:"name"`
+	Path            string   `json:"path"`
+	RelativePath    string   `json:"relative_path"`
+	OldPath         string   `json:"old_path,omitempty"`
+	OldRelativePath string   `json:"old_relative_path,omitempty"`
+	Version         string   `json:"version"`
+	OldVersion      string   `json:"old_version,omitempty"`
+}
+
+type DiffPackagesByName []DiffPackage
+
+func (p DiffPackagesByName) Len() int {
+	return len(p)
+}
+func (p DiffPackagesByName) Swap(i, j int) {
+	p[i], p[j] = p[j], p[i]
+}
+func (p DiffPackagesByName) Less(i, j int) bool {
+	return p[i].Name < p[j].Name
+}
+
 type Diff struct {
 	NewProjects     []DiffProject `json:"new_projects"`
 	DeletedProjects []DiffProject `json:"deleted_projects"`
 	UpdatedProjects []DiffProject `json:"updated_projects"`
+	NewPackages     []DiffPackage `json:"new_packages"`
+	DeletedPackages []DiffPackage `json:"deleted_packages"`
+	UpdatedPackages []DiffPackage `json:"updated_packages"`
 }
 
 func (d *Diff) Sort() *Diff {
 	sort.Sort(DiffProjectsByName(d.NewProjects))
 	sort.Sort(DiffProjectsByName(d.DeletedProjects))
 	sort.Sort(DiffProjectsByName(d.UpdatedProjects))
+	sort.Sort(DiffPackagesByName(d.NewPackages))
+	sort.Sort(DiffPackagesByName(d.DeletedPackages))
+	sort.Sort(DiffPackagesByName(d.UpdatedPackages))
 	return d
 }
 
@@ -162,11 +190,11 @@ func getDiff(jirix *jiri.X, snapshot1, snapshot2 string) (*Diff, error) {
 		jirix.Logger = oldLogger
 	}()
 	jirix.Logger = log.NewLogger(log.NoLogLevel, jirix.Color, false, 0, oldLogger.TimeLogThreshold(), nil, nil)
-	projects1, _, _, err := project.LoadSnapshotFile(jirix, snapshot1)
+	projects1, _, packages1, err := project.LoadSnapshotFile(jirix, snapshot1)
 	if err != nil {
 		return nil, err
 	}
-	projects2, _, _, err := project.LoadSnapshotFile(jirix, snapshot2)
+	projects2, _, packages2, err := project.LoadSnapshotFile(jirix, snapshot2)
 	if err != nil {
 		return nil, err
 	}
@@ -312,5 +340,94 @@ func getDiff(jirix *jiri.X, snapshot1, snapshot2 string) (*Diff, error) {
 	for diffP := range diffs {
 		diff.UpdatedProjects = append(diff.UpdatedProjects, diffP)
 	}
+
+	// Get deleted packages
+	for key, p1 := range packages1 {
+		if _, ok := packages2[key]; !ok {
+			rp, err := filepath.Rel(jirix.Root, p1.Path)
+			if err != nil {
+				// should not happen
+				panic(err)
+			}
+			diff.DeletedPackages = append(diff.DeletedPackages, DiffPackage{
+				Name:         p1.Name,
+				Path:         p1.Path,
+				RelativePath: rp,
+				Version:     p1.Version,
+			})
+		}
+	}
+
+	// Get new packages lso extract updated packages
+	updatedPackageKeys := make(chan project.PackageKey, len(packages2))
+	for key, p2 := range packages2 {
+		if p1, ok := packages1[key]; !ok {
+			rp, err := filepath.Rel(jirix.Root, p2.Path)
+			if err != nil {
+				// should not happen
+				panic(err)
+			}
+
+			diff.NewPackages = append(diff.NewPackages, DiffPackage{
+				Name:         p2.Name,
+				Path:         p2.Path,
+				RelativePath: rp,
+				Version:      p2.Version,
+			})
+		} else {
+			if p1.Path != p2.Path || p1.Version != p2.Version {
+				updatedPackageKeys <- key
+			}
+		}
+	}
+
+	close(updatedPackageKeys)
+
+	processUpdatedPackage := func(key project.PackageKey) DiffPackage {
+		p1 := packages1[key]
+		p2 := packages2[key]
+		rp, err := filepath.Rel(jirix.Root, p2.Path)
+		if err != nil {
+			// should not happen
+			panic(err)
+		}
+		diffP := DiffPackage{
+			Name:         p2.Name,
+			Path:         p2.Path,
+			RelativePath: rp,
+			Version:     p2.Version,
+		}
+		if p1.Path != p2.Path {
+			rp, err := filepath.Rel(jirix.Root, p1.Path)
+			if err != nil {
+				// should not happen
+				panic(err)
+			}
+			diffP.OldPath = p1.Path
+			diffP.OldRelativePath = rp
+		}
+		if p1.Version != p2.Version {
+			diffP.OldVersion = p1.Version
+		}
+		return diffP
+	}
+
+	diffsPkg := make(chan DiffPackage, len(updatedPackageKeys))
+	var wgPack sync.WaitGroup
+	for i := uint(0); i < jirix.Jobs; i++ {
+		wgPack.Add(1)
+		go func() {
+			defer wgPack.Done()
+			for key := range updatedPackageKeys {
+				diffsPkg <- processUpdatedPackage(key)
+			}
+		}()
+	}
+	wgPack.Wait()
+	close(diffsPkg)
+	for diffP := range diffsPkg {
+		diff.UpdatedPackages = append(diff.UpdatedPackages, diffP)
+	}
+
 	return diff.Sort(), nil
 }
