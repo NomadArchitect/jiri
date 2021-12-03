@@ -71,6 +71,24 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef416ebf_39cb04a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 61879
+      },
+      "writtenOn": "2021-12-03T17:33:36Z",
+      "side": 1,
+      "message": "I was trying to bootstrap Fuchsia, it clones third_party/protobuf as part of the process. Then jiri tries to create a hook, but third_party/protobuf/.git/hooks doesn\u0027t exist. I\u0027m not trying to do anything custom.\n\nSteps to reproduce:\n1. git clone https://fuchsia.googlesource.com/fuchsia\n2. git checkout 0a469494a9c7806a17d1c69c96d6f77ad9cdfaf9 # that\u0027s the commit I tested it with, pretty sure HEAD will work too\n3. curl -s https://fuchsia.googlesource.com/jiri/+/main/scripts/bootstrap_jiri?format\u003dTEXT | base64 --decode | bash -s fuchsia\n4. cd fuchsia\n5. .jiri_root/bin/jiri import -name\u003dintegration flower https://fuchsia.googlesource.com/integration\n6. .jiri_root/bin/jiri update\n\nOr just\ncurl -s \"https://fuchsia.googlesource.com/fuchsia/+/HEAD/scripts/bootstrapformat\u003dTEXT\" | base64 --decode | bash\n\nbut there is no way to specify the commit id AFAIU.\n\nFaster way to reproduce on already updated fuchsia directory:\n1. rm -rf third_party/protobug/.git/hooks\n2. .jiri_root/bin/jiri update\n\nbut one might argue that deletion brought the project directory in an inconsistent state.",
+      "parentUuid": "127fc2c9_175a5e8a",
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fcbd0b2_8e707bd4",
@@ -84,6 +102,30 @@
       "writtenOn": "2021-12-03T17:20:09Z",
       "side": 1,
       "message": "Looks like git sets 0755 by default, we should maintain the same permissions.",
+      "range": {
+        "startLine": 1356,
+        "startChar": 42,
+        "endLine": 1356,
+        "endChar": 46
+      },
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baa3e667_dedacb81",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 61879
+      },
+      "writtenOn": "2021-12-03T17:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fcbd0b2_8e707bd4",
       "range": {
         "startLine": 1356,
         "startChar": 42,
