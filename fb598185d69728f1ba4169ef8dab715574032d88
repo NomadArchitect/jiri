@@ -34,6 +34,64 @@
       "parentUuid": "fdd38d5f_caeedb9d",
       "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4375d17a_5087742e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-12-03T17:20:09Z",
+      "side": 1,
+      "message": "LGTM, discussion about your git configuration is non-blocking.",
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127fc2c9_175a5e8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-12-03T17:20:09Z",
+      "side": 1,
+      "message": "The directory is normally created by `git` and `jiri` just expects a standard setup. The lack of a hooks dir implies that your specified a non-standard template dir or modified the standard template dir.\n\nDo you have `$GIT_TEMPLATE_DIR` or `init.templateDir` set and/or did you modify the contents of /usr/share/git-core/templates on disk?",
+      "parentUuid": "04f76f17_887a6f7f",
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fcbd0b2_8e707bd4",
+        "filename": "project/manifest.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-12-03T17:20:09Z",
+      "side": 1,
+      "message": "Looks like git sets 0755 by default, we should maintain the same permissions.",
+      "range": {
+        "startLine": 1356,
+        "startChar": 42,
+        "endLine": 1356,
+        "endChar": 46
+      },
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
