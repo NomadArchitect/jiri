@@ -89,6 +89,24 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1b5615_8378bf21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2021-12-03T18:06:31Z",
+      "side": 1,
+      "message": "The existence of `.git/hook` is the default for `git`, its possible some other utility you used modified your local git config. Either way its semi-irrelevant because we shouldn\u0027t expect everyone to have the defaults.",
+      "parentUuid": "ef416ebf_39cb04a9",
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fcbd0b2_8e707bd4",
