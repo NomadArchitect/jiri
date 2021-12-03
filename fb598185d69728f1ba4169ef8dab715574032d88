@@ -16,6 +16,24 @@
       "message": "Hey Ian,\n\ncould you please review this trivial change? There is no owner, so picked you since\nyou changed this file recently. Feel free to assign if you are a wrong person to review.",
       "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f76f17_887a6f7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 59526
+      },
+      "writtenOn": "2021-12-03T16:33:29Z",
+      "side": 1,
+      "message": "+cc: nmulcahey@ for additional thoughts.\n\nIf jiri sets up the git project the hooks directory should exist. When you say boostrap protobuf, what do you mean? Is it being pulled from a remote? If so, adding it to the manifest and then doing an local jiri update should create the git folder.\n\nCan you upload the CL that is giving you trouble w/ jiri update somewhere and I can try to reproduce locally?",
+      "parentUuid": "fdd38d5f_caeedb9d",
+      "revId": "fb598185d69728f1ba4169ef8dab715574032d88",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
