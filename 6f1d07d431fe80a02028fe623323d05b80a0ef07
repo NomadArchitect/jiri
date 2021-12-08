@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a2cc35_35cc2d16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 39465
+      },
+      "writtenOn": "2021-12-08T21:08:14Z",
+      "side": 1,
+      "message": "Note this is inspired by https://fuchsia-review.googlesource.com/c/jiri/+/187896",
+      "revId": "6f1d07d431fe80a02028fe623323d05b80a0ef07",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
