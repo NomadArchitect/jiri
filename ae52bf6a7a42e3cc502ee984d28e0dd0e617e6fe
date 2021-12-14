@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33de9ae_f7cc4ba3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37097
+      },
+      "writtenOn": "2021-12-14T22:38:36Z",
+      "side": 1,
+      "message": "FWIW, this messed up Jiri\u0027s help formatting in the VS Code integrated terminal. It seems like it\u0027s trying to fit each help line in \u003c40 characters despite my terminal being ~100 characters wide.\n\nhttps://screenshot.googleplex.com/6856jXhn95pzKZe\n\nNot a huge deal, but it would be nice if there\u0027s an easy fix.",
+      "revId": "ae52bf6a7a42e3cc502ee984d28e0dd0e617e6fe",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
