@@ -16,6 +16,24 @@
       "message": "Oops :)\n\nThanks for the fix!",
       "revId": "c40493d047d08abe13079b7f2df5a703ef71e9f4",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f91dc941_bacccab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 39465
+      },
+      "writtenOn": "2021-12-22T22:04:25Z",
+      "side": 1,
+      "message": "Indeed!  I spent some time trying to create a unit test, but it seemed like more effort than it is worth given that we\u0027re planning to deprecate Jiri soon.",
+      "parentUuid": "4da6f27e_0f6df3b3",
+      "revId": "c40493d047d08abe13079b7f2df5a703ef71e9f4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
