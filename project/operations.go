@@ -58,6 +58,10 @@ type operation interface {
 	String() string
 	// Test checks whether the operation would fail.
 	Test(jirix *jiri.X, updates *fsUpdates) error
+	// Source returns the original path of the Project.
+	Source() string
+	// Destination returns the future path of the Project.
+	Destination() string
 }
 
 // commonOperation represents a project operation.
@@ -76,6 +80,14 @@ type commonOperation struct {
 
 func (op commonOperation) Project() Project {
 	return op.project
+}
+
+func (op commonOperation) Source() string {
+	return op.source
+}
+
+func (op commonOperation) Destination() string {
+	return op.destination
 }
 
 // createOperation represents the creation of a project.
@@ -398,7 +410,15 @@ func (op moveOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
 			return fmtError(err)
 		}
 	} else {
-		return fmt.Errorf("cannot move %q to %q as the destination already exists", op.source, op.destination)
+		// Check if the destination is our parent, and if we are the only child.
+		// This allows `jiri` to move repositories up a directory.
+		files, err := ioutil.ReadDir(op.destination)
+		if err != nil {
+			return fmtError(err)
+		}
+		if len(files) > 1 || op.destination+string(filepath.Separator)+files[0].Name() != op.source {
+			return fmt.Errorf("cannot move %q to %q as the destination already exists", op.source, op.destination)
+		}
 	}
 	updates.deleteDir(op.source)
 	return nil
@@ -564,12 +584,27 @@ func (ops operations) Less(i, j int) bool {
 			vals[idx] = 5
 		}
 	}
+
+	// Deletes happen for the furthest child first.
+	if vals[0] == 0 {
+		return ops[i].Project().Path+string(filepath.Separator) > ops[j].Project().Path+string(filepath.Separator)
+	}
+	// Move in happens after update/create when source is child of latter.
+	// Move out happens before update/create when source is child of latter.
+	if ops[i].Kind() == "move" && ops[j].Kind() != "move" {
+		if ops[i].Project().Path+string(filepath.Separator) > ops[j].Project().Path+string(filepath.Separator) {
+			return ops[i].Destination()+string(filepath.Separator) < ops[i].Source()+string(filepath.Separator)
+		}
+	}
+	// Create happens after Update, before moves to child paths
+	if ops[i].Kind() == "create" && ops[j].Kind() == "update" {
+		return ops[i].Project().Path+string(filepath.Separator) > ops[j].Project().Path+string(filepath.Separator)
+	}
+	if ops[i].Kind() == "create" && ops[j].Kind() == "move" {
+		return ops[i].Project().Path+string(filepath.Separator) < ops[j].Project().Path+string(filepath.Separator)
+	}
 	if vals[0] != vals[1] {
 		return vals[0] < vals[1]
-	}
-	if vals[0] == 0 {
-		// delete sub folder first
-		return ops[i].Project().Path+string(filepath.Separator) > ops[j].Project().Path+string(filepath.Separator)
 	} else {
 		return ops[i].Project().Path+string(filepath.Separator) < ops[j].Project().Path+string(filepath.Separator)
 	}
