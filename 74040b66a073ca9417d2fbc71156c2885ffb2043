@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c72543_6d82d6f8",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2021-12-30T22:37:11Z",
+      "side": 1,
+      "message": "We should check whether `len(files) \u003e 0`, otherwise `files[0]` will panic",
+      "range": {
+        "startLine": 419,
+        "startChar": 65,
+        "endLine": 419,
+        "endChar": 73
+      },
+      "revId": "74040b66a073ca9417d2fbc71156c2885ffb2043",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59fc60fe_d1961b2d",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2021-12-30T22:37:11Z",
+      "side": 1,
+      "message": "If I understand this line correctly, you\u0027re using this inequality to figure out if project i is a child of project j, right? If so, won\u0027t this also evaluate to true for two entirely different projects if the name of i is greater than the name of j alphabetically? Should this instead check directly for subpaths with something like:\n```\nif strings.HasPrefix(ops[j].Project().Path, ops[i].Project.Path)\n```",
+      "range": {
+        "startLine": 595,
+        "startChar": 3,
+        "endLine": 595,
+        "endChar": 103
+      },
+      "revId": "74040b66a073ca9417d2fbc71156c2885ffb2043",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048fedd0_8c32ec26",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2021-12-30T22:37:11Z",
+      "side": 1,
+      "message": "If this is checking whether or not this is a move in or move out, then can we just check whether the Path is equal to the Source or the Destination?\n\nOnce again I don\u0027t think this will handle the case where we move out to a completely different directory correctly. Consider the following:\n```\ni :\u003d { \n   Path: \"a/b/c\"\n   Source: \"a/b/c\"\n   Destination: \"e/\"\n}\nj :\u003d {\n   Path: \"a/b\"\n   Source: \"a/b\"\n   Destination: \"a/b\"\n}\n```\nIn this case, i is a subdirectory of j and we are moving i out. Therefore, i should be run first, so this function should return true. However, the comparison of `i.Destination() \u003c i.Source()` will return false, as `e/` is greater than `a/b/c`. This means that operation j will run first, even though i should.",
+      "range": {
+        "startLine": 596,
+        "startChar": 10,
+        "endLine": 596,
+        "endChar": 102
+      },
+      "revId": "74040b66a073ca9417d2fbc71156c2885ffb2043",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053d03d4_d82b9fd8",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2021-12-30T22:37:11Z",
+      "side": 1,
+      "message": "Ditto to my comment earlier - paths can be greater than others without being child paths.",
+      "range": {
+        "startLine": 601,
+        "startChar": 2,
+        "endLine": 604,
+        "endChar": 108
+      },
+      "revId": "74040b66a073ca9417d2fbc71156c2885ffb2043",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
