@@ -22,31 +22,6 @@ import (
 	"go.fuchsia.dev/jiri/osutil"
 )
 
-// fsUpdates is used to track filesystem updates made by operations.
-// TODO(nlacasse): Currently we only use fsUpdates to track deletions so that
-// jiri can delete and create a project in the same directory in one update.
-// There are lots of other cases that should be covered though, like detecting
-// when two projects would be created in the same directory.
-type fsUpdates struct {
-	deletedDirs map[string]bool
-}
-
-func newFsUpdates() *fsUpdates {
-	return &fsUpdates{
-		deletedDirs: map[string]bool{},
-	}
-}
-
-func (u *fsUpdates) deleteDir(dir string) {
-	dir = filepath.Clean(dir)
-	u.deletedDirs[dir] = true
-}
-
-func (u *fsUpdates) isDeleted(dir string) bool {
-	_, ok := u.deletedDirs[filepath.Clean(dir)]
-	return ok
-}
-
 type operation interface {
 	// Project identifies the project this operation pertains to.
 	Project() Project
@@ -57,7 +32,11 @@ type operation interface {
 	// String returns a string representation of the operation.
 	String() string
 	// Test checks whether the operation would fail.
-	Test(jirix *jiri.X, updates *fsUpdates) error
+	Test(jirix *jiri.X) error
+	// Source returns the original path of the Project.
+	Source() string
+	// Destination returns the future path of the Project.
+	Destination() string
 }
 
 // commonOperation represents a project operation.
@@ -76,6 +55,14 @@ type commonOperation struct {
 
 func (op commonOperation) Project() Project {
 	return op.project
+}
+
+func (op commonOperation) Source() string {
+	return op.source
+}
+
+func (op commonOperation) Destination() string {
+	return op.destination
 }
 
 // createOperation represents the creation of a project.
@@ -241,7 +228,7 @@ func (op createOperation) String() string {
 	return fmt.Sprintf("create project %q in %q and advance it to %q", op.project.Name, op.destination, fmtRevision(op.project.Revision))
 }
 
-func (op createOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
+func (op createOperation) Test(jirix *jiri.X) error {
 	return nil
 }
 
@@ -320,7 +307,7 @@ func removeEmptyParents(jirix *jiri.X, dir string) error {
 		}
 		return false, nil
 	}
-	if jirix.Root == dir || dir == "" || dir == "." {
+	if !strings.HasPrefix(dir, jirix.Root) || jirix.Root == dir || dir == "" || dir == "." {
 		return nil
 	}
 	empty, err := isEmpty(dir)
@@ -341,14 +328,13 @@ func (op deleteOperation) String() string {
 	return fmt.Sprintf("delete project %q from %q", op.project.Name, op.source)
 }
 
-func (op deleteOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
+func (op deleteOperation) Test(jirix *jiri.X) error {
 	if _, err := os.Stat(op.source); err != nil {
 		if os.IsNotExist(err) {
 			return fmt.Errorf("cannot delete %q as it does not exist", op.source)
 		}
 		return fmtError(err)
 	}
-	updates.deleteDir(op.source)
 	return nil
 }
 
@@ -386,7 +372,7 @@ func (op moveOperation) String() string {
 	return fmt.Sprintf("move project %q located in %q to %q and advance it to %q", op.project.Name, op.source, op.destination, fmtRevision(op.project.Revision))
 }
 
-func (op moveOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
+func (op moveOperation) Test(jirix *jiri.X) error {
 	if _, err := os.Stat(op.source); err != nil {
 		if os.IsNotExist(err) {
 			return fmt.Errorf("cannot move %q to %q as the source does not exist", op.source, op.destination)
@@ -398,9 +384,16 @@ func (op moveOperation) Test(jirix *jiri.X, updates *fsUpdates) error {
 			return fmtError(err)
 		}
 	} else {
-		return fmt.Errorf("cannot move %q to %q as the destination already exists", op.source, op.destination)
+		// Check if the destination is our parent, and if we are the only child.
+		// This allows `jiri` to move repositories up a directory.
+		files, err := ioutil.ReadDir(op.destination)
+		if err != nil {
+			return fmtError(err)
+		}
+		if len(files) > 1 || (len(files) > 0 && op.destination+string(filepath.Separator)+files[0].Name() != op.source) {
+			return fmt.Errorf("cannot move %q to %q as the destination already exists", op.source, op.destination)
+		}
 	}
-	updates.deleteDir(op.source)
 	return nil
 }
 
@@ -475,7 +468,7 @@ func (op changeRemoteOperation) String() string {
 	return fmt.Sprintf("Change remote of project %q to %q and update it to %q", op.project.Name, op.project.Remote, fmtRevision(op.project.Revision))
 }
 
-func (op changeRemoteOperation) Test(jirix *jiri.X, _ *fsUpdates) error {
+func (op changeRemoteOperation) Test(jirix *jiri.X) error {
 	return nil
 }
 
@@ -503,7 +496,7 @@ func (op updateOperation) String() string {
 	return fmt.Sprintf("advance/rebase project %q located in %q to %q", op.project.Name, op.source, fmtRevision(op.project.Revision))
 }
 
-func (op updateOperation) Test(jirix *jiri.X, _ *fsUpdates) error {
+func (op updateOperation) Test(jirix *jiri.X) error {
 	return nil
 }
 
@@ -525,7 +518,7 @@ func (op nullOperation) String() string {
 	return fmt.Sprintf("project %q located in %q at revision %q is up-to-date", op.project.Name, op.source, fmtRevision(op.project.Revision))
 }
 
-func (op nullOperation) Test(jirix *jiri.X, _ *fsUpdates) error {
+func (op nullOperation) Test(jirix *jiri.X) error {
 	return nil
 }
 
@@ -564,14 +557,86 @@ func (ops operations) Less(i, j int) bool {
 			vals[idx] = 5
 		}
 	}
-	if vals[0] != vals[1] {
-		return vals[0] < vals[1]
+	// Move out before
+	// Move in after
+	if vals[0] == 2 { // Move
+		if vals[1] == 4 { // Update
+			if strings.HasPrefix(ops[i].Source(), ops[j].Source()+string(filepath.Separator)) { // Move is in a child project of Update
+				if strings.HasPrefix(ops[i].Source(), ops[i].Destination()+string(filepath.Separator)) { // Move is not "out" (e.g. A/C -> A/B/C)
+					fmt.Printf("1 Move %s (%s) before updating %s (%s)\n", ops[i].Project().Name, ops[i].Kind(), ops[j].Project().Name, ops[j].Kind())
+					return false // Move can happen first
+				}
+			}
+		}
+		if vals[1] == 3 { // Create
+			if strings.HasPrefix(ops[i].Destination(), ops[j].Destination()+string(filepath.Separator)) { // Create parent
+				return false
+			}
+		}
+		if vals[1] == 2 {
+			// Move out
+			if strings.HasPrefix(ops[i].Destination(), ops[i].Source()+string(filepath.Separator)) {
+				return true
+				// Move in
+			} else if strings.HasPrefix(ops[i].Source(), ops[i].Destination()+string(filepath.Separator)) {
+				return false
+			}
+		}
 	}
-	if vals[0] == 0 {
-		// delete sub folder first
-		return ops[i].Project().Path+string(filepath.Separator) > ops[j].Project().Path+string(filepath.Separator)
+
+	if vals[0] == 3 { // Create
+		if vals[1] == 2 { // Move
+			if strings.HasPrefix(ops[j].Destination(), ops[i].Destination()+string(filepath.Separator)) { // Move not in parent
+				return true
+			}
+		}
+		if vals[1] == 4 { // Update
+			if strings.HasPrefix(ops[i].Destination(), ops[j].Destination()+string(filepath.Separator)) { // Create in child
+				return false
+			}
+		}
+	}
+
+	if vals[0] == 4 { //Update
+		if vals[1] == 2 || vals[1] == 3 { // Move/Create
+			if strings.HasPrefix(ops[j].Destination(), ops[i].Source()+string(filepath.Separator)) { // Op in child
+				if vals[1] == 2 && strings.HasPrefix(ops[j].Destination(), ops[j].Source()+string(filepath.Separator)) { // Move "out"
+					fmt.Printf("2 Move %s (%s) before updating %s (%s)\n", ops[j].Project().Name, ops[j].Kind(), ops[i].Project().Name, ops[i].Kind())
+					return false // Move out happens before update
+				}
+				fmt.Printf("2 Update %s (%s) before creating/moving %s (%s)\n", ops[i].Project().Name, ops[i].Kind(), ops[j].Project().Name, ops[j].Kind())
+				return true // Move in happens after update
+			}
+		}
+	}
+
+	if vals[0] != vals[1] {
+		if vals[0] < vals[1] {
+			fmt.Printf("%s (%s) before %s (%s)\n", ops[i].Project().Name, ops[i].Kind(), ops[j].Project().Name, ops[j].Kind())
+			return vals[0] < vals[1]
+		} else {
+			fmt.Printf("%s (%s) before %s (%s)\n", ops[j].Project().Name, ops[j].Kind(), ops[i].Project().Name, ops[i].Kind())
+			return vals[0] < vals[1]
+		}
+
+	}
+
+	if vals[0] == 0 { // Delete
+		if ops[i].Source() < ops[j].Source() {
+			fmt.Printf("%s (%s) before %s (%s)\n", ops[i].Project().Name, ops[i].Kind(), ops[j].Project().Name, ops[j].Kind())
+			return ops[i].Source() < ops[j].Source()
+		} else {
+			fmt.Printf("%s (%s) before %s (%s)\n", ops[j].Project().Name, ops[j].Kind(), ops[i].Project().Name, ops[i].Kind())
+			return ops[i].Source() < ops[j].Source()
+		}
+	}
+
+	if ops[i].Destination() < ops[j].Destination() {
+		fmt.Printf("%s (%s) before %s (%s)\n", ops[i].Project().Name, ops[i].Kind(), ops[j].Project().Name, ops[j].Kind())
+		return ops[i].Destination() < ops[j].Destination()
 	} else {
-		return ops[i].Project().Path+string(filepath.Separator) < ops[j].Project().Path+string(filepath.Separator)
+		fmt.Printf("%s (%s) before %s (%s)\n", ops[j].Project().Name, ops[j].Kind(), ops[i].Project().Name, ops[i].Kind())
+		return ops[i].Destination() < ops[j].Destination()
 	}
 }
 
@@ -614,6 +679,9 @@ func computeOperations(localProjects, remoteProjects Projects, states map[Projec
 		result = append(result, computeOp(local, remote, state, gc, rebaseTracked, rebaseUntracked, rebaseAll, snapshot))
 	}
 	sort.Sort(result)
+	for _, r := range result {
+		fmt.Printf("%s\n", r.String())
+	}
 	return result
 }
 
@@ -937,7 +1005,6 @@ func renameDir(jirix *jiri.X, src, dst string) error {
 	h := fnv.New32a()
 	h.Write([]byte(src))
 	tmp := filepath.Join(swapDir, fmt.Sprintf("%d", h.Sum32()))
-
 	// Ensure .jiri_root/swap exists
 	if err := os.MkdirAll(swapDir, perm); err != nil {
 		return err
@@ -946,6 +1013,10 @@ func renameDir(jirix *jiri.X, src, dst string) error {
 	// Move src -> tmp
 	if err := osutil.Rename(src, tmp); err != nil {
 		return err
+	}
+
+	if err := removeEmptyParents(jirix, dst); err != nil {
+		jirix.Logger.Infof("Could not remove empty directories for %s", dst)
 	}
 
 	// Ensure the dst's parent exists, it may have
@@ -962,6 +1033,5 @@ func renameDir(jirix *jiri.X, src, dst string) error {
 		}
 		return err
 	}
-
 	return nil
 }
