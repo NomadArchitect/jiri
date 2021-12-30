@@ -2404,42 +2404,103 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	updateOperations := operations{}
 	createOperations := []createOperation{}
 	nullOperations := operations{}
-	updates := newFsUpdates()
+
 	for _, op := range ops {
-		if err := op.Test(jirix, updates); err != nil {
-			return err
-		}
 		switch o := op.(type) {
 		case deleteOperation:
+			if len(changeRemoteOperations) > 0 || len(moveOperations) > 0 || len(updateOperations) > 0 || len(createOperations) > 0 || len(nullOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				moveOperations = moveOperations[:0]
+				changeRemoteOperations = changeRemoteOperations[:0]
+				updateOperations = updateOperations[:0]
+				createOperations = createOperations[:0]
+				nullOperations = nullOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			deleteOperations = append(deleteOperations, o)
 		case changeRemoteOperation:
+			if len(deleteOperations) > 0 || len(moveOperations) > 0 || len(updateOperations) > 0 || len(createOperations) > 0 || len(nullOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				moveOperations = moveOperations[:0]
+				deleteOperations = deleteOperations[:0]
+				updateOperations = updateOperations[:0]
+				createOperations = createOperations[:0]
+				nullOperations = nullOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			changeRemoteOperations = append(changeRemoteOperations, o)
 		case moveOperation:
+			if len(deleteOperations) > 0 || len(changeRemoteOperations) > 0 || len(updateOperations) > 0 || len(createOperations) > 0 || len(nullOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				changeRemoteOperations = changeRemoteOperations[:0]
+				deleteOperations = deleteOperations[:0]
+				updateOperations = updateOperations[:0]
+				createOperations = createOperations[:0]
+				nullOperations = nullOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			moveOperations = append(moveOperations, o)
 		case updateOperation:
+			if len(deleteOperations) > 0 || len(changeRemoteOperations) > 0 || len(moveOperations) > 0 || len(createOperations) > 0 || len(nullOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				moveOperations = moveOperations[:0]
+				changeRemoteOperations = changeRemoteOperations[:0]
+				deleteOperations = deleteOperations[:0]
+				createOperations = createOperations[:0]
+				nullOperations = nullOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			updateOperations = append(updateOperations, o)
 		case createOperation:
+			if len(deleteOperations) > 0 || len(changeRemoteOperations) > 0 || len(moveOperations) > 0 || len(updateOperations) > 0 || len(nullOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				moveOperations = moveOperations[:0]
+				changeRemoteOperations = changeRemoteOperations[:0]
+				deleteOperations = deleteOperations[:0]
+				updateOperations = updateOperations[:0]
+				nullOperations = nullOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			createOperations = append(createOperations, o)
 		case nullOperation:
+			if len(deleteOperations) > 0 || len(changeRemoteOperations) > 0 || len(moveOperations) > 0 || len(updateOperations) > 0 || len(createOperations) > 0 {
+				if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
+					return err
+				}
+				moveOperations = moveOperations[:0]
+				changeRemoteOperations = changeRemoteOperations[:0]
+				deleteOperations = deleteOperations[:0]
+				updateOperations = updateOperations[:0]
+				createOperations = createOperations[:0]
+			}
+			if err := op.Test(jirix); err != nil {
+				return err
+			}
 			nullOperations = append(nullOperations, o)
 		}
 	}
-	if err := runDeleteOperations(jirix, deleteOperations, gc); err != nil {
-		return err
-	}
-	if err := runCommonOperations(jirix, changeRemoteOperations, log.DebugLevel); err != nil {
-		return err
-	}
-	if err := runMoveOperations(jirix, moveOperations); err != nil {
-		return err
-	}
-	if err := runCommonOperations(jirix, updateOperations, log.DebugLevel); err != nil {
-		return err
-	}
-	if err := runCreateOperations(jirix, createOperations); err != nil {
-		return err
-	}
-	if err := runCommonOperations(jirix, nullOperations, log.TraceLevel); err != nil {
+
+	if err := runBatch(jirix, gc, moveOperations, changeRemoteOperations, updateOperations, nullOperations, deleteOperations, createOperations); err != nil {
 		return err
 	}
 
@@ -2515,6 +2576,28 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return applyGitHooks(jirix, ops)
 	}
 	jirix.Logger.Warningf("Git hooks are not updated. If you would like to update git hooks for all projects, please run 'jiri init -keep-git-hooks=false'.")
+	return nil
+}
+
+func runBatch(jirix *jiri.X, gc bool, moveOperations []moveOperation, changeRemoteOperations, updateOperations, nullOperations operations, deleteOperations []deleteOperation, createOperations []createOperation) error {
+	if err := runDeleteOperations(jirix, deleteOperations, gc); err != nil {
+		return err
+	}
+	if err := runCommonOperations(jirix, changeRemoteOperations, log.DebugLevel); err != nil {
+		return err
+	}
+	if err := runMoveOperations(jirix, moveOperations); err != nil {
+		return err
+	}
+	if err := runCommonOperations(jirix, updateOperations, log.DebugLevel); err != nil {
+		return err
+	}
+	if err := runCreateOperations(jirix, createOperations); err != nil {
+		return err
+	}
+	if err := runCommonOperations(jirix, nullOperations, log.TraceLevel); err != nil {
+		return err
+	}
 	return nil
 }
 
