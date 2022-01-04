@@ -3,6 +3,213 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4359a7bd_d40a4dde",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "nit: It\u0027s more idiomatic to use `filepath.Join(op.destination, files[0].Name())`.",
+      "range": {
+        "startLine": 393,
+        "startChar": 42,
+        "endLine": 393,
+        "endChar": 99
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0357904_eefa6932",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "nit: mild preference to put these on new lines as they\u0027re already quite long",
+      "range": {
+        "startLine": 562,
+        "startChar": 87,
+        "endLine": 562,
+        "endChar": 95
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1c82105_009749a5",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "nit: This entire section of ifs would be cleaner if you created an `isSubdir` function that just runs this; then this line becomes:\n```\nif isSubdir(ops[i].Destination(), ops[j].Destination())\n```\nwhich is a bit more readable.",
+      "range": {
+        "startLine": 569,
+        "startChar": 6,
+        "endLine": 569,
+        "endChar": 93
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f170f4c9_21513ec2",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "nit: create",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 45
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02df114_4cd51fb2",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "I\u0027m not sure I follow this stanza - why does the second operation being a move change the ordering here? It looks like all that matters is the source and destination of the first operation.",
+      "range": {
+        "startLine": 573,
+        "startChar": 2,
+        "endLine": 579,
+        "endChar": 3
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774734eb_a0f6ee84",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "Is this comment backwards? I read this statement as:\n\"If the created path is a parent of the move, then perform the create first\", so this would be a \"move inside parent\"",
+      "range": {
+        "startLine": 584,
+        "startChar": 97,
+        "endLine": 584,
+        "endChar": 118
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36afbea1_a0077d09",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "Why do we need the update to happen before the create here? Will jiri fail if we create a subdirectory and then try to update?",
+      "range": {
+        "startLine": 588,
+        "startChar": 8,
+        "endLine": 591,
+        "endChar": 4
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75eb5a5f_1b84f047",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "If the source is a prefix of the destination, isn\u0027t this a move in?",
+      "range": {
+        "startLine": 598,
+        "startChar": 7,
+        "endLine": 598,
+        "endChar": 120
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3552815d_22382d07",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:06:58Z",
+      "side": 1,
+      "message": "nit: Do we actually want to print this out, or was this a debugging line?",
+      "range": {
+        "startLine": 656,
+        "startChar": 1,
+        "endLine": 658,
+        "endChar": 2
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67787924_450e7de7",
         "filename": "project/project.go",
         "patchSetId": 3
