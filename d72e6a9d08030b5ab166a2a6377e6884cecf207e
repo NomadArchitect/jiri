@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67787924_450e7de7",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2411,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-04T02:11:48Z",
+      "side": 1,
+      "message": "Curious on thoughts of how to collapse this down. The original code assumed the ops were sorted into groups and only accounted for the ordering within the groupings. \n\nThe goal here is to run each continuous run of an op type as a batch, I did that pretty naively by checking if another slice had elements before adding to any other slice, if it did, I run the batch and clear the slices.",
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
