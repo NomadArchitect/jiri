@@ -223,6 +223,24 @@
       "message": "Curious on thoughts of how to collapse this down. The original code assumed the ops were sorted into groups and only accounted for the ordering within the groupings. \n\nThe goal here is to run each continuous run of an op type as a batch, I did that pretty naively by checking if another slice had elements before adding to any other slice, if it did, I run the batch and clear the slices.",
       "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88eabb58_da0621eb",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2411,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2022-01-04T22:30:46Z",
+      "side": 1,
+      "message": "What about something like:\n```\nfor len(ops) \u003e 0 {\n   batch :\u003d operations{ops[0]}\n   opType :\u003d ops[0].(type)\n   ops \u003d ops[1:]\n   for len(ops) \u003e 0 \u0026\u0026 opType \u003d\u003d ops[0] {\n       batch.append(ops[0])\n       ops \u003d ops[1:]\n   }\n   runBatch(batch)\n}\n```\nIt doesn\u0027t seem like the operation type changes the order of operations, so does treating them all the same like this work?",
+      "parentUuid": "67787924_450e7de7",
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
