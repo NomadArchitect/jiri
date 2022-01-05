@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8aae693_a14575e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:32:29Z",
+      "side": 1,
+      "message": "This should be good to go, I\u0027ve locally moved my checkout from HEAD to f1 to f6 to HEAD to f6 to f1 to HEAD several times in a cycle without needing to manually intervene in any `jiri update` problems.",
+      "revId": "8d13071d58e3f13f25dfeeff853148f742760539",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
