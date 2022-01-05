@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "816d73e2_596c5219",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4359a7bd_d40a4dde",
+      "range": {
+        "startLine": 393,
+        "startChar": 42,
+        "endLine": 393,
+        "endChar": 99
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0357904_eefa6932",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-04T22:06:58Z",
       "side": 1,
       "message": "nit: mild preference to put these on new lines as they\u0027re already quite long",
+      "range": {
+        "startLine": 562,
+        "startChar": 87,
+        "endLine": 562,
+        "endChar": 95
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4566ff_204dfcc7",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0357904_eefa6932",
       "range": {
         "startLine": 562,
         "startChar": 87,
@@ -70,6 +118,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d987c0_2c4b4be3",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1c82105_009749a5",
+      "range": {
+        "startLine": 569,
+        "startChar": 6,
+        "endLine": 569,
+        "endChar": 93
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f170f4c9_21513ec2",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-01-04T22:06:58Z",
       "side": 1,
       "message": "nit: create",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 45
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "626300b4_bad73f3b",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f170f4c9_21513ec2",
       "range": {
         "startLine": 570,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "565af835_aaa0b3ed",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "In order for the sort to work correctly, we need to sort the moves based on whether they are shortening their directory path or extending it, otherwise the ordering is non-deterministic and non necessarily correct.",
+      "parentUuid": "c02df114_4cd51fb2",
+      "range": {
+        "startLine": 573,
+        "startChar": 2,
+        "endLine": 579,
+        "endChar": 3
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "774734eb_a0f6ee84",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-01-04T22:06:58Z",
       "side": 1,
       "message": "Is this comment backwards? I read this statement as:\n\"If the created path is a parent of the move, then perform the create first\", so this would be a \"move inside parent\"",
+      "range": {
+        "startLine": 584,
+        "startChar": 97,
+        "endLine": 584,
+        "endChar": 118
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5436f1e8_7324cb2f",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "774734eb_a0f6ee84",
       "range": {
         "startLine": 584,
         "startChar": 97,
@@ -162,6 +306,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d8ce4d_c1114cd5",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "The update may shrink the size of the parent which may be required for the create to happen successfully.",
+      "parentUuid": "36afbea1_a0077d09",
+      "range": {
+        "startLine": 588,
+        "startChar": 8,
+        "endLine": 591,
+        "endChar": 4
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75eb5a5f_1b84f047",
@@ -185,6 +353,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ece96893_8d438ee9",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "No, that\u0027s a move out:\nSource: a/b\nDestination: a/b/c",
+      "parentUuid": "75eb5a5f_1b84f047",
+      "range": {
+        "startLine": 598,
+        "startChar": 7,
+        "endLine": 598,
+        "endChar": 120
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3552815d_22382d07",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-01-04T22:06:58Z",
       "side": 1,
       "message": "nit: Do we actually want to print this out, or was this a debugging line?",
+      "range": {
+        "startLine": 656,
+        "startChar": 1,
+        "endLine": 658,
+        "endChar": 2
+      },
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a51d14_ef6745f1",
+        "filename": "project/operations.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Debug line.",
+      "parentUuid": "3552815d_22382d07",
       "range": {
         "startLine": 656,
         "startChar": 1,
@@ -239,6 +455,24 @@
       "side": 1,
       "message": "What about something like:\n```\nfor len(ops) \u003e 0 {\n   batch :\u003d operations{ops[0]}\n   opType :\u003d ops[0].(type)\n   ops \u003d ops[1:]\n   for len(ops) \u003e 0 \u0026\u0026 opType \u003d\u003d ops[0] {\n       batch.append(ops[0])\n       ops \u003d ops[1:]\n   }\n   runBatch(batch)\n}\n```\nIt doesn\u0027t seem like the operation type changes the order of operations, so does treating them all the same like this work?",
       "parentUuid": "67787924_450e7de7",
+      "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b18d484_4f25743b",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2411,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T02:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88eabb58_da0621eb",
       "revId": "d72e6a9d08030b5ab166a2a6377e6884cecf207e",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
