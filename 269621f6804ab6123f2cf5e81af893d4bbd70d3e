@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ef7cd6b_cfdc3348",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-05T03:28:22Z",
+      "side": 1,
+      "message": "This will make its way into recipes, and will guard against any incorrect/incomplete .gitignore (or some process writing into the checkout when it shouldn\u0027t).",
+      "revId": "269621f6804ab6123f2cf5e81af893d4bbd70d3e",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
