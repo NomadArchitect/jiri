@@ -16,6 +16,24 @@
       "message": "The alternative is to not run the command with `-vv` in recipes, it works correctly locally.",
       "revId": "6e246121a80b397559bd5ea03c11661509186a13",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1338d6b_fb49ee84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37097
+      },
+      "writtenOn": "2022-01-25T16:03:51Z",
+      "side": 1,
+      "message": "That\u0027s fair, I do feel like the verbose output is occasionally useful, especially for fetch-packages, but I\u0027ll need to experiment to see exactly what info we\u0027d lose in non-verbose mode.",
+      "parentUuid": "3c7c185e_dadc5767",
+      "revId": "6e246121a80b397559bd5ea03c11661509186a13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
