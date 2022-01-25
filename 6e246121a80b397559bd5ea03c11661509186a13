@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c7c185e_dadc5767",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-01-25T03:08:01Z",
+      "side": 1,
+      "message": "The alternative is to not run the command with `-vv` in recipes, it works correctly locally.",
+      "revId": "6e246121a80b397559bd5ea03c11661509186a13",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
