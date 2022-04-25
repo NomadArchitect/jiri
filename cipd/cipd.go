@@ -422,12 +422,6 @@ func Ensure(jirix *jiri.X, file, projectRoot string, timeout uint) error {
 		"-max-threads", strconv.Itoa(jirix.CipdMaxThreads),
 	}
 
-	// If jiri is *not* running with -v, use the less verbose cipd "warning"
-	// log-level.
-	if jirix.Logger.LoggerLevel < log.DebugLevel {
-		args = append(args, "-log-level", "warning")
-	}
-
 	task := jirix.Logger.AddTaskMsg("Fetching CIPD packages")
 	defer task.Done()
 	jirix.Logger.Debugf("Invoke cipd with %v", args)
