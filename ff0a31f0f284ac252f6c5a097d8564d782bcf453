@@ -1,0 +1,34 @@
+{
+  "comments": [],
+  "submitRequirementResults": [
+    {
+      "submitRequirement": {
+        "name": "Review-Enforcement",
+        "description": {
+          "value": "Two Google employees must approve the change. Uploading the change or voting positively on Code-Review count as approval."
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "is:review-enforced_gerrit"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:review-enforcement-satisfied_gerrit"
+        },
+        "overrideExpression": {},
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:review-enforced_gerrit"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["is:review-enforced_gerrit"]}
+      },
+      "submittabilityExpressionResult": {},
+      "overrideExpressionResult": {},
+      "patchSetCommitId": "ff0a31f0f284ac252f6c5a097d8564d782bcf453",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    }
+  ]
+}
