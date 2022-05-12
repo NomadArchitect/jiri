@@ -16,6 +16,24 @@
       "message": "This looks fine, there is one complexity which is that packages aren\u0027t unique, if you\u0027re fine with replacing all copies of a package in the tree at once that\u0027s probably fine. \"chromium/fuchsia/web_engine/amd64/web_engine\" is an example of a non-unique package (we use path + package as the unique key).",
       "revId": "33bddddb3e950c328997320fbf7111685b3e7b71",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2691f01f_667181aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 35964
+      },
+      "writtenOn": "2022-05-12T22:51:39Z",
+      "side": 1,
+      "message": "Makes sense. I\u0027m fine with replacing all copies in the tree at once, I don\u0027t think that\u0027ll be problematic. I thought about keying on path + package, but I don\u0027t want the infrastructure to have knowledge of paths within repos (the repos should be free to change their paths).",
+      "parentUuid": "dcefd736_563db919",
+      "revId": "33bddddb3e950c328997320fbf7111685b3e7b71",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
