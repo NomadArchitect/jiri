@@ -169,6 +169,7 @@ func (m *Manifest) ToFile(jirix *jiri.X, filename string) error {
 	// necessary.
 	sort.Sort(ProjectsByPath(projects))
 	m.Projects = projects
+	fmt.Printf("YupingDebugger:projects to file  in manifest %+v\n", projects)
 	sort.Sort(PackagesByKey(m.Packages))
 	sort.Sort(HooksByName(m.Hooks))
 	data, err := m.ToBytes()
