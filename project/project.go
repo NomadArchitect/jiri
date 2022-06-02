@@ -75,6 +75,8 @@ type Project struct {
 
 	// Submodules indicates that the project contains git submodules (sub-projects).
 	GitSubmodules bool `xml:"gitsubmodules,attr,omitempty"`
+	// GitSubmoduleOf indicates the superprject that the submodule is under.
+	GitSubmoduleOf string `xml:"gitsubmoduleof,attr,omitempty"`
 
 	// Attributes is a list of attributes for a project seperated by comma.
 	// The project will not be fetched by default when attributes are present.
@@ -321,9 +323,16 @@ func WriteProjectFlags(jirix *jiri.X, projs Projects) error {
 		return nil
 	}
 
+	submoduleStates := getSubmoduleStates(jirix, projs)
+
 	for _, v := range projs {
 		if v.Flag == "" {
 			continue
+		}
+		if submoduleState, ok := submoduleStates[v.Name]; ok {
+			if submoduleState.SuperprojectEnabled && jirix.EnableSubmodules {
+				continue
+			}
 		}
 		fields := strings.Split(v.Flag, "|")
 		if len(fields) != 3 {
@@ -2417,6 +2426,14 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return err
 	}
 
+	// check submodule states
+	remoteSubmoduleStates := getSubmoduleStates(jirix, remoteProjects)
+
+	// For projects that have submodules enabled, we remove them from remoteProjects.
+	if jirix.EnableSubmodules {
+		removeSubmodulesFromProjects(jirix, remoteSubmoduleStates, remoteProjects)
+	}
+
 	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot)
 
 	batchOps := append(operations(nil), ops...)
@@ -2437,6 +2454,12 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	jirix.TimerPush("jiri revision files")
 	var wg sync.WaitGroup
 	for _, project := range remoteProjects {
+		// If submodule declared and superproject of which enabled, we want to remove the project directory and not write any files.
+		if submoduleState, ok := remoteSubmoduleStates[project.GitSubmoduleOf]; ok {
+			if jirix.EnableSubmodules && submoduleState.SuperprojectEnabled {
+				continue
+			}
+		}
 		wg.Add(1)
 		go func(jirix *jiri.X, project Project) {
 			defer wg.Done()
@@ -2465,6 +2488,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			return fmtError(err)
 		}
 		msg := "Projects with local changes and/or not on JIRI_HEAD:"
+		// TODO(yupingz): Add project status support for submodules.
 		for _, p := range projectStatuses {
 			relativePath, err := filepath.Rel(cwd, p.Project.Path)
 			if err != nil {
