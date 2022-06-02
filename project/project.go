@@ -75,6 +75,8 @@ type Project struct {
 
 	// Submodules indicates that the project contains git submodules (sub-projects).
 	GitSubmodules bool `xml:"gitsubmodules,attr,omitempty"`
+	// GitSubmoduleOf indicates the superprject that the submodule is under.
+	GitSubmoduleOf string `xml:"gitsubmoduleof,attr,omitempty"`
 
 	// Attributes is a list of attributes for a project seperated by comma.
 	// The project will not be fetched by default when attributes are present.
@@ -321,8 +323,13 @@ func WriteProjectFlags(jirix *jiri.X, projs Projects) error {
 		return nil
 	}
 
+	_, submoduleStates := getSubmoduleStates(jirix, projs)
+
 	for _, v := range projs {
 		if v.Flag == "" {
+			continue
+		}
+		if submoduleStates[v.Name].SuperprojectEnabled && jirix.EnableSubmodules {
 			continue
 		}
 		fields := strings.Split(v.Flag, "|")
@@ -1431,6 +1438,8 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 			return err
 		}
 
+		fmt.Printf("YupingDebugger: UpdateUniverse remoteprojects %+v\n", remoteProjects)
+
 		// Actually update the projects.
 		return updateProjects(jirix, localProjects, remoteProjects, hooks, pkgs, gc, runHookTimeout, fetchTimeout, rebaseTracked, rebaseUntracked, rebaseAll, false /*snapshot*/, runHooks, fetchPkgs, pkgsToSkip)
 	}
@@ -2417,7 +2426,11 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return err
 	}
 
-	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot)
+	// check submodule and superproject states
+	_, localSubmoduleStates := getSubmoduleStates(jirix, localProjects)
+	remoteSuperprojects, remoteSubmoduleStates := getSubmoduleStates(jirix, remoteProjects)
+
+	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, localSubmoduleStates, remoteSubmoduleStates)
 
 	batchOps := append(operations(nil), ops...)
 	for len(batchOps) > 0 {
@@ -2440,7 +2453,8 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		wg.Add(1)
 		go func(jirix *jiri.X, project Project) {
 			defer wg.Done()
-			if !(project.LocalConfig.Ignore || project.LocalConfig.NoUpdate) {
+			// if submodule declared and enabled, we want to remove the directory and not write any files.
+			if !(project.LocalConfig.Ignore || project.LocalConfig.NoUpdate) && ((!jirix.EnableSubmodules) || (!remoteSuperprojects[project.GitSubmoduleOf])) {
 				project.writeJiriRevisionFiles(jirix)
 				if err := project.setupDefaultPushTarget(jirix); err != nil {
 					jirix.Logger.Debugf("set up default push target failed due to error: %v", err)

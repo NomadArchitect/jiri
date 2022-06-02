@@ -504,6 +504,8 @@ func (op updateOperation) Test(jirix *jiri.X) error {
 // information to the current manifest.
 type nullOperation struct {
 	commonOperation
+	submoduleUpdate bool
+	superproject    string
 }
 
 func (op nullOperation) Kind() string {
@@ -511,10 +513,17 @@ func (op nullOperation) Kind() string {
 }
 
 func (op nullOperation) Run(jirix *jiri.X) error {
+	if op.submoduleUpdate {
+		// when submodules are enabled, we don't want any files written to the directory.
+		return nil
+	}
 	return writeMetadata(jirix, op.project, op.project.Path)
 }
 
 func (op nullOperation) String() string {
+	if op.submoduleUpdate {
+		return fmt.Sprintf("update submodule %q located in %q under superproject %q", op.project.Name, op.source, op.superproject)
+	}
 	return fmt.Sprintf("project %q located in %q at revision %q is up-to-date", op.project.Name, op.source, fmtRevision(op.project.Revision))
 }
 
@@ -649,7 +658,7 @@ func (ops operations) Swap(i, j int) {
 // system and manifest file respectively) and outputs a collection of
 // operations that describe the actions needed to update the target
 // projects.
-func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operations {
+func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool, localSubmoduleStates, remoteSubmoduleStates map[string]SubmoduleState) operations {
 	result := operations{}
 	allProjects := map[ProjectKey]bool{}
 	for _, p := range localProjects {
@@ -675,13 +684,46 @@ func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, st
 		if s, ok := states[key]; ok {
 			state = s
 		}
-		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot))
+		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, localSubmoduleStates, remoteSubmoduleStates))
 	}
 	sort.Sort(result)
 	return result
 }
 
-func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operation {
+func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool, localSubmoduleStates, remoteSubmoduleStates map[string]SubmoduleState) operation {
+	if jirix.EnableSubmodules {
+		var remoteSuperprojectEnabled bool
+		remoteSuperprojectEnabled = remoteSubmoduleStates[remote.Name].SuperprojectEnabled
+		switch {
+		// remoteSuperprojectEnabled is True only if both GitSubmoduelOf and Superproject are labeled.
+		case local != nil && remote != nil && remoteSuperprojectEnabled:
+			fmt.Printf("YupingDebugger: attempt to delete: %+v\n", remote)
+			return deleteOperation{commonOperation{
+				destination: "",
+				project:     *local,
+				source:      local.Path,
+			}}
+		case local == nil && remote != nil && (remote.GitSubmoduleOf == "" || !remoteSuperprojectEnabled):
+			return createOperation{commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      "",
+			}}
+		case local == nil && remote != nil && remoteSuperprojectEnabled:
+			// Update submodules will happen under the superproject
+			fmt.Printf("YupingDebugger: null op, local submodule state is %+v\n", local)
+			fmt.Printf("YupingDebugger: null op, remote submodule state is %+v\n", remote)
+			return nullOperation{commonOperation: commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      local.Path,
+				state:       *state,
+			},
+				submoduleUpdate: true,
+				superproject:    remote.GitSubmoduleOf,
+			}
+		}
+	}
 	switch {
 	case local == nil && remote != nil:
 		return createOperation{commonOperation{
@@ -763,7 +805,7 @@ func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebas
 				state:       *state,
 			}, rebaseTracked, rebaseUntracked, rebaseAll, snapshot}
 		default:
-			return nullOperation{commonOperation{
+			return nullOperation{commonOperation: commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
@@ -916,8 +958,13 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 	if len(ops) == 0 {
 		return nil
 	}
+	fmt.Printf("YupingDebugger: need delete projects")
 	notDeleted := NewPathTrie()
 	if !gc {
+		for _, op := range ops {
+			// Debugging comment
+			fmt.Printf("YupingDebugger:\n Deleted operations: %+v\n", op.Project().Name)
+		}
 		msg := fmt.Sprintf("%d project(s) is/are marked to be deleted. Run '%s' to delete them.", len(ops), jirix.Color.Yellow("jiri update -gc"))
 		if jirix.Logger.LoggerLevel < log.DebugLevel {
 			msg = fmt.Sprintf("%s\nOr run '%s' or '%s' to see the list of projects.", msg, jirix.Color.Yellow("jiri update -v"), jirix.Color.Yellow("jiri status -d"))
@@ -939,10 +986,12 @@ func runDeleteOperations(jirix *jiri.X, ops []deleteOperation, gc bool) error {
 			rmCommand := jirix.Color.Yellow("rm -rf %q", op.source)
 			msg := fmt.Sprintf("Project %q won't be deleted because of its sub project(s)", op.project.Name)
 			msg += fmt.Sprintf("\nIf you no longer need it, invoke '%s'\n\n", rmCommand)
+			// Debugging comment
+			fmt.Printf("YupingDebugger: not delete %q", op.source)
 			jirix.Logger.Warningf(msg)
 			continue
 		}
-		logMsg := fmt.Sprintf("Deleting project %q", op.Project().Name)
+		logMsg := fmt.Sprintf("YupingDebugger:Deleting project %q", op.Project().Name)
 		task := jirix.Logger.AddTaskMsg(logMsg)
 		jirix.Logger.Debugf("%s", op)
 		if err := op.Run(jirix); err != nil {
