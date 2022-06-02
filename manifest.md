@@ -27,7 +27,7 @@ Manifests have the following XML schema:
              remotebranch="my-branch"
              gerrithost="https://myorg-review.googlesource.com"
              githooks="path/to/githooks-dir"
-             submodules="true"
+             gitsubmodules="true"
     />
     ...
   </projects>
@@ -85,7 +85,9 @@ The &lt;project> tags describe the projects to sync, and what state they should 
 
 * githooks (optional) - The path (relative to the jiri root) of a directory containing git hooks that will be installed in the projects .git/hooks directory during each update.
 
-* submodules (optional) - Whether the project has git submodules (https://git-scm.com/book/en/v2/Git-Tools-Submodules), this attribute needs to be set to `true`. By default it is `false`.
+* gitsubmodules (optional) - Whether the project has git submodules (https://git-scm.com/book/en/v2/Git-Tools-Submodules), this attribute needs to be set to `true`. By default it is `false`.
+
+* gitsubmoduleof (optional) - The superproject that the project is a part of when submodules are enebaled. If specified, when submodules are enabled, jiri will delete the project from the tree and add it as a submodule. By default it is empty.
 
 The &lt;packages> tags describe the CIPD packages to sync, and what version they should sync to, according to the following attributes:
 
