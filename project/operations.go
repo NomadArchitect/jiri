@@ -504,6 +504,8 @@ func (op updateOperation) Test(jirix *jiri.X) error {
 // information to the current manifest.
 type nullOperation struct {
 	commonOperation
+	submoduleUpdate bool
+	superproject    string
 }
 
 func (op nullOperation) Kind() string {
@@ -511,10 +513,17 @@ func (op nullOperation) Kind() string {
 }
 
 func (op nullOperation) Run(jirix *jiri.X) error {
+	if op.submoduleUpdate {
+		// when submodules are enabled, we don't want any files written to the directory.
+		return nil
+	}
 	return writeMetadata(jirix, op.project, op.project.Path)
 }
 
 func (op nullOperation) String() string {
+	if op.submoduleUpdate {
+		return fmt.Sprintf("update submodule %q located in %q under superproject %q", op.project.Name, op.source, op.superproject)
+	}
 	return fmt.Sprintf("project %q located in %q at revision %q is up-to-date", op.project.Name, op.source, fmtRevision(op.project.Revision))
 }
 
@@ -649,7 +658,9 @@ func (ops operations) Swap(i, j int) {
 // system and manifest file respectively) and outputs a collection of
 // operations that describe the actions needed to update the target
 // projects.
-func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operations {
+// In the case of submodules, computeOperation will check for necessary
+// deletions of jiri projects and initialize submodules in place of projects.
+func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool, localSubmoduleStates, remoteSubmoduleStates map[string]SubmoduleState) operations {
 	result := operations{}
 	allProjects := map[ProjectKey]bool{}
 	for _, p := range localProjects {
@@ -675,13 +686,45 @@ func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, st
 		if s, ok := states[key]; ok {
 			state = s
 		}
-		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot))
+		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, localSubmoduleStates, remoteSubmoduleStates))
 	}
 	sort.Sort(result)
 	return result
 }
 
-func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operation {
+func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool, localSubmoduleStates, remoteSubmoduleStates map[string]SubmoduleState) operation {
+	if jirix.EnableSubmodules {
+		var remoteSuperprojectEnabled bool
+		remoteSuperprojectEnabled = remoteSubmoduleStates[remote.Name].SuperprojectEnabled
+		fmt.Printf("Subdmoule computeOp: is the superproject remote %+v enabled: %+v\n", remote.Name, remoteSuperprojectEnabled)
+		switch {
+		// remoteSuperprojectEnabled is True only if both GitSubmoduelOf and Superproject are labeled.
+		case local != nil && remote != nil && remoteSuperprojectEnabled:
+			fmt.Printf("Submodule computeOp: attempt to delete: %+v\n", remote.Name)
+			return deleteOperation{commonOperation{
+				destination: "",
+				project:     *local,
+				source:      local.Path,
+			}}
+		case local == nil && remote != nil && (remote.GitSubmoduleOf == "" || !remoteSuperprojectEnabled):
+			return createOperation{commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      "",
+			}}
+		case local == nil && remote != nil && remoteSuperprojectEnabled:
+			// Update submodules will happen under the superproject
+			return nullOperation{commonOperation: commonOperation{
+				destination: remote.Path,
+				project:     *remote,
+				source:      local.Path,
+				state:       *state,
+			},
+				submoduleUpdate: true,
+				superproject:    remote.GitSubmoduleOf,
+			}
+		}
+	}
 	switch {
 	case local == nil && remote != nil:
 		return createOperation{commonOperation{
@@ -763,7 +806,7 @@ func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebas
 				state:       *state,
 			}, rebaseTracked, rebaseUntracked, rebaseAll, snapshot}
 		default:
-			return nullOperation{commonOperation{
+			return nullOperation{commonOperation: commonOperation{
 				destination: remote.Path,
 				project:     *remote,
 				source:      local.Path,
