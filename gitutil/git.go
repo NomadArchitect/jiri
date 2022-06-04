@@ -646,10 +646,15 @@ func (g *Git) CurrentRevision() (string, error) {
 
 // CurrentRevisionForRef gets current rev for ref/branch/tags
 func (g *Git) CurrentRevisionForRef(ref string) (string, error) {
-	// Short-circuit all calls for commit hashes.
 	if _, err := hex.DecodeString(ref); len(ref) == 40 && err == nil {
-		return ref, nil
+		// b/234618400 annotated tags create hash, which looks identical to commit hash.
+		// cat-file command returns "tag" for annotated tags (note: returns commit for non-annotated tags)
+		if out, err := g.runOutput("cat-file", "-t", ref); err == nil && len(out) == 1 && out[0] == "commit" {
+			return ref, nil
+		}
 	}
+	// b/234618400 always run rev-list to ensure commit hash (i.e. revision) from the ref string.
+	// hash value of tag as blob is different from the hash of the commit it points to.
 	out, err := g.runOutput("rev-list", "-n", "1", ref)
 	if err != nil {
 		return "", err
