@@ -6,7 +6,6 @@ package gitutil
 
 import (
 	"bytes"
-	"encoding/hex"
 	"fmt"
 	"io"
 	"os"
@@ -646,10 +645,8 @@ func (g *Git) CurrentRevision() (string, error) {
 
 // CurrentRevisionForRef gets current rev for ref/branch/tags
 func (g *Git) CurrentRevisionForRef(ref string) (string, error) {
-	// Short-circuit all calls for commit hashes.
-	if _, err := hex.DecodeString(ref); len(ref) == 40 && err == nil {
-		return ref, nil
-	}
+	// b/234618400 always run rev-list to ensure commit hash (i.e. revision) from the ref string. 
+	// hash value of tag as blob is different than the hash of the commit it points to.
 	out, err := g.runOutput("rev-list", "-n", "1", ref)
 	if err != nil {
 		return "", err
