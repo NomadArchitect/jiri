@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6d8688_afff7caa",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-06-04T20:15:18Z",
+      "side": 1,
+      "message": "Can we do `git cat-file -t ref` here and exit early if its a \"commit\", an annotated tag should return \"tag\".",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
