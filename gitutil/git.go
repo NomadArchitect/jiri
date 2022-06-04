@@ -6,7 +6,6 @@ package gitutil
 
 import (
 	"bytes"
-	"encoding/hex"
 	"fmt"
 	"io"
 	"os"
@@ -86,6 +85,7 @@ type Branch struct {
 
 type Revision string
 type BranchName string
+type TagName string
 
 const (
 	RemoteType = "remote"
@@ -647,9 +647,9 @@ func (g *Git) CurrentRevision() (string, error) {
 // CurrentRevisionForRef gets current rev for ref/branch/tags
 func (g *Git) CurrentRevisionForRef(ref string) (string, error) {
 	// Short-circuit all calls for commit hashes.
-	if _, err := hex.DecodeString(ref); len(ref) == 40 && err == nil {
-		return ref, nil
-	}
+	//if _, err := hex.DecodeString(ref); len(ref) == 40 && err == nil {
+	//	return ref, nil
+	//}
 	out, err := g.runOutput("rev-list", "-n", "1", ref)
 	if err != nil {
 		return "", err
