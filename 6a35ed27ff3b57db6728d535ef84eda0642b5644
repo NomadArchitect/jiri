@@ -52,6 +52,24 @@
       "parentUuid": "ad010320_5403140b",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f33f45_e36d6bd1",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-06T19:36:30Z",
+      "side": 1,
+      "message": "hey nathan, \ni tested out the command; \n`git cat-file -t [string]` appears to accept any strings, not just HEAD but any branch names, which returns \"commit\" and same goes for tag names as well, annotated or not. \n\nthe more I look into various methods, the more I\u0027m leaning towards going with the \"dumb inefficient\" route to make it bulletproof. \n\nthough i am comfortable with git, i certainly am not familiar with the entire world of git and i am afraid that i may be missing another edge case(s), leaving a potential bug. plus, I think the perf loss is negligible.\n\nthoughts?",
+      "parentUuid": "03940317_81b52c60",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
