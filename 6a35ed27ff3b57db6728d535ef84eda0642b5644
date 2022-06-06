@@ -34,6 +34,24 @@
       "parentUuid": "5a6d8688_afff7caa",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03940317_81b52c60",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-06T16:47:47Z",
+      "side": 1,
+      "message": "Oh, yes of course, let me check those. I didn\u0027t know about that command.\n\nYes, \"HEAD\" is considered commit, and it was working, let me double check.",
+      "parentUuid": "ad010320_5403140b",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
