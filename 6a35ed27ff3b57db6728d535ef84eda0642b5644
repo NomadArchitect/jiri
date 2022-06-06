@@ -106,6 +106,24 @@
       "parentUuid": "f7da9d6c_872c7040",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7c9e268_336c1523",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-06-06T20:42:14Z",
+      "side": 1,
+      "message": "I\u0027m not sure I follow your comment, it should not succeed for an arbitrary string.\n```\n$ git cat-file -t blah\nfatal: Not a valid object name blah\n$ git tag -a blah\n$ git cat-file -t blah\ntag\n$ git cat-file -t HEAD\ncommit\n```",
+      "parentUuid": "65965559_d6c0c608",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
