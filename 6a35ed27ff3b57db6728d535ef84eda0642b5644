@@ -160,6 +160,24 @@
       "parentUuid": "76abf037_3ac5a70a",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bd1a788_0a4cb395",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-06T23:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2e98841_19662f4c",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
