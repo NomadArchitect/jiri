@@ -70,6 +70,24 @@
       "parentUuid": "03940317_81b52c60",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7da9d6c_872c7040",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 33577
+      },
+      "writtenOn": "2022-06-06T20:02:23Z",
+      "side": 1,
+      "message": "Should benchmark this on a fresh jiri init to see how slow it makes the initial clone. Jiri does a lot of git operations (for every single repo we have in Fuchsia), so efficiency is important here.",
+      "parentUuid": "59f33f45_e36d6bd1",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
