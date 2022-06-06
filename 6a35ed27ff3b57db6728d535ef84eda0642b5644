@@ -124,6 +124,24 @@
       "parentUuid": "65965559_d6c0c608",
       "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76abf037_3ac5a70a",
+        "filename": "gitutil/git.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-06T21:31:24Z",
+      "side": 1,
+      "message": "while i\u0027m running the perf tests;\n\n@nathan, given that the perf from git operation is a concern, i think it might be worth looking into using go-git instead of the current implementation today. what do you think?",
+      "parentUuid": "65965559_d6c0c608",
+      "revId": "6a35ed27ff3b57db6728d535ef84eda0642b5644",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
