@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b662b31_51d2b722",
+        "filename": "manifest.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-08T21:58:01Z",
+      "side": 1,
+      "message": "learning the work; \n\ndoesn\u0027t this value have to be specified always when gitsubmodules\u003dtrue?",
+      "revId": "c1c821dc03cab40b53786c256df1b9734282bd10",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "454c1eb5_e7dc5d60",
+        "filename": "project/operations.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-08T21:58:01Z",
+      "side": 1,
+      "message": "fmt.Println will do the newline for you. just fyi",
+      "revId": "c1c821dc03cab40b53786c256df1b9734282bd10",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8a666db_b6b4f519",
+        "filename": "project/project_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 62449
+      },
+      "writtenOn": "2022-06-08T21:58:01Z",
+      "side": 1,
+      "message": "[just trying to learn at submodule school]\nis [0] the first entry of the array always the super project?",
+      "revId": "c1c821dc03cab40b53786c256df1b9734282bd10",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
