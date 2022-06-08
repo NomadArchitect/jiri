@@ -16,6 +16,23 @@
       "message": "Adding Haowei to reviewers for accuracy since he wrote the package.attributes functionality and adding Shareefa as Technical Writer for review 😊\n\nI took a stab at updating the documentation based on what was written in the original CL that introduced this, but I do not have deep knowledge of this functionality so any corrections would be appreciated 🙏\n\nOriginal CL for context: https://fuchsia-review.googlesource.com/c/jiri/+/264859",
       "revId": "4bdf79d7a96efd31c4921feac07b26590827cd48",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f3b0a0_c846fbd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 60534
+      },
+      "writtenOn": "2022-06-08T21:40:17Z",
+      "side": 1,
+      "message": "No additional review comments. Adding viviantran for +2",
+      "revId": "4bdf79d7a96efd31c4921feac07b26590827cd48",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
