@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "979dfce0_17df1aa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 61989
+      },
+      "writtenOn": "2022-06-08T23:34:28Z",
+      "side": 1,
+      "message": "Hey folks! Sorry for the review spam, I realized that the previous CL only addressed half of the documentation updates. I wrote the documentation based on the assumption that project attributes function identically to package attributes, so please correct me if that isn\u0027t the case 👍",
+      "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
