@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4ada57b_16a80ee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 61989
+      },
+      "writtenOn": "2022-06-08T21:14:53Z",
+      "side": 1,
+      "message": "Adding Haowei to reviewers for accuracy since he wrote the package.attributes functionality and adding Shareefa as Technical Writer for review 😊\n\nI took a stab at updating the documentation based on what was written in the original CL that introduced this, but I do not have deep knowledge of this functionality so any corrections would be appreciated 🙏\n\nOriginal CL for context: https://fuchsia-review.googlesource.com/c/jiri/+/264859",
+      "revId": "4bdf79d7a96efd31c4921feac07b26590827cd48",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
