@@ -16,6 +16,46 @@
       "message": "Hey folks! Sorry for the review spam, I realized that the previous CL only addressed half of the documentation updates. I wrote the documentation based on the assumption that project attributes function identically to package attributes, so please correct me if that isn\u0027t the case 👍",
       "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e17c431_4427c4e3",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 61039
+      },
+      "writtenOn": "2022-06-09T15:45:03Z",
+      "side": 1,
+      "message": "the default behavior does not fetch the project. However, you can include it by specifying the attribute with...",
+      "range": {
+        "startLine": 219,
+        "startChar": 54,
+        "endLine": 222,
+        "endChar": 0
+      },
+      "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63fcb9b1_1e6fd03e",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 61039
+      },
+      "writtenOn": "2022-06-09T15:45:03Z",
+      "side": 1,
+      "message": "same as previous comment",
+      "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
