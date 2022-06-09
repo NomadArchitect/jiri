@@ -41,6 +41,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8cae86e_ed8539ad",
+        "filename": "cmd/jiri/cmd.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 61989
+      },
+      "writtenOn": "2022-06-09T18:17:14Z",
+      "side": 1,
+      "message": "Updated!",
+      "parentUuid": "4e17c431_4427c4e3",
+      "range": {
+        "startLine": 219,
+        "startChar": 54,
+        "endLine": 222,
+        "endChar": 0
+      },
+      "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63fcb9b1_1e6fd03e",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-06-09T15:45:03Z",
       "side": 1,
       "message": "same as previous comment",
+      "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1494d5_a1bb0f7e",
+        "filename": "cmd/jiri/doc.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 61989
+      },
+      "writtenOn": "2022-06-09T18:17:14Z",
+      "side": 1,
+      "message": "Also updated!",
+      "parentUuid": "63fcb9b1_1e6fd03e",
       "revId": "128604d5af793b11d04e226438fa0d8f71bfdbbb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
