@@ -46,6 +46,30 @@
       },
       "revId": "cd405cdfcea8c3c42503b74ae040f94083fef9bd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2e62b39_8d26bcd3",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 2475,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-27T21:59:21Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c2781718_32f18298",
+      "range": {
+        "startLine": 2472,
+        "startChar": 0,
+        "endLine": 2475,
+        "endChar": 2
+      },
+      "revId": "cd405cdfcea8c3c42503b74ae040f94083fef9bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
