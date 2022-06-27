@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc694b3_2cac930c",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 2475,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-06-27T17:15:07Z",
+      "side": 1,
+      "message": "What happens if you move this filtering to before `computeOperations`?",
+      "range": {
+        "startLine": 2472,
+        "startChar": 0,
+        "endLine": 2475,
+        "endChar": 2
+      },
+      "revId": "cd405cdfcea8c3c42503b74ae040f94083fef9bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
