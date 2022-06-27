@@ -22,6 +22,30 @@
       },
       "revId": "cd405cdfcea8c3c42503b74ae040f94083fef9bd",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2781718_32f18298",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 2475,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-27T17:24:53Z",
+      "side": 1,
+      "message": "Finding which projects to remove depends on what remoteProjects are available. I realized it might be better if we make the project status call ignore the ones that are submodules for now, and not delete them.",
+      "parentUuid": "3bc694b3_2cac930c",
+      "range": {
+        "startLine": 2472,
+        "startChar": 0,
+        "endLine": 2475,
+        "endChar": 2
+      },
+      "revId": "cd405cdfcea8c3c42503b74ae040f94083fef9bd",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
