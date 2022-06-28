@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0399cf0_be52762d",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-28T20:08:54Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9c4da78a_10941b11",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 336,
+        "endChar": 3
+      },
+      "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31b071e9_62c57ac2",
@@ -47,6 +71,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46344a30_6d696fb2",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 2462,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-28T20:08:54Z",
+      "side": 1,
+      "message": "Ah good catch!, thanks, done.",
+      "parentUuid": "31b071e9_62c57ac2",
+      "range": {
+        "startLine": 2457,
+        "startChar": 0,
+        "endLine": 2462,
+        "endChar": 3
+      },
+      "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3012c249_bdf730fd",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-06-28T05:45:19Z",
       "side": 1,
       "message": "Can we do this with:\n```\nfunc removeSubmodulesFromProjects(projects Projects){\n  var submoduleProjectKeys []ProjectKey\n  for k, p :\u003d range projects {\n    if s, ok :\u003d projects[p.GitSubmoduleOf]; ok \u0026\u0026 s.GitSubmodules {\n      submoduleProjectKeys \u003d submoduleProjectKeys.append(submoduleProjectKeys, k)\n    }\n  }\n  for k :\u003d range submoduleProjectKeys {\n    delete(projects, k)\n  }\n}\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c4e1064_7115a57f",
+        "filename": "project/submodule.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-28T20:08:54Z",
+      "side": 1,
+      "message": "\u0027GitSubmoduleOf\u0027 field is a string, We can\u0027t do a s.GitSubmodules without looping through entire project list again. Might be easier to keep submoduleStates as input?\nOptimized function a bit based on your original suggestion.",
+      "parentUuid": "3012c249_bdf730fd",
       "range": {
         "startLine": 1,
         "startChar": 0,
