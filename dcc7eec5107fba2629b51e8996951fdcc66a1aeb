@@ -164,6 +164,30 @@
       },
       "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f99e95f_2e825636",
+        "filename": "project/submodule.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-06-28T21:58:12Z",
+      "side": 1,
+      "message": "Done, make the superproject map into string to boolean, so the checks are easier.",
+      "parentUuid": "d6f1afd4_cd4edd4f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
