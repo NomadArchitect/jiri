@@ -140,6 +140,30 @@
       },
       "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6f1afd4_cd4edd4f",
+        "filename": "project/submodule.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-06-28T20:23:42Z",
+      "side": 1,
+      "message": "You\u0027re right you need to do another intermediate look up to make from name -\u003e ProjectKey:\n```\nfunc removeSubmodulesFromProjects(projects Projects){\n  var submoduleProjectKeys []ProjectKey\n  ## You could pull the next 4 lines out to its own function if you wanted.\n  superProjectNameKeyMap :\u003d make(map[key]ProjectKey)\n  for pk :\u003d range projects {\n    superProjectNameKeyMap[pk.name] :\u003d pk\n  }\n  for pk, p :\u003d range projects {\n    if spk, ok :\u003d superProjectNameKeyMap[p.GitSubmoduleOf]; ok {\n      if sp, ok :\u003d projects[spk]; ok \u0026\u0026 sp.GitSubmodules {\n        submoduleProjectKeys \u003d submoduleProjectKeys.append(submoduleProjectKeys, pk)\n      }\n    }\n  }\n  for pk :\u003d range submoduleProjectKeys {\n    delete(projects, pk)\n  }\n}\n```",
+      "parentUuid": "6c4e1064_7115a57f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "dcc7eec5107fba2629b51e8996951fdcc66a1aeb",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
