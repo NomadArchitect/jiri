@@ -48,6 +48,7 @@ pkg gitutil, method (*Git) SetRemoteUrl(string, string) error
 pkg gitutil, method (*Git) Stash() (bool, error)
 pkg gitutil, method (*Git) StashPop() error
 pkg gitutil, method (*Git) StashSize() (int, error)
+pkg gitutil, method (*Git) SubmoduleStatus(string) ([]string, error)
 pkg gitutil, method (*Git) TopLevel() (string, error)
 pkg gitutil, method (*Git) TrackedFiles() ([]string, error)
 pkg gitutil, method (*Git) Version() (int, int, error)
