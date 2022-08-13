@@ -311,7 +311,7 @@ func (ld *loader) cloneManifestRepo(jirix *jiri.X, remote *Import, cacheDirPath 
 	// temp directory, and add it to ld.localProjects.
 	if ld.TmpDir == "" {
 		var err error
-		if ld.TmpDir, err = ioutil.TempDir("", "jiri-load"); err != nil {
+		if ld.TmpDir, err = os.MkdirTemp("", "jiri-load"); err != nil {
 			return fmt.Errorf("TempDir() failed: %v", err)
 		}
 	}
@@ -407,7 +407,7 @@ func (ld *loader) loadLockFile(jirix *jiri.X, repoPath, dir, lockFileName, ref s
 			}
 			return nil
 		}
-		temp, err := ioutil.ReadFile(lockfile)
+		temp, err := os.ReadFile(lockfile)
 		if err != nil {
 			// Supress I/O errors as it is OK if a lockfile cannot be accessed.
 			return nil

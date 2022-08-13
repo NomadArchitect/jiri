@@ -19,7 +19,7 @@ import (
 // ReadLog returns a map of CLs indexed by their refs, read from the given log file.
 func ReadLog(logFilePath string) (CLRefMap, error) {
 	results := CLRefMap{}
-	bytes, err := ioutil.ReadFile(logFilePath)
+	bytes, err := os.ReadFile(logFilePath)
 	if err != nil {
 		// File not existing is OK: just return an empty map of CLs.
 		if os.IsNotExist(err) {
@@ -54,7 +54,7 @@ func WriteLog(logFilePath string, cls CLList) (e error) {
 		return fmt.Errorf("MarshalIndent(%v) failed: %v", results, err)
 	}
 
-	if err := ioutil.WriteFile(logFilePath, bytes, os.FileMode(0644)); err != nil {
+	if err := os.WriteFile(logFilePath, bytes, os.FileMode(0644)); err != nil {
 		return fmt.Errorf("WriteFile(%q) failed: %v", logFilePath, err)
 	}
 	return nil

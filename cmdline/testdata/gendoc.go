@@ -70,7 +70,7 @@ func generate(args []string) error {
 	binName := filepath.Base(strings.TrimSpace(listOut.String()))
 
 	// Install all packages in a temporary directory.
-	tmpDir, err := ioutil.TempDir("", "")
+	tmpDir, err := os.MkdirTemp("", "")
 	if err != nil {
 		return fmt.Errorf("TempDir() failed: %v", err)
 	}
@@ -117,7 +117,7 @@ package main
 
 	// Write the result to the output file.
 	path, perm := flagOut, os.FileMode(0644)
-	if err := ioutil.WriteFile(path, []byte(doc), perm); err != nil {
+	if err := os.WriteFile(path, []byte(doc), perm); err != nil {
 		return fmt.Errorf("WriteFile(%v, %v) failed: %v\n", path, perm, err)
 	}
 	return nil

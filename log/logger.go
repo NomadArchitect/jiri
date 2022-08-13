@@ -284,7 +284,7 @@ func (l *Logger) Errorf(format string, a ...interface{}) {
 
 // WriteLogToFile writes current logs into file.
 func (l *Logger) WriteLogToFile(filename string) error {
-	return ioutil.WriteFile(filename, l.logBuffer.Bytes(), 0644)
+	return os.WriteFile(filename, l.logBuffer.Bytes(), 0644)
 }
 
 // GetLogBuffer returns current buffer for the logger.

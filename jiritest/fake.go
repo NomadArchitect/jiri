@@ -46,7 +46,7 @@ func NewFakeJiriRoot(t *testing.T) (*FakeJiriRoot, func()) {
 	}
 
 	// Create fake remote manifest projects.
-	remoteDir, err := ioutil.TempDir("", "")
+	remoteDir, err := os.MkdirTemp("", "")
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
 	}

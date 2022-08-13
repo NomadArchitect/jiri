@@ -66,7 +66,7 @@ path-2 manifest public
 		pathMap[v.Path] = v
 	}
 
-	tempDir, err := ioutil.TempDir("", "gitmodules")
+	tempDir, err := os.MkdirTemp("", "gitmodules")
 	if err != nil {
 		t.Errorf(".gitmodules generation failed due to error %v", err)
 	}
@@ -82,7 +82,7 @@ path-2 manifest public
 	}
 
 	// Read and verify content of generated script
-	data, err := ioutil.ReadFile(genGitModuleFlags.genScript)
+	data, err := os.ReadFile(genGitModuleFlags.genScript)
 	if err != nil {
 		t.Errorf("reading generated script file failed due to error: %v", err)
 	}
@@ -93,7 +93,7 @@ path-2 manifest public
 	}
 
 	// Read and verify content of generated .gitmodules file
-	data, err = ioutil.ReadFile(path.Join(tempDir, ".gitmodules"))
+	data, err = os.ReadFile(path.Join(tempDir, ".gitmodules"))
 	if err != nil {
 		t.Errorf("reading generated .gitmodules file failed due to error: %v", err)
 	}
@@ -104,7 +104,7 @@ path-2 manifest public
 	}
 
 	// Read and verify content of generated .gitattributes file
-	data, err = ioutil.ReadFile(path.Join(tempDir, ".gitattributes"))
+	data, err = os.ReadFile(path.Join(tempDir, ".gitattributes"))
 	if err != nil {
 		t.Errorf("reading generated .gitattributes file failed due to error: %v", err)
 	}

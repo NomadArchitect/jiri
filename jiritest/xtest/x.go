@@ -28,7 +28,7 @@ func NewX(t *testing.T) (*jiri.X, func()) {
 	}
 	color := color.NewColor(color.ColorNever)
 	logger := log.NewLogger(log.InfoLevel, color, false, 0, time.Second*100, nil, nil)
-	root, err := ioutil.TempDir("", "")
+	root, err := os.MkdirTemp("", "")
 	if err != nil {
 		t.Fatalf("TempDir() failed: %v", err)
 	}

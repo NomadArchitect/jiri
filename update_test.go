@@ -84,7 +84,7 @@ func TestUpdateExecutable(t *testing.T) {
 	t.Parallel()
 	content := []byte("old")
 
-	f, err := ioutil.TempFile("", "jiri")
+	f, err := os.CreateTemp("", "jiri")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -101,7 +101,7 @@ func TestUpdateExecutable(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	b, err := ioutil.ReadFile(f.Name())
+	b, err := os.ReadFile(f.Name())
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -63,7 +63,7 @@ func TestProjectIgnoresByAttribute(t *testing.T) {
 	fake.X.FetchingAttrs = ""
 	fake.UpdateUniverse(true)
 
-	file, err := ioutil.TempFile("", "tmp")
+	file, err := os.CreateTemp("", "tmp")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -79,7 +79,7 @@ func TestProjectIgnoresByAttribute(t *testing.T) {
 	file.Close()
 
 	var projectInfo []projectInfoOutput
-	bytes, err := ioutil.ReadFile(file.Name())
+	bytes, err := os.ReadFile(file.Name())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -98,7 +98,7 @@ func TestProjectIgnoresByAttribute(t *testing.T) {
 	fake.X.FetchingAttrs = "optional"
 	fake.UpdateUniverse(true)
 
-	file2, err := ioutil.TempFile("", "tmp")
+	file2, err := os.CreateTemp("", "tmp")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -112,7 +112,7 @@ func TestProjectIgnoresByAttribute(t *testing.T) {
 	}
 	file2.Close()
 
-	bytes, err = ioutil.ReadFile(file2.Name())
+	bytes, err = os.ReadFile(file2.Name())
 	if err != nil {
 		t.Fatal(err)
 	}

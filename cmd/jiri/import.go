@@ -158,7 +158,7 @@ func runImport(jirix *jiri.X, args []string) error {
 			if err != nil {
 				return fmt.Errorf("failed to serialize JSON output: %s\n", err)
 			}
-			return ioutil.WriteFile(flagImportJsonOutput, out, 0644)
+			return os.WriteFile(flagImportJsonOutput, out, 0644)
 		}
 	}
 

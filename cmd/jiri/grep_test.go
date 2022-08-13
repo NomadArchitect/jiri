@@ -97,7 +97,7 @@ func setup(t *testing.T, fake *jiritest.FakeJiriRoot) {
 
 	for i, project := range projects {
 		path := project.Path + "/file.txt"
-		err := ioutil.WriteFile(path, []byte(files[i]), 0644)
+		err := os.WriteFile(path, []byte(files[i]), 0644)
 		if err != nil {
 			t.Fatal(err)
 		}
