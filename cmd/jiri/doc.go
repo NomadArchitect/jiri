@@ -9,54 +9,62 @@
 Command jiri is a multi-purpose tool for multi-repo development.
 
 Usage:
-   jiri [flags] <command>
+
+	jiri [flags] <command>
 
 The jiri commands are:
-   cl          Manage changelists for multiple projects
-   import      Adds imports to .jiri_manifest file
-   project     Manage the jiri projects
-   snapshot    Manage project snapshots
-   update      Update all jiri projects
-   which       Show path to the jiri tool
-   runp        Run a command in parallel across jiri projects
-   help        Display help for commands or topics
+
+	cl          Manage changelists for multiple projects
+	import      Adds imports to .jiri_manifest file
+	project     Manage the jiri projects
+	snapshot    Manage project snapshots
+	update      Update all jiri projects
+	which       Show path to the jiri tool
+	runp        Run a command in parallel across jiri projects
+	help        Display help for commands or topics
 
 The jiri additional help topics are:
-   filesystem  Description of jiri file system layout
-   manifest    Description of manifest files
+
+	filesystem  Description of jiri file system layout
+	manifest    Description of manifest files
 
 The jiri flags are:
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
 
 The global flags are:
- -metadata=<just specify -metadata to activate>
-   Displays metadata for the program and exits.
- -time=false
-   Dump timing information to stderr before exiting the program.
 
-Jiri cl - Manage changelists for multiple projects
+	-metadata=<just specify -metadata to activate>
+	  Displays metadata for the program and exits.
+	-time=false
+	  Dump timing information to stderr before exiting the program.
+
+# Jiri cl - Manage changelists for multiple projects
 
 Manage changelists for multiple projects.
 
 Usage:
-   jiri cl [flags] <command>
+
+	jiri cl [flags] <command>
 
 The jiri cl commands are:
-   cleanup     Clean up changelists that have been merged
-   upload      Upload a changelist for review
-   new         Create a new local branch for a changelist
-   sync        Bring a changelist up to date
+
+	cleanup     Clean up changelists that have been merged
+	upload      Upload a changelist for review
+	new         Create a new local branch for a changelist
+	sync        Bring a changelist up to date
 
 The jiri cl flags are:
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
 
-Jiri cl cleanup - Clean up changelists that have been merged
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri cl cleanup - Clean up changelists that have been merged
 
 Command "cleanup" checks that the given branches have been merged into the
 corresponding remote branch. If a branch differs from the corresponding remote
@@ -64,22 +72,24 @@ branch, the command reports the difference and stops. Otherwise, it deletes the
 given branches.
 
 Usage:
-   jiri cl cleanup [flags] <branches>
+
+	jiri cl cleanup [flags] <branches>
 
 <branches> is a list of branches to cleanup.
 
 The jiri cl cleanup flags are:
- -f=false
-   Ignore unmerged changes.
- -remote-branch=master
-   Name of the remote branch the CL pertains to, without the leading "origin/".
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-f=false
+	  Ignore unmerged changes.
+	-remote-branch=master
+	  Name of the remote branch the CL pertains to, without the leading "origin/".
 
-Jiri cl upload - Upload a changelist for review
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri cl upload - Upload a changelist for review
 
 Command "upload" squashes all commits of a local branch into a single "changelist"
 and uploads this changelist to Gerrit as a single commit. First time the command
@@ -89,50 +99,52 @@ Change-Id by default, informing Gerrit that the incomming commit is an update of
 an existing changelist.
 
 Usage:
-   jiri cl upload [flags]
+
+	jiri cl upload [flags]
 
 The jiri cl upload flags are:
- -autosubmit=false
-   Automatically submit the changelist when feasible.
- -cc=
-   Comma-seperated list of emails or LDAPs to cc.
- -check-uncommitted=true
-   Check that no uncommitted changes exist.
- -clean-multipart-metadata=false
-   Cleanup the metadata associated with multipart CLs pertaining the MultiPart:
-   x/y message without uploading any CLs.
- -commit-message-body-file=
-   file containing the body of the CL description, that is, text without a
-   ChangeID, MultiPart etc.
- -current-project-only=false
-   Run upload in the current project only.
- -d=false
-   Send a draft changelist.
- -edit=true
-   Open an editor to edit the CL description.
- -host=
-   Gerrit host to use.  Defaults to gerrit host specified in manifest.
- -m=
-   CL description.
- -presubmit=all
-   The type of presubmit tests to run. Valid values: none,all.
- -r=
-   Comma-seperated list of emails or LDAPs to request review.
- -remote-branch=master
-   Name of the remote branch the CL pertains to, without the leading "origin/".
- -set-topic=true
-   Set Gerrit CL topic.
- -topic=
-   CL topic, defaults to <username>-<branchname>.
- -verify=true
-   Run pre-push git hooks.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-autosubmit=false
+	  Automatically submit the changelist when feasible.
+	-cc=
+	  Comma-seperated list of emails or LDAPs to cc.
+	-check-uncommitted=true
+	  Check that no uncommitted changes exist.
+	-clean-multipart-metadata=false
+	  Cleanup the metadata associated with multipart CLs pertaining the MultiPart:
+	  x/y message without uploading any CLs.
+	-commit-message-body-file=
+	  file containing the body of the CL description, that is, text without a
+	  ChangeID, MultiPart etc.
+	-current-project-only=false
+	  Run upload in the current project only.
+	-d=false
+	  Send a draft changelist.
+	-edit=true
+	  Open an editor to edit the CL description.
+	-host=
+	  Gerrit host to use.  Defaults to gerrit host specified in manifest.
+	-m=
+	  CL description.
+	-presubmit=all
+	  The type of presubmit tests to run. Valid values: none,all.
+	-r=
+	  Comma-seperated list of emails or LDAPs to request review.
+	-remote-branch=master
+	  Name of the remote branch the CL pertains to, without the leading "origin/".
+	-set-topic=true
+	  Set Gerrit CL topic.
+	-topic=
+	  CL topic, defaults to <username>-<branchname>.
+	-verify=true
+	  Run pre-push git hooks.
 
-Jiri cl new - Create a new local branch for a changelist
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri cl new - Create a new local branch for a changelist
 
 Command "new" creates a new local branch for a changelist. In particular, it
 forks a new branch with the given name from the current branch and records the
@@ -142,17 +154,19 @@ dependencies between CLs and is used by the "jiri cl sync" and "jiri cl upload"
 commands.
 
 Usage:
-   jiri cl new [flags] <name>
+
+	jiri cl new [flags] <name>
 
 <name> is the changelist name.
 
 The jiri cl new flags are:
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
 
-Jiri cl sync - Bring a changelist up to date
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri cl sync - Bring a changelist up to date
 
 Command "sync" brings the CL identified by the current branch up to date with
 the branch tracking the remote branch this CL pertains to. To do that, the
@@ -168,18 +182,20 @@ ancestor into its dependent. When that occurs, the command is aborted and prints
 instructions that need to be followed before the command can be retried.
 
 Usage:
-   jiri cl sync [flags]
+
+	jiri cl sync [flags]
 
 The jiri cl sync flags are:
- -remote-branch=master
-   Name of the remote branch the CL pertains to, without the leading "origin/".
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-remote-branch=master
+	  Name of the remote branch the CL pertains to, without the leading "origin/".
 
-Jiri import
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri import
 
 Command "import" adds imports to the [root]/.jiri_manifest file, which specifies
 manifest information for the jiri tool.  The file is created if it doesn't
@@ -190,41 +206,44 @@ import.  The manifest file path is relative to the root directory of the remote
 import repository.
 
 Example:
-  $ jiri import myfile https://foo.com/bar.git
+
+	$ jiri import myfile https://foo.com/bar.git
 
 Run "jiri help manifest" for details on manifests.
 
 Usage:
-   jiri import [flags] <manifest> <remote>
+
+	jiri import [flags] <manifest> <remote>
 
 <manifest> specifies the manifest file to use.
 
 <remote> specifies the remote manifest repository.
 
 The jiri import flags are:
- -name=manifest
-   The name of the remote manifest project.
- -out=
-   The output file.  Uses [root]/.jiri_manifest if unspecified.  Uses stdout
-   if set to "-".
- -overwrite=false
-   Write a new .jiri_manifest file with the given specification.  If it already
-   exists, the existing content will be ignored and the file will be
-   overwritten.
- -protocol=git
-   The version control protocol used by the remote manifest project.
- -remote-branch=master
-   The branch of the remote manifest project to track, without the leading
-   "origin/".
- -root=
-   Root to store the manifest project locally.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-name=manifest
+	  The name of the remote manifest project.
+	-out=
+	  The output file.  Uses [root]/.jiri_manifest if unspecified.  Uses stdout
+	  if set to "-".
+	-overwrite=false
+	  Write a new .jiri_manifest file with the given specification.  If it already
+	  exists, the existing content will be ignored and the file will be
+	  overwritten.
+	-protocol=git
+	  The version control protocol used by the remote manifest project.
+	-remote-branch=master
+	  The branch of the remote manifest project to track, without the leading
+	  "origin/".
+	-root=
+	  Root to store the manifest project locally.
 
-Jiri patch - Patch in the existing change
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri patch - Patch in the existing change
 
 Command "patch" applies the existing changelist to the current project. The
 change can be identified either using change ID, in which case the latest
@@ -237,65 +256,72 @@ flag will delete the branch if already exists. Use the -force flag to force
 deleting the branch even if it contains unmerged changes).
 
 Usage:
-   jiri patch <change>
+
+	jiri patch <change>
 
 <change> is a change ID or a full reference.
 
 The jiri project info flags are:
- -branch=
-   Name of the branch the patch will be applied to
- -delete=false
-   Delete the existing branch if already exists
- -force=false
-   Use force when deleting the existing branch
- -host=
-   Gerrit host to use.  Defaults to gerrit host specified in manifest.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-branch=
+	  Name of the branch the patch will be applied to
+	-delete=false
+	  Delete the existing branch if already exists
+	-force=false
+	  Use force when deleting the existing branch
+	-host=
+	  Gerrit host to use.  Defaults to gerrit host specified in manifest.
 
-Jiri project - Manage the jiri projects
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri project - Manage the jiri projects
 
 Manage the jiri projects.
 
 Usage:
-   jiri project [flags] <command>
+
+	jiri project [flags] <command>
 
 The jiri project commands are:
-   clean        Restore jiri projects to their pristine state
-   info         Provided structured input for existing jiri projects and
-                branches
-   list         List existing jiri projects and branches
-   shell-prompt Print a succinct status of projects suitable for shell prompts
+
+	clean        Restore jiri projects to their pristine state
+	info         Provided structured input for existing jiri projects and
+	             branches
+	list         List existing jiri projects and branches
+	shell-prompt Print a succinct status of projects suitable for shell prompts
 
 The jiri project flags are:
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
 
-Jiri project clean - Restore jiri projects to their pristine state
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri project clean - Restore jiri projects to their pristine state
 
 Restore jiri projects back to their master branches and get rid of all the local
 branches and changes.
 
 Usage:
-   jiri project clean [flags] <project ...>
+
+	jiri project clean [flags] <project ...>
 
 <project ...> is a list of projects to clean up.
 
 The jiri project clean flags are:
- -branches=false
-   Delete all non-master branches.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-branches=false
+	  Delete all non-master branches.
 
-Jiri project info - Provided structured input for existing jiri projects and branches
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri project info - Provided structured input for existing jiri projects and branches
 
 Inspect the local filesystem and provide structured info on the existing
 projects and branches. Projects are specified using either names or regular
@@ -306,85 +332,93 @@ information to be displayed can be specified using a Go template, supplied via
 the -template flag.
 
 Usage:
-   jiri project info [flags] <project-names>...
+
+	jiri project info [flags] <project-names>...
 
 <project-names>... a list of project names
 
 The jiri project info flags are:
- -json-output=
-   Path to write operation results to.
- -regexp=false
-   Use argument as regular expression.
- -template=
-   The template for the fields to display.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-json-output=
+	  Path to write operation results to.
+	-regexp=false
+	  Use argument as regular expression.
+	-template=
+	  The template for the fields to display.
 
-Jiri project list - List existing jiri projects and branches
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri project list - List existing jiri projects and branches
 
 Inspect the local filesystem and list the existing projects and branches.
 
 Usage:
-   jiri project list [flags]
+
+	jiri project list [flags]
 
 The jiri project list flags are:
- -branches=false
-   Show project branches.
- -nopristine=false
-   If true, omit pristine projects, i.e. projects with a clean master branch and
-   no other branches.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-branches=false
+	  Show project branches.
+	-nopristine=false
+	  If true, omit pristine projects, i.e. projects with a clean master branch and
+	  no other branches.
 
-Jiri project shell-prompt - Print a succinct status of projects suitable for shell prompts
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri project shell-prompt - Print a succinct status of projects suitable for shell prompts
 
 Reports current branches of jiri projects (repositories) as well as an
 indication of each project's status:
-  *  indicates that a repository contains uncommitted changes
-  %  indicates that a repository contains untracked files
+  - indicates that a repository contains uncommitted changes
+    %  indicates that a repository contains untracked files
 
 Usage:
-   jiri project shell-prompt [flags]
+
+	jiri project shell-prompt [flags]
 
 The jiri project shell-prompt flags are:
- -check-dirty=true
-   If false, don't check for uncommitted changes or untracked files. Setting
-   this option to false is dangerous: dirty master branches will not appear in
-   the output.
- -show-name=false
-   Show the name of the current repo.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-check-dirty=true
+	  If false, don't check for uncommitted changes or untracked files. Setting
+	  this option to false is dangerous: dirty master branches will not appear in
+	  the output.
+	-show-name=false
+	  Show the name of the current repo.
 
-Jiri snapshot - Create a new project snapshot
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri snapshot - Create a new project snapshot
 
 The "jiri snapshot <snapshot>" command captures the current project state
 in a manifest.
 
 Usage:
-   jiri snapshot [flags] <snapshot>
+
+	jiri snapshot [flags] <snapshot>
 
 <snapshot> is the snapshot manifest file.
 
 The jiri snapshot create flags are:
- -time-format=2006-01-02T15:04:05Z07:00
-   Time format for snapshot file name.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-time-format=2006-01-02T15:04:05Z07:00
+	  Time format for snapshot file name.
 
-Jiri update - Update all jiri projects
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri update - Update all jiri projects
 
 Updates all projects. The sequence in which the individual updates happen
 guarantees that we end up with a consistent workspace. The set of projects
@@ -393,31 +427,34 @@ to update is described in the manifest.
 Run "jiri help manifest" for details on manifests.
 
 Usage:
-   jiri update [flags] <snapshot>
+
+	jiri update [flags] <snapshot>
 
 <snapshot> is the snapshot manifest file.
 
 The jiri update flags are:
- -attempts=1
-   Number of attempts before failing.
- -gc=false
-   Garbage collect obsolete repositories.
- -manifest=
-   Name of the project manifest.
 
- -color=true
-   Use color to format output.
- -v=false
-   Print verbose output.
+	-attempts=1
+	  Number of attempts before failing.
+	-gc=false
+	  Garbage collect obsolete repositories.
+	-manifest=
+	  Name of the project manifest.
 
-Jiri runp - Run a command in parallel across jiri projects
+	-color=true
+	  Use color to format output.
+	-v=false
+	  Print verbose output.
+
+# Jiri runp - Run a command in parallel across jiri projects
 
 Run a command in parallel across one or more jiri projects. Commands are run
 using the shell specified by the users $SHELL environment variable, or "sh"
 if that's not set. Thus commands are run as $SHELL -c "args..."
 
 Usage:
-   jiri runp [flags] <command line>
+
+	jiri runp [flags] <command line>
 
 A command line to be run in each project specified by the supplied command line
 flags. Any environment variables intended to be evaluated when the command line
@@ -425,55 +462,56 @@ is run must be quoted to avoid expansion before being passed to runp by the
 shell.
 
 The jiri runp flags are:
- -collate-stdout=true
-   Collate all stdout output from each parallel invocation and display it as if
-   had been generated sequentially. This flag cannot be used with
-   -show-name-prefix, -show-key-prefix or -interactive.
- -env=
-   specify an environment variable in the form: <var>=[<val>],...
- -exit-on-error=false
-   If set, all commands will killed as soon as one reports an error, otherwise,
-   each will run to completion.
- -has-branch=
-   A regular expression specifying branch names to use in matching projects. A
-   project will match if the specified branch exists, even if it is not checked
-   out.
- -has-gerrit-message=false
-   If specified, match branches that have, or have no, gerrit message
- -has-uncommitted=false
-   If specified, match projects that have, or have no, uncommitted changes
- -has-untracked=false
-   If specified, match projects that have, or have no, untracked files
- -interactive=true
-   If set, the command to be run is interactive and should not have its
-   stdout/stderr manipulated. This flag cannot be used with -show-name-prefix,
-   -show-key-prefix or -collate-stdout.
- -merge-policies=+CCFLAGS,+CGO_CFLAGS,+CGO_CXXFLAGS,+CGO_LDFLAGS,+CXXFLAGS,GOARCH,GOOS,GOPATH:,^GOROOT*,+LDFLAGS,:PATH,VDLPATH:
-   specify policies for merging environment variables
- -projects=
-   A Regular expression specifying project keys to run commands in. By default,
-   runp will use projects that have the same branch checked as the current
-   project unless it is run from outside of a project in which case it will
-   default to using all projects.
- -show-key-prefix=false
-   If set, each line of output from each project will begin with the key of the
-   project followed by a colon. This is intended for use with long running
-   commands where the output needs to be streamed. Stdout and stderr are spliced
-   apart. This flag cannot be used with -interactive, -show-name-prefix or
-   -collate-stdout
- -show-name-prefix=false
-   If set, each line of output from each project will begin with the name of the
-   project followed by a colon. This is intended for use with long running
-   commands where the output needs to be streamed. Stdout and stderr are spliced
-   apart. This flag cannot be used with -interactive, -show-key-prefix or
-   -collate-stdout.
- -v=false
-   Print verbose logging information
 
- -color=true
-   Use color to format output.
+	-collate-stdout=true
+	  Collate all stdout output from each parallel invocation and display it as if
+	  had been generated sequentially. This flag cannot be used with
+	  -show-name-prefix, -show-key-prefix or -interactive.
+	-env=
+	  specify an environment variable in the form: <var>=[<val>],...
+	-exit-on-error=false
+	  If set, all commands will killed as soon as one reports an error, otherwise,
+	  each will run to completion.
+	-has-branch=
+	  A regular expression specifying branch names to use in matching projects. A
+	  project will match if the specified branch exists, even if it is not checked
+	  out.
+	-has-gerrit-message=false
+	  If specified, match branches that have, or have no, gerrit message
+	-has-uncommitted=false
+	  If specified, match projects that have, or have no, uncommitted changes
+	-has-untracked=false
+	  If specified, match projects that have, or have no, untracked files
+	-interactive=true
+	  If set, the command to be run is interactive and should not have its
+	  stdout/stderr manipulated. This flag cannot be used with -show-name-prefix,
+	  -show-key-prefix or -collate-stdout.
+	-merge-policies=+CCFLAGS,+CGO_CFLAGS,+CGO_CXXFLAGS,+CGO_LDFLAGS,+CXXFLAGS,GOARCH,GOOS,GOPATH:,^GOROOT*,+LDFLAGS,:PATH,VDLPATH:
+	  specify policies for merging environment variables
+	-projects=
+	  A Regular expression specifying project keys to run commands in. By default,
+	  runp will use projects that have the same branch checked as the current
+	  project unless it is run from outside of a project in which case it will
+	  default to using all projects.
+	-show-key-prefix=false
+	  If set, each line of output from each project will begin with the key of the
+	  project followed by a colon. This is intended for use with long running
+	  commands where the output needs to be streamed. Stdout and stderr are spliced
+	  apart. This flag cannot be used with -interactive, -show-name-prefix or
+	  -collate-stdout
+	-show-name-prefix=false
+	  If set, each line of output from each project will begin with the name of the
+	  project followed by a colon. This is intended for use with long running
+	  commands where the output needs to be streamed. Stdout and stderr are spliced
+	  apart. This flag cannot be used with -interactive, -show-key-prefix or
+	  -collate-stdout.
+	-v=false
+	  Print verbose logging information
 
-Jiri help - Display help for commands or topics
+	-color=true
+	  Use color to format output.
+
+# Jiri help - Display help for commands or topics
 
 Help with no args displays the usage of the parent command.
 
@@ -482,40 +520,42 @@ Help with args displays the usage of the specified sub-command or help topic.
 "help ..." recursively displays help for all commands and topics.
 
 Usage:
-   jiri help [flags] [command/topic ...]
+
+	jiri help [flags] [command/topic ...]
 
 [command/topic ...] optionally identifies a specific sub-command or help topic.
 
 The jiri help flags are:
- -style=compact
-   The formatting style for help output:
-      compact   - Good for compact cmdline output.
-      full      - Good for cmdline output, shows all global flags.
-      godoc     - Good for godoc processing.
-      shortonly - Only output short description.
-   Override the default by setting the CMDLINE_STYLE environment variable.
- -width=<terminal width>
-   Format output to this target width in runes, or unlimited if width < 0.
-   Defaults to the terminal width if available.  Override the default by setting
-   the CMDLINE_WIDTH environment variable.
 
-Jiri filesystem - Description of jiri file system layout
+	-style=compact
+	  The formatting style for help output:
+	     compact   - Good for compact cmdline output.
+	     full      - Good for cmdline output, shows all global flags.
+	     godoc     - Good for godoc processing.
+	     shortonly - Only output short description.
+	  Override the default by setting the CMDLINE_STYLE environment variable.
+	-width=<terminal width>
+	  Format output to this target width in runes, or unlimited if width < 0.
+	  Defaults to the terminal width if available.  Override the default by setting
+	  the CMDLINE_WIDTH environment variable.
+
+# Jiri filesystem - Description of jiri file system layout
 
 All data managed by the jiri tool is located in the file system under a root
 directory, colloquially called the jiri root directory.  The file system layout
 looks like this:
 
- [root]                              # root directory (name picked by user)
- [root]/.jiri_root                   # root metadata directory
- [root]/.jiri_root/bin               # contains tool binaries (jiri, etc.)
- [root]/.jiri_root/update_history    # contains history of update snapshots
- [root]/.manifest                    # contains jiri manifests
- [root]/[project1]                   # project directory (name picked by user)
- [root]/[project1]/.jiri             # project metadata directory
- [root]/[project1]/.jiri/metadata.v2 # project metadata file
- [root]/[project1]/.jiri/<<cls>>     # project per-cl metadata directories
- [root]/[project1]/<<files>>         # project files
- [root]/[project2]...
+	[root]                              # root directory (name picked by user)
+	[root]/.jiri_root                   # root metadata directory
+	[root]/.jiri_root/bin               # contains tool binaries (jiri, etc.)
+	[root]/.jiri_root/update_history    # contains history of update snapshots
+	[root]/.manifest                    # contains jiri manifests
+	[root]/[project1]                   # project directory (name picked by user)
+	[root]/[project1]/.jiri             # project metadata directory
+	[root]/[project1]/.jiri/metadata.v2 # project metadata file
+	[root]/[project1]/.jiri/<<cls>>     # project per-cl metadata directories
+	[root]/[project1]/<<files>>         # project files
+	[root]/[project2]...
 
 The [root] and [projectN] directory names are picked by the user.  The <<cls>>
 are named via jiri cl new, and the <<files>> are named as the user adds files
@@ -541,7 +581,7 @@ various metadata files or other logic.
 
 The jiri binary is located at [root]/.jiri_root/bin/jiri
 
-Jiri manifest - Description of manifest files
+# Jiri manifest - Description of manifest files
 
 Jiri manifest files describe the set of projects that get synced when running
 "jiri update".
@@ -556,33 +596,34 @@ projects as well.
 Manifests have the following XML schema:
 
 <manifest>
-  <imports>
-    <import remote="https://vanadium.googlesource.com/manifest"
-            manifest="public"
-            name="manifest"
-    />
-    <localimport file="/path/to/local/manifest"/>
-    ...
-  </imports>
-  <projects>
-    <project name="my-project"
-             path="path/where/project/lives"
-             protocol="git"
-             remote="https://github.com/myorg/foo"
-             revision="ed42c05d8688ab23"
-             remotebranch="my-branch"
-             gerrithost="https://myorg-review.googlesource.com"
-             githooks="path/to/githooks-dir"
-             attributes="attr1,attr2..."
-    />
-    ...
-  </projects>
-  <hooks>
-    <hook name="update"
-          project="mojo/public"
-          action="update.sh"/>
-    ...
-  </hooks>
+
+	<imports>
+	  <import remote="https://vanadium.googlesource.com/manifest"
+	          manifest="public"
+	          name="manifest"
+	  />
+	  <localimport file="/path/to/local/manifest"/>
+	  ...
+	</imports>
+	<projects>
+	  <project name="my-project"
+	           path="path/where/project/lives"
+	           protocol="git"
+	           remote="https://github.com/myorg/foo"
+	           revision="ed42c05d8688ab23"
+	           remotebranch="my-branch"
+	           gerrithost="https://myorg-review.googlesource.com"
+	           githooks="path/to/githooks-dir"
+	           attributes="attr1,attr2..."
+	  />
+	  ...
+	</projects>
+	<hooks>
+	  <hook name="update"
+	        project="mojo/public"
+	        action="update.sh"/>
+	  ...
+	</hooks>
 
 </manifest>
 

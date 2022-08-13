@@ -8,7 +8,7 @@ package lookpath
 // TODO(toddw): implement for non-unix systems.
 
 import (
-	"io/ioutil"
+	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -26,8 +26,8 @@ func splitPath(env map[string]string) []string {
 	return dirs
 }
 
-func isExecutable(info os.FileInfo) bool {
-	mode := info.Mode()
+func isExecutable(info fs.DirEntry) bool {
+	mode := info.Type()
 	return !mode.IsDir() && mode&0111 != 0
 }
 
@@ -55,7 +55,7 @@ func Look(env map[string]string, name string) (string, error) {
 		if err != nil {
 			continue
 		}
-		if !isExecutable(info) {
+		if !isExecutable(fs.FileInfoToDirEntry(info)) {
 			continue
 		}
 		return file, nil
@@ -89,7 +89,7 @@ func LookPrefix(env map[string]string, prefix string, names map[string]bool) ([]
 		if err != nil {
 			continue
 		}
-		infos, err := ioutil.ReadDir(dir)
+		infos, err := os.ReadDir(dir)
 		if err != nil {
 			continue
 		}
