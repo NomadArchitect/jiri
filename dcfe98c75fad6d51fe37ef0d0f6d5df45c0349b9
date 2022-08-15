@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b397e929_9b4d8163",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-15T23:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "781339a8_608b5c57",
+      "range": {
+        "startLine": 1230,
+        "startChar": 14,
+        "endLine": 1230,
+        "endChar": 26
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e4f609_883c447b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "I have no idea what this `, 1` does or even why this compiles.",
+      "range": {
+        "startLine": 1236,
+        "startChar": 27,
+        "endLine": 1236,
+        "endChar": 29
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10fbf7af_a9dcad40",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-15T23:57:12Z",
+      "side": 1,
+      "message": "I think it\u0027s just to keep it somewhat readible. It\u0027s pretty widely used in the gitutil code, you mind we keep the format?",
+      "parentUuid": "c3e4f609_883c447b",
       "range": {
         "startLine": 1236,
         "startChar": 27,
@@ -70,6 +118,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa892f7_96d516aa",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-15T23:57:12Z",
+      "side": 1,
+      "message": "Good point. Changed to just return the list of strings directly.",
+      "parentUuid": "aa3b1845_28dc1d71",
+      "range": {
+        "startLine": 1284,
+        "startChar": 45,
+        "endLine": 1284,
+        "endChar": 52
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b760d92_99cbf21f",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "Nit: run",
+      "range": {
+        "startLine": 1285,
+        "startChar": 6,
+        "endLine": 1285,
+        "endChar": 9
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ad3e26_6df0f6d1",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-15T23:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b760d92_99cbf21f",
       "range": {
         "startLine": 1285,
         "startChar": 6,
@@ -152,6 +248,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "Prefer literals.\n\nHere the more idiomatic formulation is:\n\nlocalProjects[key] \u003d Project{\n                             Name: subm.Name\n\t\t\t\tPath: subm.Path\n\t\t\t\tRemote:  subm.Remote\n\t\t\t\tRevision: subm.Revision\n\t\t\t\tGitSubmoduleOf: \u003d subm.Superproject}\n\t\t\t\nThis tightens the scope of the definition. You can drop the `var project Project` bit too and be more terse.",
+      "range": {
+        "startLine": 786,
+        "startChar": 36,
+        "endLine": 786,
+        "endChar": 43
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72168c8e_f8474345",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-15T23:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "808a55b5_dcc6fe92",
       "range": {
         "startLine": 786,
         "startChar": 36,
