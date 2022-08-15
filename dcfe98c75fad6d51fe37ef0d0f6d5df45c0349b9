@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781339a8_608b5c57",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Initialisms should keep the same case, so use SubmoduleURL here.",
+      "range": {
+        "startLine": 1230,
+        "startChar": 14,
+        "endLine": 1230,
+        "endChar": 26
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e4f609_883c447b",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "I have no idea what this `, 1` does or even why this compiles.",
+      "range": {
+        "startLine": 1236,
+        "startChar": 27,
+        "endLine": 1236,
+        "endChar": 29
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3b1845_28dc1d71",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "This function appears problematic. I don\u0027t see evidence that this function is here to satisfy some interface so the signature can be modified.\n\nSubmoduleStatus indicates a single submodule, but that\u0027s not what it does; it returns that status of multiple submodules. SubmodulesStatus is better. \n\nSeparately, the use of this function doesn\u0027t make a lot of sense. This CL seems to use it further down and just immediately resplits the string. runOutput is private which is fine, but why doesn\u0027t the function just return []string and let callers decide whether to join it up?",
+      "range": {
+        "startLine": 1284,
+        "startChar": 45,
+        "endLine": 1284,
+        "endChar": 52
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b760d92_99cbf21f",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Nit: run",
+      "range": {
+        "startLine": 1285,
+        "startChar": 6,
+        "endLine": 1285,
+        "endChar": 9
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d1cba97_3634d6f9",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "All Go comments should end in a period.",
+      "range": {
+        "startLine": 769,
+        "startChar": 23,
+        "endLine": 769,
+        "endChar": 31
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b3bae3a_0e524961",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Panicing is not OK here and everywhere (I see it above too). Rarely should panic be used and only in cases of dire programatic failure (e.g. out of array bounds) or the rare condition of something being impossible that should be tested for. Here, it\u0027s just a run of the mill error. Return the error and have callers figure out what they want to do. Panicing prevents callers being able to decide what action they want to take. Library code never has the right to decide for a caller whether the program is allowed to crash.\n\nNote that panic is also very hard to test.",
+      "range": {
+        "startLine": 778,
+        "startChar": 5,
+        "endLine": 778,
+        "endChar": 10
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "808a55b5_dcc6fe92",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Prefer literals.\n\nHere the more idiomatic formulation is:\n\nlocalProjects[key] \u003d Project{\n                             Name: subm.Name\n\t\t\t\tPath: subm.Path\n\t\t\t\tRemote:  subm.Remote\n\t\t\t\tRevision: subm.Revision\n\t\t\t\tGitSubmoduleOf: \u003d subm.Superproject}\n\t\t\t\nThis tightens the scope of the definition. You can drop the `var project Project` bit too and be more terse.",
+      "range": {
+        "startLine": 786,
+        "startChar": 36,
+        "endLine": 786,
+        "endChar": 43
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2276455_0cb5b03b",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Why isn\u0027t this `if isSuperproject(jirix, p) {` ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "061b4d61_ea544273",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Period.",
+      "range": {
+        "startLine": 40,
+        "startChar": 42,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dffd9b6_49a3bbde",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "seems like `subm` works just as well here, and makes it clearer its not the type. As above, this should be a literal (`subm :\u003d {Prefix: ..., Revision: ...,` etc)",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 15
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa9c4fae_ac7319e8",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-15T22:13:12Z",
+      "side": 1,
+      "message": "Place MustCompiles as package-level constants with good names, e.g. http://shortn/_ST6jfxtJnk\n\nThe reason is that MustCompile doesn\u0027t get called until it has executed. This only executes when the function is called, and MustCompile will panic in the event of things being wrong (note above panicing is not OK). By placing MustCompile as package level, it is run immediately at runtime and so will panic the program immediately if it\u0027s wrong. It will do this in tests as well if you write a test that pulls in this package.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
