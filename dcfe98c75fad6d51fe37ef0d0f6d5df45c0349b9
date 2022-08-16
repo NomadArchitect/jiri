@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71c72ec0_20c2e76d",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-16T17:10:52Z",
+      "side": 1,
+      "message": "Like I said before, I don\u0027t even know what the ,1; here _does_, let alone how it compiles. I have never seen it before in my Go life. \n\n```\nif got, want :\u003d len(out); got !\u003d want{\n```\n\nis the correct statement.",
+      "parentUuid": "10fbf7af_a9dcad40",
+      "range": {
+        "startLine": 1236,
+        "startChar": 27,
+        "endLine": 1236,
+        "endChar": 29
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa3b1845_28dc1d71",
         "filename": "gitutil/git.go",
         "patchSetId": 2

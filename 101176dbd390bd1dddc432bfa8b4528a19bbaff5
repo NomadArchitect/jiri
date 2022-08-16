@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45547e88_196859e6",
+        "filename": "project/submodule.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 63144
+      },
+      "writtenOn": "2022-08-16T17:10:52Z",
+      "side": 1,
+      "message": "Yes, this will need to happen in a submodule_test.go file. It\u0027s usually impossible to know what a regex does from sight, and these are pretty complicated.\n\nTable-based testing is required here:\n\nhttps://dave.cheney.net/2019/05/07/prefer-table-driven-tests\n\nThat doc is a little old, as you will want to use t.Run() too. there is a representative usage at https://pkg.go.dev/testing#pkg-functions with the example for `func TestGroupedParallel(t *testing.T) {` (ignore the t.parallel bit). I can pair program you through this; this type of testing is key to writing good Go tests.",
+      "parentUuid": "3dacea11_12dc19e3",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 81
+      },
+      "revId": "101176dbd390bd1dddc432bfa8b4528a19bbaff5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4253209f_2dc2a576",
         "filename": "project/submodule.go",
         "patchSetId": 4
