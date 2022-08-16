@@ -305,6 +305,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0772371_f478cd8b",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:01:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2276455_0cb5b03b",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "061b4d61_ea544273",
@@ -318,6 +342,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "Period.",
+      "range": {
+        "startLine": 40,
+        "startChar": 42,
+        "endLine": 40,
+        "endChar": 48
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2590a4b6_367bbfa3",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:01:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "061b4d61_ea544273",
       "range": {
         "startLine": 40,
         "startChar": 42,
@@ -351,6 +399,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c70b9e0_145e92f2",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:01:51Z",
+      "side": 1,
+      "message": "Done, pulled out the call for submoduleURL.",
+      "parentUuid": "2dffd9b6_49a3bbde",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 15
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa9c4fae_ac7319e8",
@@ -364,6 +436,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "Place MustCompiles as package-level constants with good names, e.g. http://shortn/_ST6jfxtJnk\n\nThe reason is that MustCompile doesn\u0027t get called until it has executed. This only executes when the function is called, and MustCompile will panic in the event of things being wrong (note above panicing is not OK). By placing MustCompile as package level, it is run immediately at runtime and so will panic the program immediately if it\u0027s wrong. It will do this in tests as well if you write a test that pulls in this package.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 62
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ad9421_00acc27b",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:01:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa9c4fae_ac7319e8",
       "range": {
         "startLine": 61,
         "startChar": 0,
