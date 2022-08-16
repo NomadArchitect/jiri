@@ -212,6 +212,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d029d12_0b61decb",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d1cba97_3634d6f9",
+      "range": {
+        "startLine": 769,
+        "startChar": 23,
+        "endLine": 769,
+        "endChar": 31
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b3bae3a_0e524961",
@@ -225,6 +249,30 @@
       "writtenOn": "2022-08-15T22:13:12Z",
       "side": 1,
       "message": "Panicing is not OK here and everywhere (I see it above too). Rarely should panic be used and only in cases of dire programatic failure (e.g. out of array bounds) or the rare condition of something being impossible that should be tested for. Here, it\u0027s just a run of the mill error. Return the error and have callers figure out what they want to do. Panicing prevents callers being able to decide what action they want to take. Library code never has the right to decide for a caller whether the program is allowed to crash.\n\nNote that panic is also very hard to test.",
+      "range": {
+        "startLine": 778,
+        "startChar": 5,
+        "endLine": 778,
+        "endChar": 10
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4aaf2f6_621d368f",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-16T00:17:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b3bae3a_0e524961",
       "range": {
         "startLine": 778,
         "startChar": 5,
