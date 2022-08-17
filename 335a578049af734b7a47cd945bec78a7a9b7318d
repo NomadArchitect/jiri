@@ -41,6 +41,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56b9f71_a77ecc12",
+        "filename": "cmd/jiri/snapshot_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "Ack, left this as is for now to keep the consistency.",
+      "parentUuid": "81930f41_dbde8bf2",
+      "range": {
+        "startLine": 153,
+        "startChar": 79,
+        "endLine": 153,
+        "endChar": 97
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e92e6d5_2311679a",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-08-17T19:21:26Z",
       "side": 1,
       "message": "Having a variable name the same as a function isn\u0027t a good idea. What is happening here is Go is shadowing the function: you can no longer call it within this scope. It\u0027s also confusing because the function could be passed as a first-class function: `containSubmodules` could have referred to the function itself.",
+      "range": {
+        "startLine": 761,
+        "startChar": 1,
+        "endLine": 761,
+        "endChar": 18
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de1f4bd5_c24d7f3d",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e92e6d5_2311679a",
       "range": {
         "startLine": 761,
         "startChar": 1,
@@ -87,6 +135,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc2fa7c5_1b34e527",
+        "filename": "project/project.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c0656d9_ab032538",
+      "range": {
+        "startLine": 765,
+        "startChar": 21,
+        "endLine": 765,
+        "endChar": 26
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c0d2bc5_7b8f10c0",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-08-17T19:21:26Z",
       "side": 1,
       "message": "Is - representing not initialized a Git thing? It\u0027s kind of odd. It would make more sense to me for this to be an empty string when dealing with this variable.",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13835fb7_fec606fc",
+        "filename": "project/submodule.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "This is directly from what git submodules status returns, shown in the status section: https://git-scm.com/docs/git-submodule.",
+      "parentUuid": "4c0d2bc5_7b8f10c0",
       "range": {
         "startLine": 18,
         "startChar": 1,
@@ -133,6 +229,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eef772a7_2fde6cba",
+        "filename": "project/submodule.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c38268a_0c92e42c",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59d99d78_8dcd16f0",
@@ -146,6 +266,30 @@
       "writtenOn": "2022-08-17T19:21:26Z",
       "side": 1,
       "message": "It is worth testing input as an empty string here, and also just a newline, in case the Git output is wonky.",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "335a578049af734b7a47cd945bec78a7a9b7318d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "169bc789_9f73b507",
+        "filename": "project/submodule_test.go",
+        "patchSetId": 7
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T22:22:35Z",
+      "side": 1,
+      "message": "Added length check in the original function.",
+      "parentUuid": "59d99d78_8dcd16f0",
       "range": {
         "startLine": 10,
         "startChar": 5,
