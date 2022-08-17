@@ -119,6 +119,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "069a3f98_7be15622",
+        "filename": "gitutil/git.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-08-17T18:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71c72ec0_20c2e76d",
+      "range": {
+        "startLine": 1236,
+        "startChar": 27,
+        "endLine": 1236,
+        "endChar": 29
+      },
+      "revId": "dcfe98c75fad6d51fe37ef0d0f6d5df45c0349b9",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3b1845_28dc1d71",
