@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed58747_2edb892f",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-09-23T17:57:10Z",
+      "side": 1,
+      "message": "` \"--file\", \".gitmodules\", ` I guess this just works without it, but we should be verbose.",
+      "range": {
+        "startLine": 1251,
+        "startChar": 34,
+        "endLine": 1251,
+        "endChar": 35
+      },
+      "revId": "0faef03f4e6b27dd7a69d3af13ec5a1cd79f9463",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f264268_4a7bc9c1",
+        "filename": "gitutil/git.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1259,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-09-23T17:57:10Z",
+      "side": 1,
+      "message": "You should extract out most of this logic into a common function.",
+      "range": {
+        "startLine": 1235,
+        "startChar": 0,
+        "endLine": 1259,
+        "endChar": 1
+      },
+      "revId": "0faef03f4e6b27dd7a69d3af13ec5a1cd79f9463",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
