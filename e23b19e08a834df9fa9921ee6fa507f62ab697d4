@@ -1,0 +1,174 @@
+{
+  "comments": [],
+  "submitRequirementResults": [
+    {
+      "submitRequirement": {
+        "name": "API-Review",
+        "description": {
+          "value": "Submit requirement for API-Review"
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "path:\"^(~(@\\\\.test\\\\.(api|fidl)))\u0026@\\\\.(api|fidl)\""
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "label:API-Review\u003dMAX AND -label:API-Review\u003dMIN"
+        },
+        "overrideExpression": {
+          "value": {
+            "expressionString": "is:pure-revert"
+          }
+        },
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"path:\"^(~(@\\\\.test\\\\.(api|fidl)))&@\\\\.(api|fidl)\""},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["path:\"^(~(@\\\\.test\\\\.(api|fidl)))&@\\\\.(api|fidl)\""]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"label:API-Review=MAX AND -label:API-Review=MIN"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "overrideExpressionResult": {
+        "value": {"expression":{"expressionString":"is:pure-revert"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "patchSetCommitId": "e23b19e08a834df9fa9921ee6fa507f62ab697d4",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Code-Review",
+        "description": {
+          "value": "Submit requirement for Code-Review"
+        },
+        "applicabilityExpression": {},
+        "submittabilityExpression": {
+          "expressionString": "-label:Code-Review\u003dMIN AND label:Code-Review\u003dMAX,user\u003dnon_uploader"
+        },
+        "overrideExpression": {
+          "value": {
+            "expressionString": "uploader:19029 OR uploader:31893 OR uploader:32258 OR uploader:35751"
+          }
+        },
+        "allowOverrideInChildProjects": true
+      },
+      "applicabilityExpressionResult": {},
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"-label:Code-Review=MIN AND label:Code-Review=MAX,user=non_uploader"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["label:Code-Review=MAX,user=non_uploader"],"failingAtoms":["label:Code-Review=MIN"]}
+      },
+      "overrideExpressionResult": {
+        "value": {"expression":{"expressionString":"uploader:19029 OR uploader:31893 OR uploader:32258 OR uploader:35751"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["uploader:19029","uploader:31893","uploader:32258","uploader:35751"]}
+      },
+      "patchSetCommitId": "e23b19e08a834df9fa9921ee6fa507f62ab697d4",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Commit-Message-Has-Tags",
+        "description": {
+          "value": "Patches are not submittable if they are missing a [tag]."
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "-message:\"^\\\\[@\\\\]@\" AND ((project:experiences OR project:fuchsia OR project:infra/infra) AND -branch:refs/meta/config)"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:false"
+        },
+        "overrideExpression": {
+          "value": {
+            "expressionString": "is:pure-revert OR message:\"^(Reland|Revert)@\""
+          }
+        },
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"-message:\"^\\\\[@\\\\]@\" AND ((project:experiences OR project:fuchsia OR project:infra/infra) AND -branch:refs/meta/config)"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":["message:\"^\\\\[@\\\\]@\""],"failingAtoms":["branch:refs/meta/config","project:experiences","project:fuchsia","project:infra/infra"]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:false"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "overrideExpressionResult": {
+        "value": {"expression":{"expressionString":"is:pure-revert OR message:\"^(Reland|Revert)@\""},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "patchSetCommitId": "e23b19e08a834df9fa9921ee6fa507f62ab697d4",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "No-Patches-File",
+        "description": {
+          "value": "Patches are not submittable if they have patches.json or package_overrides.json in the root of the repo."
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "file:\"^((patches\\\\.json)|(package_overrides\\\\.json))\""
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:false"
+        },
+        "overrideExpression": {},
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"file:\"^((patches\\\\.json)|(package_overrides\\\\.json))\""},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["file:\"^((patches\\\\.json)|(package_overrides\\\\.json))\""]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:false"},"status":"NOT_EVALUATED","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":[]}
+      },
+      "overrideExpressionResult": {},
+      "patchSetCommitId": "e23b19e08a834df9fa9921ee6fa507f62ab697d4",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {}
+    },
+    {
+      "submitRequirement": {
+        "name": "Review-Enforcement",
+        "description": {
+          "value": "Two Google employees must approve the change. Uploading the change or voting positively on Code-Review count as approval."
+        },
+        "applicabilityExpression": {
+          "value": {
+            "expressionString": "is:review-enforced_gerrit"
+          }
+        },
+        "submittabilityExpression": {
+          "expressionString": "is:review-enforcement-satisfied_gerrit"
+        },
+        "overrideExpression": {},
+        "allowOverrideInChildProjects": false
+      },
+      "applicabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:review-enforced_gerrit"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["is:review-enforced_gerrit"],"failingAtoms":[]}
+      },
+      "submittabilityExpressionResult": {
+        "value": {"expression":{"expressionString":"is:review-enforced_gerrit"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["is:review-enforcement-satisfied_gerrit"]}
+      },
+      "overrideExpressionResult": {},
+      "patchSetCommitId": "e23b19e08a834df9fa9921ee6fa507f62ab697d4",
+      "legacy": {
+        "value": false
+      },
+      "forced": {},
+      "hidden": {
+        "value": true
+      }
+    }
+  ]
+}
