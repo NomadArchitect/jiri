@@ -1446,6 +1446,14 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 		if err != nil {
 			return err
 		}
+		// Unset assume-change for all local projects
+		scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+		for _, project := range localProjects {
+			if err := scm.AssumeUnchanged(false, project.Path); err != nil {
+				return err
+			}
+		}
+
 		// Determine the set of remote projects and match them up with the locals.
 		remoteProjects, hooks, pkgs, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
 		MatchLocalWithRemote(localProjects, remoteProjects)
@@ -2486,6 +2494,13 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 				project.writeJiriRevisionFiles(jirix)
 				if err := project.setupDefaultPushTarget(jirix); err != nil {
 					jirix.Logger.Debugf("set up default push target failed due to error: %v", err)
+				}
+				if !jirix.EnableSubmodules {
+					scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+					// set project to assume-unchanged to index in tree to avoid unpreditable submodule changes.
+					if err := scm.AssumeUnchanged(true, project.Path); err != nil {
+						jirix.Logger.Debugf("set assume unchanged for project directory failed due to error: %v", err)
+					}
 				}
 			}
 		}(jirix, project)
