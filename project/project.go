@@ -1446,6 +1446,19 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 		if err != nil {
 			return err
 		}
+		// Unset assume-unchanged for all local projects
+		scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+		for _, project := range localProjects {
+			projectRelPath, _ := filepath.Rel(jirix.Root, project.Path)
+			// Exclude fuchsia and integration for updating index in tree.
+			if project.Name == "integration" || project.Name == "fuchsia" {
+				continue
+			}
+			if err := scm.AssumeUnchanged(false, projectRelPath); err != nil {
+				return err
+			}
+		}
+
 		// Determine the set of remote projects and match them up with the locals.
 		remoteProjects, hooks, pkgs, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
 		MatchLocalWithRemote(localProjects, remoteProjects)
@@ -2479,6 +2492,15 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	jirix.TimerPush("jiri revision files")
 	var wg sync.WaitGroup
 	for _, project := range remoteProjects {
+		// Set project to assume-unchanged to index in tree to avoid unpreditable submodule changes.
+		// Exclude fuchsia and integration.
+		if !jirix.EnableSubmodules && (project.Name != "integration") && (project.Name != "fuchsia") {
+			scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+			projectRelPath, _ := filepath.Rel(jirix.Root, project.Path)
+			if err := scm.AssumeUnchanged(true, projectRelPath); err != nil {
+				jirix.Logger.Debugf("set assume unchanged for project directory failed due to error: %v", err)
+			}
+		}
 		wg.Add(1)
 		go func(jirix *jiri.X, project Project) {
 			defer wg.Done()
