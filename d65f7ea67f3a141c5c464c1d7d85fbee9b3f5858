@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7490cd97_2340241b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-11-08T18:13:49Z",
+      "side": 1,
+      "message": "Assuming the semantics of `git update-index --assume-unchanged $DIR` are what we think this seems entirely reasonable.",
+      "revId": "d65f7ea67f3a141c5c464c1d7d85fbee9b3f5858",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
