@@ -1446,6 +1446,19 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 		if err != nil {
 			return err
 		}
+		// Unset assume-change for all local projects
+		scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+		for _, project := range localProjects {
+			projectRelPath, _ := filepath.Rel(jirix.Root, project.Path)
+			// Exclude integration for updating index in tree.
+			if project.Name == "integration" {
+				continue
+			}
+			if err := scm.AssumeUnchanged(false, projectRelPath); err != nil {
+				return err
+			}
+		}
+
 		// Determine the set of remote projects and match them up with the locals.
 		remoteProjects, hooks, pkgs, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
 		MatchLocalWithRemote(localProjects, remoteProjects)
@@ -2486,6 +2499,16 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 				project.writeJiriRevisionFiles(jirix)
 				if err := project.setupDefaultPushTarget(jirix); err != nil {
 					jirix.Logger.Debugf("set up default push target failed due to error: %v", err)
+				}
+				// Set project to assume-unchanged to index in tree to avoid unpreditable submodule changes.
+				// Exclude integration.
+				if !jirix.EnableSubmodules && (project.Name != "integration") {
+					fmt.Printf("YupingDebugger: set local project assume unchanged: %+v\n", project)
+					scm := gitutil.New(jirix, gitutil.RootDirOpt(jirix.Root))
+					projectRelPath, _ := filepath.Rel(jirix.Root, project.Path)
+					if err := scm.AssumeUnchanged(true, projectRelPath); err != nil {
+						jirix.Logger.Debugf("set assume unchanged for project directory failed due to error: %v", err)
+					}
 				}
 			}
 		}(jirix, project)
