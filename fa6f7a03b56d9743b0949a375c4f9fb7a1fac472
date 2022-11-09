@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b09802f_874bab47",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-11-09T20:13:23Z",
+      "side": 1,
+      "message": "You should be consistent about how you handle this case. You have an inner-if-statement here and have it as an additional and in the if-statement below.",
+      "range": {
+        "startLine": 1454,
+        "startChar": 0,
+        "endLine": 1456,
+        "endChar": 4
+      },
+      "revId": "fa6f7a03b56d9743b0949a375c4f9fb7a1fac472",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
