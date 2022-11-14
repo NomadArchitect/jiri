@@ -2664,6 +2664,9 @@ func getProjectStatus(jirix *jiri.X, ps Projects) ([]ProjectStatus, MultiError) 
 // writeMetadata stores the given project metadata in the directory
 // identified by the given path.
 func writeMetadata(jirix *jiri.X, project Project, dir string) (e error) {
+	if jirix.EnableSubmodules {
+		return nil
+	}
 	metadataDir := filepath.Join(dir, jiri.ProjectMetaDir)
 	if err := os.MkdirAll(metadataDir, os.FileMode(0755)); err != nil {
 		return fmtError(err)
