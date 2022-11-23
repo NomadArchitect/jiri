@@ -251,7 +251,9 @@ func updateLocks(jirix *jiri.X, tempDir, lockfile string, backup, projects map[s
 }
 
 func updateRevision(manifestContent, tag, currentRevision, newRevision, name string) (string, error) {
-	if currentRevision != "" && currentRevision != "HEAD" {
+	// We can do a trivial string replace if the `currentRevision` is non-empty
+	// and unique. Otherwise we need to edit the entire XML block for the project.
+	if currentRevision != "" && currentRevision != "HEAD" && strings.Count(manifestContent, currentRevision) == 1 {
 		return strings.Replace(manifestContent, currentRevision, newRevision, 1), nil
 	}
 	return updateRevisionOrVersionAttr(manifestContent, tag, newRevision, name, "revision")
@@ -294,7 +296,20 @@ func updateRevisionOrVersionAttr(manifestContent, tag, newAttrValue, name, attr 
 	for i := 0; i < len(tag); i++ {
 		spaces = spaces + " "
 	}
-	us := strings.Replace(s, "/>", fmt.Sprintf("\n%s  %s=%q/>", spaces, attr, newAttrValue), 1)
+
+	r, err = regexp.Compile(fmt.Sprintf(`%s\s*=\s*"[^"]*"`, attr))
+	if err != nil {
+		return "", fmt.Errorf("error parsing attr regexp for: %v: %w", attr, err)
+	}
+	t = r.FindStringSubmatch(s)
+	var us string
+	if len(t) == 0 {
+		// No such attribute, add it.
+		us = strings.Replace(s, "/>", fmt.Sprintf("\n%s  %s=%q/>", spaces, attr, newAttrValue), 1)
+	} else {
+		// There is such an attribute, replace it.
+		us = strings.Replace(s, t[0], fmt.Sprintf(`%s="%s"`, attr, newAttrValue), 1)
+	}
 	return strings.Replace(manifestContent, s, us, 1), nil
 }
 
