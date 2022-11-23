@@ -251,7 +251,9 @@ func updateLocks(jirix *jiri.X, tempDir, lockfile string, backup, projects map[s
 }
 
 func updateRevision(manifestContent, tag, currentRevision, newRevision, name string) (string, error) {
-	if currentRevision != "" && currentRevision != "HEAD" {
+	// We can do a trivial string replace if the `currentRevision` is non-empty
+	// and unique. Otherwise we need to edit the entire XML block for the project.
+	if currentRevision != "" && currentRevision != "HEAD" && strings.Count(manifestContent, currentRevision) == 1 {
 		return strings.Replace(manifestContent, currentRevision, newRevision, 1), nil
 	}
 	return updateRevisionOrVersionAttr(manifestContent, tag, newRevision, name, "revision")
