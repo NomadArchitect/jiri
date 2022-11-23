@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "269b7349_3bfacd12",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 37003
+      },
+      "writtenOn": "2022-11-23T19:21:53Z",
+      "side": 1,
+      "message": "Well I\u0027m OK with this since it seems to fix the issue I observed, but this should really have a test - it is impossible to integration-test this from the recipes, since recipes are change detectors that gloss over the particulars of how jiri works.",
+      "revId": "59b56941ae8cc2de3467415968f971d22309006c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
