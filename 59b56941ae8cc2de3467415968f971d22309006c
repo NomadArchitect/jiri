@@ -16,6 +16,24 @@
       "message": "Well I\u0027m OK with this since it seems to fix the issue I observed, but this should really have a test - it is impossible to integration-test this from the recipes, since recipes are change detectors that gloss over the particulars of how jiri works.",
       "revId": "59b56941ae8cc2de3467415968f971d22309006c",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0602c47_f5d0bf55",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 37003
+      },
+      "writtenOn": "2022-11-23T19:23:00Z",
+      "side": 1,
+      "message": "Also, you may want to leave a comment to explain why this is the correct approach.\n\nIn the \"one version\" world it\u0027s a perfectly reasonable assumption to make. But we\u0027ve broken out of that world.",
+      "parentUuid": "269b7349_3bfacd12",
+      "revId": "59b56941ae8cc2de3467415968f971d22309006c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
