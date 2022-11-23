@@ -183,3 +183,78 @@ func TestUpdateRevision(t *testing.T) {
 		}
 	}
 }
+
+func TestUpdateDuplicateRevision(t *testing.T) {
+	mainifestContent := `
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <projects>
+    <!-- The ICU library to use for top-of-tree Fuchsia builds -->
+    <project name="chromium/deps/icu@default"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/default"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="1b7d391f0528fb3a4976b7541b387ee04f915f83"/>
+    <!-- The ICU library to use for "stable" Fuchsia builds -->
+    <project name="chromium/deps/icu@stable"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/stable"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="da07448619763d1cde255b361324242646f5b268"/>
+    <!-- The ICU library to use for "latest" Fuchsia builds -->
+    <project name="chromium/deps/icu@latest"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/latest"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="da07448619763d1cde255b361324242646f5b268"/>
+  </projects>
+</manifest>
+`
+
+	tests := make(map[*projectChanges]string)
+	tests[&projectChanges{
+		Name:   "chromium/deps/icu@latest",
+		Remote: "",
+		Path:   "",
+		OldRev: "da07448619763d1cde255b361324242646f5b268",
+		NewRev: "1b7d391f0528fb3a4976b7541b387ee04f915f83",
+	}] = `
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <projects>
+    <!-- The ICU library to use for top-of-tree Fuchsia builds -->
+    <project name="chromium/deps/icu@default"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/default"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="1b7d391f0528fb3a4976b7541b387ee04f915f83"/>
+    <!-- The ICU library to use for "stable" Fuchsia builds -->
+    <project name="chromium/deps/icu@stable"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/stable"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="da07448619763d1cde255b361324242646f5b268"/>
+    <!-- The ICU library to use for "latest" Fuchsia builds -->
+    <project name="chromium/deps/icu@latest"
+             gitsubmoduleof="fuchsia"
+             path="third_party/icu/latest"
+             remote="https://chromium.googlesource.com/chromium/deps/icu"
+             gerrithost="https://chromium-review.googlesource.com"
+             revision="1b7d391f0528fb3a4976b7541b387ee04f915f83"/>
+  </projects>
+</manifest>`
+
+	for k, v := range tests {
+		if res, err := updateRevision(mainifestContent, "project", k.OldRev, k.NewRev, k.Name); err != nil {
+			t.Errorf("test updateRevision failed due to error: %v", err)
+		} else if res != v {
+			t.Errorf("expect:%s\n got:%s\nwhen testing updateVersion", v, res)
+		}
+	}
+}
+
