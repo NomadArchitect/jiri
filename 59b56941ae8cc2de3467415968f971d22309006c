@@ -34,6 +34,24 @@
       "parentUuid": "269b7349_3bfacd12",
       "revId": "59b56941ae8cc2de3467415968f971d22309006c",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7bb096_477df722",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-11-23T19:32:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0602c47_f5d0bf55",
+      "revId": "59b56941ae8cc2de3467415968f971d22309006c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
