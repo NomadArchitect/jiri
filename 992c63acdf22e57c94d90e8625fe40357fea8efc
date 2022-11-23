@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc64e263_fcf54564",
+        "filename": "cmd/jiri/edit_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 37003
+      },
+      "writtenOn": "2022-11-23T20:07:30Z",
+      "side": 1,
+      "message": "Might be an issue with newline-at-end vs not.",
+      "revId": "992c63acdf22e57c94d90e8625fe40357fea8efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
