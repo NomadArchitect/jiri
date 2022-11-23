@@ -251,7 +251,7 @@ func updateLocks(jirix *jiri.X, tempDir, lockfile string, backup, projects map[s
 }
 
 func updateRevision(manifestContent, tag, currentRevision, newRevision, name string) (string, error) {
-	if currentRevision != "" && currentRevision != "HEAD" {
+	if currentRevision != "" && currentRevision != "HEAD" && strings.Count(manifestContent, currentRevision) == 1 {
 		return strings.Replace(manifestContent, currentRevision, newRevision, 1), nil
 	}
 	return updateRevisionOrVersionAttr(manifestContent, tag, newRevision, name, "revision")
