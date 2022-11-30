@@ -759,8 +759,11 @@ func CreateSnapshot(jirix *jiri.X, file string, hooks Hooks, pkgs Packages, loca
 	}
 
 	// jiri local submodule config should always match local submodules state.
-	if jirix.EnableSubmodules != containSubmodules(jirix, localProjects) {
-		return errors.New("local submodule state does not match jiri config, run jiri update or unset EnableSubmodules")
+	containSubms := containSubmodules(jirix, localProjects)
+	if jirix.EnableSubmodules != containSubms {
+		fmt.Printf("local submodules is %t while user flag is %t, run jiti update or unset EnableSubmodules \n", containSubms, jirix.EnableSubmodules)
+	} else {
+		fmt.Printf("Submodules CLEAN: local submodules is %t, matching user EnableSubmodules flag \n", jirix.EnableSubmodules)
 	}
 
 	if jirix.EnableSubmodules {
@@ -1820,7 +1823,8 @@ func fetchAll(jirix *jiri.X, project Project) error {
 		return err
 	}
 	opts := []gitutil.FetchOpt{gitutil.PruneOpt(true)}
-	if jirix.EnableSubmodules && project.GitSubmodules {
+	// Check if current project is superproject and submodules are present locally.
+	if project.GitSubmodules && isSuperproject(jirix, project) && jirix.EnableSubmodules {
 		opts = append(opts, gitutil.RecurseSubmodulesOpt(true), gitutil.JobsOpt(jirix.Jobs))
 	}
 	if project.HistoryDepth > 0 {
@@ -1848,18 +1852,22 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 	if err != nil {
 		return err
 	}
+	var isSup bool
+	if project.GitSubmodules {
+		isSup = isSuperproject(jirix, project)
+	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 	opts := []gitutil.CheckoutOpt{gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout)}
-	err = git.CheckoutBranch(revision, (project.GitSubmodules && jirix.EnableSubmodules), opts...)
+	err = git.CheckoutBranch(revision, (isSup && jirix.EnableSubmodules), opts...)
 	if err == nil {
 		return nil
 	}
 	jirix.Logger.Debugf("Checkout %s to head revision %s failed, fallback to fetch: %v", project.Name, revision, err)
 	if project.Revision != "" && project.Revision != "HEAD" {
-		if err2 := git.FetchRefspec("origin", project.Revision, jirix.EnableSubmodules); err2 != nil {
+		if err2 := git.FetchRefspec("origin", project.Revision, (isSup && jirix.EnableSubmodules)); err2 != nil {
 			return fmt.Errorf("error while fetching after failed to checkout revision %s for project %s (%s): %s\ncheckout error: %v", revision, project.Name, project.Path, err2, err)
 		}
-		return git.CheckoutBranch(revision, (project.GitSubmodules && jirix.EnableSubmodules), opts...)
+		return git.CheckoutBranch(revision, (isSup && jirix.EnableSubmodules), opts...)
 	}
 
 	return err
@@ -1886,6 +1894,11 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	cwd, err := os.Getwd()
 	if err != nil {
 		return fmtError(err)
+	}
+	// If project is a superproject, check locally if submodules are present.
+	var isSup bool
+	if project.GitSubmodules {
+		isSup = isSuperproject(jirix, project)
 	}
 	relativePath, err := filepath.Rel(cwd, project.Path)
 	if err != nil {
@@ -1939,7 +1952,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	} else if rebaseAll {
 		// This should run after program exit so that original branch can be restored
 		defer func() {
-			if err := scm.CheckoutBranch(state.CurrentBranch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
+			if err := scm.CheckoutBranch(state.CurrentBranch.Name, (isSup && jirix.EnableSubmodules)); err != nil {
 				// This should not happen, panic
 				panic(fmt.Sprintf("for project %s(%s), not able to checkout branch %q: %s", project.Name, relativePath, state.CurrentBranch.Name, err))
 			}
@@ -2018,7 +2031,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				break
 			}
 
-			if err := scm.CheckoutBranch(branch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
+			if err := scm.CheckoutBranch(branch.Name, (isSup && jirix.EnableSubmodules)); err != nil {
 				msg := fmt.Sprintf("For project %s(%s), not able to rebase your local branch %q onto %q", project.Name, relativePath, branch.Name, tracking.Name)
 				msg += "\nPlease do it manually\n\n"
 				jirix.Logger.Errorf(msg)
@@ -2048,7 +2061,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 					break
 				}
 
-				if err := scm.CheckoutBranch(branch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
+				if err := scm.CheckoutBranch(branch.Name, (isSup && jirix.EnableSubmodules)); err != nil {
 					msg := fmt.Sprintf("For project %s(%s), not able to rebase your untracked branch %q onto JIRI_HEAD.", project.Name, relativePath, branch.Name)
 					msg += "\nPlease do it manually\n\n"
 					jirix.Logger.Errorf(msg)
@@ -2204,7 +2217,7 @@ func updateOrCreateCache(jirix *jiri.X, dir, remote, branch, revision string, de
 			// Use --update-head-ok here to force fetch to update the current branch.
 			// This is used in the case of a partial clone having a working tree
 			// checked out in the cache.
-			if err := scm.FetchRefspec("origin", refspec, jirix.EnableSubmodules,
+			if err := scm.FetchRefspec("origin", refspec, (gitSubmodules && jirix.EnableSubmodules),
 				gitutil.DepthOpt(depth), gitutil.PruneOpt(true), gitutil.UpdateShallowOpt(true), gitutil.UpdateHeadOkOpt(true)); err != nil {
 				return err
 			}
@@ -2306,6 +2319,7 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 			}
 			wg.Add(1)
 			fetchLimit <- struct{}{}
+			fmt.Printf("YupingDebugger updateOrCreateCache : %+v\n", project)
 			go func(dir, remote string, depth int, branch, revision string, gitSubmodules bool, cacheMutex *sync.Mutex) {
 				cacheMutex.Lock()
 				defer func() { <-fetchLimit }()
@@ -2444,12 +2458,10 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		}
 	}()
 
-	// Run submodule init on all superprojects if submodules are enabled.
+	// Check which projects have submodules enabled, we remove them from remoteProjects.
 	if jirix.EnableSubmodules {
-		superprojectStates := getSuperprojectStates(remoteProjects)
-		for _, p := range superprojectStates {
-			submoduleInit(jirix, p)
-		}
+		removeSubmodulesFromProjects(remoteProjects)
+		fmt.Printf("YupingDebugger: remote projects after removing submodules: %+v\n", remoteProjects)
 	}
 
 	// filter optional projects
@@ -2472,9 +2484,14 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		return err
 	}
 
-	// Check which projects have submodules enabled, we remove them from remoteProjects.
+	// Run submodule init on all superprojects if submodules are enabled based on manifest.
+
 	if jirix.EnableSubmodules {
-		removeSubmodulesFromProjects(remoteProjects)
+		superprojectStates := getSuperprojectStates(remoteProjects)
+		fmt.Printf("YupingDebugger: superproject states: %+v\n", superprojectStates)
+		for _, p := range superprojectStates {
+			submoduleInit(jirix, p)
+		}
 	}
 
 	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot)

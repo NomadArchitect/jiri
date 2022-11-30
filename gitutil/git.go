@@ -314,6 +314,7 @@ func (g *Git) CheckoutBranch(branch string, gitSubmodules bool, opts ...Checkout
 
 // SubmoduleInit initiates submodules to local config.
 func (g *Git) SubmoduleInit() error {
+	fmt.Println("submodule init hello hey ya")
 	args := []string{"submodule", "init"}
 	return g.run(args...)
 }
