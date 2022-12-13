@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f01819_6fa9c8ff",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-12-13T03:50:47Z",
+      "side": 1,
+      "message": "r",
+      "range": {
+        "startLine": 764,
+        "startChar": 66,
+        "endLine": 764,
+        "endChar": 67
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86fb629f_bcc038e7",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-12-13T03:50:47Z",
+      "side": 1,
+      "message": "You probably want to check if a submodule exists here, and populate the struct as best as possible",
+      "range": {
+        "startLine": 1703,
+        "startChar": 0,
+        "endLine": 1705,
+        "endChar": 3
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "424d3801_61c65cac",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-12-13T03:50:47Z",
+      "side": 1,
+      "message": "Probably just delete.",
+      "range": {
+        "startLine": 2474,
+        "startChar": 0,
+        "endLine": 2476,
+        "endChar": 5
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
