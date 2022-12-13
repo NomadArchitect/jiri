@@ -77,6 +77,8 @@ type Project struct {
 	GitSubmodules bool `xml:"gitsubmodules,attr,omitempty"`
 	// GitSubmoduleOf indicates the superprject that the submodule is under.
 	GitSubmoduleOf string `xml:"gitsubmoduleof,attr,omitempty"`
+	// IsSubmodule indicates that the project is checked out as a submodule.
+	IsSubmodule bool `xml:"issubmodule,attr,omitempty"`
 
 	// Attributes is a list of attributes for a project seperated by comma.
 	// The project will not be fetched by default when attributes are present.
@@ -757,34 +759,14 @@ func CreateSnapshot(jirix *jiri.X, file string, hooks Hooks, pkgs Packages, loca
 	if err != nil {
 		return err
 	}
+	fmt.Printf("YupingDebugger: CreatSnapshot localProjects after submodules are: %+v\n", localProjects)
 
 	// jiri local submodule config should always match local submodules state.
-	if jirix.EnableSubmodules != containSubmodules(jirix, localProjects) {
-		return errors.New("local submodule state does not match jiri config, run jiri update or unset EnableSubmodules")
-	}
-
-	if jirix.EnableSubmodules {
-		// Add submodules to projects.
-		allSubmodules := getAllSubmodules(jirix, localProjects)
-		for _, super := range allSubmodules {
-			for _, subm := range super {
-				if subm.Prefix == "-" {
-					continue
-				}
-				submProjectKey := MakeProjectKey(subm.Name, subm.Remote)
-				if _, ok := localProjects[submProjectKey]; ok {
-					return errors.New(fmt.Sprintf("%s submodule and project exist at the same time, please run `jiri update`", subm.Name))
-				}
-				localProjects[submProjectKey] = Project{
-					Name:           subm.Name,
-					Path:           subm.Path,
-					Remote:         subm.Remote,
-					Revision:       subm.Revision,
-					GitSubmoduleOf: subm.Superproject,
-				}
-			}
-
-		}
+	containSubms := containSubmodules(jirix, localProjects)
+	if jirix.EnableSubmodules != containSubms {
+		fmt.Printf("local submodules is %t while user flag is %t, run jiri update or unset EnableSubmodules \n", containSubms, jirix.EnableSubmodules)
+	} else {
+		fmt.Printf("Submodules CLEAN: local submodules is %t, matching user EnableSubmodules flag \n", jirix.EnableSubmodules)
 	}
 
 	for _, project := range localProjects {
@@ -847,6 +829,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc, runHooks, fetchPkgs bo
 		scanMode = FullScan
 	}
 	localProjects, err := LocalProjects(jirix, scanMode)
+	fmt.Printf("YupingDebugger: snapshot what is local projects: %+v\n", localProjects)
 	if err != nil {
 		return err
 	}
@@ -1691,10 +1674,26 @@ func IsLocalProject(jirix *jiri.X, path string) (bool, error) {
 	return true, nil
 }
 
+// IsSubmodule returns true if there is a file (.git) instead of a directory (.git/).
+func IsSubmodule(jirix *jiri.X, path string) (bool, error) {
+	gitDir := filepath.Join(path, ".git")
+	info, err := os.Stat(gitDir)
+	if err == nil && !info.IsDir() {
+		return true, nil
+	}
+	return false, fmtError(err)
+}
+
 // ProjectAtPath returns a Project struct corresponding to the project at the
 // path in the filesystem.
 func ProjectAtPath(jirix *jiri.X, path string) (Project, error) {
 	metadataFile := filepath.Join(path, jiri.ProjectMetaDir, jiri.ProjectMetaFile)
+	// // When submodules are enabled, there will be no metadataFile saved.
+	// if _, err := os.Stat(metadataFile); err != nil {
+	// 	if jirix.EnableSubmodules {
+	// 		return Project{}, nil
+	// 	}
+	// }
 	project, err := ProjectFromFile(jirix, metadataFile)
 	if err != nil {
 		return Project{}, err
@@ -1729,6 +1728,7 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 	var pwg sync.WaitGroup
 	workq := make(chan string, jirix.Jobs)
 	projectsMutex := &sync.Mutex{}
+	// superprojectStates := make(map[string]map[string]Project)
 	processPath := func(path string) {
 		defer pwg.Done()
 		isLocal, err := IsLocalProject(jirix, path)
@@ -1737,11 +1737,21 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 			return
 		}
 		if isLocal {
+			isSubm, err := IsSubmodule(jirix, path)
+			if err != nil {
+				errs <- fmt.Errorf("Error while processing path %q as a potential submodule: %v", path, err)
+			}
+			// If current project is at a submodule state, no need to check metafiles.
+			if isSubm {
+				return
+			}
 			project, err := ProjectAtPath(jirix, path)
 			if err != nil {
 				errs <- fmt.Errorf("Error while processing path %q: %v", path, err)
 				return
 			}
+
+			// When submodules are enabled and in transition to jiri projects, ProjectAtPath returns project{}.
 			if path != project.Path {
 				logs := []string{
 					fmt.Sprintf("Project %q has path %s, but was found in %s.", project.Name, project.Path, path),
@@ -1793,6 +1803,32 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 	close(log)
 	close(workq)
 	wg.Wait()
+	// Add submodules to Local Projects
+	allSubmodules := getAllSubmodules(jirix, projects)
+	fmt.Printf("YupingDebugger: check all submodules: %+v\n", allSubmodules)
+	for _, super := range allSubmodules {
+		for _, subm := range super {
+			if subm.Prefix == "-" {
+				continue
+			}
+			submProjectKey := MakeProjectKey(subm.Name, subm.Remote)
+			if p, ok := projects[submProjectKey]; ok {
+				// If local projects contain submodule but in jiri project state, then return error.
+				if !p.IsSubmodule {
+					errs <- fmt.Errorf("%s submodule and project exist at the same time, please run `jiri update`", subm.Name)
+				}
+			}
+			projects[submProjectKey] = Project{
+				Name:           subm.Name,
+				Path:           subm.Path,
+				Remote:         subm.Remote,
+				Revision:       subm.Revision,
+				GitSubmoduleOf: subm.Superproject,
+				IsSubmodule:    true,
+			}
+		}
+
+	}
 	return multiErr
 }
 
@@ -1820,9 +1856,10 @@ func fetchAll(jirix *jiri.X, project Project) error {
 		return err
 	}
 	opts := []gitutil.FetchOpt{gitutil.PruneOpt(true)}
-	if jirix.EnableSubmodules && project.GitSubmodules {
-		opts = append(opts, gitutil.RecurseSubmodulesOpt(true), gitutil.JobsOpt(jirix.Jobs))
-	}
+	// if jirix.EnableSubmodules && project.GitSubmodules {
+	// 	fmt.Printf("YupingDebugger: current project before adding recurse submodule option %+v\n", project)
+	// 	opts = append(opts, gitutil.RecurseSubmodulesOpt(true), gitutil.JobsOpt(jirix.Jobs))
+	// }
 	if project.HistoryDepth > 0 {
 		opts = append(opts, gitutil.DepthOpt(project.HistoryDepth), gitutil.UpdateShallowOpt(true))
 	}
@@ -1850,6 +1887,7 @@ func checkoutHeadRevision(jirix *jiri.X, project Project, forceCheckout bool) er
 	}
 	git := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 	opts := []gitutil.CheckoutOpt{gitutil.DetachOpt(true), gitutil.ForceOpt(forceCheckout)}
+	fmt.Printf("YupingDebugger: checkout Head revision for project: %+v\n", project)
 	err = git.CheckoutBranch(revision, (project.GitSubmodules && jirix.EnableSubmodules), opts...)
 	if err == nil {
 		return nil
@@ -1899,6 +1937,14 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
 
+	// Add extra branch to all local submodules if current project is a superproject and submodules are enabled.
+	// TODO: substitute branch name to be randomized everytime jiri runs update.
+	if jirix.EnableSubmodules && project.GitSubmodules {
+		if err := createBranchSubmodules(jirix, project, "local-submodule-foo"); err != nil {
+			return err
+		}
+	}
+
 	if diff, err := scm.FilesWithUncommittedChanges(); err != nil {
 		return fmt.Errorf("Cannot get uncommitted changes for project %q: %s", project.Name, err)
 	} else if len(diff) != 0 {
@@ -1914,6 +1960,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 		return nil
 	}
 
+	fmt.Printf("YupingDebugger: about to check detached head for project %+v\n", project)
+
 	if state.CurrentBranch.Name == "" || snapshot { // detached head
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
 			revision, err2 := GetHeadRevision(project)
@@ -1926,6 +1974,8 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 			jirix.Logger.Errorf(msg)
 			jirix.IncrementFailures()
 		}
+		fmt.Printf("YupingDebugger: current project snapshot set as %+v\n", snapshot)
+		fmt.Printf("YupingDebugger: current project rebaseAll set as %+v\n", rebaseAll)
 		if snapshot || !rebaseAll {
 			return nil
 		}
@@ -1938,6 +1988,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 		}()
 	} else if rebaseAll {
 		// This should run after program exit so that original branch can be restored
+
 		defer func() {
 			if err := scm.CheckoutBranch(state.CurrentBranch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
 				// This should not happen, panic
@@ -2336,12 +2387,20 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 }
 
 func fetchLocalProjects(jirix *jiri.X, localProjects, remoteProjects Projects) error {
+	// When submodules are enabled, local projects will eventually be removed. No need to fetch here.
+	// if jirix.EnableSubmodules {
+	// 	return nil
+	// }
 	jirix.TimerPush("fetch local projects")
 	defer jirix.TimerPop()
 	fetchLimit := make(chan struct{}, jirix.Jobs)
 	errs := make(chan error, len(localProjects))
 	var wg sync.WaitGroup
 	for key, project := range localProjects {
+		// No need to fetch project locally when it is a submodule state.
+		if project.IsSubmodule {
+			continue
+		}
 		if r, ok := remoteProjects[key]; ok {
 			if project.LocalConfig.Ignore || project.LocalConfig.NoUpdate {
 				jirix.Logger.Warningf("Not updating remotes for project %s(%s) due to its local-config\n\n", project.Name, project.Path)
@@ -2447,8 +2506,16 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	// Run submodule init on all superprojects if submodules are enabled.
 	if jirix.EnableSubmodules {
 		superprojectStates := getSuperprojectStates(remoteProjects)
+		fmt.Printf("YupingDebugger: superproject states are %+v\n", superprojectStates)
 		for _, p := range superprojectStates {
-			submoduleInit(jirix, p)
+			if local, ok := localProjects[p.Key()]; ok {
+				if local.IsSubmodule {
+					continue
+				}
+			}
+			if err := submoduleInit(jirix, p); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -2461,19 +2528,27 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	if err := updateCache(jirix, remoteProjects); err != nil {
 		return err
 	}
+	fmt.Println("YupingDebugger: about to fetch local projects")
 	if err := fetchLocalProjects(jirix, localProjects, remoteProjects); err != nil {
 		return err
 	}
+	fmt.Println("YupingDebugger: about to get projects states")
 	states, err := GetProjectStates(jirix, localProjects, false)
+	fmt.Printf("YupingDebugger: local projects states look like %+v\n", states)
 	if err != nil {
 		return err
 	}
+	fmt.Println("YupingDebugger: about to set remote head revisions")
 	if err := setRemoteHeadRevisions(jirix, remoteProjects, localProjects); err != nil {
 		return err
 	}
-
-	// Check which projects have submodules enabled, we remove them from remoteProjects.
-	if jirix.EnableSubmodules {
+	fmt.Println("YupingDebugger: remove submodules from remote projects")
+	// Check which projects have submodules enabled, we remove them from remoteProjects if we transitioning local state
+	// from projects to submodules only. For submodules transitioning to projects, we need
+	containLocalSubms := containLocalSubmodules(localProjects)
+	if jirix.EnableSubmodules != containLocalSubms {
+		fmt.Printf("YupingDebugger: currently user flagged jriix.EnabledSubmodules as %+v\n", jirix.EnableSubmodules)
+		fmt.Printf("YupingDebugger: currently local projects status for submodules is %+v\n", containLocalSubmodules(localProjects))
 		removeSubmodulesFromProjects(remoteProjects)
 	}
 
@@ -2492,6 +2567,12 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			batchOps = batchOps[1:]
 		}
 		runBatch(jirix, gc, batch)
+		// Keep track of local state after jiri update finish running all the operations in
+		if jirix.EnableSubmodules {
+			jirix.LocalSubmodules = true
+		} else {
+			jirix.LocalSubmodules = false
+		}
 	}
 
 	// Set project to assume-unchanged to index in tree to avoid unpreditable submodule changes.
@@ -2700,6 +2781,13 @@ func getProjectStatus(jirix *jiri.X, ps Projects) ([]ProjectStatus, MultiError) 
 // writeMetadata stores the given project metadata in the directory
 // identified by the given path.
 func writeMetadata(jirix *jiri.X, project Project, dir string) (e error) {
+	// For submodules, .git directory does not exist.
+	if _, err := os.Stat(dir); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir(dir, os.ModePerm)
+		if err != nil {
+			return err
+		}
+	}
 	metadataDir := filepath.Join(dir, jiri.ProjectMetaDir)
 	if err := os.MkdirAll(metadataDir, os.FileMode(0755)); err != nil {
 		return fmtError(err)
