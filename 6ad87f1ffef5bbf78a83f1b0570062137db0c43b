@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3dc686_7a3c621d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-12-13T07:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8f01819_6fa9c8ff",
+      "range": {
+        "startLine": 764,
+        "startChar": 66,
+        "endLine": 764,
+        "endChar": 67
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86fb629f_bcc038e7",
@@ -47,6 +71,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc79ba6c_ed0b0b9d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-12-13T07:22:37Z",
+      "side": 1,
+      "message": "findLocalProject will return project struct when submodules are enabled.",
+      "parentUuid": "86fb629f_bcc038e7",
+      "range": {
+        "startLine": 1703,
+        "startChar": 0,
+        "endLine": 1705,
+        "endChar": 3
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "424d3801_61c65cac",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-13T03:50:47Z",
       "side": 1,
       "message": "Probably just delete.",
+      "range": {
+        "startLine": 2474,
+        "startChar": 0,
+        "endLine": 2476,
+        "endChar": 5
+      },
+      "revId": "6ad87f1ffef5bbf78a83f1b0570062137db0c43b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4f3dbc_d2d3cc18",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2022-12-13T07:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424d3801_61c65cac",
       "range": {
         "startLine": 2474,
         "startChar": 0,
