@@ -81,7 +81,7 @@ func getSubmodulesStatus(jirix *jiri.X, superproject Project) (Submodules, error
 	return submodules, nil
 }
 
-// getSuperprojectStates returns the superprojects that have submodules enabled.
+// getSuperprojectStates returns the superprojects that have submodules enabled based on manifest.
 func getSuperprojectStates(projects Projects) map[string]Project {
 	superprojectStates := make(map[string]Project)
 	for _, p := range projects {
