@@ -696,6 +696,18 @@ func (g *Git) CherryPick(rev string) error {
 	return err
 }
 
+// CurrentSuperproject returns the root of the superproject.
+func (g *Git) CurrentSuperproject() (string, error) {
+	out, err := g.runOutput("rev-parse", "--show-superproject-working-tree")
+	if err != nil {
+		return "", err
+	}
+	if len(out) != 1 {
+		return "", fmt.Errorf("unexpected length of %v: got %v, want 1", out, len(out))
+	}
+	return out[0], nil
+}
+
 // DeleteBranch deletes the given branch.
 func (g *Git) DeleteBranch(branch string, opts ...DeleteBranchOpt) error {
 	args := []string{"branch"}

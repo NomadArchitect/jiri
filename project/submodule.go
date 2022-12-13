@@ -81,7 +81,7 @@ func getSubmodulesStatus(jirix *jiri.X, superproject Project) (Submodules, error
 	return submodules, nil
 }
 
-// getSuperprojectStates returns the superprojects that have submodules enabled.
+// getSuperprojectStates returns the superprojects that have submodules enabled based on manifest.
 func getSuperprojectStates(projects Projects) map[string]Project {
 	superprojectStates := make(map[string]Project)
 	for _, p := range projects {
@@ -114,6 +114,22 @@ func removeSubmodulesFromProjects(projects Projects) Projects {
 	}
 	for _, k := range submoduleProjectKeys {
 		delete(projects, k)
+	}
+	return projects
+}
+
+// submodulesToProject converts submodules to project map with path as key.
+func submoduleToProject(submodules Submodules) map[string]Project {
+	projects := make(map[string]Project)
+	for _, subm := range submodules {
+		project := Project{
+			Name:        subm.Name,
+			Path:        subm.Path,
+			Remote:      subm.Remote,
+			Revision:    subm.Revision,
+			IsSubmodule: true,
+		}
+		projects[project.Path] = project
 	}
 	return projects
 }

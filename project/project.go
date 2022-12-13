@@ -77,6 +77,8 @@ type Project struct {
 	GitSubmodules bool `xml:"gitsubmodules,attr,omitempty"`
 	// GitSubmoduleOf indicates the superprject that the submodule is under.
 	GitSubmoduleOf string `xml:"gitsubmoduleof,attr,omitempty"`
+	// IsSubmodule indicates that the project is checked out as a submodule.
+	IsSubmodule bool `xml:"issubmodule,attr,omitempty"`
 
 	// Attributes is a list of attributes for a project seperated by comma.
 	// The project will not be fetched by default when attributes are present.
@@ -759,8 +761,11 @@ func CreateSnapshot(jirix *jiri.X, file string, hooks Hooks, pkgs Packages, loca
 	}
 
 	// jiri local submodule config should always match local submodules state.
-	if jirix.EnableSubmodules != containSubmodules(jirix, localProjects) {
-		return errors.New("local submodule state does not match jiri config, run jiri update or unset EnableSubmodules")
+	containSubms := containSubmodules(jirix, localProjects)
+	if jirix.EnableSubmodules != containSubms {
+		fmt.Printf("local submodules is %t while user flag is %t, run jiri update or unset EnableSubmodules \n", containSubms, jirix.EnableSubmodules)
+	} else {
+		fmt.Printf("Submodules CLEAN: local submodules is %t, matching user EnableSubmodules flag \n", jirix.EnableSubmodules)
 	}
 
 	if jirix.EnableSubmodules {
@@ -847,6 +852,7 @@ func CheckoutSnapshot(jirix *jiri.X, snapshot string, gc, runHooks, fetchPkgs bo
 		scanMode = FullScan
 	}
 	localProjects, err := LocalProjects(jirix, scanMode)
+	fmt.Printf("YupingDebugger: snapshot what is local projects: %+v\n", localProjects)
 	if err != nil {
 		return err
 	}
@@ -1695,6 +1701,12 @@ func IsLocalProject(jirix *jiri.X, path string) (bool, error) {
 // path in the filesystem.
 func ProjectAtPath(jirix *jiri.X, path string) (Project, error) {
 	metadataFile := filepath.Join(path, jiri.ProjectMetaDir, jiri.ProjectMetaFile)
+	// When submodules are enabled, there will be no metadataFile saved.
+	if _, err := os.Stat(metadataFile); err != nil {
+		if jirix.EnableSubmodules {
+			return Project{}, nil
+		}
+	}
 	project, err := ProjectFromFile(jirix, metadataFile)
 	if err != nil {
 		return Project{}, err
@@ -1742,6 +1754,22 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 				errs <- fmt.Errorf("Error while processing path %q: %v", path, err)
 				return
 			}
+			// when submodules are enabled, find superproject root.
+			if jirix.EnableSubmodules {
+				scm := gitutil.New(jirix, gitutil.RootDirOpt(path))
+				superprojectPath, _ := scm.CurrentSuperproject()
+				super := Project{
+					Path: superprojectPath,
+				}
+				submodules, _ := getSubmodulesStatus(jirix, super)
+				projectMap := submoduleToProject(submodules)
+				relPath, _ := filepath.Rel(superprojectPath, path)
+				if p, ok := projectMap[relPath]; ok {
+					p.absolutizePaths(superprojectPath)
+					project = p
+				}
+			}
+			// When submodules are enabled and in transition to jiri projects, ProjectAtPath returns project{}.
 			if path != project.Path {
 				logs := []string{
 					fmt.Sprintf("Project %q has path %s, but was found in %s.", project.Name, project.Path, path),
@@ -2461,9 +2489,6 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	if err := updateCache(jirix, remoteProjects); err != nil {
 		return err
 	}
-	if err := fetchLocalProjects(jirix, localProjects, remoteProjects); err != nil {
-		return err
-	}
 	states, err := GetProjectStates(jirix, localProjects, false)
 	if err != nil {
 		return err
@@ -2700,6 +2725,13 @@ func getProjectStatus(jirix *jiri.X, ps Projects) ([]ProjectStatus, MultiError) 
 // writeMetadata stores the given project metadata in the directory
 // identified by the given path.
 func writeMetadata(jirix *jiri.X, project Project, dir string) (e error) {
+	// For submodules, .git directory does not exist.
+	if _, err := os.Stat(dir); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir(dir, os.ModePerm)
+		if err != nil {
+			return err
+		}
+	}
 	metadataDir := filepath.Join(dir, jiri.ProjectMetaDir)
 	if err := os.MkdirAll(metadataDir, os.FileMode(0755)); err != nil {
 		return fmtError(err)
