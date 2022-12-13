@@ -51,6 +51,7 @@ type Config struct {
 	Shared            bool     `xml:"cache>shared,omitempty"`
 	RewriteSsoToHttps bool     `xml:"rewriteSsoToHttps,omitempty"`
 	SsoCookiePath     string   `xml:"SsoCookiePath,omitempty"`
+	LocalSubmodules   bool     `xml:"localSubmodules,omitempty"`
 	LockfileEnabled   string   `xml:"lockfile>enabled,omitempty"`
 	LockfileName      string   `xml:"lockfile>name,omitempty"`
 	PrebuiltJSON      string   `xml:"prebuilt>JSON,omitempty"`
@@ -113,6 +114,7 @@ type X struct {
 	Jobs                uint
 	KeepGitHooks        bool
 	RewriteSsoToHttps   bool
+	LocalSubmodules     bool
 	LockfileEnabled     bool
 	LockfileName        string
 	OffloadPackfiles    bool
@@ -309,6 +311,7 @@ func NewX(env *cmdline.Env) (*X, error) {
 		x.PartialSkip = x.config.PartialSkip
 		x.OffloadPackfiles = x.config.OffloadPackfiles
 		x.Dissociate = x.config.Dissociate
+		x.LocalSubmodules = x.config.LocalSubmodules
 	}
 	x.Cache, err = findCache(root, x.config)
 	if err != nil {
