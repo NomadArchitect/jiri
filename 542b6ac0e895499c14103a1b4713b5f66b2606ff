@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62269ea5_5d4baaf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7575
+      },
+      "writtenOn": "2022-12-19T22:04:59Z",
+      "side": 1,
+      "message": "CIPD makes plenty of other parallel HTTPS requests elsewhere. `cipd acl-check` is just the very first one your are hitting. I don\u0027t think this is a correct solution.",
+      "revId": "542b6ac0e895499c14103a1b4713b5f66b2606ff",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
