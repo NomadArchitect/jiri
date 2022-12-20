@@ -34,6 +34,24 @@
       "parentUuid": "62269ea5_5d4baaf5",
       "revId": "542b6ac0e895499c14103a1b4713b5f66b2606ff",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391bcfc8_bf78e5bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2022-12-20T18:54:11Z",
+      "side": 1,
+      "message": "We\u0027ve confirmed that invoking `cipd` in a bash loop reproduces the problem and that this patch alleviates the issue.",
+      "parentUuid": "0d8a102b_64bcb97c",
+      "revId": "542b6ac0e895499c14103a1b4713b5f66b2606ff",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
