@@ -1435,7 +1435,7 @@ func GenerateJiriLockFile(jirix *jiri.X, manifestFiles []string, resolveConfig R
 // counterparts identified in the manifest. Optionally, the 'gc' flag can be
 // used to indicate that local projects that no longer exist remotely should be
 // removed.
-func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntracked, rebaseAll, runHooks, fetchPkgs bool, runHookTimeout, fetchTimeout uint, pkgsToSkip []string) (e error) {
+func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntracked, rebaseAll, runHooks, fetchPkgs bool, runHookTimeout, fetchTimeout uint, pkgsToSkip []string, dissociate bool) (e error) {
 	jirix.Logger.Infof("Updating all projects")
 	updateFn := func(scanMode ScanMode) error {
 		jirix.TimerPush(fmt.Sprintf("update universe: %s", scanMode))
@@ -1473,7 +1473,7 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 		}
 
 		// Actually update the projects.
-		return updateProjects(jirix, localProjects, remoteProjects, hooks, pkgs, gc, runHookTimeout, fetchTimeout, rebaseTracked, rebaseUntracked, rebaseAll, false /*snapshot*/, runHooks, fetchPkgs, pkgsToSkip)
+		return updateProjects(jirix, localProjects, remoteProjects, hooks, pkgs, gc, runHookTimeout, fetchTimeout, rebaseTracked, rebaseUntracked, rebaseAll, false /*snapshot*/, runHooks, fetchPkgs, pkgsToSkip, dissociate)
 	}
 
 	// Specifying gc should always force a full filesystem scan.
@@ -2429,7 +2429,7 @@ func FilterOptionalProjectsPackages(jirix *jiri.X, attrs string, projects Projec
 	return nil
 }
 
-func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, pkgs Packages, gc bool, runHookTimeout, fetchTimeout uint, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, shouldRunHooks, shouldFetchPkgs bool, pkgsToSkip []string) error {
+func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks Hooks, pkgs Packages, gc bool, runHookTimeout, fetchTimeout uint, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, shouldRunHooks, shouldFetchPkgs bool, pkgsToSkip []string, dissociate bool) error {
 	jirix.TimerPush("update projects")
 	defer jirix.TimerPop()
 
@@ -2477,7 +2477,7 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		removeSubmodulesFromProjects(remoteProjects)
 	}
 
-	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot)
+	ops := computeOperations(jirix, localProjects, remoteProjects, states, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, dissociate)
 
 	batchOps := append(operations(nil), ops...)
 	for len(batchOps) > 0 {
