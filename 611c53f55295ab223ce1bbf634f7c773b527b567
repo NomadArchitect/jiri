@@ -70,6 +70,30 @@
       },
       "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a4b32c_42f93dae",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2023-01-04T20:41:33Z",
+      "side": 1,
+      "message": "Oh I guess that things like snapshot checkouts exist. Moved this flag to the config.",
+      "parentUuid": "60034c7e_dc927485",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
