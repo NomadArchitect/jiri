@@ -22,6 +22,30 @@
       },
       "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd85653a_8499f918",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-01-04T19:44:59Z",
+      "side": 1,
+      "message": "https://fuchsia.googlesource.com/jiri/+/refs/heads/main/x.go#50 is the flag to emulate, although I gutted it long ago.",
+      "parentUuid": "7fb9a0d6_68cf0475",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
