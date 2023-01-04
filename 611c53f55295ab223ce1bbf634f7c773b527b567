@@ -46,6 +46,30 @@
       },
       "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60034c7e_dc927485",
+        "filename": "cmd/jiri/update.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45850
+      },
+      "writtenOn": "2023-01-04T20:02:16Z",
+      "side": 1,
+      "message": "Why make it global? Wouldn\u0027t only update need this flag? What other commands would be used to create projects post initial clone?",
+      "parentUuid": "dd85653a_8499f918",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "611c53f55295ab223ce1bbf634f7c773b527b567",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
