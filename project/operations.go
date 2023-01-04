@@ -68,6 +68,7 @@ func (op commonOperation) Destination() string {
 // createOperation represents the creation of a project.
 type createOperation struct {
 	commonOperation
+	dissociate bool
 }
 
 func (op createOperation) Kind() string {
@@ -143,6 +144,9 @@ func (op createOperation) checkoutProject(jirix *jiri.X, cache string) error {
 		}
 		if jirix.OffloadPackfiles {
 			opts = append(opts, gitutil.OffloadPackfilesOpt(true))
+		}
+		if op.dissociate {
+			opts = append(opts, gitutil.DissociateOpt(true))
 		}
 		if err = clone(jirix, r, op.destination, opts...); err != nil {
 			return err
@@ -651,7 +655,7 @@ func (ops operations) Swap(i, j int) {
 // projects.
 // In the case of submodules, computeOperation will check for necessary
 // deletions of jiri projects and initialize submodules in place of projects.
-func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operations {
+func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, states map[ProjectKey]*ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, dissociate bool) operations {
 	result := operations{}
 	allProjects := map[ProjectKey]bool{}
 	for _, p := range localProjects {
@@ -677,20 +681,20 @@ func computeOperations(jirix *jiri.X, localProjects, remoteProjects Projects, st
 		if s, ok := states[key]; ok {
 			state = s
 		}
-		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot))
+		result = append(result, computeOp(jirix, local, remote, state, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, dissociate))
 	}
 	sort.Sort(result)
 	return result
 }
 
-func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot bool) operation {
+func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, snapshot, dissociate bool) operation {
 	switch {
 	case local == nil && remote != nil:
 		return createOperation{commonOperation{
 			destination: remote.Path,
 			project:     *remote,
 			source:      "",
-		}}
+		}, dissociate}
 	case local != nil && remote == nil:
 		return deleteOperation{commonOperation{
 			destination: "",
@@ -733,7 +737,7 @@ func computeOp(jirix *jiri.X, local, remote *Project, state *ProjectState, rebas
 					destination: remote.Path,
 					project:     *remote,
 					source:      "",
-				}}
+				}, dissociate}
 			}
 			// moveOperation also does an update, so we don't need to check the
 			// revision here.

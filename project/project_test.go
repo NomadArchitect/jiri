@@ -368,7 +368,7 @@ func TestUpdateUniverseWhenLocalTracksLocal(t *testing.T) {
 	writeFile(t, fake.X, fake.Projects[localProjects[1].Name], "file1", "file1")
 	gitRemote := gitutil.New(fake.X, gitutil.RootDirOpt(fake.Projects[localProjects[1].Name]))
 	remoteRev, _ := gitRemote.CurrentRevision()
-	if err := project.UpdateUniverse(fake.X, false, false, false, false, true /*rebase-all*/, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, false, false, false, true /*rebase-all*/, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 	projects, err := project.LocalProjects(fake.X, project.FastScan)
@@ -408,7 +408,7 @@ func TestUpdateUniverseWhenLocalTracksEachOther(t *testing.T) {
 	writeFile(t, fake.X, fake.Projects[localProjects[1].Name], "file1", "file1")
 	remoteRev, _ := gitRemote.CurrentRevision()
 
-	if err := project.UpdateUniverse(fake.X, false, false, false, false, true /*rebase-all*/, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, false, false, false, true /*rebase-all*/, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 	projects, err := project.LocalProjects(fake.X, project.FastScan)
@@ -778,7 +778,7 @@ func TestRecursiveImportWithLocalImport(t *testing.T) {
 	if err := manifest.ToFile(fake.X, filepath.Join(fake.X.Root, jiritest.ManifestProjectPath, jiritest.ManifestFileName)); err != nil {
 		t.Fatal(err)
 	}
-	if err := project.UpdateUniverse(fake.X, false, true /* localManifest */, false, false, false, false, false, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, true /* localManifest */, false, false, false, false, false, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 
@@ -860,7 +860,7 @@ func TestRecursiveImportWhenOriginalManifestIsImportedAgain(t *testing.T) {
 
 	// Add new commit to last project
 	writeFile(t, fake.X, fake.Projects[lastProject.Name], "file1", "file1")
-	if err := project.UpdateUniverse(fake.X, false, true /* localManifest */, false, false, false, false, false, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, true /* localManifest */, false, false, false, false, false, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 	// check last project revision
@@ -1009,7 +1009,7 @@ func TestRunHookFlag(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if err := project.UpdateUniverse(fake.X, false, false, true /*rebaseTracked*/, false, false, false /*run-hooks*/, false /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, false, true /*rebaseTracked*/, false, false, false /*run-hooks*/, false /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -1638,7 +1638,7 @@ func TestUpdatedUniverseEnabledSubmodules(t *testing.T) {
 	defer cleanup()
 	// Set gc to be true to remove projects as necessary.
 	// Set localManifest to be false.
-	if err := project.UpdateUniverse(fake.X, true, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, true, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 	// Superproject enabled for project 7, which contains submodule 8 and 9. Jiri projects 8 and 9 expected to be removed.
@@ -1657,7 +1657,7 @@ func TestUpdatedUniverseEnabledSubmodules(t *testing.T) {
 	fake.X.EnableSubmodules = false
 	// Set gc to be true to remove projects as necessary.
 	// Set localManifest to be false.
-	if err := project.UpdateUniverse(fake.X, true, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, true, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 	// Submodule 8 and 9 will be reinstalled as jiri projects.
@@ -1711,7 +1711,7 @@ func TestUpdateWhenRemoteChangesRebased(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err := project.UpdateUniverse(fake.X, false, false, true /*rebaseTracked*/, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, false, true /*rebaseTracked*/, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 
@@ -1959,7 +1959,7 @@ func testLocalBranchesAreUpdated(t *testing.T, shouldLocalBeOnABranch, rebaseAll
 		}
 	}
 
-	if err := project.UpdateUniverse(fake.X, false, false, false, false, rebaseAll, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil); err != nil {
+	if err := project.UpdateUniverse(fake.X, false, false, false, false, rebaseAll, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/); err != nil {
 		t.Fatal(err)
 	}
 
@@ -2062,7 +2062,7 @@ func TestFileImportCycle(t *testing.T) {
 	}
 
 	// The update should complain about the cycle.
-	err := project.UpdateUniverse(jirix, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil)
+	err := project.UpdateUniverse(jirix, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/)
 	if got, want := fmt.Sprint(err), "import cycle detected in local manifest files"; !strings.Contains(got, want) {
 		t.Errorf("got error %v, want substr %v", got, want)
 	}
@@ -2113,7 +2113,7 @@ func TestRemoteImportCycle(t *testing.T) {
 	commitFile(t, fake.X, remote2, fileB, "commit B")
 
 	// The update should complain about the cycle.
-	err := project.UpdateUniverse(fake.X, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil)
+	err := project.UpdateUniverse(fake.X, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/)
 	if got, want := fmt.Sprint(err), "import cycle detected in remote manifest imports"; !strings.Contains(got, want) {
 		t.Errorf("got error %v, want substr %v", got, want)
 	}
@@ -2183,7 +2183,7 @@ func TestFileAndRemoteImportCycle(t *testing.T) {
 	commitFile(t, fake.X, remote1, fileD, "commit D")
 
 	// The update should complain about the cycle.
-	err := project.UpdateUniverse(fake.X, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil)
+	err := project.UpdateUniverse(fake.X, false, false, false, false, false, true /*run-hooks*/, true /*run-packages*/, project.DefaultHookTimeout, project.DefaultPackageTimeout, nil, false /*dissociate*/)
 	if got, want := fmt.Sprint(err), "import cycle detected"; !strings.Contains(got, want) {
 		t.Errorf("got error %v, want substr %v", got, want)
 	}

@@ -111,7 +111,7 @@ func runUpdate(jirix *jiri.X, args []string) error {
 		}
 
 		err := project.UpdateUniverse(jirix, gcFlag, localManifestFlag,
-			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, fetchPkgsFlag, hookTimeoutFlag, fetchPkgsTimeoutFlag, packagesToSkipFlag)
+			rebaseTrackedFlag, rebaseUntrackedFlag, rebaseAllFlag, runHooksFlag, fetchPkgsFlag, hookTimeoutFlag, fetchPkgsTimeoutFlag, packagesToSkipFlag, jirix.Dissociate)
 		if err2 := project.WriteUpdateHistorySnapshot(jirix, nil, nil, localManifestFlag); err2 != nil {
 			if err != nil {
 				return fmt.Errorf("while updating: %s, while writing history: %s", err, err2)
