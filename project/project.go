@@ -1731,6 +1731,12 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 	projectsMutex := &sync.Mutex{}
 	processPath := func(path string) {
 		defer pwg.Done()
+		// Ignore directories that contain a .jiri-ignore file.
+		jiriIgnore := filepath.Join(path, ".jiri-ignore")
+		if info, err := os.Stat(jiriIgnore); err == nil && !info.IsDir() {
+			jirix.Logger.Debugf("%q exists, so ignoring path %q", jiriIgnore, path)
+			return
+		}
 		isLocal, err := IsLocalProject(jirix, path)
 		if err != nil {
 			errs <- fmt.Errorf("Error while processing path %q: %v", path, err)
