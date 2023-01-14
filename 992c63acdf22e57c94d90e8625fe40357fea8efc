@@ -16,6 +16,24 @@
       "message": "Might be an issue with newline-at-end vs not.",
       "revId": "992c63acdf22e57c94d90e8625fe40357fea8efc",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce721f7f_2ef9a3f6",
+        "filename": "cmd/jiri/edit_test.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 37003
+      },
+      "writtenOn": "2023-01-14T00:14:34Z",
+      "side": 1,
+      "message": "I updated it.",
+      "parentUuid": "dc64e263_fcf54564",
+      "revId": "992c63acdf22e57c94d90e8625fe40357fea8efc",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
