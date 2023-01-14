@@ -16,6 +16,24 @@
       "message": "This replacement is wrong: it duplicates the attribute value instead of replacing it.",
       "revId": "4a4a3668b340837bae29efa1fba1c41e4d8ea666",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2594e97c_6ec73a5c",
+        "filename": "cmd/jiri/edit.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 37003
+      },
+      "writtenOn": "2023-01-14T01:12:58Z",
+      "side": 1,
+      "message": "Patched.",
+      "parentUuid": "16a489cd_ef757e86",
+      "revId": "4a4a3668b340837bae29efa1fba1c41e4d8ea666",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
