@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b94c342_8715aa94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-01-18T22:14:46Z",
+      "side": 1,
+      "message": "Hi John, we recently added default flag --gc\u003dtrue. Are you experiencing things being deleted unexpectedly?",
+      "revId": "6af0a4c8414bbe730a1e8c8134d19e06f9a0b74c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
