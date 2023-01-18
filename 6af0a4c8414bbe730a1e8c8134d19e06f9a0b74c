@@ -16,6 +16,24 @@
       "message": "Hi John, we recently added default flag --gc\u003dtrue. Are you experiencing things being deleted unexpectedly?",
       "revId": "6af0a4c8414bbe730a1e8c8134d19e06f9a0b74c",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "701f4a5b_71d225ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18051
+      },
+      "writtenOn": "2023-01-18T22:39:16Z",
+      "side": 1,
+      "message": "No, I haven\u0027t had an issue with that. I\u0027ve been seeing an error when trying to do jiri update. I\u0027ve got a git repo under local/arm-mali-bifrost (inside my fuchsia tree). This repo has a third_party/fuchsia-infra-bazel-rules submodule, and when trying to update jiri (for the fuchsia directory) it\u0027s printing this error:\n\n[22:36:55.121] Updating all projects\nERROR: while updating: Error while processing path \"/src/fuchsia/local/arm-mali-bifrost/third_party/fuchsia-infra-bazel-rules\": project.go:176: open /src/fuchsia/local/arm-mali-bifrost/third_party/fuchsia-infra-bazel-rules/.git/jiri/metadata.v2: not a directory (and 1 other error not shown here), while writing history: Error while processing path \"/src/fuchsia/local/arm-mali-bifrost/third_party/fuchsia-infra-bazel-rules\": project.go:176: open /src/fuchsia/local/arm-mali-bifrost/third_party/fuchsia-infra-bazel-rules/.git/jiri/metadata.v2: not a directory (and 1 other error not shown here)",
+      "parentUuid": "6b94c342_8715aa94",
+      "revId": "6af0a4c8414bbe730a1e8c8134d19e06f9a0b74c",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
