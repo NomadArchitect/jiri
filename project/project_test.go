@@ -1618,10 +1618,12 @@ func TestUpdateUniverseRemoteBranch(t *testing.T) {
 	if err := fake.WriteRemoteManifest(m); err != nil {
 		t.Fatal(err)
 	}
+	fmt.Printf("Go Hello \n World!")
 	// Check that UpdateUniverse pulls the commit from the non-master branch.
 	if err := fake.UpdateUniverse(false); err != nil {
 		t.Fatal(err)
 	}
+	fmt.Printf("YupingDebugger: is it here???: %+v\n", err)
 	checkReadme(t, fake.X, localProjects[1], "non-master commit")
 }
 
