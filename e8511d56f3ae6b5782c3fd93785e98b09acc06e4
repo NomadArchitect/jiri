@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183f142b_ad9c5560",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "CheckBranch is a little vague about what you\u0027re checking, CheckBranchExists would be better.",
+      "range": {
+        "startLine": 520,
+        "startChar": 14,
+        "endLine": 520,
+        "endChar": 25
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5dc9afc_01343543",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "//.git/modules",
+      "range": {
+        "startLine": 674,
+        "startChar": 33,
+        "endLine": 674,
+        "endChar": 45
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d2875b8_6b89498f",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "Check this error?",
+      "range": {
+        "startLine": 1367,
+        "startChar": 18,
+        "endLine": 1367,
+        "endChar": 19
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53fb5871_e6d42415",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "Check this error?",
+      "range": {
+        "startLine": 1370,
+        "startChar": 12,
+        "endLine": 1370,
+        "endChar": 13
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52ae91c4_78870da1",
+        "filename": "project/operations.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "What does this string mean? It seems odd.",
+      "range": {
+        "startLine": 514,
+        "startChar": 56,
+        "endLine": 514,
+        "endChar": 75
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f212968a_f7aabf4a",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "csm may be a more Go-y name",
+      "range": {
+        "startLine": 764,
+        "startChar": 1,
+        "endLine": 764,
+        "endChar": 13
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0208a7f_15e213a1",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "Do you want to keep this or was it for debugging?",
+      "range": {
+        "startLine": 765,
+        "startChar": 0,
+        "endLine": 768,
+        "endChar": 120
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee20ec45_3c0e69f4",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "This function assumes its a valid git repository, is that correct? If so, can you document the assumption.",
+      "range": {
+        "startLine": 1676,
+        "startChar": 5,
+        "endLine": 1676,
+        "endChar": 16
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e08390_6d5ba24b",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1936,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-07T21:31:29Z",
+      "side": 1,
+      "message": "This string should be defined somewhere common instead of spelled out twice as a literal.",
+      "range": {
+        "startLine": 1936,
+        "startChar": 52,
+        "endLine": 1936,
+        "endChar": 71
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
