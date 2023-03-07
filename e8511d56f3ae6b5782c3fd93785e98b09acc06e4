@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f51d101_34af43e9",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "183f142b_ad9c5560",
+      "range": {
+        "startLine": 520,
+        "startChar": 14,
+        "endLine": 520,
+        "endChar": 25
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5dc9afc_01343543",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-07T21:31:29Z",
       "side": 1,
       "message": "//.git/modules",
+      "range": {
+        "startLine": 674,
+        "startChar": 33,
+        "endLine": 674,
+        "endChar": 45
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "674a0dbd_6b36a8f4",
+        "filename": "gitutil/git.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5dc9afc_01343543",
       "range": {
         "startLine": 674,
         "startChar": 33,
@@ -70,6 +118,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8446fc55_18a8578c",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d2875b8_6b89498f",
+      "range": {
+        "startLine": 1367,
+        "startChar": 18,
+        "endLine": 1367,
+        "endChar": 19
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53fb5871_e6d42415",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-03-07T21:31:29Z",
       "side": 1,
       "message": "Check this error?",
+      "range": {
+        "startLine": 1370,
+        "startChar": 12,
+        "endLine": 1370,
+        "endChar": 13
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04bd9f60_5169ba4c",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1370,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53fb5871_e6d42415",
       "range": {
         "startLine": 1370,
         "startChar": 12,
@@ -116,6 +212,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c954023_b2358aac",
+        "filename": "project/operations.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done. Added comments.",
+      "parentUuid": "52ae91c4_78870da1",
+      "range": {
+        "startLine": 514,
+        "startChar": 56,
+        "endLine": 514,
+        "endChar": 75
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f212968a_f7aabf4a",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-03-07T21:31:29Z",
       "side": 1,
       "message": "csm may be a more Go-y name",
+      "range": {
+        "startLine": 764,
+        "startChar": 1,
+        "endLine": 764,
+        "endChar": 13
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97e6b356_f5d03755",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f212968a_f7aabf4a",
       "range": {
         "startLine": 764,
         "startChar": 1,
@@ -162,6 +306,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c05fbaba_7b8d620e",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "I am actually conflicted since it\u0027s one of the fast checks for us if the transition was successful. I removed the print when config matches local checkout, so we don\u0027t spam people.",
+      "parentUuid": "e0208a7f_15e213a1",
+      "range": {
+        "startLine": 765,
+        "startChar": 0,
+        "endLine": 768,
+        "endChar": 120
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee20ec45_3c0e69f4",
@@ -185,6 +353,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa5de1f0_cf45c46b",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee20ec45_3c0e69f4",
+      "range": {
+        "startLine": 1676,
+        "startChar": 5,
+        "endLine": 1676,
+        "endChar": 16
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4e08390_6d5ba24b",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-03-07T21:31:29Z",
       "side": 1,
       "message": "This string should be defined somewhere common instead of spelled out twice as a literal.",
+      "range": {
+        "startLine": 1936,
+        "startChar": 52,
+        "endLine": 1936,
+        "endChar": 71
+      },
+      "revId": "e8511d56f3ae6b5782c3fd93785e98b09acc06e4",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1ca299_e7bab686",
+        "filename": "project/project.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1936,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-07T22:24:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4e08390_6d5ba24b",
       "range": {
         "startLine": 1936,
         "startChar": 52,
