@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e11484_1b0911a2",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2580,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-08T07:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2823db_d6844d64",
+      "range": {
+        "startLine": 2580,
+        "startChar": 55,
+        "endLine": 2580,
+        "endChar": 71
+      },
+      "revId": "3723c822970ad4a45766713dff14f7d911152f2d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87e4d9d9_b74cdcd9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-08T07:44:13Z",
       "side": 1,
       "message": "Because the `else` case is never written, you need to track if you ever set the flag, if not, set the `else` case yourself on any project so that the file is always present.\n\n```\n        flagSet :\u003d false\n\tif jirix.EnableSubmodules {\n\t\tfor _, project :\u003d range remoteProjects {\n\t\t\tif project.GitSubmodules {\n\t\t\t\tproject.Flag \u003d \"build/checkout.gni|submodules\u003dtrue|unused\u003dunused\"\n\t\t\t\tflagSet \u003d true\n\t\t\t}\n\t\t}\n\t}\n\tif !flagSet {\n\t        remoteProjects[0].Flag \u003d \"build/checkout.gni|submodules\u003dfalse|unused\u003dunused\"\n\t}\n```",
+      "range": {
+        "startLine": 2577,
+        "startChar": 0,
+        "endLine": 2583,
+        "endChar": 2
+      },
+      "revId": "3723c822970ad4a45766713dff14f7d911152f2d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef2165c2_e424cd8d",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2583,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-08T07:57:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87e4d9d9_b74cdcd9",
       "range": {
         "startLine": 2577,
         "startChar": 0,
