@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a2823db_d6844d64",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2580,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-08T07:38:24Z",
+      "side": 1,
+      "message": "Per the function documentation, this is not used, might as well change it to `unused\u003dunused` so its clear you never expect this to work.",
+      "range": {
+        "startLine": 2580,
+        "startChar": 55,
+        "endLine": 2580,
+        "endChar": 71
+      },
+      "revId": "3723c822970ad4a45766713dff14f7d911152f2d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
