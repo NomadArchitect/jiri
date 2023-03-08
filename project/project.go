@@ -2578,15 +2578,17 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	// Set flags for whether or not fuchsia checkout contains submodules in checkout.gni.
 	flagSet := false
 	if jirix.EnableSubmodules {
-		for _, project := range remoteProjects {
+		for k, project := range remoteProjects {
 			if project.GitSubmodules {
 				project.Flag = "build/checkout.gni|submodules=true|unused=unused"
+				remoteProjects[k] = project
 			}
 		}
 	}
 	if !flagSet {
-		for _, project := range remoteProjects {
+		for k, project := range remoteProjects {
 			project.Flag = "build/checkout.gni|submodules=false|unused=unused"
+			remoteProjects[k] = project
 			break
 		}
 	}
