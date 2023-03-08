@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71399172_626a1286",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2578,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-08T23:06:21Z",
+      "side": 1,
+      "message": "```\n\tif jirix.EnableSubmodules {\n\t\tfor k, project :\u003d range remoteProjects {\n\t\t\tif project.Remote \u003d\u003d \"https://fuchsia.googlesource.com/fuchsia\" {\n\t\t\t\tproject.Flag \u003d fmt.Printf(\"build/checkout.gni|submodules\u003d%s|unused\u003dunused\", project.GitSubmodules)\n\t\t\t\tremoteProjects[k] \u003d project\n\t\t\t}\n\t\t}\n\t}\n```\n\nSomething like the above psuedo code should have the effect you want.",
+      "revId": "3b63a2df72801858d0cadb42e0102dcbe4da721b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efa734d9_21908221",
