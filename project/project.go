@@ -2574,6 +2574,14 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 	jirix.TimerPop()
 
 	jirix.TimerPush("jiri project flag files")
+	if jirix.EnableSubmodules {
+		for _, project := range remoteProjects {
+			if project.GitSubmodules {
+				project.Flag = "build/checkout.gni|submodules=true|submodules=false"
+			}
+		}
+	}
+
 	if err := WriteProjectFlags(jirix, remoteProjects); err != nil {
 		jirix.Logger.Errorf("failures in write jiri project flag files: %v", err)
 	}
