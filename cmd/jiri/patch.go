@@ -93,6 +93,10 @@ func patchProject(jirix *jiri.X, local project.Project, ref, branch, remote stri
 			branch = fmt.Sprintf("change/%v/%v", cl, ps)
 		}
 		jirix.Logger.Infof("Patching project %s(%s) on branch %q to ref %q\n", local.Name, local.Path, branch, ref)
+		// Ensure up-to-date refs
+		if err := scm.Fetch("origin", jirix.EnableSubmodules); err != nil {
+			return false, err
+		}
 		branchExists, err := scm.BranchExists(branch)
 		if err != nil {
 			return false, err
