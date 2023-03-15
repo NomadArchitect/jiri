@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2439093f_31a0d72f",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-15T20:34:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this live within WriteProjectFlags/WritePackageFlags and write all files that `jiri` creates to .git/info/exclude?",
+      "range": {
+        "startLine": 2562,
+        "startChar": 0,
+        "endLine": 2566,
+        "endChar": 4
+      },
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec91d4d_e45cf19a",
+        "filename": "project/submodule.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-15T20:34:34Z",
+      "side": 1,
+      "message": "This function itself should live in a common place like https://fuchsia.googlesource.com/jiri/+/refs/heads/main/project/utils.go",
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3c5659_6f487ea8",
+        "filename": "project/submodule.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-15T20:34:34Z",
+      "side": 1,
+      "message": "You really should extract the section denoted by sentinal lines like `# BEGIN jiri ... # END jiri` and only mutate it. You may need multiple blocks to cover packages and projects separately.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 1
+      },
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
