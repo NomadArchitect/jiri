@@ -2559,6 +2559,11 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 		if project.Remote == "https://fuchsia.googlesource.com/fuchsia" {
 			project.Flag = fmt.Sprintf("build/checkout.gni|submodules=%t|unused=unused", (jirix.EnableSubmodules && project.GitSubmodules))
 			remoteProjects[k] = project
+			// Write .git/info/exclude to exclude checkout.gni since older fuchsia.git might not include it in .gitignore.
+			checkoutDir := "/build/checkout.gni"
+			if err := writeGitExcludeFile(jirix, checkoutDir); err != nil {
+				return err
+			}
 			break
 		}
 	}
