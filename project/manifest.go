@@ -991,10 +991,16 @@ func WritePackageFlags(jirix *jiri.X, pkgs, pkgsWA Packages) error {
 	}
 
 	var writeErrorBuf bytes.Buffer
+	filesExcluded := ""
 	for k, v := range flagMap {
 		if err := os.WriteFile(filepath.Join(jirix.Root, k), []byte(v), 0644); err != nil {
 			writeErrorBuf.WriteString(fmt.Sprintf("write package flag %q to file %q failed due to error: %v\n", v, k, err))
 		}
+		filesExcluded = fmt.Sprintf("%s%s\n", filesExcluded, filepath.Join(jirix.Root, k))
+	}
+	// For all files jiri creates, we need to exclude in .git/info/exclude.
+	if err := writeGitExcludeFile(jirix, filesExcluded, "package"); err != nil {
+		return err
 	}
 	if writeErrorBuf.Len() > 0 {
 		return errors.New(writeErrorBuf.String())
