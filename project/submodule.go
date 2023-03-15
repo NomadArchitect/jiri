@@ -6,8 +6,10 @@ package project
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 
 	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/gitutil"
@@ -197,4 +199,32 @@ func submoduleToProject(submodules Submodules, initOnly bool) map[string]Project
 		projects[project.Path] = project
 	}
 	return projects
+}
+
+// writeGitExcludeFile adds file to .git/info/exclude. Check if it exists already first.
+func writeGitExcludeFile(jirix *jiri.X, data string) error {
+	// If the file doesn't exist, create it, or append to the file
+	gitExclude := filepath.Join(jirix.Root, ".git/info/exclude")
+	f, err := os.OpenFile(gitExclude, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+	gitData, err := os.ReadFile(gitExclude)
+	if err != nil {
+		return err
+	}
+	s := string(gitData)
+	if strings.Contains(s, string(data)) {
+		fmt.Printf("YupingDebugger: git exclude file looks like %+v\n", s)
+		return nil
+	}
+	data = "#jiri \n" + data
+	if _, err := f.Write([]byte(data)); err != nil {
+		f.Close()
+		return err
+	}
+	if err := f.Close(); err != nil {
+		return err
+	}
+	return nil
 }
