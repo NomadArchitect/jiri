@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5aa3634_7e7f25cd",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2566,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-17T03:42:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2439093f_31a0d72f",
+      "range": {
+        "startLine": 2562,
+        "startChar": 0,
+        "endLine": 2566,
+        "endChar": 4
+      },
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ec91d4d_e45cf19a",
@@ -41,6 +65,24 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21a399e_1f505d9e",
+        "filename": "project/submodule.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-17T03:42:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec91d4d_e45cf19a",
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b3c5659_6f487ea8",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-03-15T20:34:34Z",
       "side": 1,
       "message": "You really should extract the section denoted by sentinal lines like `# BEGIN jiri ... # END jiri` and only mutate it. You may need multiple blocks to cover packages and projects separately.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 1
+      },
+      "revId": "ceba62b2484b7f552ee01ad3d9867eec3809b59f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe63c71_2f1b57f3",
+        "filename": "project/submodule.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-03-17T03:42:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3c5659_6f487ea8",
       "range": {
         "startLine": 205,
         "startChar": 0,
