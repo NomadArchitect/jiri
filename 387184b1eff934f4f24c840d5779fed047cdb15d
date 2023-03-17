@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ceb2e45_2e79017c",
+        "filename": "project/utils.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-03-17T04:26:26Z",
+      "side": 1,
+      "message": "`(?s)%s(.*)%s`",
+      "range": {
+        "startLine": 144,
+        "startChar": 38,
+        "endLine": 144,
+        "endChar": 46
+      },
+      "revId": "387184b1eff934f4f24c840d5779fed047cdb15d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
