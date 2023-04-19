@@ -121,6 +121,7 @@ func resetFlags() {
 	uploadBranchFlag = ""
 	uploadRemoteBranchFlag = ""
 	uploadSetTopicFlag = false
+	uploadRunTestsFlag = false
 }
 
 func TestUpload(t *testing.T) {

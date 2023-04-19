@@ -29,6 +29,7 @@ var (
 	uploadBranchFlag       string
 	uploadRemoteBranchFlag string
 	uploadLabelsFlag       string
+	uploadRunTestsFlag     bool
 	uploadGitOptions       string
 )
 
@@ -67,6 +68,8 @@ func init() {
 	cmdUpload.Flags.StringVar(&uploadRemoteBranchFlag, "remoteBranch", "", `Remote branch to upload change to. If this is not specified and branch is untracked,
 change would be uploaded to branch in project manifest`)
 	cmdUpload.Flags.StringVar(&uploadGitOptions, "git-options", "", `Passthrough git options`)
+	cmdUpload.Flags.BoolVar(&uploadRunTestsFlag, "run-tests", false, `Start automated tests after uploading.`)
+
 }
 
 // runUpload is a wrapper that pushes the changes to gerrit for review.
@@ -209,6 +212,11 @@ func runUpload(jirix *jiri.X, args []string) error {
 			}
 		}
 
+		labels := parseLabels(uploadLabelsFlag)
+		if uploadRunTestsFlag {
+			labels = append(labels, "Commit-Queue+1")
+		}
+
 		opts := gerrit.CLOpts{
 			Ccs:          parseEmails(uploadCcsFlag),
 			GitOptions:   uploadGitOptions,
@@ -216,7 +224,7 @@ func runUpload(jirix *jiri.X, args []string) error {
 			RemoteBranch: remoteBranch,
 			Remote:       "origin",
 			Reviewers:    parseEmails(uploadReviewersFlag),
-			Labels:       parseLabels(uploadLabelsFlag),
+			Labels:       labels,
 			Verify:       uploadVerifyFlag,
 			Topic:        topic,
 			RefToUpload:  refToUpload,
