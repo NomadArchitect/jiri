@@ -16,6 +16,24 @@
       "message": "This is the same as `-l Commit-Queue+1` and it creates a coupling between label names in Gerrit and `jiri`, is there a reason why that is unacceptable?\n\nAlso @yupingz who owns `jiri`",
       "revId": "efeb744922e1a7a6cd378d1b5c31280e85431e92",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59800232_45a11a98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 62896
+      },
+      "writtenOn": "2023-04-24T16:55:29Z",
+      "side": 1,
+      "message": "It\u0027s a pain to type, not discoverable, and not documented 😊. I suppose it could be a project level configuration?",
+      "parentUuid": "b9d1c042_e6a03251",
+      "revId": "efeb744922e1a7a6cd378d1b5c31280e85431e92",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
