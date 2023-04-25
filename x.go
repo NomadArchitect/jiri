@@ -323,6 +323,13 @@ func NewX(env *cmdline.Env) (*X, error) {
 		// Note that we must modify the actual os env variable with os.SetEnv and
 		// also the ctx.env, so that execing a binary through the os/exec package
 		// and with ctx.Run both have the correct behavior.
+
+		// Adapt to the new version of Microsoft Windows.
+		oldPath := ctx.Env()["PATH"]
+		if len(oldPath) == 0 {
+			oldPath = ctx.Env()["Path"]
+		}
+
 		newPath := envvar.PrependUniqueToken(ctx.Env()["PATH"], string(os.PathListSeparator), x.BinDir())
 		ctx.Env()["PATH"] = newPath
 		if err := os.Setenv("PATH", newPath); err != nil {
