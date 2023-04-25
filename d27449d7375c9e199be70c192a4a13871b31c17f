@@ -16,6 +16,24 @@
       "message": "When I use jiri on Windows 10 Pro, I found it will change shell env \"PATH\" to add \u0027.jiri_root/bin\u0027, but the \u0027PATH\u0027 in Windows 10 named \u0027Path\u0027 and Windows environment variables are not case sensitive, so it will be override the real \u0027Path\u0027, other commands can\u0027t be found and executed:\n\ncommand fail error: exec: \"git\": executable file not found in %PATH%\n\nOnly need to get \u0027Path\u0027 when \u0027PATH\u0027 is not exist can fix it.",
       "revId": "d27449d7375c9e199be70c192a4a13871b31c17f",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c9fe23_92131715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-04-25T18:27:41Z",
+      "side": 1,
+      "message": "Sounds good.",
+      "parentUuid": "830c8903_3458c1e1",
+      "revId": "d27449d7375c9e199be70c192a4a13871b31c17f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
