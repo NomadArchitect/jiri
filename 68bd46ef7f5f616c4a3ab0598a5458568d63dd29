@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379c0b60_318a050b",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2569,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-05-05T00:18:19Z",
+      "side": 1,
+      "message": "should this be err\u003d\u003dnil?",
+      "range": {
+        "startLine": 2569,
+        "startChar": 47,
+        "endLine": 2569,
+        "endChar": 57
+      },
+      "revId": "68bd46ef7f5f616c4a3ab0598a5458568d63dd29",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
