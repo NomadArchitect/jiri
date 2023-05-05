@@ -125,6 +125,7 @@ type RunnerFunc func(*Env, []string) error
 
 // Run implements the Runner interface method by calling f(env, args).
 func (f RunnerFunc) Run(env *Env, args []string) error {
+	fmt.Println("YupingDebugger: this is the runner function lets go")
 	return f(env, args)
 }
 

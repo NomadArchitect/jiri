@@ -10,6 +10,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strconv"
@@ -63,7 +64,7 @@ type Config struct {
 	// version user has opted-in to
 	AnalyticsVersion string `xml:"analytics>version,omitempty"`
 	KeepGitHooks     bool   `xml:"keepGitHooks,omitempty"`
-	EnableSubmodules bool   `xml:"enableSubmodules,omitempty"`
+	EnableSubmodules string `xml:"enableSubmodules,omitempty"`
 
 	XMLName struct{} `xml:"config"`
 }
@@ -80,6 +81,7 @@ func (c *Config) Write(filename string) error {
 	if err != nil {
 		return err
 	}
+	fmt.Printf("YupingDebugger: config is %+v\n", c)
 	return os.WriteFile(filename, data, 0644)
 }
 
@@ -93,6 +95,16 @@ func ConfigFromFile(filename string) (*Config, error) {
 		return nil, err
 	}
 	return c, nil
+}
+
+func GitGlobalConfig(key string) (string, error) {
+	cmd := exec.Command("git", "config", "--global", key)
+	out, err := cmd.Output()
+	if err != nil {
+		return "", err
+	}
+	config := string(out)
+	return config, nil
 }
 
 // X holds the execution environment for the jiri tool and related tools.  This
@@ -275,7 +287,6 @@ func NewX(env *cmdline.Env) (*X, error) {
 		x.KeepGitHooks = x.config.KeepGitHooks
 		x.RewriteSsoToHttps = x.config.RewriteSsoToHttps
 		x.SsoCookiePath = x.config.SsoCookiePath
-		x.EnableSubmodules = x.config.EnableSubmodules
 		if x.config.LockfileEnabled == "" {
 			x.LockfileEnabled = true
 		} else {
@@ -511,6 +522,7 @@ func (x *X) UpdateHistoryLogSecondLatestLink() string {
 // This is similar to cmdline.RunnerFunc, but the first function argument is
 // jiri.X, rather than cmdline.Env.
 func RunnerFunc(run func(*X, []string) error) cmdline.Runner {
+	fmt.Println("YupingDebugger: we are running new jiriyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
 	return runner(run)
 }
 
@@ -518,6 +530,7 @@ type runner func(*X, []string) error
 
 func (r runner) Run(env *cmdline.Env, args []string) error {
 	x, err := NewX(env)
+	fmt.Println("YupingDebugger: we are running new jirixxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 	if err != nil {
 		return err
 	}
