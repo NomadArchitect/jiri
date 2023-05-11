@@ -170,6 +170,7 @@ func runInit(env *cmdline.Env, args []string) error {
 			return fmt.Errorf("'jiri.enableSubmodules' from git config should be true or false")
 		}
 		config.EnableSubmodules = gitConfigSubm
+		config.EnableSubmodules = "false"
 	}
 
 	if enableSubmodules != "" {
