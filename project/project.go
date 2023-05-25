@@ -2134,6 +2134,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 			}
 		}
 	}
+	// We check for any submodules that are not initialized, and init them one by one.
 	return nil
 }
 

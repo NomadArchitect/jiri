@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"regexp"
+	"sync"
 
 	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/gitutil"
@@ -66,6 +67,49 @@ func createBranchSubmodules(jirix *jiri.X, superproject Project, branch string) 
 		}
 	}
 	return nil
+}
+
+// updateAllSubmodules fetches all submodules that are not currently initiated.
+func updateAllSubmodules(jirix *jiri.X, superproject Project) MultiError {
+	submStates, err := getSubmodulesStatus(jirix, superproject)
+	var multiErr MultiError
+	if err != nil {
+		multiErr = append(multiErr, err)
+		return multiErr
+	}
+
+	errs := make(chan error, jirix.Jobs)
+	var wg sync.WaitGroup
+	fetchLimit := make(chan bool, jirix.Jobs)
+	go func() {
+		defer wg.Done()
+		for err := range errs {
+			multiErr = append(multiErr, err)
+		}
+	}()
+
+	scm := gitutil.New(jirix, gitutil.RootDirOpt(superproject.Path))
+
+	for _, subm := range submStates {
+		if subm.Prefix == "-" {
+			wg.Add(1)
+			fetchLimit <- true
+			go func(path string) {
+				defer func() { <-fetchLimit }()
+				defer wg.Done()
+				// Update submodule by specific path
+				if err := scm.SubmoduleUpdateModule(path); err != nil {
+					errs <- err
+					return
+				}
+			}(subm.Path)
+		}
+	}
+	wg.Wait()
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+	return multiErr
 }
 
 // getAllSubmodules return all submodules states.
