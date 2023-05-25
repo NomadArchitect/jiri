@@ -308,7 +308,7 @@ func (g *Git) CheckoutBranch(branch string, gitSubmodules bool, opts ...Checkout
 	return nil
 }
 
-// SubmoduleInit de-initiates all local submodules.
+// SubmoduleDeinit de-initiates all local submodules.
 func (g *Git) SubmoduleDeinit() error {
 	args := []string{"submodule", "deinit", "--all"}
 	return g.run(args...)
@@ -328,6 +328,12 @@ func (g *Git) SubmoduleUpdate(opts ...SubmoduleUpdateOpt) error {
 	// TODO(iankaz): Use Jiri jobsFlag setting (or set submodule.fetchJobs on superproject init)
 	// Number of parallel children to be used for fetching submodules.
 	args = append(args, "--jobs=50")
+	return g.run(args...)
+}
+
+// SubmoduleUpdateModule updates specific module by relative path.
+func (g *Git) SubmoduleUpdateModule(path string) error {
+	args := []string{"submodule", "update", "--init", "--", path}
 	return g.run(args...)
 }
 

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"regexp"
+	"sync"
 
 	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/gitutil"
@@ -66,6 +67,56 @@ func createBranchSubmodules(jirix *jiri.X, superproject Project, branch string) 
 		}
 	}
 	return nil
+}
+
+// updateAllSubmodules fetches all submodules that are not currently initiated.
+func updateAllSubmodules(jirix *jiri.X, superproject Project) MultiError {
+	submStates, err := getSubmodulesStatus(jirix, superproject)
+	var multiErr MultiError
+	if err != nil {
+		multiErr = append(multiErr, err)
+		return multiErr
+	}
+	log := make(chan string, jirix.Jobs)
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go func() {
+		defer wg.Done()
+		for str := range log {
+			jirix.Logger.Warningf("%s", str)
+		}
+	}()
+	errs := make(chan error, jirix.Jobs)
+	go func() {
+		defer wg.Done()
+		for err := range errs {
+			multiErr = append(multiErr, err)
+		}
+	}()
+
+	scm := gitutil.New(jirix, gitutil.RootDirOpt(superproject.Path))
+
+	var pwg sync.WaitGroup
+	workq := make(chan bool, jirix.Jobs)
+	for _, subm := range submStates {
+		if subm.Prefix == "-" {
+			workq <- true
+			pwg.Add(1)
+			go func(path string) {
+				defer pwg.Done()
+				// Update submodule by specific path
+				if err := scm.SubmoduleUpdateModule(path); err != nil {
+					multiErr = append(multiErr, err)
+				}
+				pwg.Wait()
+				close(errs)
+				close(log)
+				close(workq)
+				wg.Wait()
+			}(subm.Path)
+		}
+	}
+	return multiErr
 }
 
 // getAllSubmodules return all submodules states.
