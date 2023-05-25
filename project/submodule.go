@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"regexp"
+	"sync"
 
 	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/gitutil"
@@ -66,6 +67,48 @@ func createBranchSubmodules(jirix *jiri.X, superproject Project, branch string) 
 		}
 	}
 	return nil
+}
+
+// updateAllSubmodules fetches all submodules that are not currently initiated.
+func updateAllSubmodules(jirix *jiri.X, superproject Project) MultiError {
+	submStates, err := getSubmodulesStatus(jirix, superproject)
+	var multiErr MultiError
+	if err != nil {
+		multiErr = append(multiErr, err)
+		return multiErr
+	}
+
+	errs := make(chan error, len(submStates))
+	var wg sync.WaitGroup
+	fetchLimit := make(chan struct{}, jirix.Jobs)
+
+	scm := gitutil.New(jirix, gitutil.RootDirOpt(superproject.Path))
+
+	for _, subm := range submStates {
+		if !isInitialized(subm) {
+			wg.Add(1)
+			fetchLimit <- struct{}{}
+			go func(path string) {
+				defer func() { <-fetchLimit }()
+				defer wg.Done()
+				// Update submodule by specific path
+				if err := scm.SubmoduleUpdateModule(path); err != nil {
+					errs <- err
+					return
+				}
+			}(subm.Path)
+		}
+	}
+	wg.Wait()
+	close(errs)
+
+	for err := range errs {
+		multiErr = append(multiErr, err)
+	}
+	if len(multiErr) != 0 {
+		return multiErr
+	}
+	return multiErr
 }
 
 // getAllSubmodules return all submodules states.
@@ -131,6 +174,14 @@ func isSuperproject(jirix *jiri.X, project Project) bool {
 		}
 	}
 	return false
+}
+
+// isUninitialized returns if the submodule is initialized.
+func isInitialized(subm Submodule) bool {
+	if subm.Prefix == "-" {
+		return false
+	}
+	return true
 }
 
 // removeSubmodulesFromProjects removes verified submodules from jiri projects.
