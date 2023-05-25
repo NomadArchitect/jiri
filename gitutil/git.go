@@ -7,17 +7,36 @@ package gitutil
 import (
 	"bytes"
 	"encoding/hex"
+	"errors"
 	"fmt"
 	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 
 	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/envvar"
 )
+
+type MultiError []error
+
+func (m MultiError) Error() string {
+	s := []string{}
+	for _, e := range m {
+		if e != nil {
+			s = append(s, e.Error())
+		}
+	}
+	return strings.Join(s, "\n")
+}
+
+func (m MultiError) String() string {
+	return m.Error()
+}
 
 type GitError struct {
 	Root        string
@@ -301,17 +320,44 @@ func (g *Git) CheckoutBranch(branch string, gitSubmodules bool, opts ...Checkout
 	if err := g.run(args...); err != nil {
 		return err
 	}
-	// After checkout with submodules update/checkout submodules.
+	// Update submodules that are already initialized.
 	if gitSubmodules {
-		return g.SubmoduleUpdate(InitOpt(true))
+		if err := g.SubmoduleUpdate(InitOpt(false)); err != nil {
+			return err
+		}
+	}
+	// Init all the submodules that are installed in tree, and update one by one.
+	if gitSubmodules {
+		if mErr := g.SubmoduleUpdateAll(); mErr != nil {
+			err := errors.New(mErr.String())
+			return err
+		}
 	}
 	return nil
 }
 
-// SubmoduleInit de-initiates all local submodules.
+// SubmoduleDeinit de-initiates all local submodules.
 func (g *Git) SubmoduleDeinit() error {
 	args := []string{"submodule", "deinit", "--all"}
 	return g.run(args...)
+}
+
+// SubmodulePaths returns uninitialized submodules' paths.
+func (g *Git) SubmodulePaths() ([]string, error) {
+	submoduleStatus, _ := g.SubmoduleStatus()
+	var submoduleConfigRegex = regexp.MustCompile(`([-+U]?)([a-fA-F0-9]{40})\s([^\s]*)\s?`)
+	submodulePaths := []string{}
+	for _, subm := range submoduleStatus {
+		submConfig := submoduleConfigRegex.FindStringSubmatch(subm)
+		if len(submConfig) != 4 {
+			return nil, fmt.Errorf("expected substring to have length of 4, but got %d", len(submConfig))
+		}
+		// Check if submodules are initialized. If not intialized, add to the list
+		if submConfig[1] == "-" {
+			submodulePaths = append(submodulePaths, submConfig[3])
+		}
+	}
+	return submodulePaths, nil
 }
 
 // SubmoduleUpdate updates submodules for current branch.
@@ -328,6 +374,38 @@ func (g *Git) SubmoduleUpdate(opts ...SubmoduleUpdateOpt) error {
 	// TODO(iankaz): Use Jiri jobsFlag setting (or set submodule.fetchJobs on superproject init)
 	// Number of parallel children to be used for fetching submodules.
 	args = append(args, "--jobs=50")
+	return g.run(args...)
+}
+
+// SubmoduleUpdateAll fetches all submodules that are not currently initiated, one by one.
+func (g *Git) SubmoduleUpdateAll() MultiError {
+	var multiErr MultiError
+	submPaths, err := g.SubmodulePaths()
+	if err != nil {
+		multiErr = append(multiErr, err)
+		return multiErr
+	}
+	var wg sync.WaitGroup
+	fetchLimit := make(chan struct{}, 50)
+	for _, path := range submPaths {
+		wg.Add(1)
+		fetchLimit <- struct{}{}
+		go func(path string) {
+			defer func() { <-fetchLimit }()
+			defer wg.Done()
+			fmt.Printf("YupingDebugger: checking out submodule for path: %+v\n", path)
+			if err := g.SubmoduleUpdateModule(path); err != nil {
+				multiErr = append(multiErr, err)
+			}
+		}(path)
+	}
+	wg.Wait()
+	return multiErr
+}
+
+// SubmoduleUpdateModule updates specific module by relative path.
+func (g *Git) SubmoduleUpdateModule(path string) error {
+	args := []string{"submodule", "update", "--init", "--", path}
 	return g.run(args...)
 }
 
