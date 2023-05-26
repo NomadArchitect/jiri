@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6be55a6a_22e18e0c",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-05-26T21:20:51Z",
+      "side": 1,
+      "message": "struct{}",
+      "range": {
+        "startLine": 83,
+        "startChar": 25,
+        "endLine": 83,
+        "endChar": 29
+      },
+      "revId": "e3b7cfe0cbb29acb684dc9a28afd317e8a15c99d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdeb033d_cb90ff5e",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-05-26T21:20:51Z",
+      "side": 1,
+      "message": "Every wg.Done() needs a corresponding wg.Add(1)",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 17
+      },
+      "revId": "e3b7cfe0cbb29acb684dc9a28afd317e8a15c99d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb3b5e7b_5ab0fbda",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-05-26T21:20:51Z",
+      "side": 1,
+      "message": "This feels like it should be abstracted out into a helper for clarity, e.g. `if subm.isUninitialized() {`",
+      "range": {
+        "startLine": 94,
+        "startChar": 5,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "e3b7cfe0cbb29acb684dc9a28afd317e8a15c99d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51151486_06a3a137",
+        "filename": "project/submodule.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-05-26T21:20:51Z",
+      "side": 1,
+      "message": "struct{}{}",
+      "range": {
+        "startLine": 96,
+        "startChar": 17,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "revId": "e3b7cfe0cbb29acb684dc9a28afd317e8a15c99d",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
