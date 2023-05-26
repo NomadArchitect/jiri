@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e66aca7_c68ebfb8",
+        "filename": "project/submodule.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-05-26T03:42:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb7a76cc_0e459c3f",
+      "range": {
+        "startLine": 92,
+        "startChar": 19,
+        "endLine": 92,
+        "endChar": 23
+      },
+      "revId": "3aada02f458ace29ea3c3f0e306ec861492ab757",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b77d734_e4598127",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-25T23:37:32Z",
       "side": 1,
       "message": "Should these be outside the goroutine? Closing a closed channel will panic.",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 13
+      },
+      "revId": "3aada02f458ace29ea3c3f0e306ec861492ab757",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccd98849_7290cfd4",
+        "filename": "project/submodule.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-05-26T03:42:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b77d734_e4598127",
       "range": {
         "startLine": 111,
         "startChar": 4,
