@@ -98,7 +98,7 @@ func ConfigFromFile(filename string) (*Config, error) {
 }
 
 func GitGlobalConfig(key string) (string, error) {
-	cmd := exec.Command("git", "config", "--global", key)
+	cmd := exec.Command("git", "config", "--get", key)
 	out, err := cmd.Output()
 	if err != nil {
 		return "", err
