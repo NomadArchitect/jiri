@@ -913,11 +913,21 @@ func CurrentProject(jirix *jiri.X) (*Project, error) {
 		return nil, nil
 	}
 	metadataDir := filepath.Join(topLevel, jiri.ProjectMetaDir)
+	gitDir := filepath.Join(topLevel, ".git")
+	if fileInfo, _ := os.Stat(gitDir); !fileInfo.IsDir() {
+		scm := gitutil.New(jirix, gitutil.RootDirOpt(topLevel))
+		gitSubmDir, err := scm.SubmoduleGitPath()
+		if err != nil {
+			return nil, err
+		}
+		metadataDir = filepath.Join(gitSubmDir, "jiri")
+	}
 	if _, err := os.Stat(metadataDir); err == nil {
 		project, err := ProjectFromFile(jirix, filepath.Join(metadataDir, jiri.ProjectMetaFile))
 		if err != nil {
 			return nil, err
 		}
+		fmt.Printf("YupingDebugger: checking current project: %+v\n", project)
 		return project, nil
 	}
 	return nil, nil
@@ -1712,12 +1722,21 @@ func IsSubmodule(jirix *jiri.X, path string) (bool, error) {
 // ProjectAtPath returns a Project struct corresponding to the project at the
 // path in the filesystem.
 func ProjectAtPath(jirix *jiri.X, path string) (Project, error) {
-	metadataFile := filepath.Join(path, jiri.ProjectMetaDir, jiri.ProjectMetaFile)
+	gitDir := filepath.Join(path, ".git")
+	scm := gitutil.New(jirix, gitutil.RootDirOpt(path))
+	if fileInfo, _ := os.Stat(gitDir); !fileInfo.IsDir() {
+		gitSubmDir, err := scm.SubmoduleGitPath()
+		if err != nil {
+			return Project{}, err
+		}
+		gitDir = gitSubmDir
+	}
+	metadataFile := filepath.Join(gitDir, "jiri", jiri.ProjectMetaFile)
 	project, err := ProjectFromFile(jirix, metadataFile)
 	if err != nil {
 		return Project{}, err
 	}
-	localConfigFile := filepath.Join(path, jiri.ProjectMetaDir, jiri.ProjectConfigFile)
+	localConfigFile := filepath.Join(gitDir, "jiri", jiri.ProjectConfigFile)
 	if project.LocalConfig, err = LocalConfigFromFile(jirix, localConfigFile); err != nil {
 		return *project, fmt.Errorf("Error while reading config for project %s(%s): %s", project.Name, path, err)
 	}
@@ -2370,7 +2389,7 @@ func updateCache(jirix *jiri.X, remoteProjects Projects) error {
 					errs <- err
 					return
 				}
-			}(cacheDirPath, project.Remote, project.HistoryDepth, project.RemoteBranch, project.Revision, project.GitSubmodules, processingPath[cacheDirPath])
+			}(cacheDirPath, project.Remote, project.HistoryDepth, project.RemoteBranch, project.Revision, (jirix.EnableSubmodules && project.GitSubmodules), processingPath[cacheDirPath])
 		} else {
 			errs <- err
 		}
@@ -2541,7 +2560,9 @@ func updateProjects(jirix *jiri.X, localProjects, remoteProjects Projects, hooks
 			batch = append(batch, batchOps[0])
 			batchOps = batchOps[1:]
 		}
-		runBatch(jirix, gc, batch)
+		if err := runBatch(jirix, gc, batch); err != nil {
+			return err
+		}
 	}
 
 	// Set project to assume-unchanged to index in tree to avoid unpreditable submodule changes.
@@ -2772,14 +2793,17 @@ func getProjectStatus(jirix *jiri.X, ps Projects) ([]ProjectStatus, MultiError) 
 // writeMetadata stores the given project metadata in the directory
 // identified by the given path.
 func writeMetadata(jirix *jiri.X, project Project, dir string) (e error) {
-	// For submodules, .git directory does not exist.
-	if _, err := os.Stat(dir); errors.Is(err, os.ErrNotExist) {
-		err := os.Mkdir(dir, os.ModePerm)
-		if err != nil {
-			return err
-		}
-	}
 	metadataDir := filepath.Join(dir, jiri.ProjectMetaDir)
+	gitDir := filepath.Join(dir, ".git")
+	// For submodules, .git directory does not exist.
+	if fileInfo, _ := os.Stat(gitDir); !fileInfo.IsDir() {
+		scm := gitutil.New(jirix, gitutil.RootDirOpt(project.Path))
+		submGit, err := scm.SubmoduleGitPath()
+		if err != nil {
+			return nil
+		}
+		metadataDir = filepath.Join(submGit, "jiri")
+	}
 	if err := os.MkdirAll(metadataDir, os.FileMode(0755)); err != nil {
 		return fmtError(err)
 	}

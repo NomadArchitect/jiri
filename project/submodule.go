@@ -62,6 +62,7 @@ func createBranchSubmodules(jirix *jiri.X, superproject Project, branch string) 
 		}
 		scm := gitutil.New(jirix, gitutil.RootDirOpt(subm.Path))
 		if err := scm.CreateBranch(branch); err != nil {
+			fmt.Printf("YupingDebugger: current branch we are creating: %+v\n", subm)
 			return err
 		}
 	}
