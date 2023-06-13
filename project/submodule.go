@@ -61,7 +61,7 @@ func createBranchSubmodules(jirix *jiri.X, superproject Project, branch string) 
 			continue
 		}
 		scm := gitutil.New(jirix, gitutil.RootDirOpt(subm.Path))
-		if err := scm.CreateBranch(branch); err != nil {
+		if err := scm.CreateBranchFromRef(branch, "origin/HEAD"); err != nil {
 			return err
 		}
 	}
@@ -171,7 +171,7 @@ func removeSubmoduleBranches(jirix *jiri.X, superproject Project, sentinalBranch
 				}
 			}
 		} else {
-			if err := scm.DeleteBranch(sentinalBranch); err != nil {
+			if err := scm.DeleteBranch(sentinalBranch, gitutil.ForceOpt(true)); err != nil {
 				return err
 			}
 		}
