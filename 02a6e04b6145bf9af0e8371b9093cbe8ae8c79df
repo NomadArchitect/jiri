@@ -22,6 +22,30 @@
       },
       "revId": "02a6e04b6145bf9af0e8371b9093cbe8ae8c79df",
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d3c879a_d58aff98",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-13T06:49:08Z",
+      "side": 1,
+      "message": "This is actually excluding non-root directories from being `jiri` projects because `git rev-parse --absolute-git-dir` returns on any path in the repository, not just the root directory with a `.git` folder.",
+      "parentUuid": "7699a734_f3ae6116",
+      "range": {
+        "startLine": 1691,
+        "startChar": 1,
+        "endLine": 1691,
+        "endChar": 19
+      },
+      "revId": "02a6e04b6145bf9af0e8371b9093cbe8ae8c79df",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     }
   ]
 }
