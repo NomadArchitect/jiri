@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ffd215_44affb1d",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 2415,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-13T15:50:01Z",
+      "side": 1,
+      "message": "This line was not propogating the error up, for any future code archeologists.\n\nAny `git` failure during `jiri update` was not returned to the user and update would report success.",
+      "range": {
+        "startLine": 2415,
+        "startChar": 2,
+        "endLine": 2415,
+        "endChar": 28
+      },
+      "revId": "034484f7038a7e4187ba601cd8ac95b2d5774202",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
