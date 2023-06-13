@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7699a734_f3ae6116",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1691,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-13T06:02:47Z",
+      "side": 1,
+      "message": "When it is submodules, it should still consider as a local project for the sake that it exists local.",
+      "range": {
+        "startLine": 1691,
+        "startChar": 1,
+        "endLine": 1691,
+        "endChar": 19
+      },
+      "revId": "02a6e04b6145bf9af0e8371b9093cbe8ae8c79df",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
