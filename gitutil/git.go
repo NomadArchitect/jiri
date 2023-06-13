@@ -408,6 +408,18 @@ func (g *Git) SubmoduleInit(submPaths []string) error {
 	return g.run(args...)
 }
 
+// SubmoduleGitPath returns submodule .git location.
+func (g *Git) SubmoduleGitPath() (string, error) {
+	out, err := g.runOutput("rev-parse", "--git-dir")
+	if err != nil {
+		return "", err
+	}
+	if len(out) != 1 {
+		g.jirix.Logger.Warningf("Expeting one line log")
+	}
+	return out[0], nil
+}
+
 // Clone clones the given repository to the given local path.  If reference is
 // not empty it uses the given path as a reference/shared repo.
 func (g *Git) Clone(repo, path string, opts ...CloneOpt) error {
