@@ -1740,6 +1740,9 @@ func ProjectAtPath(jirix *jiri.X, path string) (Project, error) {
 // findLocalProjects scans the filesystem for all projects.  Note that project
 // directories can be nested recursively.
 func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError {
+	jirix.TimerPush("find local projects")
+	defer jirix.TimerPop()
+
 	log := make(chan string, jirix.Jobs)
 	var wg sync.WaitGroup
 	wg.Add(2)
@@ -1812,6 +1815,14 @@ func findLocalProjects(jirix *jiri.X, path string, projects Projects) MultiError
 			defer pwg.Done()
 			for _, fileInfo := range fileInfos {
 				if fileInfo.IsDir() && !strings.HasPrefix(fileInfo.Name(), ".") {
+					if path == jirix.Root {
+						for _, p := range jirix.ExcludeDirs{
+							if fileInfo.Name () == p {
+								jirix.Logger.Debugf("Skipped directory %s in %s for local project search", fileInfo.Name(), path)
+								continue
+							}
+						}
+					}
 					pwg.Add(1)
 					workq <- filepath.Join(path, fileInfo.Name())
 				}
