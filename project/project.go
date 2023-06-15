@@ -2088,7 +2088,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				jirix.Logger.Warningf("For project %s(%s), not rebasing your local branches due to it's local-config\n\n", project.Name, relativePath)
 				break
 			}
-
+			// When rebasing with submodules, we need to rebase superproject first before updating submodules, set gitModules as false.
 			if err := scm.CheckoutBranch(branch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
 				msg := fmt.Sprintf("For project %s(%s), not able to rebase your local branch %q onto %q", project.Name, relativePath, branch.Name, tracking.Name)
 				msg += "\nPlease do it manually\n\n"
@@ -2102,6 +2102,18 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 			}
 			if rebaseSuccess {
 				jirix.Logger.Debugf("For project %q, rebased your local branch %q on %q", project.Name, branch.Name, tracking.Name)
+				if project.GitSubmodules && jirix.EnableSubmodules {
+					jirix.Logger.Debugf("Checking out sumodules for superproject %q after rebasing", project.Name)
+					if err := scm.CheckoutBranch(branch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
+						msg := fmt.Sprintf("For project %s(%s), not able to update submodules", project.Name, relativePath)
+						jirix.Logger.Errorf(msg)
+						jirix.IncrementFailures()
+						continue
+					}
+				} else {
+					continue
+				}
+
 			} else {
 				msg := fmt.Sprintf("For project %s(%s), not able to rebase your local branch %q onto %q", project.Name, relativePath, branch.Name, tracking.Name)
 				msg += "\nPlease do it manually\n\n"
@@ -2132,6 +2144,17 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				}
 				if rebaseSuccess {
 					jirix.Logger.Debugf("For project %q, rebased your untracked branch %q on %q", project.Name, branch.Name, headRevision)
+					if project.GitSubmodules && jirix.EnableSubmodules {
+						jirix.Logger.Debugf("Checking out sumodules for superproject %q after rebasing untracked branch", project.Name)
+						if err := scm.CheckoutBranch(branch.Name, (project.GitSubmodules && jirix.EnableSubmodules)); err != nil {
+							msg := fmt.Sprintf("For project %s(%s), not able to update superproject after rebasing untracked branch", project.Name, relativePath)
+							jirix.Logger.Errorf(msg)
+							jirix.IncrementFailures()
+							continue
+						}
+					} else {
+						continue
+					}
 				} else {
 					msg := fmt.Sprintf("For project %s(%s), not able to rebase your untracked branch %q onto JIRI_HEAD.", project.Name, relativePath, branch.Name)
 					msg += "\nPlease do it manually\n\n"
@@ -2145,6 +2168,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 				gitCommand := jirix.Color.Yellow("git -C %q checkout %s && git -C %q rebase %s", relativePath, branch.Name, relativePath, headRevision)
 				msg := fmt.Sprintf("For Project %q, branch %q does not track any remote branch.", project.Name, branch.Name)
 				msg += fmt.Sprintf("\nTo rebase it update with -rebase-untracked flag, or to rebase it manually run")
+				msg += fmt.Sprintf("\nTo update submoduels, please run 'git submodule update' as fuchsia root.")
 				msg += fmt.Sprintf("\n%s\n\n", gitCommand)
 				jirix.Logger.Warningf(msg)
 				continue
