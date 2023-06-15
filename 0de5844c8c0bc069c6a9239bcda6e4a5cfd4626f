@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8487e3f_4575d44f",
+        "filename": "project/manifest.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-15T18:25:12Z",
+      "side": 0,
+      "message": "This `continue` prevented *ANY* hook from being installed for any repository in infra checkouts, this was not the intended behavior.",
+      "range": {
+        "startLine": 1408,
+        "startChar": 5,
+        "endLine": 1408,
+        "endChar": 13
+      },
+      "revId": "0de5844c8c0bc069c6a9239bcda6e4a5cfd4626f",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
