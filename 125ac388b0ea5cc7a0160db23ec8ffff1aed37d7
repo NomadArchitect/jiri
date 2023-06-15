@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d8c6c5_8d7bf29e",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-15T18:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3358cb3_f2ddc0b7",
+      "range": {
+        "startLine": 2095,
+        "startChar": 26,
+        "endLine": 2095,
+        "endChar": 46
+      },
+      "revId": "125ac388b0ea5cc7a0160db23ec8ffff1aed37d7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6e207bc_c79b9325",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-15T18:28:44Z",
       "side": 1,
       "message": "Can you now just invoke the submodule update directly? WHy does it need to call CheckoutBranch?",
+      "range": {
+        "startLine": 2108,
+        "startChar": 15,
+        "endLine": 2108,
+        "endChar": 97
+      },
+      "revId": "125ac388b0ea5cc7a0160db23ec8ffff1aed37d7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb53cd6c_d54aa5fe",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-15T18:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6e207bc_c79b9325",
       "range": {
         "startLine": 2108,
         "startChar": 15,
