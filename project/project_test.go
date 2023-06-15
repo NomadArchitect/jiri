@@ -1094,7 +1094,7 @@ func TestSubDirToNestedProj(t *testing.T) {
 	localProjects, fake, cleanup := setupUniverse(t)
 	defer cleanup()
 
-	folderName := "nested_folder"
+	folderName := "nested_folder_1"
 	nestedFolderPath := filepath.Join(fake.Projects[localProjects[1].Name], folderName)
 	os.MkdirAll(nestedFolderPath, os.FileMode(0755))
 	writeReadme(t, fake.X, nestedFolderPath, "nested folder")
