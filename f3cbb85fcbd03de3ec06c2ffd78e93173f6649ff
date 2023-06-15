@@ -24,6 +24,30 @@
       "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ca87603_4ed4f0fb",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-15T22:36:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a25ef593_252b8d88",
+      "range": {
+        "startLine": 2095,
+        "startChar": 4,
+        "endLine": 2095,
+        "endChar": 75
+      },
+      "revId": "f3cbb85fcbd03de3ec06c2ffd78e93173f6649ff",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe80afcb_0a808f54",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-15T22:28:22Z",
       "side": 1,
       "message": "Missed a --init",
+      "range": {
+        "startLine": 2173,
+        "startChar": 60,
+        "endLine": 2173,
+        "endChar": 80
+      },
+      "revId": "f3cbb85fcbd03de3ec06c2ffd78e93173f6649ff",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e485b9a8_23650409",
+        "filename": "project/project.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-15T22:36:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe80afcb_0a808f54",
       "range": {
         "startLine": 2173,
         "startChar": 60,
