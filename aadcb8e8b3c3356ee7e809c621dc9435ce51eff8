@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ae2ce6_ce5d808a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-15T22:23:59Z",
+      "side": 1,
+      "message": "[submodules] Update submodules after rebase\n\nThis allows `jiri update -rebase-tracked` to work correctly when a user has a local branch on a jiri project which is acting as a superproject (e.g. fuchsia.git).",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "aadcb8e8b3c3356ee7e809c621dc9435ce51eff8",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
