@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3358cb3_f2ddc0b7",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-15T18:28:44Z",
+      "side": 1,
+      "message": "This likely needs to have `--init` because new submodules may have been introduced in the rebase diff.",
+      "range": {
+        "startLine": 2095,
+        "startChar": 26,
+        "endLine": 2095,
+        "endChar": 46
+      },
+      "revId": "125ac388b0ea5cc7a0160db23ec8ffff1aed37d7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e207bc_c79b9325",
+        "filename": "project/project.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-15T18:28:44Z",
+      "side": 1,
+      "message": "Can you now just invoke the submodule update directly? WHy does it need to call CheckoutBranch?",
+      "range": {
+        "startLine": 2108,
+        "startChar": 15,
+        "endLine": 2108,
+        "endChar": 97
+      },
+      "revId": "125ac388b0ea5cc7a0160db23ec8ffff1aed37d7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
