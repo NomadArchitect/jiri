@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bfc5aaa_11961325",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-17T18:47:35Z",
+      "side": 0,
+      "message": "These kinds swapped.",
+      "range": {
+        "startLine": 606,
+        "startChar": 0,
+        "endLine": 609,
+        "endChar": 16
+      },
+      "revId": "2f1236af7530f9f46fb7118d158922dd426cfd22",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
