@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67204810_2538b1bd",
+        "filename": "project/operations.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 54734
+      },
+      "writtenOn": "2023-06-17T20:00:09Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 687,
+        "startChar": 0,
+        "endLine": 688,
+        "endChar": 55
+      },
+      "revId": "99ff74491b5a6317c72333658e4cf158662fad84",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
