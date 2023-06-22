@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21d936c_38f88c33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-22T17:03:13Z",
+      "side": 1,
+      "message": "Can you do `Fixed: 129306`?",
+      "revId": "4e2ef97866035ee937e79e06a9b449c84a71d9d5",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
