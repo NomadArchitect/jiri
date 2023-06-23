@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b39843c_51c2a119",
+        "filename": "cmd/jiri/snapshot_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 86,
+        "startChar": 119,
+        "endLine": 86,
+        "endChar": 123
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0810a1a_ab4afb57",
+        "filename": "jiritest/fake.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 205,
+        "startChar": 117,
+        "endLine": 205,
+        "endChar": 121
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72483104_601a759e",
+        "filename": "project/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2030,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be the value of `rebaseSubmodules`?",
+      "range": {
+        "startLine": 2030,
+        "startChar": 109,
+        "endLine": 2030,
+        "endChar": 113
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1ccb5c9_32c0a025",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 375,
+        "startChar": 134,
+        "endLine": 375,
+        "endChar": 138
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34fd03c_a913ab72",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 415,
+        "startChar": 134,
+        "endLine": 415,
+        "endChar": 138
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0c6831f_5b4675cc",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1607,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 1607,
+        "startChar": 119,
+        "endLine": 1607,
+        "endChar": 123
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0a8a9a_a4b091f8",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 1626,
+        "startChar": 119,
+        "endLine": 1626,
+        "endChar": 123
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9260b042_0a4a946c",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1680,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 1680,
+        "startChar": 137,
+        "endLine": 1680,
+        "endChar": 141
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d78bf4_6e0e16ed",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 1928,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 1928,
+        "startChar": 124,
+        "endLine": 1928,
+        "endChar": 128
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9362c2ee_42f1d287",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2031,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 2031,
+        "startChar": 116,
+        "endLine": 2031,
+        "endChar": 120
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c07df7_6197c18e",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2082,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 2082,
+        "startChar": 117,
+        "endLine": 2082,
+        "endChar": 121
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28f6eb44_6886a22b",
+        "filename": "project/project_test.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-23T00:33:09Z",
+      "side": 1,
+      "message": "Should this be false?",
+      "range": {
+        "startLine": 2152,
+        "startChar": 117,
+        "endLine": 2152,
+        "endChar": 121
+      },
+      "revId": "965dfda657915f3d522aca8cce39c8bd3b57452b",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
