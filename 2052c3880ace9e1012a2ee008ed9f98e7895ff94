@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4461464e_c5d6af65",
+        "filename": "project/project.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 31066
+      },
+      "writtenOn": "2023-06-29T22:24:15Z",
+      "side": 1,
+      "message": "gitIndexExcludeLocalProject?",
+      "range": {
+        "startLine": 1632,
+        "startChar": 5,
+        "endLine": 1632,
+        "endChar": 25
+      },
+      "revId": "2052c3880ace9e1012a2ee008ed9f98e7895ff94",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
