@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d526256f_2f202155",
+        "filename": "cmd/jiri/project.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 63924
+      },
+      "writtenOn": "2023-11-10T22:03:59Z",
+      "side": 1,
+      "message": "This can be refactored out of if/else blocks.",
+      "range": {
+        "startLine": 149,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 3
+      },
+      "revId": "7ad503677e47c58aee4f9fe74c5148977fa5e057",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
