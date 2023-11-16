@@ -145,7 +145,8 @@ func runProjectInfo(jirix *jiri.X, args []string) error {
 	var keys project.ProjectKeys
 	var projects project.Projects
 	if useLocalManifest {
-		projects, _, _, err = project.LoadUpdatedManifest(jirix, projects, true)
+		// When we use local manifest, we don't want projects to be fetch or updated.
+		projects, _, _, err = project.LoadUpdatedManifest(jirix, projects, true, true)
 	} else {
 		projects, err = project.LocalProjects(jirix, project.FastScan)
 	}

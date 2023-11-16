@@ -1475,7 +1475,7 @@ func UpdateUniverse(jirix *jiri.X, gc, localManifest, rebaseTracked, rebaseUntra
 		}
 
 		// Determine the set of remote projects and match them up with the locals.
-		remoteProjects, hooks, pkgs, err := LoadUpdatedManifest(jirix, localProjects, localManifest)
+		remoteProjects, hooks, pkgs, err := LoadUpdatedManifest(jirix, localProjects, localManifest, false)
 		MatchLocalWithRemote(localProjects, remoteProjects)
 
 		if err != nil {

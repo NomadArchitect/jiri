@@ -788,7 +788,7 @@ func (ld *loader) enforceLocks(jirix *jiri.X) error {
 // LoadManifestFile in parallel.
 func LoadManifestFile(jirix *jiri.X, file string, localProjects Projects, localManifest bool) (Projects, Hooks, Packages, error) {
 	ld := newManifestLoader(localProjects, false, file)
-	if err := ld.Load(jirix, "", "", file, "", "", "", localManifest); err != nil {
+	if err := ld.Load(jirix, "", "", file, "", "", "", localManifest, false); err != nil {
 		return nil, nil, nil, err
 	}
 	jirix.AddCleanupFunc(ld.cleanup)
@@ -806,11 +806,11 @@ func LoadManifestFile(jirix *jiri.X, file string, localProjects Projects, localM
 
 // LoadUpdatedManifest loads an updated manifest starting with the .jiri_manifest file for localProjects. It will use
 // local manifest files instead of manifest files in remote repositories if localManifest is set to true.
-func LoadUpdatedManifest(jirix *jiri.X, localProjects Projects, localManifest bool) (Projects, Hooks, Packages, error) {
+func LoadUpdatedManifest(jirix *jiri.X, localProjects Projects, localManifest, skipFetch bool) (Projects, Hooks, Packages, error) {
 	jirix.TimerPush("load updated manifest")
 	defer jirix.TimerPop()
 	ld := newManifestLoader(localProjects, true, jirix.JiriManifestFile())
-	if err := ld.Load(jirix, "", "", jirix.JiriManifestFile(), "", "", "", localManifest); err != nil {
+	if err := ld.Load(jirix, "", "", jirix.JiriManifestFile(), "", "", "", localManifest, skipFetch); err != nil {
 		return nil, nil, nil, err
 	}
 	jirix.AddCleanupFunc(ld.cleanup)

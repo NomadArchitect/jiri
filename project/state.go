@@ -34,7 +34,9 @@ func setProjectState(jirix *jiri.X, state *ProjectState, checkDirty bool, ch cha
 	var err error
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(state.Project.Path))
 	branches, err := scm.GetAllBranchesInfo()
-	if err != nil {
+	// When submodules are enabled, we want to be able to check manifest without updating projects state.
+	// This is a temporary fix.
+	if err != nil && jirix.EnableSubmodules {
 		ch <- err
 		return
 	}

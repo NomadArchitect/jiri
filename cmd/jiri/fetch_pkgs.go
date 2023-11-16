@@ -52,7 +52,7 @@ func runFetchPkgs(jirix *jiri.X, args []string) (err error) {
 	// Get pkgs.
 	var pkgs project.Packages
 	if !fetchPkgsFlags.localManifest {
-		_, _, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, fetchPkgsFlags.localManifest)
+		_, _, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, fetchPkgsFlags.localManifest, false)
 	} else {
 		_, _, pkgs, err = project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, fetchPkgsFlags.localManifest)
 	}

@@ -50,7 +50,7 @@ func runHooks(jirix *jiri.X, args []string) (err error) {
 	var hooks project.Hooks
 	var pkgs project.Packages
 	if !runHooksFlags.localManifest {
-		_, hooks, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, runHooksFlags.localManifest)
+		_, hooks, pkgs, err = project.LoadUpdatedManifest(jirix, localProjects, runHooksFlags.localManifest, false)
 	} else {
 		_, hooks, pkgs, err = project.LoadManifestFile(jirix, jirix.JiriManifestFile(), localProjects, runHooksFlags.localManifest)
 	}
