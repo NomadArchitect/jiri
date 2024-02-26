@@ -28,15 +28,19 @@ git update-index --add --cacheinfo 160000 87f863bcbc7cd2177bac17c61e31093de6eeed
 	goldenModule := []byte(`[submodule "manifest"]
 	path = manifest
 	url = /tmp/115893653/manifest
+  branch = .
 [submodule "path-0"]
 	path = path-0
 	url = /tmp/115893653/project-0
+  branch = .
 [submodule "path-1"]
 	path = path-1
 	url = /tmp/115893653/project-1
+  branch = .
 [submodule "path-2"]
 	path = path-2
-	url = /tmp/115893653/project-2`)
+	url = /tmp/115893653/project-2
+  branch = .`)
 
 	goldenAttributes := []byte(`manifest manifest public
 path-0 manifest public
@@ -147,6 +151,9 @@ func verifyModules(golden, tests []byte) error {
 		testLine := testLines[i]
 		if strings.HasPrefix(testLine, "branch = ") {
 			revision := testLine[len("branch = "):]
+      if revision == "." {
+        continue
+      }
 			// revision should be 20 bytes in hex format
 			if len(revision) != 40 {
 				return fmt.Errorf("illegal revision hash in line %q", testLine)
