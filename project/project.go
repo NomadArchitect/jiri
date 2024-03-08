@@ -113,6 +113,9 @@ type Project struct {
 
 	// ManifestPath stores the absolute path of the manifest.
 	ManifestPath string `xml:"-"`
+
+	// RemoteOverride is the remote to override for this project.
+	RemoteOverride string `xml:"remote_override,attr,omitempty"`
 }
 
 // ProjectsByPath implements the Sort interface. It sorts Projects by
@@ -307,6 +310,9 @@ func (p *Project) update(other *Project) {
 	}
 	if other.Flag != "" {
 		p.Flag = other.Flag
+	}
+	if other.RemoteOverride != "" {
+		p.Remote = other.RemoteOverride
 	}
 }
 
@@ -604,9 +610,9 @@ func overrideProject(project Project, projectOverrides map[string]Project, impor
 // in manifest. It will return the original remote import if no suitable match is found
 func overrideImport(remote Import, projectOverrides map[string]Project, importOverrides map[string]Import) (Import, error) {
 	key := remote.ProjectKey().String()
-	if _, ok := projectOverrides[key]; ok {
+	/*if _, ok := projectOverrides[key]; ok {
 		return remote, fmt.Errorf("project override \"%s:%s\" cannot be used to override an import", remote.Name, remote.Remote)
-	}
+	}*/
 	if importOverride, ok := importOverrides[key]; ok {
 		remote.update(&importOverride)
 	}
