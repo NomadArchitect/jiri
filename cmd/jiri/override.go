@@ -25,6 +25,7 @@ var overrideFlags struct {
 	delete     bool
 	list       bool
 	JSONOutput string
+	remoteOverride string
 }
 
 func init() {
@@ -37,6 +38,7 @@ func init() {
 	cmdOverride.Flags.BoolVar(&overrideFlags.delete, "delete", false, `Delete existing override. Override is matched using <name> and <remote>, <remote> is optional.`)
 	cmdOverride.Flags.BoolVar(&overrideFlags.list, "list", false, `List all the overrides from .jiri_manifest. This flag doesn't accept any arguments. -json-out flag can be used to specify json output file.`)
 	cmdOverride.Flags.StringVar(&overrideFlags.JSONOutput, "json-output", "", `JSON output file from -list flag.`)
+	cmdOverride.Flags.StringVar(&overrideFlags.remoteOverride, "remote-override", "", `Remote to override for named project.`)
 }
 
 var cmdOverride = &cmdline.Command{
@@ -212,6 +214,7 @@ func runOverride(jirix *jiri.X, args []string) error {
 					Path:       overrideFlags.path,
 					Revision:   overrideFlags.revision,
 					GerritHost: overrideFlags.gerritHost,
+					RemoteOverride: overrideFlags.remoteOverride,
 					// We deliberately omit RemoteBranch, HistoryDepth and
 					// GitHooks. Those fields are effectively deprecated and
 					// will likely be removed in the future.
