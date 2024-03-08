@@ -113,6 +113,8 @@ type Project struct {
 
 	// ManifestPath stores the absolute path of the manifest.
 	ManifestPath string `xml:"-"`
+
+	RemoteOverride string `xml:"remote_override,attr,omitempty"`
 }
 
 // ProjectsByPath implements the Sort interface. It sorts Projects by
@@ -307,6 +309,9 @@ func (p *Project) update(other *Project) {
 	}
 	if other.Flag != "" {
 		p.Flag = other.Flag
+	}
+	if other.RemoteOverride != "" {
+		p.Remote = other.RemoteOverride
 	}
 }
 
