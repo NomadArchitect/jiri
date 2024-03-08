@@ -45,11 +45,12 @@ const (
 )
 
 type projectChanges struct {
-	Name   string `json:"name"`
-	Remote string `json:"remote"`
-	Path   string `json:"path"`
-	OldRev string `json:"old_revision"`
-	NewRev string `json:"new_revision"`
+	Name      string `json:"name"`
+	Remote    string `json:"remote"`
+	NewRemote string `json:"new_remote,omitempty"`
+	Path      string `json:"path"`
+	OldRev    string `json:"old_revision"`
+	NewRev    string `json:"new_revision"`
 }
 
 type importChanges struct {
@@ -100,7 +101,7 @@ var cmdEdit = &cmdline.Command{
 
 func init() {
 	flags := &cmdEdit.Flags
-	flags.Var(&editFlags.projects, "project", "List of projects to update. It is of form <project-name>=<revision> where revision is optional. It can be specified multiple times.")
+	flags.Var(&editFlags.projects, "project", "List of projects to update. It is of form <project-name>=<revision>/<remote> where revision and remote are optional. If remote is provided, revision must be provided as well. It can be specified multiple times.")
 	flags.Var(&editFlags.imports, "import", "List of imports to update. It is of form <import-name>=<revision> where revision is optional. It can be specified multiple times.")
 	flags.Var(&editFlags.packages, "package", "List of packages to update. It is of form <package-name>=<version>. It can be specified multiple times.")
 	flags.StringVar(&editFlags.jsonOutput, "json-output", "", "File to print changes to, in json format.")
@@ -207,6 +208,19 @@ func writeManifest(jirix *jiri.X, manifestPath, manifestContent string, projects
 	return nil
 }
 
+func getRev(editData string) string {
+	parts := strings.SplitN(editData, "/", 2)
+	return parts[0]
+}
+
+func getRemote(editData string) string {
+	parts := strings.SplitN(editData, "/", 2)
+	if len(parts) == 2 {
+		return parts[1]
+	}
+	return ""
+}
+
 func updateLocks(jirix *jiri.X, tempDir, lockfile string, backup, projects map[string]string) error {
 	jirix.Logger.Debugf("try updating lockfile %q", lockfile)
 	bin, err := os.ReadFile(lockfile)
@@ -257,6 +271,10 @@ func updateRevision(manifestContent, tag, currentRevision, newRevision, name str
 		return strings.Replace(manifestContent, currentRevision, newRevision, 1), nil
 	}
 	return updateRevisionOrVersionAttr(manifestContent, tag, newRevision, name, "revision")
+}
+
+func updateRemote(manifestContent, tag, newRemote, name string) (string, error) {
+	return updateRevisionOrVersionAttr(manifestContent, tag, newRemote, name, "remote")
 }
 
 func updateVersion(manifestContent, tag string, pc packageChanges) (string, error) {
@@ -337,10 +355,12 @@ func updateManifest(jirix *jiri.X, manifestPath string, projects, imports, packa
 	scm := gitutil.New(jirix, gitutil.RootDirOpt(filepath.Dir(manifestPath)))
 	for _, p := range m.Projects {
 		newRevision := ""
+		newRemote := ""
 		if rev, ok := projects[p.Name]; !ok {
 			continue
 		} else {
-			newRevision = rev
+			newRevision = getRev(rev)
+			newRemote = getRemote(rev)
 		}
 		if newRevision == "" {
 			branch := "master"
@@ -361,14 +381,21 @@ func updateManifest(jirix *jiri.X, manifestPath string, projects, imports, packa
 			if err != nil {
 				return err
 			}
+			if newRemote != "" {
+				manifestContent, err = updateRemote(manifestContent, "project", newRemote, p.Name)
+				if err != nil {
+					return err
+				}
+			}
 		}
 		editedProjects[p.Key().String()] = newRevision
 		ec.Projects = append(ec.Projects, projectChanges{
-			Name:   p.Name,
-			Remote: p.Remote,
-			Path:   p.Path,
-			OldRev: p.Revision,
-			NewRev: newRevision,
+			Name:      p.Name,
+			Remote:    p.Remote,
+			NewRemote: newRemote,
+			Path:      p.Path,
+			OldRev:    p.Revision,
+			NewRev:    newRevision,
 		})
 	}
 
