@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227ca192_38382af6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 37097
+      },
+      "writtenOn": "2024-04-30T21:13:09Z",
+      "side": 1,
+      "message": "Can you update the commit message and add more context?\n\n```\n[jiri] Don\u0027t consider submodules to be deleted projects\n\n`jiri status` previously considered submodules that weren\u0027t registered as Jiri \nprojects to always be deleted projects.\n```",
+      "revId": "634d0a8cd0598a8c6739d7191802e3e4f0f070a7",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
