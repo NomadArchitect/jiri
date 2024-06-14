@@ -118,6 +118,10 @@ func writeGitModules(jirix *jiri.X, projects project.Projects, gitmodulesPath, g
 	}
 
 	for _, v := range projEntries {
+		// Skip source-of-truth submodules that are not managed by Jiri.
+		if v.Name == "" {
+			continue
+		}
 		if reRootRepoName != "" && reRootRepoName == v.Path {
 			return fmt.Errorf("path collision for root repo and project %+v", v)
 		}
@@ -167,8 +171,8 @@ func makePathRel(basepath, targpath string) (string, error) {
 }
 
 func moduleDecl(p project.Project) string {
-	tmpl := "[submodule \"%s\"]\n\tpath = %s\n\turl = %s"
-	return fmt.Sprintf(tmpl, p.Path, p.Path, p.Remote)
+	tmpl := "[submodule \"%s\"]\n\tname = %s\n\tpath = %s\n\turl = %s"
+	return fmt.Sprintf(tmpl, p.Path, p.Name, p.Path, p.Remote)
 }
 
 func commandDecl(p project.Project) string {
