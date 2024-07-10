@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c10faeb_80fb5207",
+        "filename": "cmd/jiri/init.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 37097
+      },
+      "writtenOn": "2024-07-10T20:15:52Z",
+      "side": 1,
+      "message": "This should be `config.ForceDisableSubmodulesInfraOnly \u003d \"true\"`",
+      "range": {
+        "startLine": 193,
+        "startChar": 11,
+        "endLine": 193,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "38c94bbd_21bd9bef",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "cmd/jiri/init.go",
+              "range": {
+                "startLine": 193,
+                "startChar": 0,
+                "endLine": 194,
+                "endChar": 0
+              },
+              "replacement": "\t\t\t\tconfig.ForceDisableSubmodulesInfraOnly \u003d \"true\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d7ab5ab60ba0612ec6a8bd966f57dc28dd670519",
+      "serverId": "ccdefb6c-23ea-33ff-848c-339fc6ca2269"
+    }
+  ]
+}
