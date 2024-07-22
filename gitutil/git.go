@@ -1588,6 +1588,9 @@ func (g *Git) runGit(stdout, stderr io.Writer, args ...string) error {
 	if g.jirix.OffloadPackfiles {
 		config["fetch.uriprotocols"] = "https"
 	}
+	// Allow add local directories as submodules, for testing purposes.
+	config["protocol.file.allow"] = "always"
+
 	var outbuf bytes.Buffer
 	var errbuf bytes.Buffer
 	command := exec.Command("git", args...)
