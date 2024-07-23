@@ -2088,6 +2088,13 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 			msg := fmt.Sprintf("For project %s(%s), not able to fast forward your local branch %q to %q\n\n", project.Name, relativePath, state.CurrentBranch.Name, tracking.Name)
 			jirix.Logger.Errorf(msg)
 			jirix.IncrementFailures()
+		} else if project.GitSubmodules && jirix.EnableSubmodules {
+			jirix.Logger.Debugf("Checking out submodules for superproject %q after rebasing", project.Name)
+			if multiErr := scm.SubmoduleUpdateAll(rebaseSubmodules); len(multiErr) != 0 {
+				msg := fmt.Sprintf("For superproject %s(%s), unable to update submodules", project.Name, relativePath)
+				jirix.Logger.Errorf(msg)
+				jirix.IncrementFailures()
+			}
 		}
 		return nil
 	}
