@@ -100,7 +100,7 @@ func TestUpdateWithSubmodulesOnBranch(t *testing.T) {
 		"manifest_dir/submodule/foo.txt",
 		// TODO(https://fxbug.dev/290956668): This file should also exist after
 		// an update.
-		// "manifest_dir/submodule/new_file.txt",
+		"manifest_dir/submodule/new_file.txt",
 	}
 
 	gotFiles := listDirRecursive(t, root)
