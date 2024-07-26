@@ -5,6 +5,8 @@
 package subcommands
 
 import (
+	"github.com/google/subcommands"
+	"go.fuchsia.dev/jiri"
 	"go.fuchsia.dev/jiri/cmdline"
 )
 
@@ -50,6 +52,27 @@ Command jiri is a multi-purpose tool for multi-repo development.
 			topicFileSystem,
 			topicManifest,
 		},
+	}
+}
+
+type jiriSubcommand interface {
+	subcommands.Command
+
+	run(jirix *jiri.X, args []string) error
+}
+
+func commandFromSubcommand(s jiriSubcommand) *cmdline.Command {
+	// Command represents a single command in a command-line program.  A program
+	// with subcommands is represented as a root Command with children representing
+	// each subcommand.  The command graph must be a tree; each command may either
+	// have no parent (the root) or exactly one parent, and cycles are not allowed.
+	return &cmdline.Command{
+		Name:  s.Name(),
+		Short: s.Synopsis(),
+		Long:  s.Usage(),
+
+		// TODO
+		Runner: jiri.RunnerFunc(s.run),
 	}
 }
 
