@@ -140,6 +140,11 @@ func New(jirix *jiri.X, opts ...gitOpt) *Git {
 	}
 }
 
+// RootDir returns the root directory of the git repository.
+func (g *Git) RootDir() string {
+	return g.rootDir
+}
+
 // Add adds a file to staging.
 func (g *Git) Add(file string) error {
 	return g.run("add", file)
