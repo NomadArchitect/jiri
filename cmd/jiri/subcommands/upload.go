@@ -18,6 +18,7 @@ import (
 )
 
 var uploadFlags struct {
+	dir          string
 	ccs          string
 	presubmit    string
 	reviewers    string
@@ -53,6 +54,7 @@ default. This cannot be used with -multipart flag.
 }
 
 func init() {
+	cmdUpload.Flags.StringVar(&uploadFlags.dir, "dir", "", `Repo directory to upload. Defaults to cwd.`)
 	cmdUpload.Flags.StringVar(&uploadFlags.ccs, "cc", "", `Comma-separated list of emails or LDAPs to cc.`)
 	cmdUpload.Flags.StringVar(&uploadFlags.presubmit, "presubmit", string(gerrit.PresubmitTestTypeAll),
 		fmt.Sprintf("The type of presubmit tests to run. Valid values: %s.", strings.Join(gerrit.PresubmitTestTypes(), ",")))
@@ -80,9 +82,14 @@ func runUpload(jirix *jiri.X, args []string) error {
 	if uploadFlags.multipart && refToUpload != "HEAD" {
 		return jirix.UsageErrorf("can only use HEAD as <ref> when using -multipart flag.")
 	}
-	dir, err := os.Getwd()
-	if err != nil {
-		return fmt.Errorf("os.Getwd() failed: %s", err)
+	dir := uploadFlags.dir
+	var err error
+	if dir == "" {
+		var err error
+		dir, err = os.Getwd()
+		if err != nil {
+			return fmt.Errorf("os.Getwd() failed: %s", err)
+		}
 	}
 	var p *project.Project
 	// Walk up the path until we find a project at that path, or hit the jirix.Root parent.
@@ -115,9 +122,8 @@ func runUpload(jirix *jiri.X, args []string) error {
 			return fmt.Errorf("directory %q is not contained in a project", dir)
 		} else if uploadFlags.branch == "" {
 			return fmt.Errorf("Please run with -branch flag")
-		} else {
-			currentBranch = uploadFlags.branch
 		}
+		currentBranch = uploadFlags.branch
 	} else {
 		scm := gitutil.New(jirix, gitutil.RootDirOpt(p.Path))
 		if !scm.IsOnBranch() {

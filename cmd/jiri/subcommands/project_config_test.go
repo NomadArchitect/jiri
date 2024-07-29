@@ -5,11 +5,11 @@
 package subcommands
 
 import (
-	"os"
 	"strconv"
 	"testing"
 
 	"go.fuchsia.dev/jiri/jiritest"
+	"go.fuchsia.dev/jiri/jiritest/xtest"
 	"go.fuchsia.dev/jiri/project"
 )
 
@@ -69,18 +69,7 @@ func TestConfig(t *testing.T) {
 	if err := fake.UpdateUniverse(false); err != nil {
 		t.Fatal(err)
 	}
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 
 	setDefaultConfigFlags()
 	projectConfigFlags.ignore = "true"

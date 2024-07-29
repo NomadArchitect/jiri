@@ -12,6 +12,7 @@ import (
 
 	"go.fuchsia.dev/jiri/gitutil"
 	"go.fuchsia.dev/jiri/jiritest"
+	"go.fuchsia.dev/jiri/jiritest/xtest"
 	"go.fuchsia.dev/jiri/project"
 )
 
@@ -73,12 +74,7 @@ func expectGrep(t *testing.T, fake *jiritest.FakeJiriRoot, args []string, expect
 	}
 }
 func setup(t *testing.T, fake *jiritest.FakeJiriRoot) {
-	cwd, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer os.Chdir(cwd)
-	os.Chdir(fake.X.Root)
+	xtest.Chdir(t, fake.X.Root)
 
 	projects := makeProjects(t, fake)
 
