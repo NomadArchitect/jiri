@@ -7,6 +7,7 @@ package subcommands
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -16,7 +17,6 @@ import (
 
 type overrideTestCase struct {
 	Args           []string
-	Filename       string
 	OutputFileName string
 	Exist, Want    string
 	Stdout, Stderr string
@@ -93,7 +93,7 @@ func TestOverride(t *testing.T) {
 		{
 			SetFlags: func() {
 				overrideFlags.list = true
-				overrideFlags.JSONOutput = "file"
+				overrideFlags.JSONOutput = filepath.Join(t.TempDir(), "file")
 			},
 			Exist: `<manifest>
   <imports>
@@ -298,24 +298,7 @@ func testOverride(t *testing.T, test overrideTestCase) error {
 		t.Fatal(err)
 	}
 
-	// Return to the current working directory when done.
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	// cd into a root directory in which to do the actual import.
-	jiriRoot := jirix.Root
-	if err := os.Chdir(jiriRoot); err != nil {
-		return err
-	}
-
-	// Allow optional non-default filenames.
-	filename := test.Filename
-	if filename == "" {
-		filename = ".jiri_manifest"
-	}
+	filename := filepath.Join(jirix.Root, ".jiri_manifest")
 
 	// Set up an existing file if it was specified.
 	if test.Exist != "" {
@@ -325,6 +308,7 @@ func testOverride(t *testing.T, test overrideTestCase) error {
 	}
 
 	run := func() error {
+		var err error
 		// Run override and check the results.
 		overrideCmd := func() {
 			setDefaultOverrideFlags()
