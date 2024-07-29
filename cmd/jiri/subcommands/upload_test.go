@@ -15,6 +15,7 @@ import (
 	"go.fuchsia.dev/jiri/gerrit"
 	"go.fuchsia.dev/jiri/gitutil"
 	"go.fuchsia.dev/jiri/jiritest"
+	"go.fuchsia.dev/jiri/jiritest/xtest"
 	"go.fuchsia.dev/jiri/project"
 )
 
@@ -65,18 +66,7 @@ func setupUploadTest(t *testing.T) (*jiritest.FakeJiriRoot, []project.Project) {
 }
 
 func assertUploadPushedFilesToRef(t *testing.T, jirix *jiri.X, gerritPath, pushedRef string, files []string) {
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(gerritPath); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, gerritPath)
 	if err := gitutil.New(jirix).CheckoutBranch(pushedRef, false, false); err != nil {
 		t.Fatal(err)
 	}
@@ -84,18 +74,7 @@ func assertUploadPushedFilesToRef(t *testing.T, jirix *jiri.X, gerritPath, pushe
 }
 
 func assertUploadFilesNotPushedToRef(t *testing.T, jirix *jiri.X, gerritPath, pushedRef string, files []string) {
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(gerritPath); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, gerritPath)
 	if err := gitutil.New(jirix).CheckoutBranch(pushedRef, false, false); err != nil {
 		t.Fatal(err)
 	}
@@ -120,18 +99,7 @@ func TestUpload(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	branch := "my-branch"
 	git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 	if err := git.CreateBranchWithUpstream(branch, "origin/main"); err != nil {
@@ -166,18 +134,7 @@ func TestUploadRef(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	branch := "my-branch"
 	git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 	if err := git.CreateBranchWithUpstream(branch, "origin/main"); err != nil {
@@ -203,18 +160,7 @@ func TestUploadFromDetachedHead(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 
 	uploadFlags.setTopic = true
 	expectedErr := "Current project is not on any branch. Either provide a topic or set flag \"-set-topic\" to false."
@@ -248,20 +194,9 @@ func TestUploadMultipart(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
 	branch := "my-branch"
 	for i := 0; i < 2; i++ {
-		if err := os.Chdir(localProjects[i].Path); err != nil {
-			t.Fatal(err)
-		}
+		xtest.Chdir(t, localProjects[i].Path)
 		git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 		if err := git.CreateBranchWithUpstream(branch, "origin/main"); err != nil {
 			t.Fatal(err)
@@ -301,20 +236,9 @@ func TestUploadMultipartWithBranchFlagSimple(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
 	branch := "my-branch"
 	for i := 0; i < 2; i++ {
-		if err := os.Chdir(localProjects[i].Path); err != nil {
-			t.Fatal(err)
-		}
+		xtest.Chdir(t, localProjects[i].Path)
 		git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 		if err := git.CreateBranchWithUpstream(branch, "origin/main"); err != nil {
 			t.Fatalf("%v", err)
@@ -327,9 +251,7 @@ func TestUploadMultipartWithBranchFlagSimple(t *testing.T) {
 		files = []string{"file-2" + strconv.Itoa(i)}
 		commitFiles(t, fake.X, files)
 	}
-	if err := os.Chdir(fake.X.Root); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, fake.X.Root)
 
 	gerritPath := fake.Projects[localProjects[0].Name]
 	uploadFlags.multipart = true
@@ -354,18 +276,7 @@ func TestUploadRebase(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	branch := "my-branch"
 	git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 	if err := git.Config("user.email", "john.doe@example.com"); err != nil {
@@ -383,15 +294,11 @@ func TestUploadRebase(t *testing.T) {
 	localFiles := []string{"file1"}
 	commitFiles(t, fake.X, localFiles)
 
-	if err := os.Chdir(fake.Projects[localProjects[1].Name]); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, fake.Projects[localProjects[1].Name])
 	remoteFiles := []string{"file2"}
 	commitFiles(t, fake.X, remoteFiles)
 
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 
 	gerritPath := fake.Projects[localProjects[1].Name]
 	uploadFlags.rebase = true
@@ -408,18 +315,7 @@ func TestUploadMultipleCommits(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	branch := "my-branch"
 	git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 	if err := git.CreateBranchWithUpstream(branch, "origin/main"); err != nil {
@@ -446,18 +342,7 @@ func TestUploadUntrackedBranch(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Fatal(err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Fatal(err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	branch := "my-branch"
 	git := gitutil.New(fake.X, gitutil.UserNameOpt("John Doe"), gitutil.UserEmailOpt("john.doe@example.com"))
 	if err := git.CreateAndCheckoutBranch(branch); err != nil {
@@ -487,18 +372,7 @@ func TestGitOptions(t *testing.T) {
 	defer resetFlags()
 	fake, localProjects := setupUploadTest(t)
 
-	currentDir, err := os.Getwd()
-	if err != nil {
-		t.Errorf("failed to retrieve current directory due to error: %v", err)
-	}
-	defer func() {
-		if err := os.Chdir(currentDir); err != nil {
-			t.Errorf("failed to change current directory due to error: %v", err)
-		}
-	}()
-	if err := os.Chdir(localProjects[1].Path); err != nil {
-		t.Errorf("failed to change current working directory due to error: %v", err)
-	}
+	xtest.Chdir(t, localProjects[1].Path)
 	// Create "refs/for/main" on remote
 	files := []string{"file1"}
 	commitFiles(t, fake.X, files)
