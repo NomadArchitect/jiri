@@ -16,19 +16,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/google/go-cmp/cmp"
 	"go.fuchsia.dev/jiri/gitutil"
 	"go.fuchsia.dev/jiri/jiritest"
 	"go.fuchsia.dev/jiri/project"
 )
-
-func setDefaultBranchFlags() {
-	branchFlags.deleteFlag = false
-	branchFlags.deleteMergedClsFlag = false
-	branchFlags.deleteMergedFlag = false
-	branchFlags.forceDeleteFlag = false
-	branchFlags.listFlag = false
-	branchFlags.overrideProjectConfigFlag = false
-}
 
 func createBranchCommits(t *testing.T, fake *jiritest.FakeJiriRoot, localProjects []project.Project) {
 	for i, localProject := range localProjects {
@@ -59,10 +51,9 @@ func createBranchProjects(t *testing.T, fake *jiritest.FakeJiriRoot, numProjects
 }
 
 func TestBranch(t *testing.T) {
-	setDefaultBranchFlags()
+	t.Parallel()
 
 	fake := jiritest.NewFakeJiriRoot(t)
-	cDir := fake.X.Root
 
 	// Add projects
 	numProjects := 8
@@ -86,7 +77,7 @@ func TestBranch(t *testing.T) {
 	relativePath := make([]string, numProjects)
 	for i, p := range localProjects {
 		var err error
-		relativePath[i], err = filepath.Rel(cDir, p.Path)
+		relativePath[i], err = filepath.Rel(fake.X.Root, p.Path)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -95,72 +86,80 @@ func TestBranch(t *testing.T) {
 	i := 0
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CheckoutBranch("main", localProjects[i].GitSubmodules, false)
-	branchWant = fmt.Sprintf("%s%s(%s)\n", branchWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): %s, *main\n\n", defaultWant, testBranch)
+	branchWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): %s, *main\n\n", testBranch)
 
 	i = 2
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CreateBranch(testBranch2)
-	branchWant = fmt.Sprintf("%s%s(%s)\n", branchWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): %s, %s\n\n", defaultWant, testBranch, testBranch2)
+	branchWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): %s, %s\n\n", testBranch, testBranch2)
 
 	i = 3
 	gitLocals[i].CreateBranch(testBranch)
-	branchWant = fmt.Sprintf("%s%s(%s)\n", branchWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): %s\n\n", defaultWant, testBranch)
+	branchWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): %s\n\n", testBranch)
 
 	// current branch is test branch
 	i = 1
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
 	gitLocals[i].CreateBranch(testBranch2)
-	listWant = fmt.Sprintf("%s%s(%s)\n", listWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): *%s, %s\n\n", defaultWant, testBranch, testBranch2)
+	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): *%s, %s\n\n", testBranch, testBranch2)
 
 	i = 6
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CreateBranch("main")
 	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
-	listWant = fmt.Sprintf("%s%s(%s)\n", listWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): *%s, main\n\n", defaultWant, testBranch)
+	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): *%s, main\n\n", testBranch)
 
 	i = 4
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
 	gitLocals[i].CreateBranch(testBranch2)
-	listWant = fmt.Sprintf("%s%s(%s)\n", listWant, localProjects[i].Name, relativePath[i])
-	branchWant = fmt.Sprintf("%s%s", branchWant, listWant)
-	defaultWant = fmt.Sprintf("%sProject: %s(%s)\n", defaultWant, localProjects[i].Name, relativePath[i])
-	defaultWant = fmt.Sprintf("%sBranch(es): *%s, %s\n\n", defaultWant, testBranch, testBranch2)
+	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
+	branchWant += listWant
+	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
+	defaultWant += fmt.Sprintf("Branch(es): *%s, %s\n\n", testBranch, testBranch2)
 
-	// Run default
-	if got := executeBranch(t, fake); !equalDefaultBranchOut(got, defaultWant) {
-		t.Errorf("got %s, want %s", got, defaultWant)
-	}
-	// Run with branch
-	if got := executeBranch(t, fake, testBranch); !equalBranchOut(got, branchWant) {
-		t.Errorf("got %s, want %s", got, branchWant)
-	}
+	t.Run("default", func(t *testing.T) {
+		got := executeBranch(t, fake, branchCmd{})
+		if diff := branchOutputDiff(defaultWant, got); diff != "" {
+			t.Errorf("Got output diff (-want +got):\n%s", diff)
+		}
+	})
 
-	// Run with listFlag
-	branchFlags.listFlag = true
-	if got := executeBranch(t, fake, testBranch); !equalBranchOut(got, listWant) {
-		t.Errorf("got %s, want %s", got, listWant)
-	}
+	t.Run("branch specified", func(t *testing.T) {
+		got := executeBranch(t, fake, branchCmd{}, testBranch)
+		if diff := branchOutputDiff(branchWant, got); diff != "" {
+			t.Errorf("Got output diff (-want +got):\n%s", diff)
+		}
+	})
+
+	t.Run("list", func(t *testing.T) {
+		got := executeBranch(t, fake, branchCmd{list: true}, testBranch)
+		t.Log(got)
+		if diff := branchOutputDiff(listWant, got); diff != "" {
+			t.Errorf("Got output diff (-want +got):\n%s", diff)
+		}
+	})
 }
 
 func TestDeleteBranchWithProjectConfig(t *testing.T) {
+	t.Parallel()
+
 	testDeleteBranchWithProjectConfig(t, false)
 	testDeleteBranchWithProjectConfig(t, true)
 }
 
 func testDeleteBranchWithProjectConfig(t *testing.T, overridePC bool) {
-	setDefaultBranchFlags()
 	fake := jiritest.NewFakeJiriRoot(t)
 
 	// Add projects
@@ -203,10 +202,10 @@ func testDeleteBranchWithProjectConfig(t *testing.T, overridePC bool) {
 		projects[localProject.Key()] = localProject
 	}
 
-	setDefaultBranchFlags()
-	branchFlags.deleteFlag = true
-	branchFlags.overrideProjectConfigFlag = overridePC
-	executeBranch(t, fake, testBranch)
+	executeBranch(t, fake, branchCmd{
+		delete:                true,
+		overrideProjectConfig: overridePC,
+	}, testBranch)
 
 	states, err := project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -238,7 +237,8 @@ func testDeleteBranchWithProjectConfig(t *testing.T, overridePC bool) {
 }
 
 func TestDeleteBranch(t *testing.T) {
-	setDefaultBranchFlags()
+	t.Parallel()
+
 	fake := jiritest.NewFakeJiriRoot(t)
 
 	// Add projects
@@ -280,7 +280,7 @@ func TestDeleteBranch(t *testing.T) {
 	}
 
 	// Run on default, should not delete any branch
-	executeBranch(t, fake, testBranch)
+	executeBranch(t, fake, branchCmd{}, testBranch)
 
 	states, err := project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -305,9 +305,7 @@ func TestDeleteBranch(t *testing.T) {
 		}
 	}
 
-	setDefaultBranchFlags()
-	branchFlags.deleteFlag = true
-	executeBranch(t, fake, testBranch)
+	executeBranch(t, fake, branchCmd{delete: true}, testBranch)
 
 	states, err = project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -338,9 +336,7 @@ func TestDeleteBranch(t *testing.T) {
 		}
 	}
 
-	setDefaultBranchFlags()
-	branchFlags.forceDeleteFlag = true
-	executeBranch(t, fake, testBranch)
+	executeBranch(t, fake, branchCmd{forceDelete: true}, testBranch)
 
 	states, err = project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -372,7 +368,7 @@ func TestDeleteBranch(t *testing.T) {
 	}
 }
 
-var r *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
+var r = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func randomString(strlen int) string {
 	const chars = "abcde0123456789ABCDE"
@@ -512,9 +508,7 @@ func TestDeleteMergedClsBranch(t *testing.T) {
 		t.Error(err)
 	}
 
-	setDefaultBranchFlags()
-	branchFlags.deleteMergedClsFlag = true
-	got := executeBranch(t, fake)
+	got := executeBranch(t, fake, branchCmd{deleteMergedCLs: true})
 	fmt.Println(got)
 
 	newstates, err := project.GetProjectStates(fake.X, projects, false)
@@ -542,12 +536,13 @@ func TestDeleteMergedClsBranch(t *testing.T) {
 }
 
 func TestDeleteMergedBranch(t *testing.T) {
+	t.Parallel()
+
 	testDeleteMergedBranch(t, false)
 	testDeleteMergedBranch(t, true)
 }
 
 func testDeleteMergedBranch(t *testing.T, overridePC bool) {
-	setDefaultBranchFlags()
 	fake := jiritest.NewFakeJiriRoot(t)
 
 	// Add projects
@@ -617,10 +612,10 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 		t.Error(err)
 	}
 
-	setDefaultBranchFlags()
-	branchFlags.deleteMergedFlag = true
-	branchFlags.overrideProjectConfigFlag = overridePC
-	executeBranch(t, fake)
+	executeBranch(t, fake, branchCmd{
+		deleteMerged:          true,
+		overrideProjectConfig: overridePC,
+	})
 
 	newstates, err := project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -675,10 +670,10 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 	project.WriteLocalConfig(fake.X, localProjects[i], lc)
 	localProjects[i].LocalConfig = lc
 
-	setDefaultBranchFlags()
-	branchFlags.deleteMergedFlag = true
-	branchFlags.overrideProjectConfigFlag = overridePC
-	executeBranch(t, fake, branchToDelete1)
+	executeBranch(t, fake, branchCmd{
+		deleteMerged:          true,
+		overrideProjectConfig: overridePC,
+	}, branchToDelete1)
 
 	newstates, err = project.GetProjectStates(fake.X, projects, false)
 	if err != nil {
@@ -710,21 +705,13 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 
 }
 
-func equalBranchOut(first, second string) bool {
-	second = strings.TrimSpace(second)
-	firstStrings := strings.Split(first, "\n")
-	secondStrings := strings.Split(second, "\n")
-	if len(firstStrings) != len(secondStrings) {
-		return false
-	}
-	sort.Strings(firstStrings)
-	sort.Strings(secondStrings)
-	for i, first := range firstStrings {
-		if first != secondStrings[i] {
-			return false
-		}
-	}
-	return true
+func branchOutputDiff(want, got string) string {
+	want = strings.TrimSpace(want)
+	wantStrings := strings.Split(got, "\n")
+	gotStrings := strings.Split(want, "\n")
+	sort.Strings(wantStrings)
+	sort.Strings(gotStrings)
+	return cmp.Diff(wantStrings, gotStrings)
 }
 
 func equalDefaultBranchOut(first, second string) bool {
@@ -744,8 +731,8 @@ func equalDefaultBranchOut(first, second string) bool {
 	return true
 }
 
-func executeBranch(t *testing.T, fake *jiritest.FakeJiriRoot, args ...string) string {
-	stdout, stderr, err := collectStdio(fake.X, args, runBranch)
+func executeBranch(t *testing.T, fake *jiritest.FakeJiriRoot, c branchCmd, args ...string) string {
+	stdout, stderr, err := collectStdio(fake.X, args, c.run)
 	if err != nil {
 		t.Fatal(err)
 	}
