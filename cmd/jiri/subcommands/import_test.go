@@ -337,21 +337,9 @@ func TestImport(t *testing.T) {
 
 func testImport(t *testing.T, test importTestCase) error {
 	jirix := xtest.NewX(t)
+
 	// Temporary directory in which to run `jiri import`.
 	tmpDir := t.TempDir()
-
-	// Return to the current working directory when done.
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	// cd into a root directory in which to do the actual import.
-	jiriRoot := jirix.Root
-	if err := os.Chdir(jiriRoot); err != nil {
-		return err
-	}
 
 	// Allow optional non-default filenames, for testing the -out option.
 	filename := test.Filename
@@ -361,7 +349,7 @@ func testImport(t *testing.T, test importTestCase) error {
 
 	// Set up manfile for the local file import tests.  It should exist in both
 	// the tmpDir (for ../manfile tests) and jiriRoot.
-	for _, dir := range []string{tmpDir, jiriRoot} {
+	for _, dir := range []string{tmpDir, jirix.Root} {
 		if err := os.WriteFile(filepath.Join(dir, "manfile"), nil, 0644); err != nil {
 			return err
 		}
@@ -376,6 +364,7 @@ func testImport(t *testing.T, test importTestCase) error {
 
 	run := func() error {
 		// Run import and check the results.
+		var err error
 		importCmd := func() {
 			setDefaultImportFlags()
 			if test.SetFlags != nil {

@@ -298,19 +298,6 @@ func testOverride(t *testing.T, test overrideTestCase) error {
 		t.Fatal(err)
 	}
 
-	// Return to the current working directory when done.
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	// cd into a root directory in which to do the actual import.
-	jiriRoot := jirix.Root
-	if err := os.Chdir(jiriRoot); err != nil {
-		return err
-	}
-
 	// Allow optional non-default filenames.
 	filename := test.Filename
 	if filename == "" {
@@ -325,6 +312,7 @@ func testOverride(t *testing.T, test overrideTestCase) error {
 	}
 
 	run := func() error {
+		var err error
 		// Run override and check the results.
 		overrideCmd := func() {
 			setDefaultOverrideFlags()
