@@ -11,7 +11,11 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"strings"
 	"testing"
+
+	"go.fuchsia.dev/jiri"
+	"go.fuchsia.dev/jiri/tool"
 )
 
 // runCmd handles the boilerplate associated with running an exec.Cmd object.
@@ -95,4 +99,14 @@ func runfunc(f func()) (string, string, error) {
 	io.Copy(&errbuf, errReader)
 
 	return outbuf.String(), errbuf.String(), nil
+}
+
+func collectStdio(jirix *jiri.X, args []string, f func(*jiri.X, []string) error) (string, string, error) {
+	var stdout, stderr strings.Builder
+	jirix = jirix.Clone(tool.ContextOpts{
+		Stdout: &stdout,
+		Stderr: &stderr,
+	})
+	err := f(jirix, args)
+	return stdout.String(), stderr.String(), err
 }
