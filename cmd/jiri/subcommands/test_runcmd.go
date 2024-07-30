@@ -7,11 +7,13 @@ package subcommands
 // This file contains helper functions related to running shell commands in tests.
 
 import (
-	"bytes"
 	"io"
-	"os"
 	"os/exec"
+	"strings"
 	"testing"
+
+	"go.fuchsia.dev/jiri"
+	"go.fuchsia.dev/jiri/tool"
 )
 
 // runCmd handles the boilerplate associated with running an exec.Cmd object.
@@ -69,30 +71,12 @@ func runCmd(t *testing.T, cmd *exec.Cmd, failureExpected bool) (string, string) 
 	return string(outBytes), string(errBytes)
 }
 
-func runfunc(f func()) (string, string, error) {
-	oldout, olderr := os.Stdout, os.Stderr
-	defer func() {
-		os.Stdout, os.Stderr = oldout, olderr
-	}()
-
-	reader, writer, err := os.Pipe()
-	if err != nil {
-		return "", "", err
-	}
-	errReader, errWriter, err := os.Pipe()
-	if err != nil {
-		return "", "", err
-	}
-	os.Stdout, os.Stderr = writer, errWriter
-
-	f()
-
-	writer.Close()
-	errWriter.Close()
-
-	var outbuf, errbuf bytes.Buffer
-	io.Copy(&outbuf, reader)
-	io.Copy(&errbuf, errReader)
-
-	return outbuf.String(), errbuf.String(), nil
+func collectStdio(jirix *jiri.X, args []string, f func(*jiri.X, []string) error) (string, string, error) {
+	var stdout, stderr strings.Builder
+	jirix = jirix.Clone(tool.ContextOpts{
+		Stdout: &stdout,
+		Stderr: &stderr,
+	})
+	err := f(jirix, args)
+	return stdout.String(), stderr.String(), err
 }
