@@ -50,6 +50,8 @@ func createBranchProjects(t *testing.T, fake *jiritest.FakeJiriRoot, numProjects
 }
 
 func TestBranch(t *testing.T) {
+	t.Parallel()
+
 	fake := jiritest.NewFakeJiriRoot(t)
 
 	// Add projects
@@ -377,6 +379,8 @@ func generateChangeIds(n int) []string {
 }
 
 func TestDeleteMergedClsBranch(t *testing.T) {
+	t.Parallel()
+
 	mergedIds := generateChangeIds(2)
 	unmergedIds := generateChangeIds(1)
 	localIds := generateChangeIds(1)
@@ -727,13 +731,7 @@ func equalDefaultBranchOut(first, second string) bool {
 }
 
 func executeBranch(t *testing.T, fake *jiritest.FakeJiriRoot, c branchCmd, args ...string) string {
-	stderr := ""
-	runCmd := func() {
-		if err := c.run(fake.X, args); err != nil {
-			stderr = err.Error()
-		}
-	}
-	stdout, _, err := runfunc(runCmd)
+	stdout, stderr, err := collectStdio(fake.X, args, c.run)
 	if err != nil {
 		t.Fatal(err)
 	}
