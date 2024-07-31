@@ -85,7 +85,7 @@ func TestBranch(t *testing.T) {
 	// current branch is not testBranch
 	i := 0
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch("main", localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch("main")
 	branchWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
 	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
 	defaultWant += fmt.Sprintf("Branch(es): %s, *main\n\n", testBranch)
@@ -106,7 +106,7 @@ func TestBranch(t *testing.T) {
 	// current branch is test branch
 	i = 1
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 	gitLocals[i].CreateBranch(testBranch2)
 	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
 	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
@@ -115,14 +115,14 @@ func TestBranch(t *testing.T) {
 	i = 6
 	gitLocals[i].CreateBranch(testBranch)
 	gitLocals[i].CreateBranch("main")
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
 	defaultWant += fmt.Sprintf("Project: %s(%s)\n", localProjects[i].Name, relativePath[i])
 	defaultWant += fmt.Sprintf("Branch(es): *%s, main\n\n", testBranch)
 
 	i = 4
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 	gitLocals[i].CreateBranch(testBranch2)
 	listWant += fmt.Sprintf("%s(%s)\n", localProjects[i].Name, relativePath[i])
 	branchWant += listWant
@@ -186,14 +186,14 @@ func testDeleteBranchWithProjectConfig(t *testing.T, overridePC bool) {
 	// Test when git branch -d fails
 	i = 1
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile")
-	gitLocals[i].CheckoutBranch("main", localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch("main")
 
 	// Test when current branch is test branch
 	i = 2
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 
 	// project-3 has no test branch
 
@@ -263,14 +263,14 @@ func TestDeleteBranch(t *testing.T) {
 	// Test when git branch -d fails
 	i = 1
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile")
-	gitLocals[i].CheckoutBranch("main", localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch("main")
 
 	// Test when current branch is test branch
 	i = 2
 	gitLocals[i].CreateBranch(testBranch)
-	gitLocals[i].CheckoutBranch(testBranch, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(testBranch)
 
 	// project-3 has no test branch
 
@@ -456,19 +456,19 @@ func TestDeleteMergedClsBranch(t *testing.T) {
 
 	i := 0
 	gitLocals[i].CreateBranch(branchToDelete1)
-	gitLocals[i].CheckoutBranch(branchToDelete1, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchToDelete1)
 	for j := 0; j < 2; j++ {
 		writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+mergedIds[j])
 	}
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete2, "origin/main")
-	gitLocals[i].CheckoutBranch(branchToDelete2, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchToDelete2)
 	for j := 0; j < 2; j++ {
 		writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+mergedIds[j])
 	}
 
 	i = 1
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
-	gitLocals[i].CheckoutBranch(branchToDelete1, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchToDelete1)
 	for j := 0; j < 2; j++ {
 		writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+mergedIds[j])
 	}
@@ -478,7 +478,7 @@ func TestDeleteMergedClsBranch(t *testing.T) {
 	i = 2
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
 	gitLocals[i].CreateBranchWithUpstream(branchNotToDelete, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+unmergedIds[0])
 
 	// project-3 has no branch
@@ -487,14 +487,14 @@ func TestDeleteMergedClsBranch(t *testing.T) {
 	i = 4
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
 	gitLocals[i].CreateBranchWithUpstream(branchNotToDelete, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+mergedIds[0])
 	newfile(t, localProjects[i].Path, "uncommitted.go")
 
 	// Don't delete branch when it has local commits
 	i = 5
 	gitLocals[i].CreateBranchWithUpstream(branchNotToDelete, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+localIds[0])
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile\n"+changeIdPrefix+mergedIds[0])
 
@@ -568,13 +568,13 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 
 	i = 1
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile")
 
 	i = 2
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
 	gitLocals[i].CreateBranchWithUpstream(branchNotToDelete, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile")
 
 	// project-3 has no branch
@@ -582,7 +582,7 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 	i = 4
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
 	gitLocals[i].CreateBranch(branchToDelete2)
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	writeFile(t, fake.X, localProjects[i].Path, "extrafile", "extrafile")
 	lc := project.LocalConfig{NoUpdate: true}
 	project.WriteLocalConfig(fake.X, localProjects[i], lc)
@@ -592,14 +592,14 @@ func testDeleteMergedBranch(t *testing.T, overridePC bool) {
 	i = 5
 	gitLocals[i].CreateBranchWithUpstream(branchToDelete1, "origin/main")
 	gitLocals[i].CreateBranchWithUpstream(branchNotToDelete, "origin/main")
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	newfile(t, localProjects[i].Path, "uncommitted.go")
 
 	// Don't delete current branch with changes
 	i = 6
 	gitLocals[i].CreateBranch(branchToDelete1)
 	gitLocals[i].CreateBranch(branchNotToDelete)
-	gitLocals[i].CheckoutBranch(branchNotToDelete, localProjects[i].GitSubmodules, false)
+	gitLocals[i].CheckoutBranch(branchNotToDelete)
 	newfile(t, localProjects[i].Path, "uncommitted.go")
 
 	projects := make(project.Projects)
