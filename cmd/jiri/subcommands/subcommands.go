@@ -80,18 +80,6 @@ type jiriSubcommand interface {
 	run(jirix *jiri.X, args []string) error
 }
 
-func commandFromSubcommand(s jiriSubcommand) *cmdline.Command {
-	// Command represents a single command in a command-line program.  A program
-	// with subcommands is represented as a root Command with children representing
-	// each subcommand.  The command graph must be a tree; each command may either
-	// have no parent (the root) or exactly one parent, and cycles are not allowed.
-	return &cmdline.Command{
-		Name:  s.Name(),
-		Short: s.Synopsis(),
-		Long:  s.Usage(),
-	}
-}
-
 // executeWrapper converts a Jiri-style subcommand implementation into a
 // subcommands.Command.Execute() function.
 //
@@ -126,7 +114,12 @@ func errToExitStatus(err error) subcommands.ExitStatus {
 	return subcommands.ExitSuccess
 }
 
-var topicFileSystem = cmdline.Topic{
+// TODO(olivernewman): Add back support for printing help topics.
+type topic struct {
+	Name, Short, Long string
+}
+
+var topicFileSystem = topic{
 	Name:  "filesystem",
 	Short: "Description of jiri file system layout",
 	Long: `
@@ -172,7 +165,7 @@ The jiri binary is located at [root]/.jiri_root/bin/jiri
 `,
 }
 
-var topicManifest = cmdline.Topic{
+var topicManifest = topic{
 	Name:  "manifest-files",
 	Short: "Description of manifest files",
 	Long: `
