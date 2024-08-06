@@ -38,19 +38,6 @@ func (m MultiError) String() string {
 	return m.Error()
 }
 
-// TODO(https://fxbug.dev/356134056): delete when finished migrating to
-// subcommands library.
-var (
-	branchFlags branchCmd
-	cmdBranch   = commandFromSubcommand(&branchFlags)
-)
-
-// TODO(https://fxbug.dev/356134056): delete when finished migrating to
-// subcommands library.
-func init() {
-	branchFlags.SetFlags(&cmdBranch.Flags)
-}
-
 type branchCmd struct {
 	cmdBase
 	delete                bool
