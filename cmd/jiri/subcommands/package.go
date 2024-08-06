@@ -34,6 +34,8 @@ func init() {
 }
 
 type packageCmd struct {
+	cmdBase
+
 	jsonOutput string
 	regexp     bool
 }
@@ -55,12 +57,14 @@ Usage:
 }
 
 func (c *packageCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.jsonOutput, "json-output", "", "Path to write operation results to.")
 	f.BoolVar(&c.regexp, "regexp", false, "Use argument as regular expression.")
 }
 
-func (c *packageCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *packageCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 // runPackageInfo provides structured info on packages.
@@ -147,8 +151,8 @@ func (c *packageCmd) run(jirix *jiri.X, args []string) error {
 		fmt.Fprintf(jirix.Stdout(), "  Platforms: %v\n", i.Platforms)
 	}
 
-	if packageFlags.jsonOutput != "" {
-		if err := writeJSONOutput(packageFlags.jsonOutput, info); err != nil {
+	if c.jsonOutput != "" {
+		if err := writeJSONOutput(c.jsonOutput, info); err != nil {
 			return err
 		}
 	}

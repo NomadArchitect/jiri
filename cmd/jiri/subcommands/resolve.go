@@ -28,6 +28,8 @@ func init() {
 }
 
 type resolveCmd struct {
+	cmdBase
+
 	lockFilePath         string
 	localManifestFlag    bool
 	enablePackageLock    bool
@@ -90,6 +92,8 @@ Usage:
 }
 
 func (c *resolveCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.lockFilePath, "output", "jiri.lock", "Path to the generated lockfile")
 	f.BoolVar(&c.localManifestFlag, "local-manifest", false, "Use local manifest")
 	f.BoolVar(&c.enablePackageLock, "enable-package-lock", true, "Enable resolving packages in lockfile")
@@ -99,8 +103,8 @@ func (c *resolveCmd) SetFlags(f *flag.FlagSet) {
 	f.BoolVar(&c.fullResolve, "full-resolve", false, "Resolve all project and packages, not just those are changed.")
 }
 
-func (c *resolveCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *resolveCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *resolveCmd) run(jirix *jiri.X, args []string) error {
