@@ -35,6 +35,8 @@ func init() {
 }
 
 type packageCmd struct {
+	cmdBase
+
 	jsonOutput string
 	regexp     bool
 }
@@ -60,8 +62,8 @@ func (c *packageCmd) SetFlags(f *flag.FlagSet) {
 	f.BoolVar(&c.regexp, "regexp", false, "Use argument as regular expression.")
 }
 
-func (c *packageCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *packageCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 // runPackageInfo provides structured info on packages.

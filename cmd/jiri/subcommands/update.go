@@ -36,6 +36,8 @@ func init() {
 }
 
 type updateCmd struct {
+	cmdBase
+
 	gc               bool
 	localManifest    bool
 	attempts         uint
@@ -90,8 +92,8 @@ Usage:
 `
 }
 
-func (c *updateCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *updateCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *updateCmd) run(jirix *jiri.X, args []string) error {
