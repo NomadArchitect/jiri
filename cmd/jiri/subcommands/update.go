@@ -36,6 +36,8 @@ func init() {
 }
 
 type updateCmd struct {
+	cmdBase
+
 	gc               bool
 	localManifest    bool
 	attempts         uint
@@ -55,6 +57,8 @@ type updateCmd struct {
 }
 
 func (c *updateCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.BoolVar(&c.gc, "gc", true, "Garbage collect obsolete repositories.")
 	f.BoolVar(&c.localManifest, "local-manifest", false, "Use local manifest")
 	f.UintVar(&c.attempts, "attempts", 3, "Number of attempts before failing.")
@@ -90,8 +94,8 @@ Usage:
 `
 }
 
-func (c *updateCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *updateCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *updateCmd) run(jirix *jiri.X, args []string) error {
