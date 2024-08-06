@@ -31,6 +31,8 @@ func init() {
 }
 
 type checkCleanCmd struct {
+	cmdBase
+
 	branch string
 }
 
@@ -47,11 +49,13 @@ Usage:
 }
 
 func (c *checkCleanCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.branch, "branch", "", "Only check projects that have this branch checked out.")
 }
 
-func (c *checkCleanCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *checkCleanCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *checkCleanCmd) run(jirix *jiri.X, args []string) error {

@@ -36,6 +36,8 @@ func init() {
 }
 
 type patchCmd struct {
+	cmdBase
+
 	rebase         bool
 	rebaseRevision string
 	rebaseBranch   string
@@ -85,6 +87,8 @@ Usage:
 }
 
 func (c *patchCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.branch, "branch", "", "Name of the branch the patch will be applied to")
 	f.BoolVar(&c.delete, "delete", false, "Delete the existing branch if already exists")
 	f.BoolVar(&c.force, "force", false, "Use force when deleting the existing branch")
@@ -98,8 +102,8 @@ func (c *patchCmd) SetFlags(f *flag.FlagSet) {
 	f.BoolVar(&c.detachedHead, "no-branch", false, `Don't create the branch for the patch.`)
 }
 
-func (c *patchCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *patchCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *patchCmd) run(jirix *jiri.X, args []string) error {

@@ -33,6 +33,8 @@ func init() {
 }
 
 type uploadCmd struct {
+	cmdBase
+
 	ccs            string
 	presubmit      string
 	reviewers      string
@@ -70,6 +72,8 @@ default. This cannot be used with -multipart flag.
 }
 
 func (c *uploadCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.ccs, "cc", "", `Comma-separated list of emails or LDAPs to cc.`)
 	f.StringVar(&c.presubmit, "presubmit", string(gerrit.PresubmitTestTypeAll),
 		fmt.Sprintf("The type of presubmit tests to run. Valid values: %s.", strings.Join(gerrit.PresubmitTestTypes(), ",")))
@@ -85,8 +89,8 @@ func (c *uploadCmd) SetFlags(f *flag.FlagSet) {
 	f.StringVar(&c.gitOptions, "git-options", "", `Passthrough git options`)
 }
 
-func (c *uploadCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *uploadCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 // runUpload is a wrapper that pushes the changes to gerrit for review.
