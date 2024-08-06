@@ -27,7 +27,9 @@ var (
 	}
 )
 
-type versionCmd struct{}
+type versionCmd struct {
+	cmdBase
+}
 
 func (c *versionCmd) Name() string     { return "version" }
 func (c *versionCmd) Synopsis() string { return "Print the jiri version" }
@@ -40,10 +42,12 @@ Usage:
 `
 }
 
-func (c *versionCmd) SetFlags(f *flag.FlagSet) {}
+func (c *versionCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+}
 
-func (c *versionCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return errToExitStatus(c.run(ctx, argsToStrings(args)))
+func (c *versionCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return errToExitStatus(c.run(ctx, f.Args()))
 }
 
 func (c *versionCmd) run(ctx context.Context, args []string) error {
