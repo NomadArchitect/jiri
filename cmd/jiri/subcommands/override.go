@@ -31,6 +31,8 @@ func init() {
 }
 
 func (c *overrideCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.importManifest, "import-manifest", "", "The manifest of the import override.")
 	f.StringVar(&c.path, "path", "", `Path used to store the project locally.`)
 	f.StringVar(&c.revision, "revision", "", `Revision to check out for the remote (defaults to HEAD).`)
@@ -41,6 +43,8 @@ func (c *overrideCmd) SetFlags(f *flag.FlagSet) {
 }
 
 type overrideCmd struct {
+	cmdBase
+
 	// Flags configuring project attributes for overrides.
 	importManifest string
 	gerritHost     string
@@ -82,8 +86,8 @@ type overrideInfo struct {
 	GerritHost     string `json:"gerrithost,omitempty"`
 }
 
-func (c *overrideCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *overrideCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *overrideCmd) run(jirix *jiri.X, args []string) error {

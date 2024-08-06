@@ -27,6 +27,8 @@ func init() {
 }
 
 type fetchPkgsCmd struct {
+	cmdBase
+
 	localManifest     bool
 	fetchPkgsTimeout  uint
 	attempts          uint
@@ -49,6 +51,8 @@ Usage:
 }
 
 func (c *fetchPkgsCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.BoolVar(&c.localManifest, "local-manifest", false, "Use local checked out manifest.")
 	f.UintVar(&c.fetchPkgsTimeout, "fetch-packages-timeout", project.DefaultPackageTimeout, "Timeout in minutes for fetching prebuilt packages using cipd.")
 	f.UintVar(&c.attempts, "attempts", 1, "Number of attempts before failing.")
@@ -56,8 +60,8 @@ func (c *fetchPkgsCmd) SetFlags(f *flag.FlagSet) {
 	f.Var(&runHooksFlags.packagesToSkip, "package-to-skip", "Skip fetching this package. Repeatable.")
 }
 
-func (c *fetchPkgsCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *fetchPkgsCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *fetchPkgsCmd) run(jirix *jiri.X, args []string) (err error) {
