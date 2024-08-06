@@ -17,19 +17,6 @@ import (
 	"go.fuchsia.dev/jiri/project"
 )
 
-// TODO(https://fxbug.dev/356134056): delete when finished migrating to
-// subcommands library.
-var (
-	overrideFlags overrideCmd
-	cmdOverride   = commandFromSubcommand(&overrideFlags)
-)
-
-// TODO(https://fxbug.dev/356134056): delete when finished migrating to
-// subcommands library.
-func init() {
-	overrideFlags.SetFlags(&cmdOverride.Flags)
-}
-
 func (c *overrideCmd) SetFlags(f *flag.FlagSet) {
 	c.topLevelFlags.SetFlags(f)
 
