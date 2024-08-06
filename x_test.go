@@ -36,7 +36,7 @@ func TestFindRootEnvSymlink(t *testing.T) {
 
 	// Set the -root flag to the symlink created above and check that
 	// FindRoot() evaluates the symlink.
-	rootFlag = symRoot
+	flags.rootFlag = symRoot
 	if got, want := FindRoot(), root; got != want {
 		t.Fatalf("unexpected output: got %v, want %v", got, want)
 	}

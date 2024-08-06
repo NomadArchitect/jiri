@@ -31,6 +31,8 @@ func init() {
 }
 
 type importCmd struct {
+	cmdBase
+
 	// Flags for configuring project attributes for remote imports.
 	name         string
 	remoteBranch string
@@ -81,8 +83,8 @@ func (c *importCmd) SetFlags(f *flag.FlagSet) {
 	f.StringVar(&c.jsonOutput, "json-output", "", `Json output file from -list flag.`)
 }
 
-func (c *importCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *importCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *importCmd) run(jirix *jiri.X, args []string) error {

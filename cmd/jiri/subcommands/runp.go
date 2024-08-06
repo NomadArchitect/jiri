@@ -40,6 +40,8 @@ func init() {
 }
 
 type runpCmd struct {
+	cmdBase
+
 	projectKeys    string
 	verbose        bool
 	interactive    bool
@@ -91,8 +93,8 @@ func (c *runpCmd) SetFlags(f *flag.FlagSet) {
 	f.StringVar(&c.remote, "remote", "", "A Regular expression specifying projects to run commands in by matching against their remote URLs.")
 }
 
-func (c *runpCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *runpCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 type mapInput struct {
