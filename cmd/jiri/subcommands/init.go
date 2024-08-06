@@ -43,6 +43,8 @@ func init() {
 }
 
 type initCmd struct {
+	cmdBase
+
 	cache                           string
 	dissociate                      bool
 	shared                          bool
@@ -83,6 +85,8 @@ does not exists, it will be created.
 }
 
 func (c *initCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.StringVar(&c.cache, "cache", "", "Jiri cache directory.")
 	f.BoolVar(&c.shared, "shared", false, "[DEPRECATED] All caches are shared.")
 	f.BoolVar(&c.dissociate, "dissociate", false, "Dissociate the git cache after a clone or fetch.")
@@ -109,12 +113,8 @@ func (c *initCmd) SetFlags(f *flag.FlagSet) {
 	f.Var(&c.excludeDirs, "exclude-dirs", "Directories to skip when searching for local projects (Default: out).")
 }
 
-func (c *initCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	var strArgs []string
-	for _, arg := range args {
-		strArgs = append(strArgs, arg.(string))
-	}
-	return errToExitStatus(c.run(ctx, strArgs))
+func (c *initCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return errToExitStatus(c.run(ctx, f.Args()))
 }
 
 func (c *initCmd) run(ctx context.Context, args []string) error {
@@ -143,7 +143,7 @@ func (c *initCmd) run(ctx context.Context, args []string) error {
 			}
 		}
 	} else {
-		dir, err = jiri.GetCwd()
+		dir, err = os.Getwd()
 		if err != nil {
 			return err
 		}

@@ -27,6 +27,8 @@ func init() {
 }
 
 type snapshotCmd struct {
+	cmdBase
+
 	cipdEnsure bool
 }
 
@@ -45,11 +47,13 @@ Usage:
 }
 
 func (c *snapshotCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.BoolVar(&c.cipdEnsure, "cipd", false, "Generate a cipd.ensure (packages only) snapshot.")
 }
 
-func (c *snapshotCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *snapshotCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *snapshotCmd) run(jirix *jiri.X, args []string) error {

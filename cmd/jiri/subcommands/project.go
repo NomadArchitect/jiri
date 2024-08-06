@@ -35,6 +35,8 @@ func init() {
 }
 
 type projectCmd struct {
+	cmdBase
+
 	cleanAll          bool
 	cleanup           bool
 	jsonOutput        string
@@ -66,6 +68,8 @@ Usage:
 }
 
 func (c *projectCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.BoolVar(&c.cleanAll, "clean-all", false, "Restore jiri projects to their pristine state and delete all branches.")
 	f.BoolVar(&c.cleanup, "clean", false, "Restore jiri projects to their pristine state.")
 	f.StringVar(&c.jsonOutput, "json-output", "", "Path to write operation results to.")
@@ -75,8 +79,8 @@ func (c *projectCmd) SetFlags(f *flag.FlagSet) {
 	f.BoolVar(&c.useRemoteProjects, "list-remote-projects", false, "List remote projects instead of local projects.")
 }
 
-func (c *projectCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *projectCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *projectCmd) run(jirix *jiri.X, args []string) (e error) {
