@@ -35,6 +35,8 @@ func init() {
 }
 
 type diffCmd struct {
+	cmdBase
+
 	cls          bool
 	indentOutput bool
 
@@ -100,13 +102,15 @@ Usage:
 }
 
 func (c *diffCmd) SetFlags(f *flag.FlagSet) {
+	c.topLevelFlags.SetFlags(f)
+
 	f.BoolVar(&c.cls, "cls", true, "Return CLs for changed projects")
 	f.BoolVar(&c.indentOutput, "indent", true, "Indent json output")
 	f.UintVar(&c.maxCls, "max-cls", 5, "Max number of CLs returned per changed project")
 }
 
-func (c *diffCmd) Execute(ctx context.Context, _ *flag.FlagSet, args ...any) subcommands.ExitStatus {
-	return executeWrapper(ctx, c.run, args)
+func (c *diffCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
+	return executeWrapper(ctx, c.run, c.topLevelFlags, f.Args())
 }
 
 func (c *diffCmd) run(jirix *jiri.X, args []string) error {
