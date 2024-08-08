@@ -6,6 +6,7 @@ package subcommands
 
 import (
 	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"net/url"
@@ -92,7 +93,7 @@ func (c *patchCmd) Execute(ctx context.Context, f *flag.FlagSet, _ ...any) subco
 
 func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 	if expected, got := 1, len(args); expected != got {
-		return jirix.UsageErrorf("unexpected number of arguments: expected %v, got %v", expected, got)
+		return jirix.UsageErrorf("unexpected number of arguments: expected %d, got %d", expected, got)
 	}
 	arg := args[0]
 
@@ -104,18 +105,24 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 		return jirix.UsageErrorf("-rebase-revision should only be used with -rebase and -project flag")
 	}
 
-	var cl int
-	var ps int
+	var changeNum int
+	var patchSet int
 	var err error
 	changeRef := ""
 	remoteBranch := ""
 	if !c.topic {
-		cl, ps, err = gerrit.ParseRefString(arg)
+		changeNum, patchSet, err = gerrit.ParseRefString(arg)
 		if err != nil {
 			if c.project != "" {
-				return fmt.Errorf("Please pass change ref with -project flag (refs/changes/<ps>/<cl>/<patch-set>)")
+				// If the ref is not a Gerrit change ref, and a project is
+				// specified, then assume it refers to a non-change ref and try
+				// to patch in that ref.
+				//
+				// This is useful for writing tests for the patching logic
+				// without needing internet access.
+				return c.patchNonChangeRef(jirix, arg)
 			}
-			cl, err = strconv.Atoi(arg)
+			changeNum, err = strconv.Atoi(arg)
 			if err != nil {
 				return fmt.Errorf("invalid argument: %v", arg)
 			}
@@ -131,14 +138,14 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 		if err != nil {
 			return err
 		}
-		var hostUrl *url.URL
+		var hostURL *url.URL
 		if host != "" {
-			hostUrl, err = url.Parse(host)
+			hostURL, err = url.Parse(host)
 			if err != nil {
 				return fmt.Errorf("invalid Gerrit host %q: %s", host, err)
 			}
 		}
-		p = c.findProject(jirix, c.project, projects, host, hostUrl, changeRef)
+		p = c.findProject(jirix, c.project, projects, host, hostURL, changeRef)
 		if p == nil {
 			jirix.Logger.Errorf("Cannot find project for %q", c.project)
 			return noSuchProjectErr
@@ -162,13 +169,13 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 	}
 	if !c.topic && p != nil {
 		if remoteBranch == "" || changeRef == "" {
-			hostUrl, err := url.Parse(host)
+			hostURL, err := url.Parse(host)
 			if err != nil {
 				return fmt.Errorf("invalid Gerrit host %q: %s", host, err)
 			}
-			g := gerrit.New(jirix, hostUrl)
+			g := gerrit.New(jirix, hostURL)
 
-			change, err := g.GetChange(cl)
+			change, err := g.GetChange(changeNum)
 			if err != nil {
 				return err
 			}
@@ -176,7 +183,7 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 			changeRef = change.Reference()
 		}
 		branch := c.branch
-		if ps != -1 {
+		if patchSet != -1 {
 			if _, err = c.patchProject(jirix, *p, arg, branch, remoteBranch); err != nil {
 				return err
 			}
@@ -189,11 +196,11 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 		if host == "" {
 			return fmt.Errorf("no Gerrit host; use the '--host' flag or run this from inside a project")
 		}
-		hostUrl, err := url.Parse(host)
+		hostURL, err := url.Parse(host)
 		if err != nil {
 			return fmt.Errorf("invalid Gerrit host %q: %v", host, err)
 		}
-		g := gerrit.New(jirix, hostUrl)
+		g := gerrit.New(jirix, hostURL)
 
 		var changes gerrit.CLList
 		branch := c.branch
@@ -255,8 +262,8 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 					break
 				}
 				// check if all the CLs contained in topic are in related CL list
-				for changeId, change := range topicChanges {
-					if _, ok := relatedChangesMap[changeId]; !ok {
+				for changeID, change := range topicChanges {
+					if _, ok := relatedChangesMap[changeID]; !ok {
 						var cn []string
 						for _, c := range topicChanges {
 							cn = append(cn, strconv.Itoa(c.Number))
@@ -265,7 +272,7 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 					}
 				}
 			}
-			ps = -1
+			patchSet = -1
 			if branch == "" {
 				userPrefix := os.Getenv("USER") + "-"
 				if strings.HasPrefix(arg, userPrefix) {
@@ -275,7 +282,7 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 				}
 			}
 		} else {
-			change, err := g.GetChange(cl)
+			change, err := g.GetChange(changeNum)
 			if err != nil {
 				return err
 			}
@@ -287,12 +294,12 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 		}
 		for _, change := range changes {
 			var ref string
-			if ps != -1 {
+			if patchSet != -1 {
 				ref = arg
 			} else {
 				ref = change.Reference()
 			}
-			if projectToPatch := c.findProject(jirix, change.Project, projects, host, hostUrl, g.GetChangeURL(change.Number)); projectToPatch != nil {
+			if projectToPatch := c.findProject(jirix, change.Project, projects, host, hostURL, g.GetChangeURL(change.Number)); projectToPatch != nil {
 				if _, err := c.patchProject(jirix, *projectToPatch, ref, branch, change.Branch); err != nil {
 					return err
 				}
@@ -310,6 +317,27 @@ func (c *patchCmd) run(jirix *jiri.X, args []string) error {
 		return rebaseFailedErr
 	} else if jirix.Failures() != 0 {
 		return fmt.Errorf("Patch failed")
+	}
+	return nil
+}
+
+func (c *patchCmd) patchNonChangeRef(jirix *jiri.X, ref string) error {
+	if c.branch == "" && !c.detachedHead {
+		return errors.New("-branch or -no-branch is required if the ref is not a Gerrit change")
+	}
+	projects, err := project.LocalProjects(jirix, project.FastScan)
+	if err != nil {
+		return err
+	}
+	if projectToPatch := c.findProject(jirix, c.project, projects, "", nil, ""); projectToPatch != nil {
+		if _, err := c.patchProject(jirix, *projectToPatch, ref, c.branch, ""); err != nil {
+			return err
+		}
+		fmt.Fprintln(jirix.Stdout())
+	} else {
+		jirix.Logger.Errorf("Cannot find project to patch\n")
+		jirix.IncrementFailures()
+		fmt.Fprintln(jirix.Stdout())
 	}
 	return nil
 }
@@ -502,7 +530,7 @@ func (c *patchCmd) rebaseProjectWRevision(jirix *jiri.X, project project.Project
 	return nil
 }
 
-func (c *patchCmd) findProject(jirix *jiri.X, projectName string, projects project.Projects, host string, hostUrl *url.URL, ref string) *project.Project {
+func (c *patchCmd) findProject(jirix *jiri.X, projectName string, projects project.Projects, host string, hostURL *url.URL, ref string) *project.Project {
 	var projectToPatch *project.Project
 	var projectToPatchNoGerritHost *project.Project
 	for _, p := range projects {
@@ -518,7 +546,7 @@ func (c *patchCmd) findProject(jirix *jiri.X, projectName string, projects proje
 					if err != nil {
 						jirix.Logger.Warningf("invalid Gerrit host %q for project %s: %s", p.GerritHost, p.Name, err)
 					}
-					if u.Host != hostUrl.Host {
+					if u.Host != hostURL.Host {
 						jirix.Logger.Debugf("skipping project %s(%s) for CL %s\n\n", p.Name, p.Path, ref)
 						continue
 					}
