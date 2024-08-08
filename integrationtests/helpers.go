@@ -63,8 +63,9 @@ func jiriInit(t *testing.T, root string, initArgs ...string) func(args ...string
 		}
 		retcode := cmdline.Main(env, commander)
 		if retcode != subcommands.ExitSuccess {
-			t.Fatalf("%q failed:\n%s",
+			t.Fatalf("%q failed (retcode %d):\n%s",
 				strings.Join(append([]string{"jiri"}, args...), " "),
+				retcode,
 				string(stderr.Bytes()),
 			)
 		}
