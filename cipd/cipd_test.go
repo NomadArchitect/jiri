@@ -443,7 +443,6 @@ func TestDecl(t *testing.T) {
 
 func TestFloatingRefs(t *testing.T) {
 	t.Parallel()
-	fakex := newX(t)
 	testExpects := map[PackageInstance]bool{
 		{
 			PackageName: "gn/gn/${platform}",
@@ -465,10 +464,7 @@ func TestFloatingRefs(t *testing.T) {
 		tests[k] = v
 	}
 
-	if err := CheckFloatingRefs(fakex, tests, platformMap); err != nil {
-		t.Fatalf("CheckFloatingRefs failed due to error: %v", err)
-		return
-	}
+	CheckFloatingRefs(tests)
 
 	for k, v := range tests {
 		if v != testExpects[k] {
