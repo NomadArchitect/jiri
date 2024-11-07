@@ -355,6 +355,7 @@ func (g *Git) SubmoduleUpdate(opts ...SubmoduleUpdateOpt) error {
 	// TODO(iankaz): Use Jiri jobsFlag setting (or set submodule.fetchJobs on superproject init)
 	// Number of parallel children to be used for fetching submodules.
 	args = append(args, "--jobs=50")
+	args = append(args, "--merge")
 	return g.run(args...)
 }
 
