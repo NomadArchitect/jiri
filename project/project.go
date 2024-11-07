@@ -1995,6 +1995,8 @@ func tryRebase(jirix *jiri.X, project Project, branch string) (bool, error) {
 
 // syncProjectMaster checks out latest detached head if project is on one
 // else it rebases current branch onto its tracking branch
+// not currently called for submodule managed projects - only called for fuchsia.git, integration, vendor/google
+// the assumption is so when it gets called by fuchsia.git, all fuchsia.git submodules will get updated
 func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebaseTracked, rebaseUntracked, rebaseAll, rebaseSubmodules, snapshot bool) error {
 	cwd := jirix.Cwd
 	relativePath, err := filepath.Rel(cwd, project.Path)
@@ -2038,6 +2040,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 		return nil
 	}
 
+	// covers testing update with submodules (first test case)
 	if state.CurrentBranch.Name == "" || snapshot { // detached head
 		if err := checkoutHeadRevision(jirix, project, false); err != nil {
 			revision, err2 := GetHeadRevision(project)
@@ -2074,7 +2077,7 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 		}()
 	}
 
-	// if rebase flag is false, merge fast forward current branch
+	// // if rebase flag is false, merge fast forward current branch
 	if !rebaseTracked && !rebaseAll && state.CurrentBranch.Tracking != nil {
 		tracking := state.CurrentBranch.Tracking
 		if tracking.Revision == state.CurrentBranch.Revision {
@@ -2088,10 +2091,18 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 			msg := fmt.Sprintf("For project %s(%s), not able to fast forward your local branch %q to %q\n\n", project.Name, relativePath, state.CurrentBranch.Name, tracking.Name)
 			jirix.Logger.Errorf(msg)
 			jirix.IncrementFailures()
+		} else if project.GitSubmodules && jirix.EnableSubmodules {
+			jirix.Logger.Debugf("Checking out submodules for superproject %q after rebasing", project.Name)
+			if err := scm.SubmoduleUpdateAll(rebaseSubmodules); err != nil {
+				msg := fmt.Sprintf("For superproject %s(%s), unable to update submodules", project.Name, relativePath)
+				jirix.Logger.Errorf(msg)
+				jirix.IncrementFailures()
+			}
 		}
 		return nil
 	}
 
+	// build branch map for branches that need to be actioned upon
 	branches := state.Branches
 	if !rebaseAll {
 		branches = []BranchState{state.CurrentBranch}
@@ -2105,10 +2116,12 @@ func syncProjectMaster(jirix *jiri.X, project Project, state ProjectState, rebas
 	if err != nil {
 		return err
 	}
+	// why does this matter
 	branchesContainingHead, err := scm.ListBranchesContainingRef(headRevision)
 	if err != nil {
 		return err
 	}
+	// rebase tracked branches
 	for _, branch := range branches {
 		tracking := branch.Tracking
 		circularDependencyMap := make(map[string]bool)

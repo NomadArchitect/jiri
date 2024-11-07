@@ -345,6 +345,8 @@ func (g *Git) SubmoduleUpdate(opts ...SubmoduleUpdateOpt) error {
 		case RebaseSubmodulesOpt:
 			if typedOpt {
 				args = append(args, "--rebase")
+			} else {
+				args = append(args, "--merge")
 			}
 		case InitOpt:
 			if typedOpt {
